@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Sandwitch.Tier.Contexts\Sandwitch.Tier.Contexts.csproj" />
+    <ProjectReference Include="..\Sandwitch.Tier.Entities\Sandwitch.Tier.Entities.csproj" />
+    <ProjectReference Include="..\Sandwitch.Tier.ViewModels\Sandwitch.Tier.ViewModels.csproj" />
+  </ItemGroup>
+
+</Project>

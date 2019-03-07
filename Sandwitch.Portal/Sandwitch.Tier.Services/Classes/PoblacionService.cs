@@ -3,7 +3,6 @@ using Sandwitch.Tier.Contexts.Interfaces;
 using Sandwitch.Tier.Entities.Classes;
 using Sandwitch.Tier.Services.Interfaces;
 using Sandwitch.Tier.ViewModels.Classes.Additions;
-using Sandwitch.Tier.ViewModels.Classes.Removes;
 using Sandwitch.Tier.ViewModels.Classes.Updates;
 using System;
 using System.Collections.Generic;
@@ -80,9 +79,9 @@ namespace Sandwitch.Tier.Services.Classes
             return entity;
         }
 
-        public async Task RemovePoblacionById(RemovePoblacion viewModel)
+        public async Task RemovePoblacionById(int id)
         {
-            Poblacion entity = await FindPoblacionById(viewModel.Id);
+            Poblacion entity = await FindPoblacionById(id);
 
             Icontext.Poblacion.Remove(entity);
 

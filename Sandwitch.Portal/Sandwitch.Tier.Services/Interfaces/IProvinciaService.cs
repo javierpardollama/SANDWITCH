@@ -1,6 +1,5 @@
 ﻿using Sandwitch.Tier.Entities.Classes;
 using Sandwitch.Tier.ViewModels.Classes.Additions;
-using Sandwitch.Tier.ViewModels.Classes.Removes;
 using Sandwitch.Tier.ViewModels.Classes.Updates;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -13,7 +12,7 @@ namespace Sandwitch.Tier.Services.Interfaces
 
         Task<Provincia> FindProvinciaById(int id);
 
-        Task RemoveProvinciaById(RemoveProvincia viewModel);
+        Task RemoveProvinciaById(int id);
 
         Task<Provincia> UpdateProvincia(UpdateProvincia viewModel);
 

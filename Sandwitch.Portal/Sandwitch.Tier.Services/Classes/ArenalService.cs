@@ -3,7 +3,6 @@ using Sandwitch.Tier.Contexts.Interfaces;
 using Sandwitch.Tier.Entities.Classes;
 using Sandwitch.Tier.Services.Interfaces;
 using Sandwitch.Tier.ViewModels.Classes.Additions;
-using Sandwitch.Tier.ViewModels.Classes.Removes;
 using Sandwitch.Tier.ViewModels.Classes.Updates;
 using System;
 using System.Collections.Generic;
@@ -90,9 +89,9 @@ namespace Sandwitch.Tier.Services.Classes
             return poblacion;
         }
 
-        public async Task RemoveArenalById(RemoveArenal viewModel)
+        public async Task RemoveArenalById(int id)
         {
-            Arenal arenal = await FindArenalById(viewModel.Id);
+            Arenal arenal = await FindArenalById(id);
 
             Icontext.Arenal.Remove(arenal);
 

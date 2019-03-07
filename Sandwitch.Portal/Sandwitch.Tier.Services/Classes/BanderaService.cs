@@ -3,7 +3,6 @@ using Sandwitch.Tier.Contexts.Interfaces;
 using Sandwitch.Tier.Entities.Classes;
 using Sandwitch.Tier.Services.Interfaces;
 using Sandwitch.Tier.ViewModels.Classes.Additions;
-using Sandwitch.Tier.ViewModels.Classes.Removes;
 using Sandwitch.Tier.ViewModels.Classes.Updates;
 using System;
 using System.Collections.Generic;
@@ -52,15 +51,15 @@ namespace Sandwitch.Tier.Services.Classes
 
             if (entity != null)
             {
-                throw new Exception("Bandera with Id" + id + "does not exists");
+                throw new Exception("Bandera with Id" + id + "does not exist");
             }
 
             return entity;
         }
 
-        public async Task RemoveBanderaById(RemoveBandera viewModel)
+        public async Task RemoveBanderaById(int id)
         {
-            Bandera entity = await FindBanderaById(viewModel.Id);
+            Bandera entity = await FindBanderaById(id);
 
             Icontext.Bandera.Remove(entity);
 

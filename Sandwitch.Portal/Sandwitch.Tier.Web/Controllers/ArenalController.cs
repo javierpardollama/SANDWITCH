@@ -48,7 +48,7 @@ namespace Sandwitch.Tier.Web.Controllers
 
         [HttpDelete]
         [Route("removearenalbyid/{id}")]
-        public async Task<IActionResult> RemoveProvinciaById(int id)
+        public async Task<IActionResult> RemoveArenalById(int id)
         {
             await this.Service.RemoveArenalById(id);
 

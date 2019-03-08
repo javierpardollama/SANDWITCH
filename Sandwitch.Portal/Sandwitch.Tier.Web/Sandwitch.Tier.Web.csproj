@@ -24,6 +24,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="sandwitch.db-journal" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Sandwitch.Tier.Services\Sandwitch.Tier.Services.csproj" />
   </ItemGroup>
 

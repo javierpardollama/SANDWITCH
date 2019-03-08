@@ -2,6 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
+    <PackageProjectUrl>https://github.com/javierpardollama/SANDWITCH/tree/master/Sandwitch.Portal/Sandwitch.Tier.Contexts</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/javierpardollama/SANDWITCH/tree/master/Sandwitch.Portal/Sandwitch.Tier.Contexts</RepositoryUrl>
   </PropertyGroup>
 
   <ItemGroup>

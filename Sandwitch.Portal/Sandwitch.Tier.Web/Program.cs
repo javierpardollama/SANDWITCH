@@ -11,22 +11,19 @@ namespace Sandwitch.Tier.Web
     {
         public static void Main(string[] args)
         {
-            IWebHost webHost = CreateWebHostBuilder(args);
+            IWebHost host = BuildWebHost(args);
 
-            try
-            {
-                ApplyWebHostMigrations(webHost.Services);
-            }
-            catch (Exception ex)
-            {      
-                
-            }
+            ApplyWebHostMigrations(host.Services);
+
+            host.Run();
         }
 
-        public static IWebHost CreateWebHostBuilder(string[] args) =>
-           WebHost.CreateDefaultBuilder(args)
-            .UseStartup<Startup>()
-            .Build();
+        public static IWebHost BuildWebHost(string[] args)
+        {
+            return WebHost.CreateDefaultBuilder(args)
+.UseStartup<Startup>()
+.Build();
+        }
 
         public static void ApplyWebHostMigrations(IServiceProvider serviceProvider)
         {
@@ -38,6 +35,6 @@ namespace Sandwitch.Tier.Web
 
                 applicationContext.Database.Migrate();
             }
-        }       
+        }
     }
 }

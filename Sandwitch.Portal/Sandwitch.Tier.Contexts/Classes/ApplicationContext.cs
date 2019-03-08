@@ -7,6 +7,10 @@ namespace Sandwitch.Tier.Contexts.Classes
 {
     public class ApplicationContext : DbContext, IApplicationContext
     {
+        public ApplicationContext(DbContextOptions<ApplicationContext> options) : base(options)
+        {
+        }       
+
         public DbSet<Provincia> Provincia { get; set; }
 
         public DbSet<Poblacion> Poblacion { get; set; }
@@ -22,6 +26,6 @@ namespace Sandwitch.Tier.Contexts.Classes
         public async Task<int> SaveChangesAsync()
         {
             return await base.SaveChangesAsync();
-        }
+        }       
     }
 }

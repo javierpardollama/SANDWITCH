@@ -7,7 +7,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Sandwitch.Tier.Contexts.Classes;
 using Sandwitch.Tier.Web.Extensions;
-using System;
 
 namespace Sandwitch.Tier.Web
 {

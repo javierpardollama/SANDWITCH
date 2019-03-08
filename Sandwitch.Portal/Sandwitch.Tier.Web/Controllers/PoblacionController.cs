@@ -29,22 +29,13 @@ namespace Sandwitch.Tier.Web.Controllers
         }
 
         [HttpGet]
-        [Route("findallpoblacion}")]
+        [Route("findallpoblacion")]
         public async Task<IActionResult> FindAllPoblacion()
         {
             ICollection<Poblacion> poblaciones = await this.Service.FindAllPoblacion();
 
             return new JsonResult(poblaciones);
-        }
-
-        [HttpGet]
-        [Route("findallpoblacionbyprovinciaid/{id}")]
-        public async Task<IActionResult> FindAllPoblacionByProvinciaId(int id)
-        {
-            ICollection<Poblacion> poblaciones = await this.Service.FindAllPoblacionByProvinciaId(id);
-
-            return new JsonResult(poblaciones);
-        }
+        }      
 
         [HttpPost]
         [Route("addpoblacion")]
@@ -56,7 +47,7 @@ namespace Sandwitch.Tier.Web.Controllers
         }
 
         [HttpDelete]
-        [Route("removeprovinciabyid/{id}")]
+        [Route("removepoblacionbyid/{id}")]
         public async Task<IActionResult> RemoveProvinciaById(int id)
         {
             await this.Service.RemovePoblacionById(id);

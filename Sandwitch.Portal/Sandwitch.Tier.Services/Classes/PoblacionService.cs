@@ -44,16 +44,7 @@ namespace Sandwitch.Tier.Services.Classes
                 .AsQueryable()
                 .ToAsyncEnumerable()
                 .ToList();
-        }
-
-        public async Task<ICollection<Poblacion>> FindAllPoblacionByProvinciaId(int id)
-        {
-            return await Icontext.Poblacion.AsQueryable()
-                .Include(p => p.Provincia)
-                .ToAsyncEnumerable()
-                .Where(p => p.Provincia.Id == id)
-                .ToList();
-        }
+        }        
 
         public async Task<Poblacion> FindPoblacionById(int id)
         {

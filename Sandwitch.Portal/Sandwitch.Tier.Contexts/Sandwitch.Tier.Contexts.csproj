@@ -4,6 +4,7 @@
     <TargetFramework>netcoreapp2.2</TargetFramework>
     <PackageProjectUrl>https://github.com/javierpardollama/SANDWITCH/tree/master/Sandwitch.Portal/Sandwitch.Tier.Contexts</PackageProjectUrl>
     <RepositoryUrl>https://github.com/javierpardollama/SANDWITCH/tree/master/Sandwitch.Portal/Sandwitch.Tier.Contexts</RepositoryUrl>
+    <PackageLicenseUrl>https://github.com/javierpardollama/SANDWITCH/blob/master/Sandwitch.Portal/Sandwitch.Tier.Contexts/LICENSE</PackageLicenseUrl>
   </PropertyGroup>
 
   <ItemGroup>

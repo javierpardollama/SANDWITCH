@@ -13,8 +13,8 @@
     <PackageProjectUrl>https://github.com/javierpardollama/SANDWITCH/tree/master/Sandwitch.Portal/Sandwitch.Tier.Web</PackageProjectUrl>
     <RepositoryUrl>https://github.com/javierpardollama/SANDWITCH/tree/master/Sandwitch.Portal/Sandwitch.Tier.Web</RepositoryUrl>
     <Copyright>2019 Javier Pardo</Copyright>
-    <PackageLicenseUrl></PackageLicenseUrl>
-    <PackageIconUrl>https://github.com/javierpardollama/SANDWITCH/blob/master/Sandwitch.Portal/Sandwitch.Tier.Web/wwwroot/favicon.ico</PackageIconUrl>
+    <PackageLicenseUrl>https://github.com/javierpardollama/SANDWITCH/blob/master/Sandwitch.Portal/Sandwitch.Tier.Web/LICENSE</PackageLicenseUrl>
+    <PackageIconUrl></PackageIconUrl>
   </PropertyGroup>
 
   <ItemGroup>

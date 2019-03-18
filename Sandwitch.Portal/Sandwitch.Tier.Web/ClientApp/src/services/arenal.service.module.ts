@@ -3,6 +3,13 @@ import { UpdateArenal } from '../viewmodels/updates/updatearenal';
 import { Arenal } from '../viewmodels/core/arenal';
 import { HttpClient } from '@angular/common/http';
 import { MatSnackBar } from '@angular/material';
+import { Injectable } from '@angular/core';
+import { Observable, of } from 'rxjs';
+import { catchError } from 'rxjs/operators';
+
+@Injectable({
+    providedIn: 'root',
+})
 
 export class ArenalService {
 
@@ -12,93 +19,39 @@ export class ArenalService {
 
     }
 
-    public UpdateArenal(viewModel: UpdateArenal): Arenal {
-        let responseObject: Arenal;
-
-        this.httpClient.put<Arenal>('api/arenal/updatearenal', viewModel).subscribe(resp => {
-            responseObject = resp;
-
-            if (responseObject) {
-                this.matSnackBar.open('Data Updated');
-            }
-        }, error => {
-            if (error) {
-                this.matSnackBar.open('Operation Error');
-            }
-        });
-
-        return responseObject;
+    public UpdateArenal(viewModel: UpdateArenal): Observable<Arenal> {
+        return this.httpClient.put<Arenal>('api/arenal/updatearenal', viewModel)
+            .pipe(catchError(this.handleError<Arenal>('UpdateArenal', undefined)));
     }
 
-    public FindAllArenal(): Arenal[] {
-        let responseObjects: Arenal[];
-
-        this.httpClient.get<Arenal[]>('api/arenal/findallarenal').subscribe(resp => {
-            responseObjects = resp;
-
-            if (responseObjects) {
-                this.matSnackBar.open('Data Loaded');
-            }
-
-        }, error => {
-            if (error) {
-                this.matSnackBar.open('Operation Error');
-            }
-        });
-
-        return responseObjects;
+    public FindAllArenal(): Observable<Arenal[]> {
+        return this.httpClient.get<Arenal[]>('api/arenal/findallarenal')
+            .pipe(catchError(this.handleError<Arenal[]>('FindAllArenal', [])));
     }
 
-    public FindAllArenalByPoblacionId(id: number): Arenal[] {
-        let responseObjects: Arenal[];
-
-        this.httpClient.get<Arenal[]>('api/arenal/findallarenalbypoblacionid/' + id).subscribe(resp => {
-            responseObjects = resp;
-
-            if (responseObjects) {
-                this.matSnackBar.open('Data Loaded');
-            }
-
-        }, error => {
-            if (error) {
-                this.matSnackBar.open('Operation Error');
-            }
-        });
-
-        return responseObjects;
+    public FindAllArenalByPoblacionId(id: number): Observable<Arenal[]> {
+        return this.httpClient.get<Arenal[]>('api/arenal/findallarenalbypoblacionid/' + id)
+            .pipe(catchError(this.handleError<Arenal[]>('FindAllArenalByPoblacionId', [])));
     }
 
-    public AddArenal(viewModel: AddArenal): Arenal {
-        let responseObject: Arenal;
-
-        this.httpClient.post<Arenal>('api/arenal/addarenal', viewModel).subscribe(resp => {
-            responseObject = resp;
-
-            if (responseObject) {
-                this.matSnackBar.open('Data Added');
-            }
-        }, error => {
-            if (error) {
-                this.matSnackBar.open('Operation Error');
-            }
-        });
-
-        return responseObject;
+    public AddArenal(viewModel: AddArenal): Observable<Arenal> {
+        return this.httpClient.post<Arenal>('api/arenal/addarenal', viewModel)
+            .pipe(catchError(this.handleError<Arenal>('AddArenal', undefined)));
     }
 
     public RemoveArenalById(id: number) {
-        let responseObject: any;
 
-        return this.httpClient.delete<Arenal>('api/arenal/removearenalbyid/' + id).subscribe(resp => {
-            responseObject = resp;
+        return this.httpClient.delete<any>('api/arenal/removearenalbyid/' + id)
+            .pipe(catchError(this.handleError<any>('RemoveArenalById', undefined)));
+    }
 
-            if (responseObject) {
-                this.matSnackBar.open('Data Removed');
-            }
-        }, error => {
-            if (error) {
-                this.matSnackBar.open('Operation Error');
-            }
-        });
+    private handleError<T>(operation = 'operation', result?: T) {
+        return (error: any): Observable<T> => {
+
+            this.matSnackBar.open('Operation Error');
+
+            // Let the app keep running by returning an empty result.
+            return of(result as T);
+        };
     }
 }

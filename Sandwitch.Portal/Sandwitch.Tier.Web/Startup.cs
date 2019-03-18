@@ -5,6 +5,8 @@ using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 using Sandwitch.Tier.Contexts.Classes;
 using Sandwitch.Tier.Web.Extensions;
 
@@ -31,7 +33,13 @@ namespace Sandwitch.Tier.Web
 
             services.AddCustomServices();
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
+            .AddJsonOptions(options =>
+            {
+                options.SerializerSettings.Formatting = Formatting.Indented;               
+                options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+                options.SerializerSettings.ContractResolver = new DefaultContractResolver();
+            });
 
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
@@ -76,7 +84,7 @@ namespace Sandwitch.Tier.Web
                 {
                     spa.UseAngularCliServer(npmScript: "start");
                 }
-            });            
-        }       
+            });
+        }
     }
 }

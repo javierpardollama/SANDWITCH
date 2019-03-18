@@ -3,6 +3,13 @@ import { UpdateBandera } from '../viewmodels/updates/updatebandera';
 import { Bandera } from '../viewmodels/core/bandera';
 import { HttpClient } from '@angular/common/http';
 import { MatSnackBar } from '@angular/material';
+import { Injectable } from '@angular/core';
+import { Observable, of } from 'rxjs';
+import { catchError } from 'rxjs/operators';
+
+@Injectable({
+    providedIn: 'root',
+})
 
 export class BanderaService {
 
@@ -12,74 +19,34 @@ export class BanderaService {
 
     }
 
-    public UpdateBandera(viewModel: UpdateBandera): Bandera {
-        let responseObject: Bandera;
-
-        this.httpClient.put<Bandera>('api/bandera/updatebandera', viewModel).subscribe(resp => {
-            responseObject = resp;
-
-            if (responseObject) {
-                this.matSnackBar.open('Data Updated');
-            }
-        }, error => {
-            if (error) {
-                this.matSnackBar.open('Operation Error');
-            }
-        });
-
-        return responseObject;
+    public UpdateBandera(viewModel: UpdateBandera): Observable<Bandera> {
+        return this.httpClient.put<Bandera>('api/bandera/updatebandera', viewModel)
+            .pipe(catchError(this.handleError<Bandera>('UpdateBandera', undefined)));
     }
 
-    public FindAllBandera(): Bandera[] {
-        let responseObjects: Bandera[];
+    public FindAllBandera(): Observable<Bandera[]> {
+        return this.httpClient.get<Bandera[]>('api/bandera/findallbandera')
+            .pipe(catchError(this.handleError<Bandera[]>('FindAllBandera', [])));
+    }   
 
-        this.httpClient.get<Bandera[]>('api/bandera/findallbandera').subscribe(resp => {
-            responseObjects = resp;
-
-            if (responseObjects) {
-                this.matSnackBar.open('Data Loaded');
-            }
-
-        }, error => {
-            if (error) {
-                this.matSnackBar.open('Operation Error');
-            }
-        });
-
-        return responseObjects;
-    }
-
-    public AddBandera(viewModel: AddBandera): Bandera {
-        let responseObject: Bandera;
-
-        this.httpClient.post<Bandera>('api/bandera/addbandera', viewModel).subscribe(resp => {
-            responseObject = resp;
-
-            if (responseObject) {
-                this.matSnackBar.open('Data Added');
-            }
-        }, error => {
-            if (error) {
-                this.matSnackBar.open('Operation Error');
-            }
-        });
-
-        return responseObject;
+    public AddBandera(viewModel: AddBandera): Observable<Bandera> {
+        return this.httpClient.post<Bandera>('api/bandera/addbandera', viewModel)
+            .pipe(catchError(this.handleError<Bandera>('AddBandera', undefined)));
     }
 
     public RemoveBanderaById(id: number) {
-        let responseObject: any;
 
-        return this.httpClient.delete<Bandera>('api/bandera/removebanderabyid/' + id).subscribe(resp => {
-            responseObject = resp;
+        return this.httpClient.delete<any>('api/bandera/removebanderabyid/' + id)
+            .pipe(catchError(this.handleError<any>('RemoveBanderaById', undefined)));
+    }
 
-            if (responseObject) {
-                this.matSnackBar.open('Data Removed');
-            }
-        }, error => {
-            if (error) {
-                this.matSnackBar.open('Operation Error');
-            }
-        });
+    private handleError<T>(operation = 'operation', result?: T) {
+        return (error: any): Observable<T> => {
+
+            this.matSnackBar.open('Operation Error');
+
+            // Let the app keep running by returning an empty result.
+            return of(result as T);
+        };
     }
 }

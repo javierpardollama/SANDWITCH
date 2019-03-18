@@ -1,0 +1,11 @@
+<form>
+  <mat-form-field>
+    <input matInput placeholder="Poblacion" aria-label="Poblacion" [matAutocomplete]="auto"
+      [formControl]="poblacionCtrl">
+    <mat-autocomplete #auto="matAutocomplete">
+      <mat-option *ngFor="let poblacion of filteredPoblaciones | async" [value]="poblacion.Name">
+        <span>{{poblacion.Name}}</span>
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+</form>

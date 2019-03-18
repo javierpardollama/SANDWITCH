@@ -2,6 +2,13 @@ import { UpdateHistorico } from '../viewmodels/updates/updatehistorico';
 import { Historico } from '../viewmodels/core/historico';
 import { HttpClient } from '@angular/common/http';
 import { MatSnackBar } from '@angular/material';
+import { Injectable } from '@angular/core';
+import { Observable, of } from 'rxjs';
+import { catchError } from 'rxjs/operators';
+
+@Injectable({
+    providedIn: 'root',
+})
 
 export class HistoricoService {
 
@@ -11,21 +18,19 @@ export class HistoricoService {
 
     }
 
-    public UpdateHistorico(viewModel: UpdateHistorico): Historico {
-        let responseObject: Historico;
+    public UpdateHistorico(viewModel: UpdateHistorico): Observable<Historico> {
+       
+        return this.httpClient.put<Historico>('api/provincia/updatehistorico', viewModel)
+            .pipe(catchError(this.handleError<Historico>('UpdateHistorico', undefined)));            
+    }
 
-        this.httpClient.put<Historico>('api/historico/updatehistorico', viewModel).subscribe(resp => {
-            responseObject = resp;
+    private handleError<T>(operation = 'operation', result?: T) {
+        return (error: any): Observable<T> => {
 
-            if (responseObject) {
-                this.matSnackBar.open('Data Updated');
-            }
-        }, error => {
-            if (error) {
-                this.matSnackBar.open('Operation Error');
-            }
-        });
+            this.matSnackBar.open('Operation Error');
 
-        return responseObject;
+            // Let the app keep running by returning an empty result.
+            return of(result as T);
+        };
     }
 }

@@ -3,6 +3,13 @@ import { UpdateProvincia } from '../viewmodels/updates/updateprovincia';
 import { Provincia } from '../viewmodels/core/provincia';
 import { HttpClient } from '@angular/common/http';
 import { MatSnackBar } from '@angular/material';
+import { Injectable } from '@angular/core';
+import { Observable, of } from 'rxjs';
+import { catchError } from 'rxjs/operators';
+
+@Injectable({
+    providedIn: 'root',
+})
 
 export class ProvinciaService {
 
@@ -12,74 +19,34 @@ export class ProvinciaService {
 
     }
 
-    public UpdateProvincia(viewModel: UpdateProvincia): Provincia {
-        let responseObject: Provincia;
-
-        this.httpClient.put<Provincia>('api/provincia/updateprovincia', viewModel).subscribe(resp => {
-            responseObject = resp;
-
-            if (responseObject) {
-                this.matSnackBar.open('Data Updated');
-            }
-        }, error => {
-            if (error) {
-                this.matSnackBar.open('Operation Error');
-            }
-        });
-
-        return responseObject;
+    public UpdateProvincia(viewModel: UpdateProvincia): Observable<Provincia> {
+        return this.httpClient.put<Provincia>('api/provincia/updateprovincia', viewModel)
+            .pipe(catchError(this.handleError<Provincia>('UpdateProvincia', undefined)));
     }
 
-    public FindAllProvincia(): Provincia[] {
-        let responseObjects: Provincia[];
+    public FindAllProvincia(): Observable<Provincia[]> {
+        return this.httpClient.get<Provincia[]>('api/provincia/findallprovincia')
+            .pipe(catchError(this.handleError<Provincia[]>('FindAllProvincia', [])));
+    }   
 
-        this.httpClient.get<Provincia[]>('api/provincia/findallprovincia').subscribe(resp => {
-            responseObjects = resp;
-
-            if (responseObjects) {
-                this.matSnackBar.open('Data Loaded');
-            }
-
-        }, error => {
-            if (error) {
-                this.matSnackBar.open('Operation Error');
-            }
-        });
-
-        return responseObjects;
-    }
-
-    public AddProvincia(viewModel: AddProvincia): Provincia {
-        let responseObject: Provincia;
-
-        this.httpClient.post<Provincia>('api/provincia/addprovincia', viewModel).subscribe(resp => {
-            responseObject = resp;
-
-            if (responseObject) {
-                this.matSnackBar.open('Data Added');
-            }
-        }, error => {
-            if (error) {
-                this.matSnackBar.open('Operation Error');
-            }
-        });
-
-        return responseObject;
+    public AddProvincia(viewModel: AddProvincia): Observable<Provincia> {
+        return this.httpClient.post<Provincia>('api/provincia/addprovincia', viewModel)
+            .pipe(catchError(this.handleError<Provincia>('AddProvincia', undefined)));
     }
 
     public RemoveProvinciaById(id: number) {
-        let responseObject: any;
 
-        return this.httpClient.delete<Provincia>('api/provincia/removeprovinciabyid/' + id).subscribe(resp => {
-            responseObject = resp;
+        return this.httpClient.delete<any>('api/provincia/removeprovinciabyid/' + id)
+            .pipe(catchError(this.handleError<any>('RemoveProvinciaById', undefined)));
+    }
 
-            if (responseObject) {
-                this.matSnackBar.open('Data Removed');
-            }
-        }, error => {
-            if (error) {
-                this.matSnackBar.open('Operation Error');
-            }
-        });
+    private handleError<T>(operation = 'operation', result?: T) {
+        return (error: any): Observable<T> => {
+
+            this.matSnackBar.open('Operation Error');
+
+            // Let the app keep running by returning an empty result.
+            return of(result as T);
+        };
     }
 }

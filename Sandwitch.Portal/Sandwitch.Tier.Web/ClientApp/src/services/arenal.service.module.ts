@@ -15,7 +15,7 @@ export class ArenalService {
     public UpdateArenal(viewModel: UpdateArenal) {
         let responseObject: Arenal;
 
-        this.httpClient.put<Arenal>('api/arenal/updatearenal', viewModel).subscribe(resp => {
+        return this.httpClient.put<Arenal>('api/arenal/updatearenal', viewModel).subscribe(resp => {
             responseObject = resp;
 
             if (responseObject) {
@@ -65,7 +65,7 @@ export class ArenalService {
     public AddArenal(viewModel: AddArenal) {
         let responseObject: Arenal;
 
-        this.httpClient.post<Arenal>('api/arenal/addarenal', viewModel).subscribe(resp => {
+        return this.httpClient.post<Arenal>('api/arenal/addarenal', viewModel).subscribe(resp => {
             responseObject = resp;
 
             if (responseObject) {

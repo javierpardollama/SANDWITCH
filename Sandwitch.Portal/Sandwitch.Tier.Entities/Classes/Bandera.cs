@@ -10,6 +10,9 @@ namespace Sandwitch.Tier.Entities.Classes
         [Required]
         public string Name { get; set; }
 
+        [Required]
+        public string ImageUri { get; set; }
+
         public virtual ICollection<Historico> Historicos { get; set; }
     }
 }

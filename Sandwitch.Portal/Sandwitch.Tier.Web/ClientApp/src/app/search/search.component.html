@@ -1,9 +1,10 @@
-<form>
-  <mat-form-field>
+<form class="search-form">
+  <mat-form-field class="search-full-width">
     <input matInput placeholder="Poblacion" aria-label="Poblacion" [matAutocomplete]="auto"
       [formControl]="poblacionCtrl">
     <mat-autocomplete #auto="matAutocomplete">
       <mat-option *ngFor="let poblacion of filteredPoblaciones | async" [value]="poblacion.Name">
+        <img class="search-option-img" aria-hidden [src]="poblacion.ImageUri" height="25">
         <span>{{poblacion.Name}}</span>
       </mat-option>
     </mat-autocomplete>

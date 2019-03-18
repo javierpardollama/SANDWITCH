@@ -1,0 +1,19 @@
+.search-form {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+  }
+  
+  .search-full-width {
+    width: 100%;
+  }
+  
+  .search-option-img {
+    vertical-align: middle;
+    margin-right: 8px;
+  }
+  
+  [dir='rtl'] .search-option-img {
+    margin-right: 0;
+    margin-left: 8px;
+  }

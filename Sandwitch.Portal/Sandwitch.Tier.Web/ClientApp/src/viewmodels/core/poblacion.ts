@@ -6,4 +6,5 @@ export interface Poblacion extends Base {
     Name: string;
     Provincia: Provincia;
     Arenales: ArenalPoblacion[];
+    ImageUri: string;
 }

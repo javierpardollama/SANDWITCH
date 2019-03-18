@@ -12,10 +12,10 @@ export class BanderaService {
 
     }
 
-    public UpdateBandera(viewModel: UpdateBandera) {
+    public UpdateBandera(viewModel: UpdateBandera): Bandera {
         let responseObject: Bandera;
 
-        return this.httpClient.put<Bandera>('api/bandera/updatebandera', viewModel).subscribe(resp => {
+        this.httpClient.put<Bandera>('api/bandera/updatebandera', viewModel).subscribe(resp => {
             responseObject = resp;
 
             if (responseObject) {
@@ -26,14 +26,16 @@ export class BanderaService {
                 this.matSnackBar.open('Operation Error');
             }
         });
+
+        return responseObject;
     }
 
-    public FindAllBandera() {
+    public FindAllBandera(): Bandera[] {
         let responseObjects: Bandera[];
 
-        return this.httpClient.get<Bandera[]>('api/bandera/findallbandera').subscribe(resp => {
-            responseObjects = resp;        
-            
+        this.httpClient.get<Bandera[]>('api/bandera/findallbandera').subscribe(resp => {
+            responseObjects = resp;
+
             if (responseObjects) {
                 this.matSnackBar.open('Data Loaded');
             }
@@ -43,12 +45,14 @@ export class BanderaService {
                 this.matSnackBar.open('Operation Error');
             }
         });
+
+        return responseObjects;
     }
 
-    public AddBandera(viewModel: AddBandera) {
+    public AddBandera(viewModel: AddBandera): Bandera {
         let responseObject: Bandera;
 
-        return this.httpClient.post<Bandera>('api/bandera/addbandera', viewModel).subscribe(resp => {
+        this.httpClient.post<Bandera>('api/bandera/addbandera', viewModel).subscribe(resp => {
             responseObject = resp;
 
             if (responseObject) {
@@ -59,6 +63,8 @@ export class BanderaService {
                 this.matSnackBar.open('Operation Error');
             }
         });
+
+        return responseObject;
     }
 
     public RemoveBanderaById(id: number) {

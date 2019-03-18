@@ -12,10 +12,10 @@ export class ArenalService {
 
     }
 
-    public UpdateArenal(viewModel: UpdateArenal) {
+    public UpdateArenal(viewModel: UpdateArenal): Arenal {
         let responseObject: Arenal;
 
-        return this.httpClient.put<Arenal>('api/arenal/updatearenal', viewModel).subscribe(resp => {
+        this.httpClient.put<Arenal>('api/arenal/updatearenal', viewModel).subscribe(resp => {
             responseObject = resp;
 
             if (responseObject) {
@@ -26,12 +26,14 @@ export class ArenalService {
                 this.matSnackBar.open('Operation Error');
             }
         });
+
+        return responseObject;
     }
 
-    public FindAllArenal() {
+    public FindAllArenal(): Arenal[] {
         let responseObjects: Arenal[];
 
-        return this.httpClient.get<Arenal[]>('api/arenal/findallarenal').subscribe(resp => {
+        this.httpClient.get<Arenal[]>('api/arenal/findallarenal').subscribe(resp => {
             responseObjects = resp;
 
             if (responseObjects) {
@@ -43,12 +45,14 @@ export class ArenalService {
                 this.matSnackBar.open('Operation Error');
             }
         });
+
+        return responseObjects;
     }
 
-    public FindAllArenalByPoblacionId(id: number) {
+    public FindAllArenalByPoblacionId(id: number): Arenal[] {
         let responseObjects: Arenal[];
 
-        return this.httpClient.get<Arenal[]>('api/arenal/findallarenalbypoblacionid/' + id).subscribe(resp => {
+        this.httpClient.get<Arenal[]>('api/arenal/findallarenalbypoblacionid/' + id).subscribe(resp => {
             responseObjects = resp;
 
             if (responseObjects) {
@@ -60,12 +64,14 @@ export class ArenalService {
                 this.matSnackBar.open('Operation Error');
             }
         });
+
+        return responseObjects;
     }
 
-    public AddArenal(viewModel: AddArenal) {
+    public AddArenal(viewModel: AddArenal): Arenal {
         let responseObject: Arenal;
 
-        return this.httpClient.post<Arenal>('api/arenal/addarenal', viewModel).subscribe(resp => {
+        this.httpClient.post<Arenal>('api/arenal/addarenal', viewModel).subscribe(resp => {
             responseObject = resp;
 
             if (responseObject) {
@@ -76,6 +82,8 @@ export class ArenalService {
                 this.matSnackBar.open('Operation Error');
             }
         });
+
+        return responseObject;
     }
 
     public RemoveArenalById(id: number) {

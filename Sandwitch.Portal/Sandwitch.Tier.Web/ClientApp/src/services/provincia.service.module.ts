@@ -12,10 +12,10 @@ export class ProvinciaService {
 
     }
 
-    public UpdateProvincia(viewModel: UpdateProvincia) {
+    public UpdateProvincia(viewModel: UpdateProvincia): Provincia {
         let responseObject: Provincia;
 
-        return this.httpClient.put<Provincia>('api/provincia/updateprovincia', viewModel).subscribe(resp => {
+        this.httpClient.put<Provincia>('api/provincia/updateprovincia', viewModel).subscribe(resp => {
             responseObject = resp;
 
             if (responseObject) {
@@ -26,12 +26,14 @@ export class ProvinciaService {
                 this.matSnackBar.open('Operation Error');
             }
         });
+
+        return responseObject;
     }
 
-    public FindAllProvincia() {
+    public FindAllProvincia(): Provincia[] {
         let responseObjects: Provincia[];
 
-        return this.httpClient.get<Provincia[]>('api/provincia/findallprovincia').subscribe(resp => {
+        this.httpClient.get<Provincia[]>('api/provincia/findallprovincia').subscribe(resp => {
             responseObjects = resp;
 
             if (responseObjects) {
@@ -43,12 +45,14 @@ export class ProvinciaService {
                 this.matSnackBar.open('Operation Error');
             }
         });
+
+        return responseObjects;
     }
 
-    public AddProvincia(viewModel: AddProvincia) {
+    public AddProvincia(viewModel: AddProvincia): Provincia {
         let responseObject: Provincia;
 
-        return this.httpClient.post<Provincia>('api/provincia/addprovincia', viewModel).subscribe(resp => {
+        this.httpClient.post<Provincia>('api/provincia/addprovincia', viewModel).subscribe(resp => {
             responseObject = resp;
 
             if (responseObject) {
@@ -59,6 +63,8 @@ export class ProvinciaService {
                 this.matSnackBar.open('Operation Error');
             }
         });
+
+        return responseObject;
     }
 
     public RemoveProvinciaById(id: number) {

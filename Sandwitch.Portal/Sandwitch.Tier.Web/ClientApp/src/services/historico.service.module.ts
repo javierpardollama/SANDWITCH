@@ -11,10 +11,10 @@ export class HistoricoService {
 
     }
 
-    public UpdateHistorico(viewModel: UpdateHistorico) {
+    public UpdateHistorico(viewModel: UpdateHistorico): Historico {
         let responseObject: Historico;
 
-        return this.httpClient.put<Historico>('api/historico/updatehistorico', viewModel).subscribe(resp => {
+        this.httpClient.put<Historico>('api/historico/updatehistorico', viewModel).subscribe(resp => {
             responseObject = resp;
 
             if (responseObject) {
@@ -25,5 +25,7 @@ export class HistoricoService {
                 this.matSnackBar.open('Operation Error');
             }
         });
+
+        return responseObject;
     }
 }

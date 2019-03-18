@@ -12,10 +12,10 @@ export class PoblacionService {
 
     }
 
-    public UpdatePoblacion(viewModel: UpdatePoblacion) {
+    public UpdatePoblacion(viewModel: UpdatePoblacion): Poblacion {
         let responseObject: Poblacion;
 
-        return this.httpClient.put<Poblacion>('api/poblacion/updatepoblacion', viewModel).subscribe(resp => {
+        this.httpClient.put<Poblacion>('api/poblacion/updatepoblacion', viewModel).subscribe(resp => {
             responseObject = resp;
 
             if (responseObject) {
@@ -27,14 +27,15 @@ export class PoblacionService {
             }
         });
 
+        return responseObject;
     }
 
-    public FindAllPoblacion() {
+    public FindAllPoblacion(): Poblacion[] {
         let responseObjects: Poblacion[];
 
-        return this.httpClient.get<Poblacion[]>('api/poblacion/findallpoblacion').subscribe(resp => {
-            responseObjects = resp;        
-            
+        this.httpClient.get<Poblacion[]>('api/poblacion/findallpoblacion').subscribe(resp => {
+            responseObjects = resp;
+
             if (responseObjects) {
                 this.matSnackBar.open('Data Loaded');
             }
@@ -44,14 +45,16 @@ export class PoblacionService {
                 this.matSnackBar.open('Operation Error');
             }
         });
+
+        return responseObjects;
     }
 
-    public FindAllPoblacionByProvinciaId(id: number) {
+    public FindAllPoblacionByProvinciaId(id: number): Poblacion[] {
         let responseObjects: Poblacion[];
 
-        return this.httpClient.get<Poblacion[]>('api/poblacion/findallpoblacionbyprovinciaid/' + id).subscribe(resp => {
-            responseObjects = resp;        
-            
+        this.httpClient.get<Poblacion[]>('api/poblacion/findallpoblacionbyprovinciaid/' + id).subscribe(resp => {
+            responseObjects = resp;
+
             if (responseObjects) {
                 this.matSnackBar.open('Data Loaded');
             }
@@ -61,12 +64,14 @@ export class PoblacionService {
                 this.matSnackBar.open('Operation Error');
             }
         });
+
+        return responseObjects;
     }
 
-    public AddPoblacion(viewModel: AddPoblacion) {
+    public AddPoblacion(viewModel: AddPoblacion): Poblacion {
         let responseObject: Poblacion;
 
-        return this.httpClient.post<Poblacion>('api/poblacion/addpoblacion', viewModel).subscribe(resp => {
+        this.httpClient.post<Poblacion>('api/poblacion/addpoblacion', viewModel).subscribe(resp => {
             responseObject = resp;
 
             if (responseObject) {
@@ -77,6 +82,8 @@ export class PoblacionService {
                 this.matSnackBar.open('Operation Error');
             }
         });
+
+        return responseObject;
     }
 
     public RemovePoblacionById(id: number) {

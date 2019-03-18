@@ -8,7 +8,9 @@ namespace Sandwitch.Tier.Services.Interfaces
 {
     public interface IPoblacionService
     {
-        Task<ICollection<Poblacion>> FindAllPoblacion();        
+        Task<ICollection<Poblacion>> FindAllPoblacion();
+
+        Task<ICollection<Poblacion>> FindAllPoblacionByProvinciaId(int id);
 
         Task<Poblacion> FindPoblacionById(int id);
 

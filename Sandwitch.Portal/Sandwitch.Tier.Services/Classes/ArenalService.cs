@@ -61,6 +61,18 @@ namespace Sandwitch.Tier.Services.Classes
             return await Icontext.Arenal.AsQueryable().ToAsyncEnumerable().ToList();
         }
 
+        public async Task<ICollection<Arenal>> FindAllArenalByPoblacionId(int id)
+        {
+            return await Icontext.ArenalPoblacion.AsQueryable()
+               .Include(x => x.Poblacion)
+               .Include(x => x.Arenal)
+               .ThenInclude(x=>x.Historicos)
+               .Where(x => x.Poblacion.Id == id)
+               .Select(x=>x.Arenal)
+               .ToAsyncEnumerable()
+               .ToList();           
+        }
+
         public async Task<Arenal> FindArenalById(int id)
         {
             Arenal arenal = await Icontext.Arenal
@@ -71,7 +83,7 @@ namespace Sandwitch.Tier.Services.Classes
 
             if (arenal != null)
             {
-                throw new Exception("Arenal with Id" + id + "does not exists");
+                throw new Exception("Arenal with Id" + id + "does not exist");
             }
 
             return arenal;
@@ -83,7 +95,7 @@ namespace Sandwitch.Tier.Services.Classes
 
             if (poblacion != null)
             {
-                throw new Exception("Poblacion with Id" + id + "does not exists");
+                throw new Exception("Poblacion with Id" + id + "does not exist");
             }
 
             return poblacion;

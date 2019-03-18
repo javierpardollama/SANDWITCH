@@ -35,7 +35,16 @@ namespace Sandwitch.Tier.Web.Controllers
             ICollection<Arenal> arenales = await this.Service.FindAllArenal();
 
             return new JsonResult(arenales);
-        }       
+        }
+
+        [HttpGet]
+        [Route("findallarenalbypoblacionid")]
+        public async Task<IActionResult> FindAllArenalByPoblacionId(int id)
+        {
+            ICollection<Arenal> arenales = await this.Service.FindAllArenalByPoblacionId(id);
+
+            return new JsonResult(arenales);
+        }
 
         [HttpPost]
         [Route("addarenal")]

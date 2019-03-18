@@ -10,6 +10,8 @@ namespace Sandwitch.Tier.Services.Interfaces
     {
         Task<ICollection<Arenal>> FindAllArenal();
 
+        Task<ICollection<Arenal>> FindAllArenalByPoblacionId(int id);
+
         Task<Arenal> FindArenalById(int id);
 
         Task<Poblacion> FindPoblacionById(int id);

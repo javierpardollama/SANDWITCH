@@ -52,7 +52,7 @@ namespace Sandwitch.Tier.Services.Classes
 
             if (entity != null)
             {
-                throw new Exception("Provincia with Id" + id + "does not exists");
+                throw new Exception("Provincia with Id" + id + "does not exist");
             }
 
             return entity;

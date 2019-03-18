@@ -4,7 +4,6 @@ using Sandwitch.Tier.Entities.Classes;
 using Sandwitch.Tier.Services.Interfaces;
 using Sandwitch.Tier.ViewModels.Classes.Updates;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -17,18 +16,7 @@ namespace Sandwitch.Tier.Services.Classes
         public HistoricoService(IApplicationContext iContext)
         {
             Icontext = iContext;
-        }        
-
-        public async Task<ICollection<Historico>> FindAllHistoricoByArenalId(int id)
-        {
-            return await Icontext.Historico.Where(x=>x.Arenal.Id ==id)
-              .AsQueryable()
-              .Include(x=>x.Arenal)
-              .Include(x => x.Bandera)
-              .ToAsyncEnumerable()
-              .ToList();
-        }
-
+        }  
 
         public async Task<Arenal> FindArenalById(int id)
         {
@@ -40,7 +28,7 @@ namespace Sandwitch.Tier.Services.Classes
 
             if (arenal != null)
             {
-                throw new Exception("Arenal with Id" + id + "does not exists");
+                throw new Exception("Arenal with Id" + id + "does not exist");
             }
 
             return arenal;
@@ -52,7 +40,7 @@ namespace Sandwitch.Tier.Services.Classes
 
             if (entity != null)
             {
-                throw new Exception("Bandera with Id" + id + "does not exists");
+                throw new Exception("Bandera with Id" + id + "does not exist");
             }
 
             return entity;
@@ -68,7 +56,7 @@ namespace Sandwitch.Tier.Services.Classes
 
             if (historico != null)
             {
-                throw new Exception("Historico with Id" + id + "does not exists");
+                throw new Exception("Historico with Id" + id + "does not exist");
             }
 
             return historico;

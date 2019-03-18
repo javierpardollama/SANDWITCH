@@ -44,15 +44,25 @@ namespace Sandwitch.Tier.Services.Classes
                 .AsQueryable()
                 .ToAsyncEnumerable()
                 .ToList();
-        }        
+        }
+
+        public async Task<ICollection<Poblacion>> FindAllPoblacionByProvinciaId(int id)
+        {
+            return await Icontext.Poblacion
+              .AsQueryable()
+              .Include(x => x.Provincia)
+              .Where(x => x.Provincia.Id == id)
+              .ToAsyncEnumerable()
+              .ToList();
+        }
 
         public async Task<Poblacion> FindPoblacionById(int id)
         {
-            Poblacion entity= await Icontext.Poblacion.FirstOrDefaultAsync(x => x.Id == id);
+            Poblacion entity = await Icontext.Poblacion.FirstOrDefaultAsync(x => x.Id == id);
 
             if (entity != null)
             {
-                throw new Exception("Poblacion with Id" + id + "does not exists");
+                throw new Exception("Poblacion with Id" + id + "does not exist");
             }
 
             return entity;
@@ -64,7 +74,7 @@ namespace Sandwitch.Tier.Services.Classes
 
             if (entity != null)
             {
-                throw new Exception("Provincia with Id" + id + "does not exists");
+                throw new Exception("Provincia with Id" + id + "does not exist");
             }
 
             return entity;

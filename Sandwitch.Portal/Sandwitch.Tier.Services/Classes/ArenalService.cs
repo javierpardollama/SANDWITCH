@@ -67,8 +67,12 @@ namespace Sandwitch.Tier.Services.Classes
                .Include(x => x.Poblacion)
                .Include(x => x.Arenal)
                .ThenInclude(x=>x.Historicos)
+               .ThenInclude(x=>x.Bandera)
                .Where(x => x.Poblacion.Id == id)
                .Select(x=>x.Arenal)
+               .AsQueryable()
+               .Include(x => x.Historicos)
+               .ThenInclude(x => x.Bandera)
                .ToAsyncEnumerable()
                .ToList();           
         }

@@ -6,7 +6,7 @@ import { RouterModule } from '@angular/router';
 
 // Angular Material
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatInputModule, MatFormFieldModule, MatButtonModule, MatSnackBarModule, MatAutocompleteModule } from '@angular/material';
+import { MatCardModule, MatInputModule, MatFormFieldModule, MatButtonModule, MatSnackBarModule, MatAutocompleteModule } from '@angular/material';
 
 import { AppComponent } from './app.component';
 import { SearchComponent } from './search/search.component';
@@ -23,11 +23,12 @@ import { SearchComponent } from './search/search.component';
     MatButtonModule,
     MatSnackBarModule,
     MatAutocompleteModule,
+    MatCardModule,
+    MatFormFieldModule,
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule,
-    MatFormFieldModule,
+    ReactiveFormsModule,  
     RouterModule.forRoot([
       { path: '', component: SearchComponent, pathMatch: 'full' },
     ])

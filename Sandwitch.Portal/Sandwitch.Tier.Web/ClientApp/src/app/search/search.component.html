@@ -2,11 +2,29 @@
   <mat-form-field class="search-full-width">
     <input matInput placeholder="Poblacion" aria-label="Poblacion" [matAutocomplete]="auto"
       [formControl]="poblacionCtrl">
-    <mat-autocomplete #auto="matAutocomplete">
-      <mat-option *ngFor="let poblacion of filteredPoblaciones | async" [value]="poblacion.Name">
+    <mat-autocomplete #auto="matAutocomplete" (optionSelected)='FindAllArenalByPoblacionId($event.option.id)'>
+      <mat-option *ngFor="let poblacion of filteredPoblaciones | async" [value]="poblacion.Name" [id]="poblacion.Id">
         <img class="search-option-img" aria-hidden [src]="poblacion.ImageUri" height="25">
         <span>{{poblacion.Name}}</span>
       </mat-option>
     </mat-autocomplete>
   </mat-form-field>
 </form>
+
+<mat-card *ngFor="let arenal of arenales" class="search-card">
+  <mat-card-header>
+    <div mat-card-avatar class="search-card-sand-image"></div>
+    <mat-card-title>{{arenal.Name}}</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <mat-card *ngFor="let historico of arenal.Historicos">
+      <img mat-card-image src="{{historico.Bandera.ImageUri}}" alt="historico.Bandera.Name">
+      <mat-card-content>
+        <div mat-card-avatar class="search-card-content search-card-warm-image"></div>
+        <div class="search-card-content">
+          <span>{{historico.Temperatura}} ºC</span>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </mat-card-content>
+</mat-card>

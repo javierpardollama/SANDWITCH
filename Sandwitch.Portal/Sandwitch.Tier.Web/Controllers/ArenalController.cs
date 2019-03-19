@@ -38,7 +38,7 @@ namespace Sandwitch.Tier.Web.Controllers
         }
 
         [HttpGet]
-        [Route("findallarenalbypoblacionid")]
+        [Route("findallarenalbypoblacionid/{id}")]
         public async Task<IActionResult> FindAllArenalByPoblacionId(int id)
         {
             ICollection<Arenal> arenales = await this.Service.FindAllArenalByPoblacionId(id);

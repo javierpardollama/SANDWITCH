@@ -22,7 +22,7 @@ export class SearchComponent implements OnInit {
 
   constructor(private poblacionService: PoblacionService,
     private arenalService: ArenalService) {
-   
+
   }
 
   // Life Cicle
@@ -33,20 +33,20 @@ export class SearchComponent implements OnInit {
   // Get Data from Service
   public FindAllArenalByPoblacionId(id: number) {
     this.arenalService.FindAllArenalByPoblacionId(id).subscribe(arenales => {
-      this.arenales = arenales;     
-    });    
+      this.arenales = arenales;      
+    });
   }
 
   // Get Data from Service
   public FindAllPoblacion() {
     this.poblacionService.FindAllPoblacion().subscribe(poblaciones => {
-      this.poblaciones = poblaciones;     
+      this.poblaciones = poblaciones;
 
       this.filteredPoblaciones = this.poblacionCtrl.valueChanges
-      .pipe(
-        startWith(''),
-        map(poblacion => poblacion ? this.filterPoblaciones(poblacion) : this.poblaciones.slice())
-      );
+        .pipe(
+          startWith(''),
+          map(poblacion => poblacion ? this.filterPoblaciones(poblacion) : this.poblaciones.slice())
+        );
     });
 
   }

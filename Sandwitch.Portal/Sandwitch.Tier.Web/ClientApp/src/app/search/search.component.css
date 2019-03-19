@@ -1,19 +1,44 @@
 .search-form {
-    min-width: 150px;
-    max-width: 500px;
-    width: 100%;
-  }
-  
-  .search-full-width {
-    width: 100%;
-  }
-  
-  .search-option-img {
-    vertical-align: middle;
-    margin-right: 8px;
-  }
-  
-  [dir='rtl'] .search-option-img {
-    margin-right: 0;
-    margin-left: 8px;
-  }
+min-width: 150px;
+max-width: 500px;
+width: 100%;
+}
+
+.search-full-width {
+width: 100%;
+}
+
+.search-option-img {
+vertical-align: middle;
+margin-right: 8px;
+}
+
+[dir='rtl'] .search-option-img {
+margin-right: 0;
+margin-left: 8px;
+}
+
+.search-card {
+max-width: 400px;
+float: left;
+}
+
+mat-card-content
+{
+  overflow: hidden;
+}
+
+.search-card-sand-image{
+background-image: url('/iconos/Arenal_500px.png');
+background-size: cover;
+}
+
+.search-card-content
+{
+float: left;
+}
+
+.search-card-warm-image{
+background-image: url('/iconos/Temperatura_500px.png');
+background-size: cover;
+}  

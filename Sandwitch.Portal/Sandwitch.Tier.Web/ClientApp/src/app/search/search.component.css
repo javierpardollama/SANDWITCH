@@ -10,17 +10,22 @@ width: 100%;
 
 .search-option-img {
 vertical-align: middle;
-margin-right: 8px;
+margin-right: 9px;
 }
 
 [dir='rtl'] .search-option-img {
 margin-right: 0;
-margin-left: 8px;
+margin-left: 9px;
 }
 
 .search-card {
-max-width: 400px;
+max-width: 300px;
 float: left;
+}
+
+mat-card-header mat-card-title
+{
+  font-size: 18px;
 }
 
 mat-card-content
@@ -31,6 +36,11 @@ mat-card-content
 .search-card-sand-image{
 background-image: url('/iconos/Arenal_500px.png');
 background-size: cover;
+}
+
+.search-card-flag-image
+{
+  max-width: 300px;
 }
 
 .search-card-content

@@ -21,15 +21,23 @@ margin-left: 9px;
 .search-card {
 max-width: 300px;
 float: left;
+margin:9px;
+background-color: #F5F5F5;
+}
+
+mat-card-header
+{
+  padding:9px;
 }
 
 mat-card-content
 {
-  overflow: hidden;
+  overflow: hidden; 
+  background-color: #F5F5F5;
 }
 
 .search-card-sand-image{
-background-image: url('/iconos/Arenal_500px.png');
+background-image: url('/iconos/Arenal_512px.png');
 background-size: cover;
 }
 
@@ -42,8 +50,23 @@ background-size: cover;
 {
 float: left;
 }
+.search-card-content-line
+{
+  clear: both;
+  padding:9px;
+}
 
 .search-card-warm-image{
-background-image: url('/iconos/Temperatura_500px.png');
+background-image: url('/iconos/Temperatura_512px.png');
+background-size: cover;
+}  
+
+.search-card-low-tide-image{
+background-image: url('/iconos/Bajamar_512px.png');
+background-size: cover;
+}  
+
+.search-card-high-tide-image{
+background-image: url('/iconos/Pleamar_512px.png');
 background-size: cover;
 }  

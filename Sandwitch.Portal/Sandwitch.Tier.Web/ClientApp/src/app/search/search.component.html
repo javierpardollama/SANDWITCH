@@ -1,3 +1,5 @@
+<div *ngIf="!poblaciones" class="spinner"></div>
+
 <form class="search-form">
   <mat-form-field class="search-full-width">
     <input matInput placeholder="Poblacion" aria-label="Poblacion" [matAutocomplete]="auto"
@@ -10,7 +12,6 @@
     </mat-autocomplete>
   </mat-form-field>
 </form>
-
 <mat-card *ngFor="let arenal of arenales" class="search-card">
   <mat-card-header>
     <div mat-card-avatar class="search-card-sand-image"></div>
@@ -28,15 +29,31 @@
           </div>
         </div>
         <div class="search-card-content-line">
-          <div mat-card-avatar class="search-card-content search-card-low-tide-image"></div>
-          <div class="search-card-content">
-            <span>12:00</span>
+          <div class="search-card-content-tide">
+            <div mat-card-avatar class="search-card-content search-card-low-tide-image"></div>
+            <div class="search-card-content">
+              <span>{{historico.BajaMarAlba | date: 'h:mm a'}} </span>
+            </div>
+          </div>
+          <div class="search-card-content-tide">
+            <div mat-card-avatar class="search-card-content search-card-low-tide-image"></div>
+            <div class="search-card-content">
+              <span>{{historico.BajaMarOcaso | date: 'h:mm a'}} </span>
+            </div>
           </div>
         </div>
         <div class="search-card-content-line">
-          <div mat-card-avatar class="search-card-content search-card-high-tide-image"></div>
-          <div class="search-card-content">
-            <span>12:00</span>
+          <div class="search-card-content-tide">
+            <div mat-card-avatar class="search-card-content search-card-high-tide-image"></div>
+            <div class="search-card-content">
+              <span>{{historico.AltaMarAlba | date: 'h:mm a'}}</span>
+            </div>
+          </div>
+          <div class="search-card-content-tide">
+            <div mat-card-avatar class="search-card-content search-card-high-tide-image"></div>
+            <div class="search-card-content">
+              <span>{{historico.AltaMarOcaso | date: 'h:mm a'}}</span>
+            </div>
           </div>
         </div>
       </mat-card-content>

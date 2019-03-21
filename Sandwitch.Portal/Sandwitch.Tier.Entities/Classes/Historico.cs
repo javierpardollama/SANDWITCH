@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace Sandwitch.Tier.Entities.Classes
 {
@@ -14,5 +15,17 @@ namespace Sandwitch.Tier.Entities.Classes
 
         [Required]
         public double Temperatura { get; set; }
+
+        [Required]
+        public DateTime BajaMarAlba { get; set; }
+
+        [Required]
+        public DateTime BajaMarOcaso { get; set; }
+
+        [Required]
+        public DateTime AltaMarAlba { get; set; }
+
+        [Required]
+        public DateTime AltaMarOcaso { get; set; }
     }
 }

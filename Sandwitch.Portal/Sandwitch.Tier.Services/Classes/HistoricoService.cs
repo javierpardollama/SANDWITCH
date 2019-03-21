@@ -67,6 +67,11 @@ namespace Sandwitch.Tier.Services.Classes
             Historico historico = await FindHistoricoById(viewModel.Id);
             historico.Arenal = await FindArenalById(viewModel.ArenalId);
             historico.Bandera = await FindBanderaById(viewModel.BanderaId);
+            historico.BajaMarAlba = viewModel.BajaMarAlba;
+            historico.BajaMarOcaso = viewModel.BajaMarOcaso;
+            historico.AltaMarAlba = viewModel.AltaMarAlba;
+            historico.AltaMarOcaso = viewModel.AltaMarOcaso;
+            historico.Temperatura = viewModel.Temperatura;
             historico.LastModified = DateTime.Now;          
 
             Icontext.Historico.Update(historico);          

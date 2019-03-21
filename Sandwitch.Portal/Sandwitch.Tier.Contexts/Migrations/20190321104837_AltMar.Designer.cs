@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Sandwitch.Tier.Contexts.Classes;
 
 namespace Sandwitch.Tier.Contexts.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    partial class ApplicationContextModelSnapshot : ModelSnapshot
+    [Migration("20190321104837_AltMar")]
+    partial class AltMar
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -74,15 +76,11 @@ namespace Sandwitch.Tier.Contexts.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<DateTime>("AltaMarAlba");
-
-                    b.Property<DateTime>("AltaMarOcaso");
+                    b.Property<DateTime>("AltaMar");
 
                     b.Property<int>("ArenalId");
 
-                    b.Property<DateTime>("BajaMarAlba");
-
-                    b.Property<DateTime>("BajaMarOcaso");
+                    b.Property<DateTime>("BajaMar");
 
                     b.Property<int>("BanderaId");
 

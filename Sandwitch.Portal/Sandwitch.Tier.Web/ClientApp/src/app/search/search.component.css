@@ -10,30 +10,30 @@ width: 100%;
 
 .search-option-img {
 vertical-align: middle;
-margin-right: 9px;
+margin-right: 8px;
 }
 
 [dir='rtl'] .search-option-img {
 margin-right: 0;
-margin-left: 9px;
+margin-left: 8px;
 }
 
 .search-card {
-max-width: 300px;
+max-width: 400px;
 float: left;
-margin:9px;
+margin:8px;
 background-color: #F5F5F5;
 }
 
 mat-card-header
 {
-  padding:9px;
+padding:8px;
 }
 
 mat-card-content
 {
-  overflow: hidden; 
-  background-color: #F5F5F5;
+overflow: hidden; 
+background-color: #F5F5F5;
 }
 
 .search-card-sand-image{
@@ -43,7 +43,7 @@ background-size: cover;
 
 .search-card-flag-image
 {
-  max-width: 300px;
+max-width: 400px;
 }
 
 .search-card-content
@@ -52,8 +52,16 @@ float: left;
 }
 .search-card-content-line
 {
-  clear: both;
-  padding:9px;
+clear: both;
+padding:8px;
+}
+
+.search-card-content-tide
+{
+float: left;  
+padding-top:8px;
+padding-right:8px;
+padding-bottom:8px;
 }
 
 .search-card-warm-image{
@@ -62,11 +70,11 @@ background-size: cover;
 }  
 
 .search-card-low-tide-image{
-background-image: url('/iconos/Bajamar_512px.png');
+background-image: url('/iconos/BajaMar_512px.png');
 background-size: cover;
 }  
 
 .search-card-high-tide-image{
-background-image: url('/iconos/Pleamar_512px.png');
+background-image: url('/iconos/PleaMar_512px.png');
 background-size: cover;
 }  

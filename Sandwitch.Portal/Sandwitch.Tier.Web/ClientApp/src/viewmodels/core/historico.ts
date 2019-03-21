@@ -6,4 +6,8 @@ export interface Historico extends Base {
     Bandera: Bandera;
     Arenal: Arenal;
     Temperatura: number;
+    BajaMarAlba: Date;
+    BajaMarOcaso: Date;
+    AltaMarAlba: Date;
+    AltaMarOcaso: Date;
 }

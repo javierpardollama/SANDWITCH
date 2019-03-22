@@ -1,7 +1,20 @@
-<div *ngIf="!poblaciones" class="spinner"></div>
+<div *ngIf="!provincias" class="spinner-container">
+  <div class="spinner"></div>
+</div>
 
 <form class="search-form">
-  <mat-form-field class="search-full-width">
+  <mat-form-field class="search-half-width">
+    <input matInput placeholder="Provincia" aria-label="Provincia" [matAutocomplete]="auto"
+      [formControl]="provinciaCtrl">
+    <mat-autocomplete #auto="matAutocomplete" (optionSelected)='FindAllPoblacionByProvinciaId($event.option.id)'>
+      <mat-option *ngFor="let provincia of filteredProvincias | async" [value]="provincia.Name" [id]="provincia.Id">
+        <img class="search-option-img" aria-hidden [src]="provincia.ImageUri" height="25">
+        <span>{{provincia.Name}}</span>
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+
+  <mat-form-field class="search-half-width" *ngIf="poblaciones">
     <input matInput placeholder="Poblacion" aria-label="Poblacion" [matAutocomplete]="auto"
       [formControl]="poblacionCtrl">
     <mat-autocomplete #auto="matAutocomplete" (optionSelected)='FindAllArenalByPoblacionId($event.option.id)'>
@@ -10,8 +23,10 @@
         <span>{{poblacion.Name}}</span>
       </mat-option>
     </mat-autocomplete>
-  </mat-form-field>
+  </mat-form-field> 
 </form>
+
+<div class="search-result">
 <mat-card *ngFor="let arenal of arenales" class="search-card">
   <mat-card-header>
     <div mat-card-avatar class="search-card-sand-image"></div>
@@ -60,3 +75,4 @@
     </mat-card>
   </mat-card-content>
 </mat-card>
+</div>

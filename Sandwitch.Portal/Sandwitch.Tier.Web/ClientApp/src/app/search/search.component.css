@@ -1,11 +1,16 @@
 .search-form {
-min-width: 150px;
-max-width: 500px;
+min-width: 200px;
+max-width: 600px;
 width: 100%;
+position: relative;
+left: 28%;
 }
 
-.search-full-width {
-width: 100%;
+.search-half-width {
+width: 50%;
+padding-top:8px;
+padding-right:8px;
+padding-bottom:8px;
 }
 
 .search-option-img {
@@ -25,15 +30,27 @@ margin:8px;
 background-color: #F5F5F5;
 }
 
+/* MATERIAL OVERRIDE */
 mat-card-header
 {
 padding:8px;
+background-color: #912db9;
 }
 
+/* MATERIAL OVERRIDE */
+mat-card-title{
+    color: #F5F5F5;
+}
+
+/* MATERIAL OVERRIDE */
 mat-card-content
 {
 overflow: hidden; 
 background-color: #F5F5F5;
+}
+
+.search-result{
+    position: relative;
 }
 
 .search-card-sand-image{

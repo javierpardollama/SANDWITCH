@@ -9,11 +9,15 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatCardModule, MatInputModule, MatFormFieldModule, MatButtonModule, MatSnackBarModule, MatAutocompleteModule } from '@angular/material';
 
 import { AppComponent } from './app.component';
+import { NavMenuComponent } from './nav-menu/nav-menu.component';
+import { HomeComponent } from './home/home.component';
 import { SearchComponent } from './search/search.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    NavMenuComponent,
+    HomeComponent,
     SearchComponent,
   ],
   imports: [
@@ -30,7 +34,7 @@ import { SearchComponent } from './search/search.component';
     FormsModule,
     ReactiveFormsModule,  
     RouterModule.forRoot([
-      { path: '', component: SearchComponent, pathMatch: 'full' },
+      { path: '', component: HomeComponent, pathMatch: 'full' },
     ])
   ],
   providers: [],

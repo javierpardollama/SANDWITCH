@@ -45,10 +45,10 @@ export class PoblacionService {
             .pipe(catchError(this.handleError<any>('RemovePoblacionById', undefined)));
     }
 
-    private handleError<T>(operation = 'operation', result?: T) {
+    private handleError<T>(operation = 'Operation', result?: T) {
         return (error: any): Observable<T> => {
 
-            this.matSnackBar.open('Operation Error');
+            this.matSnackBar.open(operation + ' Error');
 
             // Let the app keep running by returning an empty result.
             return of(result as T);

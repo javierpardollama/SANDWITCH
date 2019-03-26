@@ -44,9 +44,9 @@ import { ProvinciasComponent } from './management/provincias/provincias.componen
     ReactiveFormsModule,  
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
-      { path: 'banderas', component: BanderasComponent, pathMatch: 'full' },
-      { path: 'poblaciones', component: PoblacionesComponent, pathMatch: 'full' },
-      { path: 'provincias', component: ProvinciasComponent, pathMatch: 'full' }
+      { path: 'management/banderas', component: BanderasComponent, pathMatch: 'full' },
+      { path: 'management/poblaciones', component: PoblacionesComponent, pathMatch: 'full' },
+      { path: 'management/provincias', component: ProvinciasComponent, pathMatch: 'full' }
     ])
   ],
   providers: [],

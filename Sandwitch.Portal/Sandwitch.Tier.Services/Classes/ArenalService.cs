@@ -58,7 +58,10 @@ namespace Sandwitch.Tier.Services.Classes
 
         public async Task<ICollection<Arenal>> FindAllArenal()
         {
-            return await Icontext.Arenal.AsQueryable().ToAsyncEnumerable().ToList();
+            return await Icontext.Arenal.AsQueryable()
+                .Include(x=>x.Poblaciones)
+                .ThenInclude(x=>x.Poblacion)
+                .ToAsyncEnumerable().ToList();
         }
 
         public async Task<ICollection<Arenal>> FindAllArenalByPoblacionId(int id)

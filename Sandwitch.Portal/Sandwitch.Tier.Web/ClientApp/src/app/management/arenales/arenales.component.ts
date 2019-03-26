@@ -1,39 +1,39 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
-import { Bandera } from '../../../viewmodels/core/bandera';
+import { Arenal } from '../../../viewmodels/core/arenal';
 
-import { BanderaService } from '../../../services/bandera.service.module';
+import { ArenalService } from '../../../services/arenal.service.module';
 
 @Component({
-  selector: 'app-banderas',
-  templateUrl: './banderas.component.html',
-  styleUrls: ['./banderas.component.css']
+  selector: 'app-arenales',
+  templateUrl: './arenales.component.html',
+  styleUrls: ['./arenales.component.css']
 })
-export class BanderasComponent implements OnInit {
+export class ArenalesComponent implements OnInit {
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  public ELEMENT_DATA: Bandera[];
+  public ELEMENT_DATA: Arenal[];
 
-  public displayedColumns: string[] = ['Id', 'Name', 'ImageUri', 'LastModified'];
+  public displayedColumns: string[] = ['Id', 'Name', 'Poblaciones', 'LastModified'];
 
-  public dataSource: MatTableDataSource<Bandera>;
+  public dataSource: MatTableDataSource<Arenal>;
 
   // Constructor
-  constructor(private banderaService: BanderaService) {
+  constructor(private arenalService: ArenalService) {
 
   }
 
   // Life Cicle
   ngOnInit() {
-    this.FindAllBandera();
+    this.FindAllArenal();
   }
 
   // Get Data from Service
-  public FindAllBandera() {
-    this.banderaService.FindAllBandera().subscribe(banderas => {
-      this.ELEMENT_DATA = banderas;
+  public FindAllArenal() {
+    this.arenalService.FindAllArenal().subscribe(arenales => {
+      this.ELEMENT_DATA = arenales;
 
       this.SetupMyTableSettings();
     });
@@ -52,8 +52,8 @@ export class BanderasComponent implements OnInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-   // Get Record from Table
-  public GetRecord(row: Bandera) {
+  // Get Record from Table
+  public GetRecord(row: Arenal) {
     
   }
 }

@@ -51,4 +51,9 @@ export class PoblacionesComponent implements OnInit {
   public ApplyMyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
+
+   // Get Record from Table
+  public GetRecord(row: Poblacion) {
+    
+  }
 }

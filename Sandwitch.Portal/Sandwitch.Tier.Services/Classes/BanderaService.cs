@@ -17,7 +17,7 @@ namespace Sandwitch.Tier.Services.Classes
 
         public BanderaService(IApplicationContext iContext)
         {
-            this.Icontext = iContext;
+            Icontext = iContext;
         }
 
         public async Task<Bandera> AddBandera(AddBandera viewModel)
@@ -27,7 +27,8 @@ namespace Sandwitch.Tier.Services.Classes
             Bandera entity = new Bandera
             {
                 LastModified = DateTime.Now,
-                Name = viewModel.Name
+                Name = viewModel.Name,
+                ImageUri = viewModel.ImageUri
             };
 
             await Icontext.Bandera.AddAsync(entity);
@@ -49,7 +50,7 @@ namespace Sandwitch.Tier.Services.Classes
         {
             Bandera entity = await Icontext.Bandera.FirstOrDefaultAsync(x => x.Id == id);
 
-            if (entity != null)
+            if (entity == null)
             {
                 throw new Exception("Bandera with Id" + id + "does not exist");
             }
@@ -70,6 +71,7 @@ namespace Sandwitch.Tier.Services.Classes
         {
             Bandera entity = await FindBanderaById(viewModel.Id);
             entity.Name = viewModel.Name;
+            entity.ImageUri = viewModel.ImageUri;
             entity.LastModified = DateTime.Now;
 
             Icontext.Bandera.Update(entity);

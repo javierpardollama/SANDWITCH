@@ -21,7 +21,7 @@ namespace Sandwitch.Tier.Web.Controllers
 
         [HttpPut]
         [Route("updateprovincia")]
-        public async Task<IActionResult> UpdateProvincia(UpdateProvincia viewModel)
+        public async Task<IActionResult> UpdateProvincia([FromBody]UpdateProvincia viewModel)
         {
             Provincia provincia = await this.Service.UpdateProvincia(viewModel);
 
@@ -39,7 +39,7 @@ namespace Sandwitch.Tier.Web.Controllers
 
         [HttpPost]
         [Route("addprovincia")]
-        public async Task<IActionResult> AddProvincia(AddProvincia viewModel)
+        public async Task<IActionResult> AddProvincia([FromBody]AddProvincia viewModel)
         {
             Provincia provincia = await this.Service.AddProvincia(viewModel);
 

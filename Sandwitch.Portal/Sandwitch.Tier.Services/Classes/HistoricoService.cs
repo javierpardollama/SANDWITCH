@@ -38,7 +38,7 @@ namespace Sandwitch.Tier.Services.Classes
         {
             Bandera entity = await Icontext.Bandera.FirstOrDefaultAsync(x => x.Id == id);
 
-            if (entity != null)
+            if (entity == null)
             {
                 throw new Exception("Bandera with Id" + id + "does not exist");
             }
@@ -54,7 +54,7 @@ namespace Sandwitch.Tier.Services.Classes
                .Include(x => x.Bandera)
                .FirstOrDefaultAsync(x => x.Id == id);
 
-            if (historico != null)
+            if (historico == null)
             {
                 throw new Exception("Historico with Id" + id + "does not exist");
             }

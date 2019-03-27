@@ -19,7 +19,7 @@ namespace Sandwitch.Tier.Web.Controllers
 
         [HttpPut]
         [Route("updatehistorico")]
-        public async Task<IActionResult> UpdateHistorico(UpdateHistorico viewModel)
+        public async Task<IActionResult> UpdateHistorico([FromBody]UpdateHistorico viewModel)
         {
            Historico historico = await this.Service.UpdateHistorico(viewModel);
 

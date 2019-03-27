@@ -21,7 +21,7 @@ namespace Sandwitch.Tier.Web.Controllers
 
         [HttpPut]
         [Route("updatearenal")]
-        public async Task<IActionResult> UpdateArenal(UpdateArenal viewModel)
+        public async Task<IActionResult> UpdateArenal([FromBody]UpdateArenal viewModel)
         {
             Arenal arenal = await this.Service.UpdateArenal(viewModel);
 
@@ -48,7 +48,7 @@ namespace Sandwitch.Tier.Web.Controllers
 
         [HttpPost]
         [Route("addarenal")]
-        public async Task<IActionResult> AddArenal(AddArenal viewModel)
+        public async Task<IActionResult> AddArenal([FromBody]AddArenal viewModel)
         {
             Arenal arenal = await this.Service.AddArenal(viewModel);
 

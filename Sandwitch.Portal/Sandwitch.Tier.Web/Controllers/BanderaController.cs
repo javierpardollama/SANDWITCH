@@ -21,7 +21,7 @@ namespace Sandwitch.Tier.Web.Controllers
 
         [HttpPut]
         [Route("updatebandera")]
-        public async Task<IActionResult> UpdateBandera(UpdateBandera viewModel)
+        public async Task<IActionResult> UpdateBandera([FromBody]UpdateBandera viewModel)
         {
             Bandera bandera = await this.Service.UpdateBandera(viewModel);
 
@@ -39,7 +39,7 @@ namespace Sandwitch.Tier.Web.Controllers
 
         [HttpPost]
         [Route("addbandera")]
-        public async Task<IActionResult> AddBandera(AddBandera viewModel)
+        public async Task<IActionResult> AddBandera([FromBody]AddBandera viewModel)
         {
             Bandera bandera = await this.Service.AddBandera(viewModel);
 

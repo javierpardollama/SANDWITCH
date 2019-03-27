@@ -29,6 +29,7 @@ namespace Sandwitch.Tier.Services.Classes
                 LastModified = DateTime.Now,
                 Name = viewModel.Name,
                 Provincia = await FindProvinciaById(viewModel.ProvinciaId),
+                ImageUri = viewModel.ImageUri
             };
 
             await Icontext.Poblacion.AddAsync(entity);
@@ -61,7 +62,7 @@ namespace Sandwitch.Tier.Services.Classes
         {
             Poblacion entity = await Icontext.Poblacion.FirstOrDefaultAsync(x => x.Id == id);
 
-            if (entity != null)
+            if (entity == null)
             {
                 throw new Exception("Poblacion with Id" + id + "does not exist");
             }
@@ -95,6 +96,7 @@ namespace Sandwitch.Tier.Services.Classes
             Poblacion entity = await FindPoblacionById(viewModel.Id);
             entity.Name = viewModel.Name;
             entity.Provincia = await FindProvinciaById(viewModel.ProvinciaId);
+            entity.ImageUri = viewModel.ImageUri;
             entity.LastModified = DateTime.Now;
 
             Icontext.Poblacion.Update(entity);

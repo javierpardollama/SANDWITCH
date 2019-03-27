@@ -27,7 +27,8 @@ namespace Sandwitch.Tier.Services.Classes
             Provincia entity = new Provincia
             {
                 LastModified = DateTime.Now,
-                Name = viewModel.Name
+                Name = viewModel.Name,
+                ImageUri = viewModel.ImageUri
             };
 
             await Icontext.Provincia.AddAsync(entity);
@@ -50,7 +51,7 @@ namespace Sandwitch.Tier.Services.Classes
             Provincia entity = await Icontext.Provincia
                 .FirstOrDefaultAsync(x => x.Id == id);
 
-            if (entity != null)
+            if (entity == null)
             {
                 throw new Exception("Provincia with Id" + id + "does not exist");
             }
@@ -71,6 +72,7 @@ namespace Sandwitch.Tier.Services.Classes
         {
             Provincia entity = await FindProvinciaById(viewModel.Id);
             entity.Name = viewModel.Name;
+            entity.ImageUri = viewModel.ImageUri;
             entity.LastModified = DateTime.Now;
 
             Icontext.Provincia.Update(entity);

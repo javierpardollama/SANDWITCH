@@ -19,7 +19,7 @@ export class BanderaService {
 
     }
 
-    public UpdateBandera(viewModel: UpdateBandera): Observable<Bandera> {
+    public UpdateBandera(viewModel: UpdateBandera): Observable<Bandera> {      
         return this.httpClient.put<Bandera>('api/bandera/updatebandera', viewModel)
             .pipe(catchError(this.handleError<Bandera>('UpdateBandera', undefined)));
     }

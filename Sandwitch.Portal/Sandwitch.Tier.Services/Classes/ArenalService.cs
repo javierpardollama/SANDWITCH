@@ -100,7 +100,7 @@ namespace Sandwitch.Tier.Services.Classes
         {
             Poblacion poblacion = await Icontext.Poblacion.FirstOrDefaultAsync(x => x.Id == id);
 
-            if (poblacion != null)
+            if (poblacion == null)
             {
                 throw new Exception("Poblacion with Id" + id + "does not exist");
             }

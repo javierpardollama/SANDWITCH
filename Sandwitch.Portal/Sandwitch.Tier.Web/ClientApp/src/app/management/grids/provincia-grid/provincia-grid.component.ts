@@ -1,15 +1,17 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
-import { Provincia } from '../../../viewmodels/core/provincia';
+import { MatTableDataSource, MatPaginator, MatSort, MatDialog } from '@angular/material';
+import { Provincia } from '../../../../viewmodels/core/provincia';
 
-import { ProvinciaService } from '../../../services/provincia.service.module';
+import { ProvinciaService } from '../../../../services/provincia.service.module';
+
+import { ProvinciaUpdateModalComponent } from '../../modals/updates/provincia-update-modal/provincia-update-modal.component';
 
 @Component({
-  selector: 'app-provincias',
-  templateUrl: './provincias.component.html',
-  styleUrls: ['./provincias.component.css']
+  selector: 'app-provincia-grid',
+  templateUrl: './provincia-grid.component.html',
+  styleUrls: ['./provincia-grid.component.css']
 })
-export class ProvinciasComponent implements OnInit {
+export class ProvinciaGridComponent implements OnInit {
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -21,7 +23,8 @@ export class ProvinciasComponent implements OnInit {
   public dataSource: MatTableDataSource<Provincia>;
 
   // Constructor
-  constructor(private provinciaService: ProvinciaService) {
+  constructor(private provinciaService: ProvinciaService,
+    public matDialog: MatDialog) {
 
   }
 
@@ -52,8 +55,15 @@ export class ProvinciasComponent implements OnInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-   // Get Record from Table
+  // Get Record from Table
   public GetRecord(row: Provincia) {
-    
+    const dialogRef = this.matDialog.open(ProvinciaUpdateModalComponent, {
+      width: '250px',
+      data: row
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      this.FindAllProvincia();
+    });
   }
 }

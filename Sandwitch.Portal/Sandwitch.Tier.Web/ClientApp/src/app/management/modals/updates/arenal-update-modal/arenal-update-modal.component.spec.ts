@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ProvinciasComponent } from './provincias.component';
+import { ArenalUpdateModalComponent } from './arenal-update-modal.component';
 
-describe('ProvinciasComponent', () => {
-  let component: ProvinciasComponent;
-  let fixture: ComponentFixture<ProvinciasComponent>;
+describe('ArenalUpdateModalComponent', () => {
+  let component: ArenalUpdateModalComponent;
+  let fixture: ComponentFixture<ArenalUpdateModalComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ProvinciasComponent ]
+      declarations: [ ArenalUpdateModalComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ProvinciasComponent);
+    fixture = TestBed.createComponent(ArenalUpdateModalComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PoblacionesComponent } from './poblaciones.component';
+import { BanderaUpdateModalComponent } from './bandera-update-modal.component';
 
-describe('PoblacionesComponent', () => {
-  let component: PoblacionesComponent;
-  let fixture: ComponentFixture<PoblacionesComponent>;
+describe('BanderaUpdateModalComponent', () => {
+  let component: BanderaUpdateModalComponent;
+  let fixture: ComponentFixture<BanderaUpdateModalComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PoblacionesComponent ]
+      declarations: [ BanderaUpdateModalComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PoblacionesComponent);
+    fixture = TestBed.createComponent(BanderaUpdateModalComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

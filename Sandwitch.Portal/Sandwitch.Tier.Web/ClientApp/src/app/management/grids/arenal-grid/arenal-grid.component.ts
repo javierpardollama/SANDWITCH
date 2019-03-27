@@ -1,15 +1,17 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
-import { Arenal } from '../../../viewmodels/core/arenal';
+import { MatTableDataSource, MatPaginator, MatSort, MatDialog } from '@angular/material';
+import { Arenal } from '../../../../viewmodels/core/arenal';
 
-import { ArenalService } from '../../../services/arenal.service.module';
+import { ArenalService } from '../../../../services/arenal.service.module';
+
+import { ArenalUpdateModalComponent } from '../../modals/updates/arenal-update-modal/arenal-update-modal.component';
 
 @Component({
-  selector: 'app-arenales',
-  templateUrl: './arenales.component.html',
-  styleUrls: ['./arenales.component.css']
+  selector: 'app-arenal-grid',
+  templateUrl: './arenal-grid.component.html',
+  styleUrls: ['./arenal-grid.component.css']
 })
-export class ArenalesComponent implements OnInit {
+export class ArenalGridComponent implements OnInit {
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -21,7 +23,8 @@ export class ArenalesComponent implements OnInit {
   public dataSource: MatTableDataSource<Arenal>;
 
   // Constructor
-  constructor(private arenalService: ArenalService) {
+  constructor(private arenalService: ArenalService,
+    public matDialog: MatDialog) {
 
   }
 
@@ -54,6 +57,13 @@ export class ArenalesComponent implements OnInit {
 
   // Get Record from Table
   public GetRecord(row: Arenal) {
-    
+    const dialogRef = this.matDialog.open(ArenalUpdateModalComponent, {
+      width: '250px',
+      data: row
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      this.FindAllArenal();
+    });
   }
 }

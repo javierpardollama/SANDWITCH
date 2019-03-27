@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { BanderasComponent } from './banderas.component';
+import { BanderaGridComponent } from './bandera-grid.component';
 
-describe('BanderasComponent', () => {
-  let component: BanderasComponent;
-  let fixture: ComponentFixture<BanderasComponent>;
+describe('BanderaGridComponent', () => {
+  let component: BanderaGridComponent;
+  let fixture: ComponentFixture<BanderaGridComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ BanderasComponent ]
+      declarations: [ BanderaGridComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(BanderasComponent);
+    fixture = TestBed.createComponent(BanderaGridComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

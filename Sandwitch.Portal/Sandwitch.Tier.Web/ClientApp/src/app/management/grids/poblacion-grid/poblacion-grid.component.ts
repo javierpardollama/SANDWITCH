@@ -1,15 +1,17 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
-import { Poblacion } from '../../../viewmodels/core/poblacion';
+import { MatTableDataSource, MatPaginator, MatSort, MatDialog } from '@angular/material';
+import { Poblacion } from '../../../../viewmodels/core/poblacion';
 
-import { PoblacionService } from '../../../services/poblacion.service.module';
+import { PoblacionService } from '../../../../services/poblacion.service.module';
+
+import { PoblacionUpdateModalComponent } from '../../modals/updates/poblacion-update-modal/poblacion-update-modal.component';
 
 @Component({
-  selector: 'app-poblaciones',
-  templateUrl: './poblaciones.component.html',
-  styleUrls: ['./poblaciones.component.css']
+  selector: 'app-poblacion-grid',
+  templateUrl: './poblacion-grid.component.html',
+  styleUrls: ['./poblacion-grid.component.css']
 })
-export class PoblacionesComponent implements OnInit {
+export class PoblacionGridComponent implements OnInit {
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -21,7 +23,8 @@ export class PoblacionesComponent implements OnInit {
   public dataSource: MatTableDataSource<Poblacion>;
 
   // Constructor
-  constructor(private poblacionService: PoblacionService) {
+  constructor(private poblacionService: PoblacionService,
+    public matDialog: MatDialog) {
 
   }
 
@@ -52,8 +55,15 @@ export class PoblacionesComponent implements OnInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-   // Get Record from Table
+  // Get Record from Table
   public GetRecord(row: Poblacion) {
-    
+    const dialogRef = this.matDialog.open(PoblacionUpdateModalComponent, {
+      width: '250px',
+      data: row
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      this.FindAllPoblacion();
+    });
   }
 }

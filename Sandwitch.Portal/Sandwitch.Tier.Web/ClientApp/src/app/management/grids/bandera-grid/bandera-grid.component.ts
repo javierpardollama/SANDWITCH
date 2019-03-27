@@ -1,15 +1,17 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
-import { Bandera } from '../../../viewmodels/core/bandera';
+import { MatTableDataSource, MatPaginator, MatSort, MatDialog } from '@angular/material';
+import { Bandera } from '../../../../viewmodels/core/bandera';
 
-import { BanderaService } from '../../../services/bandera.service.module';
+import { BanderaService } from '../../../../services/bandera.service.module';
+
+import { BanderaUpdateModalComponent } from '../../modals/updates/bandera-update-modal/bandera-update-modal.component';
 
 @Component({
-  selector: 'app-banderas',
-  templateUrl: './banderas.component.html',
-  styleUrls: ['./banderas.component.css']
+  selector: 'app-bandera-grid',
+  templateUrl: './bandera-grid.component.html',
+  styleUrls: ['./bandera-grid.component.css']
 })
-export class BanderasComponent implements OnInit {
+export class BanderaGridComponent implements OnInit {
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -21,7 +23,8 @@ export class BanderasComponent implements OnInit {
   public dataSource: MatTableDataSource<Bandera>;
 
   // Constructor
-  constructor(private banderaService: BanderaService) {
+  constructor(private banderaService: BanderaService,
+    public matDialog: MatDialog) {
 
   }
 
@@ -52,8 +55,15 @@ export class BanderasComponent implements OnInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-   // Get Record from Table
+  // Get Record from Table
   public GetRecord(row: Bandera) {
-    
+    const dialogRef = this.matDialog.open(BanderaUpdateModalComponent, {
+      width: '250px',
+      data: row
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      this.FindAllBandera();
+    });
   }
 }

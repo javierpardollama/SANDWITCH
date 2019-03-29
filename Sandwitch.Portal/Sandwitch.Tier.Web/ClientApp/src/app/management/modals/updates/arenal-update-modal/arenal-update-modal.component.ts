@@ -21,8 +21,8 @@ export class ArenalUpdateModalComponent implements OnInit {
   public provincias: Provincia[];
 
   // Constructor
-  constructor(private arenalService: ArenalService,  
-    private provinciaService:ProvinciaService,
+  constructor(private arenalService: ArenalService,
+    private provinciaService: ProvinciaService,
     private formBuilder: FormBuilder,
     public dialogRef: MatDialogRef<ArenalUpdateModalComponent>,
     @Inject(MAT_DIALOG_DATA) public data: Arenal) { }
@@ -38,17 +38,17 @@ export class ArenalUpdateModalComponent implements OnInit {
   CreateForm() {
     this.formGroup = this.formBuilder.group({
       'Id': [this.data.Id, [Validators.required]],
-      'Name': [this.data.Name, [Validators.required]],    
+      'Name': [this.data.Name, [Validators.required]],
       'PoblacionesId': [this.data.Poblaciones, [Validators.required]]
     });
   }
 
   // Form Actions
-  onSubmit(viewModel: UpdateArenal) {      
+  onSubmit(viewModel: UpdateArenal) {
     this.arenalService.UpdateArenal(viewModel).subscribe(arenal => {
       this.dialogRef.close();
     });
-  } 
+  }
 
   // Get Data from Service
   public FindAllProvincia() {

@@ -20,8 +20,14 @@ export class PoblacionService {
     }
 
     public UpdatePoblacion(viewModel: UpdatePoblacion): Observable<Poblacion> {
-        return this.httpClient.put<Poblacion>('api/poblacion/updatepoblacion', viewModel)
+        const observable: Observable<Poblacion> = this.httpClient.put<Poblacion>('api/poblacion/updatepoblacion', viewModel)
             .pipe(catchError(this.handleError<Poblacion>('UpdatePoblacion', undefined)));
+
+        if (observable !== undefined) {
+            this.matSnackBar.open('Operation Successful', 'Ok');
+        }
+
+        return observable;
     }
 
     public FindAllPoblacion(): Observable<Poblacion[]> {
@@ -35,12 +41,17 @@ export class PoblacionService {
     }
 
     public AddPoblacion(viewModel: AddPoblacion): Observable<Poblacion> {
-        return this.httpClient.post<Poblacion>('api/poblacion/addpoblacion', viewModel)
+        const observable: Observable<Poblacion> = this.httpClient.post<Poblacion>('api/poblacion/addpoblacion', viewModel)
             .pipe(catchError(this.handleError<Poblacion>('AddPoblacion', undefined)));
+
+        if (observable !== undefined) {
+            this.matSnackBar.open('Operation Successful', 'Ok');
+        }
+
+        return observable;
     }
 
     public RemovePoblacionById(id: number) {
-
         return this.httpClient.delete<any>('api/poblacion/removepoblacionbyid/' + id)
             .pipe(catchError(this.handleError<any>('RemovePoblacionById', undefined)));
     }
@@ -48,7 +59,7 @@ export class PoblacionService {
     private handleError<T>(operation = 'Operation', result?: T) {
         return (error: any): Observable<T> => {
 
-            this.matSnackBar.open(operation + ' Error');
+            this.matSnackBar.open(operation + ' Error', 'Ok');
 
             // Let the app keep running by returning an empty result.
             return of(result as T);

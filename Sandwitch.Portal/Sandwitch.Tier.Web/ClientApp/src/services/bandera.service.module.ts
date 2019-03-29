@@ -19,19 +19,31 @@ export class BanderaService {
 
     }
 
-    public UpdateBandera(viewModel: UpdateBandera): Observable<Bandera> {      
-        return this.httpClient.put<Bandera>('api/bandera/updatebandera', viewModel)
+    public UpdateBandera(viewModel: UpdateBandera): Observable<Bandera> {
+        const observable: Observable<Bandera> = this.httpClient.put<Bandera>('api/bandera/updatebandera', viewModel)
             .pipe(catchError(this.handleError<Bandera>('UpdateBandera', undefined)));
+
+        if (observable !== undefined) {
+            this.matSnackBar.open('Operation Successful', 'Ok');
+        }
+
+        return observable;
     }
 
     public FindAllBandera(): Observable<Bandera[]> {
         return this.httpClient.get<Bandera[]>('api/bandera/findallbandera')
             .pipe(catchError(this.handleError<Bandera[]>('FindAllBandera', [])));
-    }   
+    }
 
     public AddBandera(viewModel: AddBandera): Observable<Bandera> {
-        return this.httpClient.post<Bandera>('api/bandera/addbandera', viewModel)
+        const observable: Observable<Bandera> = this.httpClient.post<Bandera>('api/bandera/addbandera', viewModel)
             .pipe(catchError(this.handleError<Bandera>('AddBandera', undefined)));
+
+        if (observable !== undefined) {
+            this.matSnackBar.open('Operation Successful', 'Ok');
+        }
+
+        return observable;
     }
 
     public RemoveBanderaById(id: number) {
@@ -43,7 +55,7 @@ export class BanderaService {
     private handleError<T>(operation = 'Operation', result?: T) {
         return (error: any): Observable<T> => {
 
-            this.matSnackBar.open(operation + ' Error');
+            this.matSnackBar.open(operation + ' Error', 'Ok');
 
             // Let the app keep running by returning an empty result.
             return of(result as T);

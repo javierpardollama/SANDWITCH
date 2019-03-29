@@ -37,7 +37,7 @@ export class ProvinciaUpdateModalComponent implements OnInit {
   }
 
   // Form Actions
-  onSubmit(viewModel: UpdateProvincia) {  
+  onSubmit(viewModel: UpdateProvincia) {
     this.provinciaService.UpdateProvincia(viewModel).subscribe(provincia => {
       this.dialogRef.close();
     });

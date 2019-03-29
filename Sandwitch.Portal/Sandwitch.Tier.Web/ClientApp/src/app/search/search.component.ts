@@ -19,16 +19,16 @@ export class SearchComponent implements OnInit {
   // Data
   public poblaciones: Poblacion[];
   public filteredPoblaciones: Observable<Poblacion[]>;
-  public provincias :Provincia[];
+  public provincias: Provincia[];
   public filteredProvincias: Observable<Provincia[]>;
-  public arenales: Arenal[]; 
+  public arenales: Arenal[];
 
   // Control
   public poblacionCtrl = new FormControl();
   public provinciaCtrl = new FormControl();
 
   // Constructor
-  constructor(private provinciaService:ProvinciaService,
+  constructor(private provinciaService: ProvinciaService,
     private poblacionService: PoblacionService,
     private arenalService: ArenalService) {
 
@@ -42,13 +42,12 @@ export class SearchComponent implements OnInit {
   // Get Data from Service
   public FindAllArenalByPoblacionId(id: number) {
     this.arenalService.FindAllArenalByPoblacionId(id).subscribe(arenales => {
-      this.arenales = arenales;      
+      this.arenales = arenales;
     });
   }
 
-   // Get Data from Service
-  public FindAllProvincia()
-  {
+  // Get Data from Service
+  public FindAllProvincia() {
     this.provinciaService.FindAllProvincia().subscribe(provincias => {
       this.provincias = provincias;
 
@@ -61,7 +60,7 @@ export class SearchComponent implements OnInit {
   }
 
   // Get Data from Service
-  public FindAllPoblacionByProvinciaId(id:number) {
+  public FindAllPoblacionByProvinciaId(id: number) {
     this.poblacionService.FindAllPoblacionByProvinciaId(id).subscribe(poblaciones => {
       this.poblaciones = poblaciones;
 
@@ -81,7 +80,7 @@ export class SearchComponent implements OnInit {
     return this.provincias.filter(provincia => provincia.Name.toLowerCase().indexOf(filterValue) === 0);
   }
 
-   // Filter Data
+  // Filter Data
   public FilterPoblaciones(value: string): Poblacion[] {
     const filterValue = value.toLowerCase();
 

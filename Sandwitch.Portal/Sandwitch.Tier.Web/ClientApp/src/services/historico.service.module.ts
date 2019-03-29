@@ -19,15 +19,21 @@ export class HistoricoService {
     }
 
     public UpdateHistorico(viewModel: UpdateHistorico): Observable<Historico> {
-       
-        return this.httpClient.put<Historico>('api/provincia/updatehistorico', viewModel)
-            .pipe(catchError(this.handleError<Historico>('UpdateHistorico', undefined)));            
+
+        const observable: Observable<Historico> = this.httpClient.put<Historico>('api/provincia/updatehistorico', viewModel)
+            .pipe(catchError(this.handleError<Historico>('UpdateHistorico', undefined)));
+
+            if (observable !== undefined) {
+                this.matSnackBar.open('Operation Successful', 'Ok');
+            }
+
+        return observable;
     }
 
     private handleError<T>(operation = 'Operation', result?: T) {
         return (error: any): Observable<T> => {
 
-            this.matSnackBar.open(operation + ' Error');
+            this.matSnackBar.open(operation + ' Error', 'Ok');
 
             // Let the app keep running by returning an empty result.
             return of(result as T);

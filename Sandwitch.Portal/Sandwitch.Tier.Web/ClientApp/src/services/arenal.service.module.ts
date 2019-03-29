@@ -20,8 +20,15 @@ export class ArenalService {
     }
 
     public UpdateArenal(viewModel: UpdateArenal): Observable<Arenal> {
-        return this.httpClient.put<Arenal>('api/arenal/updatearenal', viewModel)
+
+        const observable: Observable<Arenal> = this.httpClient.put<Arenal>('api/arenal/updatearenal', viewModel)
             .pipe(catchError(this.handleError<Arenal>('UpdateArenal', undefined)));
+
+        if (observable !== undefined) {
+            this.matSnackBar.open('Operation Successful', 'Ok');
+        }
+
+        return observable;
     }
 
     public FindAllArenal(): Observable<Arenal[]> {
@@ -35,8 +42,14 @@ export class ArenalService {
     }
 
     public AddArenal(viewModel: AddArenal): Observable<Arenal> {
-        return this.httpClient.post<Arenal>('api/arenal/addarenal', viewModel)
+        const observable: Observable<Arenal> = this.httpClient.post<Arenal>('api/arenal/addarenal', viewModel)
             .pipe(catchError(this.handleError<Arenal>('AddArenal', undefined)));
+
+        if (observable !== undefined) {
+            this.matSnackBar.open('Operation Successful', 'Ok');
+        }
+
+        return observable;
     }
 
     public RemoveArenalById(id: number) {
@@ -48,7 +61,7 @@ export class ArenalService {
     private handleError<T>(operation = 'Operation', result?: T) {
         return (error: any): Observable<T> => {
 
-            this.matSnackBar.open(operation + ' Error');
+            this.matSnackBar.open(operation + ' Error', 'Ok');
 
             // Let the app keep running by returning an empty result.
             return of(result as T);

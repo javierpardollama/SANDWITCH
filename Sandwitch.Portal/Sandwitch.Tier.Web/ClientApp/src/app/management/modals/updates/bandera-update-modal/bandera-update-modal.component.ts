@@ -37,7 +37,7 @@ export class BanderaUpdateModalComponent implements OnInit {
   }
 
   // Form Actions
-  onSubmit(viewModel: UpdateBandera) {  
+  onSubmit(viewModel: UpdateBandera) {
     this.banderaService.UpdateBandera(viewModel).subscribe(bandera => {
       this.dialogRef.close();
     });

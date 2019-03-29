@@ -26,7 +26,7 @@ namespace Sandwitch.Tier.Services.Classes
                 .ThenInclude(x => x.Poblacion)
                 .FirstOrDefaultAsync(x => x.Id == id);
 
-            if (arenal != null)
+            if (arenal == null)
             {
                 throw new Exception("Arenal with Id" + id + "does not exist");
             }

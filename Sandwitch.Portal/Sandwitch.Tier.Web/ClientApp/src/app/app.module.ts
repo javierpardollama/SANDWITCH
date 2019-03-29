@@ -8,7 +8,7 @@ import { RouterModule } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
   MatDialogModule, MatChipsModule, MatSortModule, MatPaginatorModule, MatTableModule, MatCardModule,
-  MatInputModule, MatFormFieldModule, MatButtonModule, MatSnackBarModule, MatAutocompleteModule
+  MatInputModule, MatFormFieldModule, MatButtonModule, MatSnackBarModule, MatAutocompleteModule, MatSelectModule
 } from '@angular/material';
 
 // App
@@ -54,6 +54,7 @@ import { PoblacionUpdateModalComponent } from './management/modals/updates/pobla
   imports: [
     // Angular Material
     BrowserAnimationsModule,
+    MatSelectModule,
     MatInputModule,
     MatDialogModule,
     MatPaginatorModule,

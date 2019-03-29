@@ -74,7 +74,7 @@ namespace Sandwitch.Tier.Services.Classes
         {
             Provincia entity = await Icontext.Provincia.FirstOrDefaultAsync(x => x.Id == id);
 
-            if (entity != null)
+            if (entity == null)
             {
                 throw new Exception("Provincia with Id" + id + "does not exist");
             }

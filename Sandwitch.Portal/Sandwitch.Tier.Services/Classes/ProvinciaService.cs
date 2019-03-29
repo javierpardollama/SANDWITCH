@@ -42,6 +42,7 @@ namespace Sandwitch.Tier.Services.Classes
         {
             return await Icontext.Provincia
                 .AsQueryable()
+                .Include(x=>x.Poblaciones)
                 .ToAsyncEnumerable()
                 .ToList();
         }

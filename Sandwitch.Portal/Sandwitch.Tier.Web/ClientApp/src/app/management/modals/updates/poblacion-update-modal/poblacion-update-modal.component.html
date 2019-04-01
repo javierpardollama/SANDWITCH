@@ -1,5 +1,5 @@
 <div class="container" novalidate>
-  <form [formGroup]="formGroup" (ngSubmit)="onSubmit(formGroup.value)" class="form">
+  <form [formGroup]="formGroup" class="form">
 
     <mat-form-field class="form-element">
       <input matInput placeholder="Id" formControlName="Id" readonly>
@@ -31,12 +31,16 @@
       </mat-select>
 
       <mat-error *ngIf="!formGroup.controls['ProvinciaId'].valid && formGroup.controls['ProvinciaId'].touched">
-          Required field.
-        </mat-error>
+        Required field.
+      </mat-error>
     </mat-form-field>
 
     <div class="form-element">
-      <button mat-raised-button color="primary" type="submit" class="button" [disabled]="!formGroup.valid">Save
+      <button mat-raised-button color="primary" type="submit" class="button" (click)="onSubmit(formGroup.value)"
+        [disabled]="!formGroup.valid">Save
+      </button>
+      <button mat-raised-button color="accent" type="submit" class="button" (click)="onDelete(formGroup.value)"
+        [disabled]="!formGroup.valid">Delete
       </button>
     </div>
 

@@ -5,6 +5,8 @@ import { Bandera } from '../../../../viewmodels/core/bandera';
 import { BanderaService } from '../../../../services/bandera.service.module';
 
 import { BanderaUpdateModalComponent } from '../../modals/updates/bandera-update-modal/bandera-update-modal.component';
+import { BanderaAddModalComponent } from '../../modals/additions/bandera-add-modal/bandera-add-modal.component';
+
 
 @Component({
   selector: 'app-bandera-grid',
@@ -60,6 +62,16 @@ export class BanderaGridComponent implements OnInit {
     const dialogRef = this.matDialog.open(BanderaUpdateModalComponent, {
       width: '250px',
       data: row
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      this.FindAllBandera();
+    });
+  }
+
+  public AddRecord() {
+    const dialogRef = this.matDialog.open(BanderaAddModalComponent, {
+      width: '250px',
     });
 
     dialogRef.afterClosed().subscribe(result => {

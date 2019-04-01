@@ -5,6 +5,7 @@ import { Poblacion } from '../../../../viewmodels/core/poblacion';
 import { PoblacionService } from '../../../../services/poblacion.service.module';
 
 import { PoblacionUpdateModalComponent } from '../../modals/updates/poblacion-update-modal/poblacion-update-modal.component';
+import { PoblacionAddModalComponent } from '../../modals/additions/poblacion-add-modal/poblacion-add-modal.component';
 
 @Component({
   selector: 'app-poblacion-grid',
@@ -60,6 +61,15 @@ export class PoblacionGridComponent implements OnInit {
     const dialogRef = this.matDialog.open(PoblacionUpdateModalComponent, {
       width: '250px',
       data: row
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      this.FindAllPoblacion();
+    });
+  }
+  public AddRecord() {
+    const dialogRef = this.matDialog.open(PoblacionAddModalComponent, {
+      width: '250px',
     });
 
     dialogRef.afterClosed().subscribe(result => {

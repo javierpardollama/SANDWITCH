@@ -51,6 +51,12 @@ export class PoblacionUpdateModalComponent implements OnInit {
     });
   }
 
+  onDelete(viewModel: UpdatePoblacion) {
+    this.poblacionService.RemovePoblacionById(viewModel.Id).subscribe(year => {
+      this.dialogRef.close();
+    });
+  }
+
   // Get Data from Service
   public FindAllProvincia() {
     this.provinciaService.FindAllProvincia().subscribe(provincias => {

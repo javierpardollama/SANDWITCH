@@ -42,4 +42,10 @@ export class ProvinciaUpdateModalComponent implements OnInit {
       this.dialogRef.close();
     });
   }
+
+  onDelete(viewModel: UpdateProvincia) {
+    this.provinciaService.RemoveProvinciaById(viewModel.Id).subscribe(year => {
+      this.dialogRef.close();
+    });
+  }
 }

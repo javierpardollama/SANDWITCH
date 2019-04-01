@@ -42,4 +42,10 @@ export class BanderaUpdateModalComponent implements OnInit {
       this.dialogRef.close();
     });
   }
+
+  onDelete(viewModel: UpdateBandera) {
+    this.banderaService.RemoveBanderaById(viewModel.Id).subscribe(year => {
+      this.dialogRef.close();
+    });
+  }
 }

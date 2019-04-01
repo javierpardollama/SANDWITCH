@@ -9,3 +9,12 @@ margin:8px;
 .grid-filter{
 width: 400px;
 }
+
+.add-button{
+float: right;
+}
+
+.breadcrumb{
+color: #912db9 !important;
+width: fit-content !important;
+}

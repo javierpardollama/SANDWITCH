@@ -5,6 +5,7 @@ import { Provincia } from '../../../../viewmodels/core/provincia';
 import { ProvinciaService } from '../../../../services/provincia.service.module';
 
 import { ProvinciaUpdateModalComponent } from '../../modals/updates/provincia-update-modal/provincia-update-modal.component';
+import { ProvinciaAddModalComponent } from '../../modals/additions/provincia-add-modal/provincia-add-modal.component';
 
 @Component({
   selector: 'app-provincia-grid',
@@ -60,6 +61,16 @@ export class ProvinciaGridComponent implements OnInit {
     const dialogRef = this.matDialog.open(ProvinciaUpdateModalComponent, {
       width: '250px',
       data: row
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      this.FindAllProvincia();
+    });
+  }
+
+  public AddRecord() {
+    const dialogRef = this.matDialog.open(ProvinciaAddModalComponent, {
+      width: '250px',
     });
 
     dialogRef.afterClosed().subscribe(result => {

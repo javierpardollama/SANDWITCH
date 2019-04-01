@@ -1,4 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialogRef } from '@angular/material';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Provincia } from '../../../../../viewmodels/core/provincia';
+
+import { AddPoblacion } from '../../../../../viewmodels/additions/addpoblacion';
+
+import { ProvinciaService } from '../../../../../services/provincia.service.module';
+import { PoblacionService } from '../../../../../services/poblacion.service.module';
 
 @Component({
   selector: 'app-poblacion-add-modal',
@@ -7,9 +15,43 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PoblacionAddModalComponent implements OnInit {
 
-  constructor() { }
+  public formGroup: FormGroup;
 
+  public provincias: Provincia[];
+
+  // Constructor
+  constructor(private provinciaService: ProvinciaService,
+    private poblacionService: PoblacionService,
+    private formBuilder: FormBuilder,
+    public dialogRef: MatDialogRef<PoblacionAddModalComponent>) { }
+
+
+  // Life Cicle
   ngOnInit() {
+    this.FindAllProvincia();
+    this.CreateForm();
   }
 
+  // Form
+  CreateForm() {
+    this.formGroup = this.formBuilder.group({
+      'Name': ['', [Validators.required]],
+      'ImageUri': ['', [Validators.required]],
+      'ProvinciaId': [0, [Validators.required]]
+    });
+  }
+
+  // Form Actions
+  onSubmit(viewModel: AddPoblacion) {
+    this.poblacionService.AddPoblacion(viewModel).subscribe(poblacion => {
+      this.dialogRef.close();
+    });
+  }
+
+  // Get Data from Service
+  public FindAllProvincia() {
+    this.provinciaService.FindAllProvincia().subscribe(provincias => {
+      this.provincias = provincias;
+    });
+  }
 }

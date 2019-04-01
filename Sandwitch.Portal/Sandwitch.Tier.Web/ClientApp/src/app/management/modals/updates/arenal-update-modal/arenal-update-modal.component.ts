@@ -50,6 +50,12 @@ export class ArenalUpdateModalComponent implements OnInit {
     });
   }
 
+  onDelete(viewModel: UpdateArenal) {
+    this.arenalService.RemoveArenalById(viewModel.Id).subscribe(year => {
+      this.dialogRef.close();
+    });
+  }
+
   // Get Data from Service
   public FindAllProvincia() {
     this.provinciaService.FindAllProvincia().subscribe(provincias => {

@@ -47,7 +47,7 @@ namespace Sandwitch.Tier.Web.Controllers
         }
 
         [HttpDelete]
-        [Route("RemoveBanderaById/{id}")]
+        [Route("removebanderabyid/{id}")]
         public async Task<IActionResult> RemoveBanderaById(int id)
         {
             await this.Service.RemoveBanderaById(id);

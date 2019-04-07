@@ -4,8 +4,6 @@ namespace Sandwitch.Tier.ViewModels.Classes.Additions
 {
     public class AddHistorico
     {
-        public int Id { get; set; }
-
         public int ArenalId { get; set; }
 
         public int BanderaId { get; set; }

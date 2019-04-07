@@ -1,5 +1,5 @@
 ﻿using Sandwitch.Tier.Entities.Classes;
-using Sandwitch.Tier.ViewModels.Classes.Updates;
+using Sandwitch.Tier.ViewModels.Classes.Additions;
 using System.Threading.Tasks;
 
 namespace Sandwitch.Tier.Services.Interfaces
@@ -12,6 +12,6 @@ namespace Sandwitch.Tier.Services.Interfaces
 
         Task<Historico> FindHistoricoById(int id);
 
-        Task<Historico> UpdateHistorico(UpdateHistorico viewModel);
+        Task<Historico> AddHistorico(AddHistorico viewModel);
     }
 }

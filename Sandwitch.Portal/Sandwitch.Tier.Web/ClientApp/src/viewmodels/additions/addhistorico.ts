@@ -1,5 +1,4 @@
-export interface UpdateHistorico {
-    Id: number;
+export interface AddHistorico {
     ArenalId: number;
     BanderaId: number;
     Temperatura: number;

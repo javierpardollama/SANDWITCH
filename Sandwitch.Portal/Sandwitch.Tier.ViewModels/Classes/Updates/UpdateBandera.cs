@@ -1,9 +1,7 @@
 ﻿namespace Sandwitch.Tier.ViewModels.Classes.Updates
 {
-    public class UpdateBandera
+    public class UpdateBandera : UpdateBase
     {
-        public int Id { get; set; }
-
         public string Name { get; set; }
 
         public string ImageUri { get; set; }

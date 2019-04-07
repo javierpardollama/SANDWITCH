@@ -2,6 +2,7 @@
 using Sandwitch.Tier.Contexts.Interfaces;
 using Sandwitch.Tier.Entities.Classes;
 using Sandwitch.Tier.Services.Interfaces;
+using Sandwitch.Tier.ViewModels.Classes.Additions;
 using Sandwitch.Tier.ViewModels.Classes.Updates;
 using System;
 using System.Linq;
@@ -16,7 +17,7 @@ namespace Sandwitch.Tier.Services.Classes
         public HistoricoService(IApplicationContext iContext)
         {
             Icontext = iContext;
-        }  
+        }
 
         public async Task<Arenal> FindArenalById(int id)
         {
@@ -62,19 +63,21 @@ namespace Sandwitch.Tier.Services.Classes
             return historico;
         }
 
-        public async Task<Historico> UpdateHistorico(UpdateHistorico viewModel)
+        public async Task<Historico> AddHistorico(AddHistorico viewModel)
         {
-            Historico historico = await FindHistoricoById(viewModel.Id);
-            historico.Arenal = await FindArenalById(viewModel.ArenalId);
-            historico.Bandera = await FindBanderaById(viewModel.BanderaId);
-            historico.BajaMarAlba = viewModel.BajaMarAlba;
-            historico.BajaMarOcaso = viewModel.BajaMarOcaso;
-            historico.AltaMarAlba = viewModel.AltaMarAlba;
-            historico.AltaMarOcaso = viewModel.AltaMarOcaso;
-            historico.Temperatura = viewModel.Temperatura;
-            historico.LastModified = DateTime.Now;          
+            Historico historico = new Historico
+            {
+                Arenal = await FindArenalById(viewModel.ArenalId),
+                Bandera = await FindBanderaById(viewModel.BanderaId),
+                BajaMarAlba = viewModel.BajaMarAlba,
+                BajaMarOcaso = viewModel.BajaMarOcaso,
+                AltaMarAlba = viewModel.AltaMarAlba,
+                AltaMarOcaso = viewModel.AltaMarOcaso,
+                Temperatura = viewModel.Temperatura,
+                LastModified = DateTime.Now,
+            };
 
-            Icontext.Historico.Update(historico);          
+            Icontext.Historico.Add(historico);
 
             await Icontext.SaveChangesAsync();
 

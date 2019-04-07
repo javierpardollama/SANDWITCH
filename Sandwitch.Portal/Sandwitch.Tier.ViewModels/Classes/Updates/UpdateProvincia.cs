@@ -1,9 +1,7 @@
 ﻿namespace Sandwitch.Tier.ViewModels.Classes.Updates
 {
-    public class UpdateProvincia
+    public class UpdateProvincia : UpdateBase
     {
-        public int Id { get; set; }
-
         public string Name { get; set; }
 
         public string ImageUri { get; set; }

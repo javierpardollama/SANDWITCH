@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace Sandwitch.Tier.ViewModels.Classes.Updates
+namespace Sandwitch.Tier.ViewModels.Classes.Additions
 {
-    public class UpdateHistorico
+    public class AddHistorico
     {
         public int Id { get; set; }
 
@@ -11,13 +11,13 @@ namespace Sandwitch.Tier.ViewModels.Classes.Updates
         public int BanderaId { get; set; }
 
         public double Temperatura { get; set; }
-       
+
         public DateTime BajaMarAlba { get; set; }
-        
+
         public DateTime BajaMarOcaso { get; set; }
-        
+
         public DateTime AltaMarAlba { get; set; }
-        
+
         public DateTime AltaMarOcaso { get; set; }
     }
 }

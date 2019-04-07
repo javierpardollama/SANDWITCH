@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.421
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28729.10
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sandwitch.Tier.Entities", "Sandwitch.Tier.Entities\Sandwitch.Tier.Entities.csproj", "{F541CE9B-7461-448E-ADE7-4DDED1CA6ACE}"
 EndProject
@@ -12,6 +12,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sandwitch.Tier.ViewModels", "Sandwitch.Tier.ViewModels\Sandwitch.Tier.ViewModels.csproj", "{7216EA20-D6D3-4E4A-BD4E-190E71BEDE6C}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sandwitch.Tier.Web", "Sandwitch.Tier.Web\Sandwitch.Tier.Web.csproj", "{3BCECE76-E0E0-473D-908D-0BF928433129}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sandwitch.Tier.Mappings", "Sandwitch.Tier.Mappings\Sandwitch.Tier.Mappings.csproj", "{64AECB1E-2419-41E8-873B-EBCFBB4C8A69}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{3BCECE76-E0E0-473D-908D-0BF928433129}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3BCECE76-E0E0-473D-908D-0BF928433129}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3BCECE76-E0E0-473D-908D-0BF928433129}.Release|Any CPU.Build.0 = Release|Any CPU
+		{64AECB1E-2419-41E8-873B-EBCFBB4C8A69}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{64AECB1E-2419-41E8-873B-EBCFBB4C8A69}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{64AECB1E-2419-41E8-873B-EBCFBB4C8A69}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{64AECB1E-2419-41E8-873B-EBCFBB4C8A69}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

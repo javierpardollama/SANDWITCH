@@ -3,6 +3,7 @@ using Sandwitch.Tier.Entities.Classes;
 using Sandwitch.Tier.Services.Interfaces;
 using Sandwitch.Tier.ViewModels.Classes.Additions;
 using Sandwitch.Tier.ViewModels.Classes.Updates;
+using Sandwitch.Tier.ViewModels.Classes.Views;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -41,7 +42,7 @@ namespace Sandwitch.Tier.Web.Controllers
         [Route("findallarenalbypoblacionid/{id}")]
         public async Task<IActionResult> FindAllArenalByPoblacionId(int id)
         {
-            ICollection<Arenal> arenales = await this.Service.FindAllArenalByPoblacionId(id);
+            ICollection<ViewArenal> arenales = await this.Service.FindAllArenalByPoblacionId(id);
 
             return new JsonResult(arenales);
         }

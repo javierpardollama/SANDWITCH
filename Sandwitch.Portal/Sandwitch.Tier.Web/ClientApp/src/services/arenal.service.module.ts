@@ -1,6 +1,7 @@
 import { AddArenal } from '../viewmodels/additions/addarenal';
 import { UpdateArenal } from '../viewmodels/updates/updatearenal';
 import { Arenal } from '../viewmodels/core/arenal';
+import { ViewArenal } from '../viewmodels/views/viewarenal';
 import { HttpClient } from '@angular/common/http';
 import { MatSnackBar } from '@angular/material';
 import { Injectable } from '@angular/core';
@@ -36,9 +37,9 @@ export class ArenalService {
             .pipe(catchError(this.handleError<Arenal[]>('FindAllArenal', [])));
     }
 
-    public FindAllArenalByPoblacionId(id: number): Observable<Arenal[]> {
-        return this.httpClient.get<Arenal[]>('api/arenal/findallarenalbypoblacionid/' + id)
-            .pipe(catchError(this.handleError<Arenal[]>('FindAllArenalByPoblacionId', [])));
+    public FindAllArenalByPoblacionId(id: number): Observable<ViewArenal[]> {
+        return this.httpClient.get<ViewArenal[]>('api/arenal/findallarenalbypoblacionid/' + id)
+            .pipe(catchError(this.handleError<ViewArenal[]>('FindAllArenalByPoblacionId', [])));
     }
 
     public AddArenal(viewModel: AddArenal): Observable<Arenal> {

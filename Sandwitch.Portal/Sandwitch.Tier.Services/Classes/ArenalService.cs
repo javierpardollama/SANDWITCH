@@ -1,9 +1,11 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using Sandwitch.Tier.Contexts.Interfaces;
 using Sandwitch.Tier.Entities.Classes;
 using Sandwitch.Tier.Services.Interfaces;
 using Sandwitch.Tier.ViewModels.Classes.Additions;
 using Sandwitch.Tier.ViewModels.Classes.Updates;
+using Sandwitch.Tier.ViewModels.Classes.Views;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,9 +17,12 @@ namespace Sandwitch.Tier.Services.Classes
     {
         private readonly IApplicationContext Icontext;
 
-        public ArenalService(IApplicationContext iContext)
+        private readonly IMapper Imapper;
+
+        public ArenalService(IApplicationContext iContext, IMapper iMapper)
         {
             Icontext = iContext;
+            Imapper = iMapper;
         }
 
         public async Task<Arenal> AddArenal(AddArenal viewModel)
@@ -64,9 +69,9 @@ namespace Sandwitch.Tier.Services.Classes
                 .ToAsyncEnumerable().ToList();
         }
 
-        public async Task<ICollection<Arenal>> FindAllArenalByPoblacionId(int id)
+        public async Task<ICollection<ViewArenal>> FindAllArenalByPoblacionId(int id)
         {
-            return await Icontext.ArenalPoblacion.AsQueryable()
+            ICollection<Arenal> arenales = await Icontext.ArenalPoblacion.AsQueryable()
                .Include(x => x.Poblacion)
                .Include(x => x.Arenal)
                .ThenInclude(x=>x.Historicos)
@@ -77,7 +82,9 @@ namespace Sandwitch.Tier.Services.Classes
                .Include(x => x.Historicos)
                .ThenInclude(x => x.Bandera)
                .ToAsyncEnumerable()
-               .ToList();           
+               .ToList();
+
+            return this.Imapper.Map<ICollection<ViewArenal>>(arenales);
         }
 
         public async Task<Arenal> FindArenalById(int id)

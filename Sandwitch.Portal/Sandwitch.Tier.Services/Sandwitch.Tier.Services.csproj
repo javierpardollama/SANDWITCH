@@ -10,7 +10,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Sandwitch.Tier.Contexts\Sandwitch.Tier.Contexts.csproj" />
-    <ProjectReference Include="..\Sandwitch.Tier.ViewModels\Sandwitch.Tier.ViewModels.csproj" />
+    <ProjectReference Include="..\Sandwitch.Tier.Mappings\Sandwitch.Tier.Mappings.csproj" />
   </ItemGroup>
 
 </Project>

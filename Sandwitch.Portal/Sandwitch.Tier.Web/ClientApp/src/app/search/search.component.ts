@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 import { Poblacion } from '../../viewmodels/core/poblacion';
 import { Provincia } from '../../viewmodels/core/provincia';
-import { Arenal } from '../../viewmodels/core/arenal';
+import { ViewArenal } from '../../viewmodels/views/viewarenal';
 import { ProvinciaService } from '../../services/provincia.service.module';
 import { PoblacionService } from '../../services/poblacion.service.module';
 import { ArenalService } from '../../services/arenal.service.module';
@@ -21,7 +21,7 @@ export class SearchComponent implements OnInit {
   public filteredPoblaciones: Observable<Poblacion[]>;
   public provincias: Provincia[];
   public filteredProvincias: Observable<Provincia[]>;
-  public arenales: Arenal[];
+  public arenales: ViewArenal[];
 
   // Control
   public poblacionCtrl = new FormControl();

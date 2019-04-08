@@ -66,6 +66,7 @@ max-width: 300px;
 .search-card-content
 {
 float: left;
+margin-right:8px;
 }
 .search-card-content-line
 {

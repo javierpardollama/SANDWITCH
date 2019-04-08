@@ -1,46 +1,68 @@
 <div class="container" novalidate>
   <form [formGroup]="formGroup" class="form">
 
-    <mat-form-field class="form-element">
-      <input matInput placeholder="Temperatura" formControlName="Temperatura">
-      <mat-error *ngIf="!formGroup.controls['Temperatura'].valid && formGroup.controls['Temperatura'].touched">
-        Required field.
-      </mat-error>
-    </mat-form-field>
-
-    <mat-form-field class="form-element">
-      <input type="time" matInput placeholder="BajaMarAlba" formControlName="BajaMarAlba">
-      <mat-error *ngIf="!formGroup.controls['BajaMarAlba'].valid && formGroup.controls['BajaMarAlba'].touched">
-        Required field.
-      </mat-error>
-    </mat-form-field>
-
-    <mat-form-field class="form-element">
-      <input type="time" matInput placeholder="AltaMarAlba" formControlName="AltaMarAlba">
-      <mat-error *ngIf="!formGroup.controls['AltaMarAlba'].valid && formGroup.controls['AltaMarAlba'].touched">
-        Required field.
-      </mat-error>
-    </mat-form-field>
-
-    <mat-form-field class="form-element">
-      <input type="time" matInput placeholder="BajaMarOcaso" formControlName="BajaMarOcaso">
-      <mat-error *ngIf="!formGroup.controls['BajaMarOcaso'].valid && formGroup.controls['BajaMarOcaso'].touched">
-        Required field.
-      </mat-error>
-    </mat-form-field>
-
-    <mat-form-field class="form-element">
-      <input type="time" matInput placeholder="AltaMarOcaso" formControlName="AltaMarOcaso">
-      <mat-error *ngIf="!formGroup.controls['AltaMarOcaso'].valid && formGroup.controls['AltaMarOcaso'].touched">
-        Required field.
-      </mat-error>
-    </mat-form-field>
-
-    <div class="form-element">
-      <button mat-raised-button color="primary" type="submit" class="button form-button"
-        (click)="onSubmit(formGroup.value)" [disabled]="!formGroup.valid">Save
-      </button>
+    <div class="modal-header">
+      <div class="modal-option-image modal-sand-image"></div>
+      <div mat-dialog-title>{{data.Name}}</div>
     </div>
 
+    <div class="modal-content-line">
+      <div class="modal-option-image modal-warm-image"></div>
+      <mat-form-field class="form-element">
+        <input type="number" matInput placeholder="Temperatura" formControlName="Temperatura">
+        <mat-error *ngIf="!formGroup.controls['Temperatura'].valid && formGroup.controls['Temperatura'].touched">
+          Required field.
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="modal-content-line">
+      <div class="modal-content-tide">
+        <div class="modal-option-image modal-low-tide-image"></div>
+        <mat-form-field class="form-element">
+          <input type="time" matInput placeholder="BajaMarAlba" formControlName="BajaMarAlba">
+          <mat-error *ngIf="!formGroup.controls['BajaMarAlba'].valid && formGroup.controls['BajaMarAlba'].touched">
+            Required field.
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="modal-content-tide">
+        <div class="modal-option-image modal-high-tide-image"></div>
+        <mat-form-field class="form-element">
+          <input type="time" matInput placeholder="AltaMarAlba" formControlName="AltaMarAlba">
+          <mat-error *ngIf="!formGroup.controls['AltaMarAlba'].valid && formGroup.controls['AltaMarAlba'].touched">
+            Required field.
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="modal-content-line">
+      <div class="modal-content-tide">
+        <div class="modal-option-image modal-low-tide-image"></div>
+        <mat-form-field class="form-element">
+          <input type="time" matInput placeholder="BajaMarOcaso" formControlName="BajaMarOcaso">
+          <mat-error *ngIf="!formGroup.controls['BajaMarOcaso'].valid && formGroup.controls['BajaMarOcaso'].touched">
+            Required field.
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="modal-content-tide">
+        <div class="modal-option-image modal-high-tide-image"></div>
+        <mat-form-field class="form-element">
+          <input type="time" matInput placeholder="AltaMarOcaso" formControlName="AltaMarOcaso">
+          <mat-error *ngIf="!formGroup.controls['AltaMarOcaso'].valid && formGroup.controls['AltaMarOcaso'].touched">
+            Required field.
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="modal-content-line">
+      <div class="form-element">
+        <button mat-raised-button color="primary" type="submit" class="button form-button"
+          (click)="onSubmit(formGroup.value)" [disabled]="!formGroup.valid">Save
+        </button>
+      </div>
+    </div>
   </form>
 </div>

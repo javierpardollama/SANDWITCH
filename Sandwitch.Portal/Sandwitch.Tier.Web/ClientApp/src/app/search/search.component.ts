@@ -93,7 +93,7 @@ export class SearchComponent implements OnInit {
   // Get Record from Card
   public GetRecord(row: ViewArenal) {
     const dialogRef = this.matDialog.open(HistoricoAddModalComponent, {
-      width: '250px',
+      width: '600px',
       data: row
     });
 

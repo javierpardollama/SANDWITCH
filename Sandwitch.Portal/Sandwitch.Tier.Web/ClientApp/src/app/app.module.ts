@@ -55,7 +55,7 @@ import { PoblacionUpdateModalComponent } from './management/modals/updates/pobla
   ],
   imports: [
     // Angular Material
-    BrowserAnimationsModule,    
+    BrowserAnimationsModule,
     MatSelectModule,
     MatInputModule,
     MatDialogModule,

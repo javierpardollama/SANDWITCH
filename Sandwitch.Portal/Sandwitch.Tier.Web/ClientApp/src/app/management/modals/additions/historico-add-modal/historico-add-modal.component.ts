@@ -69,7 +69,7 @@ export class HistoricoAddModalComponent implements OnInit {
   // Get Data from Service
   public FindAllBandera() {
     this.banderaService.FindAllBandera().subscribe(banderas => {
-      this.banderas = banderas;      
+      this.banderas = banderas;
     });
   }
 }

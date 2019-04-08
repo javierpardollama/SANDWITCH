@@ -8,9 +8,7 @@ namespace Sandwitch.Tier.Services.Interfaces
     {   
         Task<Arenal> FindArenalById(int id);
 
-        Task<Bandera> FindBanderaById(int id);
-
-        Task<Historico> FindHistoricoById(int id);
+        Task<Bandera> FindBanderaById(int id);        
 
         Task<Historico> AddHistorico(AddHistorico viewModel);
     }

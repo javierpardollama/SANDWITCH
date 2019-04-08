@@ -44,23 +44,7 @@ namespace Sandwitch.Tier.Services.Classes
             }
 
             return entity;
-        }
-
-        public async Task<Historico> FindHistoricoById(int id)
-        {
-            Historico historico = await Icontext.Historico
-               .AsQueryable()
-               .Include(x => x.Arenal)
-               .Include(x => x.Bandera)
-               .FirstOrDefaultAsync(x => x.Id == id);
-
-            if (historico == null)
-            {
-                throw new Exception("Historico with Id" + id + "does not exist");
-            }
-
-            return historico;
-        }
+        }       
 
         public async Task<Historico> AddHistorico(AddHistorico viewModel)
         {

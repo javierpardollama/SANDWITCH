@@ -26,6 +26,7 @@ import { ArenalAddModalComponent } from './management/modals/additions/arenal-ad
 import { BanderaAddModalComponent } from './management/modals/additions/bandera-add-modal/bandera-add-modal.component';
 import { ProvinciaAddModalComponent } from './management/modals/additions/provincia-add-modal/provincia-add-modal.component';
 import { PoblacionAddModalComponent } from './management/modals/additions/poblacion-add-modal/poblacion-add-modal.component';
+import { HistoricoAddModalComponent } from './management/modals/additions/historico-add-modal/historico-add-modal.component';
 // App-Modal-Update
 import { ArenalUpdateModalComponent } from './management/modals/updates/arenal-update-modal/arenal-update-modal.component';
 import { BanderaUpdateModalComponent } from './management/modals/updates/bandera-update-modal/bandera-update-modal.component';
@@ -46,6 +47,7 @@ import { PoblacionUpdateModalComponent } from './management/modals/updates/pobla
     BanderaAddModalComponent,
     ProvinciaAddModalComponent,
     PoblacionAddModalComponent,
+    HistoricoAddModalComponent,
     ArenalUpdateModalComponent,
     BanderaUpdateModalComponent,
     ProvinciaUpdateModalComponent,
@@ -79,7 +81,7 @@ import { PoblacionUpdateModalComponent } from './management/modals/updates/pobla
     ])
   ],
   entryComponents: [ArenalUpdateModalComponent, BanderaUpdateModalComponent, ProvinciaUpdateModalComponent, PoblacionUpdateModalComponent,
-    ArenalAddModalComponent, BanderaAddModalComponent, ProvinciaAddModalComponent, PoblacionAddModalComponent],
+    ArenalAddModalComponent, BanderaAddModalComponent, ProvinciaAddModalComponent, PoblacionAddModalComponent, HistoricoAddModalComponent],
   providers: [],
   bootstrap: [AppComponent]
 })

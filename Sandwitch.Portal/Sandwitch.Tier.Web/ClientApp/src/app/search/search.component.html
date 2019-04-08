@@ -27,7 +27,7 @@
 </form>
 
 <div class="search-result">
-  <mat-card *ngFor="let arenal of arenales" class="search-card">
+  <mat-card *ngFor="let arenal of arenales" class="search-card" (click)="GetRecord(arenal)">
     <mat-card-header>
       <div mat-card-avatar class="search-card-sand-image"></div>
       <mat-card-title>{{arenal.Name}}</mat-card-title>

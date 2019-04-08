@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material';
 import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
@@ -8,6 +9,7 @@ import { ViewArenal } from '../../viewmodels/views/viewarenal';
 import { ProvinciaService } from '../../services/provincia.service.module';
 import { PoblacionService } from '../../services/poblacion.service.module';
 import { ArenalService } from '../../services/arenal.service.module';
+import { HistoricoAddModalComponent } from '../management/modals/additions/historico-add-modal/historico-add-modal.component';
 
 @Component({
   selector: 'app-search',
@@ -28,7 +30,8 @@ export class SearchComponent implements OnInit {
   public provinciaCtrl = new FormControl();
 
   // Constructor
-  constructor(private provinciaService: ProvinciaService,
+  constructor(public matDialog: MatDialog,
+    private provinciaService: ProvinciaService,
     private poblacionService: PoblacionService,
     private arenalService: ArenalService) {
 
@@ -85,5 +88,17 @@ export class SearchComponent implements OnInit {
     const filterValue = value.toLowerCase();
 
     return this.poblaciones.filter(poblacion => poblacion.Name.toLowerCase().indexOf(filterValue) === 0);
+  }
+
+  // Get Record from Card
+  public GetRecord(row: ViewArenal) {
+    const dialogRef = this.matDialog.open(HistoricoAddModalComponent, {
+      width: '250px',
+      data: row
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+
+    });
   }
 }

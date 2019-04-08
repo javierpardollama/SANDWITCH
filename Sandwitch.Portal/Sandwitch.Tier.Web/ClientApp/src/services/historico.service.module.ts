@@ -20,7 +20,7 @@ export class HistoricoService {
 
     public AddHistorico(viewModel: AddHistorico): Observable<Historico> {
 
-        const observable: Observable<Historico> = this.httpClient.post<Historico>('api/provincia/addhistorico', viewModel)
+        const observable: Observable<Historico> = this.httpClient.post<Historico>('api/historico/addhistorico', viewModel)
             .pipe(catchError(this.handleError<Historico>('AddHistorico', undefined)));
 
         if (observable !== undefined) {

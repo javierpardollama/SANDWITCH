@@ -23,6 +23,7 @@
     </mat-form-field>
 
     <mat-form-field class="search-half-width">
+      <mat-label>Provincia</mat-label>
       <mat-select formControlName="ProvinciaId">
         <mat-option *ngFor="let provincia of provincias" [value]="provincia.Id">
           <img class="select-option-img" aria-hidden [src]="provincia.ImageUri" height="25">
@@ -36,11 +37,11 @@
     </mat-form-field>
 
     <div class="form-element">
-      <button mat-raised-button color="primary" type="submit" class="button form-button" (click)="onSubmit(formGroup.value)"
-        [disabled]="!formGroup.valid">Save
+      <button mat-raised-button color="primary" type="submit" class="button form-button"
+        (click)="onSubmit(formGroup.value)" [disabled]="!formGroup.valid">Save
       </button>
-      <button mat-raised-button color="accent" type="submit" class="button form-button" (click)="onDelete(formGroup.value)"
-        [disabled]="!formGroup.valid">Delete
+      <button mat-raised-button color="accent" type="submit" class="button form-button"
+        (click)="onDelete(formGroup.value)" [disabled]="!formGroup.valid">Delete
       </button>
     </div>
 

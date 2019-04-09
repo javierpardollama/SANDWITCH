@@ -52,10 +52,10 @@ export class HistoricoAddModalComponent implements OnInit {
       'ArenalId': [this.data.Id, [Validators.required]],
       'BanderaId': [this.data.LastHistorico.Bandera.Id, [Validators.required]],
       'Temperatura': [this.data.LastHistorico.Temperatura, [Validators.required]],
-      'BajaMarAlba': [this.datePipe.transform(new Date(this.data.LastHistorico.BajaMarAlba), this.timeFormat), [Validators.required]],
-      'AltaMarAlba': [this.datePipe.transform(new Date(this.data.LastHistorico.AltaMarAlba), this.timeFormat), [Validators.required]],
-      'BajaMarOcaso': [this.datePipe.transform(new Date(this.data.LastHistorico.BajaMarOcaso), this.timeFormat), [Validators.required]],
-      'AltaMarOcaso': [this.datePipe.transform(new Date(this.data.LastHistorico.AltaMarOcaso), this.timeFormat), [Validators.required]],
+      'BajaMarAlba': [this.datePipe.transform(new Date(), this.timeFormat), [Validators.required]],
+      'AltaMarAlba': [this.datePipe.transform(new Date(), this.timeFormat), [Validators.required]],
+      'BajaMarOcaso': [this.datePipe.transform(new Date(), this.timeFormat), [Validators.required]],
+      'AltaMarOcaso': [this.datePipe.transform(new Date(), this.timeFormat), [Validators.required]],
     });
   }
 

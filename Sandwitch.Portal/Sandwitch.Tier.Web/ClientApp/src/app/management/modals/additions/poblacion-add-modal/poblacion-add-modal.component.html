@@ -16,6 +16,7 @@
     </mat-form-field>
 
     <mat-form-field class="search-half-width">
+      <mat-label>Provincia</mat-label>
       <mat-select formControlName="ProvinciaId">
         <mat-option *ngFor="let provincia of provincias" [value]="provincia.Id">
           <img class="select-option-img" aria-hidden [src]="provincia.ImageUri" height="25">

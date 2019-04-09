@@ -7,6 +7,18 @@
     </div>
 
     <div class="modal-content-line">
+      <mat-form-field class="form-element">
+        <mat-label>Bandera</mat-label>
+        <mat-select formControlName="BanderaId">
+          <mat-option *ngFor="let bandera of banderas" [value]="bandera.Id">
+            <img class="select-option-img" aria-hidden [src]="bandera.ImageUri" height="25">
+            <span>{{bandera.Name}}</span>
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="modal-content-line">
       <div class="modal-option-image modal-warm-image"></div>
       <mat-form-field class="form-element">
         <input type="number" matInput placeholder="Temperatura" formControlName="Temperatura">

@@ -60,7 +60,7 @@ export class ArenalGridComponent implements OnInit {
     // Get Record from Table
     public GetRecord(row: Arenal) {
         const dialogRef = this.matDialog.open(ArenalUpdateModalComponent, {
-            width: '250px',
+            width: '450px',
             data: row
         });
 
@@ -71,7 +71,7 @@ export class ArenalGridComponent implements OnInit {
 
     public AddRecord() {
         const dialogRef = this.matDialog.open(ArenalAddModalComponent, {
-            width: '250px',
+            width: '450px',
         });
 
         dialogRef.afterClosed().subscribe(result => {

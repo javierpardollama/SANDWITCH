@@ -56,3 +56,8 @@ background-size: cover;
 background-image: url('/iconos/PleaMar_500px.png');
 background-size: cover;
 }  
+
+.modal-flag-image{
+background-image: url('/iconos/Bandera_500px.png');
+background-size: cover;
+}  

@@ -59,7 +59,7 @@ export class PoblacionGridComponent implements OnInit {
   // Get Record from Table
   public GetRecord(row: Poblacion) {
     const dialogRef = this.matDialog.open(PoblacionUpdateModalComponent, {
-      width: '250px',
+      width: '450px',
       data: row
     });
 
@@ -69,7 +69,7 @@ export class PoblacionGridComponent implements OnInit {
   }
   public AddRecord() {
     const dialogRef = this.matDialog.open(PoblacionAddModalComponent, {
-      width: '250px',
+      width: '450px',
     });
 
     dialogRef.afterClosed().subscribe(result => {

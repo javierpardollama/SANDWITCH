@@ -59,7 +59,7 @@ export class ProvinciaGridComponent implements OnInit {
   // Get Record from Table
   public GetRecord(row: Provincia) {
     const dialogRef = this.matDialog.open(ProvinciaUpdateModalComponent, {
-      width: '250px',
+      width: '450px',
       data: row
     });
 
@@ -70,7 +70,7 @@ export class ProvinciaGridComponent implements OnInit {
 
   public AddRecord() {
     const dialogRef = this.matDialog.open(ProvinciaAddModalComponent, {
-      width: '250px',
+      width: '450px',
     });
 
     dialogRef.afterClosed().subscribe(result => {

@@ -60,7 +60,7 @@ export class BanderaGridComponent implements OnInit {
   // Get Record from Table
   public GetRecord(row: Bandera) {
     const dialogRef = this.matDialog.open(BanderaUpdateModalComponent, {
-      width: '250px',
+      width: '450px',
       data: row
     });
 
@@ -71,7 +71,7 @@ export class BanderaGridComponent implements OnInit {
 
   public AddRecord() {
     const dialogRef = this.matDialog.open(BanderaAddModalComponent, {
-      width: '250px',
+      width: '450px',
     });
 
     dialogRef.afterClosed().subscribe(result => {

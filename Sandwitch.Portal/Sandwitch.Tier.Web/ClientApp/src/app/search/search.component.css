@@ -72,6 +72,15 @@ margin-right:8px;
 {
 clear: both;
 padding:8px;
+
+}
+
+.search-card-content-line-update
+{
+color:#0080ff;
+display: flex;
+align-items: center;
+justify-content: center
 }
 
 .search-card-content-tide
@@ -94,5 +103,10 @@ background-size: cover;
 
 .search-card-high-tide-image{
 background-image: url('/iconos/PleaMar_500px.png');
+background-size: cover;
+}  
+
+.search-card-update-image{
+background-image: url('/iconos/Update_500px.png');
 background-size: cover;
 }  

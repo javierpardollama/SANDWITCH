@@ -35,6 +35,16 @@
     <mat-card-content>
       <img class="search-card-flag-image" mat-card-image src="{{arenal.LastHistorico.Bandera.ImageUri}}"
         alt="arenal.LastHistorico.Bandera.Name">
+
+      <mat-divider></mat-divider>
+
+      <div class="search-card-content-line search-card-content-line-update">
+        <div mat-card-avatar class="search-card-content search-card-update-image"></div>
+        <span>{{arenal.LastHistorico.LastModified | date: 'MMM d, y h:mm a'}}</span>
+      </div>
+
+      <mat-divider></mat-divider>
+
       <div class="search-card-content-line">
         <div mat-card-avatar class="search-card-content search-card-warm-image"></div>
         <div class="search-card-content">

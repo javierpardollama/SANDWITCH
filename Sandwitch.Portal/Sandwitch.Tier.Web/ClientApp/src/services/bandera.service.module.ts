@@ -1,6 +1,6 @@
 import { AddBandera } from '../viewmodels/additions/addbandera';
 import { UpdateBandera } from '../viewmodels/updates/updatebandera';
-import { Bandera } from '../viewmodels/core/bandera';
+import { ViewBandera } from '../viewmodels/views/viewbandera';
 import { HttpClient } from '@angular/common/http';
 import { MatSnackBar } from '@angular/material';
 import { Injectable } from '@angular/core';
@@ -19,9 +19,9 @@ export class BanderaService {
 
     }
 
-    public UpdateBandera(viewModel: UpdateBandera): Observable<Bandera> {
-        const observable: Observable<Bandera> = this.httpClient.put<Bandera>('api/bandera/updatebandera', viewModel)
-            .pipe(catchError(this.handleError<Bandera>('UpdateBandera', undefined)));
+    public UpdateBandera(viewModel: UpdateBandera): Observable<ViewBandera> {
+        const observable: Observable<ViewBandera> = this.httpClient.put<ViewBandera>('api/bandera/updatebandera', viewModel)
+            .pipe(catchError(this.handleError<ViewBandera>('UpdateBandera', undefined)));
 
         if (observable !== undefined) {
             this.matSnackBar.open('Operation Successful', 'Ok');
@@ -30,14 +30,14 @@ export class BanderaService {
         return observable;
     }
 
-    public FindAllBandera(): Observable<Bandera[]> {
-        return this.httpClient.get<Bandera[]>('api/bandera/findallbandera')
-            .pipe(catchError(this.handleError<Bandera[]>('FindAllBandera', [])));
+    public FindAllBandera(): Observable<ViewBandera[]> {
+        return this.httpClient.get<ViewBandera[]>('api/bandera/findallbandera')
+            .pipe(catchError(this.handleError<ViewBandera[]>('FindAllBandera', [])));
     }
 
-    public AddBandera(viewModel: AddBandera): Observable<Bandera> {
-        const observable: Observable<Bandera> = this.httpClient.post<Bandera>('api/bandera/addbandera', viewModel)
-            .pipe(catchError(this.handleError<Bandera>('AddBandera', undefined)));
+    public AddBandera(viewModel: AddBandera): Observable<ViewBandera> {
+        const observable: Observable<ViewBandera> = this.httpClient.post<ViewBandera>('api/bandera/addbandera', viewModel)
+            .pipe(catchError(this.handleError<ViewBandera>('AddBandera', undefined)));
 
         if (observable !== undefined) {
             this.matSnackBar.open('Operation Successful', 'Ok');

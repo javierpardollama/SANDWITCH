@@ -1,9 +1,11 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using Sandwitch.Tier.Contexts.Interfaces;
 using Sandwitch.Tier.Entities.Classes;
 using Sandwitch.Tier.Services.Interfaces;
 using Sandwitch.Tier.ViewModels.Classes.Additions;
 using Sandwitch.Tier.ViewModels.Classes.Updates;
+using Sandwitch.Tier.ViewModels.Classes.Views;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,12 +17,15 @@ namespace Sandwitch.Tier.Services.Classes
     {
         private readonly IApplicationContext Icontext;
 
-        public PoblacionService(IApplicationContext iContext)
+        private readonly IMapper Imapper;
+
+        public PoblacionService(IApplicationContext iContext, IMapper iMapper)
         {
             Icontext = iContext;
+            Imapper = iMapper;
         }
 
-        public async Task<Poblacion> AddPoblacion(AddPoblacion viewModel)
+        public async Task<ViewPoblacion> AddPoblacion(AddPoblacion viewModel)
         {
             await CheckName(viewModel);
 
@@ -36,26 +41,30 @@ namespace Sandwitch.Tier.Services.Classes
 
             await Icontext.SaveChangesAsync();
 
-            return entity;
+            return this.Imapper.Map<ViewPoblacion>(entity);
         }
 
-        public async Task<ICollection<Poblacion>> FindAllPoblacion()
+        public async Task<ICollection<ViewPoblacion>> FindAllPoblacion()
         {
-            return await Icontext.Poblacion
+            ICollection<Poblacion> poblaciones = await Icontext.Poblacion
                 .AsQueryable()
                 .Include(x => x.Provincia)
                 .ToAsyncEnumerable()
                 .ToList();
+
+            return this.Imapper.Map<ICollection<ViewPoblacion>>(poblaciones);
         }
 
-        public async Task<ICollection<Poblacion>> FindAllPoblacionByProvinciaId(int id)
+        public async Task<ICollection<ViewPoblacion>> FindAllPoblacionByProvinciaId(int id)
         {
-            return await Icontext.Poblacion
+            ICollection<Poblacion> poblaciones = await Icontext.Poblacion
               .AsQueryable()
               .Include(x => x.Provincia)
               .Where(x => x.Provincia.Id == id)
               .ToAsyncEnumerable()
               .ToList();
+
+            return this.Imapper.Map<ICollection<ViewPoblacion>>(poblaciones);
         }
 
         public async Task<Poblacion> FindPoblacionById(int id)
@@ -91,7 +100,7 @@ namespace Sandwitch.Tier.Services.Classes
             await Icontext.SaveChangesAsync();
         }
 
-        public async Task<Poblacion> UpdatePoblacion(UpdatePoblacion viewModel)
+        public async Task<ViewPoblacion> UpdatePoblacion(UpdatePoblacion viewModel)
         {
             Poblacion entity = await FindPoblacionById(viewModel.Id);
             entity.Name = viewModel.Name;
@@ -103,7 +112,7 @@ namespace Sandwitch.Tier.Services.Classes
 
             await Icontext.SaveChangesAsync();
 
-            return entity;
+            return this.Imapper.Map<ViewPoblacion>(entity);
         }
 
         public async Task<Poblacion> CheckName(AddPoblacion viewModel)

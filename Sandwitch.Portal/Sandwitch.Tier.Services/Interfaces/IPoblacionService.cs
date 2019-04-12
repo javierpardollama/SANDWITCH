@@ -1,6 +1,7 @@
 ﻿using Sandwitch.Tier.Entities.Classes;
 using Sandwitch.Tier.ViewModels.Classes.Additions;
 using Sandwitch.Tier.ViewModels.Classes.Updates;
+using Sandwitch.Tier.ViewModels.Classes.Views;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -8,9 +9,9 @@ namespace Sandwitch.Tier.Services.Interfaces
 {
     public interface IPoblacionService
     {
-        Task<ICollection<Poblacion>> FindAllPoblacion();
+        Task<ICollection<ViewPoblacion>> FindAllPoblacion();
 
-        Task<ICollection<Poblacion>> FindAllPoblacionByProvinciaId(int id);
+        Task<ICollection<ViewPoblacion>> FindAllPoblacionByProvinciaId(int id);
 
         Task<Poblacion> FindPoblacionById(int id);
 
@@ -18,9 +19,9 @@ namespace Sandwitch.Tier.Services.Interfaces
 
         Task RemovePoblacionById(int id);
 
-        Task<Poblacion> UpdatePoblacion(UpdatePoblacion viewModel);
+        Task<ViewPoblacion> UpdatePoblacion(UpdatePoblacion viewModel);
 
-        Task<Poblacion> AddPoblacion(AddPoblacion viewModel);
+        Task<ViewPoblacion> AddPoblacion(AddPoblacion viewModel);
 
         Task<Poblacion> CheckName(AddPoblacion viewModel);
     }

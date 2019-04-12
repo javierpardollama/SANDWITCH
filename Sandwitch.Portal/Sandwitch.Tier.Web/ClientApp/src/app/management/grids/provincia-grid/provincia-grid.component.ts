@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource, MatPaginator, MatSort, MatDialog } from '@angular/material';
-import { Provincia } from '../../../../viewmodels/core/provincia';
+import { ViewProvincia } from '../../../../viewmodels/views/viewprovincia';
 
 import { ProvinciaService } from '../../../../services/provincia.service.module';
 
@@ -17,11 +17,11 @@ export class ProvinciaGridComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  public ELEMENT_DATA: Provincia[];
+  public ELEMENT_DATA: ViewProvincia[];
 
   public displayedColumns: string[] = ['Id', 'Name', 'ImageUri', 'LastModified'];
 
-  public dataSource: MatTableDataSource<Provincia>;
+  public dataSource: MatTableDataSource<ViewProvincia>;
 
   // Constructor
   constructor(private provinciaService: ProvinciaService,
@@ -57,7 +57,7 @@ export class ProvinciaGridComponent implements OnInit {
   }
 
   // Get Record from Table
-  public GetRecord(row: Provincia) {
+  public GetRecord(row: ViewProvincia) {
     const dialogRef = this.matDialog.open(ProvinciaUpdateModalComponent, {
       width: '450px',
       data: row

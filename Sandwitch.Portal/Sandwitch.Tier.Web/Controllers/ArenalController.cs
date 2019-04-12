@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Sandwitch.Tier.Entities.Classes;
 using Sandwitch.Tier.Services.Interfaces;
 using Sandwitch.Tier.ViewModels.Classes.Additions;
 using Sandwitch.Tier.ViewModels.Classes.Updates;
@@ -24,7 +23,7 @@ namespace Sandwitch.Tier.Web.Controllers
         [Route("updatearenal")]
         public async Task<IActionResult> UpdateArenal([FromBody]UpdateArenal viewModel)
         {
-            Arenal arenal = await this.Service.UpdateArenal(viewModel);
+            ViewArenal arenal = await this.Service.UpdateArenal(viewModel);
 
             return new JsonResult(arenal);
         }
@@ -33,7 +32,7 @@ namespace Sandwitch.Tier.Web.Controllers
         [Route("findallarenal")]
         public async Task<IActionResult> FindAllarenal()
         {
-            ICollection<Arenal> arenales = await this.Service.FindAllArenal();
+            ICollection<ViewArenal> arenales = await this.Service.FindAllArenal();
 
             return new JsonResult(arenales);
         }
@@ -51,7 +50,7 @@ namespace Sandwitch.Tier.Web.Controllers
         [Route("addarenal")]
         public async Task<IActionResult> AddArenal([FromBody]AddArenal viewModel)
         {
-            Arenal arenal = await this.Service.AddArenal(viewModel);
+            ViewArenal arenal = await this.Service.AddArenal(viewModel);
 
             return new JsonResult(arenal);
         }

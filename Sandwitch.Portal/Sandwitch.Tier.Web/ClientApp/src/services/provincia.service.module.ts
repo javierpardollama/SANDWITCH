@@ -1,6 +1,6 @@
 import { AddProvincia } from '../viewmodels/additions/addprovincia';
 import { UpdateProvincia } from '../viewmodels/updates/updateprovincia';
-import { Provincia } from '../viewmodels/core/provincia';
+import { ViewProvincia } from '../viewmodels/views/viewprovincia';
 import { HttpClient } from '@angular/common/http';
 import { MatSnackBar } from '@angular/material';
 import { Injectable } from '@angular/core';
@@ -19,9 +19,9 @@ export class ProvinciaService {
 
     }
 
-    public UpdateProvincia(viewModel: UpdateProvincia): Observable<Provincia> {
-        const observable: Observable<Provincia> = this.httpClient.put<Provincia>('api/provincia/updateprovincia', viewModel)
-            .pipe(catchError(this.handleError<Provincia>('UpdateProvincia', undefined)));
+    public UpdateProvincia(viewModel: UpdateProvincia): Observable<ViewProvincia> {
+        const observable: Observable<ViewProvincia> = this.httpClient.put<ViewProvincia>('api/provincia/updateprovincia', viewModel)
+            .pipe(catchError(this.handleError<ViewProvincia>('UpdateProvincia', undefined)));
 
         if (observable !== undefined) {
             this.matSnackBar.open('Operation Successful', 'Ok');
@@ -30,14 +30,14 @@ export class ProvinciaService {
         return observable;
     }
 
-    public FindAllProvincia(): Observable<Provincia[]> {
-        return this.httpClient.get<Provincia[]>('api/provincia/findallprovincia')
-            .pipe(catchError(this.handleError<Provincia[]>('FindAllProvincia', [])));
+    public FindAllProvincia(): Observable<ViewProvincia[]> {
+        return this.httpClient.get<ViewProvincia[]>('api/provincia/findallprovincia')
+            .pipe(catchError(this.handleError<ViewProvincia[]>('FindAllProvincia', [])));
     }
 
-    public AddProvincia(viewModel: AddProvincia): Observable<Provincia> {
-        const observable: Observable<Provincia> = this.httpClient.post<Provincia>('api/provincia/addprovincia', viewModel)
-            .pipe(catchError(this.handleError<Provincia>('AddProvincia', undefined)));
+    public AddProvincia(viewModel: AddProvincia): Observable<ViewProvincia> {
+        const observable: Observable<ViewProvincia> = this.httpClient.post<ViewProvincia>('api/provincia/addprovincia', viewModel)
+            .pipe(catchError(this.handleError<ViewProvincia>('AddProvincia', undefined)));
 
         if (observable !== undefined) {
             this.matSnackBar.open('Operation Successful', 'Ok');

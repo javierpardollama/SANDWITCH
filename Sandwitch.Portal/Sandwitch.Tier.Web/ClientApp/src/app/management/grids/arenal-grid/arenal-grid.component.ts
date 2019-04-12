@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource, MatPaginator, MatSort, MatDialog } from '@angular/material';
-import { Arenal } from '../../../../viewmodels/core/arenal';
+import { ViewArenal } from '../../../../viewmodels/views/viewarenal';
 
 import { ArenalService } from '../../../../services/arenal.service.module';
 
@@ -18,11 +18,11 @@ export class ArenalGridComponent implements OnInit {
     @ViewChild(MatPaginator) paginator: MatPaginator;
     @ViewChild(MatSort) sort: MatSort;
 
-    public ELEMENT_DATA: Arenal[];
+    public ELEMENT_DATA: ViewArenal[];
 
     public displayedColumns: string[] = ['Id', 'Name', 'Poblaciones', 'LastModified'];
 
-    public dataSource: MatTableDataSource<Arenal>;
+    public dataSource: MatTableDataSource<ViewArenal>;
 
     // Constructor
     constructor(private arenalService: ArenalService,
@@ -58,7 +58,7 @@ export class ArenalGridComponent implements OnInit {
     }
 
     // Get Record from Table
-    public GetRecord(row: Arenal) {
+    public GetRecord(row: ViewArenal) {
         const dialogRef = this.matDialog.open(ArenalUpdateModalComponent, {
             width: '450px',
             data: row

@@ -1,6 +1,6 @@
 import { AddPoblacion } from '../viewmodels/additions/addpoblacion';
 import { UpdatePoblacion } from '../viewmodels/updates/updatepoblacion';
-import { Poblacion } from '../viewmodels/core/poblacion';
+import { ViewPoblacion } from '../viewmodels/views/viewpoblacion';
 import { HttpClient } from '@angular/common/http';
 import { MatSnackBar } from '@angular/material';
 import { Injectable } from '@angular/core';
@@ -19,9 +19,9 @@ export class PoblacionService {
 
     }
 
-    public UpdatePoblacion(viewModel: UpdatePoblacion): Observable<Poblacion> {
-        const observable: Observable<Poblacion> = this.httpClient.put<Poblacion>('api/poblacion/updatepoblacion', viewModel)
-            .pipe(catchError(this.handleError<Poblacion>('UpdatePoblacion', undefined)));
+    public UpdatePoblacion(viewModel: UpdatePoblacion): Observable<ViewPoblacion> {
+        const observable: Observable<ViewPoblacion> = this.httpClient.put<ViewPoblacion>('api/poblacion/updatepoblacion', viewModel)
+            .pipe(catchError(this.handleError<ViewPoblacion>('UpdatePoblacion', undefined)));
 
         if (observable !== undefined) {
             this.matSnackBar.open('Operation Successful', 'Ok');
@@ -30,19 +30,19 @@ export class PoblacionService {
         return observable;
     }
 
-    public FindAllPoblacion(): Observable<Poblacion[]> {
-        return this.httpClient.get<Poblacion[]>('api/poblacion/findallpoblacion')
-            .pipe(catchError(this.handleError<Poblacion[]>('FindAllPoblacion', [])));
+    public FindAllPoblacion(): Observable<ViewPoblacion[]> {
+        return this.httpClient.get<ViewPoblacion[]>('api/poblacion/findallpoblacion')
+            .pipe(catchError(this.handleError<ViewPoblacion[]>('FindAllPoblacion', [])));
     }
 
-    public FindAllPoblacionByProvinciaId(id: number): Observable<Poblacion[]> {
-        return this.httpClient.get<Poblacion[]>('api/poblacion/findallpoblacionbyprovinciaid/' + id)
-            .pipe(catchError(this.handleError<Poblacion[]>('FindAllPoblacionByProvinciaId', [])));
+    public FindAllPoblacionByProvinciaId(id: number): Observable<ViewPoblacion[]> {
+        return this.httpClient.get<ViewPoblacion[]>('api/poblacion/findallpoblacionbyprovinciaid/' + id)
+            .pipe(catchError(this.handleError<ViewPoblacion[]>('FindAllPoblacionByProvinciaId', [])));
     }
 
-    public AddPoblacion(viewModel: AddPoblacion): Observable<Poblacion> {
-        const observable: Observable<Poblacion> = this.httpClient.post<Poblacion>('api/poblacion/addpoblacion', viewModel)
-            .pipe(catchError(this.handleError<Poblacion>('AddPoblacion', undefined)));
+    public AddPoblacion(viewModel: AddPoblacion): Observable<ViewPoblacion> {
+        const observable: Observable<ViewPoblacion> = this.httpClient.post<ViewPoblacion>('api/poblacion/addpoblacion', viewModel)
+            .pipe(catchError(this.handleError<ViewPoblacion>('AddPoblacion', undefined)));
 
         if (observable !== undefined) {
             this.matSnackBar.open('Operation Successful', 'Ok');

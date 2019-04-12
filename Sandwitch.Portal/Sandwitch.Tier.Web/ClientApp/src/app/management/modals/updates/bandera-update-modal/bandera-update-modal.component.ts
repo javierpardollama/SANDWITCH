@@ -1,7 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Bandera } from '../../../../../viewmodels/core/bandera';
+import { ViewBandera } from '../../../../../viewmodels/views/viewbandera';
 import { UpdateBandera } from '../../../../../viewmodels/updates/updatebandera';
 
 import { BanderaService } from '../../../../../services/bandera.service.module';
@@ -19,7 +19,7 @@ export class BanderaUpdateModalComponent implements OnInit {
   constructor(private banderaService: BanderaService,
     private formBuilder: FormBuilder,
     public dialogRef: MatDialogRef<BanderaUpdateModalComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: Bandera) { }
+    @Inject(MAT_DIALOG_DATA) public data: ViewBandera) { }
 
 
   // Life Cicle

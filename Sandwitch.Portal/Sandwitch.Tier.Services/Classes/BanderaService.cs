@@ -1,9 +1,11 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using Sandwitch.Tier.Contexts.Interfaces;
 using Sandwitch.Tier.Entities.Classes;
 using Sandwitch.Tier.Services.Interfaces;
 using Sandwitch.Tier.ViewModels.Classes.Additions;
 using Sandwitch.Tier.ViewModels.Classes.Updates;
+using Sandwitch.Tier.ViewModels.Classes.Views;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,12 +17,15 @@ namespace Sandwitch.Tier.Services.Classes
     {
         private readonly IApplicationContext Icontext;
 
-        public BanderaService(IApplicationContext iContext)
+        private readonly IMapper Imapper;
+
+        public BanderaService(IApplicationContext iContext, IMapper iMapper)
         {
             Icontext = iContext;
+            Imapper = iMapper;
         }
 
-        public async Task<Bandera> AddBandera(AddBandera viewModel)
+        public async Task<ViewBandera> AddBandera(AddBandera viewModel)
         {
             await CheckName(viewModel);
 
@@ -35,15 +40,17 @@ namespace Sandwitch.Tier.Services.Classes
 
             await Icontext.SaveChangesAsync();
 
-            return entity;
+            return this.Imapper.Map<ViewBandera>(entity);
         }
 
-        public async Task<ICollection<Bandera>> FindAllBandera()
+        public async Task<ICollection<ViewBandera>> FindAllBandera()
         {
-            return await Icontext.Bandera
+            ICollection<Bandera> banderas = await Icontext.Bandera
                 .AsQueryable()
                 .ToAsyncEnumerable()
                 .ToList();
+
+            return this.Imapper.Map<ICollection<ViewBandera>>(banderas);
         }
 
         public async Task<Bandera> FindBanderaById(int id)
@@ -67,7 +74,7 @@ namespace Sandwitch.Tier.Services.Classes
             await Icontext.SaveChangesAsync();
         }
 
-        public async Task<Bandera> UpdateBandera(UpdateBandera viewModel)
+        public async Task<ViewBandera> UpdateBandera(UpdateBandera viewModel)
         {
             Bandera entity = await FindBanderaById(viewModel.Id);
             entity.Name = viewModel.Name;
@@ -78,7 +85,7 @@ namespace Sandwitch.Tier.Services.Classes
 
             await Icontext.SaveChangesAsync();
 
-            return entity;
+            return this.Imapper.Map<ViewBandera>(entity);
         }
 
         public async Task<Bandera> CheckName(AddBandera viewModel)

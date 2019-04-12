@@ -1,8 +1,8 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Provincia } from '../../../../../viewmodels/core/provincia';
-import { Poblacion } from '../../../../../viewmodels/core/poblacion';
+import { ViewProvincia } from '../../../../../viewmodels/views/viewprovincia';
+import { ViewPoblacion } from '../../../../../viewmodels/views/viewpoblacion';
 
 import { UpdatePoblacion } from '../../../../../viewmodels/updates/updatepoblacion';
 
@@ -18,14 +18,14 @@ export class PoblacionUpdateModalComponent implements OnInit {
 
   public formGroup: FormGroup;
 
-  public provincias: Provincia[];
+  public provincias: ViewProvincia[];
 
   // Constructor
   constructor(private provinciaService: ProvinciaService,
     private poblacionService: PoblacionService,
     private formBuilder: FormBuilder,
     public dialogRef: MatDialogRef<PoblacionUpdateModalComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: Poblacion) { }
+    @Inject(MAT_DIALOG_DATA) public data: ViewPoblacion) { }
 
 
   // Life Cicle

@@ -1,5 +1,6 @@
 ﻿using Sandwitch.Tier.Entities.Classes;
 using Sandwitch.Tier.ViewModels.Classes.Additions;
+using Sandwitch.Tier.ViewModels.Classes.Views;
 using System.Threading.Tasks;
 
 namespace Sandwitch.Tier.Services.Interfaces
@@ -10,6 +11,6 @@ namespace Sandwitch.Tier.Services.Interfaces
 
         Task<Bandera> FindBanderaById(int id);        
 
-        Task<Historico> AddHistorico(AddHistorico viewModel);
+        Task<ViewHistorico> AddHistorico(AddHistorico viewModel);
     }
 }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Provincia } from '../../../../../viewmodels/core/provincia';
+import { ViewProvincia } from '../../../../../viewmodels/views/viewprovincia';
 
 import { AddArenal } from '../../../../../viewmodels/additions/addarenal';
 
@@ -17,7 +17,7 @@ export class ArenalAddModalComponent implements OnInit {
 
   public formGroup: FormGroup;
 
-  public provincias: Provincia[];
+  public provincias: ViewProvincia[];
 
   // Constructor
   constructor(private arenalService: ArenalService,

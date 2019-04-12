@@ -3,7 +3,7 @@ import { DatePipe } from '@angular/common';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ViewArenal } from '../../../../../viewmodels/views/viewarenal';
-import { Bandera } from '../../../../../viewmodels/core/bandera';
+import { ViewBandera } from '../../../../../viewmodels/views/viewbandera';
 import { AddHistorico } from '../../../../../viewmodels/additions/addhistorico';
 
 import { HistoricoService } from '../../../../../services/historico.service.module';
@@ -22,7 +22,7 @@ export class HistoricoAddModalComponent implements OnInit {
 
   public timeFormat: string;
 
-  public banderas: Bandera[];
+  public banderas: ViewBandera[];
 
   // Constructor
   constructor(private historicoService: HistoricoService,

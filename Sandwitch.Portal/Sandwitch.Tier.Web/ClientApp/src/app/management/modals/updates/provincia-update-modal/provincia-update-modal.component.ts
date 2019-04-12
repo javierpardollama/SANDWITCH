@@ -1,7 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Provincia } from '../../../../../viewmodels/core/provincia';
+import { ViewProvincia } from '../../../../../viewmodels/views/viewprovincia';
 import { UpdateProvincia } from '../../../../../viewmodels/updates/updateprovincia';
 
 import { ProvinciaService } from '../../../../../services/provincia.service.module';
@@ -19,7 +19,7 @@ export class ProvinciaUpdateModalComponent implements OnInit {
   constructor(private provinciaService: ProvinciaService,
     private formBuilder: FormBuilder,
     public dialogRef: MatDialogRef<ProvinciaUpdateModalComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: Provincia) { }
+    @Inject(MAT_DIALOG_DATA) public data: ViewProvincia) { }
 
 
   // Life Cicle

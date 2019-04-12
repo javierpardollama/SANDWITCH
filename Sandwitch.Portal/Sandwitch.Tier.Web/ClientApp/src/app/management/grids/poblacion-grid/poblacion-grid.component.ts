@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource, MatPaginator, MatSort, MatDialog } from '@angular/material';
-import { Poblacion } from '../../../../viewmodels/core/poblacion';
+import { ViewPoblacion } from '../../../../viewmodels/views/viewpoblacion';
 
 import { PoblacionService } from '../../../../services/poblacion.service.module';
 
@@ -17,11 +17,11 @@ export class PoblacionGridComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  public ELEMENT_DATA: Poblacion[];
+  public ELEMENT_DATA: ViewPoblacion[];
 
   public displayedColumns: string[] = ['Id', 'Name', 'Provincia', 'ImageUri', 'LastModified'];
 
-  public dataSource: MatTableDataSource<Poblacion>;
+  public dataSource: MatTableDataSource<ViewPoblacion>;
 
   // Constructor
   constructor(private poblacionService: PoblacionService,
@@ -57,7 +57,7 @@ export class PoblacionGridComponent implements OnInit {
   }
 
   // Get Record from Table
-  public GetRecord(row: Poblacion) {
+  public GetRecord(row: ViewPoblacion) {
     const dialogRef = this.matDialog.open(PoblacionUpdateModalComponent, {
       width: '450px',
       data: row

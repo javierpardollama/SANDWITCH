@@ -1,8 +1,8 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Arenal } from '../../../../../viewmodels/core/arenal';
-import { Provincia } from '../../../../../viewmodels/core/provincia';
+import { ViewArenal } from '../../../../../viewmodels/views/viewarenal';
+import { ViewProvincia } from '../../../../../viewmodels/views/viewprovincia';
 
 import { UpdateArenal } from '../../../../../viewmodels/updates/updatearenal';
 
@@ -18,14 +18,14 @@ export class ArenalUpdateModalComponent implements OnInit {
 
   public formGroup: FormGroup;
 
-  public provincias: Provincia[];
+  public provincias: ViewProvincia[];
 
   // Constructor
   constructor(private arenalService: ArenalService,
     private provinciaService: ProvinciaService,
     private formBuilder: FormBuilder,
     public dialogRef: MatDialogRef<ArenalUpdateModalComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: Arenal) { }
+    @Inject(MAT_DIALOG_DATA) public data: ViewArenal) { }
 
 
   // Life Cicle

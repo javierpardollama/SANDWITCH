@@ -1,5 +1,5 @@
 import { AddHistorico } from '../viewmodels/additions/addhistorico';
-import { Historico } from '../viewmodels/core/historico';
+import { ViewHistorico } from '../viewmodels/views/viewhistorico';
 import { HttpClient } from '@angular/common/http';
 import { MatSnackBar } from '@angular/material';
 import { Injectable } from '@angular/core';
@@ -18,10 +18,10 @@ export class HistoricoService {
 
     }
 
-    public AddHistorico(viewModel: AddHistorico): Observable<Historico> {
+    public AddHistorico(viewModel: AddHistorico): Observable<ViewHistorico> {
 
-        const observable: Observable<Historico> = this.httpClient.post<Historico>('api/historico/addhistorico', viewModel)
-            .pipe(catchError(this.handleError<Historico>('AddHistorico', undefined)));
+        const observable: Observable<ViewHistorico> = this.httpClient.post<ViewHistorico>('api/historico/addhistorico', viewModel)
+            .pipe(catchError(this.handleError<ViewHistorico>('AddHistorico', undefined)));
 
         if (observable !== undefined) {
             this.matSnackBar.open('Operation Successful', 'Ok');

@@ -1,8 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using Sandwitch.Tier.Contexts.Interfaces;
 using Sandwitch.Tier.Entities.Classes;
 using Sandwitch.Tier.Services.Interfaces;
 using Sandwitch.Tier.ViewModels.Classes.Additions;
+using Sandwitch.Tier.ViewModels.Classes.Views;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
@@ -13,9 +15,12 @@ namespace Sandwitch.Tier.Services.Classes
     {
         private readonly IApplicationContext Icontext;
 
-        public HistoricoService(IApplicationContext iContext)
+        private readonly IMapper Imapper;
+
+        public HistoricoService(IApplicationContext iContext, IMapper iMapper)
         {
             Icontext = iContext;
+            Imapper = iMapper;
         }
 
         public async Task<Arenal> FindArenalById(int id)
@@ -46,7 +51,7 @@ namespace Sandwitch.Tier.Services.Classes
             return entity;
         }       
 
-        public async Task<Historico> AddHistorico(AddHistorico viewModel)
+        public async Task<ViewHistorico> AddHistorico(AddHistorico viewModel)
         {
             Historico historico = new Historico
             {
@@ -64,7 +69,7 @@ namespace Sandwitch.Tier.Services.Classes
 
             await Icontext.SaveChangesAsync();
 
-            return historico;
+            return this.Imapper.Map<ViewHistorico>(historico);
         }
     }
 }

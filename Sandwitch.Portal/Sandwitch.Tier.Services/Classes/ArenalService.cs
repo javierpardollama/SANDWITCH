@@ -25,7 +25,7 @@ namespace Sandwitch.Tier.Services.Classes
             Imapper = iMapper;
         }
 
-        public async Task<Arenal> AddArenal(AddArenal viewModel)
+        public async Task<ViewArenal> AddArenal(AddArenal viewModel)
         {
             await CheckName(viewModel);
 
@@ -41,7 +41,7 @@ namespace Sandwitch.Tier.Services.Classes
 
             await Icontext.SaveChangesAsync();
 
-            return arenal;
+            return this.Imapper.Map<ViewArenal>(arenal); ;
         }
 
         public async Task AddArenalPoblacion(AddArenal viewModel, Arenal entity)
@@ -61,12 +61,15 @@ namespace Sandwitch.Tier.Services.Classes
             });
         }
 
-        public async Task<ICollection<Arenal>> FindAllArenal()
+        public async Task<ICollection<ViewArenal>> FindAllArenal()
         {
-            return await Icontext.Arenal.AsQueryable()
-                .Include(x=>x.Poblaciones)
-                .ThenInclude(x=>x.Poblacion)
+            ICollection<Arenal> arenales = await Icontext.Arenal.AsQueryable()
+                .Include(x => x.Poblaciones)
+                .ThenInclude(x => x.Poblacion)
+                .Include(x => x.Historicos)
                 .ToAsyncEnumerable().ToList();
+
+            return this.Imapper.Map<ICollection<ViewArenal>>(arenales);
         }
 
         public async Task<ICollection<ViewArenal>> FindAllArenalByPoblacionId(int id)
@@ -74,10 +77,10 @@ namespace Sandwitch.Tier.Services.Classes
             ICollection<Arenal> arenales = await Icontext.ArenalPoblacion.AsQueryable()
                .Include(x => x.Poblacion)
                .Include(x => x.Arenal)
-               .ThenInclude(x=>x.Historicos)
-               .ThenInclude(x=>x.Bandera)
+               .ThenInclude(x => x.Historicos)
+               .ThenInclude(x => x.Bandera)
                .Where(x => x.Poblacion.Id == id)
-               .Select(x=>x.Arenal)
+               .Select(x => x.Arenal)
                .AsQueryable()
                .Include(x => x.Historicos)
                .ThenInclude(x => x.Bandera)
@@ -124,7 +127,7 @@ namespace Sandwitch.Tier.Services.Classes
             await Icontext.SaveChangesAsync();
         }
 
-        public async Task<Arenal> UpdateArenal(UpdateArenal viewModel)
+        public async Task<ViewArenal> UpdateArenal(UpdateArenal viewModel)
         {
             Arenal arenal = await FindArenalById(viewModel.Id);
             arenal.Name = viewModel.Name;
@@ -137,7 +140,7 @@ namespace Sandwitch.Tier.Services.Classes
 
             await Icontext.SaveChangesAsync();
 
-            return arenal;
+            return this.Imapper.Map<ViewArenal>(arenal); ;
         }
 
         public async Task UpdateArenalPoblacion(UpdateArenal viewModel, Arenal entity)

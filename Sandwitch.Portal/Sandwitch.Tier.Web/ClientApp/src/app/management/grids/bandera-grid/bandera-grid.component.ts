@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource, MatPaginator, MatSort, MatDialog } from '@angular/material';
-import { Bandera } from '../../../../viewmodels/core/bandera';
+import { ViewBandera } from '../../../../viewmodels/views/viewbandera';
 
 import { BanderaService } from '../../../../services/bandera.service.module';
 
@@ -18,11 +18,11 @@ export class BanderaGridComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  public ELEMENT_DATA: Bandera[];
+  public ELEMENT_DATA: ViewBandera[];
 
   public displayedColumns: string[] = ['Id', 'Name', 'ImageUri', 'LastModified'];
 
-  public dataSource: MatTableDataSource<Bandera>;
+  public dataSource: MatTableDataSource<ViewBandera>;
 
   // Constructor
   constructor(private banderaService: BanderaService,
@@ -58,7 +58,7 @@ export class BanderaGridComponent implements OnInit {
   }
 
   // Get Record from Table
-  public GetRecord(row: Bandera) {
+  public GetRecord(row: ViewBandera) {
     const dialogRef = this.matDialog.open(BanderaUpdateModalComponent, {
       width: '450px',
       data: row

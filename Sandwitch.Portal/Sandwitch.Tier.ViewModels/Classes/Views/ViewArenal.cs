@@ -15,5 +15,7 @@ namespace Sandwitch.Tier.ViewModels.Classes.Views
                 return this.Historicos?.AsQueryable().OrderBy(x=>x.LastModified.Date).Last();
             }
         }
+
+        public virtual ICollection<ViewArenalPoblacion> Poblaciones { get; set; }
     }
 }

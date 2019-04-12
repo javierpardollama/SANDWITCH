@@ -3,8 +3,8 @@ import { MatDialog } from '@angular/material';
 import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
-import { Poblacion } from '../../viewmodels/core/poblacion';
-import { Provincia } from '../../viewmodels/core/provincia';
+import { ViewPoblacion } from '../../viewmodels/views/viewpoblacion';
+import { ViewProvincia } from '../../viewmodels/views/viewprovincia';
 import { ViewArenal } from '../../viewmodels/views/viewarenal';
 import { ProvinciaService } from '../../services/provincia.service.module';
 import { PoblacionService } from '../../services/poblacion.service.module';
@@ -19,10 +19,10 @@ import { HistoricoAddModalComponent } from '../management/modals/additions/histo
 export class SearchComponent implements OnInit {
 
   // Data
-  public poblaciones: Poblacion[];
-  public filteredPoblaciones: Observable<Poblacion[]>;
-  public provincias: Provincia[];
-  public filteredProvincias: Observable<Provincia[]>;
+  public poblaciones: ViewPoblacion[];
+  public filteredPoblaciones: Observable<ViewPoblacion[]>;
+  public provincias: ViewProvincia[];
+  public filteredProvincias: Observable<ViewProvincia[]>;
   public arenales: ViewArenal[];
 
   // Control
@@ -77,14 +77,14 @@ export class SearchComponent implements OnInit {
   }
 
   // Filter Data
-  public FilterProvincias(value: string): Provincia[] {
+  public FilterProvincias(value: string): ViewProvincia[] {
     const filterValue = value.toLowerCase();
 
     return this.provincias.filter(provincia => provincia.Name.toLowerCase().indexOf(filterValue) === 0);
   }
 
   // Filter Data
-  public FilterPoblaciones(value: string): Poblacion[] {
+  public FilterPoblaciones(value: string): ViewPoblacion[] {
     const filterValue = value.toLowerCase();
 
     return this.poblaciones.filter(poblacion => poblacion.Name.toLowerCase().indexOf(filterValue) === 0);

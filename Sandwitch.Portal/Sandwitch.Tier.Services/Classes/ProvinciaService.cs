@@ -1,9 +1,11 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using Sandwitch.Tier.Contexts.Interfaces;
 using Sandwitch.Tier.Entities.Classes;
 using Sandwitch.Tier.Services.Interfaces;
 using Sandwitch.Tier.ViewModels.Classes.Additions;
 using Sandwitch.Tier.ViewModels.Classes.Updates;
+using Sandwitch.Tier.ViewModels.Classes.Views;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,12 +17,15 @@ namespace Sandwitch.Tier.Services.Classes
     {
         private readonly IApplicationContext Icontext;
 
-        public ProvinciaService(IApplicationContext iContext)
+        private readonly IMapper Imapper;
+
+        public ProvinciaService(IApplicationContext iContext, IMapper iMapper)
         {
             Icontext = iContext;
+            Imapper = iMapper;
         }
 
-        public async Task<Provincia> AddProvincia(AddProvincia viewModel)
+        public async Task<ViewProvincia> AddProvincia(AddProvincia viewModel)
         {
             await CheckName(viewModel);
 
@@ -35,16 +40,18 @@ namespace Sandwitch.Tier.Services.Classes
 
             await Icontext.SaveChangesAsync();
 
-            return entity;
+            return this.Imapper.Map<ViewProvincia>(entity);
         }
 
-        public async Task<ICollection<Provincia>> FindAllProvincia()
+        public async Task<ICollection<ViewProvincia>> FindAllProvincia()
         {
-            return await Icontext.Provincia
+            ICollection<Provincia> provincias = await Icontext.Provincia
                 .AsQueryable()
                 .Include(x=>x.Poblaciones)
                 .ToAsyncEnumerable()
                 .ToList();
+
+            return this.Imapper.Map<ICollection<ViewProvincia>>(provincias);
         }
 
         public async Task<Provincia> FindProvinciaById(int id)
@@ -69,7 +76,7 @@ namespace Sandwitch.Tier.Services.Classes
             await Icontext.SaveChangesAsync();
         }
 
-        public async Task<Provincia> UpdateProvincia(UpdateProvincia viewModel)
+        public async Task<ViewProvincia> UpdateProvincia(UpdateProvincia viewModel)
         {
             Provincia entity = await FindProvinciaById(viewModel.Id);
             entity.Name = viewModel.Name;
@@ -80,7 +87,8 @@ namespace Sandwitch.Tier.Services.Classes
 
             await Icontext.SaveChangesAsync();
 
-            return entity;
+            return this.Imapper.Map<ViewProvincia>(entity);
+
         }
 
         public async Task<Provincia> CheckName(AddProvincia viewModel)

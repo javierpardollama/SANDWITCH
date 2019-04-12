@@ -1,6 +1,5 @@
 import { AddArenal } from '../viewmodels/additions/addarenal';
 import { UpdateArenal } from '../viewmodels/updates/updatearenal';
-import { Arenal } from '../viewmodels/core/arenal';
 import { ViewArenal } from '../viewmodels/views/viewarenal';
 import { HttpClient } from '@angular/common/http';
 import { MatSnackBar } from '@angular/material';
@@ -20,10 +19,10 @@ export class ArenalService {
 
     }
 
-    public UpdateArenal(viewModel: UpdateArenal): Observable<Arenal> {
+    public UpdateArenal(viewModel: UpdateArenal): Observable<ViewArenal> {
 
-        const observable: Observable<Arenal> = this.httpClient.put<Arenal>('api/arenal/updatearenal', viewModel)
-            .pipe(catchError(this.handleError<Arenal>('UpdateArenal', undefined)));
+        const observable: Observable<ViewArenal> = this.httpClient.put<ViewArenal>('api/arenal/updatearenal', viewModel)
+            .pipe(catchError(this.handleError<ViewArenal>('UpdateArenal', undefined)));
 
         if (observable !== undefined) {
             this.matSnackBar.open('Operation Successful', 'Ok');
@@ -32,9 +31,9 @@ export class ArenalService {
         return observable;
     }
 
-    public FindAllArenal(): Observable<Arenal[]> {
-        return this.httpClient.get<Arenal[]>('api/arenal/findallarenal')
-            .pipe(catchError(this.handleError<Arenal[]>('FindAllArenal', [])));
+    public FindAllArenal(): Observable<ViewArenal[]> {
+        return this.httpClient.get<ViewArenal[]>('api/arenal/findallarenal')
+            .pipe(catchError(this.handleError<ViewArenal[]>('FindAllArenal', [])));
     }
 
     public FindAllArenalByPoblacionId(id: number): Observable<ViewArenal[]> {
@@ -42,9 +41,9 @@ export class ArenalService {
             .pipe(catchError(this.handleError<ViewArenal[]>('FindAllArenalByPoblacionId', [])));
     }
 
-    public AddArenal(viewModel: AddArenal): Observable<Arenal> {
-        const observable: Observable<Arenal> = this.httpClient.post<Arenal>('api/arenal/addarenal', viewModel)
-            .pipe(catchError(this.handleError<Arenal>('AddArenal', undefined)));
+    public AddArenal(viewModel: AddArenal): Observable<ViewArenal> {
+        const observable: Observable<ViewArenal> = this.httpClient.post<ViewArenal>('api/arenal/addarenal', viewModel)
+            .pipe(catchError(this.handleError<ViewArenal>('AddArenal', undefined)));
 
         if (observable !== undefined) {
             this.matSnackBar.open('Operation Successful', 'Ok');

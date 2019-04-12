@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Sandwitch.Tier.Entities.Classes;
 using Sandwitch.Tier.Services.Interfaces;
 using Sandwitch.Tier.ViewModels.Classes.Additions;
 using Sandwitch.Tier.ViewModels.Classes.Updates;
+using Sandwitch.Tier.ViewModels.Classes.Views;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -23,7 +23,7 @@ namespace Sandwitch.Tier.Web.Controllers
         [Route("updatebandera")]
         public async Task<IActionResult> UpdateBandera([FromBody]UpdateBandera viewModel)
         {
-            Bandera bandera = await this.Service.UpdateBandera(viewModel);
+            ViewBandera bandera = await this.Service.UpdateBandera(viewModel);
 
             return new JsonResult(bandera);
         }
@@ -32,7 +32,7 @@ namespace Sandwitch.Tier.Web.Controllers
         [Route("findallbandera")]
         public async Task<IActionResult> FindAllBandera(int id)
         {
-            ICollection<Bandera> banderas = await this.Service.FindAllBandera();
+            ICollection<ViewBandera> banderas = await this.Service.FindAllBandera();
 
             return new JsonResult(banderas);
         }
@@ -41,7 +41,7 @@ namespace Sandwitch.Tier.Web.Controllers
         [Route("addbandera")]
         public async Task<IActionResult> AddBandera([FromBody]AddBandera viewModel)
         {
-            Bandera bandera = await this.Service.AddBandera(viewModel);
+            ViewBandera bandera = await this.Service.AddBandera(viewModel);
 
             return new JsonResult(bandera);
         }

@@ -1,7 +1,7 @@
 DELETE FROM Historico;
 delete from sqlite_sequence where name='Historico';
 /*LA ARENA VERDE*/
-INSERT INTO Historico (LASTMODIFIED,ArenalId, BanderaId, Temperatura, AltaMarAlba,AltaMarOcaso, BajaMarAlba, BajaMarOcasoo) VALUES(date('now'),1,1, 19.0, time('now'), time('now'), time('now'), time('now'));
+INSERT INTO Historico (LASTMODIFIED,ArenalId, BanderaId, Temperatura, AltaMarAlba,AltaMarOcaso, BajaMarAlba, BajaMarOcaso) VALUES(date('now'),1,1, 19.0, time('now'), time('now'), time('now'), time('now'));
 /*LAS ARENAS VERDE*/
 INSERT INTO Historico (LASTMODIFIED,ArenalId, BanderaId, Temperatura, AltaMarAlba,AltaMarOcaso, BajaMarAlba, BajaMarOcaso) VALUES(date('now'),2,1, 19.0, time('now'), time('now'), time('now'), time('now'));
 /*EREAGA VERDE*/

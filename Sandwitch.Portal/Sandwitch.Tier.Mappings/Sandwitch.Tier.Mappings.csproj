@@ -1,7 +1,11 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <Copyright>2019 Javier Pardo</Copyright>
+    <PackageProjectUrl>https://github.com/javierpardollama/SANDWITCH/tree/master/Sandwitch.Portal/Sandwitch.Tier.Mappings</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/javierpardollama/SANDWITCH/tree/master/Sandwitch.Portal/Sandwitch.Tier.Mappings</RepositoryUrl>
   </PropertyGroup>
 
   <ItemGroup>
@@ -11,6 +15,13 @@
   <ItemGroup>
     <ProjectReference Include="..\Sandwitch.Tier.Entities\Sandwitch.Tier.Entities.csproj" />
     <ProjectReference Include="..\Sandwitch.Tier.ViewModels\Sandwitch.Tier.ViewModels.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="LICENSE">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
 
 </Project>

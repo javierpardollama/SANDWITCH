@@ -20,14 +20,8 @@ export class ProvinciaService {
     }
 
     public UpdateProvincia(viewModel: UpdateProvincia): Observable<ViewProvincia> {
-        const observable: Observable<ViewProvincia> = this.httpClient.put<ViewProvincia>('api/provincia/updateprovincia', viewModel)
+        return this.httpClient.put<ViewProvincia>('api/provincia/updateprovincia', viewModel)
             .pipe(catchError(this.handleError<ViewProvincia>('UpdateProvincia', undefined)));
-
-        if (observable !== undefined) {
-            this.matSnackBar.open('Operation Successful', 'Ok');
-        }
-
-        return observable;
     }
 
     public FindAllProvincia(): Observable<ViewProvincia[]> {
@@ -36,14 +30,8 @@ export class ProvinciaService {
     }
 
     public AddProvincia(viewModel: AddProvincia): Observable<ViewProvincia> {
-        const observable: Observable<ViewProvincia> = this.httpClient.post<ViewProvincia>('api/provincia/addprovincia', viewModel)
+        return this.httpClient.post<ViewProvincia>('api/provincia/addprovincia', viewModel)
             .pipe(catchError(this.handleError<ViewProvincia>('AddProvincia', undefined)));
-
-        if (observable !== undefined) {
-            this.matSnackBar.open('Operation Successful', 'Ok');
-        }
-
-        return observable;
     }
 
     public RemoveProvinciaById(id: number) {

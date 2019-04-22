@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { DatePipe } from '@angular/common';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialogRef, MAT_DIALOG_DATA, MatSnackBar } from '@angular/material';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ViewArenal } from '../../../../../viewmodels/views/viewarenal';
 import { ViewBandera } from '../../../../../viewmodels/views/viewbandera';
@@ -29,6 +29,7 @@ export class HistoricoAddModalComponent implements OnInit {
     private banderaService: BanderaService,
     private formBuilder: FormBuilder,
     public dialogRef: MatDialogRef<HistoricoAddModalComponent>,
+    private matSnackBar: MatSnackBar,
     @Inject(MAT_DIALOG_DATA) public data: ViewArenal) { }
 
 
@@ -62,6 +63,8 @@ export class HistoricoAddModalComponent implements OnInit {
   // Form Actions
   onSubmit(viewModel: AddHistorico) {
     this.historicoService.AddHistorico(viewModel).subscribe(historico => {
+      this.matSnackBar.open('Operation Successful', 'Ok');
+
       this.dialogRef.close();
     });
   }

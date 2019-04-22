@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialogRef } from '@angular/material';
+import { MatDialogRef, MatSnackBar } from '@angular/material';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ViewProvincia } from '../../../../../viewmodels/views/viewprovincia';
 
@@ -23,7 +23,8 @@ export class PoblacionAddModalComponent implements OnInit {
   constructor(private provinciaService: ProvinciaService,
     private poblacionService: PoblacionService,
     private formBuilder: FormBuilder,
-    public dialogRef: MatDialogRef<PoblacionAddModalComponent>) { }
+    public dialogRef: MatDialogRef<PoblacionAddModalComponent>,
+    private matSnackBar: MatSnackBar) { }
 
 
   // Life Cicle
@@ -44,6 +45,8 @@ export class PoblacionAddModalComponent implements OnInit {
   // Form Actions
   onSubmit(viewModel: AddPoblacion) {
     this.poblacionService.AddPoblacion(viewModel).subscribe(poblacion => {
+      this.matSnackBar.open('Operation Successful', 'Ok');
+
       this.dialogRef.close();
     });
   }

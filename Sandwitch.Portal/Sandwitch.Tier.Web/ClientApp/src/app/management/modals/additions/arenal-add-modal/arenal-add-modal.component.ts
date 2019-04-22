@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialogRef } from '@angular/material';
+import { MatDialogRef, MatSnackBar } from '@angular/material';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ViewProvincia } from '../../../../../viewmodels/views/viewprovincia';
 
@@ -23,7 +23,8 @@ export class ArenalAddModalComponent implements OnInit {
   constructor(private arenalService: ArenalService,
     private provinciaService: ProvinciaService,
     private formBuilder: FormBuilder,
-    public dialogRef: MatDialogRef<ArenalAddModalComponent>) { }
+    public dialogRef: MatDialogRef<ArenalAddModalComponent>,
+    private matSnackBar: MatSnackBar) { }
 
 
   // Life Cicle
@@ -43,6 +44,8 @@ export class ArenalAddModalComponent implements OnInit {
   // Form Actions
   onSubmit(viewModel: AddArenal) {
     this.arenalService.AddArenal(viewModel).subscribe(arenal => {
+      this.matSnackBar.open('Operation Successful', 'Ok');
+
       this.dialogRef.close();
     });
   }

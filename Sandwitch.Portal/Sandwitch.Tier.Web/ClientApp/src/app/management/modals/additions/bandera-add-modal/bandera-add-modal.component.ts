@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialogRef } from '@angular/material';
+import { MatDialogRef, MatSnackBar } from '@angular/material';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AddBandera } from '../../../../../viewmodels/additions/addbandera';
 
@@ -17,7 +17,8 @@ export class BanderaAddModalComponent implements OnInit {
   // Constructor
   constructor(private banderaService: BanderaService,
     private formBuilder: FormBuilder,
-    public dialogRef: MatDialogRef<BanderaAddModalComponent>) { }
+    public dialogRef: MatDialogRef<BanderaAddModalComponent>,
+    private matSnackBar: MatSnackBar) { }
 
 
   // Life Cicle
@@ -36,6 +37,8 @@ export class BanderaAddModalComponent implements OnInit {
   // Form Actions
   onSubmit(viewModel: AddBandera) {
     this.banderaService.AddBandera(viewModel).subscribe(bandera => {
+      this.matSnackBar.open('Operation Successful', 'Ok');
+
       this.dialogRef.close();
     });
   }

@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialogRef, MAT_DIALOG_DATA, MatSnackBar } from '@angular/material';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ViewProvincia } from '../../../../../viewmodels/views/viewprovincia';
 import { UpdateProvincia } from '../../../../../viewmodels/updates/updateprovincia';
@@ -19,6 +19,7 @@ export class ProvinciaUpdateModalComponent implements OnInit {
   constructor(private provinciaService: ProvinciaService,
     private formBuilder: FormBuilder,
     public dialogRef: MatDialogRef<ProvinciaUpdateModalComponent>,
+    private matSnackBar: MatSnackBar
     @Inject(MAT_DIALOG_DATA) public data: ViewProvincia) { }
 
 
@@ -39,12 +40,16 @@ export class ProvinciaUpdateModalComponent implements OnInit {
   // Form Actions
   onSubmit(viewModel: UpdateProvincia) {
     this.provinciaService.UpdateProvincia(viewModel).subscribe(provincia => {
+      this.matSnackBar.open('Operation Successful', 'Ok');
+
       this.dialogRef.close();
     });
   }
 
   onDelete(viewModel: UpdateProvincia) {
-    this.provinciaService.RemoveProvinciaById(viewModel.Id).subscribe(year => {
+    this.provinciaService.RemoveProvinciaById(viewModel.Id).subscribe(provincia => {
+      this.matSnackBar.open('Operation Successful', 'Ok');
+
       this.dialogRef.close();
     });
   }

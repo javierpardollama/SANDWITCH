@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialogRef, MAT_DIALOG_DATA, MatSnackBar } from '@angular/material';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ViewArenal } from '../../../../../viewmodels/views/viewarenal';
 import { ViewProvincia } from '../../../../../viewmodels/views/viewprovincia';
@@ -25,6 +25,7 @@ export class ArenalUpdateModalComponent implements OnInit {
     private provinciaService: ProvinciaService,
     private formBuilder: FormBuilder,
     public dialogRef: MatDialogRef<ArenalUpdateModalComponent>,
+    private matSnackBar: MatSnackBar
     @Inject(MAT_DIALOG_DATA) public data: ViewArenal) { }
 
 
@@ -46,12 +47,16 @@ export class ArenalUpdateModalComponent implements OnInit {
   // Form Actions
   onSubmit(viewModel: UpdateArenal) {
     this.arenalService.UpdateArenal(viewModel).subscribe(arenal => {
+      this.matSnackBar.open('Operation Successful', 'Ok');
+
       this.dialogRef.close();
     });
   }
 
   onDelete(viewModel: UpdateArenal) {
-    this.arenalService.RemoveArenalById(viewModel.Id).subscribe(year => {
+    this.arenalService.RemoveArenalById(viewModel.Id).subscribe(arenal => {
+      this.matSnackBar.open('Operation Successful', 'Ok');
+
       this.dialogRef.close();
     });
   }

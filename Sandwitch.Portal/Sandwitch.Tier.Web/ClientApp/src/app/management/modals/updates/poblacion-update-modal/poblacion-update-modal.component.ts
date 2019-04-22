@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialogRef, MAT_DIALOG_DATA, MatSnackBar } from '@angular/material';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ViewProvincia } from '../../../../../viewmodels/views/viewprovincia';
 import { ViewPoblacion } from '../../../../../viewmodels/views/viewpoblacion';
@@ -25,6 +25,7 @@ export class PoblacionUpdateModalComponent implements OnInit {
     private poblacionService: PoblacionService,
     private formBuilder: FormBuilder,
     public dialogRef: MatDialogRef<PoblacionUpdateModalComponent>,
+    private matSnackBar: MatSnackBar
     @Inject(MAT_DIALOG_DATA) public data: ViewPoblacion) { }
 
 
@@ -47,12 +48,16 @@ export class PoblacionUpdateModalComponent implements OnInit {
   // Form Actions
   onSubmit(viewModel: UpdatePoblacion) {
     this.poblacionService.UpdatePoblacion(viewModel).subscribe(poblacion => {
+      this.matSnackBar.open('Operation Successful', 'Ok');
+
       this.dialogRef.close();
     });
   }
 
   onDelete(viewModel: UpdatePoblacion) {
-    this.poblacionService.RemovePoblacionById(viewModel.Id).subscribe(year => {
+    this.poblacionService.RemovePoblacionById(viewModel.Id).subscribe(poblacion => {
+      this.matSnackBar.open('Operation Successful', 'Ok');
+
       this.dialogRef.close();
     });
   }

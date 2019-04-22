@@ -20,14 +20,8 @@ export class BanderaService {
     }
 
     public UpdateBandera(viewModel: UpdateBandera): Observable<ViewBandera> {
-        const observable: Observable<ViewBandera> = this.httpClient.put<ViewBandera>('api/bandera/updatebandera', viewModel)
+        return this.httpClient.put<ViewBandera>('api/bandera/updatebandera', viewModel)
             .pipe(catchError(this.handleError<ViewBandera>('UpdateBandera', undefined)));
-
-        if (observable !== undefined) {
-            this.matSnackBar.open('Operation Successful', 'Ok');
-        }
-
-        return observable;
     }
 
     public FindAllBandera(): Observable<ViewBandera[]> {
@@ -36,18 +30,11 @@ export class BanderaService {
     }
 
     public AddBandera(viewModel: AddBandera): Observable<ViewBandera> {
-        const observable: Observable<ViewBandera> = this.httpClient.post<ViewBandera>('api/bandera/addbandera', viewModel)
+        return this.httpClient.post<ViewBandera>('api/bandera/addbandera', viewModel)
             .pipe(catchError(this.handleError<ViewBandera>('AddBandera', undefined)));
-
-        if (observable !== undefined) {
-            this.matSnackBar.open('Operation Successful', 'Ok');
-        }
-
-        return observable;
     }
 
     public RemoveBanderaById(id: number) {
-
         return this.httpClient.delete<any>('api/bandera/removebanderabyid/' + id)
             .pipe(catchError(this.handleError<any>('RemoveBanderaById', undefined)));
     }

@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialogRef, MAT_DIALOG_DATA, MatSnackBar } from '@angular/material';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ViewBandera } from '../../../../../viewmodels/views/viewbandera';
 import { UpdateBandera } from '../../../../../viewmodels/updates/updatebandera';
@@ -19,6 +19,7 @@ export class BanderaUpdateModalComponent implements OnInit {
   constructor(private banderaService: BanderaService,
     private formBuilder: FormBuilder,
     public dialogRef: MatDialogRef<BanderaUpdateModalComponent>,
+    private matSnackBar: MatSnackBar
     @Inject(MAT_DIALOG_DATA) public data: ViewBandera) { }
 
 
@@ -39,12 +40,16 @@ export class BanderaUpdateModalComponent implements OnInit {
   // Form Actions
   onSubmit(viewModel: UpdateBandera) {
     this.banderaService.UpdateBandera(viewModel).subscribe(bandera => {
+      this.matSnackBar.open('Operation Successful', 'Ok');
+
       this.dialogRef.close();
     });
   }
 
   onDelete(viewModel: UpdateBandera) {
-    this.banderaService.RemoveBanderaById(viewModel.Id).subscribe(year => {
+    this.banderaService.RemoveBanderaById(viewModel.Id).subscribe(bandera => {
+      this.matSnackBar.open('Operation Successful', 'Ok');
+
       this.dialogRef.close();
     });
   }

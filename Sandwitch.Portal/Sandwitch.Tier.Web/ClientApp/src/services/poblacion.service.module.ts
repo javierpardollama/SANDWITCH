@@ -20,14 +20,8 @@ export class PoblacionService {
     }
 
     public UpdatePoblacion(viewModel: UpdatePoblacion): Observable<ViewPoblacion> {
-        const observable: Observable<ViewPoblacion> = this.httpClient.put<ViewPoblacion>('api/poblacion/updatepoblacion', viewModel)
+        return this.httpClient.put<ViewPoblacion>('api/poblacion/updatepoblacion', viewModel)
             .pipe(catchError(this.handleError<ViewPoblacion>('UpdatePoblacion', undefined)));
-
-        if (observable !== undefined) {
-            this.matSnackBar.open('Operation Successful', 'Ok');
-        }
-
-        return observable;
     }
 
     public FindAllPoblacion(): Observable<ViewPoblacion[]> {
@@ -41,14 +35,8 @@ export class PoblacionService {
     }
 
     public AddPoblacion(viewModel: AddPoblacion): Observable<ViewPoblacion> {
-        const observable: Observable<ViewPoblacion> = this.httpClient.post<ViewPoblacion>('api/poblacion/addpoblacion', viewModel)
+        return this.httpClient.post<ViewPoblacion>('api/poblacion/addpoblacion', viewModel)
             .pipe(catchError(this.handleError<ViewPoblacion>('AddPoblacion', undefined)));
-
-        if (observable !== undefined) {
-            this.matSnackBar.open('Operation Successful', 'Ok');
-        }
-
-        return observable;
     }
 
     public RemovePoblacionById(id: number) {
@@ -60,7 +48,7 @@ export class PoblacionService {
         return (error: any): Observable<T> => {
 
             this.matSnackBar.open(error.error, 'Ok');
-            
+
             // Let the app keep running by returning an empty result.
             return of(result as T);
         };

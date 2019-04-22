@@ -20,15 +20,8 @@ export class ArenalService {
     }
 
     public UpdateArenal(viewModel: UpdateArenal): Observable<ViewArenal> {
-
-        const observable: Observable<ViewArenal> = this.httpClient.put<ViewArenal>('api/arenal/updatearenal', viewModel)
+        return this.httpClient.put<ViewArenal>('api/arenal/updatearenal', viewModel)
             .pipe(catchError(this.handleError<ViewArenal>('UpdateArenal', undefined)));
-
-        if (observable !== undefined) {
-            this.matSnackBar.open('Operation Successful', 'Ok');
-        }
-
-        return observable;
     }
 
     public FindAllArenal(): Observable<ViewArenal[]> {
@@ -42,18 +35,11 @@ export class ArenalService {
     }
 
     public AddArenal(viewModel: AddArenal): Observable<ViewArenal> {
-        const observable: Observable<ViewArenal> = this.httpClient.post<ViewArenal>('api/arenal/addarenal', viewModel)
+        return this.httpClient.post<ViewArenal>('api/arenal/addarenal', viewModel)
             .pipe(catchError(this.handleError<ViewArenal>('AddArenal', undefined)));
-
-        if (observable !== undefined) {
-            this.matSnackBar.open('Operation Successful', 'Ok');
-        }
-
-        return observable;
     }
 
     public RemoveArenalById(id: number) {
-
         return this.httpClient.delete<any>('api/arenal/removearenalbyid/' + id)
             .pipe(catchError(this.handleError<any>('RemoveArenalById', undefined)));
     }

@@ -33,7 +33,7 @@ namespace Sandwitch.Tier.Services.Classes
 
             if (arenal == null)
             {
-                throw new Exception("Arenal with Id" + id + "does not exist");
+                throw new Exception("Arenal with Id " + id + " does not exist");
             }
 
             return arenal;
@@ -45,7 +45,7 @@ namespace Sandwitch.Tier.Services.Classes
 
             if (entity == null)
             {
-                throw new Exception("Bandera with Id" + id + "does not exist");
+                throw new Exception("Bandera with Id " + id + " does not exist");
             }
 
             return entity;

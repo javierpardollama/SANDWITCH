@@ -54,7 +54,7 @@ export class ProvinciaService {
     private handleError<T>(operation = 'Operation', result?: T) {
         return (error: any): Observable<T> => {
 
-            this.matSnackBar.open(operation + ' Error', 'Ok');
+            this.matSnackBar.open(error.error, 'Ok');
 
             // Let the app keep running by returning an empty result.
             return of(result as T);

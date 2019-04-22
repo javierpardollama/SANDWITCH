@@ -3,6 +3,7 @@ using Sandwitch.Tier.Services.Interfaces;
 using Sandwitch.Tier.ViewModels.Classes.Additions;
 using Sandwitch.Tier.ViewModels.Classes.Updates;
 using Sandwitch.Tier.ViewModels.Classes.Views;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -23,9 +24,16 @@ namespace Sandwitch.Tier.Web.Controllers
         [Route("updatebandera")]
         public async Task<IActionResult> UpdateBandera([FromBody]UpdateBandera viewModel)
         {
-            ViewBandera bandera = await this.Service.UpdateBandera(viewModel);
+            try
+            {
+                ViewBandera bandera = await this.Service.UpdateBandera(viewModel);
 
-            return new JsonResult(bandera);
+                return new JsonResult(bandera);
+            }
+            catch (Exception ex)
+            {
+                return new BadRequestObjectResult(ex.Message);
+            }
         }
 
         [HttpGet]
@@ -41,18 +49,32 @@ namespace Sandwitch.Tier.Web.Controllers
         [Route("addbandera")]
         public async Task<IActionResult> AddBandera([FromBody]AddBandera viewModel)
         {
-            ViewBandera bandera = await this.Service.AddBandera(viewModel);
+            try
+            {
+                ViewBandera bandera = await this.Service.AddBandera(viewModel);
 
-            return new JsonResult(bandera);
+                return new JsonResult(bandera);
+            }
+            catch (Exception ex)
+            {
+                return new BadRequestObjectResult(ex.Message);
+            }
         }
 
         [HttpDelete]
         [Route("removebanderabyid/{id}")]
         public async Task<IActionResult> RemoveBanderaById(int id)
         {
-            await this.Service.RemoveBanderaById(id);
+            try
+            {
+                await this.Service.RemoveBanderaById(id);
 
-            return new JsonResult(StatusCode(200));
+                return new JsonResult(StatusCode(200));
+            }
+            catch (Exception ex)
+            {
+                return new BadRequestObjectResult(ex.Message);
+            }
         }
     }
 }

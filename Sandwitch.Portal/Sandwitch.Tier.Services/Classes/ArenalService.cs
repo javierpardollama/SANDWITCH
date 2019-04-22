@@ -100,7 +100,7 @@ namespace Sandwitch.Tier.Services.Classes
 
             if (arenal == null)
             {
-                throw new Exception("Arenal with Id" + id + "does not exist");
+                throw new Exception("Arenal with Id " + id + " does not exist");
             }
 
             return arenal;
@@ -112,7 +112,7 @@ namespace Sandwitch.Tier.Services.Classes
 
             if (poblacion == null)
             {
-                throw new Exception("Poblacion with Id" + id + "does not exist");
+                throw new Exception("Poblacion with Id " + id + " does not exist");
             }
 
             return poblacion;
@@ -166,7 +166,7 @@ namespace Sandwitch.Tier.Services.Classes
 
             if (arenal != null)
             {
-                throw new Exception("Arenal with Name" + viewModel.Name + " already exists");
+                throw new Exception("Arenal with Name " + viewModel.Name + " already exists");
             }
 
             return arenal;

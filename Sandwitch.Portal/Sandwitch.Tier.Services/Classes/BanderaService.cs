@@ -59,7 +59,7 @@ namespace Sandwitch.Tier.Services.Classes
 
             if (entity == null)
             {
-                throw new Exception("Bandera with Id" + id + "does not exist");
+                throw new Exception("Bandera with Id " + id + " does not exist");
             }
 
             return entity;
@@ -94,7 +94,7 @@ namespace Sandwitch.Tier.Services.Classes
 
             if (entity != null)
             {
-                throw new Exception("Bandera with Name" + viewModel.Name + " already exists");
+                throw new Exception("Bandera with Name " + viewModel.Name + " already exists");
             }
 
             return entity;

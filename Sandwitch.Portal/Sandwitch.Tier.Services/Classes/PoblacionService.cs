@@ -73,7 +73,7 @@ namespace Sandwitch.Tier.Services.Classes
 
             if (entity == null)
             {
-                throw new Exception("Poblacion with Id" + id + "does not exist");
+                throw new Exception("Poblacion with Id " + id + " does not exist");
             }
 
             return entity;
@@ -85,7 +85,7 @@ namespace Sandwitch.Tier.Services.Classes
 
             if (entity == null)
             {
-                throw new Exception("Provincia with Id" + id + "does not exist");
+                throw new Exception("Provincia with Id " + id + " does not exist");
             }
 
             return entity;
@@ -121,7 +121,7 @@ namespace Sandwitch.Tier.Services.Classes
 
             if (entity != null)
             {
-                throw new Exception("Poblacion " + viewModel.Name + "already exists");
+                throw new Exception("Poblacion with Name " + viewModel.Name + " already exists");
             }
 
             return entity;

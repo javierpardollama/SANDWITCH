@@ -3,6 +3,7 @@ using Sandwitch.Tier.Services.Interfaces;
 using Sandwitch.Tier.ViewModels.Classes.Additions;
 using Sandwitch.Tier.ViewModels.Classes.Updates;
 using Sandwitch.Tier.ViewModels.Classes.Views;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -11,7 +12,7 @@ namespace Sandwitch.Tier.Web.Controllers
     [Route("api/arenal")]
     [Produces("application/json")]
     public class ArenalController : Controller
-    { 
+    {
         private readonly IArenalService Service;
 
         public ArenalController(IArenalService service)
@@ -23,9 +24,16 @@ namespace Sandwitch.Tier.Web.Controllers
         [Route("updatearenal")]
         public async Task<IActionResult> UpdateArenal([FromBody]UpdateArenal viewModel)
         {
-            ViewArenal arenal = await this.Service.UpdateArenal(viewModel);
+            try
+            {
+                ViewArenal arenal = await this.Service.UpdateArenal(viewModel);
 
-            return new JsonResult(arenal);
+                return new JsonResult(arenal);
+            }
+            catch (Exception ex)
+            {
+                return new BadRequestObjectResult(ex.Message);
+            }
         }
 
         [HttpGet]
@@ -50,18 +58,32 @@ namespace Sandwitch.Tier.Web.Controllers
         [Route("addarenal")]
         public async Task<IActionResult> AddArenal([FromBody]AddArenal viewModel)
         {
-            ViewArenal arenal = await this.Service.AddArenal(viewModel);
+            try
+            {
+                ViewArenal arenal = await this.Service.AddArenal(viewModel);
 
-            return new JsonResult(arenal);
+                return new JsonResult(arenal);
+            }
+            catch (Exception ex)
+            {
+                return new BadRequestObjectResult(ex.Message);
+            }
         }
 
         [HttpDelete]
         [Route("removearenalbyid/{id}")]
         public async Task<IActionResult> RemoveArenalById(int id)
         {
-            await this.Service.RemoveArenalById(id);
+            try
+            {
+                await this.Service.RemoveArenalById(id);
 
-            return new JsonResult(StatusCode(200));
+                return new JsonResult(StatusCode(200));
+            }
+            catch (Exception ex)
+            {
+                return new BadRequestObjectResult(ex.Message);
+            }
         }
     }
 }

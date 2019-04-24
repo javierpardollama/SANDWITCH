@@ -19,7 +19,7 @@ export class BanderaUpdateModalComponent implements OnInit {
   constructor(private banderaService: BanderaService,
     private formBuilder: FormBuilder,
     public dialogRef: MatDialogRef<BanderaUpdateModalComponent>,
-    private matSnackBar: MatSnackBar
+    private matSnackBar: MatSnackBar,
     @Inject(MAT_DIALOG_DATA) public data: ViewBandera) { }
 
 

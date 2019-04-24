@@ -25,7 +25,7 @@ export class PoblacionUpdateModalComponent implements OnInit {
     private poblacionService: PoblacionService,
     private formBuilder: FormBuilder,
     public dialogRef: MatDialogRef<PoblacionUpdateModalComponent>,
-    private matSnackBar: MatSnackBar
+    private matSnackBar: MatSnackBar,
     @Inject(MAT_DIALOG_DATA) public data: ViewPoblacion) { }
 
 

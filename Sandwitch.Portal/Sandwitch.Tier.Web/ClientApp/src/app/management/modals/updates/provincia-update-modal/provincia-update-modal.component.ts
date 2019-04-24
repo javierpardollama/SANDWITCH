@@ -19,7 +19,7 @@ export class ProvinciaUpdateModalComponent implements OnInit {
   constructor(private provinciaService: ProvinciaService,
     private formBuilder: FormBuilder,
     public dialogRef: MatDialogRef<ProvinciaUpdateModalComponent>,
-    private matSnackBar: MatSnackBar
+    private matSnackBar: MatSnackBar,
     @Inject(MAT_DIALOG_DATA) public data: ViewProvincia) { }
 
 

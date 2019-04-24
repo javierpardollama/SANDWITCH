@@ -25,7 +25,7 @@ export class ArenalUpdateModalComponent implements OnInit {
     private provinciaService: ProvinciaService,
     private formBuilder: FormBuilder,
     public dialogRef: MatDialogRef<ArenalUpdateModalComponent>,
-    private matSnackBar: MatSnackBar
+    private matSnackBar: MatSnackBar,
     @Inject(MAT_DIALOG_DATA) public data: ViewArenal) { }
 
 

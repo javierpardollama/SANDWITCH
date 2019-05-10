@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using Sandwitch.Tier.Contexts.Interfaces;
 using Sandwitch.Tier.Entities.Classes;
 using Sandwitch.Tier.Services.Interfaces;
@@ -13,16 +14,10 @@ using System.Threading.Tasks;
 
 namespace Sandwitch.Tier.Services.Classes
 {
-    public class PoblacionService : IPoblacionService
+    public class PoblacionService : BaseService, IPoblacionService
     {
-        private readonly IApplicationContext Icontext;
-
-        private readonly IMapper Imapper;
-
-        public PoblacionService(IApplicationContext iContext, IMapper iMapper)
+        public PoblacionService(IApplicationContext iContext, IMapper iMapper, ILogger<PoblacionService> iLogger) : base(iContext, iMapper, iLogger)
         {
-            Icontext = iContext;
-            Imapper = iMapper;
         }
 
         public async Task<ViewPoblacion> AddPoblacion(AddPoblacion viewModel)
@@ -30,8 +25,7 @@ namespace Sandwitch.Tier.Services.Classes
             await CheckName(viewModel);
 
             Poblacion entity = new Poblacion
-            {
-                LastModified = DateTime.Now,
+            {              
                 Name = viewModel.Name,
                 Provincia = await FindProvinciaById(viewModel.ProvinciaId),
                 ImageUri = viewModel.ImageUri
@@ -40,6 +34,11 @@ namespace Sandwitch.Tier.Services.Classes
             await Icontext.Poblacion.AddAsync(entity);
 
             await Icontext.SaveChangesAsync();
+
+            // Log
+            string logData = entity.GetType().ToString() + " with Id " + entity.Id + " was Added on " + DateTime.Now.ToShortDateString();
+
+            WriteLog(logData);
 
             return this.Imapper.Map<ViewPoblacion>(entity);
         }
@@ -73,6 +72,11 @@ namespace Sandwitch.Tier.Services.Classes
 
             if (entity == null)
             {
+                // Log
+                string logData = entity.GetType().ToString() + " with Id " + id + " was not Found on " + DateTime.Now.ToShortDateString();
+
+                WriteLog(logData);
+
                 throw new Exception("Poblacion with Id " + id + " does not exist");
             }
 
@@ -85,6 +89,11 @@ namespace Sandwitch.Tier.Services.Classes
 
             if (entity == null)
             {
+                // Log
+                string logData = entity.GetType().ToString() + " with Id " + id + " was not Found on " + DateTime.Now.ToShortDateString();
+
+                WriteLog(logData);
+
                 throw new Exception("Provincia with Id " + id + " does not exist");
             }
 
@@ -98,6 +107,11 @@ namespace Sandwitch.Tier.Services.Classes
             Icontext.Poblacion.Remove(entity);
 
             await Icontext.SaveChangesAsync();
+
+            // Log
+            string logData = entity.GetType().ToString() + " with Id " + entity.Id + " was Removed on " + DateTime.Now.ToShortDateString();
+
+            WriteLog(logData);
         }
 
         public async Task<ViewPoblacion> UpdatePoblacion(UpdatePoblacion viewModel)
@@ -105,12 +119,16 @@ namespace Sandwitch.Tier.Services.Classes
             Poblacion entity = await FindPoblacionById(viewModel.Id);
             entity.Name = viewModel.Name;
             entity.Provincia = await FindProvinciaById(viewModel.ProvinciaId);
-            entity.ImageUri = viewModel.ImageUri;
-            entity.LastModified = DateTime.Now;
+            entity.ImageUri = viewModel.ImageUri;          
 
             Icontext.Poblacion.Update(entity);
 
             await Icontext.SaveChangesAsync();
+
+            // Log
+            string logData = entity.GetType().ToString() + " with Id " + entity.Id + " was Modified on " + DateTime.Now.ToShortDateString();
+
+            WriteLog(logData);
 
             return this.Imapper.Map<ViewPoblacion>(entity);
         }
@@ -121,10 +139,15 @@ namespace Sandwitch.Tier.Services.Classes
 
             if (entity != null)
             {
+                // Log
+                string logData = entity.GetType().ToString() + " with Name " + entity.Name + " was already Found on " + DateTime.Now.ToShortDateString();
+
+                WriteLog(logData);
+
                 throw new Exception("Poblacion with Name " + viewModel.Name + " already exists");
             }
 
             return entity;
-        }
+        }       
     }
 }

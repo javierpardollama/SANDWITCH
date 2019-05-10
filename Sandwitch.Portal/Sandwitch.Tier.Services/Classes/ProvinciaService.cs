@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using Sandwitch.Tier.Contexts.Interfaces;
 using Sandwitch.Tier.Entities.Classes;
 using Sandwitch.Tier.Services.Interfaces;
@@ -13,16 +14,10 @@ using System.Threading.Tasks;
 
 namespace Sandwitch.Tier.Services.Classes
 {
-    public class ProvinciaService : IProvinciaService
-    {
-        private readonly IApplicationContext Icontext;
-
-        private readonly IMapper Imapper;
-
-        public ProvinciaService(IApplicationContext iContext, IMapper iMapper)
+    public class ProvinciaService : BaseService, IProvinciaService
+    {      
+        public ProvinciaService(IApplicationContext iContext, IMapper iMapper, ILogger<ProvinciaService> iLogger) : base(iContext, iMapper, iLogger)
         {
-            Icontext = iContext;
-            Imapper = iMapper;
         }
 
         public async Task<ViewProvincia> AddProvincia(AddProvincia viewModel)
@@ -30,8 +25,7 @@ namespace Sandwitch.Tier.Services.Classes
             await CheckName(viewModel);
 
             Provincia entity = new Provincia
-            {
-                LastModified = DateTime.Now,
+            {               
                 Name = viewModel.Name,
                 ImageUri = viewModel.ImageUri
             };
@@ -39,6 +33,11 @@ namespace Sandwitch.Tier.Services.Classes
             await Icontext.Provincia.AddAsync(entity);
 
             await Icontext.SaveChangesAsync();
+
+            // Log
+            string logData = entity.GetType().ToString() + " with Id " + entity.Id + " was Added on " + DateTime.Now.ToShortDateString();
+
+            WriteLog(logData);
 
             return this.Imapper.Map<ViewProvincia>(entity);
         }
@@ -61,6 +60,11 @@ namespace Sandwitch.Tier.Services.Classes
 
             if (entity == null)
             {
+                // Log
+                string logData = entity.GetType().ToString() + " with Id " + id + " was not Found on " + DateTime.Now.ToShortDateString();
+
+                WriteLog(logData);
+
                 throw new Exception("Provincia with Id " + id + " does not exist");
             }
 
@@ -74,6 +78,11 @@ namespace Sandwitch.Tier.Services.Classes
             Icontext.Provincia.Remove(entity);
 
             await Icontext.SaveChangesAsync();
+
+            // Log
+            string logData = entity.GetType().ToString() + " with Id " + entity.Id + " was Removed on " + DateTime.Now.ToShortDateString();
+
+            WriteLog(logData);
         }
 
         public async Task<ViewProvincia> UpdateProvincia(UpdateProvincia viewModel)
@@ -81,14 +90,17 @@ namespace Sandwitch.Tier.Services.Classes
             Provincia entity = await FindProvinciaById(viewModel.Id);
             entity.Name = viewModel.Name;
             entity.ImageUri = viewModel.ImageUri;
-            entity.LastModified = DateTime.Now;
 
             Icontext.Provincia.Update(entity);
 
             await Icontext.SaveChangesAsync();
 
-            return this.Imapper.Map<ViewProvincia>(entity);
+            // Log
+            string logData = entity.GetType().ToString() + " with Id " + entity.Id + " was Modified on " + DateTime.Now.ToShortDateString();
 
+            WriteLog(logData);
+
+            return this.Imapper.Map<ViewProvincia>(entity);
         }
 
         public async Task<Provincia> CheckName(AddProvincia viewModel)
@@ -97,10 +109,15 @@ namespace Sandwitch.Tier.Services.Classes
 
             if (entity != null)
             {
+                // Log
+                string logData = entity.GetType().ToString() + " with Name " + entity.Name + " was already Found on " + DateTime.Now.ToShortDateString();
+
+                WriteLog(logData);
+
                 throw new Exception("Provincia with Name " + viewModel.Name + " already exists");
             }
 
             return entity;
-        }
+        }       
     }
 }

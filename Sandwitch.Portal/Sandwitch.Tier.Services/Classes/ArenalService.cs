@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using Sandwitch.Tier.Contexts.Interfaces;
 using Sandwitch.Tier.Entities.Classes;
 using Sandwitch.Tier.Services.Interfaces;
@@ -13,16 +14,10 @@ using System.Threading.Tasks;
 
 namespace Sandwitch.Tier.Services.Classes
 {
-    public class ArenalService : IArenalService
-    {
-        private readonly IApplicationContext Icontext;
-
-        private readonly IMapper Imapper;
-
-        public ArenalService(IApplicationContext iContext, IMapper iMapper)
-        {
-            Icontext = iContext;
-            Imapper = iMapper;
+    public class ArenalService : BaseService, IArenalService
+    {        
+        public ArenalService(IApplicationContext iContext, IMapper iMapper, ILogger<ArenalService> iLogger) : base (iContext, iMapper, iLogger)
+        {          
         }
 
         public async Task<ViewArenal> AddArenal(AddArenal viewModel)
@@ -31,7 +26,6 @@ namespace Sandwitch.Tier.Services.Classes
 
             Arenal arenal = new Arenal
             {
-                LastModified = DateTime.Now,
                 Name = viewModel.Name
             };
 
@@ -40,6 +34,11 @@ namespace Sandwitch.Tier.Services.Classes
             await AddArenalPoblacion(viewModel, arenal);
 
             await Icontext.SaveChangesAsync();
+
+            // Log
+            string logData = arenal.GetType().ToString() + " with Id " + arenal.Id + " was Added on " + DateTime.Now.ToShortDateString();
+
+            WriteLog(logData);
 
             return this.Imapper.Map<ViewArenal>(arenal); ;
         }
@@ -52,7 +51,6 @@ namespace Sandwitch.Tier.Services.Classes
 
                 ArenalPoblacion arenalPoblacion = new ArenalPoblacion
                 {
-                    LastModified = DateTime.Now,
                     Arenal = entity,
                     Poblacion = poblacion,
                 };
@@ -100,6 +98,11 @@ namespace Sandwitch.Tier.Services.Classes
 
             if (arenal == null)
             {
+                // Log
+                string logData = arenal.GetType().ToString() + " with Id " + id + " was not Found on " + DateTime.Now.ToShortDateString();
+
+                WriteLog(logData);
+
                 throw new Exception("Arenal with Id " + id + " does not exist");
             }
 
@@ -112,6 +115,11 @@ namespace Sandwitch.Tier.Services.Classes
 
             if (poblacion == null)
             {
+                // Log
+                string logData = poblacion.GetType().ToString() + " with Id " + id + " was not Found on " + DateTime.Now.ToShortDateString();
+
+                WriteLog(logData);
+
                 throw new Exception("Poblacion with Id " + id + " does not exist");
             }
 
@@ -125,13 +133,17 @@ namespace Sandwitch.Tier.Services.Classes
             Icontext.Arenal.Remove(arenal);
 
             await Icontext.SaveChangesAsync();
+
+            // Log
+            string logData = arenal.GetType().ToString() + " with Id" + arenal.Id + " was Removed on " + DateTime.Now.ToShortDateString();
+
+            WriteLog(logData);
         }
 
         public async Task<ViewArenal> UpdateArenal(UpdateArenal viewModel)
         {
             Arenal arenal = await FindArenalById(viewModel.Id);
             arenal.Name = viewModel.Name;
-            arenal.LastModified = DateTime.Now;
             arenal.Poblaciones = new List<ArenalPoblacion>();
 
             Icontext.Arenal.Update(arenal);
@@ -139,6 +151,11 @@ namespace Sandwitch.Tier.Services.Classes
             await UpdateArenalPoblacion(viewModel, arenal);
 
             await Icontext.SaveChangesAsync();
+
+            // Log
+            string logData = arenal.GetType().ToString() + " with Id" + arenal.Id + " was Modified on " + DateTime.Now.ToShortDateString();
+
+            WriteLog(logData);
 
             return this.Imapper.Map<ViewArenal>(arenal); ;
         }
@@ -151,7 +168,6 @@ namespace Sandwitch.Tier.Services.Classes
 
                 ArenalPoblacion arenalPoblacion = new ArenalPoblacion
                 {
-                    LastModified = DateTime.Now,
                     Arenal = entity,
                     Poblacion = poblacion,
                 };
@@ -166,10 +182,15 @@ namespace Sandwitch.Tier.Services.Classes
 
             if (arenal != null)
             {
+                // Log
+                string logData = arenal.GetType().ToString() + " with Name " + arenal.Name + " was already Found on " + DateTime.Now.ToShortDateString();
+
+                WriteLog(logData);
+
                 throw new Exception("Arenal with Name " + viewModel.Name + " already exists");
             }
 
             return arenal;
-        }
+        }        
     }
 }

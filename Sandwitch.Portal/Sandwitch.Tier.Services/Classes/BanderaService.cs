@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using Sandwitch.Tier.Contexts.Interfaces;
 using Sandwitch.Tier.Entities.Classes;
 using Sandwitch.Tier.Services.Interfaces;
@@ -13,16 +14,10 @@ using System.Threading.Tasks;
 
 namespace Sandwitch.Tier.Services.Classes
 {
-    public class BanderaService : IBanderaService
+    public class BanderaService : BaseService, IBanderaService
     {
-        private readonly IApplicationContext Icontext;
-
-        private readonly IMapper Imapper;
-
-        public BanderaService(IApplicationContext iContext, IMapper iMapper)
+        public BanderaService(IApplicationContext iContext, IMapper iMapper, ILogger<BanderaService> iLogger) : base(iContext, iMapper, iLogger)
         {
-            Icontext = iContext;
-            Imapper = iMapper;
         }
 
         public async Task<ViewBandera> AddBandera(AddBandera viewModel)
@@ -30,8 +25,7 @@ namespace Sandwitch.Tier.Services.Classes
             await CheckName(viewModel);
 
             Bandera entity = new Bandera
-            {
-                LastModified = DateTime.Now,
+            {               
                 Name = viewModel.Name,
                 ImageUri = viewModel.ImageUri
             };
@@ -39,6 +33,11 @@ namespace Sandwitch.Tier.Services.Classes
             await Icontext.Bandera.AddAsync(entity);
 
             await Icontext.SaveChangesAsync();
+
+            // Log
+            string logData = entity.GetType().ToString() + " with Id " + entity.Id + " was Added on " + DateTime.Now.ToShortDateString();
+
+            WriteLog(logData);
 
             return this.Imapper.Map<ViewBandera>(entity);
         }
@@ -59,6 +58,11 @@ namespace Sandwitch.Tier.Services.Classes
 
             if (entity == null)
             {
+                // Log
+                string logData = entity.GetType().ToString() + " with Id " + id + " was not Found on " + DateTime.Now.ToShortDateString();
+
+                WriteLog(logData);
+
                 throw new Exception("Bandera with Id " + id + " does not exist");
             }
 
@@ -72,18 +76,27 @@ namespace Sandwitch.Tier.Services.Classes
             Icontext.Bandera.Remove(entity);
 
             await Icontext.SaveChangesAsync();
+
+            // Log
+            string logData = entity.GetType().ToString() + " with Id " + entity.Id + " was Removed on " + DateTime.Now.ToShortDateString();
+
+            WriteLog(logData);
         }
 
         public async Task<ViewBandera> UpdateBandera(UpdateBandera viewModel)
         {
             Bandera entity = await FindBanderaById(viewModel.Id);
             entity.Name = viewModel.Name;
-            entity.ImageUri = viewModel.ImageUri;
-            entity.LastModified = DateTime.Now;
+            entity.ImageUri = viewModel.ImageUri;          
 
             Icontext.Bandera.Update(entity);
 
             await Icontext.SaveChangesAsync();
+
+            // Log
+            string logData = entity.GetType().ToString() + " with Id " + entity.Id + " was Modified on " + DateTime.Now.ToShortDateString();
+
+            WriteLog(logData);
 
             return this.Imapper.Map<ViewBandera>(entity);
         }
@@ -94,6 +107,11 @@ namespace Sandwitch.Tier.Services.Classes
 
             if (entity != null)
             {
+                // Log
+                string logData = entity.GetType().ToString() + " with Name " + entity.Name + " was already Found on " + DateTime.Now.ToShortDateString();
+
+                WriteLog(logData);
+
                 throw new Exception("Bandera with Name " + viewModel.Name + " already exists");
             }
 

@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using Sandwitch.Tier.Contexts.Interfaces;
 using Sandwitch.Tier.Entities.Classes;
 using Sandwitch.Tier.Services.Interfaces;
@@ -11,16 +12,10 @@ using System.Threading.Tasks;
 
 namespace Sandwitch.Tier.Services.Classes
 {
-    public class HistoricoService : IHistoricoService
+    public class HistoricoService : BaseService, IHistoricoService
     {
-        private readonly IApplicationContext Icontext;
-
-        private readonly IMapper Imapper;
-
-        public HistoricoService(IApplicationContext iContext, IMapper iMapper)
+        public HistoricoService(IApplicationContext iContext, IMapper iMapper, ILogger<HistoricoService> iLogger) : base(iContext, iMapper, iLogger)
         {
-            Icontext = iContext;
-            Imapper = iMapper;
         }
 
         public async Task<Arenal> FindArenalById(int id)
@@ -33,6 +28,11 @@ namespace Sandwitch.Tier.Services.Classes
 
             if (arenal == null)
             {
+                // Log
+                string logData = arenal.GetType().ToString() + " with Id " + id + " was not Found on " + DateTime.Now.ToShortDateString();
+
+                WriteLog(logData);
+
                 throw new Exception("Arenal with Id " + id + " does not exist");
             }
 
@@ -45,6 +45,11 @@ namespace Sandwitch.Tier.Services.Classes
 
             if (entity == null)
             {
+                // Log
+                string logData = entity.GetType().ToString() + " with Id " + id + " was not Found on " + DateTime.Now.ToShortDateString();
+
+                WriteLog(logData);
+
                 throw new Exception("Bandera with Id " + id + " does not exist");
             }
 
@@ -61,15 +66,19 @@ namespace Sandwitch.Tier.Services.Classes
                 BajaMarOcaso = viewModel.BajaMarOcaso,
                 AltaMarAlba = viewModel.AltaMarAlba,
                 AltaMarOcaso = viewModel.AltaMarOcaso,
-                Temperatura = viewModel.Temperatura,
-                LastModified = DateTime.Now,
+                Temperatura = viewModel.Temperatura,               
             };
 
             Icontext.Historico.Add(historico);
 
             await Icontext.SaveChangesAsync();
 
+            // Log
+            string logData = historico.GetType().ToString() + " with Id " + historico.Id + " was Added on " + DateTime.Now.ToShortDateString();
+
+            WriteLog(logData);
+
             return this.Imapper.Map<ViewHistorico>(historico);
-        }
+        }       
     }
 }

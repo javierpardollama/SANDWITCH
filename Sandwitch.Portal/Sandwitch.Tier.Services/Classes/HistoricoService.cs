@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Sandwitch.Tier.Contexts.Interfaces;
 using Sandwitch.Tier.Entities.Classes;
+using Sandwitch.Tier.Logging.Extensions;
 using Sandwitch.Tier.Services.Interfaces;
 using Sandwitch.Tier.ViewModels.Classes.Additions;
 using Sandwitch.Tier.ViewModels.Classes.Views;
@@ -31,7 +32,7 @@ namespace Sandwitch.Tier.Services.Classes
                 // Log
                 string logData = "Arenal with Id " + id + " was not Found on " + DateTime.Now.ToShortDateString();
 
-                WriteLog(logData);
+                ILogger.WriteGetItemNotFoundLog(logData);
 
                 throw new Exception("Arenal with Id " + id + " does not exist");
             }
@@ -48,7 +49,7 @@ namespace Sandwitch.Tier.Services.Classes
                 // Log
                 string logData = "Bandera with Id " + id + " was not Found on " + DateTime.Now.ToShortDateString();
 
-                WriteLog(logData);
+                ILogger.WriteGetItemNotFoundLog(logData);
 
                 throw new Exception("Bandera with Id " + id + " does not exist");
             }
@@ -76,7 +77,7 @@ namespace Sandwitch.Tier.Services.Classes
             // Log
             string logData = "Historico with Id " + historico.Id + " was Added on " + DateTime.Now.ToShortDateString();
 
-            WriteLog(logData);
+            ILogger.WriteInsertItemLog(logData);
 
             return this.Imapper.Map<ViewHistorico>(historico);
         }       

@@ -2,6 +2,5 @@
 {
     public interface IBaseService
     {
-        void WriteLog(string logData);
     }
 }

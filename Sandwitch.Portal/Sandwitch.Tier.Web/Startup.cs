@@ -10,6 +10,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using Sandwitch.Tier.Contexts.Classes;
 using Sandwitch.Tier.Web.Extensions;
+using System;
 
 namespace Sandwitch.Tier.Web
 {
@@ -34,7 +35,7 @@ namespace Sandwitch.Tier.Web
 
             services.AddCustomServices();
 
-            services.AddAutoMapper();
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
             .AddJsonOptions(options =>

@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Sandwitch.Tier.Contexts.Interfaces;
 using Sandwitch.Tier.Entities.Classes;
+using Sandwitch.Tier.Logging.Extensions;
 using Sandwitch.Tier.Services.Interfaces;
 using Sandwitch.Tier.ViewModels.Classes.Additions;
 using Sandwitch.Tier.ViewModels.Classes.Updates;
@@ -38,7 +39,7 @@ namespace Sandwitch.Tier.Services.Classes
             // Log
             string logData = arenal.GetType().ToString() + " with Id " + arenal.Id + " was Added on " + DateTime.Now.ToShortDateString();
 
-            WriteLog(logData);
+            ILogger.WriteInsertItemLog(logData);
 
             return this.Imapper.Map<ViewArenal>(arenal); ;
         }
@@ -101,7 +102,7 @@ namespace Sandwitch.Tier.Services.Classes
                 // Log
                 string logData = arenal.GetType().ToString() + " with Id " + id + " was not Found on " + DateTime.Now.ToShortDateString();
 
-                WriteLog(logData);
+                ILogger.WriteGetItemNotFoundLog(logData);
 
                 throw new Exception("Arenal with Id " + id + " does not exist");
             }
@@ -118,7 +119,7 @@ namespace Sandwitch.Tier.Services.Classes
                 // Log
                 string logData = "Poblacion with Id " + id + " was not Found on " + DateTime.Now.ToShortDateString();
 
-                WriteLog(logData);
+                ILogger.WriteGetItemNotFoundLog(logData);
 
                 throw new Exception("Poblacion with Id " + id + " does not exist");
             }
@@ -137,7 +138,7 @@ namespace Sandwitch.Tier.Services.Classes
             // Log
             string logData = "Arenal with Id" + arenal.Id + " was Removed on " + DateTime.Now.ToShortDateString();
 
-            WriteLog(logData);
+            ILogger.WriteDeleteItemLog(logData);
         }
 
         public async Task<ViewArenal> UpdateArenal(UpdateArenal viewModel)
@@ -155,7 +156,7 @@ namespace Sandwitch.Tier.Services.Classes
             // Log
             string logData = "Arenal with Id" + arenal.Id + " was Modified on " + DateTime.Now.ToShortDateString();
 
-            WriteLog(logData);
+            ILogger.WriteUpdateItemLog(logData);
 
             return this.Imapper.Map<ViewArenal>(arenal); ;
         }
@@ -185,7 +186,7 @@ namespace Sandwitch.Tier.Services.Classes
                 // Log
                 string logData = "Arenal with Name " + arenal.Name + " was already Found on " + DateTime.Now.ToShortDateString();
 
-                WriteLog(logData);
+                ILogger.WriteInsertItemAlreadyFoundLog(logData);
 
                 throw new Exception("Arenal with Name " + viewModel.Name + " already exists");
             }

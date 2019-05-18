@@ -19,12 +19,5 @@ namespace Sandwitch.Tier.Services.Classes
             Imapper = iMapper;
             ILogger = iLogger;
         }
-
-        public void WriteLog(string logData)
-        {
-            ILogger.LogTrace(logData);
-
-            System.Diagnostics.Debug.WriteLine(logData);
-        }
     }
 }

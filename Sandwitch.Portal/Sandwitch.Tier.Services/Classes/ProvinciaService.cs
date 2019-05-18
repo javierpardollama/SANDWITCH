@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Sandwitch.Tier.Contexts.Interfaces;
 using Sandwitch.Tier.Entities.Classes;
+using Sandwitch.Tier.Logging.Extensions;
 using Sandwitch.Tier.Services.Interfaces;
 using Sandwitch.Tier.ViewModels.Classes.Additions;
 using Sandwitch.Tier.ViewModels.Classes.Updates;
@@ -37,7 +38,7 @@ namespace Sandwitch.Tier.Services.Classes
             // Log
             string logData = "Provincia with Id " + provincia.Id + " was Added on " + DateTime.Now.ToShortDateString();
 
-            WriteLog(logData);
+            ILogger.WriteInsertItemLog(logData);
 
             return this.Imapper.Map<ViewProvincia>(provincia);
         }
@@ -63,7 +64,7 @@ namespace Sandwitch.Tier.Services.Classes
                 // Log
                 string logData = "Provincia with Id " + id + " was not Found on " + DateTime.Now.ToShortDateString();
 
-                WriteLog(logData);
+                ILogger.WriteGetItemNotFoundLog(logData);
 
                 throw new Exception("Provincia with Id " + id + " does not exist");
             }
@@ -82,7 +83,7 @@ namespace Sandwitch.Tier.Services.Classes
             // Log
             string logData = "Provincia with Id " + provincia.Id + " was Removed on " + DateTime.Now.ToShortDateString();
 
-            WriteLog(logData);
+            ILogger.WriteDeleteItemLog(logData);
         }
 
         public async Task<ViewProvincia> UpdateProvincia(UpdateProvincia viewModel)
@@ -98,7 +99,7 @@ namespace Sandwitch.Tier.Services.Classes
             // Log
             string logData = "Provincia with Id " + provincia.Id + " was Modified on " + DateTime.Now.ToShortDateString();
 
-            WriteLog(logData);
+            ILogger.WriteUpdateItemLog(logData);
 
             return this.Imapper.Map<ViewProvincia>(provincia);
         }
@@ -112,7 +113,7 @@ namespace Sandwitch.Tier.Services.Classes
                 // Log
                 string logData = "Provincia with Name " + provincia.Name + " was already Found on " + DateTime.Now.ToShortDateString();
 
-                WriteLog(logData);
+                ILogger.WriteInsertItemAlreadyFoundLog(logData);
 
                 throw new Exception("Provincia with Name " + viewModel.Name + " already exists");
             }

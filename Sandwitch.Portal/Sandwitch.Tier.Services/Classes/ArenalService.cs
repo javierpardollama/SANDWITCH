@@ -116,7 +116,7 @@ namespace Sandwitch.Tier.Services.Classes
             if (poblacion == null)
             {
                 // Log
-                string logData = poblacion.GetType().ToString() + " with Id " + id + " was not Found on " + DateTime.Now.ToShortDateString();
+                string logData = "Poblacion with Id " + id + " was not Found on " + DateTime.Now.ToShortDateString();
 
                 WriteLog(logData);
 
@@ -135,7 +135,7 @@ namespace Sandwitch.Tier.Services.Classes
             await Icontext.SaveChangesAsync();
 
             // Log
-            string logData = arenal.GetType().ToString() + " with Id" + arenal.Id + " was Removed on " + DateTime.Now.ToShortDateString();
+            string logData = "Arenal with Id" + arenal.Id + " was Removed on " + DateTime.Now.ToShortDateString();
 
             WriteLog(logData);
         }
@@ -153,7 +153,7 @@ namespace Sandwitch.Tier.Services.Classes
             await Icontext.SaveChangesAsync();
 
             // Log
-            string logData = arenal.GetType().ToString() + " with Id" + arenal.Id + " was Modified on " + DateTime.Now.ToShortDateString();
+            string logData = "Arenal with Id" + arenal.Id + " was Modified on " + DateTime.Now.ToShortDateString();
 
             WriteLog(logData);
 
@@ -183,7 +183,7 @@ namespace Sandwitch.Tier.Services.Classes
             if (arenal != null)
             {
                 // Log
-                string logData = arenal.GetType().ToString() + " with Name " + arenal.Name + " was already Found on " + DateTime.Now.ToShortDateString();
+                string logData = "Arenal with Name " + arenal.Name + " was already Found on " + DateTime.Now.ToShortDateString();
 
                 WriteLog(logData);
 

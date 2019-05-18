@@ -24,22 +24,22 @@ namespace Sandwitch.Tier.Services.Classes
         {
             await CheckName(viewModel);
 
-            Provincia entity = new Provincia
+            Provincia provincia = new Provincia
             {               
                 Name = viewModel.Name,
                 ImageUri = viewModel.ImageUri
             };
 
-            await Icontext.Provincia.AddAsync(entity);
+            await Icontext.Provincia.AddAsync(provincia);
 
             await Icontext.SaveChangesAsync();
 
             // Log
-            string logData = entity.GetType().ToString() + " with Id " + entity.Id + " was Added on " + DateTime.Now.ToShortDateString();
+            string logData = "Provincia with Id " + provincia.Id + " was Added on " + DateTime.Now.ToShortDateString();
 
             WriteLog(logData);
 
-            return this.Imapper.Map<ViewProvincia>(entity);
+            return this.Imapper.Map<ViewProvincia>(provincia);
         }
 
         public async Task<ICollection<ViewProvincia>> FindAllProvincia()
@@ -55,69 +55,69 @@ namespace Sandwitch.Tier.Services.Classes
 
         public async Task<Provincia> FindProvinciaById(int id)
         {
-            Provincia entity = await Icontext.Provincia
+            Provincia provincia = await Icontext.Provincia
                 .FirstOrDefaultAsync(x => x.Id == id);
 
-            if (entity == null)
+            if (provincia == null)
             {
                 // Log
-                string logData = entity.GetType().ToString() + " with Id " + id + " was not Found on " + DateTime.Now.ToShortDateString();
+                string logData = "Provincia with Id " + id + " was not Found on " + DateTime.Now.ToShortDateString();
 
                 WriteLog(logData);
 
                 throw new Exception("Provincia with Id " + id + " does not exist");
             }
 
-            return entity;
+            return provincia;
         }
 
         public async Task RemoveProvinciaById(int id)
         {
-            Provincia entity = await FindProvinciaById(id);
+            Provincia provincia = await FindProvinciaById(id);
 
-            Icontext.Provincia.Remove(entity);
+            Icontext.Provincia.Remove(provincia);
 
             await Icontext.SaveChangesAsync();
 
             // Log
-            string logData = entity.GetType().ToString() + " with Id " + entity.Id + " was Removed on " + DateTime.Now.ToShortDateString();
+            string logData = "Provincia with Id " + provincia.Id + " was Removed on " + DateTime.Now.ToShortDateString();
 
             WriteLog(logData);
         }
 
         public async Task<ViewProvincia> UpdateProvincia(UpdateProvincia viewModel)
         {
-            Provincia entity = await FindProvinciaById(viewModel.Id);
-            entity.Name = viewModel.Name;
-            entity.ImageUri = viewModel.ImageUri;
+            Provincia provincia = await FindProvinciaById(viewModel.Id);
+            provincia.Name = viewModel.Name;
+            provincia.ImageUri = viewModel.ImageUri;
 
-            Icontext.Provincia.Update(entity);
+            Icontext.Provincia.Update(provincia);
 
             await Icontext.SaveChangesAsync();
 
             // Log
-            string logData = entity.GetType().ToString() + " with Id " + entity.Id + " was Modified on " + DateTime.Now.ToShortDateString();
+            string logData = "Provincia with Id " + provincia.Id + " was Modified on " + DateTime.Now.ToShortDateString();
 
             WriteLog(logData);
 
-            return this.Imapper.Map<ViewProvincia>(entity);
+            return this.Imapper.Map<ViewProvincia>(provincia);
         }
 
         public async Task<Provincia> CheckName(AddProvincia viewModel)
         {
-            Provincia entity = await Icontext.Provincia.FirstOrDefaultAsync(x => x.Name == viewModel.Name);
+            Provincia provincia = await Icontext.Provincia.FirstOrDefaultAsync(x => x.Name == viewModel.Name);
 
-            if (entity != null)
+            if (provincia != null)
             {
                 // Log
-                string logData = entity.GetType().ToString() + " with Name " + entity.Name + " was already Found on " + DateTime.Now.ToShortDateString();
+                string logData = "Provincia with Name " + provincia.Name + " was already Found on " + DateTime.Now.ToShortDateString();
 
                 WriteLog(logData);
 
                 throw new Exception("Provincia with Name " + viewModel.Name + " already exists");
             }
 
-            return entity;
+            return provincia;
         }       
     }
 }

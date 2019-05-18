@@ -29,7 +29,7 @@ namespace Sandwitch.Tier.Services.Classes
             if (arenal == null)
             {
                 // Log
-                string logData = arenal.GetType().ToString() + " with Id " + id + " was not Found on " + DateTime.Now.ToShortDateString();
+                string logData = "Arenal with Id " + id + " was not Found on " + DateTime.Now.ToShortDateString();
 
                 WriteLog(logData);
 
@@ -41,19 +41,19 @@ namespace Sandwitch.Tier.Services.Classes
 
         public async Task<Bandera> FindBanderaById(int id)
         {
-            Bandera entity = await Icontext.Bandera.FirstOrDefaultAsync(x => x.Id == id);
+            Bandera bandera = await Icontext.Bandera.FirstOrDefaultAsync(x => x.Id == id);
 
-            if (entity == null)
+            if (bandera == null)
             {
                 // Log
-                string logData = entity.GetType().ToString() + " with Id " + id + " was not Found on " + DateTime.Now.ToShortDateString();
+                string logData = "Bandera with Id " + id + " was not Found on " + DateTime.Now.ToShortDateString();
 
                 WriteLog(logData);
 
                 throw new Exception("Bandera with Id " + id + " does not exist");
             }
 
-            return entity;
+            return bandera;
         }       
 
         public async Task<ViewHistorico> AddHistorico(AddHistorico viewModel)
@@ -74,7 +74,7 @@ namespace Sandwitch.Tier.Services.Classes
             await Icontext.SaveChangesAsync();
 
             // Log
-            string logData = historico.GetType().ToString() + " with Id " + historico.Id + " was Added on " + DateTime.Now.ToShortDateString();
+            string logData = "Historico with Id " + historico.Id + " was Added on " + DateTime.Now.ToShortDateString();
 
             WriteLog(logData);
 

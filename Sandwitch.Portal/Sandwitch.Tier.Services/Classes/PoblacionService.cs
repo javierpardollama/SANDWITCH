@@ -24,23 +24,23 @@ namespace Sandwitch.Tier.Services.Classes
         {
             await CheckName(viewModel);
 
-            Poblacion entity = new Poblacion
+            Poblacion poblacion = new Poblacion
             {              
                 Name = viewModel.Name,
                 Provincia = await FindProvinciaById(viewModel.ProvinciaId),
                 ImageUri = viewModel.ImageUri
             };
 
-            await Icontext.Poblacion.AddAsync(entity);
+            await Icontext.Poblacion.AddAsync(poblacion);
 
             await Icontext.SaveChangesAsync();
 
             // Log
-            string logData = entity.GetType().ToString() + " with Id " + entity.Id + " was Added on " + DateTime.Now.ToShortDateString();
+            string logData = "Poblacion with Id " + poblacion.Id + " was Added on " + DateTime.Now.ToShortDateString();
 
             WriteLog(logData);
 
-            return this.Imapper.Map<ViewPoblacion>(entity);
+            return this.Imapper.Map<ViewPoblacion>(poblacion);
         }
 
         public async Task<ICollection<ViewPoblacion>> FindAllPoblacion()
@@ -68,86 +68,86 @@ namespace Sandwitch.Tier.Services.Classes
 
         public async Task<Poblacion> FindPoblacionById(int id)
         {
-            Poblacion entity = await Icontext.Poblacion.FirstOrDefaultAsync(x => x.Id == id);
+            Poblacion poblacion = await Icontext.Poblacion.FirstOrDefaultAsync(x => x.Id == id);
 
-            if (entity == null)
+            if (poblacion == null)
             {
                 // Log
-                string logData = entity.GetType().ToString() + " with Id " + id + " was not Found on " + DateTime.Now.ToShortDateString();
+                string logData = "Poblacion with Id " + id + " was not Found on " + DateTime.Now.ToShortDateString();
 
                 WriteLog(logData);
 
                 throw new Exception("Poblacion with Id " + id + " does not exist");
             }
 
-            return entity;
+            return poblacion;
         }
 
         public async Task<Provincia> FindProvinciaById(int id)
         {
-            Provincia entity = await Icontext.Provincia.FirstOrDefaultAsync(x => x.Id == id);
+            Provincia provincia = await Icontext.Provincia.FirstOrDefaultAsync(x => x.Id == id);
 
-            if (entity == null)
+            if (provincia == null)
             {
                 // Log
-                string logData = entity.GetType().ToString() + " with Id " + id + " was not Found on " + DateTime.Now.ToShortDateString();
+                string logData = "Provincia with Id " + id + " was not Found on " + DateTime.Now.ToShortDateString();
 
                 WriteLog(logData);
 
                 throw new Exception("Provincia with Id " + id + " does not exist");
             }
 
-            return entity;
+            return provincia;
         }
 
         public async Task RemovePoblacionById(int id)
         {
-            Poblacion entity = await FindPoblacionById(id);
+            Poblacion poblacion = await FindPoblacionById(id);
 
-            Icontext.Poblacion.Remove(entity);
+            Icontext.Poblacion.Remove(poblacion);
 
             await Icontext.SaveChangesAsync();
 
             // Log
-            string logData = entity.GetType().ToString() + " with Id " + entity.Id + " was Removed on " + DateTime.Now.ToShortDateString();
+            string logData = "Poblacion with Id " + poblacion.Id + " was Removed on " + DateTime.Now.ToShortDateString();
 
             WriteLog(logData);
         }
 
         public async Task<ViewPoblacion> UpdatePoblacion(UpdatePoblacion viewModel)
         {
-            Poblacion entity = await FindPoblacionById(viewModel.Id);
-            entity.Name = viewModel.Name;
-            entity.Provincia = await FindProvinciaById(viewModel.ProvinciaId);
-            entity.ImageUri = viewModel.ImageUri;          
+            Poblacion poblacion = await FindPoblacionById(viewModel.Id);
+            poblacion.Name = viewModel.Name;
+            poblacion.Provincia = await FindProvinciaById(viewModel.ProvinciaId);
+            poblacion.ImageUri = viewModel.ImageUri;          
 
-            Icontext.Poblacion.Update(entity);
+            Icontext.Poblacion.Update(poblacion);
 
             await Icontext.SaveChangesAsync();
 
             // Log
-            string logData = entity.GetType().ToString() + " with Id " + entity.Id + " was Modified on " + DateTime.Now.ToShortDateString();
+            string logData = "Poblacion with Id " + poblacion.Id + " was Modified on " + DateTime.Now.ToShortDateString();
 
             WriteLog(logData);
 
-            return this.Imapper.Map<ViewPoblacion>(entity);
+            return this.Imapper.Map<ViewPoblacion>(poblacion);
         }
 
         public async Task<Poblacion> CheckName(AddPoblacion viewModel)
         {
-            Poblacion entity = await Icontext.Poblacion.FirstOrDefaultAsync(x => x.Name == viewModel.Name);
+            Poblacion poblacion = await Icontext.Poblacion.FirstOrDefaultAsync(x => x.Name == viewModel.Name);
 
-            if (entity != null)
+            if (poblacion != null)
             {
                 // Log
-                string logData = entity.GetType().ToString() + " with Name " + entity.Name + " was already Found on " + DateTime.Now.ToShortDateString();
+                string logData = "Poblacion with Name " + poblacion.Name + " was already Found on " + DateTime.Now.ToShortDateString();
 
                 WriteLog(logData);
 
                 throw new Exception("Poblacion with Name " + viewModel.Name + " already exists");
             }
 
-            return entity;
+            return poblacion;
         }       
     }
 }

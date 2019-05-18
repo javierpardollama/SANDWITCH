@@ -24,22 +24,22 @@ namespace Sandwitch.Tier.Services.Classes
         {
             await CheckName(viewModel);
 
-            Bandera entity = new Bandera
+            Bandera bandera = new Bandera
             {               
                 Name = viewModel.Name,
                 ImageUri = viewModel.ImageUri
             };
 
-            await Icontext.Bandera.AddAsync(entity);
+            await Icontext.Bandera.AddAsync(bandera);
 
             await Icontext.SaveChangesAsync();
 
             // Log
-            string logData = entity.GetType().ToString() + " with Id " + entity.Id + " was Added on " + DateTime.Now.ToShortDateString();
+            string logData = "Bandera with Id " + bandera.Id + " was Added on " + DateTime.Now.ToShortDateString();
 
             WriteLog(logData);
 
-            return this.Imapper.Map<ViewBandera>(entity);
+            return this.Imapper.Map<ViewBandera>(bandera);
         }
 
         public async Task<ICollection<ViewBandera>> FindAllBandera()
@@ -54,68 +54,68 @@ namespace Sandwitch.Tier.Services.Classes
 
         public async Task<Bandera> FindBanderaById(int id)
         {
-            Bandera entity = await Icontext.Bandera.FirstOrDefaultAsync(x => x.Id == id);
+            Bandera bandera = await Icontext.Bandera.FirstOrDefaultAsync(x => x.Id == id);
 
-            if (entity == null)
+            if (bandera == null)
             {
                 // Log
-                string logData = entity.GetType().ToString() + " with Id " + id + " was not Found on " + DateTime.Now.ToShortDateString();
+                string logData = "Bandera with Id " + id + " was not Found on " + DateTime.Now.ToShortDateString();
 
                 WriteLog(logData);
 
                 throw new Exception("Bandera with Id " + id + " does not exist");
             }
 
-            return entity;
+            return bandera;
         }
 
         public async Task RemoveBanderaById(int id)
         {
-            Bandera entity = await FindBanderaById(id);
+            Bandera bandera = await FindBanderaById(id);
 
-            Icontext.Bandera.Remove(entity);
+            Icontext.Bandera.Remove(bandera);
 
             await Icontext.SaveChangesAsync();
 
             // Log
-            string logData = entity.GetType().ToString() + " with Id " + entity.Id + " was Removed on " + DateTime.Now.ToShortDateString();
+            string logData = "Bandera with Id " + bandera.Id + " was Removed on " + DateTime.Now.ToShortDateString();
 
             WriteLog(logData);
         }
 
         public async Task<ViewBandera> UpdateBandera(UpdateBandera viewModel)
         {
-            Bandera entity = await FindBanderaById(viewModel.Id);
-            entity.Name = viewModel.Name;
-            entity.ImageUri = viewModel.ImageUri;          
+            Bandera bandera = await FindBanderaById(viewModel.Id);
+            bandera.Name = viewModel.Name;
+            bandera.ImageUri = viewModel.ImageUri;          
 
-            Icontext.Bandera.Update(entity);
+            Icontext.Bandera.Update(bandera);
 
             await Icontext.SaveChangesAsync();
 
             // Log
-            string logData = entity.GetType().ToString() + " with Id " + entity.Id + " was Modified on " + DateTime.Now.ToShortDateString();
+            string logData = "Bandera with Id " + bandera.Id + " was Modified on " + DateTime.Now.ToShortDateString();
 
             WriteLog(logData);
 
-            return this.Imapper.Map<ViewBandera>(entity);
+            return this.Imapper.Map<ViewBandera>(bandera);
         }
 
         public async Task<Bandera> CheckName(AddBandera viewModel)
         {
-            Bandera entity = await Icontext.Bandera.FirstOrDefaultAsync(x => x.Name == viewModel.Name);
+            Bandera bandera = await Icontext.Bandera.FirstOrDefaultAsync(x => x.Name == viewModel.Name);
 
-            if (entity != null)
+            if (bandera != null)
             {
                 // Log
-                string logData = entity.GetType().ToString() + " with Name " + entity.Name + " was already Found on " + DateTime.Now.ToShortDateString();
+                string logData = "Bandera with Name " + bandera.Name + " was already Found on " + DateTime.Now.ToShortDateString();
 
                 WriteLog(logData);
 
                 throw new Exception("Bandera with Name " + viewModel.Name + " already exists");
             }
 
-            return entity;
+            return bandera;
         }
     }
 }

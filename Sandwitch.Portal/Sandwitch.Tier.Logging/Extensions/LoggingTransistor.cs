@@ -9,11 +9,9 @@ namespace Sandwitch.Tier.Logging.Extensions
     {
         private const LogLevel DefaultLogLevel = LogLevel.None;
 
-        private static void Emit(this ILogger @this, Enum applicationEvent, string logData)
-        {
-            int applicationEventCode = GetApplicationEventCode(applicationEvent);
-            LogLevel applicationEventLevel = GetApplicationEventLevel(applicationEvent);
-            @this.Log(applicationEventLevel, applicationEventCode, logData);
+        private static void Emit(this ILogger @this, Enum appEventData, string logData)
+        {            
+            @this.Log(GetApplicationEventLevel(appEventData), GetApplicationEventCode(appEventData), logData);
         }
 
         public static void WriteGetItemNotFoundLog(this ILogger @this, string logData)
@@ -44,9 +42,9 @@ namespace Sandwitch.Tier.Logging.Extensions
             WriteDiagnostics(logData);
         }
 
-        public static void WriteInsertItemAlreadyFoundLog(this ILogger @this, string logData)
+        public static void WriteGetItemFoundLog(this ILogger @this, string logData)
         {
-            @this.Emit(ApplicationEvents.InsertItemAlreadyFound, logData);
+            @this.Emit(ApplicationEvents.GetItemFound, logData);
 
             WriteDiagnostics(logData);
         }
@@ -56,16 +54,16 @@ namespace Sandwitch.Tier.Logging.Extensions
             System.Diagnostics.Debug.WriteLine(logData);
         }
 
-        private static int GetApplicationEventCode(Enum applicationEvent)
+        private static int GetApplicationEventCode(Enum appEventData)
         {
-            return (int)Convert.ChangeType(applicationEvent, applicationEvent.GetTypeCode());
+            return (int)Convert.ChangeType(appEventData, appEventData.GetTypeCode());
         }
 
-        private static LogLevel GetApplicationEventLevel(Enum applicationEvent)
+        private static LogLevel GetApplicationEventLevel(Enum appEventData)
         {
-            if (LoggingProfile.LogLevelMapings.ContainsKey(applicationEvent))
+            if (LoggingProfile.LogLevelMapings.ContainsKey(appEventData))
             {
-                return LoggingProfile.LogLevelMapings[applicationEvent];
+                return LoggingProfile.LogLevelMapings[appEventData];
             }
             else
             {

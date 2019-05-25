@@ -100,11 +100,11 @@ namespace Sandwitch.Tier.Services.Classes
             if (arenal == null)
             {
                 // Log
-                string logData = arenal.GetType().ToString() + " with Id " + id + " was not Found on " + DateTime.Now.ToShortDateString();
+                string logData = arenal.GetType().Name + " with Id " + id + " was not found on " + DateTime.Now.ToShortDateString();
 
                 ILogger.WriteGetItemNotFoundLog(logData);
 
-                throw new Exception("Arenal with Id " + id + " does not exist");
+                throw new Exception(arenal.GetType().Name + " with Id " + id + " does not exist");
             }
 
             return arenal;
@@ -117,11 +117,11 @@ namespace Sandwitch.Tier.Services.Classes
             if (poblacion == null)
             {
                 // Log
-                string logData = "Poblacion with Id " + id + " was not Found on " + DateTime.Now.ToShortDateString();
+                string logData = poblacion.GetType().Name + " with Id " + id + " was not found on " + DateTime.Now.ToShortDateString();
 
                 ILogger.WriteGetItemNotFoundLog(logData);
 
-                throw new Exception("Poblacion with Id " + id + " does not exist");
+                throw new Exception(poblacion.GetType().Name + " with Id " + id + " does not exist");
             }
 
             return poblacion;
@@ -136,7 +136,7 @@ namespace Sandwitch.Tier.Services.Classes
             await Icontext.SaveChangesAsync();
 
             // Log
-            string logData = "Arenal with Id" + arenal.Id + " was Removed on " + DateTime.Now.ToShortDateString();
+            string logData = arenal.GetType().Name + " with Id" + arenal.Id + " was removed on " + DateTime.Now.ToShortDateString();
 
             ILogger.WriteDeleteItemLog(logData);
         }
@@ -154,7 +154,7 @@ namespace Sandwitch.Tier.Services.Classes
             await Icontext.SaveChangesAsync();
 
             // Log
-            string logData = "Arenal with Id" + arenal.Id + " was Modified on " + DateTime.Now.ToShortDateString();
+            string logData = arenal.GetType().Name + " with Id" + arenal.Id + " was modified on " + DateTime.Now.ToShortDateString();
 
             ILogger.WriteUpdateItemLog(logData);
 
@@ -184,11 +184,11 @@ namespace Sandwitch.Tier.Services.Classes
             if (arenal != null)
             {
                 // Log
-                string logData = "Arenal with Name " + arenal.Name + " was already Found on " + DateTime.Now.ToShortDateString();
+                string logData = arenal.GetType().Name + " with Name " + arenal.Name + " was already found on " + DateTime.Now.ToShortDateString();
 
-                ILogger.WriteInsertItemAlreadyFoundLog(logData);
+                ILogger.WriteGetItemFoundLog(logData);
 
-                throw new Exception("Arenal with Name " + viewModel.Name + " already exists");
+                throw new Exception(arenal.GetType().Name + " with Name " + viewModel.Name + " already exists");
             }
 
             return arenal;

@@ -37,7 +37,7 @@ namespace Sandwitch.Tier.Services.Classes
             await Icontext.SaveChangesAsync();
 
             // Log
-            string logData = "Poblacion with Id " + poblacion.Id + " was Added on " + DateTime.Now.ToShortDateString();
+            string logData = poblacion.GetType().Name + " with Id " + poblacion.Id + " was added on " + DateTime.Now.ToShortDateString();
 
             ILogger.WriteInsertItemLog(logData);
 
@@ -74,11 +74,11 @@ namespace Sandwitch.Tier.Services.Classes
             if (poblacion == null)
             {
                 // Log
-                string logData = "Poblacion with Id " + id + " was not Found on " + DateTime.Now.ToShortDateString();
+                string logData = poblacion.GetType().Name + " with Id " + id + " was not found on " + DateTime.Now.ToShortDateString();
 
                 ILogger.WriteGetItemNotFoundLog(logData);
 
-                throw new Exception("Poblacion with Id " + id + " does not exist");
+                throw new Exception(poblacion.GetType().Name + " with Id " + id + " does not exist");
             }
 
             return poblacion;
@@ -91,11 +91,11 @@ namespace Sandwitch.Tier.Services.Classes
             if (provincia == null)
             {
                 // Log
-                string logData = "Provincia with Id " + id + " was not Found on " + DateTime.Now.ToShortDateString();
+                string logData = provincia.GetType().Name + " with Id " + id + " was not found on " + DateTime.Now.ToShortDateString();
 
                 ILogger.WriteGetItemNotFoundLog(logData);
 
-                throw new Exception("Provincia with Id " + id + " does not exist");
+                throw new Exception(provincia.GetType().Name + " with Id " + id + " does not exist");
             }
 
             return provincia;
@@ -110,7 +110,7 @@ namespace Sandwitch.Tier.Services.Classes
             await Icontext.SaveChangesAsync();
 
             // Log
-            string logData = "Poblacion with Id " + poblacion.Id + " was Removed on " + DateTime.Now.ToShortDateString();
+            string logData = poblacion.GetType().Name + " with Id " + poblacion.Id + " was removed on " + DateTime.Now.ToShortDateString();
 
             ILogger.WriteDeleteItemLog(logData);
         }
@@ -127,7 +127,7 @@ namespace Sandwitch.Tier.Services.Classes
             await Icontext.SaveChangesAsync();
 
             // Log
-            string logData = "Poblacion with Id " + poblacion.Id + " was Modified on " + DateTime.Now.ToShortDateString();
+            string logData = poblacion.GetType().Name + " with Id " + poblacion.Id + " was modified on " + DateTime.Now.ToShortDateString();
 
             ILogger.WriteUpdateItemLog(logData);
 
@@ -141,11 +141,11 @@ namespace Sandwitch.Tier.Services.Classes
             if (poblacion != null)
             {
                 // Log
-                string logData = "Poblacion with Name " + poblacion.Name + " was already Found on " + DateTime.Now.ToShortDateString();
+                string logData = poblacion.GetType().Name + " with Name " + poblacion.Name + " was already found on " + DateTime.Now.ToShortDateString();
 
-                ILogger.WriteInsertItemAlreadyFoundLog(logData);
+                ILogger.WriteGetItemFoundLog(logData);
 
-                throw new Exception("Poblacion with Name " + viewModel.Name + " already exists");
+                throw new Exception(poblacion.GetType().Name + " with Name " + viewModel.Name + " already exists");
             }
 
             return poblacion;

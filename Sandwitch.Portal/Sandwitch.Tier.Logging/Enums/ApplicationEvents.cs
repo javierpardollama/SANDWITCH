@@ -6,6 +6,6 @@
         UpdateItem = 4,
         DeleteItem = 5,
         GetItemNotFound = 6,
-        InsertItemAlreadyFound = 7
+        GetItemFound = 7
     }
 }

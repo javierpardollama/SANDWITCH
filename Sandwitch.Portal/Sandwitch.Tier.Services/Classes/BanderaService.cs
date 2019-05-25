@@ -36,7 +36,7 @@ namespace Sandwitch.Tier.Services.Classes
             await Icontext.SaveChangesAsync();
 
             // Log
-            string logData = "Bandera with Id " + bandera.Id + " was Added on " + DateTime.Now.ToShortDateString();
+            string logData = bandera.GetType().Name +" with Id " + bandera.Id + " was added on " + DateTime.Now.ToShortDateString();
 
             ILogger.WriteInsertItemLog(logData);
 
@@ -60,11 +60,11 @@ namespace Sandwitch.Tier.Services.Classes
             if (bandera == null)
             {
                 // Log
-                string logData = "Bandera with Id " + id + " was not Found on " + DateTime.Now.ToShortDateString();
+                string logData = bandera.GetType().Name + " with Id " + id + " was not found on " + DateTime.Now.ToShortDateString();
 
                 ILogger.WriteGetItemNotFoundLog(logData);
 
-                throw new Exception("Bandera with Id " + id + " does not exist");
+                throw new Exception(bandera.GetType().Name + " with Id " + id + " does not exist");
             }
 
             return bandera;
@@ -79,7 +79,7 @@ namespace Sandwitch.Tier.Services.Classes
             await Icontext.SaveChangesAsync();
 
             // Log
-            string logData = "Bandera with Id " + bandera.Id + " was Removed on " + DateTime.Now.ToShortDateString();
+            string logData = bandera.GetType().Name + " with Id " + bandera.Id + " was removed on " + DateTime.Now.ToShortDateString();
 
             ILogger.WriteDeleteItemLog(logData);
         }
@@ -95,7 +95,7 @@ namespace Sandwitch.Tier.Services.Classes
             await Icontext.SaveChangesAsync();
 
             // Log
-            string logData = "Bandera with Id " + bandera.Id + " was Modified on " + DateTime.Now.ToShortDateString();
+            string logData = bandera.GetType().Name + " with Id " + bandera.Id + " was modified on " + DateTime.Now.ToShortDateString();
 
             ILogger.WriteUpdateItemLog(logData);
 
@@ -109,11 +109,11 @@ namespace Sandwitch.Tier.Services.Classes
             if (bandera != null)
             {
                 // Log
-                string logData = "Bandera with Name " + bandera.Name + " was already Found on " + DateTime.Now.ToShortDateString();
+                string logData = bandera.GetType().Name + " with Name " + bandera.Name + " was already Found on " + DateTime.Now.ToShortDateString();
 
-                ILogger.WriteInsertItemAlreadyFoundLog(logData);
+                ILogger.WriteGetItemFoundLog(logData);
 
-                throw new Exception("Bandera with Name " + viewModel.Name + " already exists");
+                throw new Exception(bandera.GetType().Name + " with Name " + viewModel.Name + " already exists");
             }
 
             return bandera;

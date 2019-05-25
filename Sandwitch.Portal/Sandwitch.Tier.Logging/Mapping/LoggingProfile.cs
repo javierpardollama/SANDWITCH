@@ -13,7 +13,7 @@ namespace Sandwitch.Tier.Logging.Mapping
     { ApplicationEvents.UpdateItem, LogLevel.Information },
     { ApplicationEvents.DeleteItem, LogLevel.Information },
     { ApplicationEvents.GetItemNotFound, LogLevel.Error },
-    { ApplicationEvents.InsertItemAlreadyFound, LogLevel.Error }
+    { ApplicationEvents.GetItemFound, LogLevel.Error }
     };
 
     }

@@ -38,7 +38,7 @@ namespace Sandwitch.Tier.Web.Controllers
 
         [HttpGet]
         [Route("findallbandera")]
-        public async Task<IActionResult> FindAllBandera(int id)
+        public async Task<IActionResult> FindAllBandera()
         {
             ICollection<ViewBandera> banderas = await this.Service.FindAllBandera();
 

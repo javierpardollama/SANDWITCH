@@ -38,7 +38,7 @@ namespace Sandwitch.Tier.Web.Controllers
 
         [HttpGet]
         [Route("findallprovincia")]
-        public async Task<IActionResult> FindAllProvincia(int id)
+        public async Task<IActionResult> FindAllProvincia()
         {
             ICollection<ViewProvincia> provincias = await this.Service.FindAllProvincia();
 

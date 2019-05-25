@@ -40,7 +40,10 @@ export class BanderaUpdateModalComponent implements OnInit {
   // Form Actions
   onSubmit(viewModel: UpdateBandera) {
     this.banderaService.UpdateBandera(viewModel).subscribe(bandera => {
-      this.matSnackBar.open('Operation Successful', 'Ok');
+
+      if (bandera.Id !== undefined) {
+        this.matSnackBar.open('Operation Successful', 'Ok');
+      }
 
       this.dialogRef.close();
     });
@@ -48,6 +51,7 @@ export class BanderaUpdateModalComponent implements OnInit {
 
   onDelete(viewModel: UpdateBandera) {
     this.banderaService.RemoveBanderaById(viewModel.Id).subscribe(bandera => {
+
       this.matSnackBar.open('Operation Successful', 'Ok');
 
       this.dialogRef.close();

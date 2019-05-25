@@ -22,16 +22,9 @@ namespace Sandwitch.Tier.Web.Controllers
         [Route("addhistorico")]
         public async Task<IActionResult> AddHistorico([FromBody]AddHistorico viewModel)
         {
-            try
-            {
-                ViewHistorico historico = await this.Service.AddHistorico(viewModel);
+            ViewHistorico historico = await this.Service.AddHistorico(viewModel);
 
-                return new JsonResult(historico);
-            }
-            catch (Exception ex)
-            {
-                return new BadRequestObjectResult(ex.Message);
-            }
+            return new JsonResult(historico);
         }
     }
 }

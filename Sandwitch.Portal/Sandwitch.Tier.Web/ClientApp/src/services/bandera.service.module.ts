@@ -42,7 +42,7 @@ export class BanderaService {
     private handleError<T>(operation = 'Operation', result?: T) {
         return (error: any): Observable<T> => {
 
-            this.matSnackBar.open(error.error, 'Ok');
+            this.matSnackBar.open(error.error.Message, 'Ok');
 
             // Let the app keep running by returning an empty result.
             return of(result as T);

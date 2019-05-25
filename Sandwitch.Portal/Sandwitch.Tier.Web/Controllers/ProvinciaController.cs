@@ -24,16 +24,9 @@ namespace Sandwitch.Tier.Web.Controllers
         [Route("updateprovincia")]
         public async Task<IActionResult> UpdateProvincia([FromBody]UpdateProvincia viewModel)
         {
-            try
-            {
-                ViewProvincia provincia = await this.Service.UpdateProvincia(viewModel);
+            ViewProvincia provincia = await this.Service.UpdateProvincia(viewModel);
 
-                return new JsonResult(provincia);
-            }
-            catch (Exception ex)
-            {
-                return new BadRequestObjectResult(ex.Message);
-            }
+            return new JsonResult(provincia);
         }
 
         [HttpGet]
@@ -49,32 +42,18 @@ namespace Sandwitch.Tier.Web.Controllers
         [Route("addprovincia")]
         public async Task<IActionResult> AddProvincia([FromBody]AddProvincia viewModel)
         {
-            try
-            {
-                ViewProvincia provincia = await this.Service.AddProvincia(viewModel);
+            ViewProvincia provincia = await this.Service.AddProvincia(viewModel);
 
-                return new JsonResult(provincia);
-            }
-            catch (Exception ex)
-            {
-                return new BadRequestObjectResult(ex.Message);
-            }
+            return new JsonResult(provincia);
         }
 
         [HttpDelete]
         [Route("removeprovinciabyid/{id}")]
         public async Task<IActionResult> RemoveProvinciaById(int id)
         {
-            try
-            {
-                await this.Service.RemoveProvinciaById(id);
+            await this.Service.RemoveProvinciaById(id);
 
-                return new JsonResult(StatusCode(200));
-            }
-            catch (Exception ex)
-            {
-                return new BadRequestObjectResult(ex.Message);
-            }
+            return new JsonResult(StatusCode(200));
         }
     }
 }

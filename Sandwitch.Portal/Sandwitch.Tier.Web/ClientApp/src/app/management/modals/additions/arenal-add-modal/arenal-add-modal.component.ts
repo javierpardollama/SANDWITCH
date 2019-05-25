@@ -44,7 +44,10 @@ export class ArenalAddModalComponent implements OnInit {
   // Form Actions
   onSubmit(viewModel: AddArenal) {
     this.arenalService.AddArenal(viewModel).subscribe(arenal => {
-      this.matSnackBar.open('Operation Successful', 'Ok');
+      
+      if (arenal.Id !== undefined) {
+        this.matSnackBar.open('Operation Successful', 'Ok');
+      }
 
       this.dialogRef.close();
     });

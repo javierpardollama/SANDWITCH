@@ -48,7 +48,10 @@ export class PoblacionUpdateModalComponent implements OnInit {
   // Form Actions
   onSubmit(viewModel: UpdatePoblacion) {
     this.poblacionService.UpdatePoblacion(viewModel).subscribe(poblacion => {
-      this.matSnackBar.open('Operation Successful', 'Ok');
+
+      if (poblacion.Id !== undefined) {
+        this.matSnackBar.open('Operation Successful', 'Ok');
+      }
 
       this.dialogRef.close();
     });

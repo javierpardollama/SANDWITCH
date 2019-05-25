@@ -37,7 +37,10 @@ export class BanderaAddModalComponent implements OnInit {
   // Form Actions
   onSubmit(viewModel: AddBandera) {
     this.banderaService.AddBandera(viewModel).subscribe(bandera => {
-      this.matSnackBar.open('Operation Successful', 'Ok');
+
+      if (bandera.Id !== undefined) {
+        this.matSnackBar.open('Operation Successful', 'Ok');
+      }
 
       this.dialogRef.close();
     });

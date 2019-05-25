@@ -3,7 +3,6 @@ using Sandwitch.Tier.Services.Interfaces;
 using Sandwitch.Tier.ViewModels.Classes.Additions;
 using Sandwitch.Tier.ViewModels.Classes.Updates;
 using Sandwitch.Tier.ViewModels.Classes.Views;
-using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -24,16 +23,9 @@ namespace Sandwitch.Tier.Web.Controllers
         [Route("updatepoblacion")]
         public async Task<IActionResult> UpdatePoblacion([FromBody]UpdatePoblacion viewModel)
         {
-            try
-            {
-                ViewPoblacion provincia = await this.Service.UpdatePoblacion(viewModel);
+            ViewPoblacion provincia = await this.Service.UpdatePoblacion(viewModel);
 
-                return new JsonResult(provincia);
-            }
-            catch (Exception ex)
-            {
-                return new BadRequestObjectResult(ex.Message);
-            }
+            return new JsonResult(provincia);
         }
 
         [HttpGet]
@@ -58,32 +50,18 @@ namespace Sandwitch.Tier.Web.Controllers
         [Route("addpoblacion")]
         public async Task<IActionResult> AddPoblacion([FromBody]AddPoblacion viewModel)
         {
-            try
-            {
-                ViewPoblacion poblacion = await this.Service.AddPoblacion(viewModel);
+            ViewPoblacion poblacion = await this.Service.AddPoblacion(viewModel);
 
-                return new JsonResult(poblacion);
-            }
-            catch (Exception ex)
-            {
-                return new BadRequestObjectResult(ex.Message);
-            }
+            return new JsonResult(poblacion);
         }
 
         [HttpDelete]
         [Route("removepoblacionbyid/{id}")]
         public async Task<IActionResult> RemovePoblacionById(int id)
         {
-            try
-            {
-                await this.Service.RemovePoblacionById(id);
+            await this.Service.RemovePoblacionById(id);
 
-                return new JsonResult(StatusCode(200));
-            }
-            catch (Exception ex)
-            {
-                return new BadRequestObjectResult(ex.Message);
-            }
+            return new JsonResult(StatusCode(200));
         }
     }
 }

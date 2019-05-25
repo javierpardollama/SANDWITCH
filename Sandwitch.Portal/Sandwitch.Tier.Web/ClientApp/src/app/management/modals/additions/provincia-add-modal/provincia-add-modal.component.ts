@@ -38,7 +38,9 @@ export class ProvinciaAddModalComponent implements OnInit {
   onSubmit(viewModel: AddProvincia) {
     this.provinciaService.AddProvincia(viewModel).subscribe(provincia => {
 
-      this.matSnackBar.open('Operation Successful', 'Ok');
+      if (provincia.Id !== undefined) {
+        this.matSnackBar.open('Operation Successful', 'Ok');
+      }
 
       this.dialogRef.close();
     });

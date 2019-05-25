@@ -47,7 +47,10 @@ export class ArenalUpdateModalComponent implements OnInit {
   // Form Actions
   onSubmit(viewModel: UpdateArenal) {
     this.arenalService.UpdateArenal(viewModel).subscribe(arenal => {
-      this.matSnackBar.open('Operation Successful', 'Ok');
+
+      if (arenal.Id !== undefined) {
+        this.matSnackBar.open('Operation Successful', 'Ok');
+      }
 
       this.dialogRef.close();
     });
@@ -55,6 +58,7 @@ export class ArenalUpdateModalComponent implements OnInit {
 
   onDelete(viewModel: UpdateArenal) {
     this.arenalService.RemoveArenalById(viewModel.Id).subscribe(arenal => {
+
       this.matSnackBar.open('Operation Successful', 'Ok');
 
       this.dialogRef.close();

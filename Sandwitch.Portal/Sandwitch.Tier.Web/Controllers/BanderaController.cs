@@ -49,32 +49,18 @@ namespace Sandwitch.Tier.Web.Controllers
         [Route("addbandera")]
         public async Task<IActionResult> AddBandera([FromBody]AddBandera viewModel)
         {
-            try
-            {
-                ViewBandera bandera = await this.Service.AddBandera(viewModel);
+            ViewBandera bandera = await this.Service.AddBandera(viewModel);
 
-                return new JsonResult(bandera);
-            }
-            catch (Exception ex)
-            {
-                return new BadRequestObjectResult(ex.Message);
-            }
+            return new JsonResult(bandera);
         }
 
         [HttpDelete]
         [Route("removebanderabyid/{id}")]
         public async Task<IActionResult> RemoveBanderaById(int id)
         {
-            try
-            {
-                await this.Service.RemoveBanderaById(id);
+            await this.Service.RemoveBanderaById(id);
 
-                return new JsonResult(StatusCode(200));
-            }
-            catch (Exception ex)
-            {
-                return new BadRequestObjectResult(ex.Message);
-            }
+            return new JsonResult(StatusCode(200));
         }
     }
 }

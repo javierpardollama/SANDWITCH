@@ -24,16 +24,9 @@ namespace Sandwitch.Tier.Web.Controllers
         [Route("updatebandera")]
         public async Task<IActionResult> UpdateBandera([FromBody]UpdateBandera viewModel)
         {
-            try
-            {
-                ViewBandera bandera = await this.Service.UpdateBandera(viewModel);
+            ViewBandera bandera = await this.Service.UpdateBandera(viewModel);
 
-                return new JsonResult(bandera);
-            }
-            catch (Exception ex)
-            {
-                return new BadRequestObjectResult(ex.Message);
-            }
+            return new JsonResult(bandera);
         }
 
         [HttpGet]

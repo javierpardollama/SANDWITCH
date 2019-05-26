@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Sandwitch.Tier.Services.Interfaces
 {
-    public interface IArenalService
+    public interface IArenalService : IBaseService
     {
         Task<ICollection<ViewArenal>> FindAllArenal();
 

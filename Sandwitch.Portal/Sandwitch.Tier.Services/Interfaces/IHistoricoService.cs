@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Sandwitch.Tier.Services.Interfaces
 {
-    public interface IHistoricoService
+    public interface IHistoricoService : IBaseService
     {
         Task<Arenal> FindArenalById(int id);
 

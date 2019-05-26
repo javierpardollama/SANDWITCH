@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Sandwitch.Tier.Services.Interfaces
 {
-    public interface IPoblacionService
+    public interface IPoblacionService : IBaseService
     {
         Task<ICollection<ViewPoblacion>> FindAllPoblacion();
 

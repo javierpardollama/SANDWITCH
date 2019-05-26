@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Sandwitch.Tier.Services.Interfaces
 {
-    public interface IProvinciaService
+    public interface IProvinciaService : IBaseService
     {
         Task<ICollection<ViewProvincia>> FindAllProvincia();
 

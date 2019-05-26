@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Sandwitch.Tier.Services.Interfaces
 {
-    public interface IBanderaService
+    public interface IBanderaService : IBaseService
     {
         Task<ICollection<ViewBandera>> FindAllBandera();
 

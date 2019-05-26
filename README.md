@@ -1,6 +1,6 @@
 # SANDWITCH
 
-Este proyecto surge como una solución para gestionar el estado actual de las playas españolas, administrando datos como la temperatura del agua y el horario de las mareas, así como el color de la bandera instalada por los socorritas. 
+Este proyecto surge como una solución para gestionar el estado actual de las playas españolas, administrando datos como la temperatura del agua y el horario de las mareas, así como el color de la bandera instalada por los socorristas. 
 
 ## ARQUITECTURA
 

@@ -1,5 +1,5 @@
-﻿using Sandwitch.Tier.Entities.Classes;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
+using Sandwitch.Tier.Entities.Classes;
 using System;
 using System.Threading.Tasks;
 

@@ -17,9 +17,9 @@ using System.Threading.Tasks;
 namespace Sandwitch.Tier.Services.Classes
 {
     public class ArenalService : BaseService, IArenalService
-    {        
-        public ArenalService(IApplicationContext iContext, IMapper iMapper, ILogger<ArenalService> iLogger) : base (iContext, iMapper, iLogger)
-        {          
+    {
+        public ArenalService(IApplicationContext iContext, IMapper iMapper, ILogger<ArenalService> iLogger) : base(iContext, iMapper, iLogger)
+        {
         }
 
         public async Task<ViewArenal> AddArenal(AddArenal viewModel)
@@ -193,6 +193,6 @@ namespace Sandwitch.Tier.Services.Classes
             }
 
             return arenal;
-        }        
+        }
     }
 }

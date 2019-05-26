@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 namespace Sandwitch.Tier.Services.Interfaces
 {
     public interface IHistoricoService
-    {   
+    {
         Task<Arenal> FindArenalById(int id);
 
-        Task<Bandera> FindBanderaById(int id);        
+        Task<Bandera> FindBanderaById(int id);
 
         Task<ViewHistorico> AddHistorico(AddHistorico viewModel);
     }

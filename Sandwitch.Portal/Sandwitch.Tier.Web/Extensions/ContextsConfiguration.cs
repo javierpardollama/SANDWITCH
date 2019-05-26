@@ -11,6 +11,6 @@ namespace Sandwitch.Tier.Web.Extensions
             services.AddScoped<IApplicationContext, ApplicationContext>();
 
             // Add other services here
-        }        
+        }
     }
 }

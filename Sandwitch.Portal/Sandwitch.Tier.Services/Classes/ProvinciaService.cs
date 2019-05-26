@@ -17,7 +17,7 @@ using System.Threading.Tasks;
 namespace Sandwitch.Tier.Services.Classes
 {
     public class ProvinciaService : BaseService, IProvinciaService
-    {      
+    {
         public ProvinciaService(IApplicationContext iContext, IMapper iMapper, ILogger<ProvinciaService> iLogger) : base(iContext, iMapper, iLogger)
         {
         }
@@ -27,7 +27,7 @@ namespace Sandwitch.Tier.Services.Classes
             await CheckName(viewModel);
 
             Provincia provincia = new Provincia
-            {               
+            {
                 Name = viewModel.Name,
                 ImageUri = viewModel.ImageUri
             };
@@ -48,7 +48,7 @@ namespace Sandwitch.Tier.Services.Classes
         {
             ICollection<Provincia> provincias = await Icontext.Provincia
                 .AsQueryable()
-                .Include(x=>x.Poblaciones)
+                .Include(x => x.Poblaciones)
                 .ToAsyncEnumerable()
                 .ToList();
 
@@ -120,6 +120,6 @@ namespace Sandwitch.Tier.Services.Classes
             }
 
             return provincia;
-        }       
+        }
     }
 }

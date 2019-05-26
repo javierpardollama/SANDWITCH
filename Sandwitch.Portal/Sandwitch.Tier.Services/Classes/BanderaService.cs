@@ -27,7 +27,7 @@ namespace Sandwitch.Tier.Services.Classes
             await CheckName(viewModel);
 
             Bandera bandera = new Bandera
-            {               
+            {
                 Name = viewModel.Name,
                 ImageUri = viewModel.ImageUri
             };
@@ -37,7 +37,7 @@ namespace Sandwitch.Tier.Services.Classes
             await Icontext.SaveChangesAsync();
 
             // Log
-            string logData = bandera.GetType().Name +" with Id " + bandera.Id + " was added on " + DateTime.Now.ToShortDateString();
+            string logData = bandera.GetType().Name + " with Id " + bandera.Id + " was added on " + DateTime.Now.ToShortDateString();
 
             ILogger.WriteInsertItemLog(logData);
 
@@ -89,7 +89,7 @@ namespace Sandwitch.Tier.Services.Classes
         {
             Bandera bandera = await FindBanderaById(viewModel.Id);
             bandera.Name = viewModel.Name;
-            bandera.ImageUri = viewModel.ImageUri;          
+            bandera.ImageUri = viewModel.ImageUri;
 
             Icontext.Bandera.Update(bandera);
 

@@ -3,9 +3,9 @@
 namespace Sandwitch.Tier.ViewModels.Classes.Views
 {
     public class ViewProvincia : ViewBase
-    {     
+    {
         public string Name { get; set; }
-       
+
         public string ImageUri { get; set; }
 
         public virtual ICollection<ViewPoblacion> Poblaciones { get; set; }

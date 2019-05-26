@@ -5,12 +5,12 @@ using System;
 
 namespace Sandwitch.Tier.Logging.Extensions
 {
-    public  static class LoggingTransistor
+    public static class LoggingTransistor
     {
         private const LogLevel DefaultLogLevel = LogLevel.None;
 
         private static void Emit(this ILogger @this, Enum appEventData, string logData)
-        {            
+        {
             @this.Log(GetApplicationEventLevel(appEventData), GetApplicationEventCode(appEventData), logData);
         }
 

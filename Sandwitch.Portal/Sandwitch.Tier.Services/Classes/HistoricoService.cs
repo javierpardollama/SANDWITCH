@@ -56,7 +56,7 @@ namespace Sandwitch.Tier.Services.Classes
             }
 
             return bandera;
-        }       
+        }
 
         public async Task<ViewHistorico> AddHistorico(AddHistorico viewModel)
         {
@@ -68,7 +68,7 @@ namespace Sandwitch.Tier.Services.Classes
                 BajaMarOcaso = viewModel.BajaMarOcaso,
                 AltaMarAlba = viewModel.AltaMarAlba,
                 AltaMarOcaso = viewModel.AltaMarOcaso,
-                Temperatura = viewModel.Temperatura,               
+                Temperatura = viewModel.Temperatura,
             };
 
             Icontext.Historico.Add(historico);
@@ -81,6 +81,6 @@ namespace Sandwitch.Tier.Services.Classes
             ILogger.WriteInsertItemLog(logData);
 
             return this.Imapper.Map<ViewHistorico>(historico);
-        }       
+        }
     }
 }

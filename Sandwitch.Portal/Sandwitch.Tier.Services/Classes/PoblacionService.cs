@@ -27,7 +27,7 @@ namespace Sandwitch.Tier.Services.Classes
             await CheckName(viewModel);
 
             Poblacion poblacion = new Poblacion
-            {              
+            {
                 Name = viewModel.Name,
                 Provincia = await FindProvinciaById(viewModel.ProvinciaId),
                 ImageUri = viewModel.ImageUri
@@ -121,7 +121,7 @@ namespace Sandwitch.Tier.Services.Classes
             Poblacion poblacion = await FindPoblacionById(viewModel.Id);
             poblacion.Name = viewModel.Name;
             poblacion.Provincia = await FindProvinciaById(viewModel.ProvinciaId);
-            poblacion.ImageUri = viewModel.ImageUri;          
+            poblacion.ImageUri = viewModel.ImageUri;
 
             Icontext.Poblacion.Update(poblacion);
 
@@ -150,6 +150,6 @@ namespace Sandwitch.Tier.Services.Classes
             }
 
             return poblacion;
-        }       
+        }
     }
 }

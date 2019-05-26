@@ -64,7 +64,7 @@ export class HistoricoAddModalComponent implements OnInit {
   onSubmit(viewModel: AddHistorico) {
     this.historicoService.AddHistorico(viewModel).subscribe(historico => {
 
-      if (historico.Id !== undefined) {
+      if (historico !== undefined) {
         this.matSnackBar.open('Operation Successful', 'Ok');
       }
 

@@ -40,7 +40,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Sandwitch.Tier.GlobalErrorHandling\Sandwitch.Tier.GlobalErrorHandling.csproj" />
     <ProjectReference Include="..\Sandwitch.Tier.Services\Sandwitch.Tier.Services.csproj" />
   </ItemGroup>
 

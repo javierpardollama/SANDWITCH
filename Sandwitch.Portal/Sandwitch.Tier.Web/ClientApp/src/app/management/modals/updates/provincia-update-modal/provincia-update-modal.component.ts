@@ -41,7 +41,7 @@ export class ProvinciaUpdateModalComponent implements OnInit {
   onSubmit(viewModel: UpdateProvincia) {
     this.provinciaService.UpdateProvincia(viewModel).subscribe(provincia => {
 
-      if (provincia.Id !== undefined) {
+      if (provincia !== undefined) {
         this.matSnackBar.open('Operation Successful', 'Ok');
       }
 

@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Sandwitch.Tier.Contexts.Interfaces;
 using Sandwitch.Tier.Entities.Classes;
+using Sandwitch.Tier.Exceptions.Classes;
 using Sandwitch.Tier.Logging.Extensions;
 using Sandwitch.Tier.Services.Interfaces;
 using Sandwitch.Tier.ViewModels.Classes.Additions;
@@ -104,7 +105,7 @@ namespace Sandwitch.Tier.Services.Classes
 
                 ILogger.WriteGetItemNotFoundLog(logData);
 
-                throw new Exception(arenal.GetType().Name + " with Id " + id + " does not exist");
+                throw new ServiceException(arenal.GetType().Name + " with Id " + id + " does not exist");
             }
 
             return arenal;
@@ -121,7 +122,7 @@ namespace Sandwitch.Tier.Services.Classes
 
                 ILogger.WriteGetItemNotFoundLog(logData);
 
-                throw new Exception(poblacion.GetType().Name + " with Id " + id + " does not exist");
+                throw new ServiceException(poblacion.GetType().Name + " with Id " + id + " does not exist");
             }
 
             return poblacion;
@@ -188,7 +189,7 @@ namespace Sandwitch.Tier.Services.Classes
 
                 ILogger.WriteGetItemFoundLog(logData);
 
-                throw new Exception(arenal.GetType().Name + " with Name " + viewModel.Name + " already exists");
+                throw new ServiceException(arenal.GetType().Name + " with Name " + viewModel.Name + " already exists");
             }
 
             return arenal;

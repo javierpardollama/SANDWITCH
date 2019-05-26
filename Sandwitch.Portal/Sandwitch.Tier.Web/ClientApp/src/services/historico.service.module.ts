@@ -1,5 +1,6 @@
 import { AddHistorico } from '../viewmodels/additions/addhistorico';
 import { ViewHistorico } from '../viewmodels/views/viewhistorico';
+import { ViewException } from '../viewmodels/views/viewexception';
 import { HttpClient } from '@angular/common/http';
 import { MatSnackBar } from '@angular/material';
 import { Injectable } from '@angular/core';
@@ -24,9 +25,9 @@ export class HistoricoService {
     }
 
     private handleError<T>(operation = 'Operation', result?: T) {
-        return (error: any): Observable<T> => {
+        return (exception: ViewException): Observable<T> => {
 
-            this.matSnackBar.open(error.error.Message, 'Ok');
+            this.matSnackBar.open(exception.Message, 'Ok');
 
             // Let the app keep running by returning an empty result.
             return of(result as T);

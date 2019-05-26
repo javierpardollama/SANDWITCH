@@ -1,9 +1,12 @@
 ﻿using Microsoft.AspNetCore.Http;
-using System;
+using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
+using Sandwitch.Tier.Exceptions.Classes;
+using Sandwitch.Tier.ViewModels.Classes.Views;
 using System.Net;
 using System.Threading.Tasks;
 
-namespace Sandwitch.Tier.Exceptions.Middlewares
+namespace Sandwitch.Tier.ExceptionHandling.Middlewares
 {
     public class ExceptionMiddleware
     {
@@ -20,22 +23,22 @@ namespace Sandwitch.Tier.Exceptions.Middlewares
             {
                 await _next(httpContext);
             }
-            catch (Exception ex)
+            catch (ServiceException ex)
             {
                 await HandleExceptionAsync(httpContext, ex);
             }
         }
 
-        private static Task HandleExceptionAsync(HttpContext context, Exception exception)
+        private static Task HandleExceptionAsync(HttpContext context, ServiceException exception)
         {
             context.Response.ContentType = "application/json";
             context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
 
-            return context.Response.WriteAsync(new ErrorDetails()
+            return context.Response.WriteAsync(JsonConvert.SerializeObject(new ViewException
             {
                 StatusCode = context.Response.StatusCode,
                 Message = exception.Message
-            }.ToString());
+            }).ToString());
         }
     }
 }

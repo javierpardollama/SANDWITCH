@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Sandwitch.Tier.Contexts.Interfaces;
 using Sandwitch.Tier.Entities.Classes;
+using Sandwitch.Tier.Exceptions.Classes;
 using Sandwitch.Tier.Logging.Extensions;
 using Sandwitch.Tier.Services.Interfaces;
 using Sandwitch.Tier.ViewModels.Classes.Additions;
@@ -34,7 +35,7 @@ namespace Sandwitch.Tier.Services.Classes
 
                 ILogger.WriteGetItemNotFoundLog(logData);
 
-                throw new Exception(arenal.GetType().Name + " with with Id " + id + " does not exist");
+                throw new ServiceException(arenal.GetType().Name + " with with Id " + id + " does not exist");
             }
 
             return arenal;
@@ -51,7 +52,7 @@ namespace Sandwitch.Tier.Services.Classes
 
                 ILogger.WriteGetItemNotFoundLog(logData);
 
-                throw new Exception(bandera.GetType().Name + " with with Id " + id + " does not exist");
+                throw new ServiceException(bandera.GetType().Name + " with with Id " + id + " does not exist");
             }
 
             return bandera;

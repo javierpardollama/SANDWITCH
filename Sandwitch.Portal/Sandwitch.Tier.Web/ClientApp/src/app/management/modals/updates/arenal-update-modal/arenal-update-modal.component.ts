@@ -48,7 +48,7 @@ export class ArenalUpdateModalComponent implements OnInit {
   onSubmit(viewModel: UpdateArenal) {
     this.arenalService.UpdateArenal(viewModel).subscribe(arenal => {
 
-      if (arenal.Id !== undefined) {
+      if (arenal !== undefined) {
         this.matSnackBar.open('Operation Successful', 'Ok');
       }
 

@@ -41,7 +41,7 @@ export class BanderaUpdateModalComponent implements OnInit {
   onSubmit(viewModel: UpdateBandera) {
     this.banderaService.UpdateBandera(viewModel).subscribe(bandera => {
 
-      if (bandera.Id !== undefined) {
+      if (bandera !== undefined) {
         this.matSnackBar.open('Operation Successful', 'Ok');
       }
 

@@ -65,7 +65,7 @@ namespace Sandwitch.Tier.Web
                 app.UseHsts();
             }
 
-            app.AddCustomExceptionMiddlewares();
+            app.UseCustomExceptionMiddlewares();
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();

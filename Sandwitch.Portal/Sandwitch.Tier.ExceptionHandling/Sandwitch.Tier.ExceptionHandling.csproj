@@ -5,10 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.2.5" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Sandwitch.Tier.Exceptions\Sandwitch.Tier.Exceptions.csproj" />
     <ProjectReference Include="..\Sandwitch.Tier.ViewModels\Sandwitch.Tier.ViewModels.csproj" />
   </ItemGroup>
 

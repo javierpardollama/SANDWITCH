@@ -1,6 +1,7 @@
 import { AddPoblacion } from '../viewmodels/additions/addpoblacion';
 import { UpdatePoblacion } from '../viewmodels/updates/updatepoblacion';
 import { ViewPoblacion } from '../viewmodels/views/viewpoblacion';
+import { ViewException } from '../viewmodels/views/viewexception';
 import { HttpClient } from '@angular/common/http';
 import { MatSnackBar } from '@angular/material';
 import { Injectable } from '@angular/core';
@@ -45,9 +46,9 @@ export class PoblacionService {
     }
 
     private handleError<T>(operation = 'Operation', result?: T) {
-        return (error: any): Observable<T> => {
+        return (exception: ViewException): Observable<T> => {
 
-            this.matSnackBar.open(error.error.Message, 'Ok');
+            this.matSnackBar.open(exception.Message, 'Ok');
 
             // Let the app keep running by returning an empty result.
             return of(result as T);

@@ -1,6 +1,7 @@
 import { AddProvincia } from '../viewmodels/additions/addprovincia';
 import { UpdateProvincia } from '../viewmodels/updates/updateprovincia';
 import { ViewProvincia } from '../viewmodels/views/viewprovincia';
+import { ViewException } from '../viewmodels/views/viewexception';
 import { HttpClient } from '@angular/common/http';
 import { MatSnackBar } from '@angular/material';
 import { Injectable } from '@angular/core';
@@ -40,9 +41,9 @@ export class ProvinciaService {
     }
 
     private handleError<T>(operation = 'Operation', result?: T) {
-        return (error: any): Observable<T> => {
+        return (exception: ViewException): Observable<T> => {
 
-            this.matSnackBar.open(error.error.Message, 'Ok');
+            this.matSnackBar.open(exception.Message, 'Ok');
 
             // Let the app keep running by returning an empty result.
             return of(result as T);

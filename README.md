@@ -21,7 +21,7 @@ En esta capa se traducen las distintas órdenes y resultados a una forma que el 
 
 ## BUILD
 
-Para comilar y hacer funcionar este proyecto se recomienda utilizar una serie de herramientas con las cuales este proyecto ha sido construido y probado:
+Para compilar y hacer funcionar este proyecto se recomienda utilizar una serie de herramientas con las cuales este proyecto ha sido construido y probado:
 
 1. [.NET](https://dotnet.microsoft.com/)
 

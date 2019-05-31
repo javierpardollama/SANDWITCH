@@ -31,11 +31,11 @@ namespace Sandwitch.Tier.Services.Classes
             if (arenal == null)
             {
                 // Log
-                string logData = arenal.GetType().Name + " with with Id " + id + " was not found on " + DateTime.Now.ToShortDateString();
+                string logData = arenal.GetType().Name + " with Id " + id + " was not found on " + DateTime.Now.ToShortDateString();
 
                 ILogger.WriteGetItemNotFoundLog(logData);
 
-                throw new ServiceException(arenal.GetType().Name + " with with Id " + id + " does not exist");
+                throw new ServiceException(arenal.GetType().Name + " with Id " + id + " does not exist");
             }
 
             return arenal;
@@ -48,11 +48,11 @@ namespace Sandwitch.Tier.Services.Classes
             if (bandera == null)
             {
                 // Log
-                string logData = bandera.GetType().Name + " with with Id " + id + " was not found on " + DateTime.Now.ToShortDateString();
+                string logData = bandera.GetType().Name + " with Id " + id + " was not found on " + DateTime.Now.ToShortDateString();
 
                 ILogger.WriteGetItemNotFoundLog(logData);
 
-                throw new ServiceException(bandera.GetType().Name + " with with Id " + id + " does not exist");
+                throw new ServiceException(bandera.GetType().Name + " with Id " + id + " does not exist");
             }
 
             return bandera;
@@ -76,7 +76,7 @@ namespace Sandwitch.Tier.Services.Classes
             await Icontext.SaveChangesAsync();
 
             // Log
-            string logData = historico.GetType().Name + " with with Id " + historico.Id + " was added on " + DateTime.Now.ToShortDateString();
+            string logData = historico.GetType().Name + " with Id " + historico.Id + " was added on " + DateTime.Now.ToShortDateString();
 
             ILogger.WriteInsertItemLog(logData);
 

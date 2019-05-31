@@ -13,7 +13,10 @@ namespace Sandwitch.Tier.Services.Classes
 
         protected readonly ILogger ILogger;
 
-        public BaseService(IApplicationContext iContext, IMapper iMapper, ILogger iLogger)
+        public BaseService(
+            IApplicationContext iContext,
+            IMapper iMapper,
+            ILogger iLogger)
         {
             Icontext = iContext;
             Imapper = iMapper;

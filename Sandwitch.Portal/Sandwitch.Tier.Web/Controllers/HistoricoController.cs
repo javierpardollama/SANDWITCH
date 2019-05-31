@@ -12,10 +12,7 @@ namespace Sandwitch.Tier.Web.Controllers
     {
         private readonly IHistoricoService Service;
 
-        public HistoricoController(IHistoricoService service)
-        {
-            this.Service = service;
-        }
+        public HistoricoController(IHistoricoService service) => this.Service = service;
 
         [HttpPost]
         [Route("addhistorico")]

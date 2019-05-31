@@ -14,10 +14,7 @@ namespace Sandwitch.Tier.Web.Controllers
     {
         private readonly IArenalService Service;
 
-        public ArenalController(IArenalService service)
-        {
-            this.Service = service;
-        }
+        public ArenalController(IArenalService service) => this.Service = service;
 
         [HttpPut]
         [Route("updatearenal")]

@@ -9,10 +9,11 @@ namespace Sandwitch.Tier.Logging.Extensions
     {
         private const LogLevel DefaultLogLevel = LogLevel.None;
 
-        private static void Emit(this ILogger @this, Enum appEventData, string logData)
-        {
-            @this.Log(GetApplicationEventLevel(appEventData), GetApplicationEventCode(appEventData), logData);
-        }
+        private static void Emit(this ILogger @this, Enum appEventData, string logData) => @this.Log(
+                GetApplicationEventLevel(appEventData),
+                GetApplicationEventCode(appEventData),
+                logData,
+                DateTime.Now.ToShortDateString());
 
         public static void WriteGetItemNotFoundLog(this ILogger @this, string logData)
         {
@@ -49,15 +50,9 @@ namespace Sandwitch.Tier.Logging.Extensions
             WriteDiagnostics(logData);
         }
 
-        private static void WriteDiagnostics(string logData)
-        {
-            System.Diagnostics.Debug.WriteLine(logData);
-        }
+        private static void WriteDiagnostics(string logData) => System.Diagnostics.Debug.WriteLine(logData);
 
-        private static int GetApplicationEventCode(Enum appEventData)
-        {
-            return (int)Convert.ChangeType(appEventData, appEventData.GetTypeCode());
-        }
+        private static int GetApplicationEventCode(Enum appEventData) => (int)Convert.ChangeType(appEventData, appEventData.GetTypeCode());
 
         private static LogLevel GetApplicationEventLevel(Enum appEventData)
         {

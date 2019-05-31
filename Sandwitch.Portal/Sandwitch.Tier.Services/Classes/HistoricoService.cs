@@ -16,7 +16,10 @@ namespace Sandwitch.Tier.Services.Classes
 {
     public class HistoricoService : BaseService, IHistoricoService
     {
-        public HistoricoService(IApplicationContext iContext, IMapper iMapper, ILogger<HistoricoService> iLogger) : base(iContext, iMapper, iLogger)
+        public HistoricoService(
+            IApplicationContext iContext,
+            IMapper iMapper,
+            ILogger<HistoricoService> iLogger) : base(iContext, iMapper, iLogger)
         {
         }
 
@@ -31,7 +34,7 @@ namespace Sandwitch.Tier.Services.Classes
             if (arenal == null)
             {
                 // Log
-                string logData = arenal.GetType().Name + " with Id " + id + " was not found on " + DateTime.Now.ToShortDateString();
+                string logData = arenal.GetType().Name + " with Id " + id + " was not found at " + DateTime.Now.ToShortTimeString();
 
                 ILogger.WriteGetItemNotFoundLog(logData);
 
@@ -48,7 +51,7 @@ namespace Sandwitch.Tier.Services.Classes
             if (bandera == null)
             {
                 // Log
-                string logData = bandera.GetType().Name + " with Id " + id + " was not found on " + DateTime.Now.ToShortDateString();
+                string logData = bandera.GetType().Name + " with Id " + id + " was not found at " + DateTime.Now.ToShortTimeString();
 
                 ILogger.WriteGetItemNotFoundLog(logData);
 
@@ -76,7 +79,7 @@ namespace Sandwitch.Tier.Services.Classes
             await Icontext.SaveChangesAsync();
 
             // Log
-            string logData = historico.GetType().Name + " with Id " + historico.Id + " was added on " + DateTime.Now.ToShortDateString();
+            string logData = historico.GetType().Name + " with Id " + historico.Id + " was added at " + DateTime.Now.ToShortTimeString();
 
             ILogger.WriteInsertItemLog(logData);
 

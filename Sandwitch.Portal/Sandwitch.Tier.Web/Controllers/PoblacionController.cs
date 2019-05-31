@@ -14,10 +14,7 @@ namespace Sandwitch.Tier.Web.Controllers
     {
         private readonly IPoblacionService Service;
 
-        public PoblacionController(IPoblacionService service)
-        {
-            this.Service = service;
-        }
+        public PoblacionController(IPoblacionService service) => this.Service = service;
 
         [HttpPut]
         [Route("updatepoblacion")]

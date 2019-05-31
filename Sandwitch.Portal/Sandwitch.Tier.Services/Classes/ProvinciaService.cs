@@ -18,7 +18,10 @@ namespace Sandwitch.Tier.Services.Classes
 {
     public class ProvinciaService : BaseService, IProvinciaService
     {
-        public ProvinciaService(IApplicationContext iContext, IMapper iMapper, ILogger<ProvinciaService> iLogger) : base(iContext, iMapper, iLogger)
+        public ProvinciaService(
+            IApplicationContext iContext,
+            IMapper iMapper,
+            ILogger<ProvinciaService> iLogger) : base(iContext, iMapper, iLogger)
         {
         }
 
@@ -37,7 +40,11 @@ namespace Sandwitch.Tier.Services.Classes
             await Icontext.SaveChangesAsync();
 
             // Log
-            string logData = provincia.GetType().Name + " with Id " + provincia.Id + " was added on " + DateTime.Now.ToShortDateString();
+            string logData = provincia.GetType().Name
+                + " with Id "
+                + provincia.Id
+                + " was added at "
+                + DateTime.Now.ToShortTimeString();
 
             ILogger.WriteInsertItemLog(logData);
 
@@ -63,7 +70,11 @@ namespace Sandwitch.Tier.Services.Classes
             if (provincia == null)
             {
                 // Log
-                string logData = provincia.GetType().Name + " with Id " + id + " was not found on " + DateTime.Now.ToShortDateString();
+                string logData = provincia.GetType().Name
+                    + " with Id "
+                    + id
+                    + " was not found at "
+                    + DateTime.Now.ToShortTimeString();
 
                 ILogger.WriteGetItemNotFoundLog(logData);
 
@@ -82,7 +93,11 @@ namespace Sandwitch.Tier.Services.Classes
             await Icontext.SaveChangesAsync();
 
             // Log
-            string logData = provincia.GetType().Name + " with Id " + provincia.Id + " was removed on " + DateTime.Now.ToShortDateString();
+            string logData = provincia.GetType().Name
+                + " with Id "
+                + provincia.Id
+                + " was removed at "
+                + DateTime.Now.ToShortTimeString();
 
             ILogger.WriteDeleteItemLog(logData);
         }
@@ -98,7 +113,11 @@ namespace Sandwitch.Tier.Services.Classes
             await Icontext.SaveChangesAsync();
 
             // Log
-            string logData = provincia.GetType().Name + " with Id " + provincia.Id + " was modified on " + DateTime.Now.ToShortDateString();
+            string logData = provincia.GetType().Name
+                + " with Id "
+                + provincia.Id
+                + " was modified at "
+                + DateTime.Now.ToShortTimeString();
 
             ILogger.WriteUpdateItemLog(logData);
 
@@ -112,7 +131,11 @@ namespace Sandwitch.Tier.Services.Classes
             if (provincia != null)
             {
                 // Log
-                string logData = provincia.GetType().Name + " with Name " + provincia.Name + " was already found on " + DateTime.Now.ToShortDateString();
+                string logData = provincia.GetType().Name
+                    + " with Name "
+                    + provincia.Name
+                    + " was already found at "
+                    + DateTime.Now.ToShortTimeString();
 
                 ILogger.WriteGetItemFoundLog(logData);
 

@@ -14,10 +14,7 @@ namespace Sandwitch.Tier.Web.Controllers
     {
         private readonly IBanderaService Service;
 
-        public BanderaController(IBanderaService service)
-        {
-            this.Service = service;
-        }
+        public BanderaController(IBanderaService service) => this.Service = service;
 
         [HttpPut]
         [Route("updatebandera")]

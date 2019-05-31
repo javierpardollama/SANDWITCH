@@ -22,25 +22,25 @@ export class ProvinciaService {
 
     public UpdateProvincia(viewModel: UpdateProvincia): Observable<ViewProvincia> {
         return this.httpClient.put<ViewProvincia>('api/provincia/updateprovincia', viewModel)
-            .pipe(catchError(this.handleError<ViewProvincia>('UpdateProvincia', undefined)));
+            .pipe(catchError(this.HandleError<ViewProvincia>('UpdateProvincia', undefined)));
     }
 
     public FindAllProvincia(): Observable<ViewProvincia[]> {
         return this.httpClient.get<ViewProvincia[]>('api/provincia/findallprovincia')
-            .pipe(catchError(this.handleError<ViewProvincia[]>('FindAllProvincia', [])));
+            .pipe(catchError(this.HandleError<ViewProvincia[]>('FindAllProvincia', [])));
     }
 
     public AddProvincia(viewModel: AddProvincia): Observable<ViewProvincia> {
         return this.httpClient.post<ViewProvincia>('api/provincia/addprovincia', viewModel)
-            .pipe(catchError(this.handleError<ViewProvincia>('AddProvincia', undefined)));
+            .pipe(catchError(this.HandleError<ViewProvincia>('AddProvincia', undefined)));
     }
 
     public RemoveProvinciaById(id: number) {
         return this.httpClient.delete<any>('api/provincia/removeprovinciabyid/' + id)
-            .pipe(catchError(this.handleError<any>('RemoveProvinciaById', undefined)));
+            .pipe(catchError(this.HandleError<any>('RemoveProvinciaById', undefined)));
     }
 
-    private handleError<T>(operation = 'Operation', result?: T) {
+    private HandleError<T>(operation = 'Operation', result?: T) {
         return (exception: ViewException): Observable<T> => {
 
             this.matSnackBar.open(exception.Message, 'Ok');

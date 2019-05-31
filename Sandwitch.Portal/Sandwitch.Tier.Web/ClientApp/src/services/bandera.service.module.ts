@@ -22,25 +22,25 @@ export class BanderaService {
 
     public UpdateBandera(viewModel: UpdateBandera): Observable<ViewBandera> {
         return this.httpClient.put<ViewBandera>('api/bandera/updatebandera', viewModel)
-            .pipe(catchError(this.handleError<ViewBandera>('UpdateBandera', undefined)));
+            .pipe(catchError(this.HandleError<ViewBandera>('UpdateBandera', undefined)));
     }
 
     public FindAllBandera(): Observable<ViewBandera[]> {
         return this.httpClient.get<ViewBandera[]>('api/bandera/findallbandera')
-            .pipe(catchError(this.handleError<ViewBandera[]>('FindAllBandera', [])));
+            .pipe(catchError(this.HandleError<ViewBandera[]>('FindAllBandera', [])));
     }
 
     public AddBandera(viewModel: AddBandera): Observable<ViewBandera> {
         return this.httpClient.post<ViewBandera>('api/bandera/addbandera', viewModel)
-            .pipe(catchError(this.handleError<ViewBandera>('AddBandera', undefined)));
+            .pipe(catchError(this.HandleError<ViewBandera>('AddBandera', undefined)));
     }
 
     public RemoveBanderaById(id: number) {
         return this.httpClient.delete<any>('api/bandera/removebanderabyid/' + id)
-            .pipe(catchError(this.handleError<any>('RemoveBanderaById', undefined)));
+            .pipe(catchError(this.HandleError<any>('RemoveBanderaById', undefined)));
     }
 
-    private handleError<T>(operation = 'Operation', result?: T) {
+    private HandleError<T>(operation = 'Operation', result?: T) {
         return (exception: ViewException): Observable<T> => {
 
             this.matSnackBar.open(exception.Message, 'Ok');

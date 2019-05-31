@@ -21,10 +21,10 @@ export class HistoricoService {
 
     public AddHistorico(viewModel: AddHistorico): Observable<ViewHistorico> {
         return this.httpClient.post<ViewHistorico>('api/historico/addhistorico', viewModel)
-            .pipe(catchError(this.handleError<ViewHistorico>('AddHistorico', undefined)));
+            .pipe(catchError(this.HandleError<ViewHistorico>('AddHistorico', undefined)));
     }
 
-    private handleError<T>(operation = 'Operation', result?: T) {
+    private HandleError<T>(operation = 'Operation', result?: T) {
         return (exception: ViewException): Observable<T> => {
 
             this.matSnackBar.open(exception.Message, 'Ok');

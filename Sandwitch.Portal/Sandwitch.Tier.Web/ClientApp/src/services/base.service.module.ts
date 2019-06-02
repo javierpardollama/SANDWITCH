@@ -4,7 +4,7 @@ import { MatSnackBar } from '@angular/material';
 import { Observable, of } from 'rxjs';
 import { AppConstants } from './../app/app.constants';
 
-export abstract class BaseService {
+export class BaseService {
 
     public constructor(
         protected httpClient: HttpClient,

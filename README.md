@@ -33,7 +33,7 @@ Este framework es utilizado para construir el entorno necesario para la capa Pre
 
 3. [Angular Cli](https://cli.angular.io/)
 
-Este framework es utilizado para construir todo lo referente a las capa Presentation Tier.
+Este framework es utilizado para construir todo lo referente a la capa Presentation Tier.
 
 ## LICENSE
 

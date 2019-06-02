@@ -38,7 +38,7 @@ namespace Sandwitch.Tier.ExceptionHandling.Middlewares
                 Message = exception.Message
             };
 
-            return context.Response.WriteAsync(JsonConvert.SerializeObject(viewException));   //.Response.WriteAsync(JsonConvert.SerializeObject(viewException).ToString());
+            return context.Response.WriteAsync(JsonConvert.SerializeObject(viewException));
         }
     }
 }

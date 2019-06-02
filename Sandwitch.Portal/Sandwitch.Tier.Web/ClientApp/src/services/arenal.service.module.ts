@@ -1,24 +1,23 @@
 import { AddArenal } from '../viewmodels/additions/addarenal';
 import { UpdateArenal } from '../viewmodels/updates/updatearenal';
 import { ViewArenal } from '../viewmodels/views/viewarenal';
-import { ViewException } from '../viewmodels/views/viewexception';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { MatSnackBar } from '@angular/material';
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { AppConstants } from './../app/app.constants';
+import { BaseService } from './base.service.module';
 
 @Injectable({
     providedIn: 'root',
 })
 
-export class ArenalService {
+export class ArenalService extends BaseService {
 
     public constructor(
-        private httpClient: HttpClient,
-        private matSnackBar: MatSnackBar) {
-
+        protected httpClient: HttpClient,
+        protected matSnackBar: MatSnackBar) {
+        super(httpClient, matSnackBar);
     }
 
     public UpdateArenal(viewModel: UpdateArenal): Observable<ViewArenal> {
@@ -44,21 +43,5 @@ export class ArenalService {
     public RemoveArenalById(id: number) {
         return this.httpClient.delete<any>('api/arenal/removearenalbyid/' + id)
             .pipe(catchError(this.HandleError<any>('RemoveArenalById', undefined)));
-    }
-
-    private HandleError<T>(operation = 'Operation', result?: T) {
-        return (httpErrorResponse: HttpErrorResponse): Observable<T> => {
-
-            const expception: ViewException =
-            {
-                Message: httpErrorResponse.error.Message,
-                StatusCode: httpErrorResponse.error.StatusCode
-            }
-
-            this.matSnackBar.open(expception.Message, AppConstants.AppOkButtonText, { duration: AppConstants.AppToastSecondTicks * AppConstants.AppTimeSecondTicks });
-
-            // Let the app keep running by returning an empty result.
-            return of(result as T);
-        };
     }
 }

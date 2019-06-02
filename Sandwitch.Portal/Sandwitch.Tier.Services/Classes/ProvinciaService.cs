@@ -78,7 +78,10 @@ namespace Sandwitch.Tier.Services.Classes
 
                 ILogger.WriteGetItemNotFoundLog(logData);
 
-                throw new ServiceException(provincia.GetType().Name + " with Id " + id + " does not exist");
+                throw new ServiceException(provincia.GetType().Name
+                    + " with Id "
+                    + id
+                    + " does not exist");
             }
 
             return provincia;
@@ -139,7 +142,10 @@ namespace Sandwitch.Tier.Services.Classes
 
                 ILogger.WriteGetItemFoundLog(logData);
 
-                throw new ServiceException(provincia.GetType().Name + " with Name " + viewModel.Name + " already exists");
+                throw new ServiceException(provincia.GetType().Name
+                    + " with Name "
+                    + viewModel.Name
+                    + " already exists");
             }
 
             return provincia;

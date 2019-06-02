@@ -7,6 +7,7 @@ import { AddPoblacion } from '../../../../../viewmodels/additions/addpoblacion';
 
 import { ProvinciaService } from '../../../../../services/provincia.service.module';
 import { PoblacionService } from '../../../../../services/poblacion.service.module';
+import { AppConstants } from '../../../../app.constants';
 
 @Component({
   selector: 'app-poblacion-add-modal',
@@ -47,7 +48,7 @@ export class PoblacionAddModalComponent implements OnInit {
     this.poblacionService.AddPoblacion(viewModel).subscribe(poblacion => {
 
       if (poblacion !== undefined) {
-        this.matSnackBar.open('Operation Successful', 'Ok');
+        this.matSnackBar.open(AppConstants.AppSuccessButtonText, AppConstants.AppOkButtonText, { duration: AppConstants.AppToastSecondTicks * AppConstants.AppTimeSecondTicks });
       }
 
       this.dialogRef.close();

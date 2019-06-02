@@ -7,6 +7,7 @@ import { AddArenal } from '../../../../../viewmodels/additions/addarenal';
 
 import { ArenalService } from '../../../../../services/arenal.service.module';
 import { ProvinciaService } from '../../../../../services/provincia.service.module';
+import { AppConstants } from '../../../../app.constants';
 
 @Component({
   selector: 'app-arenal-add-modal',
@@ -46,7 +47,7 @@ export class ArenalAddModalComponent implements OnInit {
     this.arenalService.AddArenal(viewModel).subscribe(arenal => {
 
       if (arenal !== undefined) {
-        this.matSnackBar.open('Operation Successful', 'Ok');
+        this.matSnackBar.open(AppConstants.AppSuccessButtonText, AppConstants.AppOkButtonText, { duration: AppConstants.AppToastSecondTicks * AppConstants.AppTimeSecondTicks });
       }
 
       this.dialogRef.close();

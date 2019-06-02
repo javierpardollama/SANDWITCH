@@ -8,6 +8,7 @@ import { UpdateArenal } from '../../../../../viewmodels/updates/updatearenal';
 
 import { ArenalService } from '../../../../../services/arenal.service.module';
 import { ProvinciaService } from '../../../../../services/provincia.service.module';
+import { AppConstants } from '../../../../app.constants';
 
 @Component({
   selector: 'app-arenal-update-modal',
@@ -49,7 +50,7 @@ export class ArenalUpdateModalComponent implements OnInit {
     this.arenalService.UpdateArenal(viewModel).subscribe(arenal => {
 
       if (arenal !== undefined) {
-        this.matSnackBar.open('Operation Successful', 'Ok');
+        this.matSnackBar.open(AppConstants.AppSuccessButtonText, AppConstants.AppOkButtonText, { duration: AppConstants.AppToastSecondTicks * AppConstants.AppTimeSecondTicks });
       }
 
       this.dialogRef.close();
@@ -59,7 +60,7 @@ export class ArenalUpdateModalComponent implements OnInit {
   onDelete(viewModel: UpdateArenal) {
     this.arenalService.RemoveArenalById(viewModel.Id).subscribe(arenal => {
 
-      this.matSnackBar.open('Operation Successful', 'Ok');
+      this.matSnackBar.open(AppConstants.AppSuccessButtonText, AppConstants.AppOkButtonText, { duration: AppConstants.AppToastSecondTicks * AppConstants.AppTimeSecondTicks });
 
       this.dialogRef.close();
     });

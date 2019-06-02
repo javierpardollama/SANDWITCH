@@ -5,6 +5,7 @@ import { ViewBandera } from '../../../../../viewmodels/views/viewbandera';
 import { UpdateBandera } from '../../../../../viewmodels/updates/updatebandera';
 
 import { BanderaService } from '../../../../../services/bandera.service.module';
+import { AppConstants } from '../../../../app.constants';
 
 @Component({
   selector: 'app-bandera-update-modal',
@@ -42,7 +43,7 @@ export class BanderaUpdateModalComponent implements OnInit {
     this.banderaService.UpdateBandera(viewModel).subscribe(bandera => {
 
       if (bandera !== undefined) {
-        this.matSnackBar.open('Operation Successful', 'Ok');
+        this.matSnackBar.open(AppConstants.AppSuccessButtonText, AppConstants.AppOkButtonText, { duration: AppConstants.AppToastSecondTicks * AppConstants.AppTimeSecondTicks });
       }
 
       this.dialogRef.close();
@@ -52,7 +53,7 @@ export class BanderaUpdateModalComponent implements OnInit {
   onDelete(viewModel: UpdateBandera) {
     this.banderaService.RemoveBanderaById(viewModel.Id).subscribe(bandera => {
 
-      this.matSnackBar.open('Operation Successful', 'Ok');
+      this.matSnackBar.open(AppConstants.AppSuccessButtonText, AppConstants.AppOkButtonText, { duration: AppConstants.AppToastSecondTicks * AppConstants.AppTimeSecondTicks });
 
       this.dialogRef.close();
     });

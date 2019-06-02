@@ -8,6 +8,7 @@ import { UpdatePoblacion } from '../../../../../viewmodels/updates/updatepoblaci
 
 import { ProvinciaService } from '../../../../../services/provincia.service.module';
 import { PoblacionService } from '../../../../../services/poblacion.service.module';
+import { AppConstants } from '../../../../app.constants';
 
 @Component({
   selector: 'app-poblacion-update-modal',
@@ -50,7 +51,7 @@ export class PoblacionUpdateModalComponent implements OnInit {
     this.poblacionService.UpdatePoblacion(viewModel).subscribe(poblacion => {
 
       if (poblacion !== undefined) {
-        this.matSnackBar.open('Operation Successful', 'Ok');
+        this.matSnackBar.open(AppConstants.AppSuccessButtonText, AppConstants.AppOkButtonText, { duration: AppConstants.AppToastSecondTicks * AppConstants.AppTimeSecondTicks });
       }
 
       this.dialogRef.close();
@@ -59,7 +60,7 @@ export class PoblacionUpdateModalComponent implements OnInit {
 
   onDelete(viewModel: UpdatePoblacion) {
     this.poblacionService.RemovePoblacionById(viewModel.Id).subscribe(poblacion => {
-      this.matSnackBar.open('Operation Successful', 'Ok');
+      this.matSnackBar.open(AppConstants.AppSuccessButtonText, AppConstants.AppOkButtonText, { duration: AppConstants.AppToastSecondTicks * AppConstants.AppTimeSecondTicks });
 
       this.dialogRef.close();
     });

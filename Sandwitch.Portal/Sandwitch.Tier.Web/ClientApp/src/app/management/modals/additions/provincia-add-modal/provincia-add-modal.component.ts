@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AddProvincia } from '../../../../../viewmodels/additions/addprovincia';
 
 import { ProvinciaService } from '../../../../../services/provincia.service.module';
+import { AppConstants } from '../../../../app.constants';
 
 @Component({
   selector: 'app-provincia-add-modal',
@@ -39,7 +40,7 @@ export class ProvinciaAddModalComponent implements OnInit {
     this.provinciaService.AddProvincia(viewModel).subscribe(provincia => {
 
       if (provincia !== undefined) {
-        this.matSnackBar.open('Operation Successful', 'Ok');
+        this.matSnackBar.open(AppConstants.AppSuccessButtonText, AppConstants.AppOkButtonText, { duration: AppConstants.AppToastSecondTicks * AppConstants.AppTimeSecondTicks });
       }
 
       this.dialogRef.close();

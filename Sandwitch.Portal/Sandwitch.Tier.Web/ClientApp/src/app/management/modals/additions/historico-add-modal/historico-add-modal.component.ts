@@ -8,6 +8,7 @@ import { AddHistorico } from '../../../../../viewmodels/additions/addhistorico';
 
 import { HistoricoService } from '../../../../../services/historico.service.module';
 import { BanderaService } from '../../../../../services/bandera.service.module';
+import { AppConstants } from '../../../../app.constants';
 
 @Component({
   selector: 'app-historico-add-modal',
@@ -65,7 +66,7 @@ export class HistoricoAddModalComponent implements OnInit {
     this.historicoService.AddHistorico(viewModel).subscribe(historico => {
 
       if (historico !== undefined) {
-        this.matSnackBar.open('Operation Successful', 'Ok');
+        this.matSnackBar.open(AppConstants.AppSuccessButtonText, AppConstants.AppOkButtonText, { duration: AppConstants.AppToastSecondTicks * AppConstants.AppTimeSecondTicks });
       }
 
       this.dialogRef.close();

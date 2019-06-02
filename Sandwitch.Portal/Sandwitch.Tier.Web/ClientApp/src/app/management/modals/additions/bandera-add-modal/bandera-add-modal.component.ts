@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AddBandera } from '../../../../../viewmodels/additions/addbandera';
 
 import { BanderaService } from '../../../../../services/bandera.service.module';
+import { AppConstants } from '../../../../app.constants';
 
 @Component({
   selector: 'app-bandera-add-modal',
@@ -39,7 +40,7 @@ export class BanderaAddModalComponent implements OnInit {
     this.banderaService.AddBandera(viewModel).subscribe(bandera => {
 
       if (bandera !== undefined) {
-        this.matSnackBar.open('Operation Successful', 'Ok');
+        this.matSnackBar.open(AppConstants.AppSuccessButtonText, AppConstants.AppOkButtonText, { duration: AppConstants.AppToastSecondTicks * AppConstants.AppTimeSecondTicks });
       }
 
       this.dialogRef.close();

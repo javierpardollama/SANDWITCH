@@ -14,8 +14,8 @@ import { PoblacionAddModalComponent } from '../../modals/additions/poblacion-add
 })
 export class PoblacionGridComponent implements OnInit {
 
-  @ViewChild(MatPaginator) paginator: MatPaginator;
-  @ViewChild(MatSort) sort: MatSort;
+  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
+  @ViewChild(MatSort, {static: true}) sort: MatSort;
 
   public ELEMENT_DATA: ViewPoblacion[];
 

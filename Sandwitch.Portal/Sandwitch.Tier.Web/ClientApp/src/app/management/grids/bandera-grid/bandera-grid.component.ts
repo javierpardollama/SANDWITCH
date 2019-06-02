@@ -15,8 +15,8 @@ import { BanderaAddModalComponent } from '../../modals/additions/bandera-add-mod
 })
 export class BanderaGridComponent implements OnInit {
 
-  @ViewChild(MatPaginator) paginator: MatPaginator;
-  @ViewChild(MatSort) sort: MatSort;
+  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
+  @ViewChild(MatSort, {static: true}) sort: MatSort;
 
   public ELEMENT_DATA: ViewBandera[];
 

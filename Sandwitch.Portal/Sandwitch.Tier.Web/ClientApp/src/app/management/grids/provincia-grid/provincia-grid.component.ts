@@ -14,8 +14,8 @@ import { ProvinciaAddModalComponent } from '../../modals/additions/provincia-add
 })
 export class ProvinciaGridComponent implements OnInit {
 
-  @ViewChild(MatPaginator) paginator: MatPaginator;
-  @ViewChild(MatSort) sort: MatSort;
+  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
+  @ViewChild(MatSort, {static: true}) sort: MatSort;
 
   public ELEMENT_DATA: ViewProvincia[];
 

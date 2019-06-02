@@ -14,9 +14,9 @@ import { ArenalAddModalComponent } from '../../modals/additions/arenal-add-modal
     styleUrls: ['./arenal-grid.component.css']
 })
 export class ArenalGridComponent implements OnInit {
-
-    @ViewChild(MatPaginator) paginator: MatPaginator;
-    @ViewChild(MatSort) sort: MatSort;
+    
+    @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
+    @ViewChild(MatSort, {static: true}) sort: MatSort;
 
     public ELEMENT_DATA: ViewArenal[];
 

@@ -9,8 +9,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using Sandwitch.Tier.Contexts.Classes;
+using Sandwitch.Tier.Mappings.Classes;
 using Sandwitch.Tier.Web.Extensions;
-using System;
 
 namespace Sandwitch.Tier.Web
 {
@@ -20,6 +20,10 @@ namespace Sandwitch.Tier.Web
 
         public IConfiguration Configuration { get; }
 
+        public MapperConfiguration MapperConfiguration { get; set; }
+
+        public IMapper Mapper { get;  set; }
+
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
@@ -27,12 +31,20 @@ namespace Sandwitch.Tier.Web
             services.AddDbContext<ApplicationContext>(options =>
                 options.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
 
+            MapperConfiguration = new MapperConfiguration(mc =>
+            {
+                mc.AddProfile(new MappingProfile());
+            });
+
+            Mapper = MapperConfiguration.CreateMapper();
+
+            // Add Mapping to the services container.
+            services.AddSingleton(Mapper);
+
             // Register the service and implementation for the database context
             services.AddCustomContexts();
 
             services.AddCustomServices();
-
-            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
             .AddJsonOptions(options =>

@@ -2,7 +2,7 @@
   <form [formGroup]="formGroup" class="form">
 
     <div class="modal-content-line">
-      <div class="modal-option-image modal-name-image"></div>
+      <div class="modal-option-image modal-name-image" aria-label="Name"></div>
       <mat-form-field class="form-element">
         <input matInput placeholder="Name" formControlName="Name">
         <mat-error *ngIf="!formGroup.controls['Name'].valid && formGroup.controls['Name'].touched">
@@ -11,10 +11,10 @@
       </mat-form-field>
     </div>
     <div class="modal-content-line">
-        <div class="modal-option-image modal-town-image"></div>
+      <div class="modal-option-image modal-town-image"aria-label="Poblaciones"></div>
       <mat-form-field class="search-half-width">
         <mat-label>Poblaciones</mat-label>
-        <mat-select formControlName="PoblacionesId" multiple>
+        <mat-select formControlName="Poblaciones" multiple>
           <mat-optgroup *ngFor="let provincia of provincias" [label]="provincia.Name">
             <mat-option *ngFor="let poblacion of provincia.Poblaciones" [value]="poblacion.Id">
               <img class="select-option-img" aria-hidden [src]="poblacion.ImageUri" height="25">

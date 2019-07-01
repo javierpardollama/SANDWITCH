@@ -8,7 +8,7 @@
       [formControl]="provinciaCtrl">
     <mat-autocomplete #auto="matAutocomplete" (optionSelected)='FindAllPoblacionByProvinciaId($event.option.id)'>
       <mat-option *ngFor="let provincia of filteredProvincias | async" [value]="provincia.Name" [id]="provincia.Id">
-        <img class="search-option-img" aria-hidden [src]="provincia.ImageUri" height="25">
+        <img class="search-option-img" aria-label="provincia.Name" aria-hidden [src]="provincia.ImageUri" height="25">
         <span>{{provincia.Name}}</span>
       </mat-option>
     </mat-autocomplete>
@@ -19,7 +19,7 @@
       [formControl]="poblacionCtrl">
     <mat-autocomplete #auto="matAutocomplete" (optionSelected)='FindAllArenalByPoblacionId($event.option.id)'>
       <mat-option *ngFor="let poblacion of filteredPoblaciones | async" [value]="poblacion.Name" [id]="poblacion.Id">
-        <img class="search-option-img" aria-hidden [src]="poblacion.ImageUri" height="25">
+        <img class="search-option-img" aria-label="poblacion.Name" aria-hidden [src]="poblacion.ImageUri" height="25">
         <span>{{poblacion.Name}}</span>
       </mat-option>
     </mat-autocomplete>
@@ -39,27 +39,27 @@
       <mat-divider></mat-divider>
 
       <div class="search-card-content-line search-card-content-line-update">
-        <div mat-card-avatar class="search-card-content search-card-update-image"></div>
+        <div mat-card-avatar class="search-card-content search-card-update-image" aria-label="LastModified"></div>
         <span>{{arenal.LastHistorico.LastModified | date: 'MMM d, y h:mm a'}}</span>
       </div>
 
       <mat-divider></mat-divider>
 
       <div class="search-card-content-line">
-        <div mat-card-avatar class="search-card-content search-card-warm-image"></div>
+        <div mat-card-avatar class="search-card-content search-card-warm-image" aria-label="Temperatura"></div>
         <div class="search-card-content">
           <span>{{arenal.LastHistorico.Temperatura}} ºC</span>
         </div>
       </div>
       <div class="search-card-content-line">
         <div class="search-card-content-tide">
-          <div mat-card-avatar class="search-card-content search-card-low-tide-image"></div>
+          <div mat-card-avatar class="search-card-content search-card-low-tide-image" aria-label="BajaMarAlba"></div>
           <div class="search-card-content">
             <span>{{arenal.LastHistorico.BajaMarAlba | date: 'h:mm a'}} </span>
           </div>
         </div>
         <div class="search-card-content-tide">
-          <div mat-card-avatar class="search-card-content search-card-high-tide-image"></div>
+          <div mat-card-avatar class="search-card-content search-card-high-tide-image" aria-label="AltaMarAlba"></div>
           <div class="search-card-content">
             <span>{{arenal.LastHistorico.AltaMarAlba | date: 'h:mm a'}}</span>
           </div>
@@ -67,13 +67,13 @@
       </div>
       <div class="search-card-content-line">
         <div class="search-card-content-tide">
-          <div mat-card-avatar class="search-card-content search-card-low-tide-image"></div>
+          <div mat-card-avatar class="search-card-content search-card-low-tide-image" aria-label="BajaMarOcaso"></div>
           <div class="search-card-content">
             <span>{{arenal.LastHistorico.BajaMarOcaso | date: 'h:mm a'}}</span>
           </div>
         </div>
         <div class="search-card-content-tide">
-          <div mat-card-avatar class="search-card-content search-card-high-tide-image"></div>
+          <div mat-card-avatar class="search-card-content search-card-high-tide-image" aria-label="AltaMarOcaso"></div>
           <div class="search-card-content">
             <span>{{arenal.LastHistorico.AltaMarOcaso | date: 'h:mm a'}}</span>
           </div>

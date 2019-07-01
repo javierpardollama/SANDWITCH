@@ -7,7 +7,7 @@
     </div>
 
     <div class="modal-content-line">
-        <div class="modal-option-image modal-flag-image"></div>
+        <div class="modal-option-image modal-flag-image" aria-label="Bandera"></div>
       <mat-form-field class="form-element">
         <mat-label>Bandera</mat-label>
         <mat-select formControlName="BanderaId">
@@ -20,7 +20,7 @@
     </div>
 
     <div class="modal-content-line">
-      <div class="modal-option-image modal-warm-image"></div>
+      <div class="modal-option-image modal-warm-image" aria-label="Temperatura"></div>
       <mat-form-field class="form-element">
         <input type="number" matInput placeholder="Temperatura" formControlName="Temperatura">
         <mat-error *ngIf="!formGroup.controls['Temperatura'].valid && formGroup.controls['Temperatura'].touched">
@@ -31,7 +31,7 @@
 
     <div class="modal-content-line">
       <div class="modal-content-tide">
-        <div class="modal-option-image modal-low-tide-image"></div>
+        <div class="modal-option-image modal-low-tide-image" aria-label="BajaMarAlba"></div>
         <mat-form-field class="form-element">
           <input type="time" matInput placeholder="BajaMarAlba" formControlName="BajaMarAlba">
           <mat-error *ngIf="!formGroup.controls['BajaMarAlba'].valid && formGroup.controls['BajaMarAlba'].touched">
@@ -40,7 +40,7 @@
         </mat-form-field>
       </div>
       <div class="modal-content-tide">
-        <div class="modal-option-image modal-high-tide-image"></div>
+        <div class="modal-option-image modal-high-tide-image" aria-label="AltaMarAlba"></div>
         <mat-form-field class="form-element">
           <input type="time" matInput placeholder="AltaMarAlba" formControlName="AltaMarAlba">
           <mat-error *ngIf="!formGroup.controls['AltaMarAlba'].valid && formGroup.controls['AltaMarAlba'].touched">
@@ -52,7 +52,7 @@
 
     <div class="modal-content-line">
       <div class="modal-content-tide">
-        <div class="modal-option-image modal-low-tide-image"></div>
+        <div class="modal-option-image modal-low-tide-image" aria-label="BajaMarOcaso"></div>
         <mat-form-field class="form-element">
           <input type="time" matInput placeholder="BajaMarOcaso" formControlName="BajaMarOcaso">
           <mat-error *ngIf="!formGroup.controls['BajaMarOcaso'].valid && formGroup.controls['BajaMarOcaso'].touched">
@@ -61,7 +61,7 @@
         </mat-form-field>
       </div>
       <div class="modal-content-tide">
-        <div class="modal-option-image modal-high-tide-image"></div>
+        <div class="modal-option-image modal-high-tide-image" aria-label="AltaMarOcaso"></div>
         <mat-form-field class="form-element">
           <input type="time" matInput placeholder="AltaMarOcaso" formControlName="AltaMarOcaso">
           <mat-error *ngIf="!formGroup.controls['AltaMarOcaso'].valid && formGroup.controls['AltaMarOcaso'].touched">

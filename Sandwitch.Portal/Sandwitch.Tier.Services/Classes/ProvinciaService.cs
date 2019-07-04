@@ -4,7 +4,7 @@ using Microsoft.Extensions.Logging;
 using Sandwitch.Tier.Contexts.Interfaces;
 using Sandwitch.Tier.Entities.Classes;
 using Sandwitch.Tier.Exceptions.Classes;
-using Sandwitch.Tier.Logging.Extensions;
+using Sandwitch.Tier.Logging.Classes;
 using Sandwitch.Tier.Services.Interfaces;
 using Sandwitch.Tier.ViewModels.Classes.Additions;
 using Sandwitch.Tier.ViewModels.Classes.Updates;

@@ -1,9 +1,9 @@
 ﻿using Microsoft.Extensions.Logging;
-using Sandwitch.Tier.Logging.Enums;
+using Sandwitch.Tier.Constants.Enums;
 using System;
 using System.Collections.Generic;
 
-namespace Sandwitch.Tier.Logging.Mapping
+namespace Sandwitch.Tier.Mappings.Classes
 {
     public static class LoggingProfile
     {

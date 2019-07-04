@@ -4,9 +4,9 @@ using Sandwitch.Tier.ViewModels.Classes.Views;
 
 namespace Sandwitch.Tier.Mappings.Classes
 {
-    public class MappingProfile : Profile
+    public class ModelingProfile : Profile
     {
-        public MappingProfile()
+        public ModelingProfile()
         {
             CreateMap<Bandera, ViewBandera>();
 

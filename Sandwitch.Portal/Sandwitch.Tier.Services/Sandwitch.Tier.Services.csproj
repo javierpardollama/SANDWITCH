@@ -13,7 +13,6 @@
     <ProjectReference Include="..\Sandwitch.Tier.Contexts\Sandwitch.Tier.Contexts.csproj" />
     <ProjectReference Include="..\Sandwitch.Tier.ExceptionHandling\Sandwitch.Tier.ExceptionHandling.csproj" />
     <ProjectReference Include="..\Sandwitch.Tier.Logging\Sandwitch.Tier.Logging.csproj" />
-    <ProjectReference Include="..\Sandwitch.Tier.Mappings\Sandwitch.Tier.Mappings.csproj" />
   </ItemGroup>
 
   <ItemGroup>

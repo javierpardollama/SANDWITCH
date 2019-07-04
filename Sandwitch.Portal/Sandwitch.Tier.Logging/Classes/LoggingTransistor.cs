@@ -1,9 +1,9 @@
 ﻿using Microsoft.Extensions.Logging;
-using Sandwitch.Tier.Logging.Enums;
-using Sandwitch.Tier.Logging.Mapping;
+using Sandwitch.Tier.Constants.Enums;
+using Sandwitch.Tier.Mappings.Classes;
 using System;
 
-namespace Sandwitch.Tier.Logging.Extensions
+namespace Sandwitch.Tier.Logging.Classes
 {
     public static class LoggingTransistor
     {

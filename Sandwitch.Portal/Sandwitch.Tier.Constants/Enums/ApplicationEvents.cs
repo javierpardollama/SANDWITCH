@@ -1,4 +1,4 @@
-﻿namespace Sandwitch.Tier.Logging.Enums
+﻿namespace Sandwitch.Tier.Constants.Enums
 {
     public enum ApplicationEvents
     {

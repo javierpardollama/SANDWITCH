@@ -33,7 +33,7 @@ namespace Sandwitch.Tier.Web
 
             MapperConfiguration = new MapperConfiguration(mc =>
             {
-                mc.AddProfile(new MappingProfile());
+                mc.AddProfile(new ModelingProfile());
             });
 
             Mapper = MapperConfiguration.CreateMapper();

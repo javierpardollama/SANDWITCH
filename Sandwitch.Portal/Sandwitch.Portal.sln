@@ -17,9 +17,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sandwitch.Tier.Mappings", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sandwitch.Tier.Logging", "Sandwitch.Tier.Logging\Sandwitch.Tier.Logging.csproj", "{E5518384-C35A-4A8B-B269-FEA287C6B888}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sandwitch.Tier.ExceptionHandling", "Sandwitch.Tier.ExceptionHandling\Sandwitch.Tier.ExceptionHandling.csproj", "{DAD22E3C-518D-49EB-B8A9-2966A4426BC0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sandwitch.Tier.ExceptionHandling", "Sandwitch.Tier.ExceptionHandling\Sandwitch.Tier.ExceptionHandling.csproj", "{DAD22E3C-518D-49EB-B8A9-2966A4426BC0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sandwitch.Tier.Exceptions", "Sandwitch.Tier.Exceptions\Sandwitch.Tier.Exceptions.csproj", "{CDD76572-F188-495B-B718-B81B0FBE0794}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sandwitch.Tier.Exceptions", "Sandwitch.Tier.Exceptions\Sandwitch.Tier.Exceptions.csproj", "{CDD76572-F188-495B-B718-B81B0FBE0794}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sandwitch.Tier.Constants", "Sandwitch.Tier.Constants\Sandwitch.Tier.Constants.csproj", "{CFB21FC5-89BD-4ED8-A958-E34BB1C7C9B5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -63,6 +65,10 @@ Global
 		{CDD76572-F188-495B-B718-B81B0FBE0794}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CDD76572-F188-495B-B718-B81B0FBE0794}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CDD76572-F188-495B-B718-B81B0FBE0794}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CFB21FC5-89BD-4ED8-A958-E34BB1C7C9B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CFB21FC5-89BD-4ED8-A958-E34BB1C7C9B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CFB21FC5-89BD-4ED8-A958-E34BB1C7C9B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CFB21FC5-89BD-4ED8-A958-E34BB1C7C9B5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

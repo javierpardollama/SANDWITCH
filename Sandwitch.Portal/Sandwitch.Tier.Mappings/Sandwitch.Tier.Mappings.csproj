@@ -9,6 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Sandwitch.Tier.Constants\Sandwitch.Tier.Constants.csproj" />
     <ProjectReference Include="..\Sandwitch.Tier.Entities\Sandwitch.Tier.Entities.csproj" />
     <ProjectReference Include="..\Sandwitch.Tier.ViewModels\Sandwitch.Tier.ViewModels.csproj" />
   </ItemGroup>
@@ -22,6 +23,7 @@
 
   <ItemGroup>
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="6.1.1" />
+    <PackageReference Include="Microsoft.Extensions.Logging" Version="2.2.0" />
   </ItemGroup>
 
 </Project>

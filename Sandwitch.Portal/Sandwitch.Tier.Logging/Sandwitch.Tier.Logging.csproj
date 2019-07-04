@@ -9,4 +9,9 @@
     <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="2.2.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Sandwitch.Tier.Constants\Sandwitch.Tier.Constants.csproj" />
+    <ProjectReference Include="..\Sandwitch.Tier.Mappings\Sandwitch.Tier.Mappings.csproj" />
+  </ItemGroup>
+
 </Project>

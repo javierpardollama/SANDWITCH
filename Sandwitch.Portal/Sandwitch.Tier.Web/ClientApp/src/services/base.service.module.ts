@@ -1,8 +1,9 @@
-import { ViewException } from '../viewmodels/views/viewexception';
+import { ViewException } from './../viewmodels/views/viewexception';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { MatSnackBar } from '@angular/material';
 import { Observable, of } from 'rxjs';
-import { AppConstants } from './../app/app.constants';
+import { TextAppVariants } from './../variants/text.app.variants';
+import { TimeAppVariants } from './../variants/time.app.variants';
 
 export class BaseService {
 
@@ -21,7 +22,7 @@ export class BaseService {
                 StatusCode: httpErrorResponse.error.StatusCode
             }
 
-            this.matSnackBar.open(expception.Message, AppConstants.AppOkButtonText, { duration: AppConstants.AppToastSecondTicks * AppConstants.AppTimeSecondTicks });
+            this.matSnackBar.open(expception.Message, TextAppVariants.AppOkButtonText, { duration: TimeAppVariants.AppToastSecondTicks * TimeAppVariants.AppTimeSecondTicks });
 
             // Let the app keep running by returning an empty result.
             return of(result as T);

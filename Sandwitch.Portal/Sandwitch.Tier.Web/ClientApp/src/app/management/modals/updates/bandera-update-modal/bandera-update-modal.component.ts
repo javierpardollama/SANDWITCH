@@ -1,11 +1,12 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA, MatSnackBar } from '@angular/material';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ViewBandera } from '../../../../../viewmodels/views/viewbandera';
-import { UpdateBandera } from '../../../../../viewmodels/updates/updatebandera';
+import { ViewBandera } from './../../../../../viewmodels/views/viewbandera';
+import { UpdateBandera } from './../../../../../viewmodels/updates/updatebandera';
 
-import { BanderaService } from '../../../../../services/bandera.service.module';
-import { AppConstants } from '../../../../app.constants';
+import { BanderaService } from './../../../../../services/bandera.service.module';
+import { TextAppVariants } from './../../../../../variants/text.app.variants';
+import { TimeAppVariants } from './../../../../../variants/time.app.variants';
 
 @Component({
   selector: 'app-bandera-update-modal',
@@ -43,7 +44,7 @@ export class BanderaUpdateModalComponent implements OnInit {
     this.banderaService.UpdateBandera(viewModel).subscribe(bandera => {
 
       if (bandera !== undefined) {
-        this.matSnackBar.open(AppConstants.AppSuccessButtonText, AppConstants.AppOkButtonText, { duration: AppConstants.AppToastSecondTicks * AppConstants.AppTimeSecondTicks });
+        this.matSnackBar.open(TextAppVariants.AppSuccessButtonText, TextAppVariants.AppOkButtonText, { duration: TimeAppVariants.AppToastSecondTicks * TimeAppVariants.AppTimeSecondTicks });
       }
 
       this.dialogRef.close();
@@ -53,7 +54,7 @@ export class BanderaUpdateModalComponent implements OnInit {
   onDelete(viewModel: UpdateBandera) {
     this.banderaService.RemoveBanderaById(viewModel.Id).subscribe(bandera => {
 
-      this.matSnackBar.open(AppConstants.AppSuccessButtonText, AppConstants.AppOkButtonText, { duration: AppConstants.AppToastSecondTicks * AppConstants.AppTimeSecondTicks });
+      this.matSnackBar.open(TextAppVariants.AppSuccessButtonText, TextAppVariants.AppOkButtonText, { duration: TimeAppVariants.AppToastSecondTicks * TimeAppVariants.AppTimeSecondTicks });
 
       this.dialogRef.close();
     });

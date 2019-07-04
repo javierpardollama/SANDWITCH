@@ -2,13 +2,14 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { MatDialogRef, MAT_DIALOG_DATA, MatSnackBar } from '@angular/material';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ViewArenal } from '../../../../../viewmodels/views/viewarenal';
-import { ViewBandera } from '../../../../../viewmodels/views/viewbandera';
-import { AddHistorico } from '../../../../../viewmodels/additions/addhistorico';
+import { ViewArenal } from './../../../../../viewmodels/views/viewarenal';
+import { ViewBandera } from './../../../../../viewmodels/views/viewbandera';
+import { AddHistorico } from './../../../../../viewmodels/additions/addhistorico';
 
-import { HistoricoService } from '../../../../../services/historico.service.module';
-import { BanderaService } from '../../../../../services/bandera.service.module';
-import { AppConstants } from '../../../../app.constants';
+import { HistoricoService } from './../../../../../services/historico.service.module';
+import { BanderaService } from './../../../../../services/bandera.service.module';
+import { TextAppVariants } from './../../../../../variants/text.app.variants';
+import { TimeAppVariants } from './../../../../../variants/time.app.variants';
 
 @Component({
   selector: 'app-historico-add-modal',
@@ -66,7 +67,7 @@ export class HistoricoAddModalComponent implements OnInit {
     this.historicoService.AddHistorico(viewModel).subscribe(historico => {
 
       if (historico !== undefined) {
-        this.matSnackBar.open(AppConstants.AppSuccessButtonText, AppConstants.AppOkButtonText, { duration: AppConstants.AppToastSecondTicks * AppConstants.AppTimeSecondTicks });
+        this.matSnackBar.open(TextAppVariants.AppSuccessButtonText, TextAppVariants.AppOkButtonText, { duration: TimeAppVariants.AppToastSecondTicks * TimeAppVariants.AppTimeSecondTicks });
       }
 
       this.dialogRef.close();

@@ -1,14 +1,15 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA, MatSnackBar } from '@angular/material';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ViewProvincia } from '../../../../../viewmodels/views/viewprovincia';
-import { ViewPoblacion } from '../../../../../viewmodels/views/viewpoblacion';
+import { ViewProvincia } from './../../../../../viewmodels/views/viewprovincia';
+import { ViewPoblacion } from './../../../../../viewmodels/views/viewpoblacion';
 
-import { UpdatePoblacion } from '../../../../../viewmodels/updates/updatepoblacion';
+import { UpdatePoblacion } from './../../../../../viewmodels/updates/updatepoblacion';
 
-import { ProvinciaService } from '../../../../../services/provincia.service.module';
-import { PoblacionService } from '../../../../../services/poblacion.service.module';
-import { AppConstants } from '../../../../app.constants';
+import { ProvinciaService } from './../../../../../services/provincia.service.module';
+import { PoblacionService } from './../../../../../services/poblacion.service.module';
+import { TextAppVariants } from './../../../../../variants/text.app.variants';
+import { TimeAppVariants } from './../../../../../variants/time.app.variants';
 
 @Component({
   selector: 'app-poblacion-update-modal',
@@ -51,7 +52,7 @@ export class PoblacionUpdateModalComponent implements OnInit {
     this.poblacionService.UpdatePoblacion(viewModel).subscribe(poblacion => {
 
       if (poblacion !== undefined) {
-        this.matSnackBar.open(AppConstants.AppSuccessButtonText, AppConstants.AppOkButtonText, { duration: AppConstants.AppToastSecondTicks * AppConstants.AppTimeSecondTicks });
+        this.matSnackBar.open(TextAppVariants.AppSuccessButtonText, TextAppVariants.AppOkButtonText, { duration: TimeAppVariants.AppToastSecondTicks * TimeAppVariants.AppTimeSecondTicks });
       }
 
       this.dialogRef.close();
@@ -60,7 +61,7 @@ export class PoblacionUpdateModalComponent implements OnInit {
 
   onDelete(viewModel: UpdatePoblacion) {
     this.poblacionService.RemovePoblacionById(viewModel.Id).subscribe(poblacion => {
-      this.matSnackBar.open(AppConstants.AppSuccessButtonText, AppConstants.AppOkButtonText, { duration: AppConstants.AppToastSecondTicks * AppConstants.AppTimeSecondTicks });
+      this.matSnackBar.open(TextAppVariants.AppSuccessButtonText, TextAppVariants.AppOkButtonText, { duration: TimeAppVariants.AppToastSecondTicks * TimeAppVariants.AppTimeSecondTicks });
 
       this.dialogRef.close();
     });

@@ -3,13 +3,13 @@ import { MatDialog } from '@angular/material';
 import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
-import { ViewPoblacion } from '../../viewmodels/views/viewpoblacion';
-import { ViewProvincia } from '../../viewmodels/views/viewprovincia';
-import { ViewArenal } from '../../viewmodels/views/viewarenal';
-import { ProvinciaService } from '../../services/provincia.service.module';
-import { PoblacionService } from '../../services/poblacion.service.module';
-import { ArenalService } from '../../services/arenal.service.module';
-import { HistoricoAddModalComponent } from '../management/modals/additions/historico-add-modal/historico-add-modal.component';
+import { ViewPoblacion } from './../../viewmodels/views/viewpoblacion';
+import { ViewProvincia } from './../../viewmodels/views/viewprovincia';
+import { ViewArenal } from './../../viewmodels/views/viewarenal';
+import { ProvinciaService } from './../../services/provincia.service.module';
+import { PoblacionService } from './../../services/poblacion.service.module';
+import { ArenalService } from './../../services/arenal.service.module';
+import { HistoricoAddModalComponent } from './../management/modals/additions/historico-add-modal/historico-add-modal.component';
 
 @Component({
   selector: 'app-search',

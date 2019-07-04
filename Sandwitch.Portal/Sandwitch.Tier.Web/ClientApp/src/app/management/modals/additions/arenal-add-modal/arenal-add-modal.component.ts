@@ -1,13 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialogRef, MatSnackBar } from '@angular/material';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ViewProvincia } from '../../../../../viewmodels/views/viewprovincia';
+import { ViewProvincia } from './../../../../../viewmodels/views/viewprovincia';
 
-import { AddArenal } from '../../../../../viewmodels/additions/addarenal';
+import { AddArenal } from './../../../../../viewmodels/additions/addarenal';
 
 import { ArenalService } from '../../../../../services/arenal.service.module';
 import { ProvinciaService } from '../../../../../services/provincia.service.module';
-import { AppConstants } from '../../../../app.constants';
+import { TextAppVariants } from '../../../../../variants/text.app.variants';
+import { TimeAppVariants } from '../../../../../variants/time.app.variants';
 
 @Component({
   selector: 'app-arenal-add-modal',
@@ -47,7 +48,7 @@ export class ArenalAddModalComponent implements OnInit {
     this.arenalService.AddArenal(viewModel).subscribe(arenal => {
 
       if (arenal !== undefined) {
-        this.matSnackBar.open(AppConstants.AppSuccessButtonText, AppConstants.AppOkButtonText, { duration: AppConstants.AppToastSecondTicks * AppConstants.AppTimeSecondTicks });
+        this.matSnackBar.open(TextAppVariants.AppSuccessButtonText, TextAppVariants.AppOkButtonText, { duration: TimeAppVariants.AppToastSecondTicks * TimeAppVariants.AppTimeSecondTicks });
       }
 
       this.dialogRef.close();

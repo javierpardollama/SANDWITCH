@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialogRef, MatSnackBar } from '@angular/material';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AddBandera } from '../../../../../viewmodels/additions/addbandera';
+import { AddBandera } from './../../../../../viewmodels/additions/addbandera';
 
-import { BanderaService } from '../../../../../services/bandera.service.module';
-import { AppConstants } from '../../../../app.constants';
+import { BanderaService } from './../../../../../services/bandera.service.module';
+import { TextAppVariants } from './../../../../../variants/text.app.variants';
+import { TimeAppVariants } from './../../../../../variants/time.app.variants';
 
 @Component({
   selector: 'app-bandera-add-modal',
@@ -40,7 +41,7 @@ export class BanderaAddModalComponent implements OnInit {
     this.banderaService.AddBandera(viewModel).subscribe(bandera => {
 
       if (bandera !== undefined) {
-        this.matSnackBar.open(AppConstants.AppSuccessButtonText, AppConstants.AppOkButtonText, { duration: AppConstants.AppToastSecondTicks * AppConstants.AppTimeSecondTicks });
+        this.matSnackBar.open(TextAppVariants.AppSuccessButtonText, TextAppVariants.AppOkButtonText, { duration: TimeAppVariants.AppToastSecondTicks * TimeAppVariants.AppTimeSecondTicks });
       }
 
       this.dialogRef.close();

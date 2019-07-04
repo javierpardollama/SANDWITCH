@@ -1,14 +1,15 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA, MatSnackBar } from '@angular/material';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ViewArenal } from '../../../../../viewmodels/views/viewarenal';
-import { ViewProvincia } from '../../../../../viewmodels/views/viewprovincia';
+import { ViewArenal } from './../../../../../viewmodels/views/viewarenal';
+import { ViewProvincia } from './../../../../../viewmodels/views/viewprovincia';
 
-import { UpdateArenal } from '../../../../../viewmodels/updates/updatearenal';
+import { UpdateArenal } from './../../../../../viewmodels/updates/updatearenal';
 
-import { ArenalService } from '../../../../../services/arenal.service.module';
-import { ProvinciaService } from '../../../../../services/provincia.service.module';
-import { AppConstants } from '../../../../app.constants';
+import { ArenalService } from './../../../../../services/arenal.service.module';
+import { ProvinciaService } from './../../../../../services/provincia.service.module';
+import { TextAppVariants } from '../../../../../variants/text.app.variants';
+import { TimeAppVariants } from '../../../../../variants/time.app.variants';
 
 @Component({
   selector: 'app-arenal-update-modal',
@@ -50,7 +51,7 @@ export class ArenalUpdateModalComponent implements OnInit {
     this.arenalService.UpdateArenal(viewModel).subscribe(arenal => {
 
       if (arenal !== undefined) {
-        this.matSnackBar.open(AppConstants.AppSuccessButtonText, AppConstants.AppOkButtonText, { duration: AppConstants.AppToastSecondTicks * AppConstants.AppTimeSecondTicks });
+        this.matSnackBar.open(TextAppVariants.AppSuccessButtonText, TextAppVariants.AppOkButtonText, { duration: TimeAppVariants.AppToastSecondTicks * TimeAppVariants.AppTimeSecondTicks });
       }
 
       this.dialogRef.close();
@@ -60,7 +61,7 @@ export class ArenalUpdateModalComponent implements OnInit {
   onDelete(viewModel: UpdateArenal) {
     this.arenalService.RemoveArenalById(viewModel.Id).subscribe(arenal => {
 
-      this.matSnackBar.open(AppConstants.AppSuccessButtonText, AppConstants.AppOkButtonText, { duration: AppConstants.AppToastSecondTicks * AppConstants.AppTimeSecondTicks });
+      this.matSnackBar.open(TextAppVariants.AppSuccessButtonText, TextAppVariants.AppOkButtonText, { duration: TimeAppVariants.AppToastSecondTicks * TimeAppVariants.AppTimeSecondTicks });
 
       this.dialogRef.close();
     });

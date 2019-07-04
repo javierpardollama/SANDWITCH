@@ -1,13 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialogRef, MatSnackBar } from '@angular/material';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ViewProvincia } from '../../../../../viewmodels/views/viewprovincia';
+import { ViewProvincia } from './../../../../../viewmodels/views/viewprovincia';
 
-import { AddPoblacion } from '../../../../../viewmodels/additions/addpoblacion';
+import { AddPoblacion } from './../../../../../viewmodels/additions/addpoblacion';
 
-import { ProvinciaService } from '../../../../../services/provincia.service.module';
-import { PoblacionService } from '../../../../../services/poblacion.service.module';
-import { AppConstants } from '../../../../app.constants';
+import { ProvinciaService } from './../../../../../services/provincia.service.module';
+import { PoblacionService } from './../../../../../services/poblacion.service.module';
+import { TextAppVariants } from './../../../../../variants/text.app.variants';
+import { TimeAppVariants } from './../../../../../variants/time.app.variants';
 
 @Component({
   selector: 'app-poblacion-add-modal',
@@ -48,7 +49,7 @@ export class PoblacionAddModalComponent implements OnInit {
     this.poblacionService.AddPoblacion(viewModel).subscribe(poblacion => {
 
       if (poblacion !== undefined) {
-        this.matSnackBar.open(AppConstants.AppSuccessButtonText, AppConstants.AppOkButtonText, { duration: AppConstants.AppToastSecondTicks * AppConstants.AppTimeSecondTicks });
+        this.matSnackBar.open(TextAppVariants.AppSuccessButtonText, TextAppVariants.AppOkButtonText, { duration: TimeAppVariants.AppToastSecondTicks * TimeAppVariants.AppTimeSecondTicks });
       }
 
       this.dialogRef.close();

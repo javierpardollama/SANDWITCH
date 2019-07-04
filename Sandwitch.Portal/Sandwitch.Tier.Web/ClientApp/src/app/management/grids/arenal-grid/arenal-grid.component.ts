@@ -1,11 +1,11 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource, MatPaginator, MatSort, MatDialog } from '@angular/material';
-import { ViewArenal } from '../../../../viewmodels/views/viewarenal';
+import { ViewArenal } from './../../../../viewmodels/views/viewarenal';
 
-import { ArenalService } from '../../../../services/arenal.service.module';
+import { ArenalService } from './../../../../services/arenal.service.module';
 
-import { ArenalUpdateModalComponent } from '../../modals/updates/arenal-update-modal/arenal-update-modal.component';
-import { ArenalAddModalComponent } from '../../modals/additions/arenal-add-modal/arenal-add-modal.component';
+import { ArenalUpdateModalComponent } from './../../modals/updates/arenal-update-modal/arenal-update-modal.component';
+import { ArenalAddModalComponent } from './../../modals/additions/arenal-add-modal/arenal-add-modal.component';
 
 
 @Component({

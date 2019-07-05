@@ -1,5 +1,5 @@
-import { AddHistorico } from '../viewmodels/additions/addhistorico';
-import { ViewHistorico } from '../viewmodels/views/viewhistorico';
+import { AddHistorico } from './../viewmodels/additions/addhistorico';
+import { ViewHistorico } from './../viewmodels/views/viewhistorico';
 import { HttpClient } from '@angular/common/http';
 import { MatSnackBar } from '@angular/material';
 import { Injectable } from '@angular/core';

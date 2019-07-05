@@ -1,6 +1,6 @@
-import { AddProvincia } from '../viewmodels/additions/addprovincia';
-import { UpdateProvincia } from '../viewmodels/updates/updateprovincia';
-import { ViewProvincia } from '../viewmodels/views/viewprovincia';
+import { AddProvincia } from './../viewmodels/additions/addprovincia';
+import { UpdateProvincia } from './../viewmodels/updates/updateprovincia';
+import { ViewProvincia } from './../viewmodels/views/viewprovincia';
 import { HttpClient } from '@angular/common/http';
 import { MatSnackBar } from '@angular/material';
 import { Injectable } from '@angular/core';

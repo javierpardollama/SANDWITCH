@@ -1,6 +1,6 @@
-import { AddPoblacion } from '../viewmodels/additions/addpoblacion';
-import { UpdatePoblacion } from '../viewmodels/updates/updatepoblacion';
-import { ViewPoblacion } from '../viewmodels/views/viewpoblacion';
+import { AddPoblacion } from './../viewmodels/additions/addpoblacion';
+import { UpdatePoblacion } from './../viewmodels/updates/updatepoblacion';
+import { ViewPoblacion } from './../viewmodels/views/viewpoblacion';
 import { HttpClient } from '@angular/common/http';
 import { MatSnackBar } from '@angular/material';
 import { Injectable } from '@angular/core';

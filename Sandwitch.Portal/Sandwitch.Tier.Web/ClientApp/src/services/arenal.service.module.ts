@@ -1,6 +1,6 @@
-import { AddArenal } from '../viewmodels/additions/addarenal';
-import { UpdateArenal } from '../viewmodels/updates/updatearenal';
-import { ViewArenal } from '../viewmodels/views/viewarenal';
+import { AddArenal } from './../viewmodels/additions/addarenal';
+import { UpdateArenal } from './../viewmodels/updates/updatearenal';
+import { ViewArenal } from './../viewmodels/views/viewarenal';
 import { HttpClient } from '@angular/common/http';
 import { MatSnackBar } from '@angular/material';
 import { Injectable } from '@angular/core';

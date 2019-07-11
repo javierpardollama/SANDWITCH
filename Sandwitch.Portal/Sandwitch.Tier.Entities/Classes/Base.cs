@@ -1,10 +1,11 @@
-﻿using System;
+﻿using Sandwitch.Tier.Entities.Interfaces;
+using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Sandwitch.Tier.Entities.Classes
 {
-    public abstract class Base
+    public abstract class Base : IBase
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Required]

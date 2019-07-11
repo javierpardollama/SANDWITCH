@@ -35,9 +35,9 @@ namespace Sandwitch.Tier.Services.Classes
                 ImageUri = viewModel.ImageUri
             };
 
-            await Icontext.Bandera.AddAsync(bandera);
+            await IContext.Bandera.AddAsync(bandera);
 
-            await Icontext.SaveChangesAsync();
+            await IContext.SaveChangesAsync();
 
             // Log
             string logData = bandera.GetType().Name
@@ -48,22 +48,22 @@ namespace Sandwitch.Tier.Services.Classes
 
             ILogger.WriteInsertItemLog(logData);
 
-            return this.Imapper.Map<ViewBandera>(bandera);
+            return this.IMapper.Map<ViewBandera>(bandera);
         }
 
         public async Task<ICollection<ViewBandera>> FindAllBandera()
         {
-            ICollection<Bandera> banderas = await Icontext.Bandera
+            ICollection<Bandera> banderas = await IContext.Bandera
                 .AsQueryable()
                 .ToAsyncEnumerable()
                 .ToList();
 
-            return this.Imapper.Map<ICollection<ViewBandera>>(banderas);
+            return this.IMapper.Map<ICollection<ViewBandera>>(banderas);
         }
 
         public async Task<Bandera> FindBanderaById(int id)
         {
-            Bandera bandera = await Icontext.Bandera.FirstOrDefaultAsync(x => x.Id == id);
+            Bandera bandera = await IContext.Bandera.FirstOrDefaultAsync(x => x.Id == id);
 
             if (bandera == null)
             {
@@ -89,9 +89,9 @@ namespace Sandwitch.Tier.Services.Classes
         {
             Bandera bandera = await FindBanderaById(id);
 
-            Icontext.Bandera.Remove(bandera);
+            IContext.Bandera.Remove(bandera);
 
-            await Icontext.SaveChangesAsync();
+            await IContext.SaveChangesAsync();
 
             // Log
             string logData = bandera.GetType().Name
@@ -109,9 +109,9 @@ namespace Sandwitch.Tier.Services.Classes
             bandera.Name = viewModel.Name;
             bandera.ImageUri = viewModel.ImageUri;
 
-            Icontext.Bandera.Update(bandera);
+            IContext.Bandera.Update(bandera);
 
-            await Icontext.SaveChangesAsync();
+            await IContext.SaveChangesAsync();
 
             // Log
             string logData = bandera.GetType().Name
@@ -122,12 +122,12 @@ namespace Sandwitch.Tier.Services.Classes
 
             ILogger.WriteUpdateItemLog(logData);
 
-            return this.Imapper.Map<ViewBandera>(bandera);
+            return this.IMapper.Map<ViewBandera>(bandera);
         }
 
         public async Task<Bandera> CheckName(AddBandera viewModel)
         {
-            Bandera bandera = await Icontext.Bandera.FirstOrDefaultAsync(x => x.Name == viewModel.Name);
+            Bandera bandera = await IContext.Bandera.FirstOrDefaultAsync(x => x.Name == viewModel.Name);
 
             if (bandera != null)
             {

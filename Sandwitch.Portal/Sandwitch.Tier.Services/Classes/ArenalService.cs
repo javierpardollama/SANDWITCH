@@ -34,11 +34,11 @@ namespace Sandwitch.Tier.Services.Classes
                 Name = viewModel.Name
             };
 
-            await Icontext.Arenal.AddAsync(arenal);
+            await IContext.Arenal.AddAsync(arenal);
 
             await AddArenalPoblacion(viewModel, arenal);
 
-            await Icontext.SaveChangesAsync();
+            await IContext.SaveChangesAsync();
 
             // Log
             string logData = arenal.GetType().ToString()
@@ -49,7 +49,7 @@ namespace Sandwitch.Tier.Services.Classes
 
             ILogger.WriteInsertItemLog(logData);
 
-            return this.Imapper.Map<ViewArenal>(arenal); ;
+            return this.IMapper.Map<ViewArenal>(arenal); ;
         }
 
         public async Task AddArenalPoblacion(AddArenal viewModel, Arenal entity)
@@ -64,24 +64,24 @@ namespace Sandwitch.Tier.Services.Classes
                     Poblacion = poblacion,
                 };
 
-                await Icontext.ArenalPoblacion.AddAsync(arenalPoblacion);
+                await IContext.ArenalPoblacion.AddAsync(arenalPoblacion);
             });
         }
 
         public async Task<ICollection<ViewArenal>> FindAllArenal()
         {
-            ICollection<Arenal> arenales = await Icontext.Arenal.AsQueryable()
+            ICollection<Arenal> arenales = await IContext.Arenal.AsQueryable()
                 .Include(x => x.Poblaciones)
                 .ThenInclude(x => x.Poblacion)
                 .Include(x => x.Historicos)
                 .ToAsyncEnumerable().ToList();
 
-            return this.Imapper.Map<ICollection<ViewArenal>>(arenales);
+            return this.IMapper.Map<ICollection<ViewArenal>>(arenales);
         }
 
         public async Task<ICollection<ViewArenal>> FindAllArenalByPoblacionId(int id)
         {
-            ICollection<Arenal> arenales = await Icontext.ArenalPoblacion.AsQueryable()
+            ICollection<Arenal> arenales = await IContext.ArenalPoblacion.AsQueryable()
                .Include(x => x.Poblacion)
                .Include(x => x.Arenal)
                .ThenInclude(x => x.Historicos)
@@ -94,12 +94,12 @@ namespace Sandwitch.Tier.Services.Classes
                .ToAsyncEnumerable()
                .ToList();
 
-            return this.Imapper.Map<ICollection<ViewArenal>>(arenales);
+            return this.IMapper.Map<ICollection<ViewArenal>>(arenales);
         }
 
         public async Task<Arenal> FindArenalById(int id)
         {
-            Arenal arenal = await Icontext.Arenal
+            Arenal arenal = await IContext.Arenal
                 .AsQueryable()
                 .Include(x => x.Poblaciones)
                 .ThenInclude(x => x.Poblacion)
@@ -127,7 +127,7 @@ namespace Sandwitch.Tier.Services.Classes
 
         public async Task<Poblacion> FindPoblacionById(int id)
         {
-            Poblacion poblacion = await Icontext.Poblacion.FirstOrDefaultAsync(x => x.Id == id);
+            Poblacion poblacion = await IContext.Poblacion.FirstOrDefaultAsync(x => x.Id == id);
 
             if (poblacion == null)
             {
@@ -153,9 +153,9 @@ namespace Sandwitch.Tier.Services.Classes
         {
             Arenal arenal = await FindArenalById(id);
 
-            Icontext.Arenal.Remove(arenal);
+            IContext.Arenal.Remove(arenal);
 
-            await Icontext.SaveChangesAsync();
+            await IContext.SaveChangesAsync();
 
             // Log
             string logData = arenal.GetType().Name
@@ -173,11 +173,11 @@ namespace Sandwitch.Tier.Services.Classes
             arenal.Name = viewModel.Name;
             arenal.Poblaciones = new List<ArenalPoblacion>();
 
-            Icontext.Arenal.Update(arenal);
+            IContext.Arenal.Update(arenal);
 
             await UpdateArenalPoblacion(viewModel, arenal);
 
-            await Icontext.SaveChangesAsync();
+            await IContext.SaveChangesAsync();
 
             // Log
             string logData = arenal.GetType().Name
@@ -188,7 +188,7 @@ namespace Sandwitch.Tier.Services.Classes
 
             ILogger.WriteUpdateItemLog(logData);
 
-            return this.Imapper.Map<ViewArenal>(arenal); ;
+            return this.IMapper.Map<ViewArenal>(arenal); ;
         }
 
         public async Task UpdateArenalPoblacion(UpdateArenal viewModel, Arenal entity)
@@ -203,13 +203,13 @@ namespace Sandwitch.Tier.Services.Classes
                     Poblacion = poblacion,
                 };
 
-                await Icontext.ArenalPoblacion.AddAsync(arenalPoblacion);
+                await IContext.ArenalPoblacion.AddAsync(arenalPoblacion);
             });
         }
 
         public async Task<Arenal> CheckName(AddArenal viewModel)
         {
-            Arenal arenal = await Icontext.Arenal.FirstOrDefaultAsync(x => x.Name == viewModel.Name);
+            Arenal arenal = await IContext.Arenal.FirstOrDefaultAsync(x => x.Name == viewModel.Name);
 
             if (arenal != null)
             {

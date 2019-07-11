@@ -36,9 +36,9 @@ namespace Sandwitch.Tier.Services.Classes
                 ImageUri = viewModel.ImageUri
             };
 
-            await Icontext.Poblacion.AddAsync(poblacion);
+            await IContext.Poblacion.AddAsync(poblacion);
 
-            await Icontext.SaveChangesAsync();
+            await IContext.SaveChangesAsync();
 
             // Log
             string logData = poblacion.GetType().Name
@@ -49,35 +49,35 @@ namespace Sandwitch.Tier.Services.Classes
 
             ILogger.WriteInsertItemLog(logData);
 
-            return this.Imapper.Map<ViewPoblacion>(poblacion);
+            return this.IMapper.Map<ViewPoblacion>(poblacion);
         }
 
         public async Task<ICollection<ViewPoblacion>> FindAllPoblacion()
         {
-            ICollection<Poblacion> poblaciones = await Icontext.Poblacion
+            ICollection<Poblacion> poblaciones = await IContext.Poblacion
                 .AsQueryable()
                 .Include(x => x.Provincia)
                 .ToAsyncEnumerable()
                 .ToList();
 
-            return this.Imapper.Map<ICollection<ViewPoblacion>>(poblaciones);
+            return this.IMapper.Map<ICollection<ViewPoblacion>>(poblaciones);
         }
 
         public async Task<ICollection<ViewPoblacion>> FindAllPoblacionByProvinciaId(int id)
         {
-            ICollection<Poblacion> poblaciones = await Icontext.Poblacion
+            ICollection<Poblacion> poblaciones = await IContext.Poblacion
               .AsQueryable()
               .Include(x => x.Provincia)
               .Where(x => x.Provincia.Id == id)
               .ToAsyncEnumerable()
               .ToList();
 
-            return this.Imapper.Map<ICollection<ViewPoblacion>>(poblaciones);
+            return this.IMapper.Map<ICollection<ViewPoblacion>>(poblaciones);
         }
 
         public async Task<Poblacion> FindPoblacionById(int id)
         {
-            Poblacion poblacion = await Icontext.Poblacion.FirstOrDefaultAsync(x => x.Id == id);
+            Poblacion poblacion = await IContext.Poblacion.FirstOrDefaultAsync(x => x.Id == id);
 
             if (poblacion == null)
             {
@@ -101,7 +101,7 @@ namespace Sandwitch.Tier.Services.Classes
 
         public async Task<Provincia> FindProvinciaById(int id)
         {
-            Provincia provincia = await Icontext.Provincia.FirstOrDefaultAsync(x => x.Id == id);
+            Provincia provincia = await IContext.Provincia.FirstOrDefaultAsync(x => x.Id == id);
 
             if (provincia == null)
             {
@@ -127,9 +127,9 @@ namespace Sandwitch.Tier.Services.Classes
         {
             Poblacion poblacion = await FindPoblacionById(id);
 
-            Icontext.Poblacion.Remove(poblacion);
+            IContext.Poblacion.Remove(poblacion);
 
-            await Icontext.SaveChangesAsync();
+            await IContext.SaveChangesAsync();
 
             // Log
             string logData = poblacion.GetType().Name
@@ -148,9 +148,9 @@ namespace Sandwitch.Tier.Services.Classes
             poblacion.Provincia = await FindProvinciaById(viewModel.ProvinciaId);
             poblacion.ImageUri = viewModel.ImageUri;
 
-            Icontext.Poblacion.Update(poblacion);
+            IContext.Poblacion.Update(poblacion);
 
-            await Icontext.SaveChangesAsync();
+            await IContext.SaveChangesAsync();
 
             // Log
             string logData = poblacion.GetType().Name
@@ -161,12 +161,12 @@ namespace Sandwitch.Tier.Services.Classes
 
             ILogger.WriteUpdateItemLog(logData);
 
-            return this.Imapper.Map<ViewPoblacion>(poblacion);
+            return this.IMapper.Map<ViewPoblacion>(poblacion);
         }
 
         public async Task<Poblacion> CheckName(AddPoblacion viewModel)
         {
-            Poblacion poblacion = await Icontext.Poblacion.FirstOrDefaultAsync(x => x.Name == viewModel.Name);
+            Poblacion poblacion = await IContext.Poblacion.FirstOrDefaultAsync(x => x.Name == viewModel.Name);
 
             if (poblacion != null)
             {

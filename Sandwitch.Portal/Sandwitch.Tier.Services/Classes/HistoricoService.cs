@@ -25,7 +25,7 @@ namespace Sandwitch.Tier.Services.Classes
 
         public async Task<Arenal> FindArenalById(int id)
         {
-            Arenal arenal = await Icontext.Arenal
+            Arenal arenal = await IContext.Arenal
                 .AsQueryable()
                 .Include(x => x.Poblaciones)
                 .ThenInclude(x => x.Poblacion)
@@ -53,7 +53,7 @@ namespace Sandwitch.Tier.Services.Classes
 
         public async Task<Bandera> FindBanderaById(int id)
         {
-            Bandera bandera = await Icontext.Bandera.FirstOrDefaultAsync(x => x.Id == id);
+            Bandera bandera = await IContext.Bandera.FirstOrDefaultAsync(x => x.Id == id);
 
             if (bandera == null)
             {
@@ -88,9 +88,9 @@ namespace Sandwitch.Tier.Services.Classes
                 Temperatura = viewModel.Temperatura,
             };
 
-            Icontext.Historico.Add(historico);
+            IContext.Historico.Add(historico);
 
-            await Icontext.SaveChangesAsync();
+            await IContext.SaveChangesAsync();
 
             // Log
             string logData = historico.GetType().Name
@@ -101,7 +101,7 @@ namespace Sandwitch.Tier.Services.Classes
 
             ILogger.WriteInsertItemLog(logData);
 
-            return this.Imapper.Map<ViewHistorico>(historico);
+            return this.IMapper.Map<ViewHistorico>(historico);
         }
     }
 }

@@ -7,9 +7,9 @@ namespace Sandwitch.Tier.Services.Classes
 {
     public class BaseService : IBaseService
     {
-        protected readonly IApplicationContext Icontext;
+        protected readonly IApplicationContext IContext;
 
-        protected readonly IMapper Imapper;
+        protected readonly IMapper IMapper;
 
         protected readonly ILogger ILogger;
 
@@ -18,8 +18,8 @@ namespace Sandwitch.Tier.Services.Classes
             IMapper iMapper,
             ILogger iLogger)
         {
-            Icontext = iContext;
-            Imapper = iMapper;
+            IContext = iContext;
+            IMapper = iMapper;
             ILogger = iLogger;
         }
     }

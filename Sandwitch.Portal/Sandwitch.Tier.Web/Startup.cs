@@ -44,6 +44,7 @@ namespace Sandwitch.Tier.Web
             // Register the service and implementation for the database context
             services.AddCustomContexts();
 
+            // Register the Mvc services to the services container
             services.AddCustomServices();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2)

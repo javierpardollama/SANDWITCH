@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Sandwitch.Tier.Entities.Classes
 {
-    public class Arenal : Base
+    public partial class Arenal : Base
     {
         public Arenal() { }
 

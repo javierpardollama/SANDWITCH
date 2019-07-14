@@ -2,7 +2,7 @@
 
 namespace Sandwitch.Tier.Entities.Classes
 {
-    public class ArenalPoblacion : Base
+    public partial class ArenalPoblacion : Base
     {
         public ArenalPoblacion() { }
 

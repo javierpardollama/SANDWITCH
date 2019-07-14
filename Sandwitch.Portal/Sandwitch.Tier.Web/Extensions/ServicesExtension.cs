@@ -4,7 +4,7 @@ using Sandwitch.Tier.Services.Interfaces;
 
 namespace Sandwitch.Tier.Web.Extensions
 {
-    public static class ServicesConfiguration
+    public static class ServicesExtension
     {
         public static void AddCustomServices(this IServiceCollection services)
         {

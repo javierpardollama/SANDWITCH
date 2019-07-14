@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Sandwitch.Tier.Entities.Classes
 {
-    public class Bandera : Base
+    public partial class Bandera : Base
     {
         public Bandera() { }
 

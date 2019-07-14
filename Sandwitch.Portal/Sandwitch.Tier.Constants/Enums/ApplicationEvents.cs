@@ -2,10 +2,10 @@
 {
     public enum ApplicationEvents
     {
-        InsertItem = 3,
-        UpdateItem = 4,
-        DeleteItem = 5,
-        GetItemNotFound = 6,
-        GetItemFound = 7
+        InsertItem = 1,
+        UpdateItem = 2,
+        DeleteItem = 3,
+        GetItemNotFound = 4,
+        GetItemFound = 5
     }
 }

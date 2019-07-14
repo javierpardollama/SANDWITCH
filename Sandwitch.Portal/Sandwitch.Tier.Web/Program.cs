@@ -26,9 +26,10 @@ namespace Sandwitch.Tier.Web
             {
                 IServiceProvider scopeServiceProvider = serviceScope.ServiceProvider;
 
-                ApplicationContext applicationContext = scopeServiceProvider.GetService<ApplicationContext>();
-
-                applicationContext.Database.Migrate();
+                using (ApplicationContext applicationContext = scopeServiceProvider.GetService<ApplicationContext>())
+                {
+                    applicationContext.Database.Migrate();
+                }
             }
         }
     }

@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Sandwitch.Tier.Entities.Classes
 {
-    public class Historico : Base
+    public partial class Historico : Base
     {
         public Historico() { }
 

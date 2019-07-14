@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Sandwitch.Tier.Entities.Classes
 {
-    public class Provincia : Base
+    public partial class Provincia : Base
     {
         public Provincia() { }
 

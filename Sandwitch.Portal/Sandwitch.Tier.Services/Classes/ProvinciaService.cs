@@ -55,6 +55,7 @@ namespace Sandwitch.Tier.Services.Classes
         {
             ICollection<Provincia> provincias = await IContext.Provincia
                 .AsQueryable()
+                .AsNoTracking()
                 .Include(x => x.Poblaciones)
                 .ToAsyncEnumerable()
                 .ToList();

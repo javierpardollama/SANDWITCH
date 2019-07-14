@@ -56,6 +56,7 @@ namespace Sandwitch.Tier.Services.Classes
         {
             ICollection<Poblacion> poblaciones = await IContext.Poblacion
                 .AsQueryable()
+                .AsNoTracking()
                 .Include(x => x.Provincia)
                 .ToAsyncEnumerable()
                 .ToList();
@@ -67,6 +68,7 @@ namespace Sandwitch.Tier.Services.Classes
         {
             ICollection<Poblacion> poblaciones = await IContext.Poblacion
               .AsQueryable()
+              .AsNoTracking()
               .Include(x => x.Provincia)
               .Where(x => x.Provincia.Id == id)
               .ToAsyncEnumerable()

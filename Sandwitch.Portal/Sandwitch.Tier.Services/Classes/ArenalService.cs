@@ -81,7 +81,9 @@ namespace Sandwitch.Tier.Services.Classes
 
         public async Task<ICollection<ViewArenal>> FindAllArenalByPoblacionId(int id)
         {
-            ICollection<Arenal> arenales = await IContext.ArenalPoblacion.AsQueryable()
+            ICollection<Arenal> arenales = await IContext.ArenalPoblacion
+                .AsQueryable()
+                .AsNoTracking()
                .Include(x => x.Poblacion)
                .Include(x => x.Arenal)
                .ThenInclude(x => x.Historicos)

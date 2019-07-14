@@ -55,6 +55,7 @@ namespace Sandwitch.Tier.Services.Classes
         {
             ICollection<Bandera> banderas = await IContext.Bandera
                 .AsQueryable()
+                .AsNoTracking()
                 .ToAsyncEnumerable()
                 .ToList();
 

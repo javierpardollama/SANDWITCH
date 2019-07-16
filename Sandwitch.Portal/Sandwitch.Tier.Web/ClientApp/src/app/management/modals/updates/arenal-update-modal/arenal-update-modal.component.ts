@@ -8,8 +8,8 @@ import { UpdateArenal } from './../../../../../viewmodels/updates/updatearenal';
 
 import { ArenalService } from './../../../../../services/arenal.service.module';
 import { ProvinciaService } from './../../../../../services/provincia.service.module';
-import { TextAppVariants } from '../../../../../variants/text.app.variants';
-import { TimeAppVariants } from '../../../../../variants/time.app.variants';
+import { TextAppVariants } from './../../../../../variants/text.app.variants';
+import { TimeAppVariants } from './../../../../../variants/time.app.variants';
 
 @Component({
   selector: 'app-arenal-update-modal',
@@ -34,8 +34,7 @@ export class ArenalUpdateModalComponent implements OnInit {
 
   // Life Cicle
   ngOnInit() {
-    this.FindAllProvincia();
-    this.FindAllPoblacion();
+    this.FindAllProvincia();    
     this.CreateForm();
   }
 

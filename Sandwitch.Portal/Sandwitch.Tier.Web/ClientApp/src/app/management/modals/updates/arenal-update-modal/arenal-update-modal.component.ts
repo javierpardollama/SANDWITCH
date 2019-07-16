@@ -22,6 +22,7 @@ export class ArenalUpdateModalComponent implements OnInit {
 
   public provincias: ViewProvincia[];
 
+
   // Constructor
   constructor(private arenalService: ArenalService,
     private provinciaService: ProvinciaService,
@@ -34,6 +35,7 @@ export class ArenalUpdateModalComponent implements OnInit {
   // Life Cicle
   ngOnInit() {
     this.FindAllProvincia();
+    this.FindAllPoblacion();
     this.CreateForm();
   }
 
@@ -42,7 +44,7 @@ export class ArenalUpdateModalComponent implements OnInit {
     this.formGroup = this.formBuilder.group({
       'Id': [this.data.Id, [Validators.required]],
       'Name': [this.data.Name, [Validators.required]],
-      'PoblacionesId': [this.data.Poblaciones, [Validators.required]]
+      'PoblacionesId': [this.data.Poblaciones.map(({ Id }) => Id), [Validators.required]]
     });
   }
 

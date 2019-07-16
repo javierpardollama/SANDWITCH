@@ -17,6 +17,14 @@ namespace Sandwitch.Tier.ViewModels.Classes.Views
             }
         }
 
-        public virtual ICollection<ViewArenalPoblacion> Poblaciones { get; set; }
+        public virtual ICollection<ViewArenalPoblacion> ArenalPoblaciones { get; set; }
+
+        public virtual ICollection<ViewPoblacion> Poblaciones
+        {
+            get
+            {
+                return this.ArenalPoblaciones?.AsQueryable().Select(x => x.Poblacion).ToList();
+            }
+        }
     }
 }

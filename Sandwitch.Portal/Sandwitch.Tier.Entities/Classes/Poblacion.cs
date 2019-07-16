@@ -16,6 +16,6 @@ namespace Sandwitch.Tier.Entities.Classes
         [Required]
         public Provincia Provincia { get; set; }
 
-        public virtual ICollection<ArenalPoblacion> Arenales { get; set; }
+        public virtual ICollection<ArenalPoblacion> ArenalPoblaciones { get; set; }
     }
 }

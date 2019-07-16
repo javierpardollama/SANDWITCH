@@ -27,7 +27,7 @@ namespace Sandwitch.Tier.Services.Classes
         {
             Arenal arenal = await IContext.Arenal
                 .AsQueryable()
-                .Include(x => x.Poblaciones)
+                .Include(x => x.ArenalPoblaciones)
                 .ThenInclude(x => x.Poblacion)
                 .FirstOrDefaultAsync(x => x.Id == id);
 

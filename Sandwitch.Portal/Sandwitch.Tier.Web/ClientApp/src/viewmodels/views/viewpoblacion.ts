@@ -6,5 +6,5 @@ export interface ViewPoblacion extends ViewBase {
     ImageUri: string;
     Name: string;
     Provincia: ViewProvincia;
-    Arenales: ViewArenalPoblacion[];
+    ArenalPoblaciones: ViewArenalPoblacion[];
 }

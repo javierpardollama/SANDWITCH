@@ -10,6 +10,6 @@ namespace Sandwitch.Tier.ViewModels.Classes.Views
 
         public ViewProvincia Provincia { get; set; }
 
-        public virtual ICollection<ViewArenalPoblacion> Arenales { get; set; }
+        public virtual ICollection<ViewArenalPoblacion> ArenalPoblaciones { get; set; }
     }
 }

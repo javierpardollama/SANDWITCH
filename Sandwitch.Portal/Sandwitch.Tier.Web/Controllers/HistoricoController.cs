@@ -1,8 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
 using Sandwitch.Tier.Services.Interfaces;
 using Sandwitch.Tier.ViewModels.Classes.Additions;
 using Sandwitch.Tier.ViewModels.Classes.Views;
-using System.Threading.Tasks;
 
 namespace Sandwitch.Tier.Web.Controllers
 {
@@ -18,7 +18,7 @@ namespace Sandwitch.Tier.Web.Controllers
         [Route("addhistorico")]
         public async Task<IActionResult> AddHistorico([FromBody]AddHistorico viewModel)
         {
-            ViewHistorico historico = await this.Service.AddHistorico(viewModel);
+            ViewHistorico historico = await Service.AddHistorico(viewModel);
 
             return new JsonResult(historico);
         }

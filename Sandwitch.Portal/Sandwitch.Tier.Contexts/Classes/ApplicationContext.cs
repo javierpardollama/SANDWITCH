@@ -1,9 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System;
+using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Sandwitch.Tier.Contexts.Interfaces;
 using Sandwitch.Tier.Entities.Classes;
-using System;
-using System.Threading.Tasks;
 
 namespace Sandwitch.Tier.Contexts.Classes
 {
@@ -59,7 +59,7 @@ namespace Sandwitch.Tier.Contexts.Classes
                         entity.CurrentValues["LastModified"] = DateTime.Now;
                         entity.State = EntityState.Modified;
                         entity.CurrentValues["Deleted"] = true;
-                        break;                   
+                        break;
                 }
             }
         }

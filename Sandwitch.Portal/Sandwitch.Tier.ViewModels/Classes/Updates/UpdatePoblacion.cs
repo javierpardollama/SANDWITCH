@@ -2,6 +2,10 @@
 {
     public class UpdatePoblacion : UpdateBase
     {
+        public UpdatePoblacion()
+        {
+        }
+
         public string Name { get; set; }
 
         public string ImageUri { get; set; }

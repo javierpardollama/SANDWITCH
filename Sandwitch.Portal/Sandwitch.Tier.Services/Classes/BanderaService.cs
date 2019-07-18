@@ -1,4 +1,8 @@
-﻿using AutoMapper;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Sandwitch.Tier.Contexts.Interfaces;
@@ -9,19 +13,14 @@ using Sandwitch.Tier.Services.Interfaces;
 using Sandwitch.Tier.ViewModels.Classes.Additions;
 using Sandwitch.Tier.ViewModels.Classes.Updates;
 using Sandwitch.Tier.ViewModels.Classes.Views;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Sandwitch.Tier.Services.Classes
 {
     public class BanderaService : BaseService, IBanderaService
     {
-        public BanderaService(
-            IApplicationContext iContext,
-            IMapper iMapper,
-            ILogger<BanderaService> iLogger) : base(iContext, iMapper, iLogger)
+        public BanderaService(IApplicationContext iContext,
+                              IMapper iMapper,
+                              ILogger<BanderaService> iLogger) : base(iContext, iMapper, iLogger)
         {
         }
 

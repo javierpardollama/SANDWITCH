@@ -4,6 +4,10 @@ namespace Sandwitch.Tier.ViewModels.Classes.Updates
 {
     public class UpdateArenal : UpdateBase
     {
+        public UpdateArenal()
+        {
+        }
+
         public string Name { get; set; }
 
         public virtual ICollection<int> PoblacionesId { get; set; }

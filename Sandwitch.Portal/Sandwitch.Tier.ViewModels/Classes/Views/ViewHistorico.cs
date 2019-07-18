@@ -4,6 +4,10 @@ namespace Sandwitch.Tier.ViewModels.Classes.Views
 {
     public class ViewHistorico : ViewBase
     {
+        public ViewHistorico()
+        {
+        }
+
         public virtual ViewBandera Bandera { get; set; }
 
         public virtual ViewArenal Arenal { get; set; }

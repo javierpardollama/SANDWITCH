@@ -1,9 +1,9 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using System.Net;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 using Sandwitch.Tier.Exceptions.Classes;
 using Sandwitch.Tier.ViewModels.Classes.Views;
-using System.Net;
-using System.Threading.Tasks;
 
 namespace Sandwitch.Tier.ExceptionHandling.Middlewares
 {

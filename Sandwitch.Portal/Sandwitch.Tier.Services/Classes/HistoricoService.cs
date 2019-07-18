@@ -1,4 +1,7 @@
-﻿using AutoMapper;
+﻿using System;
+using System.Linq;
+using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Sandwitch.Tier.Contexts.Interfaces;
@@ -8,18 +11,14 @@ using Sandwitch.Tier.Logging.Classes;
 using Sandwitch.Tier.Services.Interfaces;
 using Sandwitch.Tier.ViewModels.Classes.Additions;
 using Sandwitch.Tier.ViewModels.Classes.Views;
-using System;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Sandwitch.Tier.Services.Classes
 {
     public class HistoricoService : BaseService, IHistoricoService
     {
-        public HistoricoService(
-            IApplicationContext iContext,
-            IMapper iMapper,
-            ILogger<HistoricoService> iLogger) : base(iContext, iMapper, iLogger)
+        public HistoricoService(IApplicationContext iContext,
+                                IMapper iMapper,
+                                ILogger<HistoricoService> iLogger) : base(iContext, iMapper, iLogger)
         {
         }
 

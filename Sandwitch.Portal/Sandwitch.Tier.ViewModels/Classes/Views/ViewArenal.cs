@@ -5,6 +5,10 @@ namespace Sandwitch.Tier.ViewModels.Classes.Views
 {
     public class ViewArenal : ViewBase
     {
+        public ViewArenal()
+        {
+        }
+
         public string Name { get; set; }
 
         public virtual ICollection<ViewHistorico> Historicos { get; set; }

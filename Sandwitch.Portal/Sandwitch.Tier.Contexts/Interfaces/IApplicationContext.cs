@@ -1,7 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Sandwitch.Tier.Entities.Classes;
-using System;
+﻿using System;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using Sandwitch.Tier.Entities.Classes;
 
 namespace Sandwitch.Tier.Contexts.Interfaces
 {

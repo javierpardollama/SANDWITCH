@@ -1,10 +1,10 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
 using Sandwitch.Tier.Services.Interfaces;
 using Sandwitch.Tier.ViewModels.Classes.Additions;
 using Sandwitch.Tier.ViewModels.Classes.Updates;
 using Sandwitch.Tier.ViewModels.Classes.Views;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace Sandwitch.Tier.Web.Controllers
 {
@@ -20,7 +20,7 @@ namespace Sandwitch.Tier.Web.Controllers
         [Route("updatearenal")]
         public async Task<IActionResult> UpdateArenal([FromBody]UpdateArenal viewModel)
         {
-            ViewArenal arenal = await this.Service.UpdateArenal(viewModel);
+            ViewArenal arenal = await Service.UpdateArenal(viewModel);
 
             return new JsonResult(arenal);
         }
@@ -29,7 +29,7 @@ namespace Sandwitch.Tier.Web.Controllers
         [Route("findallarenal")]
         public async Task<IActionResult> FindAllarenal()
         {
-            ICollection<ViewArenal> arenales = await this.Service.FindAllArenal();
+            ICollection<ViewArenal> arenales = await Service.FindAllArenal();
 
             return new JsonResult(arenales);
         }
@@ -38,7 +38,7 @@ namespace Sandwitch.Tier.Web.Controllers
         [Route("findallarenalbypoblacionid/{id}")]
         public async Task<IActionResult> FindAllArenalByPoblacionId(int id)
         {
-            ICollection<ViewArenal> arenales = await this.Service.FindAllArenalByPoblacionId(id);
+            ICollection<ViewArenal> arenales = await Service.FindAllArenalByPoblacionId(id);
 
             return new JsonResult(arenales);
         }
@@ -47,7 +47,7 @@ namespace Sandwitch.Tier.Web.Controllers
         [Route("addarenal")]
         public async Task<IActionResult> AddArenal([FromBody]AddArenal viewModel)
         {
-            ViewArenal arenal = await this.Service.AddArenal(viewModel);
+            ViewArenal arenal = await Service.AddArenal(viewModel);
 
             return new JsonResult(arenal);
         }
@@ -56,7 +56,7 @@ namespace Sandwitch.Tier.Web.Controllers
         [Route("removearenalbyid/{id}")]
         public async Task<IActionResult> RemoveArenalById(int id)
         {
-            await this.Service.RemoveArenalById(id);
+            await Service.RemoveArenalById(id);
 
             return new JsonResult(StatusCode(200));
         }

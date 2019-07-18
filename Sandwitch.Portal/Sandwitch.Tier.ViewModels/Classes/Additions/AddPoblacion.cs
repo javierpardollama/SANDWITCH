@@ -2,6 +2,10 @@
 {
     public class AddPoblacion
     {
+        public AddPoblacion()
+        {
+        }
+
         public string Name { get; set; }
 
         public string ImageUri { get; set; }

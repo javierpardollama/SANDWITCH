@@ -1,9 +1,9 @@
+using System;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Sandwitch.Tier.Contexts.Classes;
-using System;
 
 namespace Sandwitch.Tier.Web
 {

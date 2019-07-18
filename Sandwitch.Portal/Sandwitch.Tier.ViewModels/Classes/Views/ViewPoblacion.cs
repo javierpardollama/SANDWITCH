@@ -5,6 +5,10 @@ namespace Sandwitch.Tier.ViewModels.Classes.Views
 {
     public class ViewPoblacion : ViewBase
     {
+        public ViewPoblacion()
+        {
+        }
+
         public string Name { get; set; }
 
         public string ImageUri { get; set; }

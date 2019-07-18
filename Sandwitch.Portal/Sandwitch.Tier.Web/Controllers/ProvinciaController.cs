@@ -1,10 +1,10 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
 using Sandwitch.Tier.Services.Interfaces;
 using Sandwitch.Tier.ViewModels.Classes.Additions;
 using Sandwitch.Tier.ViewModels.Classes.Updates;
 using Sandwitch.Tier.ViewModels.Classes.Views;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace Sandwitch.Tier.Web.Controllers
 {
@@ -20,7 +20,7 @@ namespace Sandwitch.Tier.Web.Controllers
         [Route("updateprovincia")]
         public async Task<IActionResult> UpdateProvincia([FromBody]UpdateProvincia viewModel)
         {
-            ViewProvincia provincia = await this.Service.UpdateProvincia(viewModel);
+            ViewProvincia provincia = await Service.UpdateProvincia(viewModel);
 
             return new JsonResult(provincia);
         }
@@ -29,7 +29,7 @@ namespace Sandwitch.Tier.Web.Controllers
         [Route("findallprovincia")]
         public async Task<IActionResult> FindAllProvincia()
         {
-            ICollection<ViewProvincia> provincias = await this.Service.FindAllProvincia();
+            ICollection<ViewProvincia> provincias = await Service.FindAllProvincia();
 
             return new JsonResult(provincias);
         }
@@ -38,7 +38,7 @@ namespace Sandwitch.Tier.Web.Controllers
         [Route("addprovincia")]
         public async Task<IActionResult> AddProvincia([FromBody]AddProvincia viewModel)
         {
-            ViewProvincia provincia = await this.Service.AddProvincia(viewModel);
+            ViewProvincia provincia = await Service.AddProvincia(viewModel);
 
             return new JsonResult(provincia);
         }
@@ -47,7 +47,7 @@ namespace Sandwitch.Tier.Web.Controllers
         [Route("removeprovinciabyid/{id}")]
         public async Task<IActionResult> RemoveProvinciaById(int id)
         {
-            await this.Service.RemoveProvinciaById(id);
+            await Service.RemoveProvinciaById(id);
 
             return new JsonResult(StatusCode(200));
         }

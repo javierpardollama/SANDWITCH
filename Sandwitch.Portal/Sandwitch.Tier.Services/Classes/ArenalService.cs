@@ -50,7 +50,7 @@ namespace Sandwitch.Tier.Services.Classes
 
             ILogger.WriteInsertItemLog(logData);
 
-            return this.IMapper.Map<ViewArenal>(arenal); ;
+            return IMapper.Map<ViewArenal>(arenal); ;
         }
 
         public async Task AddArenalPoblacion(AddArenal viewModel,
@@ -79,7 +79,7 @@ namespace Sandwitch.Tier.Services.Classes
                 .ToAsyncEnumerable()
                 .ToList();
 
-            return this.IMapper.Map<ICollection<ViewArenal>>(arenales);
+            return IMapper.Map<ICollection<ViewArenal>>(arenales);
         }
 
         public async Task<ICollection<ViewArenal>> FindAllArenalByPoblacionId(int id)
@@ -99,7 +99,7 @@ namespace Sandwitch.Tier.Services.Classes
                .ToAsyncEnumerable()
                .ToList();
 
-            return this.IMapper.Map<ICollection<ViewArenal>>(arenales);
+            return IMapper.Map<ICollection<ViewArenal>>(arenales);
         }
 
         public async Task<Arenal> FindArenalById(int id)
@@ -193,7 +193,7 @@ namespace Sandwitch.Tier.Services.Classes
 
             ILogger.WriteUpdateItemLog(logData);
 
-            return this.IMapper.Map<ViewArenal>(arenal); ;
+            return IMapper.Map<ViewArenal>(arenal); ;
         }
 
         public async Task UpdateArenalPoblacion(UpdateArenal viewModel, Arenal entity)

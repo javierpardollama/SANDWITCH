@@ -102,7 +102,7 @@ namespace Sandwitch.Tier.Services.Classes
 
             ILogger.WriteInsertItemLog(logData);
 
-            return this.IMapper.Map<ViewHistorico>(historico);
+            return IMapper.Map<ViewHistorico>(historico);
         }
     }
 }

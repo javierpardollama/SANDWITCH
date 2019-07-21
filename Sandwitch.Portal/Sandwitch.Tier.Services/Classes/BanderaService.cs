@@ -49,7 +49,7 @@ namespace Sandwitch.Tier.Services.Classes
 
             ILogger.WriteInsertItemLog(logData);
 
-            return this.IMapper.Map<ViewBandera>(bandera);
+            return IMapper.Map<ViewBandera>(bandera);
         }
 
         public async Task<ICollection<ViewBandera>> FindAllBandera()
@@ -60,7 +60,7 @@ namespace Sandwitch.Tier.Services.Classes
                 .ToAsyncEnumerable()
                 .ToList();
 
-            return this.IMapper.Map<ICollection<ViewBandera>>(banderas);
+            return IMapper.Map<ICollection<ViewBandera>>(banderas);
         }
 
         public async Task<Bandera> FindBanderaById(int id)
@@ -124,7 +124,7 @@ namespace Sandwitch.Tier.Services.Classes
 
             ILogger.WriteUpdateItemLog(logData);
 
-            return this.IMapper.Map<ViewBandera>(bandera);
+            return IMapper.Map<ViewBandera>(bandera);
         }
 
         public async Task<Bandera> CheckName(AddBandera viewModel)

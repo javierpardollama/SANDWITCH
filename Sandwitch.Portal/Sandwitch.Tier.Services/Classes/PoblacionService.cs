@@ -50,7 +50,7 @@ namespace Sandwitch.Tier.Services.Classes
 
             ILogger.WriteInsertItemLog(logData);
 
-            return this.IMapper.Map<ViewPoblacion>(poblacion);
+            return IMapper.Map<ViewPoblacion>(poblacion);
         }
 
         public async Task<ICollection<ViewPoblacion>> FindAllPoblacion()
@@ -62,7 +62,7 @@ namespace Sandwitch.Tier.Services.Classes
                 .ToAsyncEnumerable()
                 .ToList();
 
-            return this.IMapper.Map<ICollection<ViewPoblacion>>(poblaciones);
+            return IMapper.Map<ICollection<ViewPoblacion>>(poblaciones);
         }
 
         public async Task<ICollection<ViewPoblacion>> FindAllPoblacionByProvinciaId(int id)
@@ -75,7 +75,7 @@ namespace Sandwitch.Tier.Services.Classes
               .ToAsyncEnumerable()
               .ToList();
 
-            return this.IMapper.Map<ICollection<ViewPoblacion>>(poblaciones);
+            return IMapper.Map<ICollection<ViewPoblacion>>(poblaciones);
         }
 
         public async Task<Poblacion> FindPoblacionById(int id)
@@ -164,7 +164,7 @@ namespace Sandwitch.Tier.Services.Classes
 
             ILogger.WriteUpdateItemLog(logData);
 
-            return this.IMapper.Map<ViewPoblacion>(poblacion);
+            return IMapper.Map<ViewPoblacion>(poblacion);
         }
 
         public async Task<Poblacion> CheckName(AddPoblacion viewModel)

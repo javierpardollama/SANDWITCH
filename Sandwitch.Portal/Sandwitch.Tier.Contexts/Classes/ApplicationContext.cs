@@ -27,13 +27,13 @@ namespace Sandwitch.Tier.Contexts.Classes
 
         public override int SaveChanges()
         {
-            this.UpdateSoftStatus();
+            UpdateSoftStatus();
             return base.SaveChanges();
         }
 
         public async Task<int> SaveChangesAsync()
         {
-            this.UpdateSoftStatus();
+            UpdateSoftStatus();
             return await base.SaveChangesAsync();
         }
 

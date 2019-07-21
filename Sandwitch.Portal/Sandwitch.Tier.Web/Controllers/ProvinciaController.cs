@@ -14,7 +14,7 @@ namespace Sandwitch.Tier.Web.Controllers
     {
         private readonly IProvinciaService Service;
 
-        public ProvinciaController(IProvinciaService service) => this.Service = service;
+        public ProvinciaController(IProvinciaService service) => Service = service;
 
         [HttpPut]
         [Route("updateprovincia")]

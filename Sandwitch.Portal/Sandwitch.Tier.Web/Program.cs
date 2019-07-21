@@ -11,11 +11,12 @@ namespace Sandwitch.Tier.Web
     {
         public static void Main(string[] args)
         {
-            IWebHost host = BuildWebHost(args);
+            using (IWebHost host = BuildWebHost(args))
+            {
+                ApplyWebHostMigrations(host.Services);
 
-            ApplyWebHostMigrations(host.Services);
-
-            host.Run();
+                host.Run();
+            }
         }
 
         public static IWebHost BuildWebHost(string[] args) => WebHost.CreateDefaultBuilder(args).UseStartup<Startup>().Build();

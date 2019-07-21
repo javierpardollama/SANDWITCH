@@ -20,7 +20,9 @@ namespace Sandwitch.Tier.Services.Classes
     {
         public ArenalService(IApplicationContext iContext,
                              IMapper iMapper,
-                             ILogger<ArenalService> iLogger) : base(iContext, iMapper, iLogger)
+                             ILogger<ArenalService> iLogger) : base(iContext,
+                                                                    iMapper,
+                                                                    iLogger)
         {
         }
 
@@ -51,7 +53,8 @@ namespace Sandwitch.Tier.Services.Classes
             return this.IMapper.Map<ViewArenal>(arenal); ;
         }
 
-        public async Task AddArenalPoblacion(AddArenal viewModel, Arenal entity)
+        public async Task AddArenalPoblacion(AddArenal viewModel,
+                                             Arenal entity)
         {
             await viewModel.PoblacionesId.ToAsyncEnumerable().ForEachAsync(async x =>
             {

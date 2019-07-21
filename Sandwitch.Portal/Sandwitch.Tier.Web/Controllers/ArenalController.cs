@@ -1,10 +1,10 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
+
 using Microsoft.AspNetCore.Mvc;
+
 using Sandwitch.Tier.Services.Interfaces;
 using Sandwitch.Tier.ViewModels.Classes.Additions;
 using Sandwitch.Tier.ViewModels.Classes.Updates;
-using Sandwitch.Tier.ViewModels.Classes.Views;
 
 namespace Sandwitch.Tier.Web.Controllers
 {
@@ -14,42 +14,34 @@ namespace Sandwitch.Tier.Web.Controllers
     {
         private readonly IArenalService Service;
 
-        public ArenalController(IArenalService service) => this.Service = service;
+        public ArenalController(IArenalService service) => Service = service;
 
         [HttpPut]
         [Route("updatearenal")]
         public async Task<IActionResult> UpdateArenal([FromBody]UpdateArenal viewModel)
         {
-            ViewArenal arenal = await Service.UpdateArenal(viewModel);
-
-            return new JsonResult(arenal);
+            return new JsonResult(value: await Service.UpdateArenal(viewModel));
         }
 
         [HttpGet]
         [Route("findallarenal")]
         public async Task<IActionResult> FindAllarenal()
         {
-            ICollection<ViewArenal> arenales = await Service.FindAllArenal();
-
-            return new JsonResult(arenales);
+            return new JsonResult(value: await Service.FindAllArenal());
         }
 
         [HttpGet]
         [Route("findallarenalbypoblacionid/{id}")]
         public async Task<IActionResult> FindAllArenalByPoblacionId(int id)
         {
-            ICollection<ViewArenal> arenales = await Service.FindAllArenalByPoblacionId(id);
-
-            return new JsonResult(arenales);
+            return new JsonResult(value: await Service.FindAllArenalByPoblacionId(id));
         }
 
         [HttpPost]
         [Route("addarenal")]
         public async Task<IActionResult> AddArenal([FromBody]AddArenal viewModel)
         {
-            ViewArenal arenal = await Service.AddArenal(viewModel);
-
-            return new JsonResult(arenal);
+            return new JsonResult(value: await Service.AddArenal(viewModel));
         }
 
         [HttpDelete]

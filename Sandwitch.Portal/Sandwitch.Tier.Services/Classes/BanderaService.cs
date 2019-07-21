@@ -20,7 +20,9 @@ namespace Sandwitch.Tier.Services.Classes
     {
         public BanderaService(IApplicationContext iContext,
                               IMapper iMapper,
-                              ILogger<BanderaService> iLogger) : base(iContext, iMapper, iLogger)
+                              ILogger<BanderaService> iLogger) : base(iContext,
+                                                                      iMapper,
+                                                                      iLogger)
         {
         }
 

@@ -1,10 +1,10 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
+
 using Microsoft.AspNetCore.Mvc;
+
 using Sandwitch.Tier.Services.Interfaces;
 using Sandwitch.Tier.ViewModels.Classes.Additions;
 using Sandwitch.Tier.ViewModels.Classes.Updates;
-using Sandwitch.Tier.ViewModels.Classes.Views;
 
 namespace Sandwitch.Tier.Web.Controllers
 {
@@ -20,27 +20,21 @@ namespace Sandwitch.Tier.Web.Controllers
         [Route("updatebandera")]
         public async Task<IActionResult> UpdateBandera([FromBody]UpdateBandera viewModel)
         {
-            ViewBandera bandera = await Service.UpdateBandera(viewModel);
-
-            return new JsonResult(bandera);
+            return new JsonResult(value: await Service.UpdateBandera(viewModel));
         }
 
         [HttpGet]
         [Route("findallbandera")]
         public async Task<IActionResult> FindAllBandera()
         {
-            ICollection<ViewBandera> banderas = await Service.FindAllBandera();
-
-            return new JsonResult(banderas);
+            return new JsonResult(value: await Service.FindAllBandera());
         }
 
         [HttpPost]
         [Route("addbandera")]
         public async Task<IActionResult> AddBandera([FromBody]AddBandera viewModel)
         {
-            ViewBandera bandera = await Service.AddBandera(viewModel);
-
-            return new JsonResult(bandera);
+            return new JsonResult(value: await Service.AddBandera(viewModel));
         }
 
         [HttpDelete]

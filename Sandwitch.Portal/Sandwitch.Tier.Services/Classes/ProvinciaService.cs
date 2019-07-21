@@ -20,7 +20,9 @@ namespace Sandwitch.Tier.Services.Classes
     {
         public ProvinciaService(IApplicationContext iContext,
                                 IMapper iMapper,
-                                ILogger<ProvinciaService> iLogger) : base(iContext, iMapper, iLogger)
+                                ILogger<ProvinciaService> iLogger) : base(iContext,
+                                                                          iMapper,
+                                                                          iLogger)
         {
         }
 

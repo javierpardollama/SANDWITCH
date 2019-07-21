@@ -20,7 +20,9 @@ namespace Sandwitch.Tier.Services.Classes
     {
         public PoblacionService(IApplicationContext iContext,
                                 IMapper iMapper,
-                                ILogger<PoblacionService> iLogger) : base(iContext, iMapper, iLogger)
+                                ILogger<PoblacionService> iLogger) : base(iContext,
+                                                                          iMapper,
+                                                                          iLogger)
         {
         }
 

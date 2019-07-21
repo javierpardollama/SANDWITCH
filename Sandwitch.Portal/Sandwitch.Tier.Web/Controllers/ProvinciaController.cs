@@ -1,10 +1,10 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
+
 using Microsoft.AspNetCore.Mvc;
+
 using Sandwitch.Tier.Services.Interfaces;
 using Sandwitch.Tier.ViewModels.Classes.Additions;
 using Sandwitch.Tier.ViewModels.Classes.Updates;
-using Sandwitch.Tier.ViewModels.Classes.Views;
 
 namespace Sandwitch.Tier.Web.Controllers
 {
@@ -20,27 +20,21 @@ namespace Sandwitch.Tier.Web.Controllers
         [Route("updateprovincia")]
         public async Task<IActionResult> UpdateProvincia([FromBody]UpdateProvincia viewModel)
         {
-            ViewProvincia provincia = await Service.UpdateProvincia(viewModel);
-
-            return new JsonResult(provincia);
+            return new JsonResult(value: await Service.UpdateProvincia(viewModel));
         }
 
         [HttpGet]
         [Route("findallprovincia")]
         public async Task<IActionResult> FindAllProvincia()
         {
-            ICollection<ViewProvincia> provincias = await Service.FindAllProvincia();
-
-            return new JsonResult(provincias);
+            return new JsonResult(value: await Service.FindAllProvincia());
         }
 
         [HttpPost]
         [Route("addprovincia")]
         public async Task<IActionResult> AddProvincia([FromBody]AddProvincia viewModel)
         {
-            ViewProvincia provincia = await Service.AddProvincia(viewModel);
-
-            return new JsonResult(provincia);
+            return new JsonResult(value: await Service.AddProvincia(viewModel));
         }
 
         [HttpDelete]

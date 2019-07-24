@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+
 using AutoMapper;
+
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+
 using Sandwitch.Tier.Contexts.Interfaces;
 using Sandwitch.Tier.Entities.Classes;
-using Sandwitch.Tier.Exceptions.Classes;
 using Sandwitch.Tier.Logging.Classes;
 using Sandwitch.Tier.Services.Interfaces;
 using Sandwitch.Tier.ViewModels.Classes.Additions;
@@ -80,7 +82,7 @@ namespace Sandwitch.Tier.Services.Classes
 
                 ILogger.WriteGetItemNotFoundLog(logData);
 
-                throw new ServiceException(provincia.GetType().Name
+                throw new Exception(provincia.GetType().Name
                     + " with Id "
                     + id
                     + " does not exist");
@@ -144,7 +146,7 @@ namespace Sandwitch.Tier.Services.Classes
 
                 ILogger.WriteGetItemFoundLog(logData);
 
-                throw new ServiceException(provincia.GetType().Name
+                throw new Exception(provincia.GetType().Name
                     + " with Name "
                     + viewModel.Name
                     + " already exists");

@@ -1,8 +1,11 @@
-﻿using System.Net;
+﻿using System;
+using System.Net;
 using System.Threading.Tasks;
+
 using Microsoft.AspNetCore.Http;
+
 using Newtonsoft.Json;
-using Sandwitch.Tier.Exceptions.Classes;
+
 using Sandwitch.Tier.ViewModels.Classes.Views;
 
 namespace Sandwitch.Tier.ExceptionHandling.Middlewares
@@ -19,7 +22,7 @@ namespace Sandwitch.Tier.ExceptionHandling.Middlewares
             {
                 await RequestDelegate(httpContext);
             }
-            catch (ServiceException ex)
+            catch (Exception ex)
             {
                 await HandleExceptionAsync(httpContext, ex);
             }
@@ -27,7 +30,7 @@ namespace Sandwitch.Tier.ExceptionHandling.Middlewares
 
         private static Task HandleExceptionAsync(
             HttpContext context,
-            ServiceException exception)
+            Exception exception)
         {
             context.Response.ContentType = "application/json";
             context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;

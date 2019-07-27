@@ -15,6 +15,7 @@
     <Copyright>2019 Javier Pardo</Copyright>
     <PackageLicenseUrl></PackageLicenseUrl>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
   </PropertyGroup>
 
   <ItemGroup>
@@ -33,10 +34,6 @@
     <Content Remove="$(SpaRoot)**" />
     <None Remove="$(SpaRoot)**" />
     <None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Remove="sandwitch.db-journal" />
   </ItemGroup>
 
   <ItemGroup>

@@ -6,6 +6,7 @@
     <Copyright>2019 Javier Pardo</Copyright>
     <PackageProjectUrl>https://github.com/javierpardollama/SANDWITCH/tree/master/Sandwitch.Portal/Sandwitch.Tier.Mappings</PackageProjectUrl>
     <RepositoryUrl>https://github.com/javierpardollama/SANDWITCH/tree/master/Sandwitch.Portal/Sandwitch.Tier.Mappings</RepositoryUrl>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
   </PropertyGroup>
 
   <ItemGroup>

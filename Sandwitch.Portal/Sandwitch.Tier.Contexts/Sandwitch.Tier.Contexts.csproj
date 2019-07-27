@@ -7,6 +7,7 @@
     <PackageLicenseUrl></PackageLicenseUrl>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <Copyright>2019 Javier Pardo</Copyright>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
   </PropertyGroup>
 
   <ItemGroup>

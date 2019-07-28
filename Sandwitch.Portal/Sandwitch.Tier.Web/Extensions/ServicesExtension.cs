@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+
 using Sandwitch.Tier.Services.Classes;
 using Sandwitch.Tier.Services.Interfaces;
 
@@ -6,7 +7,7 @@ namespace Sandwitch.Tier.Web.Extensions
 {
     public static class ServicesExtension
     {
-        public static void AddCustomServices(this IServiceCollection services)
+        public static void AddCustomizedServices(this IServiceCollection services)
         {
             services.AddTransient<IProvinciaService, ProvinciaService>();
             services.AddTransient<IPoblacionService, PoblacionService>();

@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+
 using Microsoft.Extensions.Logging;
+
 using Sandwitch.Tier.Constants.Enums;
 
 namespace Sandwitch.Tier.Mappings.Classes

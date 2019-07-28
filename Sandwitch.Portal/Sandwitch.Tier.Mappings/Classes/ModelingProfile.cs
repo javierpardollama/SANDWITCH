@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+
 using Sandwitch.Tier.Entities.Classes;
 using Sandwitch.Tier.ViewModels.Classes.Views;
 

@@ -182,6 +182,8 @@ namespace Sandwitch.Tier.Services.Classes
 
         public async Task<ViewArenal> UpdateArenal(UpdateArenal viewModel)
         {
+            await CheckName(viewModel);
+
             Arenal arenal = await FindArenalById(viewModel.Id);
             arenal.Name = viewModel.Name;
             arenal.ArenalPoblaciones = new List<ArenalPoblacion>();
@@ -225,6 +227,32 @@ namespace Sandwitch.Tier.Services.Classes
             Arenal arenal = await Context.Arenal
                  .TagWith("CheckName")
                  .FirstOrDefaultAsync(x => x.Name == viewModel.Name);
+
+            if (arenal != null)
+            {
+                // Log
+                string logData = arenal.GetType().Name
+                    + " with Name "
+                    + arenal.Name
+                    + " was already found at "
+                    + DateTime.Now.ToShortTimeString();
+
+                Logger.WriteGetItemFoundLog(logData);
+
+                throw new Exception(arenal.GetType().Name
+                    + " with Name "
+                    + viewModel.Name
+                    + " already exists");
+            }
+
+            return arenal;
+        }
+
+        public async Task<Arenal> CheckName(UpdateArenal viewModel)
+        {
+            Arenal arenal = await Context.Arenal
+                 .TagWith("CheckName")
+                 .FirstOrDefaultAsync(x => x.Name == viewModel.Name && x.Id != viewModel.Id);
 
             if (arenal != null)
             {

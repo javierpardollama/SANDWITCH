@@ -154,6 +154,8 @@ namespace Sandwitch.Tier.Services.Classes
 
         public async Task<ViewPoblacion> UpdatePoblacion(UpdatePoblacion viewModel)
         {
+            await CheckName(viewModel);
+
             Poblacion poblacion = await FindPoblacionById(viewModel.Id);
             poblacion.Name = viewModel.Name;
             poblacion.Provincia = await FindProvinciaById(viewModel.ProvinciaId);
@@ -180,6 +182,32 @@ namespace Sandwitch.Tier.Services.Classes
             Poblacion poblacion = await Context.Poblacion
                  .TagWith("CheckName")
                  .FirstOrDefaultAsync(x => x.Name == viewModel.Name);
+
+            if (poblacion != null)
+            {
+                // Log
+                string logData = poblacion.GetType().Name
+                    + " with Name "
+                    + poblacion.Name
+                    + " was already found at "
+                    + DateTime.Now.ToShortTimeString();
+
+                Logger.WriteGetItemFoundLog(logData);
+
+                throw new Exception(poblacion.GetType().Name
+                    + " with Name "
+                    + viewModel.Name
+                    + " already exists");
+            }
+
+            return poblacion;
+        }
+
+        public async Task<Poblacion> CheckName(UpdatePoblacion viewModel)
+        {
+            Poblacion poblacion = await Context.Poblacion
+                 .TagWith("CheckName")
+                 .FirstOrDefaultAsync(x => x.Name == viewModel.Name & x.Id != viewModel.Id);
 
             if (poblacion != null)
             {

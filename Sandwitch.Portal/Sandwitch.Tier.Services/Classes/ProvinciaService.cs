@@ -113,6 +113,8 @@ namespace Sandwitch.Tier.Services.Classes
 
         public async Task<ViewProvincia> UpdateProvincia(UpdateProvincia viewModel)
         {
+            await CheckName(viewModel);
+
             Provincia provincia = await FindProvinciaById(viewModel.Id);
             provincia.Name = viewModel.Name;
             provincia.ImageUri = viewModel.ImageUri;
@@ -138,6 +140,32 @@ namespace Sandwitch.Tier.Services.Classes
             Provincia provincia = await Context.Provincia
                  .TagWith("CheckName")
                  .FirstOrDefaultAsync(x => x.Name == viewModel.Name);
+
+            if (provincia != null)
+            {
+                // Log
+                string logData = provincia.GetType().Name
+                    + " with Name "
+                    + provincia.Name
+                    + " was already found at "
+                    + DateTime.Now.ToShortTimeString();
+
+                Logger.WriteGetItemFoundLog(logData);
+
+                throw new Exception(provincia.GetType().Name
+                    + " with Name "
+                    + viewModel.Name
+                    + " already exists");
+            }
+
+            return provincia;
+        }
+
+        public async Task<Provincia> CheckName(UpdateProvincia viewModel)
+        {
+            Provincia provincia = await Context.Provincia
+                 .TagWith("CheckName")
+                 .FirstOrDefaultAsync(x => x.Name == viewModel.Name && x.Id != viewModel.Id);
 
             if (provincia != null)
             {

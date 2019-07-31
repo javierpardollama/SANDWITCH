@@ -25,5 +25,7 @@ namespace Sandwitch.Tier.Services.Interfaces
         Task<ViewPoblacion> AddPoblacion(AddPoblacion viewModel);
 
         Task<Poblacion> CheckName(AddPoblacion viewModel);
+
+        Task<Poblacion> CheckName(UpdatePoblacion viewModel);
     }
 }

@@ -21,5 +21,7 @@ namespace Sandwitch.Tier.Services.Interfaces
         Task<ViewBandera> AddBandera(AddBandera viewModel);
 
         Task<Bandera> CheckName(AddBandera viewModel);
+
+        Task<Bandera> CheckName(UpdateBandera viewModel);
     }
 }

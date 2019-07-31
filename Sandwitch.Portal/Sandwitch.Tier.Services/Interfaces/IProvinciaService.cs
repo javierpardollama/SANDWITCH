@@ -21,5 +21,7 @@ namespace Sandwitch.Tier.Services.Interfaces
         Task<ViewProvincia> AddProvincia(AddProvincia viewModel);
 
         Task<Provincia> CheckName(AddProvincia viewModel);
+
+        Task<Provincia> CheckName(UpdateProvincia viewModel);
     }
 }

@@ -112,6 +112,8 @@ namespace Sandwitch.Tier.Services.Classes
 
         public async Task<ViewBandera> UpdateBandera(UpdateBandera viewModel)
         {
+            await CheckName(viewModel);
+
             Bandera bandera = await FindBanderaById(viewModel.Id);
             bandera.Name = viewModel.Name;
             bandera.ImageUri = viewModel.ImageUri;
@@ -137,6 +139,32 @@ namespace Sandwitch.Tier.Services.Classes
             Bandera bandera = await Context.Bandera
                  .TagWith("CheckName")
                  .FirstOrDefaultAsync(x => x.Name == viewModel.Name);
+
+            if (bandera != null)
+            {
+                // Log
+                string logData = bandera.GetType().Name
+                    + " with Name "
+                    + bandera.Name
+                    + " was already found at "
+                    + DateTime.Now.ToShortTimeString();
+
+                Logger.WriteGetItemFoundLog(logData);
+
+                throw new Exception(bandera.GetType().Name
+                    + " with Name "
+                    + viewModel.Name
+                    + " already exists");
+            }
+
+            return bandera;
+        }
+
+        public async Task<Bandera> CheckName(UpdateBandera viewModel)
+        {
+            Bandera bandera = await Context.Bandera
+                 .TagWith("CheckName")
+                 .FirstOrDefaultAsync(x => x.Name == viewModel.Name && x.Id != viewModel.Id);
 
             if (bandera != null)
             {

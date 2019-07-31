@@ -29,5 +29,7 @@ namespace Sandwitch.Tier.Services.Interfaces
         Task UpdateArenalPoblacion(UpdateArenal viewModel, Arenal entity);
 
         Task<Arenal> CheckName(AddArenal viewModel);
+
+        Task<Arenal> CheckName(UpdateArenal viewModel);
     }
 }

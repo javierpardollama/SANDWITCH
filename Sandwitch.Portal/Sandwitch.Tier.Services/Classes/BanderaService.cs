@@ -20,11 +20,11 @@ namespace Sandwitch.Tier.Services.Classes
 {
     public class BanderaService : BaseService, IBanderaService
     {
-        public BanderaService(IApplicationContext iContext,
-                              IMapper iMapper,
-                              ILogger<BanderaService> iLogger) : base(iContext,
-                                                                      iMapper,
-                                                                      iLogger)
+        public BanderaService(IApplicationContext context,
+                              IMapper mapper,
+                              ILogger<BanderaService> logger) : base(context,
+                                                                      mapper,
+                                                                      logger)
         {
         }
 
@@ -38,9 +38,9 @@ namespace Sandwitch.Tier.Services.Classes
                 ImageUri = viewModel.ImageUri
             };
 
-            await IContext.Bandera.AddAsync(bandera);
+            await Context.Bandera.AddAsync(bandera);
 
-            await IContext.SaveChangesAsync();
+            await Context.SaveChangesAsync();
 
             // Log
             string logData = bandera.GetType().Name
@@ -49,25 +49,28 @@ namespace Sandwitch.Tier.Services.Classes
                 + " was added at "
                 + DateTime.Now.ToShortTimeString();
 
-            ILogger.WriteInsertItemLog(logData);
+            Logger.WriteInsertItemLog(logData);
 
-            return IMapper.Map<ViewBandera>(bandera);
+            return Mapper.Map<ViewBandera>(bandera);
         }
 
         public async Task<ICollection<ViewBandera>> FindAllBandera()
         {
-            ICollection<Bandera> banderas = await IContext.Bandera
+            ICollection<Bandera> banderas = await Context.Bandera
+                .TagWith("FindAllBandera")
                 .AsQueryable()
                 .AsNoTracking()
                 .ToAsyncEnumerable()
                 .ToList();
 
-            return IMapper.Map<ICollection<ViewBandera>>(banderas);
+            return Mapper.Map<ICollection<ViewBandera>>(banderas);
         }
 
         public async Task<Bandera> FindBanderaById(int id)
         {
-            Bandera bandera = await IContext.Bandera.FirstOrDefaultAsync(x => x.Id == id);
+            Bandera bandera = await Context.Bandera
+                 .TagWith("FindBanderaById")
+                 .FirstOrDefaultAsync(x => x.Id == id);
 
             if (bandera == null)
             {
@@ -78,7 +81,7 @@ namespace Sandwitch.Tier.Services.Classes
                     + " was not found at "
                     + DateTime.Now.ToShortTimeString();
 
-                ILogger.WriteGetItemNotFoundLog(logData);
+                Logger.WriteGetItemNotFoundLog(logData);
 
                 throw new Exception(bandera.GetType().Name
                     + " with Id "
@@ -93,9 +96,9 @@ namespace Sandwitch.Tier.Services.Classes
         {
             Bandera bandera = await FindBanderaById(id);
 
-            IContext.Bandera.Remove(bandera);
+            Context.Bandera.Remove(bandera);
 
-            await IContext.SaveChangesAsync();
+            await Context.SaveChangesAsync();
 
             // Log
             string logData = bandera.GetType().Name
@@ -104,7 +107,7 @@ namespace Sandwitch.Tier.Services.Classes
                 + " was removed at "
                 + DateTime.Now.ToShortTimeString();
 
-            ILogger.WriteDeleteItemLog(logData);
+            Logger.WriteDeleteItemLog(logData);
         }
 
         public async Task<ViewBandera> UpdateBandera(UpdateBandera viewModel)
@@ -113,9 +116,9 @@ namespace Sandwitch.Tier.Services.Classes
             bandera.Name = viewModel.Name;
             bandera.ImageUri = viewModel.ImageUri;
 
-            IContext.Bandera.Update(bandera);
+            Context.Bandera.Update(bandera);
 
-            await IContext.SaveChangesAsync();
+            await Context.SaveChangesAsync();
 
             // Log
             string logData = bandera.GetType().Name
@@ -124,14 +127,16 @@ namespace Sandwitch.Tier.Services.Classes
                 + " was modified at "
                 + DateTime.Now.ToShortTimeString();
 
-            ILogger.WriteUpdateItemLog(logData);
+            Logger.WriteUpdateItemLog(logData);
 
-            return IMapper.Map<ViewBandera>(bandera);
+            return Mapper.Map<ViewBandera>(bandera);
         }
 
         public async Task<Bandera> CheckName(AddBandera viewModel)
         {
-            Bandera bandera = await IContext.Bandera.FirstOrDefaultAsync(x => x.Name == viewModel.Name);
+            Bandera bandera = await Context.Bandera
+                 .TagWith("CheckName")
+                 .FirstOrDefaultAsync(x => x.Name == viewModel.Name);
 
             if (bandera != null)
             {
@@ -142,7 +147,7 @@ namespace Sandwitch.Tier.Services.Classes
                     + " was already found at "
                     + DateTime.Now.ToShortTimeString();
 
-                ILogger.WriteGetItemFoundLog(logData);
+                Logger.WriteGetItemFoundLog(logData);
 
                 throw new Exception(bandera.GetType().Name
                     + " with Name "

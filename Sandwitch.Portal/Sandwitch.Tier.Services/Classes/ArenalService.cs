@@ -20,11 +20,11 @@ namespace Sandwitch.Tier.Services.Classes
 {
     public class ArenalService : BaseService, IArenalService
     {
-        public ArenalService(IApplicationContext iContext,
-                             IMapper iMapper,
-                             ILogger<ArenalService> iLogger) : base(iContext,
-                                                                    iMapper,
-                                                                    iLogger)
+        public ArenalService(IApplicationContext context,
+                             IMapper mapper,
+                             ILogger<ArenalService> logger) : base(context,
+                                                                    mapper,
+                                                                    logger)
         {
         }
 
@@ -37,11 +37,11 @@ namespace Sandwitch.Tier.Services.Classes
                 Name = viewModel.Name
             };
 
-            await IContext.Arenal.AddAsync(arenal);
+            await Context.Arenal.AddAsync(arenal);
 
             await AddArenalPoblacion(viewModel, arenal);
 
-            await IContext.SaveChangesAsync();
+            await Context.SaveChangesAsync();
 
             // Log
             string logData = arenal.GetType().ToString()
@@ -50,9 +50,9 @@ namespace Sandwitch.Tier.Services.Classes
                 + " was added at "
                 + DateTime.Now.ToShortTimeString();
 
-            ILogger.WriteInsertItemLog(logData);
+            Logger.WriteInsertItemLog(logData);
 
-            return IMapper.Map<ViewArenal>(arenal); ;
+            return Mapper.Map<ViewArenal>(arenal); ;
         }
 
         public async Task AddArenalPoblacion(AddArenal viewModel,
@@ -68,25 +68,28 @@ namespace Sandwitch.Tier.Services.Classes
                     Poblacion = poblacion,
                 };
 
-                await IContext.ArenalPoblacion.AddAsync(arenalPoblacion);
+                await Context.ArenalPoblacion.AddAsync(arenalPoblacion);
             });
         }
 
         public async Task<ICollection<ViewArenal>> FindAllArenal()
         {
-            ICollection<Arenal> arenales = await IContext.Arenal.AsQueryable()
+            ICollection<Arenal> arenales = await Context.Arenal
+                .TagWith("FindAllArenal")
+                .AsQueryable()
                 .Include(x => x.ArenalPoblaciones)
                 .ThenInclude(x => x.Poblacion)
                 .Include(x => x.Historicos)
                 .ToAsyncEnumerable()
                 .ToList();
 
-            return IMapper.Map<ICollection<ViewArenal>>(arenales);
+            return Mapper.Map<ICollection<ViewArenal>>(arenales);
         }
 
         public async Task<ICollection<ViewArenal>> FindAllArenalByPoblacionId(int id)
         {
-            ICollection<Arenal> arenales = await IContext.ArenalPoblacion
+            ICollection<Arenal> arenales = await Context.ArenalPoblacion
+               .TagWith("FindAllArenalByPoblacionId")
                .AsQueryable()
                .AsNoTracking()
                .Include(x => x.Poblacion)
@@ -101,12 +104,13 @@ namespace Sandwitch.Tier.Services.Classes
                .ToAsyncEnumerable()
                .ToList();
 
-            return IMapper.Map<ICollection<ViewArenal>>(arenales);
+            return Mapper.Map<ICollection<ViewArenal>>(arenales);
         }
 
         public async Task<Arenal> FindArenalById(int id)
         {
-            Arenal arenal = await IContext.Arenal
+            Arenal arenal = await Context.Arenal
+                .TagWith("FindArenalById")
                 .AsQueryable()
                 .Include(x => x.ArenalPoblaciones)
                 .ThenInclude(x => x.Poblacion)
@@ -121,7 +125,7 @@ namespace Sandwitch.Tier.Services.Classes
                     + " was not found at "
                     + DateTime.Now.ToShortTimeString();
 
-                ILogger.WriteGetItemNotFoundLog(logData);
+                Logger.WriteGetItemNotFoundLog(logData);
 
                 throw new Exception(arenal.GetType().Name
                     + " with Id "
@@ -134,7 +138,9 @@ namespace Sandwitch.Tier.Services.Classes
 
         public async Task<Poblacion> FindPoblacionById(int id)
         {
-            Poblacion poblacion = await IContext.Poblacion.FirstOrDefaultAsync(x => x.Id == id);
+            Poblacion poblacion = await Context.Poblacion
+                 .TagWith("FindPoblacionById")
+                 .FirstOrDefaultAsync(x => x.Id == id);
 
             if (poblacion == null)
             {
@@ -145,7 +151,7 @@ namespace Sandwitch.Tier.Services.Classes
                     + " was not found at "
                     + DateTime.Now.ToShortTimeString();
 
-                ILogger.WriteGetItemNotFoundLog(logData);
+                Logger.WriteGetItemNotFoundLog(logData);
 
                 throw new Exception(poblacion.GetType().Name
                     + " with Id "
@@ -160,9 +166,9 @@ namespace Sandwitch.Tier.Services.Classes
         {
             Arenal arenal = await FindArenalById(id);
 
-            IContext.Arenal.Remove(arenal);
+            Context.Arenal.Remove(arenal);
 
-            await IContext.SaveChangesAsync();
+            await Context.SaveChangesAsync();
 
             // Log
             string logData = arenal.GetType().Name
@@ -171,7 +177,7 @@ namespace Sandwitch.Tier.Services.Classes
                 + " was removed at "
                 + DateTime.Now.ToShortTimeString();
 
-            ILogger.WriteDeleteItemLog(logData);
+            Logger.WriteDeleteItemLog(logData);
         }
 
         public async Task<ViewArenal> UpdateArenal(UpdateArenal viewModel)
@@ -180,11 +186,11 @@ namespace Sandwitch.Tier.Services.Classes
             arenal.Name = viewModel.Name;
             arenal.ArenalPoblaciones = new List<ArenalPoblacion>();
 
-            IContext.Arenal.Update(arenal);
+            Context.Arenal.Update(arenal);
 
             await UpdateArenalPoblacion(viewModel, arenal);
 
-            await IContext.SaveChangesAsync();
+            await Context.SaveChangesAsync();
 
             // Log
             string logData = arenal.GetType().Name
@@ -193,9 +199,9 @@ namespace Sandwitch.Tier.Services.Classes
                 + " was modified at "
                 + DateTime.Now.ToShortTimeString();
 
-            ILogger.WriteUpdateItemLog(logData);
+            Logger.WriteUpdateItemLog(logData);
 
-            return IMapper.Map<ViewArenal>(arenal); ;
+            return Mapper.Map<ViewArenal>(arenal); ;
         }
 
         public async Task UpdateArenalPoblacion(UpdateArenal viewModel, Arenal entity)
@@ -210,13 +216,15 @@ namespace Sandwitch.Tier.Services.Classes
                     Poblacion = poblacion,
                 };
 
-                await IContext.ArenalPoblacion.AddAsync(arenalPoblacion);
+                await Context.ArenalPoblacion.AddAsync(arenalPoblacion);
             });
         }
 
         public async Task<Arenal> CheckName(AddArenal viewModel)
         {
-            Arenal arenal = await IContext.Arenal.FirstOrDefaultAsync(x => x.Name == viewModel.Name);
+            Arenal arenal = await Context.Arenal
+                 .TagWith("CheckName")
+                 .FirstOrDefaultAsync(x => x.Name == viewModel.Name);
 
             if (arenal != null)
             {
@@ -227,7 +235,7 @@ namespace Sandwitch.Tier.Services.Classes
                     + " was already found at "
                     + DateTime.Now.ToShortTimeString();
 
-                ILogger.WriteGetItemFoundLog(logData);
+                Logger.WriteGetItemFoundLog(logData);
 
                 throw new Exception(arenal.GetType().Name
                     + " with Name "

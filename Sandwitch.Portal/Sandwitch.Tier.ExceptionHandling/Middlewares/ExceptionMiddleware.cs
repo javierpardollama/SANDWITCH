@@ -12,36 +12,36 @@ namespace Sandwitch.Tier.ExceptionHandling.Middlewares
 {
     public class ExceptionMiddleware
     {
-        private readonly RequestDelegate RequestDelegate;
+        private readonly RequestDelegate Request;
 
-        public ExceptionMiddleware(RequestDelegate requestDelegate) => RequestDelegate = requestDelegate;
+        public ExceptionMiddleware(RequestDelegate request) => Request = request;
 
-        public async Task InvokeAsync(HttpContext httpContext)
+        public async Task InvokeAsync(HttpContext context)
         {
             try
             {
-                await RequestDelegate(httpContext);
+                await Request(context);
             }
             catch (Exception ex)
             {
-                await HandleExceptionAsync(httpContext, ex);
+                await HandleExceptionAsync(context, ex);
             }
         }
 
         private static Task HandleExceptionAsync(
-            HttpContext httpContext,
+            HttpContext context,
             Exception exception)
         {
-            httpContext.Response.ContentType = "application/json";
-            httpContext.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
+            context.Response.ContentType = "application/json";
+            context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
 
             ViewException viewException = new ViewException
             {
-                StatusCode = httpContext.Response.StatusCode,
+                StatusCode = context.Response.StatusCode,
                 Message = exception.Message
             };
 
-            return httpContext.Response.WriteAsync(JsonConvert.SerializeObject(viewException));
+            return context.Response.WriteAsync(JsonConvert.SerializeObject(viewException));
         }
     }
 }

@@ -20,11 +20,11 @@ namespace Sandwitch.Tier.Services.Classes
 {
     public class ProvinciaService : BaseService, IProvinciaService
     {
-        public ProvinciaService(IApplicationContext iContext,
-                                IMapper iMapper,
-                                ILogger<ProvinciaService> iLogger) : base(iContext,
-                                                                          iMapper,
-                                                                          iLogger)
+        public ProvinciaService(IApplicationContext context,
+                                IMapper mapper,
+                                ILogger<ProvinciaService> logger) : base(context,
+                                                                          mapper,
+                                                                          logger)
         {
         }
 
@@ -38,9 +38,9 @@ namespace Sandwitch.Tier.Services.Classes
                 ImageUri = viewModel.ImageUri
             };
 
-            await IContext.Provincia.AddAsync(provincia);
+            await Context.Provincia.AddAsync(provincia);
 
-            await IContext.SaveChangesAsync();
+            await Context.SaveChangesAsync();
 
             // Log
             string logData = provincia.GetType().Name
@@ -49,26 +49,28 @@ namespace Sandwitch.Tier.Services.Classes
                 + " was added at "
                 + DateTime.Now.ToShortTimeString();
 
-            ILogger.WriteInsertItemLog(logData);
+            Logger.WriteInsertItemLog(logData);
 
-            return IMapper.Map<ViewProvincia>(provincia);
+            return Mapper.Map<ViewProvincia>(provincia);
         }
 
         public async Task<ICollection<ViewProvincia>> FindAllProvincia()
         {
-            ICollection<Provincia> provincias = await IContext.Provincia
+            ICollection<Provincia> provincias = await Context.Provincia
+                .TagWith("FindAllProvincia")
                 .AsQueryable()
                 .AsNoTracking()
                 .Include(x => x.Poblaciones)
                 .ToAsyncEnumerable()
                 .ToList();
 
-            return IMapper.Map<ICollection<ViewProvincia>>(provincias);
+            return Mapper.Map<ICollection<ViewProvincia>>(provincias);
         }
 
         public async Task<Provincia> FindProvinciaById(int id)
         {
-            Provincia provincia = await IContext.Provincia
+            Provincia provincia = await Context.Provincia
+                .TagWith("FindProvinciaById")
                 .FirstOrDefaultAsync(x => x.Id == id);
 
             if (provincia == null)
@@ -80,7 +82,7 @@ namespace Sandwitch.Tier.Services.Classes
                     + " was not found at "
                     + DateTime.Now.ToShortTimeString();
 
-                ILogger.WriteGetItemNotFoundLog(logData);
+                Logger.WriteGetItemNotFoundLog(logData);
 
                 throw new Exception(provincia.GetType().Name
                     + " with Id "
@@ -95,9 +97,9 @@ namespace Sandwitch.Tier.Services.Classes
         {
             Provincia provincia = await FindProvinciaById(id);
 
-            IContext.Provincia.Remove(provincia);
+            Context.Provincia.Remove(provincia);
 
-            await IContext.SaveChangesAsync();
+            await Context.SaveChangesAsync();
 
             // Log
             string logData = provincia.GetType().Name
@@ -106,7 +108,7 @@ namespace Sandwitch.Tier.Services.Classes
                 + " was removed at "
                 + DateTime.Now.ToShortTimeString();
 
-            ILogger.WriteDeleteItemLog(logData);
+            Logger.WriteDeleteItemLog(logData);
         }
 
         public async Task<ViewProvincia> UpdateProvincia(UpdateProvincia viewModel)
@@ -115,9 +117,9 @@ namespace Sandwitch.Tier.Services.Classes
             provincia.Name = viewModel.Name;
             provincia.ImageUri = viewModel.ImageUri;
 
-            IContext.Provincia.Update(provincia);
+            Context.Provincia.Update(provincia);
 
-            await IContext.SaveChangesAsync();
+            await Context.SaveChangesAsync();
 
             // Log
             string logData = provincia.GetType().Name
@@ -126,14 +128,16 @@ namespace Sandwitch.Tier.Services.Classes
                 + " was modified at "
                 + DateTime.Now.ToShortTimeString();
 
-            ILogger.WriteUpdateItemLog(logData);
+            Logger.WriteUpdateItemLog(logData);
 
-            return IMapper.Map<ViewProvincia>(provincia);
+            return Mapper.Map<ViewProvincia>(provincia);
         }
 
         public async Task<Provincia> CheckName(AddProvincia viewModel)
         {
-            Provincia provincia = await IContext.Provincia.FirstOrDefaultAsync(x => x.Name == viewModel.Name);
+            Provincia provincia = await Context.Provincia
+                 .TagWith("CheckName")
+                 .FirstOrDefaultAsync(x => x.Name == viewModel.Name);
 
             if (provincia != null)
             {
@@ -144,7 +148,7 @@ namespace Sandwitch.Tier.Services.Classes
                     + " was already found at "
                     + DateTime.Now.ToShortTimeString();
 
-                ILogger.WriteGetItemFoundLog(logData);
+                Logger.WriteGetItemFoundLog(logData);
 
                 throw new Exception(provincia.GetType().Name
                     + " with Name "

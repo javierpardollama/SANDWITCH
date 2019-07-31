@@ -18,17 +18,18 @@ namespace Sandwitch.Tier.Services.Classes
 {
     public class HistoricoService : BaseService, IHistoricoService
     {
-        public HistoricoService(IApplicationContext iContext,
-                                IMapper iMapper,
-                                ILogger<HistoricoService> iLogger) : base(iContext,
-                                                                          iMapper,
-                                                                          iLogger)
+        public HistoricoService(IApplicationContext Context,
+                                IMapper Mapper,
+                                ILogger<HistoricoService> Logger) : base(Context,
+                                                                          Mapper,
+                                                                          Logger)
         {
         }
 
         public async Task<Arenal> FindArenalById(int id)
         {
-            Arenal arenal = await IContext.Arenal
+            Arenal arenal = await Context.Arenal
+                .TagWith("FindArenalById")
                 .AsQueryable()
                 .Include(x => x.ArenalPoblaciones)
                 .ThenInclude(x => x.Poblacion)
@@ -43,7 +44,7 @@ namespace Sandwitch.Tier.Services.Classes
                     + " was not found at "
                     + DateTime.Now.ToShortTimeString();
 
-                ILogger.WriteGetItemNotFoundLog(logData);
+                Logger.WriteGetItemNotFoundLog(logData);
 
                 throw new Exception(arenal.GetType().Name
                     + " with Id "
@@ -56,7 +57,9 @@ namespace Sandwitch.Tier.Services.Classes
 
         public async Task<Bandera> FindBanderaById(int id)
         {
-            Bandera bandera = await IContext.Bandera.FirstOrDefaultAsync(x => x.Id == id);
+            Bandera bandera = await Context.Bandera
+                 .TagWith("FindBanderaById")
+                 .FirstOrDefaultAsync(x => x.Id == id);
 
             if (bandera == null)
             {
@@ -67,7 +70,7 @@ namespace Sandwitch.Tier.Services.Classes
                     + " was not found at "
                     + DateTime.Now.ToShortTimeString();
 
-                ILogger.WriteGetItemNotFoundLog(logData);
+                Logger.WriteGetItemNotFoundLog(logData);
 
                 throw new Exception(bandera.GetType().Name
                     + " with Id "
@@ -91,9 +94,9 @@ namespace Sandwitch.Tier.Services.Classes
                 Temperatura = viewModel.Temperatura,
             };
 
-            IContext.Historico.Add(historico);
+            Context.Historico.Add(historico);
 
-            await IContext.SaveChangesAsync();
+            await Context.SaveChangesAsync();
 
             // Log
             string logData = historico.GetType().Name
@@ -102,9 +105,9 @@ namespace Sandwitch.Tier.Services.Classes
                 + " was added at "
                 + DateTime.Now.ToShortTimeString();
 
-            ILogger.WriteInsertItemLog(logData);
+            Logger.WriteInsertItemLog(logData);
 
-            return IMapper.Map<ViewHistorico>(historico);
+            return Mapper.Map<ViewHistorico>(historico);
         }
     }
 }

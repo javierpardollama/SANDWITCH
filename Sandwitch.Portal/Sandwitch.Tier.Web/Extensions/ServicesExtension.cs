@@ -7,13 +7,13 @@ namespace Sandwitch.Tier.Web.Extensions
 {
     public static class ServicesExtension
     {
-        public static void AddCustomizedServices(this IServiceCollection services)
+        public static void AddCustomizedServices(this IServiceCollection @this)
         {
-            services.AddTransient<IProvinciaService, ProvinciaService>();
-            services.AddTransient<IPoblacionService, PoblacionService>();
-            services.AddTransient<IBanderaService, BanderaService>();
-            services.AddTransient<IArenalService, ArenalService>();
-            services.AddTransient<IHistoricoService, HistoricoService>();
+            @this.AddTransient<IProvinciaService, ProvinciaService>();
+            @this.AddTransient<IPoblacionService, PoblacionService>();
+            @this.AddTransient<IBanderaService, BanderaService>();
+            @this.AddTransient<IArenalService, ArenalService>();
+            @this.AddTransient<IHistoricoService, HistoricoService>();
 
             // Add other services here
         }

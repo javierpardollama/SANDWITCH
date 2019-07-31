@@ -7,9 +7,9 @@ namespace Sandwitch.Tier.Web.Extensions
 {
     public static class ContextsExtension
     {
-        public static void AddCustomizedContexts(this IServiceCollection services)
+        public static void AddCustomizedContexts(this IServiceCollection @this)
         {
-            services.AddScoped<IApplicationContext, ApplicationContext>();
+            @this.AddScoped<IApplicationContext, ApplicationContext>();
 
             // Add other services here
         }

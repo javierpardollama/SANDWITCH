@@ -6,9 +6,9 @@ namespace Sandwitch.Tier.Web.Extensions
 {
     public static class ExceptionsExtension
     {
-        public static void UseCustomizedExceptionMiddlewares(this IApplicationBuilder app)
+        public static void UseCustomizedExceptionMiddlewares(this IApplicationBuilder @this)
         {
-            app.UseMiddleware<ExceptionMiddleware>();
+            @this.UseMiddleware<ExceptionMiddleware>();
 
             // Add other services here
         }

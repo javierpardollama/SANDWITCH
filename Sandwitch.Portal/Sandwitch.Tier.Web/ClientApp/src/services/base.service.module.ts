@@ -14,12 +14,12 @@ export class BaseService {
     }
 
     public HandleError<T>(operation = 'Operation', result?: T) {
-        return (httpErrorResponse: HttpErrorResponse): Observable<T> => {
+        return (response: HttpErrorResponse): Observable<T> => {
 
             const expception: ViewException =
             {
-                Message: httpErrorResponse.error.Message,
-                StatusCode: httpErrorResponse.error.StatusCode
+                Message: response.error.Message,
+                StatusCode: response.error.StatusCode
             }
 
             this.matSnackBar.open(expception.Message, TextAppVariants.AppOkButtonText, { duration: TimeAppVariants.AppToastSecondTicks * TimeAppVariants.AppTimeSecondTicks });

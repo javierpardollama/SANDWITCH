@@ -225,6 +225,7 @@ namespace Sandwitch.Tier.Services.Classes
         public async Task<Arenal> CheckName(AddArenal viewModel)
         {
             Arenal arenal = await Context.Arenal
+                 .AsNoTracking()
                  .TagWith("CheckName")
                  .FirstOrDefaultAsync(x => x.Name == viewModel.Name);
 
@@ -251,6 +252,7 @@ namespace Sandwitch.Tier.Services.Classes
         public async Task<Arenal> CheckName(UpdateArenal viewModel)
         {
             Arenal arenal = await Context.Arenal
+                 .AsNoTracking()
                  .TagWith("CheckName")
                  .FirstOrDefaultAsync(x => x.Name == viewModel.Name && x.Id != viewModel.Id);
 

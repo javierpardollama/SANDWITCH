@@ -138,6 +138,7 @@ namespace Sandwitch.Tier.Services.Classes
         {
             Bandera bandera = await Context.Bandera
                  .TagWith("CheckName")
+                 .AsNoTracking()
                  .FirstOrDefaultAsync(x => x.Name == viewModel.Name);
 
             if (bandera != null)
@@ -164,6 +165,7 @@ namespace Sandwitch.Tier.Services.Classes
         {
             Bandera bandera = await Context.Bandera
                  .TagWith("CheckName")
+                 .AsNoTracking()
                  .FirstOrDefaultAsync(x => x.Name == viewModel.Name && x.Id != viewModel.Id);
 
             if (bandera != null)

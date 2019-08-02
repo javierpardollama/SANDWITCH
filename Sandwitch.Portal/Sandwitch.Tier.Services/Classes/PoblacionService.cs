@@ -180,6 +180,7 @@ namespace Sandwitch.Tier.Services.Classes
         public async Task<Poblacion> CheckName(AddPoblacion viewModel)
         {
             Poblacion poblacion = await Context.Poblacion
+                 .AsNoTracking()
                  .TagWith("CheckName")
                  .FirstOrDefaultAsync(x => x.Name == viewModel.Name);
 
@@ -206,6 +207,7 @@ namespace Sandwitch.Tier.Services.Classes
         public async Task<Poblacion> CheckName(UpdatePoblacion viewModel)
         {
             Poblacion poblacion = await Context.Poblacion
+                 .AsNoTracking()
                  .TagWith("CheckName")
                  .FirstOrDefaultAsync(x => x.Name == viewModel.Name & x.Id != viewModel.Id);
 

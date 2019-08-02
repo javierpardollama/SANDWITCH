@@ -138,6 +138,7 @@ namespace Sandwitch.Tier.Services.Classes
         public async Task<Provincia> CheckName(AddProvincia viewModel)
         {
             Provincia provincia = await Context.Provincia
+                 .AsNoTracking()
                  .TagWith("CheckName")
                  .FirstOrDefaultAsync(x => x.Name == viewModel.Name);
 
@@ -164,6 +165,7 @@ namespace Sandwitch.Tier.Services.Classes
         public async Task<Provincia> CheckName(UpdateProvincia viewModel)
         {
             Provincia provincia = await Context.Provincia
+                 .AsNoTracking()
                  .TagWith("CheckName")
                  .FirstOrDefaultAsync(x => x.Name == viewModel.Name && x.Id != viewModel.Id);
 

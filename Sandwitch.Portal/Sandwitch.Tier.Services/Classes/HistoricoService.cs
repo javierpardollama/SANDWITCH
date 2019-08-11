@@ -18,11 +18,11 @@ namespace Sandwitch.Tier.Services.Classes
 {
     public class HistoricoService : BaseService, IHistoricoService
     {
-        public HistoricoService(IApplicationContext Context,
-                                IMapper Mapper,
-                                ILogger<HistoricoService> Logger) : base(Context,
-                                                                          Mapper,
-                                                                          Logger)
+        public HistoricoService(IApplicationContext context,
+                                IMapper mapper,
+                                ILogger<HistoricoService> logger) : base(context,
+                                                                          mapper,
+                                                                          logger)
         {
         }
 

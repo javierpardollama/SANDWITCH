@@ -4,7 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ViewBandera } from './../../../../../viewmodels/views/viewbandera';
 import { UpdateBandera } from './../../../../../viewmodels/updates/updatebandera';
 
-import { BanderaService } from './../../../../../services/bandera.service.module';
+import { BanderaService } from './../../../../../services/bandera.service';
 import { TextAppVariants } from './../../../../../variants/text.app.variants';
 import { TimeAppVariants } from './../../../../../variants/time.app.variants';
 

@@ -18,24 +18,15 @@ namespace Sandwitch.Tier.Web.Controllers
 
         [HttpPut]
         [Route("updatebandera")]
-        public async Task<IActionResult> UpdateBandera([FromBody]UpdateBandera viewModel)
-        {
-            return new JsonResult(value: await Service.UpdateBandera(viewModel));
-        }
+        public async Task<IActionResult> UpdateBandera([FromBody]UpdateBandera viewModel) => new JsonResult(value: await Service.UpdateBandera(viewModel));
 
         [HttpGet]
         [Route("findallbandera")]
-        public async Task<IActionResult> FindAllBandera()
-        {
-            return new JsonResult(value: await Service.FindAllBandera());
-        }
+        public async Task<IActionResult> FindAllBandera() => new JsonResult(value: await Service.FindAllBandera());
 
         [HttpPost]
         [Route("addbandera")]
-        public async Task<IActionResult> AddBandera([FromBody]AddBandera viewModel)
-        {
-            return new JsonResult(value: await Service.AddBandera(viewModel));
-        }
+        public async Task<IActionResult> AddBandera([FromBody]AddBandera viewModel) => new JsonResult(value: await Service.AddBandera(viewModel));
 
         [HttpDelete]
         [Route("removebanderabyid/{id}")]

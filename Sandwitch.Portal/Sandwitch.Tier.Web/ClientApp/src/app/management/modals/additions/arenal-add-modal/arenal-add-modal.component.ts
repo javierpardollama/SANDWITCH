@@ -5,8 +5,8 @@ import { ViewProvincia } from './../../../../../viewmodels/views/viewprovincia';
 
 import { AddArenal } from './../../../../../viewmodels/additions/addarenal';
 
-import { ArenalService } from './../../../../../services/arenal.service.module';
-import { ProvinciaService } from './../../../../../services/provincia.service.module';
+import { ArenalService } from './../../../../../services/arenal.service';
+import { ProvinciaService } from './../../../../../services/provincia.service';
 import { TextAppVariants } from '../../../../../variants/text.app.variants';
 import { TimeAppVariants } from '../../../../../variants/time.app.variants';
 

@@ -16,31 +16,19 @@ namespace Sandwitch.Tier.Web.Controllers
 
         [HttpPut]
         [Route("updatepoblacion")]
-        public async Task<IActionResult> UpdatePoblacion([FromBody]UpdatePoblacion viewModel)
-        {
-            return new JsonResult(value: await Service.UpdatePoblacion(viewModel));
-        }
+        public async Task<IActionResult> UpdatePoblacion([FromBody]UpdatePoblacion viewModel) => new JsonResult(value: await Service.UpdatePoblacion(viewModel));
 
         [HttpGet]
         [Route("findallpoblacion")]
-        public async Task<IActionResult> FindAllPoblacion()
-        {
-            return new JsonResult(value: await Service.FindAllPoblacion());
-        }
+        public async Task<IActionResult> FindAllPoblacion() => new JsonResult(value: await Service.FindAllPoblacion());
 
         [HttpGet]
         [Route("findallpoblacionbyprovinciaid/{id}")]
-        public async Task<IActionResult> FindAllPoblacionByProvinciaId(int id)
-        {
-            return new JsonResult(value: await Service.FindAllPoblacionByProvinciaId(id));
-        }
+        public async Task<IActionResult> FindAllPoblacionByProvinciaId(int id) => new JsonResult(value: await Service.FindAllPoblacionByProvinciaId(id));
 
         [HttpPost]
         [Route("addpoblacion")]
-        public async Task<IActionResult> AddPoblacion([FromBody]AddPoblacion viewModel)
-        {
-            return new JsonResult(value: await Service.AddPoblacion(viewModel));
-        }
+        public async Task<IActionResult> AddPoblacion([FromBody]AddPoblacion viewModel) => new JsonResult(value: await Service.AddPoblacion(viewModel));
 
         [HttpDelete]
         [Route("removepoblacionbyid/{id}")]

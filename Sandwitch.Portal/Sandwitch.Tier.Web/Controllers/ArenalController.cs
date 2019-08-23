@@ -18,31 +18,19 @@ namespace Sandwitch.Tier.Web.Controllers
 
         [HttpPut]
         [Route("updatearenal")]
-        public async Task<IActionResult> UpdateArenal([FromBody]UpdateArenal viewModel)
-        {
-            return new JsonResult(value: await Service.UpdateArenal(viewModel));
-        }
+        public async Task<IActionResult> UpdateArenal([FromBody]UpdateArenal viewModel) => new JsonResult(value: await Service.UpdateArenal(viewModel));
 
         [HttpGet]
         [Route("findallarenal")]
-        public async Task<IActionResult> FindAllarenal()
-        {
-            return new JsonResult(value: await Service.FindAllArenal());
-        }
+        public async Task<IActionResult> FindAllarenal() => new JsonResult(value: await Service.FindAllArenal());
 
         [HttpGet]
         [Route("findallarenalbypoblacionid/{id}")]
-        public async Task<IActionResult> FindAllArenalByPoblacionId(int id)
-        {
-            return new JsonResult(value: await Service.FindAllArenalByPoblacionId(id));
-        }
+        public async Task<IActionResult> FindAllArenalByPoblacionId(int id) => new JsonResult(value: await Service.FindAllArenalByPoblacionId(id));
 
         [HttpPost]
         [Route("addarenal")]
-        public async Task<IActionResult> AddArenal([FromBody]AddArenal viewModel)
-        {
-            return new JsonResult(value: await Service.AddArenal(viewModel));
-        }
+        public async Task<IActionResult> AddArenal([FromBody]AddArenal viewModel) => new JsonResult(value: await Service.AddArenal(viewModel));
 
         [HttpDelete]
         [Route("removearenalbyid/{id}")]

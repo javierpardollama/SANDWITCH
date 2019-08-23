@@ -5,7 +5,7 @@ import { MatSnackBar } from '@angular/material';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { BaseService } from './base.service.module';
+import { BaseService } from './base.service';
 
 @Injectable({
     providedIn: 'root',

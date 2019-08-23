@@ -3,7 +3,7 @@ import { MatDialogRef, MatSnackBar } from '@angular/material';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AddBandera } from './../../../../../viewmodels/additions/addbandera';
 
-import { BanderaService } from './../../../../../services/bandera.service.module';
+import { BanderaService } from './../../../../../services/bandera.service';
 import { TextAppVariants } from './../../../../../variants/text.app.variants';
 import { TimeAppVariants } from './../../../../../variants/time.app.variants';
 

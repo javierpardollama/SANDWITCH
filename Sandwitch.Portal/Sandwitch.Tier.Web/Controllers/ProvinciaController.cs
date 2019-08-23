@@ -18,24 +18,15 @@ namespace Sandwitch.Tier.Web.Controllers
 
         [HttpPut]
         [Route("updateprovincia")]
-        public async Task<IActionResult> UpdateProvincia([FromBody]UpdateProvincia viewModel)
-        {
-            return new JsonResult(value: await Service.UpdateProvincia(viewModel));
-        }
+        public async Task<IActionResult> UpdateProvincia([FromBody]UpdateProvincia viewModel) => new JsonResult(value: await Service.UpdateProvincia(viewModel));
 
         [HttpGet]
         [Route("findallprovincia")]
-        public async Task<IActionResult> FindAllProvincia()
-        {
-            return new JsonResult(value: await Service.FindAllProvincia());
-        }
+        public async Task<IActionResult> FindAllProvincia() => new JsonResult(value: await Service.FindAllProvincia());
 
         [HttpPost]
         [Route("addprovincia")]
-        public async Task<IActionResult> AddProvincia([FromBody]AddProvincia viewModel)
-        {
-            return new JsonResult(value: await Service.AddProvincia(viewModel));
-        }
+        public async Task<IActionResult> AddProvincia([FromBody]AddProvincia viewModel) => new JsonResult(value: await Service.AddProvincia(viewModel));
 
         [HttpDelete]
         [Route("removeprovinciabyid/{id}")]

@@ -6,8 +6,8 @@ import { ViewArenal } from './../../../../../viewmodels/views/viewarenal';
 import { ViewBandera } from './../../../../../viewmodels/views/viewbandera';
 import { AddHistorico } from './../../../../../viewmodels/additions/addhistorico';
 
-import { HistoricoService } from './../../../../../services/historico.service.module';
-import { BanderaService } from './../../../../../services/bandera.service.module';
+import { HistoricoService } from './../../../../../services/historico.service';
+import { BanderaService } from './../../../../../services/bandera.service';
 import { TextAppVariants } from './../../../../../variants/text.app.variants';
 import { TimeAppVariants } from './../../../../../variants/time.app.variants';
 

@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource, MatPaginator, MatSort, MatDialog } from '@angular/material';
 import { ViewProvincia } from './../../../../viewmodels/views/viewprovincia';
 
-import { ProvinciaService } from './../../../../services/provincia.service.module';
+import { ProvinciaService } from './../../../../services/provincia.service';
 
 import { ProvinciaUpdateModalComponent } from './../../modals/updates/provincia-update-modal/provincia-update-modal.component';
 import { ProvinciaAddModalComponent } from './../../modals/additions/provincia-add-modal/provincia-add-modal.component';

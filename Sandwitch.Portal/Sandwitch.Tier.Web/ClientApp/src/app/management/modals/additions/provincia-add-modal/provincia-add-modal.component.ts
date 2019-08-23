@@ -3,7 +3,7 @@ import { MatDialogRef, MatSnackBar } from '@angular/material';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AddProvincia } from './../../../../../viewmodels/additions/addprovincia';
 
-import { ProvinciaService } from './../../../../../services/provincia.service.module';
+import { ProvinciaService } from './../../../../../services/provincia.service';
 import { TextAppVariants } from './../../../../../variants/text.app.variants';
 import { TimeAppVariants } from './../../../../../variants/time.app.variants';
 

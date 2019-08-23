@@ -5,8 +5,8 @@ import { ViewProvincia } from './../../../../../viewmodels/views/viewprovincia';
 
 import { AddPoblacion } from './../../../../../viewmodels/additions/addpoblacion';
 
-import { ProvinciaService } from './../../../../../services/provincia.service.module';
-import { PoblacionService } from './../../../../../services/poblacion.service.module';
+import { ProvinciaService } from './../../../../../services/provincia.service';
+import { PoblacionService } from './../../../../../services/poblacion.service';
 import { TextAppVariants } from './../../../../../variants/text.app.variants';
 import { TimeAppVariants } from './../../../../../variants/time.app.variants';
 

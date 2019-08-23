@@ -10,6 +10,7 @@ import { HistoricoService } from './../../../../../services/historico.service';
 import { BanderaService } from './../../../../../services/bandera.service';
 import { TextAppVariants } from './../../../../../variants/text.app.variants';
 import { TimeAppVariants } from './../../../../../variants/time.app.variants';
+import { ExpressionAppVariants } from './../../../../../variants/expression.app.variants';
 
 @Component({
   selector: 'app-historico-add-modal',
@@ -54,7 +55,7 @@ export class HistoricoAddModalComponent implements OnInit {
     this.formGroup = this.formBuilder.group({
       'ArenalId': [this.data.Id, [Validators.required]],
       'BanderaId': [this.data.LastHistorico.Bandera.Id, [Validators.required]],
-      'Temperatura': [this.data.LastHistorico.Temperatura, [Validators.required]],
+      'Temperatura': [this.data.LastHistorico.Temperatura, [Validators.required, Validators.pattern(ExpressionAppVariants.AppNumberExpression)]],
       'BajaMarAlba': [this.datePipe.transform(new Date(), this.timeFormat), [Validators.required]],
       'AltaMarAlba': [this.datePipe.transform(new Date(), this.timeFormat), [Validators.required]],
       'BajaMarOcaso': [this.datePipe.transform(new Date(), this.timeFormat), [Validators.required]],

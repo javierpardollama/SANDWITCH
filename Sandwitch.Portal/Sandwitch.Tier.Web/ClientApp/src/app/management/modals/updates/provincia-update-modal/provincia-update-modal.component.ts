@@ -44,7 +44,7 @@ export class ProvinciaUpdateModalComponent implements OnInit {
     this.provinciaService.UpdateProvincia(viewModel).subscribe(provincia => {
 
       if (provincia !== undefined) {
-        this.matSnackBar.open(TextAppVariants.AppSuccessButtonText, TextAppVariants.AppOkButtonText, { duration: TimeAppVariants.AppToastSecondTicks * TimeAppVariants.AppTimeSecondTicks });
+        this.matSnackBar.open(TextAppVariants.AppOperationSuccessCoreText, TextAppVariants.AppOkButtonText, { duration: TimeAppVariants.AppToastSecondTicks * TimeAppVariants.AppTimeSecondTicks });
       }
 
       this.dialogRef.close();
@@ -53,7 +53,7 @@ export class ProvinciaUpdateModalComponent implements OnInit {
 
   onDelete(viewModel: UpdateProvincia) {
     this.provinciaService.RemoveProvinciaById(viewModel.Id).subscribe(provincia => {
-      this.matSnackBar.open(TextAppVariants.AppSuccessButtonText, TextAppVariants.AppOkButtonText, { duration: TimeAppVariants.AppToastSecondTicks * TimeAppVariants.AppTimeSecondTicks });
+      this.matSnackBar.open(TextAppVariants.AppOperationSuccessCoreText, TextAppVariants.AppOkButtonText, { duration: TimeAppVariants.AppToastSecondTicks * TimeAppVariants.AppTimeSecondTicks });
 
       this.dialogRef.close();
     });

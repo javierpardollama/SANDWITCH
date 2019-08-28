@@ -38,7 +38,7 @@ export class ArenalAddModalComponent implements OnInit {
   // Form
   CreateForm() {
     this.formGroup = this.formBuilder.group({
-      'Name': ['', [Validators.required]],
+      'Name': [TextAppVariants.AppEmptyCoreText, [Validators.required]],
       'PoblacionesId': [undefined, [Validators.required]]
     });
   }
@@ -48,7 +48,7 @@ export class ArenalAddModalComponent implements OnInit {
     this.arenalService.AddArenal(viewModel).subscribe(arenal => {
 
       if (arenal !== undefined) {
-        this.matSnackBar.open(TextAppVariants.AppSuccessButtonText, TextAppVariants.AppOkButtonText, { duration: TimeAppVariants.AppToastSecondTicks * TimeAppVariants.AppTimeSecondTicks });
+        this.matSnackBar.open(TextAppVariants.AppOperationSuccessCoreText, TextAppVariants.AppOkButtonText, { duration: TimeAppVariants.AppToastSecondTicks * TimeAppVariants.AppTimeSecondTicks });
       }
 
       this.dialogRef.close();

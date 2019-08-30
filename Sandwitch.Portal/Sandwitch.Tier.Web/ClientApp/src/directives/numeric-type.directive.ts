@@ -14,8 +14,8 @@ export class NumericTypeDirective {
   };
 
   private specialKeys = {
-    number: ['Backspace', 'Tab', 'End', 'Home', 'ArrowLeft', 'ArrowRight'],
-    decimal: ['Backspace', 'Tab', 'End', 'Home', 'ArrowLeft', 'ArrowRight'],
+    number: ['Delete', 'Backspace', 'Tab', 'End', 'Home', 'ArrowLeft', 'ArrowRight'],
+    decimal: ['Delete', 'Backspace', 'Tab', 'End', 'Home', 'ArrowLeft', 'ArrowRight'],
   };
 
   constructor(private elementRef: ElementRef) {
@@ -36,6 +36,32 @@ export class NumericTypeDirective {
 
     if (next && !String(next).match(this.regex[this.numericType])) {
       event.preventDefault();
+    }
+  }
+
+  @HostListener('paste', ['$event'])
+  onPaste(event: ClipboardEvent) {
+
+    event.preventDefault();
+
+    let next: string = event.clipboardData.getData('text/plain');
+
+    if (String(next).match(this.regex[this.numericType])) {
+
+      document.execCommand('insertText', false, next);
+    }
+  }
+
+  @HostListener('drop', ['$event'])
+  onDrop(event: DragEvent) {
+
+    event.preventDefault();
+
+    let next: string = event.dataTransfer.getData('text/plain');
+
+    if (String(next).match(this.regex[this.numericType])) {
+
+      document.execCommand('insertText', false, next);
     }
   }
 }

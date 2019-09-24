@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
     <Copyright>2019 Javier Pardo</Copyright>
     <PackageProjectUrl>https://github.com/javierpardollama/SANDWITCH/tree/master/Sandwitch.Portal/Sandwitch.Tier.ExceptionHandling</PackageProjectUrl>
     <RepositoryUrl>https://github.com/javierpardollama/SANDWITCH/tree/master/Sandwitch.Portal/Sandwitch.Tier.ExceptionHandling</RepositoryUrl>
@@ -10,9 +10,8 @@
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
   </PropertyGroup>
 
-
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.2.6" AllowExplicitVersion="true" />
+    <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
   </ItemGroup>
 
   <ItemGroup>

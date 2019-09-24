@@ -10,7 +10,8 @@ namespace Sandwitch.Tier.Web.Controllers
 {
     [Route("api/bandera")]
     [Produces("application/json")]
-    public class BanderaController : Controller
+    [ApiController]
+    public class BanderaController : ControllerBase
     {
         private readonly IBanderaService Service;
 

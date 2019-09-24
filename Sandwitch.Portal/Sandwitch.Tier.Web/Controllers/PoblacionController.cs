@@ -8,7 +8,8 @@ namespace Sandwitch.Tier.Web.Controllers
 {
     [Route("api/poblacion")]
     [Produces("application/json")]
-    public class PoblacionController : Controller
+    [ApiController]
+    public class PoblacionController : ControllerBase
     {
         private readonly IPoblacionService Service;
 

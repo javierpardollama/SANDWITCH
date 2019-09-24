@@ -9,7 +9,8 @@ namespace Sandwitch.Tier.Web.Controllers
 {
     [Route("api/historico")]
     [Produces("application/json")]
-    public class HistoricoController : Controller
+    [ApiController]
+    public class HistoricoController : ControllerBase
     {
         private readonly IHistoricoService Service;
 

@@ -58,7 +58,7 @@ namespace Sandwitch.Tier.Services.Classes
         public async Task AddArenalPoblacion(AddArenal viewModel,
                                              Arenal entity)
         {
-            await viewModel.PoblacionesId.ToAsyncEnumerable().ForEachAsync(async x =>
+            await viewModel.PoblacionesId.AsQueryable().ForEachAsync(async x =>
             {
                 Poblacion poblacion = await FindPoblacionById(x);
 
@@ -80,8 +80,7 @@ namespace Sandwitch.Tier.Services.Classes
                 .Include(x => x.ArenalPoblaciones)
                 .ThenInclude(x => x.Poblacion)
                 .Include(x => x.Historicos)
-                .ToAsyncEnumerable()
-                .ToList();
+                .ToListAsync();               
 
             return Mapper.Map<ICollection<ViewArenal>>(arenales);
         }
@@ -101,8 +100,7 @@ namespace Sandwitch.Tier.Services.Classes
                .AsQueryable()
                .Include(x => x.Historicos)
                .ThenInclude(x => x.Bandera)
-               .ToAsyncEnumerable()
-               .ToList();
+               .ToListAsync();               
 
             return Mapper.Map<ICollection<ViewArenal>>(arenales);
         }
@@ -208,7 +206,7 @@ namespace Sandwitch.Tier.Services.Classes
 
         public async Task UpdateArenalPoblacion(UpdateArenal viewModel, Arenal entity)
         {
-            await viewModel.PoblacionesId.ToAsyncEnumerable().ForEachAsync(async x =>
+            await viewModel.PoblacionesId.AsQueryable().ForEachAsync(async x =>
             {
                 Poblacion poblacion = await FindPoblacionById(x);
 

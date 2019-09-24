@@ -61,8 +61,7 @@ namespace Sandwitch.Tier.Services.Classes
                 .AsQueryable()
                 .AsNoTracking()
                 .Include(x => x.Poblaciones)
-                .ToAsyncEnumerable()
-                .ToList();
+                .ToListAsync();
 
             return Mapper.Map<ICollection<ViewProvincia>>(provincias);
         }

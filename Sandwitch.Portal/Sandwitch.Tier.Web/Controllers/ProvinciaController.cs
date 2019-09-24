@@ -10,7 +10,8 @@ namespace Sandwitch.Tier.Web.Controllers
 {
     [Route("api/provincia")]
     [Produces("application/json")]
-    public class ProvinciaController : Controller
+    [ApiController]
+    public class ProvinciaController : ControllerBase
     {
         private readonly IProvinciaService Service;
 

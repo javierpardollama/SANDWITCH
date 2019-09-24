@@ -57,10 +57,9 @@ namespace Sandwitch.Tier.Services.Classes
         public async Task<ICollection<ViewBandera>> FindAllBandera()
         {
             ICollection<Bandera> banderas = await Context.Bandera
-                .TagWith("FindAllBandera")              
+                .TagWith("FindAllBandera")
                 .AsNoTracking()
-                .ToAsyncEnumerable()
-                .ToList();
+                .ToListAsync();                
 
             return Mapper.Map<ICollection<ViewBandera>>(banderas);
         }

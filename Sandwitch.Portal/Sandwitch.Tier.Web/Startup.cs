@@ -1,3 +1,4 @@
+
 using AutoMapper;
 
 using Microsoft.AspNetCore.Builder;
@@ -30,6 +31,8 @@ namespace Sandwitch.Tier.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddControllers();
+
             // Add Entity Framework services to the services container.
             services.AddDbContext<ApplicationContext>(options =>
                 options.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
@@ -50,13 +53,13 @@ namespace Sandwitch.Tier.Web
             // Register the Mvc services to the services container
             services.AddCustomizedServices();
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
-            .AddJsonOptions(options =>
-            {
-                options.SerializerSettings.Formatting = Formatting.Indented;
-                options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
-                options.SerializerSettings.ContractResolver = new DefaultContractResolver();
-            });
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_3_0)
+            .AddNewtonsoftJson(options =>
+           {
+               options.SerializerSettings.Formatting = Formatting.Indented;
+               options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+               options.SerializerSettings.ContractResolver = new DefaultContractResolver();
+           });
 
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
@@ -82,14 +85,20 @@ namespace Sandwitch.Tier.Web
             }
 
             app.UseHttpsRedirection();
+            app.UseHttpsRedirection();
             app.UseStaticFiles();
-            app.UseSpaStaticFiles();
-
-            app.UseMvc(routes =>
+            if (!env.IsDevelopment())
             {
-                routes.MapRoute(
+                app.UseSpaStaticFiles();
+            }
+
+            app.UseRouting();
+
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllerRoute(
                     name: "default",
-                    template: "{controller}/{action=Index}/{id?}");
+                    pattern: "{controller}/{action=Index}/{id?}");
             });
 
             app.UseSpa(spa =>

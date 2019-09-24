@@ -10,7 +10,8 @@ namespace Sandwitch.Tier.Web.Controllers
 {
     [Route("api/arenal")]
     [Produces("application/json")]
-    public class ArenalController : Controller
+    [ApiController]
+    public class ArenalController : ControllerBase
     {
         private readonly IArenalService Service;
 

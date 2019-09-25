@@ -10,6 +10,6 @@ namespace Sandwitch.Tier.ViewModels.Classes.Updates
 
         public string Name { get; set; }
 
-        public virtual ICollection<int> PoblacionesId { get; set; }
+        public virtual IList<int> PoblacionesId { get; set; }
     }
 }

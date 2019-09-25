@@ -13,6 +13,6 @@ namespace Sandwitch.Tier.Entities.Classes
         [Required]
         public string ImageUri { get; set; }
 
-        public virtual ICollection<Poblacion> Poblaciones { get; set; }
+        public virtual IList<Poblacion> Poblaciones { get; set; }
     }
 }

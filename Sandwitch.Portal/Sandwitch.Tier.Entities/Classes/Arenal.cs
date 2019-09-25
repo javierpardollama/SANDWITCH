@@ -10,8 +10,8 @@ namespace Sandwitch.Tier.Entities.Classes
         [Required]
         public string Name { get; set; }
 
-        public virtual ICollection<ArenalPoblacion> ArenalPoblaciones { get; set; }
+        public virtual IList<ArenalPoblacion> ArenalPoblaciones { get; set; }
 
-        public virtual ICollection<Historico> Historicos { get; set; }
+        public virtual IList<Historico> Historicos { get; set; }
     }
 }

@@ -12,6 +12,6 @@ namespace Sandwitch.Tier.ViewModels.Classes.Views
 
         public string Name { get; set; }
 
-        public virtual ICollection<ViewHistorico> Historicos { get; set; }
+        public virtual IList<ViewHistorico> Historicos { get; set; }
     }
 }

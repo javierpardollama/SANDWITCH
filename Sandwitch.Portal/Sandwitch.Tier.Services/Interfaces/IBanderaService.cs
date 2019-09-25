@@ -10,7 +10,7 @@ namespace Sandwitch.Tier.Services.Interfaces
 {
     public interface IBanderaService : IBaseService
     {
-        Task<ICollection<ViewBandera>> FindAllBandera();
+        Task<IList<ViewBandera>> FindAllBandera();
 
         Task<Bandera> FindBanderaById(int id);
 

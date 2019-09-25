@@ -11,12 +11,12 @@ namespace Sandwitch.Tier.ViewModels.Classes.Views
 
         public string Name { get; set; }
 
-        public virtual ICollection<ViewHistorico> Historicos { get; set; }
+        public virtual IList<ViewHistorico> Historicos { get; set; }
 
         public virtual ViewHistorico LastHistorico => Historicos?.AsQueryable().OrderBy(x => x.LastModified.Date).Last();
 
-        public virtual ICollection<ViewArenalPoblacion> ArenalPoblaciones { get; set; }
+        public virtual IList<ViewArenalPoblacion> ArenalPoblaciones { get; set; }
 
-        public virtual ICollection<ViewPoblacion> Poblaciones => ArenalPoblaciones?.AsQueryable().Select(x => x.Poblacion).ToList();
+        public virtual IList<ViewPoblacion> Poblaciones => ArenalPoblaciones?.AsQueryable().Select(x => x.Poblacion).ToList();
     }
 }

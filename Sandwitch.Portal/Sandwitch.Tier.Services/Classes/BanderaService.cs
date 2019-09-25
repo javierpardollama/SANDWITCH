@@ -54,14 +54,14 @@ namespace Sandwitch.Tier.Services.Classes
             return Mapper.Map<ViewBandera>(bandera);
         }
 
-        public async Task<ICollection<ViewBandera>> FindAllBandera()
+        public async Task<IList<ViewBandera>> FindAllBandera()
         {
-            ICollection<Bandera> banderas = await Context.Bandera
+            IList<Bandera> banderas = await Context.Bandera
                 .TagWith("FindAllBandera")
                 .AsNoTracking()
                 .ToListAsync();                
 
-            return Mapper.Map<ICollection<ViewBandera>>(banderas);
+            return Mapper.Map<IList<ViewBandera>>(banderas);
         }
 
         public async Task<Bandera> FindBanderaById(int id)

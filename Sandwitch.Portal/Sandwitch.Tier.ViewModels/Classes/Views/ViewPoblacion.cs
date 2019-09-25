@@ -15,8 +15,8 @@ namespace Sandwitch.Tier.ViewModels.Classes.Views
 
         public ViewProvincia Provincia { get; set; }
 
-        public virtual ICollection<ViewArenalPoblacion> ArenalPoblaciones { get; set; }
+        public virtual IList<ViewArenalPoblacion> ArenalPoblaciones { get; set; }
 
-        public virtual ICollection<ViewArenal> Arenales => ArenalPoblaciones?.AsQueryable().Select(x => x.Arenal).ToList();
+        public virtual IList<ViewArenal> Arenales => ArenalPoblaciones?.AsQueryable().Select(x => x.Arenal).ToList();
     }
 }

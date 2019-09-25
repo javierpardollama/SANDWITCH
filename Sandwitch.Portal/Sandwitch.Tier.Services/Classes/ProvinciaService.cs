@@ -54,16 +54,16 @@ namespace Sandwitch.Tier.Services.Classes
             return Mapper.Map<ViewProvincia>(provincia);
         }
 
-        public async Task<ICollection<ViewProvincia>> FindAllProvincia()
+        public async Task<IList<ViewProvincia>> FindAllProvincia()
         {
-            ICollection<Provincia> provincias = await Context.Provincia
+            IList<Provincia> provincias = await Context.Provincia
                 .TagWith("FindAllProvincia")
                 .AsQueryable()
                 .AsNoTracking()
                 .Include(x => x.Poblaciones)
                 .ToListAsync();
 
-            return Mapper.Map<ICollection<ViewProvincia>>(provincias);
+            return Mapper.Map<IList<ViewProvincia>>(provincias);
         }
 
         public async Task<Provincia> FindProvinciaById(int id)

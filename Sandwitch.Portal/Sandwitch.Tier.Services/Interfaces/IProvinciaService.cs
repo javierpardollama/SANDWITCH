@@ -10,7 +10,7 @@ namespace Sandwitch.Tier.Services.Interfaces
 {
     public interface IProvinciaService : IBaseService
     {
-        Task<ICollection<ViewProvincia>> FindAllProvincia();
+        Task<IList<ViewProvincia>> FindAllProvincia();
 
         Task<Provincia> FindProvinciaById(int id);
 

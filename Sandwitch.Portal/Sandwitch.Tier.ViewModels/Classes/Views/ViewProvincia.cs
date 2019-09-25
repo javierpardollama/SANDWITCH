@@ -12,6 +12,6 @@ namespace Sandwitch.Tier.ViewModels.Classes.Views
 
         public string ImageUri { get; set; }
 
-        public virtual ICollection<ViewPoblacion> Poblaciones { get; set; }
+        public virtual IList<ViewPoblacion> Poblaciones { get; set; }
     }
 }

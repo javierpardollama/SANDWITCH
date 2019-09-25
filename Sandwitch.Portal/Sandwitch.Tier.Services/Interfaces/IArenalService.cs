@@ -10,9 +10,9 @@ namespace Sandwitch.Tier.Services.Interfaces
 {
     public interface IArenalService : IBaseService
     {
-        Task<ICollection<ViewArenal>> FindAllArenal();
+        Task<IList<ViewArenal>> FindAllArenal();
 
-        Task<ICollection<ViewArenal>> FindAllArenalByPoblacionId(int id);
+        Task<IList<ViewArenal>> FindAllArenalByPoblacionId(int id);
 
         Task<Arenal> FindArenalById(int id);
 
@@ -24,9 +24,9 @@ namespace Sandwitch.Tier.Services.Interfaces
 
         Task<ViewArenal> AddArenal(AddArenal viewModel);
 
-        Task AddArenalPoblacion(AddArenal viewModel, Arenal entity);
+        void AddArenalPoblacion(AddArenal viewModel, Arenal entity);
 
-        Task UpdateArenalPoblacion(UpdateArenal viewModel, Arenal entity);
+        void UpdateArenalPoblacion(UpdateArenal viewModel, Arenal entity);
 
         Task<Arenal> CheckName(AddArenal viewModel);
 

@@ -55,21 +55,21 @@ namespace Sandwitch.Tier.Services.Classes
             return Mapper.Map<ViewPoblacion>(poblacion);
         }
 
-        public async Task<ICollection<ViewPoblacion>> FindAllPoblacion()
+        public async Task<IList<ViewPoblacion>> FindAllPoblacion()
         {
-            ICollection<Poblacion> poblaciones = await Context.Poblacion
+            IList<Poblacion> poblaciones = await Context.Poblacion
                 .TagWith("FindAllPoblacion")
                 .AsQueryable()
                 .AsNoTracking()
                 .Include(x => x.Provincia)
                 .ToListAsync();                
 
-            return Mapper.Map<ICollection<ViewPoblacion>>(poblaciones);
+            return Mapper.Map<IList<ViewPoblacion>>(poblaciones);
         }
 
-        public async Task<ICollection<ViewPoblacion>> FindAllPoblacionByProvinciaId(int id)
+        public async Task<IList<ViewPoblacion>> FindAllPoblacionByProvinciaId(int id)
         {
-            ICollection<Poblacion> poblaciones = await Context.Poblacion
+            IList<Poblacion> poblaciones = await Context.Poblacion
               .TagWith("FindAllPoblacionByProvinciaId")
               .AsQueryable()
               .AsNoTracking()
@@ -77,7 +77,7 @@ namespace Sandwitch.Tier.Services.Classes
               .Where(x => x.Provincia.Id == id)
               .ToListAsync();
 
-            return Mapper.Map<ICollection<ViewPoblacion>>(poblaciones);
+            return Mapper.Map<IList<ViewPoblacion>>(poblaciones);
         }
 
         public async Task<Poblacion> FindPoblacionById(int id)

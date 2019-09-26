@@ -7,7 +7,7 @@ using AutoMapper;
 
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-
+using Sandwitch.Tier.Constants.Enums;
 using Sandwitch.Tier.Contexts.Interfaces;
 using Sandwitch.Tier.Entities.Classes;
 using Sandwitch.Tier.Logging.Classes;
@@ -36,11 +36,14 @@ namespace Sandwitch.Tier.Services.Classes
             {
                 Name = viewModel.Name,      
                 ArenalPoblaciones = new List<ArenalPoblacion>(),
+                Historicos = new List<Historico>()
             };
 
             await Context.Arenal.AddAsync(arenal);
 
             AddArenalPoblacion(viewModel, arenal);
+
+            await AddHistorico(arenal);
 
             await Context.SaveChangesAsync();
 
@@ -71,6 +74,21 @@ namespace Sandwitch.Tier.Services.Classes
 
                 entity.ArenalPoblaciones.Add(arenalPoblacion);
             });
+        }
+
+        public async Task AddHistorico(Arenal entity)
+        {
+            Historico historico = new Historico
+            {
+                Arenal = entity,
+                Bandera = await FindBanderaById((int)FlagIdentifiers.Amarilla),
+                BajaMarAlba = DateTime.Now,
+                BajaMarOcaso = DateTime.Now,
+                AltaMarAlba = DateTime.Now,
+                AltaMarOcaso = DateTime.Now,
+                Temperatura = 20,
+            };
+            entity.Historicos.Add(historico);
         }
 
         public async Task<IList<ViewArenal>> FindAllArenal()
@@ -159,6 +177,32 @@ namespace Sandwitch.Tier.Services.Classes
             return poblacion;
         }
 
+        public async Task<Bandera> FindBanderaById(int id)
+        {
+            Bandera bandera = await Context.Bandera
+                 .TagWith("FindBanderaById")
+                 .FirstOrDefaultAsync(x => x.Id == id);
+
+            if (bandera == null)
+            {
+                // Log
+                string logData = bandera.GetType().Name
+                    + " with Id "
+                    + id
+                    + " was not found at "
+                    + DateTime.Now.ToShortTimeString();
+
+                Logger.WriteGetItemNotFoundLog(logData);
+
+                throw new Exception(bandera.GetType().Name
+                    + " with Id "
+                    + id
+                    + " does not exist");
+            }
+
+            return bandera;
+        }
+
         public async Task RemoveArenalById(int id)
         {
             Arenal arenal = await FindArenalById(id);
@@ -184,10 +228,13 @@ namespace Sandwitch.Tier.Services.Classes
             Arenal arenal = await FindArenalById(viewModel.Id);
             arenal.Name = viewModel.Name;
             arenal.ArenalPoblaciones = new List<ArenalPoblacion>();
+            arenal.Historicos = new List<Historico>();
 
             Context.Arenal.Update(arenal);
 
             UpdateArenalPoblacion(viewModel, arenal);
+
+            await UpdateHistorico(arenal);
 
             await Context.SaveChangesAsync();
 
@@ -217,6 +264,21 @@ namespace Sandwitch.Tier.Services.Classes
 
                 entity.ArenalPoblaciones.Add(arenalPoblacion);
             });
+        }
+
+        public async Task UpdateHistorico(Arenal entity)
+        {
+            Historico historico = new Historico
+            {
+                Arenal = entity,
+                Bandera = await FindBanderaById((int)FlagIdentifiers.Amarilla),
+                BajaMarAlba = DateTime.Now,
+                BajaMarOcaso = DateTime.Now,
+                AltaMarAlba = DateTime.Now,
+                AltaMarOcaso = DateTime.Now,
+                Temperatura = 20,
+            };
+            entity.Historicos.Add(historico);
         }
 
         public async Task<Arenal> CheckName(AddArenal viewModel)

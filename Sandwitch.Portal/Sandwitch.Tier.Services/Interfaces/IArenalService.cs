@@ -18,6 +18,8 @@ namespace Sandwitch.Tier.Services.Interfaces
 
         Task<Poblacion> FindPoblacionById(int id);
 
+        Task<Bandera> FindBanderaById(int id);
+
         Task RemoveArenalById(int id);
 
         Task<ViewArenal> UpdateArenal(UpdateArenal viewModel);
@@ -26,7 +28,11 @@ namespace Sandwitch.Tier.Services.Interfaces
 
         void AddArenalPoblacion(AddArenal viewModel, Arenal entity);
 
+        Task AddHistorico(Arenal entity);
+
         void UpdateArenalPoblacion(UpdateArenal viewModel, Arenal entity);
+
+        Task UpdateHistorico(Arenal entity);
 
         Task<Arenal> CheckName(AddArenal viewModel);
 

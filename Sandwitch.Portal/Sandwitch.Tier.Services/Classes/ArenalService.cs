@@ -34,7 +34,7 @@ namespace Sandwitch.Tier.Services.Classes
 
             Arenal arenal = new Arenal
             {
-                Name = viewModel.Name,      
+                Name = viewModel.Name,
                 ArenalPoblaciones = new List<ArenalPoblacion>(),
                 Historicos = new List<Historico>()
             };
@@ -99,7 +99,7 @@ namespace Sandwitch.Tier.Services.Classes
                 .Include(x => x.ArenalPoblaciones)
                 .ThenInclude(x => x.Poblacion)
                 .Include(x => x.Historicos)
-                .ToListAsync();               
+                .ToListAsync();
 
             return Mapper.Map<IList<ViewArenal>>(arenales);
         }
@@ -116,8 +116,8 @@ namespace Sandwitch.Tier.Services.Classes
                .ThenInclude(x => x.Bandera)
                .Where(x => x.Poblacion.Id == id)
                .Select(x => x.Arenal)
-               .AsQueryable()               
-               .ToListAsync();               
+               .AsQueryable()
+               .ToListAsync();
 
             return Mapper.Map<IList<ViewArenal>>(arenales);
         }

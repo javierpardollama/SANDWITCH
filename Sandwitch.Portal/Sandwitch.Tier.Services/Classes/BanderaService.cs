@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 using AutoMapper;
@@ -59,7 +58,7 @@ namespace Sandwitch.Tier.Services.Classes
             IList<Bandera> banderas = await Context.Bandera
                 .TagWith("FindAllBandera")
                 .AsNoTracking()
-                .ToListAsync();                
+                .ToListAsync();
 
             return Mapper.Map<IList<ViewBandera>>(banderas);
         }

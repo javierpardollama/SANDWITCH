@@ -62,7 +62,7 @@ namespace Sandwitch.Tier.Services.Classes
                 .AsQueryable()
                 .AsNoTracking()
                 .Include(x => x.Provincia)
-                .ToListAsync();                
+                .ToListAsync();
 
             return Mapper.Map<IList<ViewPoblacion>>(poblaciones);
         }

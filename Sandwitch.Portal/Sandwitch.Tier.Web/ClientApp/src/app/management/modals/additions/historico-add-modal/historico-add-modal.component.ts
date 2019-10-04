@@ -11,6 +11,8 @@ import { BanderaService } from './../../../../../services/bandera.service';
 import { TextAppVariants } from './../../../../../variants/text.app.variants';
 import { TimeAppVariants } from './../../../../../variants/time.app.variants';
 import { ExpressionAppVariants } from './../../../../../variants/expression.app.variants';
+import { LocaleAppVariants } from './../../../../../variants/locale.app.variants';
+import { FormatAppVariants } from './../../../../../variants/format.app.variants';
 
 @Component({
   selector: 'app-historico-add-modal',
@@ -22,8 +24,6 @@ export class HistoricoAddModalComponent implements OnInit {
   public formGroup: FormGroup;
 
   public datePipe: DatePipe;
-
-  public timeFormat: string;
 
   public banderas: ViewBandera[];
 
@@ -45,8 +45,7 @@ export class HistoricoAddModalComponent implements OnInit {
 
   // Pipes
   CreateDateFormat() {
-    this.datePipe = new DatePipe('en-Us');
-    this.timeFormat = 'HH:mm';
+    this.datePipe = new DatePipe(LocaleAppVariants.AppUnitedStatesEnglishLocale);
   }
 
   // Form
@@ -56,10 +55,10 @@ export class HistoricoAddModalComponent implements OnInit {
       'ArenalId': [this.data.Id, [Validators.required]],
       'BanderaId': [this.data.LastHistorico.Bandera.Id, [Validators.required]],
       'Temperatura': [this.data.LastHistorico.Temperatura, [Validators.required, Validators.pattern(ExpressionAppVariants.AppNumberExpression)]],
-      'BajaMarAlba': [this.datePipe.transform(new Date(), this.timeFormat), [Validators.required]],
-      'AltaMarAlba': [this.datePipe.transform(new Date(), this.timeFormat), [Validators.required]],
-      'BajaMarOcaso': [this.datePipe.transform(new Date(), this.timeFormat), [Validators.required]],
-      'AltaMarOcaso': [this.datePipe.transform(new Date(), this.timeFormat), [Validators.required]],
+      'BajaMarAlba': [this.datePipe.transform(new Date(), FormatAppVariants.HourFormat), [Validators.required]],
+      'AltaMarAlba': [this.datePipe.transform(new Date(), FormatAppVariants.HourFormat), [Validators.required]],
+      'BajaMarOcaso': [this.datePipe.transform(new Date(), FormatAppVariants.HourFormat), [Validators.required]],
+      'AltaMarOcaso': [this.datePipe.transform(new Date(), FormatAppVariants.HourFormat), [Validators.required]],
     });
   }
 

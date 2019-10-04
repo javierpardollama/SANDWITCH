@@ -1,5 +1,5 @@
 export class ExpressionAppVariants {
-    // Expression invariants
+    // Expression variants
     public static readonly AppMailExpression = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$/;
     public static readonly AppNumberExpression = /^\d+$/;
     public static readonly AppInfiniteDecimalExpression = /^[0-9]*\.?[0-9]*$/g;

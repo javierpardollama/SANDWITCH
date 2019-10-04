@@ -24,7 +24,8 @@ export class ArenalUpdateModalComponent implements OnInit {
 
 
   // Constructor
-  constructor(private arenalService: ArenalService,
+  constructor(
+    private arenalService: ArenalService,
     private provinciaService: ProvinciaService,
     private formBuilder: FormBuilder,
     public dialogRef: MatDialogRef<ArenalUpdateModalComponent>,
@@ -34,16 +35,16 @@ export class ArenalUpdateModalComponent implements OnInit {
 
   // Life Cicle
   ngOnInit() {
-    this.FindAllProvincia();    
+    this.FindAllProvincia();
     this.CreateForm();
   }
 
   // Form
   CreateForm() {
     this.formGroup = this.formBuilder.group({
-      'Id': [this.data.Id, [Validators.required]],
-      'Name': [this.data.Name, [Validators.required]],
-      'PoblacionesId': [this.data.Poblaciones.map(({ Id }) => Id), [Validators.required]]
+      Id: [this.data.Id, [Validators.required]],
+      Name: [this.data.Name, [Validators.required]],
+      PoblacionesId: [this.data.Poblaciones.map(({ Id }) => Id), [Validators.required]]
     });
   }
 
@@ -52,7 +53,10 @@ export class ArenalUpdateModalComponent implements OnInit {
     this.arenalService.UpdateArenal(viewModel).subscribe(arenal => {
 
       if (arenal !== undefined) {
-        this.matSnackBar.open(TextAppVariants.AppOperationSuccessCoreText, TextAppVariants.AppOkButtonText, { duration: TimeAppVariants.AppToastSecondTicks * TimeAppVariants.AppTimeSecondTicks });
+        this.matSnackBar.open(
+          TextAppVariants.AppOperationSuccessCoreText,
+          TextAppVariants.AppOkButtonText,
+          { duration: TimeAppVariants.AppToastSecondTicks * TimeAppVariants.AppTimeSecondTicks });
       }
 
       this.dialogRef.close();
@@ -62,7 +66,10 @@ export class ArenalUpdateModalComponent implements OnInit {
   onDelete(viewModel: UpdateArenal) {
     this.arenalService.RemoveArenalById(viewModel.Id).subscribe(arenal => {
 
-      this.matSnackBar.open(TextAppVariants.AppOperationSuccessCoreText, TextAppVariants.AppOkButtonText, { duration: TimeAppVariants.AppToastSecondTicks * TimeAppVariants.AppTimeSecondTicks });
+      this.matSnackBar.open(
+        TextAppVariants.AppOperationSuccessCoreText,
+        TextAppVariants.AppOkButtonText,
+        { duration: TimeAppVariants.AppToastSecondTicks * TimeAppVariants.AppTimeSecondTicks });
 
       this.dialogRef.close();
     });

@@ -25,7 +25,8 @@ export class BanderaGridComponent implements OnInit {
   public dataSource: MatTableDataSource<ViewBandera>;
 
   // Constructor
-  constructor(private banderaService: BanderaService,
+  constructor(
+    private banderaService: BanderaService,
     public matDialog: MatDialog) {
 
   }

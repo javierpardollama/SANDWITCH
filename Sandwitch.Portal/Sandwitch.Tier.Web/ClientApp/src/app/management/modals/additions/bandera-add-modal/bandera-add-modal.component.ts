@@ -17,7 +17,8 @@ export class BanderaAddModalComponent implements OnInit {
   public formGroup: FormGroup;
 
   // Constructor
-  constructor(private banderaService: BanderaService,
+  constructor(
+    private banderaService: BanderaService,
     private formBuilder: FormBuilder,
     public dialogRef: MatDialogRef<BanderaAddModalComponent>,
     private matSnackBar: MatSnackBar) { }
@@ -31,8 +32,8 @@ export class BanderaAddModalComponent implements OnInit {
   // Form
   CreateForm() {
     this.formGroup = this.formBuilder.group({
-      'Name': [TextAppVariants.AppEmptyCoreText, [Validators.required]],
-      'ImageUri': [TextAppVariants.AppEmptyCoreText, [Validators.required]],
+      Name: [TextAppVariants.AppEmptyCoreText, [Validators.required]],
+      ImageUri: [TextAppVariants.AppEmptyCoreText, [Validators.required]],
     });
   }
 
@@ -41,7 +42,10 @@ export class BanderaAddModalComponent implements OnInit {
     this.banderaService.AddBandera(viewModel).subscribe(bandera => {
 
       if (bandera !== undefined) {
-        this.matSnackBar.open(TextAppVariants.AppOperationSuccessCoreText, TextAppVariants.AppOkButtonText, { duration: TimeAppVariants.AppToastSecondTicks * TimeAppVariants.AppTimeSecondTicks });
+        this.matSnackBar.open(
+          TextAppVariants.AppOperationSuccessCoreText,
+          TextAppVariants.AppOkButtonText,
+          { duration: TimeAppVariants.AppToastSecondTicks * TimeAppVariants.AppTimeSecondTicks });
       }
 
       this.dialogRef.close();

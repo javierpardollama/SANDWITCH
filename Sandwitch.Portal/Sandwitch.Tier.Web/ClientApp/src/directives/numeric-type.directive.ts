@@ -30,9 +30,9 @@ export class NumericTypeDirective {
 
     // Do not use event.keycode this is deprecated.
     // See: https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/keyCode
-    let current: string = this.elementRef.nativeElement.value;
+    const current: string = this.elementRef.nativeElement.value;
 
-    let next: string = current.concat(event.key);
+    const next: string = current.concat(event.key);
 
     if (next && !String(next).match(this.regex[this.numericType])) {
       event.preventDefault();
@@ -44,7 +44,7 @@ export class NumericTypeDirective {
 
     event.preventDefault();
 
-    let next: string = event.clipboardData.getData('text/plain');
+    const next: string = event.clipboardData.getData('text/plain');
 
     if (String(next).match(this.regex[this.numericType])) {
 
@@ -57,7 +57,7 @@ export class NumericTypeDirective {
 
     event.preventDefault();
 
-    let next: string = event.dataTransfer.getData('text/plain');
+    const next: string = event.dataTransfer.getData('text/plain');
 
     if (String(next).match(this.regex[this.numericType])) {
 

@@ -18,7 +18,8 @@ export class ProvinciaUpdateModalComponent implements OnInit {
   public formGroup: FormGroup;
 
   // Constructor
-  constructor(private provinciaService: ProvinciaService,
+  constructor(
+    private provinciaService: ProvinciaService,
     private formBuilder: FormBuilder,
     public dialogRef: MatDialogRef<ProvinciaUpdateModalComponent>,
     private matSnackBar: MatSnackBar,
@@ -33,9 +34,9 @@ export class ProvinciaUpdateModalComponent implements OnInit {
   // Form
   CreateForm() {
     this.formGroup = this.formBuilder.group({
-      'Id': [this.data.Id, [Validators.required]],
-      'Name': [this.data.Name, [Validators.required]],
-      'ImageUri': [this.data.ImageUri, [Validators.required]],
+      Id: [this.data.Id, [Validators.required]],
+      Name: [this.data.Name, [Validators.required]],
+      ImageUri: [this.data.ImageUri, [Validators.required]],
     });
   }
 
@@ -44,7 +45,10 @@ export class ProvinciaUpdateModalComponent implements OnInit {
     this.provinciaService.UpdateProvincia(viewModel).subscribe(provincia => {
 
       if (provincia !== undefined) {
-        this.matSnackBar.open(TextAppVariants.AppOperationSuccessCoreText, TextAppVariants.AppOkButtonText, { duration: TimeAppVariants.AppToastSecondTicks * TimeAppVariants.AppTimeSecondTicks });
+        this.matSnackBar.open(
+          TextAppVariants.AppOperationSuccessCoreText,
+          TextAppVariants.AppOkButtonText,
+          { duration: TimeAppVariants.AppToastSecondTicks * TimeAppVariants.AppTimeSecondTicks });
       }
 
       this.dialogRef.close();
@@ -53,7 +57,11 @@ export class ProvinciaUpdateModalComponent implements OnInit {
 
   onDelete(viewModel: UpdateProvincia) {
     this.provinciaService.RemoveProvinciaById(viewModel.Id).subscribe(provincia => {
-      this.matSnackBar.open(TextAppVariants.AppOperationSuccessCoreText, TextAppVariants.AppOkButtonText, { duration: TimeAppVariants.AppToastSecondTicks * TimeAppVariants.AppTimeSecondTicks });
+      this.matSnackBar.open(
+        TextAppVariants.AppOperationSuccessCoreText,
+        TextAppVariants.AppOkButtonText,
+        { duration: TimeAppVariants.AppToastSecondTicks * TimeAppVariants.AppTimeSecondTicks }
+      );
 
       this.dialogRef.close();
     });

@@ -17,7 +17,8 @@ export class ProvinciaAddModalComponent implements OnInit {
   public formGroup: FormGroup;
 
   // Constructor
-  constructor(private provinciaService: ProvinciaService,
+  constructor(
+    private provinciaService: ProvinciaService,
     private formBuilder: FormBuilder,
     public dialogRef: MatDialogRef<ProvinciaAddModalComponent>,
     private matSnackBar: MatSnackBar) { }
@@ -31,8 +32,8 @@ export class ProvinciaAddModalComponent implements OnInit {
   // Form
   CreateForm() {
     this.formGroup = this.formBuilder.group({
-      'Name': [TextAppVariants.AppEmptyCoreText, [Validators.required]],
-      'ImageUri': [TextAppVariants.AppEmptyCoreText, [Validators.required]],
+      Name: [TextAppVariants.AppEmptyCoreText, [Validators.required]],
+      ImageUri: [TextAppVariants.AppEmptyCoreText, [Validators.required]],
     });
   }
 
@@ -41,7 +42,10 @@ export class ProvinciaAddModalComponent implements OnInit {
     this.provinciaService.AddProvincia(viewModel).subscribe(provincia => {
 
       if (provincia !== undefined) {
-        this.matSnackBar.open(TextAppVariants.AppOperationSuccessCoreText, TextAppVariants.AppOkButtonText, { duration: TimeAppVariants.AppToastSecondTicks * TimeAppVariants.AppTimeSecondTicks });
+        this.matSnackBar.open(
+          TextAppVariants.AppOperationSuccessCoreText,
+          TextAppVariants.AppOkButtonText,
+          { duration: TimeAppVariants.AppToastSecondTicks * TimeAppVariants.AppTimeSecondTicks });
       }
 
       this.dialogRef.close();

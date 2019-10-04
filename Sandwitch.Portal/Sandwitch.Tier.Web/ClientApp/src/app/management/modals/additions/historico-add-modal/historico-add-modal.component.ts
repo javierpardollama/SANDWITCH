@@ -28,7 +28,8 @@ export class HistoricoAddModalComponent implements OnInit {
   public banderas: ViewBandera[];
 
   // Constructor
-  constructor(private historicoService: HistoricoService,
+  constructor(
+    private historicoService: HistoricoService,
     private banderaService: BanderaService,
     private formBuilder: FormBuilder,
     public dialogRef: MatDialogRef<HistoricoAddModalComponent>,
@@ -52,13 +53,21 @@ export class HistoricoAddModalComponent implements OnInit {
   CreateForm() {
 
     this.formGroup = this.formBuilder.group({
-      'ArenalId': [this.data.Id, [Validators.required]],
-      'BanderaId': [this.data.LastHistorico.Bandera.Id, [Validators.required]],
-      'Temperatura': [this.data.LastHistorico.Temperatura, [Validators.required, Validators.pattern(ExpressionAppVariants.AppNumberExpression)]],
-      'BajaMarAlba': [this.datePipe.transform(new Date(), FormatAppVariants.HourFormat), [Validators.required]],
-      'AltaMarAlba': [this.datePipe.transform(new Date(), FormatAppVariants.HourFormat), [Validators.required]],
-      'BajaMarOcaso': [this.datePipe.transform(new Date(), FormatAppVariants.HourFormat), [Validators.required]],
-      'AltaMarOcaso': [this.datePipe.transform(new Date(), FormatAppVariants.HourFormat), [Validators.required]],
+      ArenalId: [this.data.Id,
+      [Validators.required]],
+      BanderaId: [this.data.LastHistorico.Bandera.Id,
+      [Validators.required]],
+      Temperatura: [this.data.LastHistorico.Temperatura,
+      [Validators.required,
+      Validators.pattern(ExpressionAppVariants.AppNumberExpression)]],
+      BajaMarAlba: [this.datePipe.transform(new Date(), FormatAppVariants.HourFormat),
+      [Validators.required]],
+      AltaMarAlba: [this.datePipe.transform(new Date(), FormatAppVariants.HourFormat),
+      [Validators.required]],
+      BajaMarOcaso: [this.datePipe.transform(new Date(), FormatAppVariants.HourFormat),
+      [Validators.required]],
+      AltaMarOcaso: [this.datePipe.transform(new Date(), FormatAppVariants.HourFormat),
+      [Validators.required]],
     });
   }
 
@@ -67,7 +76,10 @@ export class HistoricoAddModalComponent implements OnInit {
     this.historicoService.AddHistorico(viewModel).subscribe(historico => {
 
       if (historico !== undefined) {
-        this.matSnackBar.open(TextAppVariants.AppOperationSuccessCoreText, TextAppVariants.AppOkButtonText, { duration: TimeAppVariants.AppToastSecondTicks * TimeAppVariants.AppTimeSecondTicks });
+        this.matSnackBar.open(
+          TextAppVariants.AppOperationSuccessCoreText,
+          TextAppVariants.AppOkButtonText,
+          { duration: TimeAppVariants.AppToastSecondTicks * TimeAppVariants.AppTimeSecondTicks });
       }
 
       this.dialogRef.close();

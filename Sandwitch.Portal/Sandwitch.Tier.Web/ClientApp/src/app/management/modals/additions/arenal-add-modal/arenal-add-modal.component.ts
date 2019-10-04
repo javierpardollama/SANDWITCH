@@ -22,7 +22,8 @@ export class ArenalAddModalComponent implements OnInit {
   public provincias: ViewProvincia[];
 
   // Constructor
-  constructor(private arenalService: ArenalService,
+  constructor(
+    private arenalService: ArenalService,
     private provinciaService: ProvinciaService,
     private formBuilder: FormBuilder,
     public dialogRef: MatDialogRef<ArenalAddModalComponent>,
@@ -38,8 +39,8 @@ export class ArenalAddModalComponent implements OnInit {
   // Form
   CreateForm() {
     this.formGroup = this.formBuilder.group({
-      'Name': [TextAppVariants.AppEmptyCoreText, [Validators.required]],
-      'PoblacionesId': [undefined, [Validators.required]]
+      Name: [TextAppVariants.AppEmptyCoreText, [Validators.required]],
+      PoblacionesId: [undefined, [Validators.required]]
     });
   }
 
@@ -48,7 +49,10 @@ export class ArenalAddModalComponent implements OnInit {
     this.arenalService.AddArenal(viewModel).subscribe(arenal => {
 
       if (arenal !== undefined) {
-        this.matSnackBar.open(TextAppVariants.AppOperationSuccessCoreText, TextAppVariants.AppOkButtonText, { duration: TimeAppVariants.AppToastSecondTicks * TimeAppVariants.AppTimeSecondTicks });
+        this.matSnackBar.open(
+          TextAppVariants.AppOperationSuccessCoreText,
+          TextAppVariants.AppOkButtonText,
+          { duration: TimeAppVariants.AppToastSecondTicks * TimeAppVariants.AppTimeSecondTicks });
       }
 
       this.dialogRef.close();

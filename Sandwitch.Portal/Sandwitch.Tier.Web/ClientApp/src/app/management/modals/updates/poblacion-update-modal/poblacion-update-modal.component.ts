@@ -23,7 +23,8 @@ export class PoblacionUpdateModalComponent implements OnInit {
   public provincias: ViewProvincia[];
 
   // Constructor
-  constructor(private provinciaService: ProvinciaService,
+  constructor(
+    private provinciaService: ProvinciaService,
     private poblacionService: PoblacionService,
     private formBuilder: FormBuilder,
     public dialogRef: MatDialogRef<PoblacionUpdateModalComponent>,
@@ -40,10 +41,10 @@ export class PoblacionUpdateModalComponent implements OnInit {
   // Form
   CreateForm() {
     this.formGroup = this.formBuilder.group({
-      'Id': [this.data.Id, [Validators.required]],
-      'Name': [this.data.Name, [Validators.required]],
-      'ImageUri': [this.data.ImageUri, [Validators.required]],
-      'ProvinciaId': [this.data.Provincia.Id, [Validators.required]]
+      Id: [this.data.Id, [Validators.required]],
+      Name: [this.data.Name, [Validators.required]],
+      ImageUri: [this.data.ImageUri, [Validators.required]],
+      ProvinciaId: [this.data.Provincia.Id, [Validators.required]]
     });
   }
 
@@ -52,7 +53,10 @@ export class PoblacionUpdateModalComponent implements OnInit {
     this.poblacionService.UpdatePoblacion(viewModel).subscribe(poblacion => {
 
       if (poblacion !== undefined) {
-        this.matSnackBar.open(TextAppVariants.AppOperationSuccessCoreText, TextAppVariants.AppOkButtonText, { duration: TimeAppVariants.AppToastSecondTicks * TimeAppVariants.AppTimeSecondTicks });
+        this.matSnackBar.open(
+          TextAppVariants.AppOperationSuccessCoreText,
+          TextAppVariants.AppOkButtonText,
+          { duration: TimeAppVariants.AppToastSecondTicks * TimeAppVariants.AppTimeSecondTicks });
       }
 
       this.dialogRef.close();
@@ -61,7 +65,10 @@ export class PoblacionUpdateModalComponent implements OnInit {
 
   onDelete(viewModel: UpdatePoblacion) {
     this.poblacionService.RemovePoblacionById(viewModel.Id).subscribe(poblacion => {
-      this.matSnackBar.open(TextAppVariants.AppOperationSuccessCoreText, TextAppVariants.AppOkButtonText, { duration: TimeAppVariants.AppToastSecondTicks * TimeAppVariants.AppTimeSecondTicks });
+      this.matSnackBar.open(
+        TextAppVariants.AppOperationSuccessCoreText,
+        TextAppVariants.AppOkButtonText,
+        { duration: TimeAppVariants.AppToastSecondTicks * TimeAppVariants.AppTimeSecondTicks });
 
       this.dialogRef.close();
     });

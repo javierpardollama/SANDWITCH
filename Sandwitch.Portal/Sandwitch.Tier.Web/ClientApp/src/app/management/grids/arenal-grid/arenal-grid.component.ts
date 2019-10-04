@@ -14,9 +14,9 @@ import { ArenalAddModalComponent } from './../../modals/additions/arenal-add-mod
     styleUrls: ['./arenal-grid.component.css']
 })
 export class ArenalGridComponent implements OnInit {
-    
-    @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
-    @ViewChild(MatSort, {static: true}) sort: MatSort;
+
+    @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
+    @ViewChild(MatSort, { static: true }) sort: MatSort;
 
     public ELEMENT_DATA: ViewArenal[];
 
@@ -25,7 +25,8 @@ export class ArenalGridComponent implements OnInit {
     public dataSource: MatTableDataSource<ViewArenal>;
 
     // Constructor
-    constructor(private arenalService: ArenalService,
+    constructor(
+        private arenalService: ArenalService,
         public matDialog: MatDialog) {
 
     }

@@ -30,7 +30,8 @@ export class SearchComponent implements OnInit {
   public provinciaCtrl = new FormControl();
 
   // Constructor
-  constructor(public matDialog: MatDialog,
+  constructor(
+    public matDialog: MatDialog,
     private provinciaService: ProvinciaService,
     private poblacionService: PoblacionService,
     private arenalService: ArenalService) {

@@ -5,7 +5,7 @@ import { ViewArenal } from './viewarenal';
 export interface ViewHistorico extends ViewBase {
     Bandera: ViewBandera;
     Arenal: ViewArenal;
-    Temperatura: Number;
+    Temperatura: number;
     BajaMarAlba: Date;
     BajaMarOcaso: Date;
     AltaMarAlba: Date;

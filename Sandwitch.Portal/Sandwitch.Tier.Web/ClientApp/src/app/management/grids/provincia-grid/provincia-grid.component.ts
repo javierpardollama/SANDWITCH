@@ -24,7 +24,8 @@ export class ProvinciaGridComponent implements OnInit {
   public dataSource: MatTableDataSource<ViewProvincia>;
 
   // Constructor
-  constructor(private provinciaService: ProvinciaService,
+  constructor(
+    private provinciaService: ProvinciaService,
     public matDialog: MatDialog) {
 
   }

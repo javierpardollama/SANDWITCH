@@ -41,9 +41,9 @@ import { PoblacionUpdateModalComponent } from './management/modals/updates/pobla
 
 @NgModule({
   declarations: [
-     // Directives
-     NumericTypeDirective,
-     // App
+    // Directives
+    NumericTypeDirective,
+    // App
     AppComponent,
     NavMenuComponent,
     HomeComponent,
@@ -53,21 +53,21 @@ import { PoblacionUpdateModalComponent } from './management/modals/updates/pobla
     PoblacionGridComponent,
     ProvinciaGridComponent,
     ArenalGridComponent,
-     // App-Modal-Adition
+    // App-Modal-Adition
     ArenalAddModalComponent,
     BanderaAddModalComponent,
     ProvinciaAddModalComponent,
     PoblacionAddModalComponent,
     HistoricoAddModalComponent,
-     // App-Modal-Update
+    // App-Modal-Update
     ArenalUpdateModalComponent,
     BanderaUpdateModalComponent,
     ProvinciaUpdateModalComponent,
     PoblacionUpdateModalComponent
   ],
-  exports:[
-     // Directives
-     NumericTypeDirective
+  exports: [
+    // Directives
+    NumericTypeDirective
   ],
   imports: [
     // Angular Material

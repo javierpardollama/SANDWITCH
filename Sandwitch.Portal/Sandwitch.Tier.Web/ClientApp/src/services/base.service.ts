@@ -16,13 +16,15 @@ export class BaseService {
     public HandleError<T>(operation = 'Operation', result?: T) {
         return (response: HttpErrorResponse): Observable<T> => {
 
-            const expception: ViewException =
-            {
+            const exception: ViewException = {
                 Message: response.error.Message,
                 StatusCode: response.error.StatusCode
-            }
+            };
 
-            this.matSnackBar.open(expception.Message, TextAppVariants.AppOkButtonText, { duration: TimeAppVariants.AppToastSecondTicks * TimeAppVariants.AppTimeSecondTicks });
+            this.matSnackBar.open(
+                exception.Message,
+                TextAppVariants.AppOkButtonText,
+                { duration: TimeAppVariants.AppToastSecondTicks * TimeAppVariants.AppTimeSecondTicks });
 
             // Let the app keep running by returning an empty result.
             return of(result as T);

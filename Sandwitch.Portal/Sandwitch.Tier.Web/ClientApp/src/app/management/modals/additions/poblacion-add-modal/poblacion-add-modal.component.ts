@@ -22,7 +22,8 @@ export class PoblacionAddModalComponent implements OnInit {
   public provincias: ViewProvincia[];
 
   // Constructor
-  constructor(private provinciaService: ProvinciaService,
+  constructor(
+    private provinciaService: ProvinciaService,
     private poblacionService: PoblacionService,
     private formBuilder: FormBuilder,
     public dialogRef: MatDialogRef<PoblacionAddModalComponent>,
@@ -38,9 +39,9 @@ export class PoblacionAddModalComponent implements OnInit {
   // Form
   CreateForm() {
     this.formGroup = this.formBuilder.group({
-      'Name': [TextAppVariants.AppEmptyCoreText, [Validators.required]],
-      'ImageUri': [TextAppVariants.AppEmptyCoreText, [Validators.required]],
-      'ProvinciaId': [0, [Validators.required]]
+      Name: [TextAppVariants.AppEmptyCoreText, [Validators.required]],
+      ImageUri: [TextAppVariants.AppEmptyCoreText, [Validators.required]],
+      ProvinciaId: [0, [Validators.required]]
     });
   }
 
@@ -49,7 +50,10 @@ export class PoblacionAddModalComponent implements OnInit {
     this.poblacionService.AddPoblacion(viewModel).subscribe(poblacion => {
 
       if (poblacion !== undefined) {
-        this.matSnackBar.open(TextAppVariants.AppOperationSuccessCoreText, TextAppVariants.AppOkButtonText, { duration: TimeAppVariants.AppToastSecondTicks * TimeAppVariants.AppTimeSecondTicks });
+        this.matSnackBar.open(
+          TextAppVariants.AppOperationSuccessCoreText,
+          TextAppVariants.AppOkButtonText,
+          { duration: TimeAppVariants.AppToastSecondTicks * TimeAppVariants.AppTimeSecondTicks });
       }
 
       this.dialogRef.close();

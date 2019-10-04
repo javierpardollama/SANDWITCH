@@ -24,7 +24,8 @@ export class PoblacionGridComponent implements OnInit {
   public dataSource: MatTableDataSource<ViewPoblacion>;
 
   // Constructor
-  constructor(private poblacionService: PoblacionService,
+  constructor(
+    private poblacionService: PoblacionService,
     public matDialog: MatDialog) {
 
   }

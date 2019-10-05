@@ -1,12 +1,27 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatTableDataSource, MatPaginator, MatSort, MatDialog } from '@angular/material';
+import {
+  Component,
+  OnInit,
+  ViewChild
+} from '@angular/core';
+
+import {
+  MatTableDataSource,
+  MatPaginator,
+  MatSort,
+  MatDialog
+} from '@angular/material';
+
 import { ViewBandera } from './../../../../viewmodels/views/viewbandera';
 
 import { BanderaService } from './../../../../services/bandera.service';
 
-import { BanderaUpdateModalComponent } from './../../modals/updates/bandera-update-modal/bandera-update-modal.component';
-import { BanderaAddModalComponent } from './../../modals/additions/bandera-add-modal/bandera-add-modal.component';
+import {
+  BanderaUpdateModalComponent
+} from './../../modals/updates/bandera-update-modal/bandera-update-modal.component';
 
+import {
+  BanderaAddModalComponent
+} from './../../modals/additions/bandera-add-modal/bandera-add-modal.component';
 
 @Component({
   selector: 'app-bandera-grid',
@@ -15,8 +30,8 @@ import { BanderaAddModalComponent } from './../../modals/additions/bandera-add-m
 })
 export class BanderaGridComponent implements OnInit {
 
-  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
-  @ViewChild(MatSort, {static: true}) sort: MatSort;
+  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
+  @ViewChild(MatSort, { static: true }) sort: MatSort;
 
   public ELEMENT_DATA: ViewBandera[];
 

@@ -1,10 +1,25 @@
-import { Component, OnInit } from '@angular/core';
-import { MatDialogRef, MatSnackBar } from '@angular/material';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {
+  Component,
+  OnInit
+} from '@angular/core';
+
+import {
+  MatDialogRef,
+  MatSnackBar
+} from '@angular/material';
+
+import {
+  FormBuilder,
+  FormGroup,
+  Validators
+} from '@angular/forms';
+
 import { AddBandera } from './../../../../../viewmodels/additions/addbandera';
 
 import { BanderaService } from './../../../../../services/bandera.service';
+
 import { TextAppVariants } from './../../../../../variants/text.app.variants';
+
 import { TimeAppVariants } from './../../../../../variants/time.app.variants';
 
 @Component({
@@ -32,8 +47,10 @@ export class BanderaAddModalComponent implements OnInit {
   // Form
   CreateForm() {
     this.formGroup = this.formBuilder.group({
-      Name: [TextAppVariants.AppEmptyCoreText, [Validators.required]],
-      ImageUri: [TextAppVariants.AppEmptyCoreText, [Validators.required]],
+      Name: [TextAppVariants.AppEmptyCoreText,
+      [Validators.required]],
+      ImageUri: [TextAppVariants.AppEmptyCoreText,
+      [Validators.required]],
     });
   }
 

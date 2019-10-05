@@ -1,11 +1,29 @@
-import { Component, OnInit, Inject } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA, MatSnackBar } from '@angular/material';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {
+  Component,
+  OnInit,
+  Inject
+} from '@angular/core';
+
+import {
+  MatDialogRef,
+  MAT_DIALOG_DATA,
+  MatSnackBar
+} from '@angular/material';
+
+import {
+  FormBuilder,
+  FormGroup,
+  Validators
+} from '@angular/forms';
+
 import { ViewProvincia } from './../../../../../viewmodels/views/viewprovincia';
+
 import { UpdateProvincia } from './../../../../../viewmodels/updates/updateprovincia';
 
 import { ProvinciaService } from './../../../../../services/provincia.service';
+
 import { TextAppVariants } from './../../../../../variants/text.app.variants';
+
 import { TimeAppVariants } from './../../../../../variants/time.app.variants';
 
 @Component({

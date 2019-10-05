@@ -1,13 +1,29 @@
-import { Component, OnInit } from '@angular/core';
-import { MatDialogRef, MatSnackBar } from '@angular/material';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {
+  Component,
+  OnInit
+} from '@angular/core';
+
+import {
+  MatDialogRef,
+  MatSnackBar
+} from '@angular/material';
+
+import {
+  FormBuilder,
+  FormGroup,
+  Validators
+} from '@angular/forms';
+
 import { ViewProvincia } from './../../../../../viewmodels/views/viewprovincia';
 
 import { AddPoblacion } from './../../../../../viewmodels/additions/addpoblacion';
 
 import { ProvinciaService } from './../../../../../services/provincia.service';
+
 import { PoblacionService } from './../../../../../services/poblacion.service';
+
 import { TextAppVariants } from './../../../../../variants/text.app.variants';
+
 import { TimeAppVariants } from './../../../../../variants/time.app.variants';
 
 @Component({
@@ -39,8 +55,10 @@ export class PoblacionAddModalComponent implements OnInit {
   // Form
   CreateForm() {
     this.formGroup = this.formBuilder.group({
-      Name: [TextAppVariants.AppEmptyCoreText, [Validators.required]],
-      ImageUri: [TextAppVariants.AppEmptyCoreText, [Validators.required]],
+      Name: [TextAppVariants.AppEmptyCoreText,
+      [Validators.required]],
+      ImageUri: [TextAppVariants.AppEmptyCoreText,
+      [Validators.required]],
       ProvinciaId: [0, [Validators.required]]
     });
   }

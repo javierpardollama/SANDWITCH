@@ -1,11 +1,26 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatTableDataSource, MatPaginator, MatSort, MatDialog } from '@angular/material';
+import {
+  Component,
+  OnInit,
+  ViewChild
+} from '@angular/core';
+import {
+  MatTableDataSource,
+  MatPaginator,
+  MatSort,
+  MatDialog
+} from '@angular/material';
+
 import { ViewPoblacion } from './../../../../viewmodels/views/viewpoblacion';
 
 import { PoblacionService } from './../../../../services/poblacion.service';
 
-import { PoblacionUpdateModalComponent } from './../../modals/updates/poblacion-update-modal/poblacion-update-modal.component';
-import { PoblacionAddModalComponent } from './../../modals/additions/poblacion-add-modal/poblacion-add-modal.component';
+import {
+  PoblacionUpdateModalComponent
+} from './../../modals/updates/poblacion-update-modal/poblacion-update-modal.component';
+
+import {
+  PoblacionAddModalComponent
+} from './../../modals/additions/poblacion-add-modal/poblacion-add-modal.component';
 
 @Component({
   selector: 'app-poblacion-grid',
@@ -14,8 +29,8 @@ import { PoblacionAddModalComponent } from './../../modals/additions/poblacion-a
 })
 export class PoblacionGridComponent implements OnInit {
 
-  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
-  @ViewChild(MatSort, {static: true}) sort: MatSort;
+  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
+  @ViewChild(MatSort, { static: true }) sort: MatSort;
 
   public ELEMENT_DATA: ViewPoblacion[];
 

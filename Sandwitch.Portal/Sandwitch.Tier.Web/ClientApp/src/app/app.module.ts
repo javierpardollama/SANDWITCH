@@ -1,14 +1,33 @@
 import { BrowserModule } from '@angular/platform-browser';
+
 import { NgModule } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
+import {
+  FormsModule,
+  ReactiveFormsModule
+} from '@angular/forms';
+
 import { HttpClientModule } from '@angular/common/http';
+
 import { RouterModule } from '@angular/router';
 
 // Angular Material
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 import {
-  MatDialogModule, MatChipsModule, MatSortModule, MatPaginatorModule, MatTableModule, MatCardModule, MatDividerModule,
-  MatInputModule, MatFormFieldModule, MatButtonModule, MatSnackBarModule, MatAutocompleteModule, MatSelectModule
+  MatDialogModule,
+  MatChipsModule,
+  MatSortModule,
+  MatPaginatorModule,
+  MatTableModule,
+  MatCardModule,
+  MatDividerModule,
+  MatInputModule,
+  MatFormFieldModule,
+  MatButtonModule,
+  MatSnackBarModule,
+  MatAutocompleteModule,
+  MatSelectModule
 } from '@angular/material';
 
 // Directives
@@ -90,15 +109,43 @@ import { PoblacionUpdateModalComponent } from './management/modals/updates/pobla
     FormsModule,
     ReactiveFormsModule,
     RouterModule.forRoot([
-      { path: '', component: HomeComponent, pathMatch: 'full' },
-      { path: 'management/banderas', component: BanderaGridComponent, pathMatch: 'full' },
-      { path: 'management/poblaciones', component: PoblacionGridComponent, pathMatch: 'full' },
-      { path: 'management/provincias', component: ProvinciaGridComponent, pathMatch: 'full' },
-      { path: 'management/arenales', component: ArenalGridComponent, pathMatch: 'full' }
+      {
+        path: '',
+        component: HomeComponent,
+        pathMatch: 'full'
+      },
+      {
+        path: 'management/banderas',
+        component: BanderaGridComponent,
+        pathMatch: 'full'
+      },
+      {
+        path: 'management/poblaciones',
+        component: PoblacionGridComponent,
+        pathMatch: 'full'
+      },
+      {
+        path: 'management/provincias',
+        component: ProvinciaGridComponent,
+        pathMatch: 'full'
+      },
+      {
+        path: 'management/arenales',
+        component: ArenalGridComponent,
+        pathMatch: 'full'
+      }
     ])
   ],
-  entryComponents: [ArenalUpdateModalComponent, BanderaUpdateModalComponent, ProvinciaUpdateModalComponent, PoblacionUpdateModalComponent,
-    ArenalAddModalComponent, BanderaAddModalComponent, ProvinciaAddModalComponent, PoblacionAddModalComponent, HistoricoAddModalComponent],
+  entryComponents: [
+    ArenalUpdateModalComponent,
+    BanderaUpdateModalComponent,
+    ProvinciaUpdateModalComponent,
+    PoblacionUpdateModalComponent,
+    ArenalAddModalComponent,
+    BanderaAddModalComponent,
+    ProvinciaAddModalComponent,
+    PoblacionAddModalComponent,
+    HistoricoAddModalComponent],
   providers: [],
   bootstrap: [AppComponent]
 })

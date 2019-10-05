@@ -1,4 +1,10 @@
-import { Directive, ElementRef, HostListener, Input } from '@angular/core';
+import {
+  Directive,
+  ElementRef,
+  HostListener,
+  Input
+} from '@angular/core';
+
 import { ExpressionAppVariants } from './../variants/expression.app.variants';
 
 @Directive({

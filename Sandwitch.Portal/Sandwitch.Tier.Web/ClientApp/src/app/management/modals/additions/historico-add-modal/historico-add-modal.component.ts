@@ -1,17 +1,41 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Inject
+} from '@angular/core';
+
 import { DatePipe } from '@angular/common';
-import { MatDialogRef, MAT_DIALOG_DATA, MatSnackBar } from '@angular/material';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
+import {
+  MatDialogRef,
+  MAT_DIALOG_DATA,
+  MatSnackBar
+} from '@angular/material';
+
+import {
+  FormBuilder,
+  FormGroup,
+  Validators
+} from '@angular/forms';
+
 import { ViewArenal } from './../../../../../viewmodels/views/viewarenal';
+
 import { ViewBandera } from './../../../../../viewmodels/views/viewbandera';
+
 import { AddHistorico } from './../../../../../viewmodels/additions/addhistorico';
 
 import { HistoricoService } from './../../../../../services/historico.service';
+
 import { BanderaService } from './../../../../../services/bandera.service';
+
 import { TextAppVariants } from './../../../../../variants/text.app.variants';
+
 import { TimeAppVariants } from './../../../../../variants/time.app.variants';
+
 import { ExpressionAppVariants } from './../../../../../variants/expression.app.variants';
+
 import { LocaleAppVariants } from './../../../../../variants/locale.app.variants';
+
 import { FormatAppVariants } from './../../../../../variants/format.app.variants';
 
 @Component({

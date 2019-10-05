@@ -1,15 +1,32 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  Component,
+  OnInit
+} from '@angular/core';
 import { MatDialog } from '@angular/material';
+
 import { FormControl } from '@angular/forms';
+
 import { Observable } from 'rxjs';
-import { map, startWith } from 'rxjs/operators';
+
+import {
+  map,
+  startWith
+} from 'rxjs/operators';
 import { ViewPoblacion } from './../../viewmodels/views/viewpoblacion';
+
 import { ViewProvincia } from './../../viewmodels/views/viewprovincia';
+
 import { ViewArenal } from './../../viewmodels/views/viewarenal';
+
 import { ProvinciaService } from './../../services/provincia.service';
+
 import { PoblacionService } from './../../services/poblacion.service';
+
 import { ArenalService } from './../../services/arenal.service';
-import { HistoricoAddModalComponent } from './../management/modals/additions/historico-add-modal/historico-add-modal.component';
+
+import {
+  HistoricoAddModalComponent
+} from './../management/modals/additions/historico-add-modal/historico-add-modal.component';
 
 @Component({
   selector: 'app-search',

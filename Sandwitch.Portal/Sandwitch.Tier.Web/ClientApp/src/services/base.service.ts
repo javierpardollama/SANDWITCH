@@ -1,8 +1,19 @@
 import { ViewException } from './../viewmodels/views/viewexception';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+
+import {
+    HttpClient,
+    HttpErrorResponse
+} from '@angular/common/http';
+
 import { MatSnackBar } from '@angular/material';
-import { Observable, of } from 'rxjs';
+
+import {
+    Observable,
+    of
+} from 'rxjs';
+
 import { TextAppVariants } from './../variants/text.app.variants';
+
 import { TimeAppVariants } from './../variants/time.app.variants';
 
 export class BaseService {

@@ -1,11 +1,27 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatTableDataSource, MatPaginator, MatSort, MatDialog } from '@angular/material';
+import {
+  Component,
+  OnInit,
+  ViewChild
+} from '@angular/core';
+
+import {
+  MatTableDataSource,
+  MatPaginator,
+  MatSort,
+  MatDialog
+} from '@angular/material';
+
 import { ViewProvincia } from './../../../../viewmodels/views/viewprovincia';
 
 import { ProvinciaService } from './../../../../services/provincia.service';
 
-import { ProvinciaUpdateModalComponent } from './../../modals/updates/provincia-update-modal/provincia-update-modal.component';
-import { ProvinciaAddModalComponent } from './../../modals/additions/provincia-add-modal/provincia-add-modal.component';
+import {
+  ProvinciaUpdateModalComponent
+} from './../../modals/updates/provincia-update-modal/provincia-update-modal.component';
+
+import {
+  ProvinciaAddModalComponent
+} from './../../modals/additions/provincia-add-modal/provincia-add-modal.component';
 
 @Component({
   selector: 'app-provincia-grid',
@@ -14,8 +30,8 @@ import { ProvinciaAddModalComponent } from './../../modals/additions/provincia-a
 })
 export class ProvinciaGridComponent implements OnInit {
 
-  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
-  @ViewChild(MatSort, {static: true}) sort: MatSort;
+  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
+  @ViewChild(MatSort, { static: true }) sort: MatSort;
 
   public ELEMENT_DATA: ViewProvincia[];
 

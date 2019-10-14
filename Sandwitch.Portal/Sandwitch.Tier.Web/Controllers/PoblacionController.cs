@@ -1,5 +1,8 @@
-﻿using System.Threading.Tasks;
+﻿using System.Net;
+using System.Threading.Tasks;
+
 using Microsoft.AspNetCore.Mvc;
+
 using Sandwitch.Tier.Services.Interfaces;
 using Sandwitch.Tier.ViewModels.Classes.Additions;
 using Sandwitch.Tier.ViewModels.Classes.Updates;
@@ -37,7 +40,7 @@ namespace Sandwitch.Tier.Web.Controllers
         {
             await Service.RemovePoblacionById(id);
 
-            return new JsonResult(StatusCode(200));
+            return new JsonResult((int)HttpStatusCode.OK);
         }
     }
 }

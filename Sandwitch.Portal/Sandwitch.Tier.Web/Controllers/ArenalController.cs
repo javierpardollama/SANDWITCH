@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Net;
+using System.Threading.Tasks;
 
 using Microsoft.AspNetCore.Mvc;
 
@@ -39,7 +40,7 @@ namespace Sandwitch.Tier.Web.Controllers
         {
             await Service.RemoveArenalById(id);
 
-            return new JsonResult(StatusCode(200));
+            return new JsonResult((int)HttpStatusCode.OK);
         }
     }
 }

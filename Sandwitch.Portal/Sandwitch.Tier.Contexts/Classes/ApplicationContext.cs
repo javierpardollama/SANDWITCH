@@ -16,17 +16,17 @@ namespace Sandwitch.Tier.Contexts.Classes
         {
         }
 
-        public DbSet<Provincia> Provincia { get; set; }
+        public virtual DbSet<Provincia> Provincia { get; set; }
 
-        public DbSet<Poblacion> Poblacion { get; set; }
+        public virtual DbSet<Poblacion> Poblacion { get; set; }
 
-        public DbSet<Bandera> Bandera { get; set; }
+        public virtual DbSet<Bandera> Bandera { get; set; }
 
-        public DbSet<Arenal> Arenal { get; set; }
+        public virtual DbSet<Arenal> Arenal { get; set; }
 
-        public DbSet<ArenalPoblacion> ArenalPoblacion { get; set; }
+        public virtual DbSet<ArenalPoblacion> ArenalPoblacion { get; set; }
 
-        public DbSet<Historico> Historico { get; set; }
+        public virtual DbSet<Historico> Historico { get; set; }
 
         public override int SaveChanges()
         {

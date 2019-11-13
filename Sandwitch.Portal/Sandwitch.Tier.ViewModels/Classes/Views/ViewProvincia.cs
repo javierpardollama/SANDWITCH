@@ -16,7 +16,7 @@ namespace Sandwitch.Tier.ViewModels.Classes.Views
         [XmlElement("image-uri")]
         public string ImageUri { get; set; }
 
-        [XmlElement("poblaciones")]
+        [XmlArray("poblaciones")]
         public virtual IList<ViewPoblacion> Poblaciones { get; set; }
     }
 }

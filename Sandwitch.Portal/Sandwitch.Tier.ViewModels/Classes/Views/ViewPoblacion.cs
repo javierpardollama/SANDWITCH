@@ -4,6 +4,7 @@ using System.Xml.Serialization;
 
 namespace Sandwitch.Tier.ViewModels.Classes.Views
 {
+    [XmlRoot("poblacion")]
     public class ViewPoblacion : ViewBase
     {
         public ViewPoblacion()

@@ -4,6 +4,7 @@ using System.Xml.Serialization;
 
 namespace Sandwitch.Tier.ViewModels.Classes.Views
 {
+    [XmlRoot("arenal")]
     public class ViewArenal : ViewBase
     {
         public ViewArenal()

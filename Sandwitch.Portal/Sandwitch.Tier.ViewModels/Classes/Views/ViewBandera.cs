@@ -3,6 +3,7 @@ using System.Xml.Serialization;
 
 namespace Sandwitch.Tier.ViewModels.Classes.Views
 {
+    [XmlRoot("bandera")]
     public class ViewBandera : ViewBase
     {
         public ViewBandera()

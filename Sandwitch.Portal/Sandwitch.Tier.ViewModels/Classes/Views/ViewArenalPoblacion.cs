@@ -2,6 +2,7 @@
 
 namespace Sandwitch.Tier.ViewModels.Classes.Views
 {
+    [XmlRoot("arenal-poblacion")]
     public class ViewArenalPoblacion : ViewBase
     {
         public ViewArenalPoblacion()

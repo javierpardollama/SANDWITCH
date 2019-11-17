@@ -39,13 +39,20 @@ namespace Sandwitch.Tier.Services.Classes
                 Historicos = new List<Historico>()
             };
 
-            await Context.Arenal.AddAsync(arenal);
+            try
+            {
+                await Context.Arenal.AddAsync(arenal);
 
-            AddArenalPoblacion(viewModel, arenal);
+                AddArenalPoblacion(viewModel, arenal);
 
-            await AddHistorico(arenal);
+                await AddHistorico(arenal);
 
-            await Context.SaveChangesAsync();
+                await Context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                await CheckName(viewModel);
+            }
 
             // Log
             string logData = arenal.GetType().ToString()
@@ -205,20 +212,27 @@ namespace Sandwitch.Tier.Services.Classes
 
         public async Task RemoveArenalById(int id)
         {
-            Arenal arenal = await FindArenalById(id);
+            try
+            {
+                Arenal arenal = await FindArenalById(id);
 
-            Context.Arenal.Remove(arenal);
+                Context.Arenal.Remove(arenal);
 
-            await Context.SaveChangesAsync();
+                await Context.SaveChangesAsync();
 
-            // Log
-            string logData = arenal.GetType().Name
-                + " with Id"
-                + arenal.Id
-                + " was removed at "
-                + DateTime.Now.ToShortTimeString();
+                // Log
+                string logData = arenal.GetType().Name
+                    + " with Id"
+                    + arenal.Id
+                    + " was removed at "
+                    + DateTime.Now.ToShortTimeString();
 
-            Logger.WriteDeleteItemLog(logData);
+                Logger.WriteDeleteItemLog(logData);
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                await FindArenalById(id);
+            }
         }
 
         public async Task<ViewArenal> UpdateArenal(UpdateArenal viewModel)
@@ -230,13 +244,20 @@ namespace Sandwitch.Tier.Services.Classes
             arenal.ArenalPoblaciones = new List<ArenalPoblacion>();
             arenal.Historicos = new List<Historico>();
 
-            Context.Arenal.Update(arenal);
+            try
+            {
+                Context.Arenal.Update(arenal);
 
-            UpdateArenalPoblacion(viewModel, arenal);
+                UpdateArenalPoblacion(viewModel, arenal);
 
-            await UpdateHistorico(arenal);
+                await UpdateHistorico(arenal);
 
-            await Context.SaveChangesAsync();
+                await Context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                await CheckName(viewModel);
+            }
 
             // Log
             string logData = arenal.GetType().Name

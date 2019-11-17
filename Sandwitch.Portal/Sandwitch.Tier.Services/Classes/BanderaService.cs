@@ -37,9 +37,16 @@ namespace Sandwitch.Tier.Services.Classes
                 ImageUri = viewModel.ImageUri
             };
 
-            await Context.Bandera.AddAsync(bandera);
+            try
+            {
+                await Context.Bandera.AddAsync(bandera);
 
-            await Context.SaveChangesAsync();
+                await Context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                await CheckName(viewModel);
+            }
 
             // Log
             string logData = bandera.GetType().Name
@@ -91,20 +98,27 @@ namespace Sandwitch.Tier.Services.Classes
 
         public async Task RemoveBanderaById(int id)
         {
-            Bandera bandera = await FindBanderaById(id);
+            try
+            {
+                Bandera bandera = await FindBanderaById(id);
 
-            Context.Bandera.Remove(bandera);
+                Context.Bandera.Remove(bandera);
 
-            await Context.SaveChangesAsync();
+                await Context.SaveChangesAsync();
 
-            // Log
-            string logData = bandera.GetType().Name
-                + " with Id "
-                + bandera.Id
-                + " was removed at "
-                + DateTime.Now.ToShortTimeString();
+                // Log
+                string logData = bandera.GetType().Name
+                    + " with Id "
+                    + bandera.Id
+                    + " was removed at "
+                    + DateTime.Now.ToShortTimeString();
 
-            Logger.WriteDeleteItemLog(logData);
+                Logger.WriteDeleteItemLog(logData);
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                await FindBanderaById(id);
+            }
         }
 
         public async Task<ViewBandera> UpdateBandera(UpdateBandera viewModel)
@@ -115,9 +129,16 @@ namespace Sandwitch.Tier.Services.Classes
             bandera.Name = viewModel.Name;
             bandera.ImageUri = viewModel.ImageUri;
 
-            Context.Bandera.Update(bandera);
+            try
+            {
+                Context.Bandera.Update(bandera);
 
-            await Context.SaveChangesAsync();
+                await Context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                await CheckName(viewModel);
+            }
 
             // Log
             string logData = bandera.GetType().Name

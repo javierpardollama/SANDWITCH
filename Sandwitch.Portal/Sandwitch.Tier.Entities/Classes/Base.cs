@@ -10,12 +10,15 @@ namespace Sandwitch.Tier.Entities.Classes
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Required]
+        [ConcurrencyCheck]
         public int Id { get; set; }
 
         [Required]
+        [ConcurrencyCheck]
         public DateTime LastModified { get; set; }
 
         [Required]
+        [ConcurrencyCheck]
         public bool Deleted { get; set; }
     }
 }

@@ -39,9 +39,16 @@ namespace Sandwitch.Tier.Services.Classes
                 ImageUri = viewModel.ImageUri
             };
 
-            await Context.Poblacion.AddAsync(poblacion);
+            try
+            {
+                await Context.Poblacion.AddAsync(poblacion);
 
-            await Context.SaveChangesAsync();
+                await Context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                await CheckName(viewModel);
+            }
 
             // Log
             string logData = poblacion.GetType().Name
@@ -134,20 +141,27 @@ namespace Sandwitch.Tier.Services.Classes
 
         public async Task RemovePoblacionById(int id)
         {
-            Poblacion poblacion = await FindPoblacionById(id);
+            try
+            {
+                Poblacion poblacion = await FindPoblacionById(id);
 
-            Context.Poblacion.Remove(poblacion);
+                Context.Poblacion.Remove(poblacion);
 
-            await Context.SaveChangesAsync();
+                await Context.SaveChangesAsync();
 
-            // Log
-            string logData = poblacion.GetType().Name
-                + " with Id "
-                + poblacion.Id
-                + " was removed at "
-                + DateTime.Now.ToShortTimeString();
+                // Log
+                string logData = poblacion.GetType().Name
+                    + " with Id "
+                    + poblacion.Id
+                    + " was removed at "
+                    + DateTime.Now.ToShortTimeString();
 
-            Logger.WriteDeleteItemLog(logData);
+                Logger.WriteDeleteItemLog(logData);
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                await FindPoblacionById(id);
+            }
         }
 
         public async Task<ViewPoblacion> UpdatePoblacion(UpdatePoblacion viewModel)
@@ -159,9 +173,16 @@ namespace Sandwitch.Tier.Services.Classes
             poblacion.Provincia = await FindProvinciaById(viewModel.ProvinciaId);
             poblacion.ImageUri = viewModel.ImageUri;
 
-            Context.Poblacion.Update(poblacion);
+            try
+            {
+                Context.Poblacion.Update(poblacion);
 
-            await Context.SaveChangesAsync();
+                await Context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                await CheckName(viewModel);
+            }
 
             // Log
             string logData = poblacion.GetType().Name

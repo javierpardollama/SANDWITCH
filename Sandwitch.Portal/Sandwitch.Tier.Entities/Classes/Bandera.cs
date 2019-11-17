@@ -8,6 +8,7 @@ namespace Sandwitch.Tier.Entities.Classes
         public Bandera() { }
 
         [Required]
+        [ConcurrencyCheck]
         public string Name { get; set; }
 
         [Required]

@@ -38,9 +38,16 @@ namespace Sandwitch.Tier.Services.Classes
                 ImageUri = viewModel.ImageUri
             };
 
-            await Context.Provincia.AddAsync(provincia);
+            try
+            {
+                await Context.Provincia.AddAsync(provincia);
 
-            await Context.SaveChangesAsync();
+                await Context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                await CheckName(viewModel);
+            }
 
             // Log
             string logData = provincia.GetType().Name
@@ -94,20 +101,27 @@ namespace Sandwitch.Tier.Services.Classes
 
         public async Task RemoveProvinciaById(int id)
         {
-            Provincia provincia = await FindProvinciaById(id);
+            try
+            {
+                Provincia provincia = await FindProvinciaById(id);
 
-            Context.Provincia.Remove(provincia);
+                Context.Provincia.Remove(provincia);
 
-            await Context.SaveChangesAsync();
+                await Context.SaveChangesAsync();
 
-            // Log
-            string logData = provincia.GetType().Name
-                + " with Id "
-                + provincia.Id
-                + " was removed at "
-                + DateTime.Now.ToShortTimeString();
+                // Log
+                string logData = provincia.GetType().Name
+                    + " with Id "
+                    + provincia.Id
+                    + " was removed at "
+                    + DateTime.Now.ToShortTimeString();
 
-            Logger.WriteDeleteItemLog(logData);
+                Logger.WriteDeleteItemLog(logData);
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                await FindProvinciaById(id);
+            }
         }
 
         public async Task<ViewProvincia> UpdateProvincia(UpdateProvincia viewModel)
@@ -118,9 +132,16 @@ namespace Sandwitch.Tier.Services.Classes
             provincia.Name = viewModel.Name;
             provincia.ImageUri = viewModel.ImageUri;
 
-            Context.Provincia.Update(provincia);
+            try
+            {
+                Context.Provincia.Update(provincia);
 
-            await Context.SaveChangesAsync();
+                await Context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                await CheckName(viewModel);
+            }
 
             // Log
             string logData = provincia.GetType().Name

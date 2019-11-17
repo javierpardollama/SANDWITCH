@@ -8,6 +8,7 @@ namespace Sandwitch.Tier.Entities.Classes
         public Poblacion() { }
 
         [Required]
+        [ConcurrencyCheck]
         public string Name { get; set; }
 
         [Required]

@@ -8,6 +8,7 @@ namespace Sandwitch.Tier.Entities.Classes
         public Arenal() { }
 
         [Required]
+        [ConcurrencyCheck]
         public string Name { get; set; }
 
         public virtual IList<ArenalPoblacion> ArenalPoblaciones { get; set; }

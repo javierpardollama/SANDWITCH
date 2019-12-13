@@ -86,7 +86,6 @@ namespace Sandwitch.Tier.Web
             }
 
             app.UseHttpsRedirection();
-            app.UseHttpsRedirection();
             app.UseStaticFiles();
             if (!env.IsDevelopment())
             {

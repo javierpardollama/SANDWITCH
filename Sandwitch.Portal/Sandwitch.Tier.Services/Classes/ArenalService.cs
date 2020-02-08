@@ -103,6 +103,7 @@ namespace Sandwitch.Tier.Services.Classes
             ICollection<Arenal> arenales = await Context.Arenal
                 .TagWith("FindAllArenal")
                 .AsQueryable()
+                .AsNoTracking()
                 .Include(x => x.ArenalPoblaciones)
                 .ThenInclude(x => x.Poblacion)
                 .Include(x => x.Historicos)
@@ -123,7 +124,6 @@ namespace Sandwitch.Tier.Services.Classes
                .ThenInclude(x => x.Bandera)
                .Where(x => x.Poblacion.Id == id)
                .Select(x => x.Arenal)
-               .AsQueryable()
                .ToListAsync();
 
             return Mapper.Map<IList<ViewArenal>>(arenales);

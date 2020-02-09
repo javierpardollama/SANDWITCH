@@ -13,6 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "aot": true,
             "outputPath": "dist/Sandwitch.Tier.Web",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -50,6 +51,10 @@
                   "type": "initial",
                   "maximumWarning": "2mb",
                   "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
                 }
               ]
             }
@@ -95,7 +100,6 @@
             "tsConfig": [
               "tsconfig.app.json",
               "tsconfig.spec.json"
-              
             ],
             "exclude": [
               "**/node_modules/**"
@@ -115,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "Sandwitch.Tier.Web"
+    }
+  },
+  "defaultProject": "Sandwitch.Tier.Web",
+  "cli": {
+    "analytics": "32f8b2c1-7fb9-4d92-9e9d-2de2788263b8"
+  }
 }

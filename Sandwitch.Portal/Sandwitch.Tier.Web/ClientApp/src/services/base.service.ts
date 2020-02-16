@@ -5,7 +5,7 @@ import {
     HttpErrorResponse
 } from '@angular/common/http';
 
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 import {
     Observable,

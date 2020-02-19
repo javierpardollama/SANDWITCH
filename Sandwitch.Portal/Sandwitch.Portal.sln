@@ -21,6 +21,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sandwitch.Tier.ExceptionHan
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sandwitch.Tier.Constants", "Sandwitch.Tier.Constants\Sandwitch.Tier.Constants.csproj", "{CFB21FC5-89BD-4ED8-A958-E34BB1C7C9B5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sandwitch.Tier.Services.Tests", "Sandwitch.Tier.Services.Tests\Sandwitch.Tier.Services.Tests.csproj", "{B2293561-1911-460C-A87C-66CFD2E6876E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -63,6 +65,10 @@ Global
 		{CFB21FC5-89BD-4ED8-A958-E34BB1C7C9B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CFB21FC5-89BD-4ED8-A958-E34BB1C7C9B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CFB21FC5-89BD-4ED8-A958-E34BB1C7C9B5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B2293561-1911-460C-A87C-66CFD2E6876E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B2293561-1911-460C-A87C-66CFD2E6876E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B2293561-1911-460C-A87C-66CFD2E6876E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B2293561-1911-460C-A87C-66CFD2E6876E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

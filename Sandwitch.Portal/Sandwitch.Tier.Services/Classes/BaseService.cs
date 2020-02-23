@@ -1,5 +1,7 @@
 ﻿using AutoMapper;
+
 using Microsoft.Extensions.Logging;
+
 using Sandwitch.Tier.Contexts.Interfaces;
 using Sandwitch.Tier.Services.Interfaces;
 
@@ -20,6 +22,6 @@ namespace Sandwitch.Tier.Services.Classes
             Context = context;
             Mapper = mapper;
             Logger = logger;
-        }
+        }       
     }
 }

@@ -1,3 +1,5 @@
+using System;
+
 using AutoMapper;
 
 using Microsoft.AspNetCore.Builder;
@@ -106,11 +108,11 @@ namespace Sandwitch.Tier.Web
                 // see https://go.microsoft.com/fwlink/?linkid=864501
 
                 spa.Options.SourcePath = "ClientApp";
-           
+
                 if (env.IsDevelopment())
                 {
                     spa.UseAngularCliServer(npmScript: "start");
-                    spa.UseProxyToSpaDevelopmentServer("http://localhost:4200");
+                    spa.Options.StartupTimeout = TimeSpan.FromSeconds(200);
                 }
             });
         }

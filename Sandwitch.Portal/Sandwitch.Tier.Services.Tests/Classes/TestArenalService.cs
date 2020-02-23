@@ -1,119 +1,172 @@
-﻿using System.Threading.Tasks;
-
-using AutoMapper;
+﻿using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 using Microsoft.Extensions.Logging;
 
-using Moq;
-
 using NUnit.Framework;
 
-using Sandwitch.Tier.Contexts.Interfaces;
+using Sandwitch.Tier.Contexts.Classes;
+using Sandwitch.Tier.Entities.Classes;
 using Sandwitch.Tier.Services.Classes;
+using Sandwitch.Tier.ViewModels.Classes.Additions;
+using Sandwitch.Tier.ViewModels.Classes.Updates;
 
 namespace Sandwitch.Tier.Services.Tests.Classes
 {
     [TestFixture]
-    public class TestArenalService
+    public class TestArenalService : TestBaseService
     {
-        private ArenalService ArenalService;
+        private ILogger<ArenalService> Logger;
 
-        private Mock<IApplicationContext> Context;
+        public TestArenalService()
+        {
 
-        private Mock<IMapper> Mapper;
-
-        private Mock<ILogger<ArenalService>> Logger;
+        }
 
         [SetUp]
         public void Setup()
         {
-            this.Context = new Mock<IApplicationContext>();
+            SetUpMapper();
 
-            this.Mapper = new Mock<IMapper>();
+            SetUpOptions();
 
-            this.Logger = new Mock<ILogger<ArenalService>>();
+            SetUpLogger();
+        }
 
-            this.ArenalService = new ArenalService(Context.Object, Mapper.Object, Logger.Object);
+        private void SetUpLogger()
+        {
+            ILoggerFactory loggerFactory = LoggerFactory.Create(builder =>
+            {
+                builder
+                    .AddFilter("Microsoft", LogLevel.Warning)
+                    .AddFilter("System", LogLevel.Warning)
+                    .AddConsole();
+            });
+
+            Logger = loggerFactory.CreateLogger<ArenalService>();
+        }
+
+        private void SetUpContext(ApplicationContext context)
+        {
+            context.Provincia.Add(new Provincia { Name = "Provincia 1", LastModified = DateTime.Now, Deleted = false });
+
+            context.Bandera.Add(new Bandera { Name = "Bandera 3", LastModified = DateTime.Now, Deleted = false });
+
+            context.Arenal.Add(new Arenal { Name = "Arenal 1", LastModified = DateTime.Now, Deleted = false });
+            context.Arenal.Add(new Arenal { Name = "Arenal 2", LastModified = DateTime.Now, Deleted = false });
+            context.Arenal.Add(new Arenal { Name = "Arenal 3", LastModified = DateTime.Now, Deleted = false });
+
+            context.SaveChanges();
         }
 
         [Test]
         public async Task FindAllArenal()
         {
-            await this.ArenalService.FindAllArenal();
+            using (ApplicationContext context = new ApplicationContext(this.Options))
+            {
+                SetUpContext(context);
 
-            Assert.Pass();
-        }
+                ArenalService service = new ArenalService(context, Mapper, Logger);
 
-        [Test]
-        public async Task FindAllArenalByPoblacionId()
-        {
+                await service.FindAllArenal();
+            };
+
             Assert.Pass();
         }
 
         [Test]
         public async Task FindArenalById()
         {
-            Assert.Pass();
-        }
+            using (ApplicationContext context = new ApplicationContext(this.Options))
+            {
+                SetUpContext(context);
 
-        [Test]
-        public async Task FindPoblacionById()
-        {
-            Assert.Pass();
-        }
+                ArenalService service = new ArenalService(context, Mapper, Logger);
 
-        [Test]
-        public async Task FindBanderaById()
-        {
+                await service.FindArenalById(1);
+            };
+
             Assert.Pass();
         }
 
         [Test]
         public async Task RemoveArenalById()
         {
+            using (ApplicationContext context = new ApplicationContext(this.Options))
+            {
+                SetUpContext(context);
+
+                ArenalService service = new ArenalService(context, Mapper, Logger);
+
+                await service.RemoveArenalById(1);
+            };
+
             Assert.Pass();
         }
 
         [Test]
         public async Task UpdateArenal()
         {
+            UpdateArenal provincia = new UpdateArenal()
+            {
+                Id = 2,
+                Name = "Arenal 21",
+                PoblacionesId = new List<int>() { 1,2}
+            };
+
+            using (ApplicationContext context = new ApplicationContext(this.Options))
+            {
+                SetUpContext(context);
+
+                ArenalService service = new ArenalService(context, Mapper, Logger);
+
+                await service.UpdateArenal(provincia);
+            };
+
             Assert.Pass();
         }
 
         [Test]
         public async Task AddArenal()
         {
+            AddArenal provincia = new AddArenal()
+            {
+                Name = "Arenal 4",
+                PoblacionesId = new List<int>() { 1, 2 },
+            };
+
+            using (ApplicationContext context = new ApplicationContext(this.Options))
+            {
+                SetUpContext(context);
+
+                ArenalService service = new ArenalService(context, Mapper, Logger);
+
+                await service.AddArenal(provincia);
+            };
+
             Assert.Pass();
         }
 
         [Test]
-        public async Task AddArenalPoblacion()
+        public void CheckName()
         {
+            AddArenal provincia = new AddArenal()
+            {
+                PoblacionesId = new List<int>() { 1, 2 },
+                Name = "Arenal 4"
+            };
+
+            using (ApplicationContext context = new ApplicationContext(this.Options))
+            {
+                SetUpContext(context);
+
+                ArenalService service = new ArenalService(context, Mapper, Logger);
+
+                Exception ex = Assert.ThrowsAsync<Exception>(async () => await service.CheckName(provincia));
+            };
+
             Assert.Pass();
         }
-
-        [Test]
-        public async Task AddHistorico()
-        {
-            Assert.Pass();
-        }
-
-        [Test]
-        public async Task UpdateArenalPoblacion()
-        {
-            Assert.Pass();
-        }
-
-        [Test]
-        public async Task UpdateHistorico()
-        {
-            Assert.Pass();
-        }
-
-        [Test]
-        public async Task CheckName()
-        {
-            Assert.Pass();
-        }        
     }
 }

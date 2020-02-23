@@ -31,8 +31,8 @@ namespace Sandwitch.Tier.Web.Controllers
         public async Task<IActionResult> FindAllArenalByPoblacionId(int id) => new JsonResult(value: await Service.FindAllArenalByPoblacionId(id));
 
         [HttpGet]
-        [Route("findallhistoricobybanderaid/{id}")]
-        public async Task<IActionResult> FindAllHistoricoByBanderaId(int id) => new JsonResult(value: await Service.FindAllHistoricoByArenalId(id));
+        [Route("findallhistoricobyarenalid/{id}")]
+        public async Task<IActionResult> FindAllHistoricoByArenalId(int id) => new JsonResult(value: await Service.FindAllHistoricoByArenalId(id));
 
         [HttpPost]
         [Route("addarenal")]

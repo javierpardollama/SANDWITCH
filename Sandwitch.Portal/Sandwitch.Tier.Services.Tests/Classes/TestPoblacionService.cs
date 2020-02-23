@@ -74,6 +74,21 @@ namespace Sandwitch.Tier.Services.Tests.Classes
         }
 
         [Test]
+        public async Task FindAllPoblacionByProvinciaId()
+        {
+            using (ApplicationContext context = new ApplicationContext(this.Options))
+            {
+                SetUpContext(context);
+
+                PoblacionService service = new PoblacionService(context, Mapper, Logger);
+
+                await service.FindAllPoblacionByProvinciaId(context.Provincia.FirstOrDefault().Id);
+            };
+
+            Assert.Pass();
+        }
+
+        [Test]
         public async Task FindPoblacionById()
         {
             using (ApplicationContext context = new ApplicationContext(this.Options))
@@ -86,6 +101,22 @@ namespace Sandwitch.Tier.Services.Tests.Classes
             };
 
             Assert.Pass();
+        }
+
+        [Test]
+        public async Task FindProvinciaById() 
+        {
+            using (ApplicationContext context = new ApplicationContext(this.Options))
+            {
+                SetUpContext(context);
+
+                PoblacionService service = new PoblacionService(context, Mapper, Logger);
+
+                await service.FindProvinciaById(context.Provincia.FirstOrDefault().Id);
+            };
+
+            Assert.Pass();
+
         }
 
         [Test]

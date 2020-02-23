@@ -14,6 +14,8 @@ namespace Sandwitch.Tier.Services.Interfaces
 
         Task<IList<ViewArenal>> FindAllArenalByPoblacionId(int id);
 
+        Task<IList<ViewHistorico>> FindAllHistoricoByArenalId(int id);
+
         Task<Arenal> FindArenalById(int id);
 
         Task<Poblacion> FindPoblacionById(int id);

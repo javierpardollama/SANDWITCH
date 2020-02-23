@@ -26,6 +26,10 @@ namespace Sandwitch.Tier.Web.Controllers
         [Route("findallbandera")]
         public async Task<IActionResult> FindAllBandera() => new JsonResult(value: await Service.FindAllBandera());
 
+        [HttpGet]
+        [Route("findallhistoricobybanderaid/{id}")]
+        public async Task<IActionResult> FindAllHistoricoByBanderaId(int id) => new JsonResult(value: await Service.FindAllHistoricoByBanderaId(id));
+        
         [HttpPost]
         [Route("addbandera")]
         public async Task<IActionResult> AddBandera([FromBody]AddBandera viewModel) => new JsonResult(value: await Service.AddBandera(viewModel));

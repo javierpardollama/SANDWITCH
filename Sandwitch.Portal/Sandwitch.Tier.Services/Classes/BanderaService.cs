@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 using AutoMapper;
@@ -68,6 +69,20 @@ namespace Sandwitch.Tier.Services.Classes
                 .ToListAsync();
 
             return Mapper.Map<IList<ViewBandera>>(banderas);
+        }
+
+        public async Task<IList<ViewHistorico>> FindAllHistoricoByBanderaId(int id)
+        {
+            ICollection<Historico> historicos = await Context.Historico
+               .TagWith("FindAllHistoricoByBanderaId")
+               .AsQueryable()
+               .AsNoTracking()
+               .Include(x => x.Arenal)
+               .Include(x => x.Bandera)
+               .Where(x => x.Bandera.Id == id)
+               .ToListAsync();
+
+            return Mapper.Map<IList<ViewHistorico>>(historicos);
         }
 
         public async Task<Bandera> FindBanderaById(int id)

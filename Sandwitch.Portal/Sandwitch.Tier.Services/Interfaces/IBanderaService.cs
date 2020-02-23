@@ -12,6 +12,8 @@ namespace Sandwitch.Tier.Services.Interfaces
     {
         Task<IList<ViewBandera>> FindAllBandera();
 
+        Task<IList<ViewHistorico>> FindAllHistoricoByBanderaId(int id);
+
         Task<Bandera> FindBanderaById(int id);
 
         Task RemoveBanderaById(int id);

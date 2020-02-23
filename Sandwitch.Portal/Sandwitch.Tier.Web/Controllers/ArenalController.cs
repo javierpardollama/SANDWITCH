@@ -30,6 +30,10 @@ namespace Sandwitch.Tier.Web.Controllers
         [Route("findallarenalbypoblacionid/{id}")]
         public async Task<IActionResult> FindAllArenalByPoblacionId(int id) => new JsonResult(value: await Service.FindAllArenalByPoblacionId(id));
 
+        [HttpGet]
+        [Route("findallhistoricobybanderaid/{id}")]
+        public async Task<IActionResult> FindAllHistoricoByBanderaId(int id) => new JsonResult(value: await Service.FindAllHistoricoByArenalId(id));
+
         [HttpPost]
         [Route("addarenal")]
         public async Task<IActionResult> AddArenal([FromBody]AddArenal viewModel) => new JsonResult(value: await Service.AddArenal(viewModel));

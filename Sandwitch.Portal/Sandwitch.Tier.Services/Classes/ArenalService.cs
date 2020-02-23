@@ -130,6 +130,20 @@ namespace Sandwitch.Tier.Services.Classes
             return Mapper.Map<IList<ViewArenal>>(arenales);
         }
 
+        public async Task<IList<ViewHistorico>> FindAllHistoricoByArenalId(int id)
+        {
+            ICollection<Historico> historicos = await Context.Historico
+               .TagWith("FindAllHistoricoByArenalId")
+               .AsQueryable()
+               .AsNoTracking()
+               .Include(x => x.Arenal)
+               .Include(x => x.Bandera)
+               .Where(x => x.Arenal.Id == id)
+               .ToListAsync();
+
+            return Mapper.Map<IList<ViewHistorico>>(historicos);
+        }
+
         public async Task<Arenal> FindArenalById(int id)
         {
             Arenal arenal = await Context.Arenal

@@ -78,6 +78,36 @@ namespace Sandwitch.Tier.Services.Tests.Classes
         }
 
         [Test]
+        public async Task FindAllArenalByPoblacionId() 
+        {
+            using (ApplicationContext context = new ApplicationContext(this.Options))
+            {
+                SetUpContext(context);
+
+                ArenalService service = new ArenalService(context, Mapper, Logger);
+
+                await service.FindAllArenalByPoblacionId(1);
+            };
+
+            Assert.Pass();
+        }
+
+        [Test]
+        public async Task FindAllHistoricoByArenalId() 
+        {
+            using (ApplicationContext context = new ApplicationContext(this.Options))
+            {
+                SetUpContext(context);
+
+                ArenalService service = new ArenalService(context, Mapper, Logger);
+
+                await service.FindAllHistoricoByArenalId(context.Arenal.FirstOrDefault().Id);
+            };
+
+            Assert.Pass();
+        }
+
+        [Test]
         public async Task FindArenalById()
         {
             using (ApplicationContext context = new ApplicationContext(this.Options))
@@ -87,6 +117,36 @@ namespace Sandwitch.Tier.Services.Tests.Classes
                 ArenalService service = new ArenalService(context, Mapper, Logger);
 
                 await service.FindArenalById(context.Arenal.FirstOrDefault().Id);
+            };
+
+            Assert.Pass();
+        }
+
+        [Test]
+        public async Task FindPoblacionById() 
+        {
+            using (ApplicationContext context = new ApplicationContext(this.Options))
+            {
+                SetUpContext(context);
+
+                ArenalService service = new ArenalService(context, Mapper, Logger);
+
+                await service.FindPoblacionById(context.Poblacion.FirstOrDefault().Id);
+            };
+
+            Assert.Pass();
+        }
+
+        [Test]
+        public async Task FindBanderaById() 
+        {
+            using (ApplicationContext context = new ApplicationContext(this.Options))
+            {
+                SetUpContext(context);
+
+                ArenalService service = new ArenalService(context, Mapper, Logger);
+
+                await service.FindBanderaById(context.Bandera.FirstOrDefault().Id);
             };
 
             Assert.Pass();

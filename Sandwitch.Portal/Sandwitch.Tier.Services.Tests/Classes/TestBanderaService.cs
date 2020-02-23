@@ -71,6 +71,21 @@ namespace Sandwitch.Tier.Services.Tests.Classes
         }
 
         [Test]
+        public async Task FindAllHistoricoByBanderaId() 
+        {
+            using (ApplicationContext context = new ApplicationContext(this.Options))
+            {
+                SetUpContext(context);
+
+                BanderaService service = new BanderaService(context, Mapper, Logger);
+
+                await service.FindAllHistoricoByBanderaId(context.Bandera.FirstOrDefault().Id);
+            };
+
+            Assert.Pass();
+        }
+
+        [Test]
         public async Task FindBanderaById()
         {
             using (ApplicationContext context = new ApplicationContext(this.Options))

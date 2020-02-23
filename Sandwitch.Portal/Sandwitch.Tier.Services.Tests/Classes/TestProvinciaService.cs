@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 
 using Microsoft.Extensions.Logging;
@@ -78,7 +79,7 @@ namespace Sandwitch.Tier.Services.Tests.Classes
 
                 ProvinciaService service = new ProvinciaService(context, Mapper, Logger);
 
-                await service.FindProvinciaById(1);
+                await service.FindProvinciaById(context.Provincia.FirstOrDefault().Id);
             };
 
             Assert.Pass();
@@ -93,7 +94,7 @@ namespace Sandwitch.Tier.Services.Tests.Classes
 
                 ProvinciaService service = new ProvinciaService(context, Mapper, Logger);
 
-                await service.RemoveProvinciaById(1);
+                await service.RemoveProvinciaById(context.Provincia.FirstOrDefault().Id);
             };
 
             Assert.Pass();
@@ -157,7 +158,7 @@ namespace Sandwitch.Tier.Services.Tests.Classes
 
                 ProvinciaService service = new ProvinciaService(context, Mapper, Logger);
 
-                Exception ex = Assert.ThrowsAsync<Exception>(async () => await service.CheckName(provincia));
+                Exception exception = Assert.ThrowsAsync<Exception>(async () => await service.CheckName(provincia));
             };
 
             Assert.Pass();

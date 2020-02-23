@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 
 using Microsoft.Extensions.Logging;
@@ -62,7 +63,7 @@ namespace Sandwitch.Tier.Services.Tests.Classes
 
                 HistoricoService service = new HistoricoService(context, Mapper, Logger);
 
-                await service.FindArenalById(1);
+                await service.FindArenalById(context.Arenal.FirstOrDefault().Id);
             };
 
             Assert.Pass();
@@ -77,7 +78,7 @@ namespace Sandwitch.Tier.Services.Tests.Classes
 
                 HistoricoService service = new HistoricoService(context, Mapper, Logger);
 
-                await service.FindBanderaById(1);
+                await service.FindBanderaById(context.Bandera.FirstOrDefault().Id);
             };
 
             Assert.Pass();
@@ -86,22 +87,23 @@ namespace Sandwitch.Tier.Services.Tests.Classes
         [Test]
         public async Task AddHistorico()
         {
-            AddHistorico historico = new AddHistorico()
-            {
-                BanderaId = 1,
-                AltaMarAlba = DateTime.Now,
-                AltaMarOcaso = DateTime.Now,
-                ArenalId = 1,
-                BajaMarAlba = DateTime.Now,
-                BajaMarOcaso = DateTime.Now,
-                Temperatura = 20
-            };
-
             using (ApplicationContext context = new ApplicationContext(this.Options))
             {
                 SetUpContext(context);
 
                 HistoricoService service = new HistoricoService(context, Mapper, Logger);
+
+                AddHistorico historico = new AddHistorico()
+                {
+                    BanderaId = context.Bandera.FirstOrDefault().Id,
+                    AltaMarAlba = DateTime.Now,
+                    AltaMarOcaso = DateTime.Now,
+                    ArenalId = context.Arenal.FirstOrDefault().Id,
+                    BajaMarAlba = DateTime.Now,
+                    BajaMarOcaso = DateTime.Now,
+                    Temperatura = 20
+                };
+
 
                 await service.AddHistorico(historico);
             };

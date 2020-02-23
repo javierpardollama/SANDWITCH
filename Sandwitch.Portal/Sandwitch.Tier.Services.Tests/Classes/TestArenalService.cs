@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 using Microsoft.Extensions.Logging;
@@ -49,9 +50,10 @@ namespace Sandwitch.Tier.Services.Tests.Classes
 
         private void SetUpContext(ApplicationContext context)
         {
-            context.Provincia.Add(new Provincia { Name = "Provincia 1", LastModified = DateTime.Now, Deleted = false });
+            context.Poblacion.Add(new Poblacion { Name = "Poblacion 1", LastModified = DateTime.Now, Deleted = false });
+            context.Poblacion.Add(new Poblacion { Name = "Poblacion 2", LastModified = DateTime.Now, Deleted = false });
 
-            context.Bandera.Add(new Bandera { Name = "Bandera 3", LastModified = DateTime.Now, Deleted = false });
+            context.Bandera.Add(new Bandera { Name = "Bandera 1", LastModified = DateTime.Now, Deleted = false });
 
             context.Arenal.Add(new Arenal { Name = "Arenal 1", LastModified = DateTime.Now, Deleted = false });
             context.Arenal.Add(new Arenal { Name = "Arenal 2", LastModified = DateTime.Now, Deleted = false });
@@ -84,7 +86,7 @@ namespace Sandwitch.Tier.Services.Tests.Classes
 
                 ArenalService service = new ArenalService(context, Mapper, Logger);
 
-                await service.FindArenalById(1);
+                await service.FindArenalById(context.Arenal.FirstOrDefault().Id);
             };
 
             Assert.Pass();
@@ -99,7 +101,7 @@ namespace Sandwitch.Tier.Services.Tests.Classes
 
                 ArenalService service = new ArenalService(context, Mapper, Logger);
 
-                await service.RemoveArenalById(1);
+                await service.RemoveArenalById(context.Arenal.FirstOrDefault().Id);
             };
 
             Assert.Pass();
@@ -163,7 +165,7 @@ namespace Sandwitch.Tier.Services.Tests.Classes
 
                 ArenalService service = new ArenalService(context, Mapper, Logger);
 
-                Exception ex = Assert.ThrowsAsync<Exception>(async () => await service.CheckName(provincia));
+                Exception exception = Assert.ThrowsAsync<Exception>(async () => await service.CheckName(provincia));
             };
 
             Assert.Pass();

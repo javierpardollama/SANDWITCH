@@ -25,10 +25,9 @@ namespace Sandwitch.Tier.Services.Tests.Classes
 
         public void SetUpOptions()
         {
-            this.Options = new DbContextOptionsBuilder<ApplicationContext>()
+            Options = new DbContextOptionsBuilder<ApplicationContext>()
            .UseInMemoryDatabase(databaseName: "Data Source=sandwitch.db")
            .Options;
         }
-
     }
 }

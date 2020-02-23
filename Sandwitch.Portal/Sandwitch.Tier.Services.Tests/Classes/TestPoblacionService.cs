@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 
 using Microsoft.Extensions.Logging;
@@ -81,7 +82,7 @@ namespace Sandwitch.Tier.Services.Tests.Classes
 
                 PoblacionService service = new PoblacionService(context, Mapper, Logger);
 
-                await service.FindPoblacionById(1);
+                await service.FindPoblacionById(context.Poblacion.FirstOrDefault().Id);
             };
 
             Assert.Pass();
@@ -96,7 +97,7 @@ namespace Sandwitch.Tier.Services.Tests.Classes
 
                 PoblacionService service = new PoblacionService(context, Mapper, Logger);
 
-                await service.RemovePoblacionById(1);
+                await service.RemovePoblacionById(context.Poblacion.FirstOrDefault().Id);
             };
 
             Assert.Pass();
@@ -105,7 +106,7 @@ namespace Sandwitch.Tier.Services.Tests.Classes
         [Test]
         public async Task UpdatePoblacion()
         {
-            UpdatePoblacion provincia = new UpdatePoblacion()
+            UpdatePoblacion poblacion = new UpdatePoblacion()
             {
                 Id = 2,
                 ImageUri = "URL/Poblacion_21_500px.png",
@@ -119,7 +120,7 @@ namespace Sandwitch.Tier.Services.Tests.Classes
 
                 PoblacionService service = new PoblacionService(context, Mapper, Logger);
 
-                await service.UpdatePoblacion(provincia);
+                await service.UpdatePoblacion(poblacion);
             };
 
             Assert.Pass();
@@ -128,7 +129,7 @@ namespace Sandwitch.Tier.Services.Tests.Classes
         [Test]
         public async Task AddPoblacion()
         {
-            AddPoblacion provincia = new AddPoblacion()
+            AddPoblacion poblacion = new AddPoblacion()
             {
                 ImageUri = "URL/Poblacion_4_500px.png",
                 Name = "Poblacion 4",
@@ -141,7 +142,7 @@ namespace Sandwitch.Tier.Services.Tests.Classes
 
                 PoblacionService service = new PoblacionService(context, Mapper, Logger);
 
-                await service.AddPoblacion(provincia);
+                await service.AddPoblacion(poblacion);
             };
 
             Assert.Pass();
@@ -150,7 +151,7 @@ namespace Sandwitch.Tier.Services.Tests.Classes
         [Test]
         public void CheckName()
         {
-            AddPoblacion provincia = new AddPoblacion()
+            AddPoblacion poblacion = new AddPoblacion()
             {
                 ImageUri = "URL/Poblacion_4_500px.png",
                 Name = "Poblacion 4"
@@ -162,7 +163,7 @@ namespace Sandwitch.Tier.Services.Tests.Classes
 
                 PoblacionService service = new PoblacionService(context, Mapper, Logger);
 
-                Exception ex = Assert.ThrowsAsync<Exception>(async () => await service.CheckName(provincia));
+                Exception exception = Assert.ThrowsAsync<Exception>(async () => await service.CheckName(poblacion));
             };
 
             Assert.Pass();

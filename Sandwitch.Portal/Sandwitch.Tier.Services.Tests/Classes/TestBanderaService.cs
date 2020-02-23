@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 
 using Microsoft.Extensions.Logging;
@@ -78,7 +79,7 @@ namespace Sandwitch.Tier.Services.Tests.Classes
 
                 BanderaService service = new BanderaService(context, Mapper, Logger);
 
-                await service.FindBanderaById(1);
+                await service.FindBanderaById(context.Bandera.FirstOrDefault().Id);
             };
 
             Assert.Pass();
@@ -93,7 +94,7 @@ namespace Sandwitch.Tier.Services.Tests.Classes
 
                 BanderaService service = new BanderaService(context, Mapper, Logger);
 
-                await service.RemoveBanderaById(1);
+                await service.RemoveBanderaById(context.Bandera.FirstOrDefault().Id);
             };
 
             Assert.Pass();
@@ -102,7 +103,7 @@ namespace Sandwitch.Tier.Services.Tests.Classes
         [Test]
         public async Task UpdateBandera()
         {
-            UpdateBandera provincia = new UpdateBandera()
+            UpdateBandera bandera = new UpdateBandera()
             {
                 Id = 2,
                 ImageUri = "URL/Bandera_21_500px.png",
@@ -115,7 +116,7 @@ namespace Sandwitch.Tier.Services.Tests.Classes
 
                 BanderaService service = new BanderaService(context, Mapper, Logger);
 
-                await service.UpdateBandera(provincia);
+                await service.UpdateBandera(bandera);
             };
 
             Assert.Pass();
@@ -124,7 +125,7 @@ namespace Sandwitch.Tier.Services.Tests.Classes
         [Test]
         public async Task AddBandera()
         {
-            AddBandera provincia = new AddBandera()
+            AddBandera bandera = new AddBandera()
             {
                 ImageUri = "URL/Bandera_4_500px.png",
                 Name = "Bandera 4"
@@ -136,7 +137,7 @@ namespace Sandwitch.Tier.Services.Tests.Classes
 
                 BanderaService service = new BanderaService(context, Mapper, Logger);
 
-                await service.AddBandera(provincia);
+                await service.AddBandera(bandera);
             };
 
             Assert.Pass();
@@ -145,7 +146,7 @@ namespace Sandwitch.Tier.Services.Tests.Classes
         [Test]
         public void CheckName()
         {
-            AddBandera provincia = new AddBandera()
+            AddBandera bandera = new AddBandera()
             {
                 ImageUri = "URL/Bandera_4_500px.png",
                 Name = "Bandera 4"
@@ -157,7 +158,7 @@ namespace Sandwitch.Tier.Services.Tests.Classes
 
                 BanderaService service = new BanderaService(context, Mapper, Logger);
 
-                Exception ex = Assert.ThrowsAsync<Exception>(async () => await service.CheckName(provincia));
+                Exception exception = Assert.ThrowsAsync<Exception>(async () => await service.CheckName(bandera));
             };
 
             Assert.Pass();

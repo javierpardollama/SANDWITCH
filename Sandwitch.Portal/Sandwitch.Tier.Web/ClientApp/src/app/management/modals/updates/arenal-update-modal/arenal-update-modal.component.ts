@@ -65,8 +65,8 @@ export class ArenalUpdateModalComponent implements OnInit {
   }
 
   // Form Actions
-  onSubmit(viewModel: UpdateArenal) {
-    this.arenalService.UpdateArenal(viewModel).subscribe(arenal => {
+  async onSubmit(viewModel: UpdateArenal) {
+    let arenal = await this.arenalService.UpdateArenal(viewModel);
 
       if (arenal !== undefined) {
         this.matSnackBar.open(
@@ -76,7 +76,6 @@ export class ArenalUpdateModalComponent implements OnInit {
       }
 
       this.dialogRef.close();
-    });
   }
 
   onDelete(viewModel: UpdateArenal) {
@@ -92,9 +91,7 @@ export class ArenalUpdateModalComponent implements OnInit {
   }
 
   // Get Data from Service
-  public FindAllProvincia() {
-    this.provinciaService.FindAllProvincia().subscribe(provincias => {
-      this.provincias = provincias;
-    });
+  public async FindAllProvincia() {
+    this.provincias = await this.provinciaService.FindAllProvincia();
   }
 }

@@ -93,24 +93,21 @@ export class HistoricoAddModalComponent implements OnInit {
   }
 
   // Form Actions
-  onSubmit(viewModel: AddHistorico) {
-    this.historicoService.AddHistorico(viewModel).subscribe(historico => {
+  async onSubmit(viewModel: AddHistorico) {
+    let historico = await this.historicoService.AddHistorico(viewModel)
 
-      if (historico !== undefined) {
-        this.matSnackBar.open(
-          TextAppVariants.AppOperationSuccessCoreText,
-          TextAppVariants.AppOkButtonText,
-          { duration: TimeAppVariants.AppToastSecondTicks * TimeAppVariants.AppTimeSecondTicks });
-      }
+    if (historico !== undefined) {
+      this.matSnackBar.open(
+        TextAppVariants.AppOperationSuccessCoreText,
+        TextAppVariants.AppOkButtonText,
+        { duration: TimeAppVariants.AppToastSecondTicks * TimeAppVariants.AppTimeSecondTicks });
+    }
 
-      this.dialogRef.close();
-    });
+    this.dialogRef.close();
   }
 
   // Get Data from Service
-  public FindAllBandera() {
-    this.banderaService.FindAllBandera().subscribe(banderas => {
-      this.banderas = banderas;
-    });
+  public async FindAllBandera() {
+    this.banderas = await this.banderaService.FindAllBandera();
   }
 }

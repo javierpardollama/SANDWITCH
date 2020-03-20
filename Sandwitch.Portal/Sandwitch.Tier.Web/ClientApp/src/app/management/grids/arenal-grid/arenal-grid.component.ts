@@ -51,12 +51,10 @@ export class ArenalGridComponent implements OnInit {
     }
 
     // Get Data from Service
-    public FindAllArenal() {
-        this.arenalService.FindAllArenal().subscribe(arenales => {
-            this.ELEMENT_DATA = arenales;
+    public async FindAllArenal() {
+        this.ELEMENT_DATA = await this.arenalService.FindAllArenal();
 
-            this.SetupMyTableSettings();
-        });
+        this.SetupMyTableSettings();
     }
 
     // Setup Table Settings

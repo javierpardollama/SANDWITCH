@@ -62,24 +62,21 @@ export class PoblacionAddModalComponent implements OnInit {
   }
 
   // Form Actions
-  onSubmit(viewModel: AddPoblacion) {
-    this.poblacionService.AddPoblacion(viewModel).subscribe(poblacion => {
+  async onSubmit(viewModel: AddPoblacion) {
+    let poblacion = await this.poblacionService.AddPoblacion(viewModel);
+    
+    if (poblacion !== undefined) {
+      this.matSnackBar.open(
+        TextAppVariants.AppOperationSuccessCoreText,
+        TextAppVariants.AppOkButtonText,
+        { duration: TimeAppVariants.AppToastSecondTicks * TimeAppVariants.AppTimeSecondTicks });
+    }
 
-      if (poblacion !== undefined) {
-        this.matSnackBar.open(
-          TextAppVariants.AppOperationSuccessCoreText,
-          TextAppVariants.AppOkButtonText,
-          { duration: TimeAppVariants.AppToastSecondTicks * TimeAppVariants.AppTimeSecondTicks });
-      }
-
-      this.dialogRef.close();
-    });
+    this.dialogRef.close();
   }
 
   // Get Data from Service
-  public FindAllProvincia() {
-    this.provinciaService.FindAllProvincia().subscribe(provincias => {
-      this.provincias = provincias;
-    });
+  public async FindAllProvincia() {
+    this.provincias = await this.provinciaService.FindAllProvincia();
   }
 }

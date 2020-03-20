@@ -56,18 +56,17 @@ export class ProvinciaUpdateModalComponent implements OnInit {
   }
 
   // Form Actions
-  onSubmit(viewModel: UpdateProvincia) {
-    this.provinciaService.UpdateProvincia(viewModel).subscribe(provincia => {
+  async onSubmit(viewModel: UpdateProvincia) {
+    let provincia = await this.provinciaService.UpdateProvincia(viewModel)
 
-      if (provincia !== undefined) {
-        this.matSnackBar.open(
-          TextAppVariants.AppOperationSuccessCoreText,
-          TextAppVariants.AppOkButtonText,
-          { duration: TimeAppVariants.AppToastSecondTicks * TimeAppVariants.AppTimeSecondTicks });
-      }
+    if (provincia !== undefined) {
+      this.matSnackBar.open(
+        TextAppVariants.AppOperationSuccessCoreText,
+        TextAppVariants.AppOkButtonText,
+        { duration: TimeAppVariants.AppToastSecondTicks * TimeAppVariants.AppTimeSecondTicks });
+    }
 
-      this.dialogRef.close();
-    });
+    this.dialogRef.close();
   }
 
   onDelete(viewModel: UpdateProvincia) {

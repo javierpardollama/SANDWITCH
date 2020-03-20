@@ -49,17 +49,16 @@ export class ProvinciaAddModalComponent implements OnInit {
   }
 
   // Form Actions
-  onSubmit(viewModel: AddProvincia) {
-    this.provinciaService.AddProvincia(viewModel).subscribe(provincia => {
+  async onSubmit(viewModel: AddProvincia) {
+    let provincia = await this.provinciaService.AddProvincia(viewModel);
 
-      if (provincia !== undefined) {
-        this.matSnackBar.open(
-          TextAppVariants.AppOperationSuccessCoreText,
-          TextAppVariants.AppOkButtonText,
-          { duration: TimeAppVariants.AppToastSecondTicks * TimeAppVariants.AppTimeSecondTicks });
-      }
+    if (provincia !== undefined) {
+      this.matSnackBar.open(
+        TextAppVariants.AppOperationSuccessCoreText,
+        TextAppVariants.AppOkButtonText,
+        { duration: TimeAppVariants.AppToastSecondTicks * TimeAppVariants.AppTimeSecondTicks });
+    }
 
-      this.dialogRef.close();
-    });
+    this.dialogRef.close();
   }
 }

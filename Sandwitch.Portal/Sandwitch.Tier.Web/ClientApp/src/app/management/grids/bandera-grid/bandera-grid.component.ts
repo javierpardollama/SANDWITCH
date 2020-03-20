@@ -50,12 +50,10 @@ export class BanderaGridComponent implements OnInit {
   }
 
   // Get Data from Service
-  public FindAllBandera() {
-    this.banderaService.FindAllBandera().subscribe(banderas => {
-      this.ELEMENT_DATA = banderas;
+  public async FindAllBandera() {
+    this.ELEMENT_DATA = await this.banderaService.FindAllBandera();
 
-      this.SetupMyTableSettings();
-    });
+    this.SetupMyTableSettings();
   }
 
   // Setup Table Settings

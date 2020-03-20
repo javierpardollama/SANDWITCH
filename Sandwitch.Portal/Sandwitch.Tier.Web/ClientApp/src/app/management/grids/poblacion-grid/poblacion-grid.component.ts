@@ -49,12 +49,10 @@ export class PoblacionGridComponent implements OnInit {
   }
 
   // Get Data from Service
-  public FindAllPoblacion() {
-    this.poblacionService.FindAllPoblacion().subscribe(poblaciones => {
-      this.ELEMENT_DATA = poblaciones;
+  public async FindAllPoblacion() {
+    this.ELEMENT_DATA = await this.poblacionService.FindAllPoblacion();
 
-      this.SetupMyTableSettings();
-    });
+    this.SetupMyTableSettings();
   }
 
   // Setup Table Settings

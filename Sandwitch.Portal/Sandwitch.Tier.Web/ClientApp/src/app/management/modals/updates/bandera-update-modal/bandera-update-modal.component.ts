@@ -56,8 +56,8 @@ export class BanderaUpdateModalComponent implements OnInit {
   }
 
   // Form Actions
-  onSubmit(viewModel: UpdateBandera) {
-    this.banderaService.UpdateBandera(viewModel).subscribe(bandera => {
+  async onSubmit(viewModel: UpdateBandera) {
+    let bandera = await this.banderaService.UpdateBandera(viewModel)
 
       if (bandera !== undefined) {
         this.matSnackBar.open(
@@ -67,7 +67,7 @@ export class BanderaUpdateModalComponent implements OnInit {
       }
 
       this.dialogRef.close();
-    });
+   
   }
 
   onDelete(viewModel: UpdateBandera) {

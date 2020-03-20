@@ -61,37 +61,30 @@ export class SearchComponent implements OnInit {
   }
 
   // Get Data from Service
-  public FindAllArenalByPoblacionId(id: number) {
-    this.arenalService.FindAllArenalByPoblacionId(id).subscribe(arenales => {
-      this.arenales = arenales;
-    });
+  public async FindAllArenalByPoblacionId(id: number) {
+    this.arenales = await this.arenalService.FindAllArenalByPoblacionId(id);
   }
 
   // Get Data from Service
-  public FindAllProvincia() {
-    this.provinciaService.FindAllProvincia().subscribe(provincias => {
-      this.provincias = provincias;
+  public async FindAllProvincia() {
+    this.provincias = await this.provinciaService.FindAllProvincia();
 
-      this.filteredProvincias = this.provinciaCtrl.valueChanges
-        .pipe(
-          startWith(''),
-          map(provincia => provincia ? this.FilterProvincias(provincia) : this.provincias.slice())
-        );
-    });
+    this.filteredProvincias = this.provinciaCtrl.valueChanges
+      .pipe(
+        startWith(''),
+        map(provincia => provincia ? this.FilterProvincias(provincia) : this.provincias.slice())
+      );
   }
 
   // Get Data from Service
-  public FindAllPoblacionByProvinciaId(id: number) {
-    this.poblacionService.FindAllPoblacionByProvinciaId(id).subscribe(poblaciones => {
-      this.poblaciones = poblaciones;
+  public async FindAllPoblacionByProvinciaId(id: number) {
+    this.poblaciones = await this.poblacionService.FindAllPoblacionByProvinciaId(id);
 
-      this.filteredPoblaciones = this.poblacionCtrl.valueChanges
-        .pipe(
-          startWith(''),
-          map(poblacion => poblacion ? this.FilterPoblaciones(poblacion) : this.poblaciones.slice())
-        );
-    });
-
+    this.filteredPoblaciones = this.poblacionCtrl.valueChanges
+      .pipe(
+        startWith(''),
+        map(poblacion => poblacion ? this.FilterPoblaciones(poblacion) : this.poblaciones.slice())
+      );
   }
 
   // Filter Data

@@ -60,24 +60,22 @@ export class ArenalAddModalComponent implements OnInit {
   }
 
   // Form Actions
-  onSubmit(viewModel: AddArenal) {
-    this.arenalService.AddArenal(viewModel).subscribe(arenal => {
+  async onSubmit(viewModel: AddArenal) {
+    let arenal = await this.arenalService.AddArenal(viewModel);
+    
+    if (arenal !== undefined) {
+      this.matSnackBar.open(
+        TextAppVariants.AppOperationSuccessCoreText,
+        TextAppVariants.AppOkButtonText,
+        { duration: TimeAppVariants.AppToastSecondTicks * TimeAppVariants.AppTimeSecondTicks });
+    }
 
-      if (arenal !== undefined) {
-        this.matSnackBar.open(
-          TextAppVariants.AppOperationSuccessCoreText,
-          TextAppVariants.AppOkButtonText,
-          { duration: TimeAppVariants.AppToastSecondTicks * TimeAppVariants.AppTimeSecondTicks });
-      }
+    this.dialogRef.close();
 
-      this.dialogRef.close();
-    });
   }
 
   // Get Data from Service
-  public FindAllProvincia() {
-    this.provinciaService.FindAllProvincia().subscribe(provincias => {
-      this.provincias = provincias;
-    });
+  public async FindAllProvincia() {
+    this.provincias = await this.provinciaService.FindAllProvincia();
   }
 }

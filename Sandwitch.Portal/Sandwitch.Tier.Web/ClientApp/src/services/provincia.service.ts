@@ -28,19 +28,19 @@ export class ProvinciaService extends BaseService {
         super(httpClient, matSnackBar);
     }
 
-    public UpdateProvincia(viewModel: UpdateProvincia): Observable<ViewProvincia> {
+    public UpdateProvincia(viewModel: UpdateProvincia): Promise<ViewProvincia> {
         return this.httpClient.put<ViewProvincia>('api/provincia/updateprovincia', viewModel)
-            .pipe(catchError(this.HandleError<ViewProvincia>('UpdateProvincia', undefined)));
+            .pipe(catchError(this.HandleError<ViewProvincia>('UpdateProvincia', undefined))).toPromise();
     }
 
-    public FindAllProvincia(): Observable<ViewProvincia[]> {
+    public FindAllProvincia(): Promise<ViewProvincia[]> {
         return this.httpClient.get<ViewProvincia[]>('api/provincia/findallprovincia')
-            .pipe(catchError(this.HandleError<ViewProvincia[]>('FindAllProvincia', [])));
+            .pipe(catchError(this.HandleError<ViewProvincia[]>('FindAllProvincia', []))).toPromise();
     }
 
-    public AddProvincia(viewModel: AddProvincia): Observable<ViewProvincia> {
+    public AddProvincia(viewModel: AddProvincia): Promise<ViewProvincia> {
         return this.httpClient.post<ViewProvincia>('api/provincia/addprovincia', viewModel)
-            .pipe(catchError(this.HandleError<ViewProvincia>('AddProvincia', undefined)));
+            .pipe(catchError(this.HandleError<ViewProvincia>('AddProvincia', undefined))).toPromise();
     }
 
     public RemoveProvinciaById(id: number) {

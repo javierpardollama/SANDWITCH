@@ -65,35 +65,34 @@ export class PoblacionUpdateModalComponent implements OnInit {
   }
 
   // Form Actions
-  onSubmit(viewModel: UpdatePoblacion) {
-    this.poblacionService.UpdatePoblacion(viewModel).subscribe(poblacion => {
+  async onSubmit(viewModel: UpdatePoblacion) {
+    let poblacion = await this.poblacionService.UpdatePoblacion(viewModel);
 
-      if (poblacion !== undefined) {
-        this.matSnackBar.open(
-          TextAppVariants.AppOperationSuccessCoreText,
-          TextAppVariants.AppOkButtonText,
-          { duration: TimeAppVariants.AppToastSecondTicks * TimeAppVariants.AppTimeSecondTicks });
-      }
-
-      this.dialogRef.close();
-    });
-  }
-
-  onDelete(viewModel: UpdatePoblacion) {
-    this.poblacionService.RemovePoblacionById(viewModel.Id).subscribe(poblacion => {
+    if (poblacion !== undefined) {
       this.matSnackBar.open(
         TextAppVariants.AppOperationSuccessCoreText,
         TextAppVariants.AppOkButtonText,
         { duration: TimeAppVariants.AppToastSecondTicks * TimeAppVariants.AppTimeSecondTicks });
+    }
 
-      this.dialogRef.close();
-    });
+    this.dialogRef.close();
+
+  }
+
+  async onDelete(viewModel: UpdatePoblacion) {
+    await this.poblacionService.RemovePoblacionById(viewModel.Id);
+
+    this.matSnackBar.open(
+      TextAppVariants.AppOperationSuccessCoreText,
+      TextAppVariants.AppOkButtonText,
+      { duration: TimeAppVariants.AppToastSecondTicks * TimeAppVariants.AppTimeSecondTicks });
+
+    this.dialogRef.close();
+
   }
 
   // Get Data from Service
-  public FindAllProvincia() {
-    this.provinciaService.FindAllProvincia().subscribe(provincias => {
-      this.provincias = provincias;
-    });
+  public async FindAllProvincia() {
+    this.provincias = await this.provinciaService.FindAllProvincia();
   }
 }

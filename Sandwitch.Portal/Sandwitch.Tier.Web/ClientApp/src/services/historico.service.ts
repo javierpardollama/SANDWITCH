@@ -26,8 +26,8 @@ export class HistoricoService extends BaseService {
         super(httpClient, matSnackBar);
     }
 
-    public AddHistorico(viewModel: AddHistorico): Observable<ViewHistorico> {
+    public AddHistorico(viewModel: AddHistorico): Promise<ViewHistorico> {
         return this.httpClient.post<ViewHistorico>('api/historico/addhistorico', viewModel)
-            .pipe(catchError(this.HandleError<ViewHistorico>('AddHistorico', undefined)));
+            .pipe(catchError(this.HandleError<ViewHistorico>('AddHistorico', undefined))).toPromise();
     }
 }

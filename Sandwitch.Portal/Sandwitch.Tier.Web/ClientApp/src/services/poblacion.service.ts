@@ -28,28 +28,28 @@ export class PoblacionService extends BaseService {
         super(httpClient, matSnackBar);
     }
 
-    public UpdatePoblacion(viewModel: UpdatePoblacion): Observable<ViewPoblacion> {
+    public UpdatePoblacion(viewModel: UpdatePoblacion): Promise<ViewPoblacion> {
         return this.httpClient.put<ViewPoblacion>('api/poblacion/updatepoblacion', viewModel)
-            .pipe(catchError(this.HandleError<ViewPoblacion>('UpdatePoblacion', undefined)));
+            .pipe(catchError(this.HandleError<ViewPoblacion>('UpdatePoblacion', undefined))).toPromise();
     }
 
-    public FindAllPoblacion(): Observable<ViewPoblacion[]> {
+    public FindAllPoblacion(): Promise<ViewPoblacion[]> {
         return this.httpClient.get<ViewPoblacion[]>('api/poblacion/findallpoblacion')
-            .pipe(catchError(this.HandleError<ViewPoblacion[]>('FindAllPoblacion', [])));
+            .pipe(catchError(this.HandleError<ViewPoblacion[]>('FindAllPoblacion', []))).toPromise();
     }
 
-    public FindAllPoblacionByProvinciaId(id: number): Observable<ViewPoblacion[]> {
+    public FindAllPoblacionByProvinciaId(id: number): Promise<ViewPoblacion[]> {
         return this.httpClient.get<ViewPoblacion[]>('api/poblacion/findallpoblacionbyprovinciaid/' + id)
-            .pipe(catchError(this.HandleError<ViewPoblacion[]>('FindAllPoblacionByProvinciaId', [])));
+            .pipe(catchError(this.HandleError<ViewPoblacion[]>('FindAllPoblacionByProvinciaId', []))).toPromise();
     }
 
-    public AddPoblacion(viewModel: AddPoblacion): Observable<ViewPoblacion> {
+    public AddPoblacion(viewModel: AddPoblacion): Promise<ViewPoblacion> {
         return this.httpClient.post<ViewPoblacion>('api/poblacion/addpoblacion', viewModel)
-            .pipe(catchError(this.HandleError<ViewPoblacion>('AddPoblacion', undefined)));
+            .pipe(catchError(this.HandleError<ViewPoblacion>('AddPoblacion', undefined))).toPromise();
     }
 
     public RemovePoblacionById(id: number) {
         return this.httpClient.delete<any>('api/poblacion/removepoblacionbyid/' + id)
-            .pipe(catchError(this.HandleError<any>('RemovePoblacionById', undefined)));
+            .pipe(catchError(this.HandleError<any>('RemovePoblacionById', undefined))).toPromise();
     }
 }

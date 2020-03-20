@@ -50,12 +50,10 @@ export class ProvinciaGridComponent implements OnInit {
   }
 
   // Get Data from Service
-  public FindAllProvincia() {
-    this.provinciaService.FindAllProvincia().subscribe(poblaciones => {
-      this.ELEMENT_DATA = poblaciones;
+  public async FindAllProvincia() {
+    this.ELEMENT_DATA = await this.provinciaService.FindAllProvincia();
 
-      this.SetupMyTableSettings();
-    });
+    this.SetupMyTableSettings();
   }
 
   // Setup Table Settings

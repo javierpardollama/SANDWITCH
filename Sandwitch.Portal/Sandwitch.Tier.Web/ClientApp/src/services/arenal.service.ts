@@ -28,24 +28,24 @@ export class ArenalService extends BaseService {
         super(httpClient, matSnackBar);
     }
 
-    public UpdateArenal(viewModel: UpdateArenal): Observable<ViewArenal> {
+    public UpdateArenal(viewModel: UpdateArenal): Promise<ViewArenal> {
         return this.httpClient.put<ViewArenal>('api/arenal/updatearenal', viewModel)
-            .pipe(catchError(this.HandleError<ViewArenal>('UpdateArenal', undefined)));
+            .pipe(catchError(this.HandleError<ViewArenal>('UpdateArenal', undefined))).toPromise();
     }
 
-    public FindAllArenal(): Observable<ViewArenal[]> {
+    public FindAllArenal(): Promise<ViewArenal[]> {
         return this.httpClient.get<ViewArenal[]>('api/arenal/findallarenal')
-            .pipe(catchError(this.HandleError<ViewArenal[]>('FindAllArenal', [])));
+            .pipe(catchError(this.HandleError<ViewArenal[]>('FindAllArenal', []))).toPromise();
     }
 
-    public FindAllArenalByPoblacionId(id: number): Observable<ViewArenal[]> {
+    public FindAllArenalByPoblacionId(id: number): Promise<ViewArenal[]> {
         return this.httpClient.get<ViewArenal[]>('api/arenal/findallarenalbypoblacionid/' + id)
-            .pipe(catchError(this.HandleError<ViewArenal[]>('FindAllArenalByPoblacionId', [])));
+            .pipe(catchError(this.HandleError<ViewArenal[]>('FindAllArenalByPoblacionId', []))).toPromise();
     }
 
-    public AddArenal(viewModel: AddArenal): Observable<ViewArenal> {
+    public AddArenal(viewModel: AddArenal): Promise<ViewArenal> {
         return this.httpClient.post<ViewArenal>('api/arenal/addarenal', viewModel)
-            .pipe(catchError(this.HandleError<ViewArenal>('AddArenal', undefined)));
+            .pipe(catchError(this.HandleError<ViewArenal>('AddArenal', undefined))).toPromise();
     }
 
     public RemoveArenalById(id: number) {

@@ -53,17 +53,16 @@ export class BanderaAddModalComponent implements OnInit {
   }
 
   // Form Actions
-  onSubmit(viewModel: AddBandera) {
-    this.banderaService.AddBandera(viewModel).subscribe(bandera => {
+  async onSubmit(viewModel: AddBandera) {
+    let bandera = await this.banderaService.AddBandera(viewModel);
+    
+    if (bandera !== undefined) {
+      this.matSnackBar.open(
+        TextAppVariants.AppOperationSuccessCoreText,
+        TextAppVariants.AppOkButtonText,
+        { duration: TimeAppVariants.AppToastSecondTicks * TimeAppVariants.AppTimeSecondTicks });
+    }
 
-      if (bandera !== undefined) {
-        this.matSnackBar.open(
-          TextAppVariants.AppOperationSuccessCoreText,
-          TextAppVariants.AppOkButtonText,
-          { duration: TimeAppVariants.AppToastSecondTicks * TimeAppVariants.AppTimeSecondTicks });
-      }
-
-      this.dialogRef.close();
-    });
+    this.dialogRef.close();
   }
 }

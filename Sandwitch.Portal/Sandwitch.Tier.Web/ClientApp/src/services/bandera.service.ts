@@ -28,19 +28,19 @@ export class BanderaService extends BaseService {
         super(httpClient, matSnackBar);
     }
 
-    public UpdateBandera(viewModel: UpdateBandera): Observable<ViewBandera> {
+    public UpdateBandera(viewModel: UpdateBandera): Promise<ViewBandera> {
         return this.httpClient.put<ViewBandera>('api/bandera/updatebandera', viewModel)
-            .pipe(catchError(this.HandleError<ViewBandera>('UpdateBandera', undefined)));
+            .pipe(catchError(this.HandleError<ViewBandera>('UpdateBandera', undefined))).toPromise();
     }
 
-    public FindAllBandera(): Observable<ViewBandera[]> {
+    public FindAllBandera(): Promise<ViewBandera[]> {
         return this.httpClient.get<ViewBandera[]>('api/bandera/findallbandera')
-            .pipe(catchError(this.HandleError<ViewBandera[]>('FindAllBandera', [])));
+            .pipe(catchError(this.HandleError<ViewBandera[]>('FindAllBandera', []))).toPromise();            
     }
 
-    public AddBandera(viewModel: AddBandera): Observable<ViewBandera> {
+    public AddBandera(viewModel: AddBandera): Promise<ViewBandera> {
         return this.httpClient.post<ViewBandera>('api/bandera/addbandera', viewModel)
-            .pipe(catchError(this.HandleError<ViewBandera>('AddBandera', undefined)));
+            .pipe(catchError(this.HandleError<ViewBandera>('AddBandera', undefined))).toPromise();
     }
 
     public RemoveBanderaById(id: number) {

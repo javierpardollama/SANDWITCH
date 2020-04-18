@@ -134,16 +134,6 @@ import { PoblacionUpdateModalComponent } from './management/modals/updates/pobla
       }
     ])
   ],
-  entryComponents: [
-    ArenalUpdateModalComponent,
-    BanderaUpdateModalComponent,
-    ProvinciaUpdateModalComponent,
-    PoblacionUpdateModalComponent,
-    ArenalAddModalComponent,
-    BanderaAddModalComponent,
-    ProvinciaAddModalComponent,
-    PoblacionAddModalComponent,
-    HistoricoAddModalComponent],
   providers: [],
   bootstrap: [AppComponent]
 })

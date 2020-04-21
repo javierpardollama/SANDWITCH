@@ -40,7 +40,7 @@ namespace Sandwitch.Tier.ExceptionHandling.Middlewares
                 Message = exception.Message
             };
 
-            return context.Response.WriteAsync(JsonSerializer.Serialize(viewException));
+            return context.Response.WriteAsync(JsonSerializer.Serialize(viewException, new JsonSerializerOptions() { WriteIndented = true }));
         }
     }
 }

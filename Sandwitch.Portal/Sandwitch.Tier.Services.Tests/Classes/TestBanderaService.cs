@@ -14,15 +14,27 @@ using Sandwitch.Tier.ViewModels.Classes.Updates;
 
 namespace Sandwitch.Tier.Services.Tests.Classes
 {
+    /// <summary>
+    /// Represents a <see cref="TestBanderaService"/> class. Inherits <see cref="TestBaseService"/>
+    /// </summary>
     [TestFixture]
     public class TestBanderaService : TestBaseService
     {
+        /// <summary>
+        /// Instance of <see cref="ILogger{BanderaService}"/>
+        /// </summary>
         private ILogger<BanderaService> Logger;
 
+        /// <summary>
+        /// Initializes a new Instance of <see cref="TestBanderaService"/>
+        /// </summary>
         public TestBanderaService()
         {
         }
 
+        /// <summary>
+        /// Sets Up
+        /// </summary>
         [SetUp]
         public void Setup()
         {
@@ -33,6 +45,9 @@ namespace Sandwitch.Tier.Services.Tests.Classes
             SetUpLogger();
         }
 
+        /// <summary>
+        /// Sets Up Logger
+        /// </summary>
         private void SetUpLogger()
         {
             ILoggerFactory loggerFactory = LoggerFactory.Create(builder =>
@@ -44,8 +59,12 @@ namespace Sandwitch.Tier.Services.Tests.Classes
             });
 
             Logger = loggerFactory.CreateLogger<BanderaService>();
-        }        
+        }
 
+        /// <summary>
+        /// Sets Up Context
+        /// </summary>
+        /// <param name="context">Injected <see cref="ApplicationContext"/></param>
         private void SetUpContext(ApplicationContext context)
         {
             context.Bandera.Add(new Bandera { Name = "Bandera 1", LastModified = DateTime.Now, Deleted = false });
@@ -55,6 +74,10 @@ namespace Sandwitch.Tier.Services.Tests.Classes
             context.SaveChanges();
         }
 
+        /// <summary>
+        /// Tests
+        /// </summary>
+        /// <returns>Instance of <see cref="Task"/></returns>
         [Test]
         public async Task FindAllBandera()
         {
@@ -70,6 +93,10 @@ namespace Sandwitch.Tier.Services.Tests.Classes
             Assert.Pass();
         }
 
+        /// <summary>
+        /// Tests
+        /// </summary>
+        /// <returns>Instance of <see cref="Task"/></returns>
         [Test]
         public async Task FindAllHistoricoByBanderaId() 
         {
@@ -85,6 +112,10 @@ namespace Sandwitch.Tier.Services.Tests.Classes
             Assert.Pass();
         }
 
+        /// <summary>
+        /// Tests
+        /// </summary>
+        /// <returns>Instance of <see cref="Task"/></returns>
         [Test]
         public async Task FindBanderaById()
         {
@@ -100,6 +131,10 @@ namespace Sandwitch.Tier.Services.Tests.Classes
             Assert.Pass();
         }
 
+        /// <summary>
+        /// Tests
+        /// </summary>
+        /// <returns>Instance of <see cref="Task"/></returns>
         [Test]
         public async Task RemoveBanderaById()
         {
@@ -115,6 +150,10 @@ namespace Sandwitch.Tier.Services.Tests.Classes
             Assert.Pass();
         }
 
+        /// <summary>
+        /// Tests
+        /// </summary>
+        /// <returns>Instance of <see cref="Task"/></returns>
         [Test]
         public async Task UpdateBandera()
         {
@@ -137,6 +176,10 @@ namespace Sandwitch.Tier.Services.Tests.Classes
             Assert.Pass();
         }
 
+        /// <summary>
+        /// Tests
+        /// </summary>
+        /// <returns>Instance of <see cref="Task"/></returns>
         [Test]
         public async Task AddBandera()
         {
@@ -158,6 +201,10 @@ namespace Sandwitch.Tier.Services.Tests.Classes
             Assert.Pass();
         }
 
+        /// <summary>
+        /// Tests
+        /// </summary>
+        /// <returns>Instance of <see cref="Task"/></returns>
         [Test]
         public void CheckName()
         {

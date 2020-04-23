@@ -13,15 +13,27 @@ using Sandwitch.Tier.ViewModels.Classes.Additions;
 
 namespace Sandwitch.Tier.Services.Tests.Classes
 {
+    /// <summary>
+    /// Represents a <see cref="TestHistoricoService"/> class. Inherits <see cref="TestBaseService"/>
+    /// </summary>
     [TestFixture]
     public class TestHistoricoService : TestBaseService
     {
+        /// <summary>
+        /// Instance of <see cref="ILogger{HistoricoService}"/>
+        /// </summary>
         private ILogger<HistoricoService> Logger;
 
+        /// <summary>
+        /// Initializes a new Instance of <see cref="TestArenalService"/>
+        /// </summary>
         public TestHistoricoService()
         {
         }
 
+        /// <summary>
+        /// Sets Up
+        /// </summary>
         [SetUp]
         public void Setup()
         {
@@ -32,6 +44,9 @@ namespace Sandwitch.Tier.Services.Tests.Classes
             SetUpLogger();
         }
 
+        /// <summary>
+        /// Sets Up Logger
+        /// </summary>
         private void SetUpLogger()
         {
             ILoggerFactory loggerFactory = LoggerFactory.Create(builder =>
@@ -45,6 +60,10 @@ namespace Sandwitch.Tier.Services.Tests.Classes
             Logger = loggerFactory.CreateLogger<HistoricoService>();
         }
 
+        /// <summary>
+        /// Sets Up Context
+        /// </summary>
+        /// <param name="context">Injected <see cref="ApplicationContext"/></param>
         private void SetUpContext(ApplicationContext context)
         {
             context.Arenal.Add(new Arenal { Name = "Arenal 1", LastModified = DateTime.Now, Deleted = false });
@@ -54,6 +73,10 @@ namespace Sandwitch.Tier.Services.Tests.Classes
             context.SaveChanges();
         }
 
+        /// <summary>
+        /// Tests
+        /// </summary>
+        /// <returns>Instance of <see cref="Task"/></returns>
         [Test]
         public async Task FindArenalById()
         {
@@ -69,6 +92,10 @@ namespace Sandwitch.Tier.Services.Tests.Classes
             Assert.Pass();
         }
 
+        /// <summary>
+        /// Tests
+        /// </summary>
+        /// <returns>Instance of <see cref="Task"/></returns>
         [Test]
         public async Task FindBanderaById()
         {
@@ -84,6 +111,10 @@ namespace Sandwitch.Tier.Services.Tests.Classes
             Assert.Pass();
         }
 
+        /// <summary>
+        /// Tests
+        /// </summary>
+        /// <returns>Instance of <see cref="Task"/></returns>
         [Test]
         public async Task AddHistorico()
         {

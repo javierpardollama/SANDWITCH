@@ -16,8 +16,17 @@ using Sandwitch.Tier.ViewModels.Classes.Views;
 
 namespace Sandwitch.Tier.Services.Classes
 {
+    /// <summary>
+    /// Represents a <see cref="HistoricoService"/> class. Inherits <see cref="BaseService"/>. Implements <see cref="IHistoricoService"/>
+    /// </summary>
     public class HistoricoService : BaseService, IHistoricoService
     {
+        /// <summary>
+        /// Initializes a new Instance of <see cref="HistoricoService"/>
+        /// </summary>
+        /// <param name="context">Injected <see cref="IApplicationContext"/></param>
+        /// <param name="mapper">Injected <see cref="IMapper"/></param>
+        /// <param name="logger">Injected <see cref="ILogger"/></param>
         public HistoricoService(IApplicationContext context,
                                 IMapper mapper,
                                 ILogger<HistoricoService> logger) : base(context,
@@ -26,6 +35,11 @@ namespace Sandwitch.Tier.Services.Classes
         {
         }
 
+        /// <summary>
+        /// Finds Arenal By Id
+        /// </summary>
+        /// <param name="id">Injected <see cref="int"/></param>
+        /// <returns>Instance of <see cref="Arenal"/></returns>
         public async Task<Arenal> FindArenalById(int id)
         {
             Arenal arenal = await Context.Arenal
@@ -55,6 +69,11 @@ namespace Sandwitch.Tier.Services.Classes
             return arenal;
         }
 
+        /// <summary>
+        /// Finds Bandera By Id
+        /// </summary>
+        /// <param name="id">Injected <see cref="int"/></param>
+        /// <returns>Instance of <see cref="Bandera"/></returns>
         public async Task<Bandera> FindBanderaById(int id)
         {
             Bandera bandera = await Context.Bandera
@@ -81,6 +100,11 @@ namespace Sandwitch.Tier.Services.Classes
             return bandera;
         }
 
+        /// <summary>
+        /// Adds Historico
+        /// </summary>
+        /// <param name="viewModel">Injected <see cref="AddHistorico"/></param>
+        /// <returns>Instance of <see cref="ViewHistorico"/></returns>
         public async Task<ViewHistorico> AddHistorico(AddHistorico viewModel)
         {
             Historico historico = new Historico

@@ -18,8 +18,17 @@ using Sandwitch.Tier.ViewModels.Classes.Views;
 
 namespace Sandwitch.Tier.Services.Classes
 {
+    /// <summary>
+    /// Represents a <see cref="PoblacionService"/> class. Inherits <see cref="BaseService"/>. Implements <see cref="IPoblacionService"/>
+    /// </summary>
     public class PoblacionService : BaseService, IPoblacionService
     {
+        /// <summary>
+        /// Initializes a new Instance of <see cref="PoblacionService"/>
+        /// </summary>
+        /// <param name="context">Injected <see cref="IApplicationContext"/></param>
+        /// <param name="mapper">Injected <see cref="IMapper"/></param>
+        /// <param name="logger">Injected <see cref="ILogger"/></param>
         public PoblacionService(IApplicationContext context,
                                 IMapper mapper,
                                 ILogger<PoblacionService> logger) : base(context,
@@ -28,6 +37,11 @@ namespace Sandwitch.Tier.Services.Classes
         {
         }
 
+        /// <summary>
+        /// Adds Poblacion
+        /// </summary>
+        /// <param name="viewModel">Injected <see cref="AddPoblacion"/></param>
+        /// <returns>Instance of <see cref="ViewPoblacion"/></returns>
         public async Task<ViewPoblacion> AddPoblacion(AddPoblacion viewModel)
         {
             await CheckName(viewModel);
@@ -62,6 +76,10 @@ namespace Sandwitch.Tier.Services.Classes
             return Mapper.Map<ViewPoblacion>(poblacion);
         }
 
+        /// <summary>
+        /// Finds All Poblacion
+        /// </summary>
+        /// <returns>Instance of <see cref="IList{ViewPoblacion}"/></returns>
         public async Task<IList<ViewPoblacion>> FindAllPoblacion()
         {
             IList<Poblacion> poblaciones = await Context.Poblacion
@@ -74,6 +92,11 @@ namespace Sandwitch.Tier.Services.Classes
             return Mapper.Map<IList<ViewPoblacion>>(poblaciones);
         }
 
+        /// <summary>
+        /// Finds All Poblacion By Provincia Id
+        /// </summary>
+        /// <param name="id">Injected <see cref="int"/></param>
+        /// <returns>Instance of <see cref="IList{ViewPoblacion}"/></returns>
         public async Task<IList<ViewPoblacion>> FindAllPoblacionByProvinciaId(int id)
         {
             IList<Poblacion> poblaciones = await Context.Poblacion
@@ -87,6 +110,11 @@ namespace Sandwitch.Tier.Services.Classes
             return Mapper.Map<IList<ViewPoblacion>>(poblaciones);
         }
 
+        /// <summary>
+        /// Finds Poblacion By Id
+        /// </summary>
+        /// <param name="id">Injected <see cref="int"/></param>
+        /// <returns>Instance of <see cref="Poblacion"/></returns>
         public async Task<Poblacion> FindPoblacionById(int id)
         {
             Poblacion poblacion = await Context.Poblacion
@@ -113,6 +141,11 @@ namespace Sandwitch.Tier.Services.Classes
             return poblacion;
         }
 
+        /// <summary>
+        /// Finds Provincia By Id
+        /// </summary>
+        /// <param name="id">Injected <see cref="int"/></param>
+        /// <returns>Instance of <see cref="Provincia"/></returns>
         public async Task<Provincia> FindProvinciaById(int id)
         {
             Provincia provincia = await Context.Provincia
@@ -139,6 +172,11 @@ namespace Sandwitch.Tier.Services.Classes
             return provincia;
         }
 
+        /// <summary>
+        /// Removes Poblacion By Id
+        /// </summary>
+        /// <param name="id">Injected <see cref="int"/></param>
+        /// <returns>Instance of <see cref="Task"/></returns>
         public async Task RemovePoblacionById(int id)
         {
             try
@@ -164,6 +202,11 @@ namespace Sandwitch.Tier.Services.Classes
             }
         }
 
+        /// <summary>
+        /// Updates Poblacion
+        /// </summary>
+        /// <param name="viewModel">Injected <see cref="UpdatePoblacion"/></param>
+        /// <returns>Instance of <see cref="ViewPoblacion"/></returns>
         public async Task<ViewPoblacion> UpdatePoblacion(UpdatePoblacion viewModel)
         {
             await CheckName(viewModel);
@@ -196,6 +239,11 @@ namespace Sandwitch.Tier.Services.Classes
             return Mapper.Map<ViewPoblacion>(poblacion);
         }
 
+        /// <summary>
+        /// Checks Name
+        /// </summary>
+        /// <param name="viewModel">Injected <see cref="AddPoblacion"/></param>
+        /// <returns>Instance of <see cref="Poblacion"/></returns>
         public async Task<Poblacion> CheckName(AddPoblacion viewModel)
         {
             Poblacion poblacion = await Context.Poblacion
@@ -223,6 +271,11 @@ namespace Sandwitch.Tier.Services.Classes
             return poblacion;
         }
 
+        /// <summary>
+        /// Checks Name
+        /// </summary>
+        /// <param name="viewModel">Injected <see cref="AddPoblacion"/></param>
+        /// <returns>Instance of <see cref="Poblacion"/></returns>
         public async Task<Poblacion> CheckName(UpdatePoblacion viewModel)
         {
             Poblacion poblacion = await Context.Poblacion

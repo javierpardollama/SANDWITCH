@@ -5,8 +5,14 @@ using Sandwitch.Tier.ViewModels.Classes.Views;
 
 namespace Sandwitch.Tier.Mappings.Classes
 {
+    /// <summary>
+    /// Represents a <see cref="ModelingProfile"/> class. Inherits <see cref="Profile"/>
+    /// </summary>
     public class ModelingProfile : Profile
     {
+        /// <summary>
+        /// Initializes a new Instance of <see cref="ModelingProfile"/>
+        /// </summary>
         public ModelingProfile()
         {
             CreateMap<Bandera, ViewBandera>();

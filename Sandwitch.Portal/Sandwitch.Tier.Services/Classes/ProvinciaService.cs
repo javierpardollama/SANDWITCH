@@ -18,8 +18,17 @@ using Sandwitch.Tier.ViewModels.Classes.Views;
 
 namespace Sandwitch.Tier.Services.Classes
 {
+    /// <summary>
+    /// Represents a <see cref="ProvinciaService"/> class. Inherits <see cref="BaseService"/>. Implements <see cref="IProvinciaService"/>
+    /// </summary>
     public class ProvinciaService : BaseService, IProvinciaService
     {
+        /// <summary>
+        /// Initializes a new Instance of <see cref="ProvinciaService"/>
+        /// </summary>
+        /// <param name="context">Injected <see cref="IApplicationContext"/></param>
+        /// <param name="mapper">Injected <see cref="IMapper"/></param>
+        /// <param name="logger">Injected <see cref="ILogger"/></param>
         public ProvinciaService(IApplicationContext context,
                                 IMapper mapper,
                                 ILogger<ProvinciaService> logger) : base(context,
@@ -28,6 +37,11 @@ namespace Sandwitch.Tier.Services.Classes
         {
         }
 
+        /// <summary>
+        /// Adds Provincia
+        /// </summary>
+        /// <param name="viewModel">Injected <see cref="AddProvincia"/></param>
+        /// <returns>Instance of <see cref="ViewProvincia"/></returns>
         public async Task<ViewProvincia> AddProvincia(AddProvincia viewModel)
         {
             await CheckName(viewModel);
@@ -61,6 +75,10 @@ namespace Sandwitch.Tier.Services.Classes
             return Mapper.Map<ViewProvincia>(provincia);
         }
 
+        /// <summary>
+        /// Finds All Provincia
+        /// </summary>
+        /// <returns>Instance of <see cref="IList{ViewProvincia}"/></returns>
         public async Task<IList<ViewProvincia>> FindAllProvincia()
         {
             IList<Provincia> provincias = await Context.Provincia
@@ -73,6 +91,11 @@ namespace Sandwitch.Tier.Services.Classes
             return Mapper.Map<IList<ViewProvincia>>(provincias);
         }
 
+        /// <summary>
+        /// Finds Provincia By Id
+        /// </summary>
+        /// <param name="id">Injected <see cref="int"/></param>
+        /// <returns>Instance of <see cref="Provincia"/></returns>
         public async Task<Provincia> FindProvinciaById(int id)
         {
             Provincia provincia = await Context.Provincia
@@ -99,6 +122,11 @@ namespace Sandwitch.Tier.Services.Classes
             return provincia;
         }
 
+        /// <summary>
+        /// Removes Provincia By Id
+        /// </summary>
+        /// <param name="id">Injected <see cref="int"/></param>
+        /// <returns>Instance of <see cref="Task"/></returns>
         public async Task RemoveProvinciaById(int id)
         {
             try
@@ -124,6 +152,11 @@ namespace Sandwitch.Tier.Services.Classes
             }
         }
 
+        /// <summary>
+        /// Updates Provincia
+        /// </summary>
+        /// <param name="viewModel">Injected <see cref="UpdateProvincia"/></param>
+        /// <returns>Instance of <see cref="ViewProvincia"/></returns>
         public async Task<ViewProvincia> UpdateProvincia(UpdateProvincia viewModel)
         {
             await CheckName(viewModel);
@@ -155,6 +188,11 @@ namespace Sandwitch.Tier.Services.Classes
             return Mapper.Map<ViewProvincia>(provincia);
         }
 
+        /// <summary>
+        /// Checks Name
+        /// </summary>
+        /// <param name="viewModel">Injected <see cref="AddProvincia"/></param>
+        /// <returns>Instance of <see cref="Provincia"/></returns>
         public async Task<Provincia> CheckName(AddProvincia viewModel)
         {
             Provincia provincia = await Context.Provincia
@@ -182,6 +220,11 @@ namespace Sandwitch.Tier.Services.Classes
             return provincia;
         }
 
+        /// <summary>
+        /// Checks Name
+        /// </summary>
+        /// <param name="viewModel">Injected <see cref="AddProvincia"/></param>
+        /// <returns>Instance of <see cref="Provincia"/></returns>
         public async Task<Provincia> CheckName(UpdateProvincia viewModel)
         {
             Provincia provincia = await Context.Provincia

@@ -19,8 +19,17 @@ using Sandwitch.Tier.ViewModels.Classes.Views;
 
 namespace Sandwitch.Tier.Services.Classes
 {
+    /// <summary>
+    /// Represents a <see cref="ArenalService"/> class. Inherits <see cref="BaseService"/>. Implements <see cref="IArenalService"/>
+    /// </summary>
     public class ArenalService : BaseService, IArenalService
     {
+        /// <summary>
+        /// Initializes a new Instance of <see cref="ArenalService"/>
+        /// </summary>
+        /// <param name="context">Injected <see cref="IApplicationContext"/></param>
+        /// <param name="mapper">Injected <see cref="IMapper"/></param>
+        /// <param name="logger">Injected <see cref="ILogger"/></param>
         public ArenalService(IApplicationContext context,
                              IMapper mapper,
                              ILogger<ArenalService> logger) : base(context,
@@ -29,6 +38,11 @@ namespace Sandwitch.Tier.Services.Classes
         {
         }
 
+        /// <summary>
+        /// Adds Arenal
+        /// </summary>
+        /// <param name="viewModel">Injected <see cref="AddArenal"/></param>
+        /// <returns>Instance of <see cref="ViewArenal"/></returns>
         public async Task<ViewArenal> AddArenal(AddArenal viewModel)
         {
             await CheckName(viewModel);
@@ -67,6 +81,11 @@ namespace Sandwitch.Tier.Services.Classes
             return Mapper.Map<ViewArenal>(arenal); ;
         }
 
+        /// <summary>
+        /// Adds Arenal Poblacion
+        /// </summary>
+        /// <param name="viewModel">Injected <see cref="AddArenal"/></param>
+        /// <param name="entity">Injected <see cref="Arenal"/></param>
         public void AddArenalPoblacion(AddArenal viewModel,
                                              Arenal entity)
         {
@@ -84,6 +103,11 @@ namespace Sandwitch.Tier.Services.Classes
             });
         }
 
+        /// <summary>
+        /// Adds Historico
+        /// </summary>
+        /// <param name="entity">Injected <see cref="Arenal"/></param>
+        /// <returns>Instance of <see cref="Task"/></returns>
         public async Task AddHistorico(Arenal entity)
         {
             Historico historico = new Historico
@@ -99,6 +123,10 @@ namespace Sandwitch.Tier.Services.Classes
             entity.Historicos.Add(historico);
         }
 
+        /// <summary>
+        /// Finds All Arenal
+        /// </summary>
+        /// <returns>Instance of <see cref="IList{ViewArenal}"/></returns>
         public async Task<IList<ViewArenal>> FindAllArenal()
         {
             ICollection<Arenal> arenales = await Context.Arenal
@@ -113,6 +141,11 @@ namespace Sandwitch.Tier.Services.Classes
             return Mapper.Map<IList<ViewArenal>>(arenales);
         }
 
+        /// <summary>
+        /// Finds All Arenal By Poblacion Id
+        /// </summary>
+        /// <param name="id">Injected <see cref="int"/></param>
+        /// <returns>Instance of <see cref="IList{ViewArenal}"/></returns>
         public async Task<IList<ViewArenal>> FindAllArenalByPoblacionId(int id)
         {
             ICollection<Arenal> arenales = await Context.ArenalPoblacion
@@ -130,6 +163,11 @@ namespace Sandwitch.Tier.Services.Classes
             return Mapper.Map<IList<ViewArenal>>(arenales);
         }
 
+        /// <summary>
+        /// Finds All Historico By Arenal Id
+        /// </summary>
+        /// <param name="id">Injected <see cref="int"/></param>
+        /// <returns>Instance of <see cref="IList{ViewHistorico}"/></returns>
         public async Task<IList<ViewHistorico>> FindAllHistoricoByArenalId(int id)
         {
             ICollection<Historico> historicos = await Context.Historico
@@ -144,6 +182,11 @@ namespace Sandwitch.Tier.Services.Classes
             return Mapper.Map<IList<ViewHistorico>>(historicos);
         }
 
+        /// <summary>
+        /// Finds Arenal By Id
+        /// </summary>
+        /// <param name="id">Injected <see cref="int"/></param>
+        /// <returns>Instance of <see cref="Arenal"/></returns>
         public async Task<Arenal> FindArenalById(int id)
         {
             Arenal arenal = await Context.Arenal
@@ -173,6 +216,11 @@ namespace Sandwitch.Tier.Services.Classes
             return arenal;
         }
 
+        /// <summary>
+        /// Finds Poblacion By Id
+        /// </summary>
+        /// <param name="id">Injected <see cref="int"/></param>
+        /// <returns>Instance of <see cref="Poblacion"/></returns>
         public async Task<Poblacion> FindPoblacionById(int id)
         {
             Poblacion poblacion = await Context.Poblacion
@@ -199,6 +247,11 @@ namespace Sandwitch.Tier.Services.Classes
             return poblacion;
         }
 
+        /// <summary>
+        /// Finds Bandera By Id
+        /// </summary>
+        /// <param name="id">Injected <see cref="int"/></param>
+        /// <returns>Instance of <see cref="Bandera"/></returns>
         public async Task<Bandera> FindBanderaById(int id)
         {
             Bandera bandera = await Context.Bandera
@@ -225,6 +278,11 @@ namespace Sandwitch.Tier.Services.Classes
             return bandera;
         }
 
+        /// <summary>
+        /// Removes Arenal By Id
+        /// </summary>
+        /// <param name="id">Injected <see cref="int"/></param>
+        /// <returns>Instance of <see cref="Task"/></returns>
         public async Task RemoveArenalById(int id)
         {
             try
@@ -250,6 +308,11 @@ namespace Sandwitch.Tier.Services.Classes
             }
         }
 
+        /// <summary>
+        /// Updates Arenal
+        /// </summary>
+        /// <param name="viewModel">Injected <see cref="UpdateArenal"/></param>
+        /// <returns>Instance of <see cref="ViewArenal"/></returns>
         public async Task<ViewArenal> UpdateArenal(UpdateArenal viewModel)
         {
             await CheckName(viewModel);
@@ -286,6 +349,11 @@ namespace Sandwitch.Tier.Services.Classes
             return Mapper.Map<ViewArenal>(arenal); ;
         }
 
+        /// <summary>
+        /// Updates Arenal Poblacion
+        /// </summary>
+        /// <param name="viewModel">Injected <see cref="UpdateArenal"/></param>
+        /// <param name="entity">Injected <see cref="Arenal"/></param>
         public void UpdateArenalPoblacion(UpdateArenal viewModel, Arenal entity)
         {
             viewModel.PoblacionesId.AsQueryable().ToList().ForEach(async x =>
@@ -302,6 +370,11 @@ namespace Sandwitch.Tier.Services.Classes
             });
         }
 
+        /// <summary>
+        /// Updates Historico
+        /// </summary>
+        /// <param name="entity">Injected <see cref="Arenal"/></param>
+        /// <returns>Instance of <see cref="Task"/></returns>
         public async Task UpdateHistorico(Arenal entity)
         {
             Historico historico = new Historico
@@ -317,6 +390,11 @@ namespace Sandwitch.Tier.Services.Classes
             entity.Historicos.Add(historico);
         }
 
+        /// <summary>
+        /// Checks Name
+        /// </summary>
+        /// <param name="viewModel">Injected <see cref="AddArenal"/></param>
+        /// <returns>Instance of <see cref="Arenal"/></returns>
         public async Task<Arenal> CheckName(AddArenal viewModel)
         {
             Arenal arenal = await Context.Arenal
@@ -344,6 +422,11 @@ namespace Sandwitch.Tier.Services.Classes
             return arenal;
         }
 
+        /// <summary>
+        /// Checks Name
+        /// </summary>
+        /// <param name="viewModel">Injected <see cref="UpdateArenal"/></param>
+        /// <returns>Instance of <see cref="Arenal"/></returns>
         public async Task<Arenal> CheckName(UpdateArenal viewModel)
         {
             Arenal arenal = await Context.Arenal

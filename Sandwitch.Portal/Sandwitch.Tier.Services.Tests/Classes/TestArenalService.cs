@@ -15,16 +15,28 @@ using Sandwitch.Tier.ViewModels.Classes.Updates;
 
 namespace Sandwitch.Tier.Services.Tests.Classes
 {
+    /// <summary>
+    /// Represents a <see cref="TestArenalService"/> class. Inherits <see cref="TestBaseService"/>
+    /// </summary>
     [TestFixture]
     public class TestArenalService : TestBaseService
     {
+        /// <summary>
+        /// Instance of <see cref="ILogger{ProvinciaService}"/>
+        /// </summary>
         private ILogger<ArenalService> Logger;
 
+        /// <summary>
+        /// Initializes a new Instance of <see cref="TestArenalService"/>
+        /// </summary>
         public TestArenalService()
         {
 
         }
 
+        /// <summary>
+        /// Sets Up
+        /// </summary>
         [SetUp]
         public void Setup()
         {
@@ -35,6 +47,9 @@ namespace Sandwitch.Tier.Services.Tests.Classes
             SetUpLogger();
         }
 
+        /// <summary>
+        /// Sets Up Logger
+        /// </summary>
         private void SetUpLogger()
         {
             ILoggerFactory loggerFactory = LoggerFactory.Create(builder =>
@@ -48,6 +63,10 @@ namespace Sandwitch.Tier.Services.Tests.Classes
             Logger = loggerFactory.CreateLogger<ArenalService>();
         }
 
+        /// <summary>
+        /// Sets Up Context
+        /// </summary>
+        /// <param name="context">Injected <see cref="ApplicationContext"/></param>
         private void SetUpContext(ApplicationContext context)
         {
             context.Poblacion.Add(new Poblacion { Name = "Poblacion 1", LastModified = DateTime.Now, Deleted = false });
@@ -62,6 +81,10 @@ namespace Sandwitch.Tier.Services.Tests.Classes
             context.SaveChanges();
         }
 
+        /// <summary>
+        /// Tests
+        /// </summary>
+        /// <returns>Instance of <see cref="Task"/></returns>
         [Test]
         public async Task FindAllArenal()
         {
@@ -77,6 +100,10 @@ namespace Sandwitch.Tier.Services.Tests.Classes
             Assert.Pass();
         }
 
+        /// <summary>
+        /// Tests
+        /// </summary>
+        /// <returns>Instance of <see cref="Task"/></returns>
         [Test]
         public async Task FindAllArenalByPoblacionId() 
         {
@@ -92,6 +119,10 @@ namespace Sandwitch.Tier.Services.Tests.Classes
             Assert.Pass();
         }
 
+        /// <summary>
+        /// Tests
+        /// </summary>
+        /// <returns>Instance of <see cref="Task"/></returns>
         [Test]
         public async Task FindAllHistoricoByArenalId() 
         {
@@ -107,6 +138,10 @@ namespace Sandwitch.Tier.Services.Tests.Classes
             Assert.Pass();
         }
 
+        /// <summary>
+        /// Tests
+        /// </summary>
+        /// <returns>Instance of <see cref="Task"/></returns>
         [Test]
         public async Task FindArenalById()
         {
@@ -122,6 +157,10 @@ namespace Sandwitch.Tier.Services.Tests.Classes
             Assert.Pass();
         }
 
+        /// <summary>
+        /// Tests
+        /// </summary>
+        /// <returns>Instance of <see cref="Task"/></returns>
         [Test]
         public async Task FindPoblacionById() 
         {
@@ -137,6 +176,10 @@ namespace Sandwitch.Tier.Services.Tests.Classes
             Assert.Pass();
         }
 
+        /// <summary>
+        /// Tests
+        /// </summary>
+        /// <returns>Instance of <see cref="Task"/></returns>
         [Test]
         public async Task FindBanderaById() 
         {
@@ -152,6 +195,10 @@ namespace Sandwitch.Tier.Services.Tests.Classes
             Assert.Pass();
         }
 
+        /// <summary>
+        /// Tests
+        /// </summary>
+        /// <returns>Instance of <see cref="Task"/></returns>
         [Test]
         public async Task RemoveArenalById()
         {
@@ -167,6 +214,10 @@ namespace Sandwitch.Tier.Services.Tests.Classes
             Assert.Pass();
         }
 
+        /// <summary>
+        /// Tests
+        /// </summary>
+        /// <returns>Instance of <see cref="Task"/></returns>
         [Test]
         public async Task UpdateArenal()
         {
@@ -189,6 +240,10 @@ namespace Sandwitch.Tier.Services.Tests.Classes
             Assert.Pass();
         }
 
+        /// <summary>
+        /// Tests
+        /// </summary>
+        /// <returns>Instance of <see cref="Task"/></returns>
         [Test]
         public async Task AddArenal()
         {
@@ -210,6 +265,10 @@ namespace Sandwitch.Tier.Services.Tests.Classes
             Assert.Pass();
         }
 
+        /// <summary>
+        /// Tests
+        /// </summary>
+        /// <returns>Instance of <see cref="Task"/></returns>
         [Test]
         public void CheckName()
         {

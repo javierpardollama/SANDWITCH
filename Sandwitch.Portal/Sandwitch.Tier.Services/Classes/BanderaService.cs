@@ -18,8 +18,17 @@ using Sandwitch.Tier.ViewModels.Classes.Views;
 
 namespace Sandwitch.Tier.Services.Classes
 {
+    /// <summary>
+    /// Represents a <see cref="BanderaService"/> class. Inherits <see cref="BaseService"/>. Implements <see cref="IBanderaService"/>
+    /// </summary>
     public class BanderaService : BaseService, IBanderaService
     {
+        /// <summary>
+        /// Initializes a new Instance of <see cref="BanderaService"/>
+        /// </summary>
+        /// <param name="context">Injected <see cref="IApplicationContext"/></param>
+        /// <param name="mapper">Injected <see cref="IMapper"/></param>
+        /// <param name="logger">Injected <see cref="ILogger"/></param>
         public BanderaService(IApplicationContext context,
                               IMapper mapper,
                               ILogger<BanderaService> logger) : base(context,
@@ -28,6 +37,11 @@ namespace Sandwitch.Tier.Services.Classes
         {
         }
 
+        /// <summary>
+        /// Adds Bandera
+        /// </summary>
+        /// <param name="viewModel">Injected <see cref="AddBandera"/></param>
+        /// <returns>Instance of <see cref="ViewBandera"/></returns>
         public async Task<ViewBandera> AddBandera(AddBandera viewModel)
         {
             await CheckName(viewModel);
@@ -61,6 +75,10 @@ namespace Sandwitch.Tier.Services.Classes
             return Mapper.Map<ViewBandera>(bandera);
         }
 
+        /// <summary>
+        /// Finds All Bandera
+        /// </summary>
+        /// <returns>Instance of <see cref="IList{ViewBandera}"/></returns>
         public async Task<IList<ViewBandera>> FindAllBandera()
         {
             IList<Bandera> banderas = await Context.Bandera
@@ -71,6 +89,11 @@ namespace Sandwitch.Tier.Services.Classes
             return Mapper.Map<IList<ViewBandera>>(banderas);
         }
 
+        /// <summary>
+        /// Finds All Historico By Poblacion Id
+        /// </summary>
+        /// <param name="id">Injected <see cref="int"/></param>
+        /// <returns>Instance of <see cref="IList{ViewHistorico}"/></returns>
         public async Task<IList<ViewHistorico>> FindAllHistoricoByBanderaId(int id)
         {
             ICollection<Historico> historicos = await Context.Historico
@@ -85,6 +108,11 @@ namespace Sandwitch.Tier.Services.Classes
             return Mapper.Map<IList<ViewHistorico>>(historicos);
         }
 
+        /// <summary>
+        /// Finds Bandera By Id
+        /// </summary>
+        /// <param name="id">Injected <see cref="int"/></param>
+        /// <returns>Instance of <see cref="Bandera"/></returns>
         public async Task<Bandera> FindBanderaById(int id)
         {
             Bandera bandera = await Context.Bandera
@@ -111,6 +139,11 @@ namespace Sandwitch.Tier.Services.Classes
             return bandera;
         }
 
+        /// <summary>
+        /// Removes Bandera By Id
+        /// </summary>
+        /// <param name="id">Injected <see cref="int"/></param>
+        /// <returns>Instance of <see cref="Task"/></returns>
         public async Task RemoveBanderaById(int id)
         {
             try
@@ -136,6 +169,11 @@ namespace Sandwitch.Tier.Services.Classes
             }
         }
 
+        /// <summary>
+        /// Updates Bandera
+        /// </summary>
+        /// <param name="viewModel">Injected <see cref="UpdateBandera"/></param>
+        /// <returns>Instance of <see cref="ViewBandera"/></returns>
         public async Task<ViewBandera> UpdateBandera(UpdateBandera viewModel)
         {
             await CheckName(viewModel);
@@ -167,6 +205,11 @@ namespace Sandwitch.Tier.Services.Classes
             return Mapper.Map<ViewBandera>(bandera);
         }
 
+        /// <summary>
+        /// Checks Name
+        /// </summary>
+        /// <param name="viewModel">Injected <see cref="AddBandera"/></param>
+        /// <returns>Instance of <see cref="Bandera"/></returns>
         public async Task<Bandera> CheckName(AddBandera viewModel)
         {
             Bandera bandera = await Context.Bandera
@@ -194,6 +237,11 @@ namespace Sandwitch.Tier.Services.Classes
             return bandera;
         }
 
+        /// <summary>
+        /// Checks Name
+        /// </summary>
+        /// <param name="viewModel">Injected <see cref="UpdateBandera"/></param>
+        /// <returns>Instance of <see cref="Bandera"/></returns>
         public async Task<Bandera> CheckName(UpdateBandera viewModel)
         {
             Bandera bandera = await Context.Bandera

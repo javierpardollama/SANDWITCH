@@ -10,36 +10,72 @@ using Sandwitch.Tier.Entities.Classes;
 
 namespace Sandwitch.Tier.Contexts.Classes
 {
+    /// <summary>
+    /// Represents a <see cref="ApplicationContext"/> class. Inherits <see cref="DbContext"/>. Implements <see cref="IApplicationContext"/>
+    /// </summary>
     public class ApplicationContext : DbContext, IApplicationContext
     {
+        /// <summary>
+        /// Initializes a new Instance of <see cref="ApplicationContext"/>
+        /// </summary>
+        /// <param name="options">Injected <see cref="DbContextOptions{ApplicationContext}"/></param>
         public ApplicationContext(DbContextOptions<ApplicationContext> options) : base(options)
         {
         }
 
+        /// <summary>
+        /// Gets or Sets <see cref="DbSet{Provincia}"/>
+        /// </summary>
         public virtual DbSet<Provincia> Provincia { get; set; }
 
+        /// <summary>
+        /// Gets or Sets <see cref="DbSet{Poblacion}"/>
+        /// </summary>
         public virtual DbSet<Poblacion> Poblacion { get; set; }
 
+        /// <summary>
+        /// Gets or Sets <see cref="DbSet{Bandera}"/>
+        /// </summary>
         public virtual DbSet<Bandera> Bandera { get; set; }
 
+        /// <summary>
+        /// Gets or Sets <see cref="DbSet{Arenal}"/>
+        /// </summary>
         public virtual DbSet<Arenal> Arenal { get; set; }
 
+        /// <summary>
+        /// Gets or Sets <see cref="DbSet{ArenalPoblacion}"/>
+        /// </summary>
         public virtual DbSet<ArenalPoblacion> ArenalPoblacion { get; set; }
 
+        /// <summary>
+        /// Gets or Sets <see cref="DbSet{Historico}"/>
+        /// </summary>
         public virtual DbSet<Historico> Historico { get; set; }
 
+        /// <summary>
+        /// Saves Changes Syncronously
+        /// </summary>
+        /// <returns>Istance of <see cref="int"/></returns>
         public override int SaveChanges()
         {
             UpdateSoftStatus();
             return base.SaveChanges();
         }
 
+        /// <summary>
+        /// Saves Changes Asyncronously
+        /// </summary>
+        /// <returns>Istance of <see cref="Task{int}"/></returns>
         public async Task<int> SaveChangesAsync()
         {
             UpdateSoftStatus();
             return await base.SaveChangesAsync();
         }
 
+        /// <summary>
+        /// Overrides Tracking
+        /// </summary>
         private void UpdateSoftStatus()
         {
             foreach (EntityEntry entity in ChangeTracker.Entries())
@@ -67,6 +103,10 @@ namespace Sandwitch.Tier.Contexts.Classes
             }
         }
 
+        /// <summary>
+        /// Overrides Model Creation
+        /// </summary>
+        /// <param name="modelBuilder">Injected <see cref="ModelBuilder"/></param>
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.AddCustomizedFilters();

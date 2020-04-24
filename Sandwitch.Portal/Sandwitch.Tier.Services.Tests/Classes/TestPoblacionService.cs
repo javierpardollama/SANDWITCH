@@ -78,7 +78,7 @@ namespace Sandwitch.Tier.Services.Tests.Classes
         }
 
         /// <summary>
-        /// Tests
+        /// Finds All Poblacion
         /// </summary>
         /// <returns>Instance of <see cref="Task"/></returns>
         [Test]
@@ -97,7 +97,7 @@ namespace Sandwitch.Tier.Services.Tests.Classes
         }
 
         /// <summary>
-        /// Tests
+        /// Finds All Poblacion By Provincia Id
         /// </summary>
         /// <returns>Instance of <see cref="Task"/></returns>
         [Test]
@@ -116,7 +116,7 @@ namespace Sandwitch.Tier.Services.Tests.Classes
         }
 
         /// <summary>
-        /// Tests
+        /// Finds Poblacion By Id
         /// </summary>
         /// <returns>Instance of <see cref="Task"/></returns>
         [Test]
@@ -135,7 +135,7 @@ namespace Sandwitch.Tier.Services.Tests.Classes
         }
 
         /// <summary>
-        /// Tests
+        /// Finds Provincia By Id
         /// </summary>
         /// <returns>Instance of <see cref="Task"/></returns>
         [Test]
@@ -155,7 +155,7 @@ namespace Sandwitch.Tier.Services.Tests.Classes
         }
 
         /// <summary>
-        /// Tests
+        /// Removes Poblacion By Id
         /// </summary>
         /// <returns>Instance of <see cref="Task"/></returns>
         [Test]
@@ -174,7 +174,7 @@ namespace Sandwitch.Tier.Services.Tests.Classes
         }
 
         /// <summary>
-        /// Tests
+        /// Updates Poblacion
         /// </summary>
         /// <returns>Instance of <see cref="Task"/></returns>
         [Test]
@@ -201,7 +201,7 @@ namespace Sandwitch.Tier.Services.Tests.Classes
         }
 
         /// <summary>
-        /// Tests
+        /// Adds Poblacion
         /// </summary>
         /// <returns>Instance of <see cref="Task"/></returns>
         [Test]
@@ -227,7 +227,7 @@ namespace Sandwitch.Tier.Services.Tests.Classes
         }
 
         /// <summary>
-        /// Tests
+        /// Checks Name
         /// </summary>
         /// <returns>Instance of <see cref="Task"/></returns>
         [Test]

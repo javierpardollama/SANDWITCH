@@ -75,7 +75,7 @@ namespace Sandwitch.Tier.Services.Tests.Classes
         }
 
         /// <summary>
-        /// Tests
+        /// Finds All Bandera
         /// </summary>
         /// <returns>Instance of <see cref="Task"/></returns>
         [Test]
@@ -94,7 +94,7 @@ namespace Sandwitch.Tier.Services.Tests.Classes
         }
 
         /// <summary>
-        /// Tests
+        /// Finds All Historico By Bandera Id
         /// </summary>
         /// <returns>Instance of <see cref="Task"/></returns>
         [Test]
@@ -113,7 +113,7 @@ namespace Sandwitch.Tier.Services.Tests.Classes
         }
 
         /// <summary>
-        /// Tests
+        /// Finds Bandera By Id
         /// </summary>
         /// <returns>Instance of <see cref="Task"/></returns>
         [Test]
@@ -132,7 +132,7 @@ namespace Sandwitch.Tier.Services.Tests.Classes
         }
 
         /// <summary>
-        /// Tests
+        /// Removes Bandera By Id
         /// </summary>
         /// <returns>Instance of <see cref="Task"/></returns>
         [Test]
@@ -151,7 +151,7 @@ namespace Sandwitch.Tier.Services.Tests.Classes
         }
 
         /// <summary>
-        /// Tests
+        /// Updates Bandera
         /// </summary>
         /// <returns>Instance of <see cref="Task"/></returns>
         [Test]
@@ -177,7 +177,7 @@ namespace Sandwitch.Tier.Services.Tests.Classes
         }
 
         /// <summary>
-        /// Tests
+        /// Adds Bandera
         /// </summary>
         /// <returns>Instance of <see cref="Task"/></returns>
         [Test]
@@ -202,7 +202,7 @@ namespace Sandwitch.Tier.Services.Tests.Classes
         }
 
         /// <summary>
-        /// Tests
+        /// Checks Name
         /// </summary>
         /// <returns>Instance of <see cref="Task"/></returns>
         [Test]

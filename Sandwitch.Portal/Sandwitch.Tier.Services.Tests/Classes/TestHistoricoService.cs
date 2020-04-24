@@ -74,7 +74,7 @@ namespace Sandwitch.Tier.Services.Tests.Classes
         }
 
         /// <summary>
-        /// Tests
+        /// Finds Arenal By Id
         /// </summary>
         /// <returns>Instance of <see cref="Task"/></returns>
         [Test]
@@ -93,7 +93,7 @@ namespace Sandwitch.Tier.Services.Tests.Classes
         }
 
         /// <summary>
-        /// Tests
+        /// Finds Bandera By Id
         /// </summary>
         /// <returns>Instance of <see cref="Task"/></returns>
         [Test]
@@ -112,7 +112,7 @@ namespace Sandwitch.Tier.Services.Tests.Classes
         }
 
         /// <summary>
-        /// Tests
+        /// Adds Historico
         /// </summary>
         /// <returns>Instance of <see cref="Task"/></returns>
         [Test]

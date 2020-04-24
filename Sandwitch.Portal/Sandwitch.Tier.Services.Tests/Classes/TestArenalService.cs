@@ -82,7 +82,7 @@ namespace Sandwitch.Tier.Services.Tests.Classes
         }
 
         /// <summary>
-        /// Tests
+        /// Finds All Arenal
         /// </summary>
         /// <returns>Instance of <see cref="Task"/></returns>
         [Test]
@@ -101,7 +101,7 @@ namespace Sandwitch.Tier.Services.Tests.Classes
         }
 
         /// <summary>
-        /// Tests
+        /// Finds All Arenal By Poblacion Id
         /// </summary>
         /// <returns>Instance of <see cref="Task"/></returns>
         [Test]
@@ -120,7 +120,7 @@ namespace Sandwitch.Tier.Services.Tests.Classes
         }
 
         /// <summary>
-        /// Tests
+        /// Finds All Historico By Arenal Id
         /// </summary>
         /// <returns>Instance of <see cref="Task"/></returns>
         [Test]
@@ -139,7 +139,7 @@ namespace Sandwitch.Tier.Services.Tests.Classes
         }
 
         /// <summary>
-        /// Tests
+        /// Finds Arenal By Id
         /// </summary>
         /// <returns>Instance of <see cref="Task"/></returns>
         [Test]
@@ -158,7 +158,7 @@ namespace Sandwitch.Tier.Services.Tests.Classes
         }
 
         /// <summary>
-        /// Tests
+        /// Finds Poblacion By Id
         /// </summary>
         /// <returns>Instance of <see cref="Task"/></returns>
         [Test]
@@ -177,7 +177,7 @@ namespace Sandwitch.Tier.Services.Tests.Classes
         }
 
         /// <summary>
-        /// Tests
+        /// Finds Bandera By Id
         /// </summary>
         /// <returns>Instance of <see cref="Task"/></returns>
         [Test]
@@ -196,7 +196,7 @@ namespace Sandwitch.Tier.Services.Tests.Classes
         }
 
         /// <summary>
-        /// Tests
+        /// Removes Arenal By Id
         /// </summary>
         /// <returns>Instance of <see cref="Task"/></returns>
         [Test]
@@ -215,7 +215,7 @@ namespace Sandwitch.Tier.Services.Tests.Classes
         }
 
         /// <summary>
-        /// Tests
+        /// Updates Arenal
         /// </summary>
         /// <returns>Instance of <see cref="Task"/></returns>
         [Test]
@@ -241,7 +241,7 @@ namespace Sandwitch.Tier.Services.Tests.Classes
         }
 
         /// <summary>
-        /// Tests
+        /// Adds Arenal
         /// </summary>
         /// <returns>Instance of <see cref="Task"/></returns>
         [Test]
@@ -266,7 +266,7 @@ namespace Sandwitch.Tier.Services.Tests.Classes
         }
 
         /// <summary>
-        /// Tests
+        /// Checks Name
         /// </summary>
         /// <returns>Instance of <see cref="Task"/></returns>
         [Test]

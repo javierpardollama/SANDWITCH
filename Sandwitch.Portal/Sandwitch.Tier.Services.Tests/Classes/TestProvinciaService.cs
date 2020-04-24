@@ -75,7 +75,7 @@ namespace Sandwitch.Tier.Services.Tests.Classes
         }
 
         /// <summary>
-        /// Tests
+        /// Finds All Provincia
         /// </summary>
         /// <returns>Instance of <see cref="Task"/></returns>
         [Test]
@@ -94,7 +94,7 @@ namespace Sandwitch.Tier.Services.Tests.Classes
         }
 
         /// <summary>
-        /// Tests
+        /// Finds Provincia By Id
         /// </summary>
         /// <returns>Instance of <see cref="Task"/></returns>
         [Test]
@@ -113,7 +113,7 @@ namespace Sandwitch.Tier.Services.Tests.Classes
         }
 
         /// <summary>
-        /// Tests
+        /// Removes Provincia By Id
         /// </summary>
         /// <returns>Instance of <see cref="Task"/></returns>
         [Test]
@@ -132,7 +132,7 @@ namespace Sandwitch.Tier.Services.Tests.Classes
         }
 
         /// <summary>
-        /// Tests
+        /// Updates Provincia
         /// </summary>
         /// <returns>Instance of <see cref="Task"/></returns>
         [Test]
@@ -158,7 +158,7 @@ namespace Sandwitch.Tier.Services.Tests.Classes
         }
 
         /// <summary>
-        /// Tests
+        /// Adds Provincia
         /// </summary>
         /// <returns>Instance of <see cref="Task"/></returns>
         [Test]
@@ -183,7 +183,7 @@ namespace Sandwitch.Tier.Services.Tests.Classes
         }
 
         /// <summary>
-        /// Tests
+        /// Checks Name
         /// </summary>
         /// <returns>Instance of <see cref="Task"/></returns>
         [Test]

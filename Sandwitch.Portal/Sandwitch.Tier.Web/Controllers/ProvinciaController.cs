@@ -10,7 +10,7 @@ using Sandwitch.Tier.ViewModels.Classes.Updates;
 namespace Sandwitch.Tier.Web.Controllers
 {
     /// <summary>
-    /// Represents a <see cref="ProvinciaController"/> interface. Inherits <see cref="ControllerBase"/>
+    /// Represents a <see cref="ProvinciaController"/> class. Inherits <see cref="ControllerBase"/>
     /// </summary>
     [Route("api/provincia")]
     [Produces("application/json")]
@@ -57,7 +57,7 @@ namespace Sandwitch.Tier.Web.Controllers
         /// <summary>
         /// Removes Provincia By Id
         /// </summary>
-        /// <param name="viewModel">Injected <see cref="int"/></param>
+        /// <param name="id">Injected <see cref="int"/></param>
         /// <returns>Instance of <see cref="JsonResult"/></returns>
         [HttpDelete]
         [Route("removeprovinciabyid/{id}")]

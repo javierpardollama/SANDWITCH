@@ -10,7 +10,7 @@ using Sandwitch.Tier.ViewModels.Classes.Updates;
 namespace Sandwitch.Tier.Web.Controllers
 {
     /// <summary>
-    /// Represents a <see cref="PoblacionController"/> interface. Inherits <see cref="ControllerBase"/>
+    /// Represents a <see cref="PoblacionController"/> class. Inherits <see cref="ControllerBase"/>
     /// </summary>
     [Route("api/poblacion")]
     [Produces("application/json")]
@@ -40,7 +40,7 @@ namespace Sandwitch.Tier.Web.Controllers
         /// <summary>
         /// Finds All Poblacion
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Instance of <see cref="JsonResult"/></returns>
         [HttpGet]
         [Route("findallpoblacion")]
         public async Task<IActionResult> FindAllPoblacion() => new JsonResult(value: await Service.FindAllPoblacion());
@@ -48,8 +48,8 @@ namespace Sandwitch.Tier.Web.Controllers
         /// <summary>
         /// Finds All Poblacion By Provincia Id
         /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
+        /// <param name="id">Injected <see cref="int"/></param>
+        /// <returns>Instance of <see cref="JsonResult"/></returns>
         [HttpGet]
         [Route("findallpoblacionbyprovinciaid/{id}")]
         public async Task<IActionResult> FindAllPoblacionByProvinciaId(int id) => new JsonResult(value: await Service.FindAllPoblacionByProvinciaId(id));

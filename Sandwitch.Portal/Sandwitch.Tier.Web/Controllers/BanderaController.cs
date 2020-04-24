@@ -10,7 +10,7 @@ using Sandwitch.Tier.ViewModels.Classes.Updates;
 namespace Sandwitch.Tier.Web.Controllers
 {
     /// <summary>
-    /// Represents a <see cref="BanderaController"/> interface. Inherits <see cref="ControllerBase"/>
+    /// Represents a <see cref="BanderaController"/> class. Inherits <see cref="ControllerBase"/>
     /// </summary>
     [Route("api/bandera")]
     [Produces("application/json")]

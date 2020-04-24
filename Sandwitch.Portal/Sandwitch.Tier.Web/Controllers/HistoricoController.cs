@@ -8,7 +8,7 @@ using Sandwitch.Tier.ViewModels.Classes.Additions;
 namespace Sandwitch.Tier.Web.Controllers
 {
     /// <summary>
-    /// Represents a <see cref="HistoricoController"/> interface. Inherits <see cref="ControllerBase"/>
+    /// Represents a <see cref="HistoricoController"/> class. Inherits <see cref="ControllerBase"/>
     /// </summary>
     [Route("api/historico")]
     [Produces("application/json")]

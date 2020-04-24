@@ -10,7 +10,7 @@ using Sandwitch.Tier.ViewModels.Classes.Updates;
 namespace Sandwitch.Tier.Web.Controllers
 {
     /// <summary>
-    /// Represents a <see cref="ArenalController"/> interface. Inherits <see cref="ControllerBase"/>
+    /// Represents a <see cref="ArenalController"/> class. Inherits <see cref="ControllerBase"/>
     /// </summary>
     [Route("api/arenal")]
     [Produces("application/json")]

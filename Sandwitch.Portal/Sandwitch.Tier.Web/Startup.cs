@@ -35,12 +35,12 @@ namespace Sandwitch.Tier.Web
         public IConfiguration Configuration { get; }
 
         /// <summary>
-        /// Gets <see cref="MapperConfiguration"/>
+        /// Gets or Sets <see cref="MapperConfiguration"/>
         /// </summary>
         public MapperConfiguration MapperConfiguration { get; set; }
 
         /// <summary>
-        /// Gets <see cref="IMapper"/>
+        /// Gets or Sets <see cref="IMapper"/>
         /// </summary>
         public IMapper Mapper { get; set; }
 

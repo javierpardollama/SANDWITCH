@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
 using Sandwitch.Tier.Contexts.Classes;
+using Serilog;
 
 namespace Sandwitch.Tier.Web
 {
@@ -31,7 +32,11 @@ namespace Sandwitch.Tier.Web
         /// </summary>
         /// <param name="args">Injected <see cref="string[]"/></param>
         /// <returns></returns>
-        public static IWebHost BuildWebHost(string[] args) => WebHost.CreateDefaultBuilder(args).UseStartup<Startup>().Build();
+        public static IWebHost BuildWebHost(string[] args) => WebHost.CreateDefaultBuilder(args)
+            .UseStartup<Startup>()
+            .UseSerilog((hostingContext, loggerConfiguration) => loggerConfiguration
+                .ReadFrom.Configuration(hostingContext.Configuration))
+            .Build();
 
         /// <summary>
         /// Applies WebHost Migrations

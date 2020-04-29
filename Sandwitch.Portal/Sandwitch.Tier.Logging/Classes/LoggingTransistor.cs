@@ -109,14 +109,14 @@ namespace Sandwitch.Tier.Logging.Classes
         /// Gets Application Event Code
         /// </summary>
         /// <param name="appEventData">Injected <see cref="Enum"/></param>
-        /// <returns></returns>
+        /// <returns>Instance of <see cref="int"/></returns>
         private static int GetApplicationEventCode(Enum @appEventData) => (int)Convert.ChangeType(@appEventData, @appEventData.GetTypeCode());
 
         /// <summary>
         /// Gets Application Event Level
         /// </summary>
         /// <param name="appEventData">Injected <see cref="Enum"/></param>
-        /// <returns></returns>
+        /// <returns>Instance of <see cref="LogLevel"/></returns>
         private static LogLevel GetApplicationEventLevel(Enum @appEventData)
         {
             if (LoggingProfile.LogLevelMapings.ContainsKey(@appEventData))

@@ -29,7 +29,7 @@ namespace Sandwitch.Tier.ExceptionHandling.Middlewares
         /// Invoques Asynchronously
         /// </summary>
         /// <param name="context">Injected <see cref="HttpContext"/></param>
-        /// <returns></returns>
+        /// <returns>Instance of <see cref="Task"/></returns>
         public async Task InvokeAsync(HttpContext @context)
         {
             try

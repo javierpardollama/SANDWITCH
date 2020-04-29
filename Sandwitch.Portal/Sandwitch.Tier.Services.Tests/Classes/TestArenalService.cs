@@ -52,7 +52,7 @@ namespace Sandwitch.Tier.Services.Tests.Classes
         /// </summary>
         private void SetUpLogger()
         {
-            ILoggerFactory loggerFactory = LoggerFactory.Create(builder =>
+            ILoggerFactory @loggerFactory = LoggerFactory.Create(builder =>
             {
                 builder
                     .AddFilter("Microsoft", LogLevel.Warning)
@@ -60,25 +60,25 @@ namespace Sandwitch.Tier.Services.Tests.Classes
                     .AddConsole();
             });
 
-            Logger = loggerFactory.CreateLogger<ArenalService>();
+            Logger = @loggerFactory.CreateLogger<ArenalService>();
         }
 
         /// <summary>
         /// Sets Up Context
         /// </summary>
         /// <param name="context">Injected <see cref="ApplicationContext"/></param>
-        private void SetUpContext(ApplicationContext context)
+        private void SetUpContext(ApplicationContext @context)
         {
-            context.Poblacion.Add(new Poblacion { Name = "Poblacion 1", LastModified = DateTime.Now, Deleted = false });
-            context.Poblacion.Add(new Poblacion { Name = "Poblacion 2", LastModified = DateTime.Now, Deleted = false });
+            @context.Poblacion.Add(new Poblacion { Name = "Poblacion 1", LastModified = DateTime.Now, Deleted = false });
+            @context.Poblacion.Add(new Poblacion { Name = "Poblacion 2", LastModified = DateTime.Now, Deleted = false });
 
-            context.Bandera.Add(new Bandera { Name = "Bandera 1", LastModified = DateTime.Now, Deleted = false });
+            @context.Bandera.Add(new Bandera { Name = "Bandera 1", LastModified = DateTime.Now, Deleted = false });
 
-            context.Arenal.Add(new Arenal { Name = "Arenal 1", LastModified = DateTime.Now, Deleted = false });
-            context.Arenal.Add(new Arenal { Name = "Arenal 2", LastModified = DateTime.Now, Deleted = false });
-            context.Arenal.Add(new Arenal { Name = "Arenal 3", LastModified = DateTime.Now, Deleted = false });
+            @context.Arenal.Add(new Arenal { Name = "Arenal 1", LastModified = DateTime.Now, Deleted = false });
+            @context.Arenal.Add(new Arenal { Name = "Arenal 2", LastModified = DateTime.Now, Deleted = false });
+            @context.Arenal.Add(new Arenal { Name = "Arenal 3", LastModified = DateTime.Now, Deleted = false });
 
-            context.SaveChanges();
+            @context.SaveChanges();
         }
 
         /// <summary>
@@ -88,13 +88,13 @@ namespace Sandwitch.Tier.Services.Tests.Classes
         [Test]
         public async Task FindAllArenal()
         {
-            using (ApplicationContext context = new ApplicationContext(this.Options))
+            using (ApplicationContext @context = new ApplicationContext(this.Options))
             {
-                SetUpContext(context);
+                SetUpContext(@context);
 
-                ArenalService service = new ArenalService(context, Mapper, Logger);
+                ArenalService @service = new ArenalService(@context, Mapper, Logger);
 
-                await service.FindAllArenal();
+                await @service.FindAllArenal();
             };
 
             Assert.Pass();
@@ -107,13 +107,13 @@ namespace Sandwitch.Tier.Services.Tests.Classes
         [Test]
         public async Task FindAllArenalByPoblacionId() 
         {
-            using (ApplicationContext context = new ApplicationContext(this.Options))
+            using (ApplicationContext @context = new ApplicationContext(this.Options))
             {
-                SetUpContext(context);
+                SetUpContext(@context);
 
-                ArenalService service = new ArenalService(context, Mapper, Logger);
+                ArenalService @service = new ArenalService(@context, Mapper, Logger);
 
-                await service.FindAllArenalByPoblacionId(1);
+                await @service.FindAllArenalByPoblacionId(1);
             };
 
             Assert.Pass();
@@ -126,13 +126,13 @@ namespace Sandwitch.Tier.Services.Tests.Classes
         [Test]
         public async Task FindAllHistoricoByArenalId() 
         {
-            using (ApplicationContext context = new ApplicationContext(this.Options))
+            using (ApplicationContext @context = new ApplicationContext(this.Options))
             {
-                SetUpContext(context);
+                SetUpContext(@context);
 
-                ArenalService service = new ArenalService(context, Mapper, Logger);
+                ArenalService @service = new ArenalService(@context, Mapper, Logger);
 
-                await service.FindAllHistoricoByArenalId(context.Arenal.FirstOrDefault().Id);
+                await @service.FindAllHistoricoByArenalId(@context.Arenal.FirstOrDefault().Id);
             };
 
             Assert.Pass();
@@ -145,13 +145,13 @@ namespace Sandwitch.Tier.Services.Tests.Classes
         [Test]
         public async Task FindArenalById()
         {
-            using (ApplicationContext context = new ApplicationContext(this.Options))
+            using (ApplicationContext @context = new ApplicationContext(this.Options))
             {
-                SetUpContext(context);
+                SetUpContext(@context);
 
-                ArenalService service = new ArenalService(context, Mapper, Logger);
+                ArenalService @service = new ArenalService(@context, Mapper, Logger);
 
-                await service.FindArenalById(context.Arenal.FirstOrDefault().Id);
+                await @service.FindArenalById(@context.Arenal.FirstOrDefault().Id);
             };
 
             Assert.Pass();
@@ -164,13 +164,13 @@ namespace Sandwitch.Tier.Services.Tests.Classes
         [Test]
         public async Task FindPoblacionById() 
         {
-            using (ApplicationContext context = new ApplicationContext(this.Options))
+            using (ApplicationContext @context = new ApplicationContext(this.Options))
             {
-                SetUpContext(context);
+                SetUpContext(@context);
 
-                ArenalService service = new ArenalService(context, Mapper, Logger);
+                ArenalService @service = new ArenalService(@context, Mapper, Logger);
 
-                await service.FindPoblacionById(context.Poblacion.FirstOrDefault().Id);
+                await @service.FindPoblacionById(@context.Poblacion.FirstOrDefault().Id);
             };
 
             Assert.Pass();
@@ -183,13 +183,13 @@ namespace Sandwitch.Tier.Services.Tests.Classes
         [Test]
         public async Task FindBanderaById() 
         {
-            using (ApplicationContext context = new ApplicationContext(this.Options))
+            using (ApplicationContext @context = new ApplicationContext(this.Options))
             {
-                SetUpContext(context);
+                SetUpContext(@context);
 
-                ArenalService service = new ArenalService(context, Mapper, Logger);
+                ArenalService @service = new ArenalService(@context, Mapper, Logger);
 
-                await service.FindBanderaById(context.Bandera.FirstOrDefault().Id);
+                await @service.FindBanderaById(@context.Bandera.FirstOrDefault().Id);
             };
 
             Assert.Pass();
@@ -202,13 +202,13 @@ namespace Sandwitch.Tier.Services.Tests.Classes
         [Test]
         public async Task RemoveArenalById()
         {
-            using (ApplicationContext context = new ApplicationContext(this.Options))
+            using (ApplicationContext @context = new ApplicationContext(this.Options))
             {
-                SetUpContext(context);
+                SetUpContext(@context);
 
-                ArenalService service = new ArenalService(context, Mapper, Logger);
+                ArenalService @service = new ArenalService(@context, Mapper, Logger);
 
-                await service.RemoveArenalById(context.Arenal.FirstOrDefault().Id);
+                await @service.RemoveArenalById(@context.Arenal.FirstOrDefault().Id);
             };
 
             Assert.Pass();
@@ -221,20 +221,20 @@ namespace Sandwitch.Tier.Services.Tests.Classes
         [Test]
         public async Task UpdateArenal()
         {
-            UpdateArenal provincia = new UpdateArenal()
+            UpdateArenal @provincia = new UpdateArenal()
             {
                 Id = 2,
                 Name = "Arenal 21",
                 PoblacionesId = new List<int>() { 1,2}
             };
 
-            using (ApplicationContext context = new ApplicationContext(this.Options))
+            using (ApplicationContext @context = new ApplicationContext(this.Options))
             {
-                SetUpContext(context);
+                SetUpContext(@context);
 
-                ArenalService service = new ArenalService(context, Mapper, Logger);
+                ArenalService @service = new ArenalService(@context, Mapper, Logger);
 
-                await service.UpdateArenal(provincia);
+                await @service.UpdateArenal(@provincia);
             };
 
             Assert.Pass();
@@ -247,19 +247,19 @@ namespace Sandwitch.Tier.Services.Tests.Classes
         [Test]
         public async Task AddArenal()
         {
-            AddArenal provincia = new AddArenal()
+            AddArenal @provincia = new AddArenal()
             {
                 Name = "Arenal 4",
                 PoblacionesId = new List<int>() { 1, 2 },
             };
 
-            using (ApplicationContext context = new ApplicationContext(this.Options))
+            using (ApplicationContext @context = new ApplicationContext(this.Options))
             {
-                SetUpContext(context);
+                SetUpContext(@context);
 
-                ArenalService service = new ArenalService(context, Mapper, Logger);
+                ArenalService @service = new ArenalService(@context, Mapper, Logger);
 
-                await service.AddArenal(provincia);
+                await @service.AddArenal(@provincia);
             };
 
             Assert.Pass();
@@ -272,19 +272,19 @@ namespace Sandwitch.Tier.Services.Tests.Classes
         [Test]
         public void CheckName()
         {
-            AddArenal provincia = new AddArenal()
+            AddArenal @provincia = new AddArenal()
             {
                 PoblacionesId = new List<int>() { 1, 2 },
                 Name = "Arenal 4"
             };
 
-            using (ApplicationContext context = new ApplicationContext(this.Options))
+            using (ApplicationContext @context = new ApplicationContext(this.Options))
             {
-                SetUpContext(context);
+                SetUpContext(@context);
 
-                ArenalService service = new ArenalService(context, Mapper, Logger);
+                ArenalService @service = new ArenalService(@context, Mapper, Logger);
 
-                Exception exception = Assert.ThrowsAsync<Exception>(async () => await service.CheckName(provincia));
+                Exception exception = Assert.ThrowsAsync<Exception>(async () => await @service.CheckName(@provincia));
             };
 
             Assert.Pass();

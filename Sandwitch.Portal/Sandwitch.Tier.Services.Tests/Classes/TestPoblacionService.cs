@@ -51,7 +51,7 @@ namespace Sandwitch.Tier.Services.Tests.Classes
         /// </summary>
         private void SetUpLogger()
         {
-            ILoggerFactory loggerFactory = LoggerFactory.Create(builder =>
+            ILoggerFactory @loggerFactory = LoggerFactory.Create(builder =>
             {
                 builder
                     .AddFilter("Microsoft", LogLevel.Warning)
@@ -59,22 +59,22 @@ namespace Sandwitch.Tier.Services.Tests.Classes
                     .AddConsole();
             });
 
-            Logger = loggerFactory.CreateLogger<PoblacionService>();
+            Logger = @loggerFactory.CreateLogger<PoblacionService>();
         }
 
         /// <summary>
         /// Sets Up Context
         /// </summary>
         /// <param name="context">Injected <see cref="ApplicationContext"/></param>
-        private void SetUpContext(ApplicationContext context)
+        private void SetUpContext(ApplicationContext @context)
         {
-            context.Provincia.Add(new Provincia { Name = "Provincia 1", LastModified = DateTime.Now, Deleted = false });
+            @context.Provincia.Add(new Provincia { Name = "Provincia 1", LastModified = DateTime.Now, Deleted = false });
 
-            context.Poblacion.Add(new Poblacion { Name = "Poblacion 1", LastModified = DateTime.Now, Deleted = false });
-            context.Poblacion.Add(new Poblacion { Name = "Poblacion 2", LastModified = DateTime.Now, Deleted = false });
-            context.Poblacion.Add(new Poblacion { Name = "Poblacion 3", LastModified = DateTime.Now, Deleted = false });
+            @context.Poblacion.Add(new Poblacion { Name = "Poblacion 1", LastModified = DateTime.Now, Deleted = false });
+            @context.Poblacion.Add(new Poblacion { Name = "Poblacion 2", LastModified = DateTime.Now, Deleted = false });
+            @context.Poblacion.Add(new Poblacion { Name = "Poblacion 3", LastModified = DateTime.Now, Deleted = false });
 
-            context.SaveChanges();
+            @context.SaveChanges();
         }
 
         /// <summary>
@@ -84,13 +84,13 @@ namespace Sandwitch.Tier.Services.Tests.Classes
         [Test]
         public async Task FindAllPoblacion()
         {
-            using (ApplicationContext context = new ApplicationContext(this.Options))
+            using (ApplicationContext @context = new ApplicationContext(this.Options))
             {
-                SetUpContext(context);
+                SetUpContext(@context);
 
-                PoblacionService service = new PoblacionService(context, Mapper, Logger);
+                PoblacionService @service = new PoblacionService(@context, Mapper, Logger);
 
-                await service.FindAllPoblacion();
+                await @service.FindAllPoblacion();
             };
 
             Assert.Pass();
@@ -103,13 +103,13 @@ namespace Sandwitch.Tier.Services.Tests.Classes
         [Test]
         public async Task FindAllPoblacionByProvinciaId()
         {
-            using (ApplicationContext context = new ApplicationContext(this.Options))
+            using (ApplicationContext @context = new ApplicationContext(this.Options))
             {
-                SetUpContext(context);
+                SetUpContext(@context);
 
-                PoblacionService service = new PoblacionService(context, Mapper, Logger);
+                PoblacionService @service = new PoblacionService(@context, Mapper, Logger);
 
-                await service.FindAllPoblacionByProvinciaId(context.Provincia.FirstOrDefault().Id);
+                await @service.FindAllPoblacionByProvinciaId(@context.Provincia.FirstOrDefault().Id);
             };
 
             Assert.Pass();
@@ -122,13 +122,13 @@ namespace Sandwitch.Tier.Services.Tests.Classes
         [Test]
         public async Task FindPoblacionById()
         {
-            using (ApplicationContext context = new ApplicationContext(this.Options))
+            using (ApplicationContext @context = new ApplicationContext(this.Options))
             {
-                SetUpContext(context);
+                SetUpContext(@context);
 
-                PoblacionService service = new PoblacionService(context, Mapper, Logger);
+                PoblacionService @service = new PoblacionService(@context, Mapper, Logger);
 
-                await service.FindPoblacionById(context.Poblacion.FirstOrDefault().Id);
+                await @service.FindPoblacionById(@context.Poblacion.FirstOrDefault().Id);
             };
 
             Assert.Pass();
@@ -141,13 +141,13 @@ namespace Sandwitch.Tier.Services.Tests.Classes
         [Test]
         public async Task FindProvinciaById() 
         {
-            using (ApplicationContext context = new ApplicationContext(this.Options))
+            using (ApplicationContext @context = new ApplicationContext(this.Options))
             {
-                SetUpContext(context);
+                SetUpContext(@context);
 
-                PoblacionService service = new PoblacionService(context, Mapper, Logger);
+                PoblacionService @service = new PoblacionService(@context, Mapper, Logger);
 
-                await service.FindProvinciaById(context.Provincia.FirstOrDefault().Id);
+                await @service.FindProvinciaById(@context.Provincia.FirstOrDefault().Id);
             };
 
             Assert.Pass();
@@ -161,13 +161,13 @@ namespace Sandwitch.Tier.Services.Tests.Classes
         [Test]
         public async Task RemovePoblacionById()
         {
-            using (ApplicationContext context = new ApplicationContext(this.Options))
+            using (ApplicationContext @context = new ApplicationContext(this.Options))
             {
-                SetUpContext(context);
+                SetUpContext(@context);
 
-                PoblacionService service = new PoblacionService(context, Mapper, Logger);
+                PoblacionService @service = new PoblacionService(@context, Mapper, Logger);
 
-                await service.RemovePoblacionById(context.Poblacion.FirstOrDefault().Id);
+                await @service.RemovePoblacionById(@context.Poblacion.FirstOrDefault().Id);
             };
 
             Assert.Pass();
@@ -180,7 +180,7 @@ namespace Sandwitch.Tier.Services.Tests.Classes
         [Test]
         public async Task UpdatePoblacion()
         {
-            UpdatePoblacion poblacion = new UpdatePoblacion()
+            UpdatePoblacion @poblacion = new UpdatePoblacion()
             {
                 Id = 2,
                 ImageUri = "URL/Poblacion_21_500px.png",
@@ -188,13 +188,13 @@ namespace Sandwitch.Tier.Services.Tests.Classes
                 ProvinciaId = 1
             };
 
-            using (ApplicationContext context = new ApplicationContext(this.Options))
+            using (ApplicationContext @context = new ApplicationContext(this.Options))
             {
-                SetUpContext(context);
+                SetUpContext(@context);
 
-                PoblacionService service = new PoblacionService(context, Mapper, Logger);
+                PoblacionService @service = new PoblacionService(@context, Mapper, Logger);
 
-                await service.UpdatePoblacion(poblacion);
+                await @service.UpdatePoblacion(@poblacion);
             };
 
             Assert.Pass();
@@ -207,20 +207,20 @@ namespace Sandwitch.Tier.Services.Tests.Classes
         [Test]
         public async Task AddPoblacion()
         {
-            AddPoblacion poblacion = new AddPoblacion()
+            AddPoblacion @poblacion = new AddPoblacion()
             {
                 ImageUri = "URL/Poblacion_4_500px.png",
                 Name = "Poblacion 4",
                 ProvinciaId = 1
             };
 
-            using (ApplicationContext context = new ApplicationContext(this.Options))
+            using (ApplicationContext @context = new ApplicationContext(this.Options))
             {
-                SetUpContext(context);
+                SetUpContext(@context);
 
-                PoblacionService service = new PoblacionService(context, Mapper, Logger);
+                PoblacionService @service = new PoblacionService(@context, Mapper, Logger);
 
-                await service.AddPoblacion(poblacion);
+                await @service.AddPoblacion(@poblacion);
             };
 
             Assert.Pass();
@@ -233,19 +233,19 @@ namespace Sandwitch.Tier.Services.Tests.Classes
         [Test]
         public void CheckName()
         {
-            AddPoblacion poblacion = new AddPoblacion()
+            AddPoblacion @poblacion = new AddPoblacion()
             {
                 ImageUri = "URL/Poblacion_4_500px.png",
                 Name = "Poblacion 4"
             };
 
-            using (ApplicationContext context = new ApplicationContext(this.Options))
+            using (ApplicationContext @context = new ApplicationContext(this.Options))
             {
-                SetUpContext(context);
+                SetUpContext(@context);
 
-                PoblacionService service = new PoblacionService(context, Mapper, Logger);
+                PoblacionService @service = new PoblacionService(@context, Mapper, Logger);
 
-                Exception exception = Assert.ThrowsAsync<Exception>(async () => await service.CheckName(poblacion));
+                Exception exception = Assert.ThrowsAsync<Exception>(async () => await @service.CheckName(@poblacion));
             };
 
             Assert.Pass();

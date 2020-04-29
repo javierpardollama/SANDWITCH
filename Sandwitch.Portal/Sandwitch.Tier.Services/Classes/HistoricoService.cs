@@ -27,11 +27,11 @@ namespace Sandwitch.Tier.Services.Classes
         /// <param name="context">Injected <see cref="IApplicationContext"/></param>
         /// <param name="mapper">Injected <see cref="IMapper"/></param>
         /// <param name="logger">Injected <see cref="ILogger"/></param>
-        public HistoricoService(IApplicationContext context,
-                                IMapper mapper,
-                                ILogger<HistoricoService> logger) : base(context,
-                                                                          mapper,
-                                                                          logger)
+        public HistoricoService(IApplicationContext @context,
+                                IMapper @mapper,
+                                ILogger<HistoricoService> @logger) : base(@context,
+                                                                          @mapper,
+                                                                          @logger)
         {
         }
 
@@ -40,33 +40,33 @@ namespace Sandwitch.Tier.Services.Classes
         /// </summary>
         /// <param name="id">Injected <see cref="int"/></param>
         /// <returns>Instance of <see cref="Arenal"/></returns>
-        public async Task<Arenal> FindArenalById(int id)
+        public async Task<Arenal> FindArenalById(int @id)
         {
-            Arenal arenal = await Context.Arenal
+            Arenal @arenal = await Context.Arenal
                 .TagWith("FindArenalById")
                 .AsQueryable()
                 .Include(x => x.ArenalPoblaciones)
                 .ThenInclude(x => x.Poblacion)
-                .FirstOrDefaultAsync(x => x.Id == id);
+                .FirstOrDefaultAsync(x => x.Id == @id);
 
-            if (arenal == null)
+            if (@arenal == null)
             {
                 // Log
-                string logData = arenal.GetType().Name
+                string @logData = @arenal.GetType().Name
                     + " with Id "
-                    + id
+                    + @id
                     + " was not found at "
                     + DateTime.Now.ToShortTimeString();
 
-                Logger.WriteGetItemNotFoundLog(logData);
+                Logger.WriteGetItemNotFoundLog(@logData);
 
-                throw new Exception(arenal.GetType().Name
+                throw new Exception(@arenal.GetType().Name
                     + " with Id "
-                    + id
+                    + @id
                     + " does not exist");
             }
 
-            return arenal;
+            return @arenal;
         }
 
         /// <summary>
@@ -74,30 +74,30 @@ namespace Sandwitch.Tier.Services.Classes
         /// </summary>
         /// <param name="id">Injected <see cref="int"/></param>
         /// <returns>Instance of <see cref="Bandera"/></returns>
-        public async Task<Bandera> FindBanderaById(int id)
+        public async Task<Bandera> FindBanderaById(int @id)
         {
-            Bandera bandera = await Context.Bandera
+            Bandera @bandera = await Context.Bandera
                  .TagWith("FindBanderaById")
-                 .FirstOrDefaultAsync(x => x.Id == id);
+                 .FirstOrDefaultAsync(x => x.Id == @id);
 
-            if (bandera == null)
+            if (@bandera == null)
             {
                 // Log
-                string logData = bandera.GetType().Name
+                string @logData = @bandera.GetType().Name
                     + " with Id "
-                    + id
+                    + @id
                     + " was not found at "
                     + DateTime.Now.ToShortTimeString();
 
-                Logger.WriteGetItemNotFoundLog(logData);
+                Logger.WriteGetItemNotFoundLog(@logData);
 
-                throw new Exception(bandera.GetType().Name
+                throw new Exception(@bandera.GetType().Name
                     + " with Id "
-                    + id
+                    + @id
                     + " does not exist");
             }
 
-            return bandera;
+            return @bandera;
         }
 
         /// <summary>
@@ -105,33 +105,33 @@ namespace Sandwitch.Tier.Services.Classes
         /// </summary>
         /// <param name="viewModel">Injected <see cref="AddHistorico"/></param>
         /// <returns>Instance of <see cref="ViewHistorico"/></returns>
-        public async Task<ViewHistorico> AddHistorico(AddHistorico viewModel)
+        public async Task<ViewHistorico> AddHistorico(AddHistorico @viewModel)
         {
-            Historico historico = new Historico
+            Historico @historico = new Historico
             {
-                Arenal = await FindArenalById(viewModel.ArenalId),
-                Bandera = await FindBanderaById(viewModel.BanderaId),
-                BajaMarAlba = viewModel.BajaMarAlba,
-                BajaMarOcaso = viewModel.BajaMarOcaso,
-                AltaMarAlba = viewModel.AltaMarAlba,
-                AltaMarOcaso = viewModel.AltaMarOcaso,
-                Temperatura = viewModel.Temperatura,
+                Arenal = await FindArenalById(@viewModel.ArenalId),
+                Bandera = await FindBanderaById(@viewModel.BanderaId),
+                BajaMarAlba = @viewModel.BajaMarAlba,
+                BajaMarOcaso = @viewModel.BajaMarOcaso,
+                AltaMarAlba = @viewModel.AltaMarAlba,
+                AltaMarOcaso = @viewModel.AltaMarOcaso,
+                Temperatura = @viewModel.Temperatura,
             };
 
-            Context.Historico.Add(historico);
+            Context.Historico.Add(@historico);
 
             await Context.SaveChangesAsync();
 
             // Log
-            string logData = historico.GetType().Name
+            string @logData = @historico.GetType().Name
                 + " with Id "
                 + historico.Id
                 + " was added at "
                 + DateTime.Now.ToShortTimeString();
 
-            Logger.WriteInsertItemLog(logData);
+            Logger.WriteInsertItemLog(@logData);
 
-            return Mapper.Map<ViewHistorico>(historico);
+            return Mapper.Map<ViewHistorico>(@historico);
         }
     }
 }

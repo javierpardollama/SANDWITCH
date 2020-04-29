@@ -33,13 +33,13 @@ namespace Sandwitch.Tier.Services.Classes
         /// <param name="context">Injected <see cref="IApplicationContext"/></param>
         /// <param name="mapper">Injected <see cref="IMapper"/></param>
         /// <param name="logger">Injected <see cref="ILogger"/></param>
-        public BaseService(IApplicationContext context,
-                           IMapper mapper,
-                           ILogger logger)
+        public BaseService(IApplicationContext @context,
+                           IMapper @mapper,
+                           ILogger @logger)
         {
-            Context = context;
-            Mapper = mapper;
-            Logger = logger;
+            Context = @context;
+            Mapper = @mapper;
+            Logger = @logger;
         }       
     }
 }

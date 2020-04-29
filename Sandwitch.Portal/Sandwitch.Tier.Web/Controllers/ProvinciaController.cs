@@ -26,7 +26,7 @@ namespace Sandwitch.Tier.Web.Controllers
         /// Initializes a new Instance of <see cref="ProvinciaController"/>
         /// </summary>
         /// <param name="service">Injected <see cref="IProvinciaService"/></param>
-        public ProvinciaController(IProvinciaService service) => Service = service;
+        public ProvinciaController(IProvinciaService @service) => Service = @service;
 
         /// <summary>
         /// Updates Provincia
@@ -35,7 +35,7 @@ namespace Sandwitch.Tier.Web.Controllers
         /// <returns>Instance of <see cref="JsonResult"/></returns>
         [HttpPut]
         [Route("updateprovincia")]
-        public async Task<IActionResult> UpdateProvincia([FromBody]UpdateProvincia viewModel) => new JsonResult(value: await Service.UpdateProvincia(viewModel));
+        public async Task<IActionResult> UpdateProvincia([FromBody]UpdateProvincia @viewModel) => new JsonResult(value: await Service.UpdateProvincia(@viewModel));
 
         /// <summary>
         /// Finds All Provincia
@@ -52,7 +52,7 @@ namespace Sandwitch.Tier.Web.Controllers
         /// <returns>Instance of <see cref="JsonResult"/></returns>
         [HttpPost]
         [Route("addprovincia")]
-        public async Task<IActionResult> AddProvincia([FromBody]AddProvincia viewModel) => new JsonResult(value: await Service.AddProvincia(viewModel));
+        public async Task<IActionResult> AddProvincia([FromBody]AddProvincia @viewModel) => new JsonResult(value: await Service.AddProvincia(@viewModel));
 
         /// <summary>
         /// Removes Provincia By Id
@@ -61,9 +61,9 @@ namespace Sandwitch.Tier.Web.Controllers
         /// <returns>Instance of <see cref="JsonResult"/></returns>
         [HttpDelete]
         [Route("removeprovinciabyid/{id}")]
-        public async Task<IActionResult> RemoveProvinciaById(int id)
+        public async Task<IActionResult> RemoveProvinciaById(int @id)
         {
-            await Service.RemoveProvinciaById(id);
+            await Service.RemoveProvinciaById(@id);
 
             return new JsonResult((int)HttpStatusCode.OK);
         }

@@ -30,15 +30,15 @@ namespace Sandwitch.Tier.ExceptionHandling.Middlewares
         /// </summary>
         /// <param name="context">Injected <see cref="HttpContext"/></param>
         /// <returns></returns>
-        public async Task InvokeAsync(HttpContext context)
+        public async Task InvokeAsync(HttpContext @context)
         {
             try
             {
-                await Request(context);
+                await Request(@context);
             }
-            catch (Exception ex)
+            catch (Exception @exception)
             {
-                await HandleExceptionAsync(context, ex);
+                await HandleExceptionAsync(@context, @exception);
             }
         }
 
@@ -49,19 +49,19 @@ namespace Sandwitch.Tier.ExceptionHandling.Middlewares
         /// <param name="exception">Injected <see cref="Exception"/></param>
         /// <returns>Instance of <see cref="ViewException"/></returns>
         private static Task HandleExceptionAsync(
-            HttpContext context,
-            Exception exception)
+            HttpContext @context,
+            Exception @exception)
         {
-            context.Response.ContentType = "application/json";
-            context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
+            @context.Response.ContentType = "application/json";
+            @context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
 
             ViewException viewException = new ViewException
             {
-                StatusCode = context.Response.StatusCode,
-                Message = exception.Message
+                StatusCode = @context.Response.StatusCode,
+                Message = @exception.Message
             };
 
-            return context.Response.WriteAsync(JsonSerializer.Serialize(viewException, new JsonSerializerOptions() { WriteIndented = true }));
+            return @context.Response.WriteAsync(JsonSerializer.Serialize(viewException, new JsonSerializerOptions() { WriteIndented = true }));
         }
     }
 }

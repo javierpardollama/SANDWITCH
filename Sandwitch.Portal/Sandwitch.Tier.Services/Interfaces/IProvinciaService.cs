@@ -21,41 +21,41 @@ namespace Sandwitch.Tier.Services.Interfaces
         /// </summary>
         /// <param name="id">Injected <see cref="int"/></param>
         /// <returns>Instance of <see cref="Provincia"/></returns>
-        Task<Provincia> FindProvinciaById(int id);
+        Task<Provincia> FindProvinciaById(int @id);
 
         /// <summary>
         /// Removes Provincia By Id
         /// </summary>
         /// <param name="id">Injected <see cref="int"/></param>
         /// <returns>Instance of <see cref="Task"/></returns>
-        Task RemoveProvinciaById(int id);
+        Task RemoveProvinciaById(int @id);
 
         /// <summary>
         /// Updates Provincia
         /// </summary>
         /// <param name="viewModel">Injected <see cref="UpdateProvincia"/></param>
         /// <returns>Instance of <see cref="ViewProvincia"/></returns>
-        Task<ViewProvincia> UpdateProvincia(UpdateProvincia viewModel);
+        Task<ViewProvincia> UpdateProvincia(UpdateProvincia @viewModel);
 
         /// <summary>
         /// Adds Provincia
         /// </summary>
         /// <param name="viewModel">Injected <see cref="AddProvincia"/></param>
         /// <returns>Instance of <see cref="ViewProvincia"/></returns>
-        Task<ViewProvincia> AddProvincia(AddProvincia viewModel);
+        Task<ViewProvincia> AddProvincia(AddProvincia @viewModel);
 
         /// <summary>
         /// Checks Name
         /// </summary>
         /// <param name="viewModel">Injected <see cref="AddProvincia"/></param>
         /// <returns>Instance of <see cref="Provincia"/></returns>
-        Task<Provincia> CheckName(AddProvincia viewModel);
+        Task<Provincia> CheckName(AddProvincia @viewModel);
 
         /// <summary>
         /// Checks Name
         /// </summary>
         /// <param name="viewModel">Injected <see cref="AddProvincia"/></param>
         /// <returns>Instance of <see cref="Provincia"/></returns>
-        Task<Provincia> CheckName(UpdateProvincia viewModel);
+        Task<Provincia> CheckName(UpdateProvincia @viewModel);
     }
 }

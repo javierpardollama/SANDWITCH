@@ -27,7 +27,7 @@ namespace Sandwitch.Tier.Web
         /// Initializes a new Instance of<see cref="Startup"/>
         /// </summary>
         /// <param name="configuration">Injected <see cref="IConfiguration"/></param>
-        public Startup(IConfiguration configuration) => Configuration = configuration;
+        public Startup(IConfiguration @configuration) => Configuration = @configuration;
 
         /// <summary>
         /// Gets <see cref="IConfiguration"/>
@@ -49,12 +49,12 @@ namespace Sandwitch.Tier.Web
         /// Configures Services
         /// </summary>
         /// <param name="services">Injected <see cref="IServiceCollection"/></param>
-        public void ConfigureServices(IServiceCollection services)
+        public void ConfigureServices(IServiceCollection @services)
         {
-            services.AddControllers();
+            @services.AddControllers();
 
             // Add Entity Framework services to the services container.
-            services.AddDbContext<ApplicationContext>(options =>
+            @services.AddDbContext<ApplicationContext>(options =>
                 options.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
 
             MapperConfiguration = new MapperConfiguration(mc =>
@@ -65,15 +65,15 @@ namespace Sandwitch.Tier.Web
             Mapper = MapperConfiguration.CreateMapper();
 
             // Add Mapping to the services container.
-            services.AddSingleton(Mapper);
+            @services.AddSingleton(Mapper);
 
             // Register the service and implementation for the database context
-            services.AddCustomizedContexts();
+            @services.AddCustomizedContexts();
 
             // Register the Mvc services to the services container
-            services.AddCustomizedServices();
+            @services.AddCustomizedServices();
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_3_0)
+            @services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_3_0)
             .AddNewtonsoftJson(options =>
            {
                options.SerializerSettings.Formatting = Formatting.Indented;
@@ -82,7 +82,7 @@ namespace Sandwitch.Tier.Web
            });
 
             // In production, the Angular files will be served from this directory
-            services.AddSpaStaticFiles(configuration =>
+            @services.AddSpaStaticFiles(configuration =>
             {
                 configuration.RootPath = "ClientApp/dist";
             });
@@ -94,45 +94,45 @@ namespace Sandwitch.Tier.Web
         /// </summary>
         /// <param name="app">Injected <see cref="IApplicationBuilder"/></param>
         /// <param name="env">Injected <see cref="IWebHostEnvironment"/></param>
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder @app, IWebHostEnvironment @env)
         {
-            if (env.IsDevelopment())
+            if (@env.IsDevelopment())
             {
-                app.UseDeveloperExceptionPage();
-                app.UseCustomizedExceptionMiddlewares();
+                @app.UseDeveloperExceptionPage();
+                @app.UseCustomizedExceptionMiddlewares();
             }
             else
             {
-                app.UseCustomizedExceptionMiddlewares();
+                @app.UseCustomizedExceptionMiddlewares();
 
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-                app.UseHsts();
+                @app.UseHsts();
             }
 
-            app.UseHttpsRedirection();
-            app.UseStaticFiles();
-            if (!env.IsDevelopment())
+            @app.UseHttpsRedirection();
+            @app.UseStaticFiles();
+            if (!@env.IsDevelopment())
             {
-                app.UseSpaStaticFiles();
+                @app.UseSpaStaticFiles();
             }
 
-            app.UseRouting();
+            @app.UseRouting();
 
-            app.UseEndpoints(endpoints =>
+            @app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller}/{action=Index}/{id?}");
             });
 
-            app.UseSpa(spa =>
+            @app.UseSpa(spa =>
             {
                 // To learn more about options for serving an Angular SPA from ASP.NET Core,
                 // see https://go.microsoft.com/fwlink/?linkid=864501
 
                 spa.Options.SourcePath = "ClientApp";
 
-                if (env.IsDevelopment())
+                if (@env.IsDevelopment())
                 {
                     spa.UseProxyToSpaDevelopmentServer("http://localhost:4200");
                 }

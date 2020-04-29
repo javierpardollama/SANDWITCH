@@ -26,7 +26,7 @@ namespace Sandwitch.Tier.Web.Controllers
         /// Initializes a new Instance of <see cref="ArenalController"/>
         /// </summary>
         /// <param name="service">Injected <see cref="IArenalService"/></param>
-        public ArenalController(IArenalService service) => Service = service;
+        public ArenalController(IArenalService @service) => Service = @service;
 
         /// <summary>
         /// Updates Arenal
@@ -35,7 +35,7 @@ namespace Sandwitch.Tier.Web.Controllers
         /// <returns>Instance of <see cref="JsonResult"/></returns>
         [HttpPut]
         [Route("updatearenal")]
-        public async Task<IActionResult> UpdateArenal([FromBody]UpdateArenal viewModel) => new JsonResult(value: await Service.UpdateArenal(viewModel));
+        public async Task<IActionResult> UpdateArenal([FromBody]UpdateArenal @viewModel) => new JsonResult(value: await Service.UpdateArenal(@viewModel));
 
         /// <summary>
         /// Finds All Arenal
@@ -53,7 +53,7 @@ namespace Sandwitch.Tier.Web.Controllers
         /// <returns>Instance of <see cref="JsonResult"/></returns>
         [HttpGet]
         [Route("findallarenalbypoblacionid/{id}")]
-        public async Task<IActionResult> FindAllArenalByPoblacionId(int id) => new JsonResult(value: await Service.FindAllArenalByPoblacionId(id));
+        public async Task<IActionResult> FindAllArenalByPoblacionId(int @id) => new JsonResult(value: await Service.FindAllArenalByPoblacionId(@id));
 
         /// <summary>
         /// Finds All Historico By Arenal Id
@@ -62,7 +62,7 @@ namespace Sandwitch.Tier.Web.Controllers
         /// <returns>Instance of <see cref="JsonResult"/></returns>
         [HttpGet]
         [Route("findallhistoricobyarenalid/{id}")]
-        public async Task<IActionResult> FindAllHistoricoByArenalId(int id) => new JsonResult(value: await Service.FindAllHistoricoByArenalId(id));
+        public async Task<IActionResult> FindAllHistoricoByArenalId(int @id) => new JsonResult(value: await Service.FindAllHistoricoByArenalId(@id));
 
         /// <summary>
         /// Adds Arenal
@@ -71,7 +71,7 @@ namespace Sandwitch.Tier.Web.Controllers
         /// <returns>Instance of <see cref="JsonResult"/></returns>
         [HttpPost]
         [Route("addarenal")]
-        public async Task<IActionResult> AddArenal([FromBody]AddArenal viewModel) => new JsonResult(value: await Service.AddArenal(viewModel));
+        public async Task<IActionResult> AddArenal([FromBody]AddArenal @viewModel) => new JsonResult(value: await Service.AddArenal(@viewModel));
 
         /// <summary>
         /// Removes Arenal By Id
@@ -80,9 +80,9 @@ namespace Sandwitch.Tier.Web.Controllers
         /// <returns>Instance of <see cref="JsonResult"/></returns>
         [HttpDelete]
         [Route("removearenalbyid/{id}")]
-        public async Task<IActionResult> RemoveArenalById(int id)
+        public async Task<IActionResult> RemoveArenalById(int @id)
         {
-            await Service.RemoveArenalById(id);
+            await Service.RemoveArenalById(@id);
 
             return new JsonResult((int)HttpStatusCode.OK);
         }

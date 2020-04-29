@@ -24,48 +24,48 @@ namespace Sandwitch.Tier.Services.Interfaces
         /// </summary>
         /// <param name="id">Injected <see cref="int"/></param>
         /// <returns>Instance of <see cref="IList{ViewHistorico}"/></returns>
-        Task<IList<ViewHistorico>> FindAllHistoricoByBanderaId(int id);
+        Task<IList<ViewHistorico>> FindAllHistoricoByBanderaId(int @id);
 
         /// <summary>
         /// Finds Bandera By Id
         /// </summary>
         /// <param name="id">Injected <see cref="int"/></param>
         /// <returns>Instance of <see cref="Bandera"/></returns>
-        Task<Bandera> FindBanderaById(int id);
+        Task<Bandera> FindBanderaById(int @id);
 
         /// <summary>
         /// Removes Bandera By Id
         /// </summary>
         /// <param name="id">Injected <see cref="int"/></param>
         /// <returns>Instance of <see cref="Task"/></returns>
-        Task RemoveBanderaById(int id);
+        Task RemoveBanderaById(int @id);
 
         /// <summary>
         /// Updates Bandera
         /// </summary>
         /// <param name="viewModel">Injected <see cref="UpdateBandera"/></param>
         /// <returns>Instance of <see cref="ViewBandera"/></returns>
-        Task<ViewBandera> UpdateBandera(UpdateBandera viewModel);
+        Task<ViewBandera> UpdateBandera(UpdateBandera @viewModel);
 
         /// <summary>
         /// Adds Bandera
         /// </summary>
         /// <param name="viewModel">Injected <see cref="AddBandera"/></param>
         /// <returns>Instance of <see cref="ViewBandera"/></returns>
-        Task<ViewBandera> AddBandera(AddBandera viewModel);
+        Task<ViewBandera> AddBandera(AddBandera @viewModel);
 
         /// <summary>
         /// Checks Name
         /// </summary>
         /// <param name="viewModel">Injected <see cref="AddBandera"/></param>
         /// <returns>Instance of <see cref="Bandera"/></returns>
-        Task<Bandera> CheckName(AddBandera viewModel);
+        Task<Bandera> CheckName(AddBandera @viewModel);
 
         /// <summary>
         /// Checks Name
         /// </summary>
         /// <param name="viewModel">Injected <see cref="UpdateBandera"/></param>
         /// <returns>Instance of <see cref="Bandera"/></returns>
-        Task<Bandera> CheckName(UpdateBandera viewModel);
+        Task<Bandera> CheckName(UpdateBandera @viewModel);
     }
 }

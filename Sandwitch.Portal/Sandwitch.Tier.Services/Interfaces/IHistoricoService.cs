@@ -16,20 +16,20 @@ namespace Sandwitch.Tier.Services.Interfaces
         /// </summary>
         /// <param name="id">Injected <see cref="int"/></param>
         /// <returns>Instance of <see cref="Arenal"/></returns>
-        Task<Arenal> FindArenalById(int id);
+        Task<Arenal> FindArenalById(int @id);
 
         /// <summary>
         /// Finds Bandera By Id
         /// </summary>
         /// <param name="id">Injected <see cref="int"/></param>
         /// <returns>Instance of <see cref="Bandera"/></returns>
-        Task<Bandera> FindBanderaById(int id);
+        Task<Bandera> FindBanderaById(int @id);
 
         /// <summary>
         /// Adds Historico
         /// </summary>
         /// <param name="viewModel">Injected <see cref="AddHistorico"/></param>
         /// <returns>Instance of <see cref="ViewHistorico"/></returns>
-        Task<ViewHistorico> AddHistorico(AddHistorico viewModel);
+        Task<ViewHistorico> AddHistorico(AddHistorico @viewModel);
     }
 }

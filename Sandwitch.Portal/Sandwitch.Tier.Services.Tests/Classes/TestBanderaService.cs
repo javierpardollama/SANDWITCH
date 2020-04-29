@@ -50,7 +50,7 @@ namespace Sandwitch.Tier.Services.Tests.Classes
         /// </summary>
         private void SetUpLogger()
         {
-            ILoggerFactory loggerFactory = LoggerFactory.Create(builder =>
+            ILoggerFactory @loggerFactory = LoggerFactory.Create(builder =>
             {
                 builder
                     .AddFilter("Microsoft", LogLevel.Warning)
@@ -58,20 +58,20 @@ namespace Sandwitch.Tier.Services.Tests.Classes
                     .AddConsole();
             });
 
-            Logger = loggerFactory.CreateLogger<BanderaService>();
+            Logger = @loggerFactory.CreateLogger<BanderaService>();
         }
 
         /// <summary>
         /// Sets Up Context
         /// </summary>
         /// <param name="context">Injected <see cref="ApplicationContext"/></param>
-        private void SetUpContext(ApplicationContext context)
+        private void SetUpContext(ApplicationContext @context)
         {
-            context.Bandera.Add(new Bandera { Name = "Bandera 1", LastModified = DateTime.Now, Deleted = false });
-            context.Bandera.Add(new Bandera { Name = "Bandera 2", LastModified = DateTime.Now, Deleted = false });
-            context.Bandera.Add(new Bandera { Name = "Bandera 3", LastModified = DateTime.Now, Deleted = false });
+            @context.Bandera.Add(new Bandera { Name = "Bandera 1", LastModified = DateTime.Now, Deleted = false });
+            @context.Bandera.Add(new Bandera { Name = "Bandera 2", LastModified = DateTime.Now, Deleted = false });
+            @context.Bandera.Add(new Bandera { Name = "Bandera 3", LastModified = DateTime.Now, Deleted = false });
 
-            context.SaveChanges();
+            @context.SaveChanges();
         }
 
         /// <summary>
@@ -81,13 +81,13 @@ namespace Sandwitch.Tier.Services.Tests.Classes
         [Test]
         public async Task FindAllBandera()
         {
-            using (ApplicationContext context = new ApplicationContext(this.Options))
+            using (ApplicationContext @context = new ApplicationContext(this.Options))
             {
-                SetUpContext(context);
+                SetUpContext(@context);
 
-                BanderaService service = new BanderaService(context, Mapper, Logger);
+                BanderaService @service = new BanderaService(@context, Mapper, Logger);
 
-                await service.FindAllBandera();
+                await @service.FindAllBandera();
             };
 
             Assert.Pass();
@@ -100,13 +100,13 @@ namespace Sandwitch.Tier.Services.Tests.Classes
         [Test]
         public async Task FindAllHistoricoByBanderaId() 
         {
-            using (ApplicationContext context = new ApplicationContext(this.Options))
+            using (ApplicationContext @context = new ApplicationContext(this.Options))
             {
-                SetUpContext(context);
+                SetUpContext(@context);
 
-                BanderaService service = new BanderaService(context, Mapper, Logger);
+                BanderaService @service = new BanderaService(@context, Mapper, Logger);
 
-                await service.FindAllHistoricoByBanderaId(context.Bandera.FirstOrDefault().Id);
+                await @service.FindAllHistoricoByBanderaId(@context.Bandera.FirstOrDefault().Id);
             };
 
             Assert.Pass();
@@ -119,13 +119,13 @@ namespace Sandwitch.Tier.Services.Tests.Classes
         [Test]
         public async Task FindBanderaById()
         {
-            using (ApplicationContext context = new ApplicationContext(this.Options))
+            using (ApplicationContext @context = new ApplicationContext(this.Options))
             {
-                SetUpContext(context);
+                SetUpContext(@context);
 
-                BanderaService service = new BanderaService(context, Mapper, Logger);
+                BanderaService @service = new BanderaService(@context, Mapper, Logger);
 
-                await service.FindBanderaById(context.Bandera.FirstOrDefault().Id);
+                await @service.FindBanderaById(@context.Bandera.FirstOrDefault().Id);
             };
 
             Assert.Pass();
@@ -138,13 +138,13 @@ namespace Sandwitch.Tier.Services.Tests.Classes
         [Test]
         public async Task RemoveBanderaById()
         {
-            using (ApplicationContext context = new ApplicationContext(this.Options))
+            using (ApplicationContext @context = new ApplicationContext(this.Options))
             {
-                SetUpContext(context);
+                SetUpContext(@context);
 
-                BanderaService service = new BanderaService(context, Mapper, Logger);
+                BanderaService @service = new BanderaService(@context, Mapper, Logger);
 
-                await service.RemoveBanderaById(context.Bandera.FirstOrDefault().Id);
+                await @service.RemoveBanderaById(@context.Bandera.FirstOrDefault().Id);
             };
 
             Assert.Pass();
@@ -164,13 +164,13 @@ namespace Sandwitch.Tier.Services.Tests.Classes
                 Name = "Bandera 21"
             };
 
-            using (ApplicationContext context = new ApplicationContext(this.Options))
+            using (ApplicationContext @context = new ApplicationContext(this.Options))
             {
-                SetUpContext(context);
+                SetUpContext(@context);
 
-                BanderaService service = new BanderaService(context, Mapper, Logger);
+                BanderaService @service = new BanderaService(@context, Mapper, Logger);
 
-                await service.UpdateBandera(bandera);
+                await @service.UpdateBandera(bandera);
             };
 
             Assert.Pass();
@@ -183,19 +183,19 @@ namespace Sandwitch.Tier.Services.Tests.Classes
         [Test]
         public async Task AddBandera()
         {
-            AddBandera bandera = new AddBandera()
+            AddBandera @bandera = new AddBandera()
             {
                 ImageUri = "URL/Bandera_4_500px.png",
                 Name = "Bandera 4"
             };
 
-            using (ApplicationContext context = new ApplicationContext(this.Options))
+            using (ApplicationContext @context = new ApplicationContext(this.Options))
             {
-                SetUpContext(context);
+                SetUpContext(@context);
 
-                BanderaService service = new BanderaService(context, Mapper, Logger);
+                BanderaService @service = new BanderaService(@context, Mapper, Logger);
 
-                await service.AddBandera(bandera);
+                await @service.AddBandera(@bandera);
             };
 
             Assert.Pass();
@@ -208,19 +208,19 @@ namespace Sandwitch.Tier.Services.Tests.Classes
         [Test]
         public void CheckName()
         {
-            AddBandera bandera = new AddBandera()
+            AddBandera @bandera = new AddBandera()
             {
                 ImageUri = "URL/Bandera_4_500px.png",
                 Name = "Bandera 4"
             };
 
-            using (ApplicationContext context = new ApplicationContext(this.Options))
+            using (ApplicationContext @context = new ApplicationContext(this.Options))
             {
-                SetUpContext(context);
+                SetUpContext(@context);
 
-                BanderaService service = new BanderaService(context, Mapper, Logger);
+                BanderaService @service = new BanderaService(@context, Mapper, Logger);
 
-                Exception exception = Assert.ThrowsAsync<Exception>(async () => await service.CheckName(bandera));
+                Exception exception = Assert.ThrowsAsync<Exception>(async () => await @service.CheckName(@bandera));
             };
 
             Assert.Pass();

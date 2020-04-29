@@ -29,11 +29,11 @@ namespace Sandwitch.Tier.Services.Classes
         /// <param name="context">Injected <see cref="IApplicationContext"/></param>
         /// <param name="mapper">Injected <see cref="IMapper"/></param>
         /// <param name="logger">Injected <see cref="ILogger"/></param>
-        public BanderaService(IApplicationContext context,
-                              IMapper mapper,
-                              ILogger<BanderaService> logger) : base(context,
-                                                                      mapper,
-                                                                      logger)
+        public BanderaService(IApplicationContext @context,
+                              IMapper @mapper,
+                              ILogger<BanderaService> @logger) : base(@context,
+                                                                      @mapper,
+                                                                      @logger)
         {
         }
 
@@ -42,37 +42,37 @@ namespace Sandwitch.Tier.Services.Classes
         /// </summary>
         /// <param name="viewModel">Injected <see cref="AddBandera"/></param>
         /// <returns>Instance of <see cref="ViewBandera"/></returns>
-        public async Task<ViewBandera> AddBandera(AddBandera viewModel)
+        public async Task<ViewBandera> AddBandera(AddBandera @viewModel)
         {
-            await CheckName(viewModel);
+            await CheckName(@viewModel);
 
-            Bandera bandera = new Bandera
+            Bandera @bandera = new Bandera
             {
-                Name = viewModel.Name,
-                ImageUri = viewModel.ImageUri
+                Name = @viewModel.Name,
+                ImageUri = @viewModel.ImageUri
             };
 
             try
             {
-                await Context.Bandera.AddAsync(bandera);
+                await Context.Bandera.AddAsync(@bandera);
 
                 await Context.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException)
             {
-                await CheckName(viewModel);
+                await CheckName(@viewModel);
             }
 
             // Log
-            string logData = bandera.GetType().Name
+            string @logData = @bandera.GetType().Name
                 + " with Id "
-                + bandera.Id
+                + @bandera.Id
                 + " was added at "
                 + DateTime.Now.ToShortTimeString();
 
-            Logger.WriteInsertItemLog(logData);
+            Logger.WriteInsertItemLog(@logData);
 
-            return Mapper.Map<ViewBandera>(bandera);
+            return Mapper.Map<ViewBandera>(@bandera);
         }
 
         /// <summary>
@@ -81,12 +81,12 @@ namespace Sandwitch.Tier.Services.Classes
         /// <returns>Instance of <see cref="IList{ViewBandera}"/></returns>
         public async Task<IList<ViewBandera>> FindAllBandera()
         {
-            IList<Bandera> banderas = await Context.Bandera
+            IList<Bandera> @banderas = await Context.Bandera
                 .TagWith("FindAllBandera")
                 .AsNoTracking()
                 .ToListAsync();
 
-            return Mapper.Map<IList<ViewBandera>>(banderas);
+            return Mapper.Map<IList<ViewBandera>>(@banderas);
         }
 
         /// <summary>
@@ -94,18 +94,18 @@ namespace Sandwitch.Tier.Services.Classes
         /// </summary>
         /// <param name="id">Injected <see cref="int"/></param>
         /// <returns>Instance of <see cref="IList{ViewHistorico}"/></returns>
-        public async Task<IList<ViewHistorico>> FindAllHistoricoByBanderaId(int id)
+        public async Task<IList<ViewHistorico>> FindAllHistoricoByBanderaId(int @id)
         {
-            ICollection<Historico> historicos = await Context.Historico
+            ICollection<Historico> @historicos = await Context.Historico
                .TagWith("FindAllHistoricoByBanderaId")
                .AsQueryable()
                .AsNoTracking()
                .Include(x => x.Arenal)
                .Include(x => x.Bandera)
-               .Where(x => x.Bandera.Id == id)
+               .Where(x => x.Bandera.Id == @id)
                .ToListAsync();
 
-            return Mapper.Map<IList<ViewHistorico>>(historicos);
+            return Mapper.Map<IList<ViewHistorico>>(@historicos);
         }
 
         /// <summary>
@@ -113,30 +113,30 @@ namespace Sandwitch.Tier.Services.Classes
         /// </summary>
         /// <param name="id">Injected <see cref="int"/></param>
         /// <returns>Instance of <see cref="Bandera"/></returns>
-        public async Task<Bandera> FindBanderaById(int id)
+        public async Task<Bandera> FindBanderaById(int @id)
         {
-            Bandera bandera = await Context.Bandera
+            Bandera @bandera = await Context.Bandera
                  .TagWith("FindBanderaById")
-                 .FirstOrDefaultAsync(x => x.Id == id);
+                 .FirstOrDefaultAsync(x => x.Id == @id);
 
-            if (bandera == null)
+            if (@bandera == null)
             {
                 // Log
-                string logData = bandera.GetType().Name
+                string @logData = @bandera.GetType().Name
                     + " with Id "
-                    + id
+                    + @id
                     + " was not found at "
                     + DateTime.Now.ToShortTimeString();
 
-                Logger.WriteGetItemNotFoundLog(logData);
+                Logger.WriteGetItemNotFoundLog(@logData);
 
-                throw new Exception(bandera.GetType().Name
+                throw new Exception(@bandera.GetType().Name
                     + " with Id "
-                    + id
+                    + @id
                     + " does not exist");
             }
 
-            return bandera;
+            return @bandera;
         }
 
         /// <summary>
@@ -144,28 +144,28 @@ namespace Sandwitch.Tier.Services.Classes
         /// </summary>
         /// <param name="id">Injected <see cref="int"/></param>
         /// <returns>Instance of <see cref="Task"/></returns>
-        public async Task RemoveBanderaById(int id)
+        public async Task RemoveBanderaById(int @id)
         {
             try
             {
-                Bandera bandera = await FindBanderaById(id);
+                Bandera @bandera = await FindBanderaById(@id);
 
-                Context.Bandera.Remove(bandera);
+                Context.Bandera.Remove(@bandera);
 
                 await Context.SaveChangesAsync();
 
                 // Log
-                string logData = bandera.GetType().Name
+                string @logData = @bandera.GetType().Name
                     + " with Id "
-                    + bandera.Id
+                    + @bandera.Id
                     + " was removed at "
                     + DateTime.Now.ToShortTimeString();
 
-                Logger.WriteDeleteItemLog(logData);
+                Logger.WriteDeleteItemLog(@logData);
             }
             catch (DbUpdateConcurrencyException)
             {
-                await FindBanderaById(id);
+                await FindBanderaById(@id);
             }
         }
 
@@ -174,35 +174,35 @@ namespace Sandwitch.Tier.Services.Classes
         /// </summary>
         /// <param name="viewModel">Injected <see cref="UpdateBandera"/></param>
         /// <returns>Instance of <see cref="ViewBandera"/></returns>
-        public async Task<ViewBandera> UpdateBandera(UpdateBandera viewModel)
+        public async Task<ViewBandera> UpdateBandera(UpdateBandera @viewModel)
         {
-            await CheckName(viewModel);
+            await CheckName(@viewModel);
 
-            Bandera bandera = await FindBanderaById(viewModel.Id);
-            bandera.Name = viewModel.Name;
-            bandera.ImageUri = viewModel.ImageUri;
+            Bandera @bandera = await FindBanderaById(@viewModel.Id);
+            @bandera.Name = @viewModel.Name;
+            @bandera.ImageUri = @viewModel.ImageUri;
 
             try
             {
-                Context.Bandera.Update(bandera);
+                Context.Bandera.Update(@bandera);
 
                 await Context.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException)
             {
-                await CheckName(viewModel);
+                await CheckName(@viewModel);
             }
 
             // Log
-            string logData = bandera.GetType().Name
+            string @logData = @bandera.GetType().Name
                 + " with Id "
-                + bandera.Id
+                + @bandera.Id
                 + " was modified at "
                 + DateTime.Now.ToShortTimeString();
 
-            Logger.WriteUpdateItemLog(logData);
+            Logger.WriteUpdateItemLog(@logData);
 
-            return Mapper.Map<ViewBandera>(bandera);
+            return Mapper.Map<ViewBandera>(@bandera);
         }
 
         /// <summary>
@@ -210,31 +210,31 @@ namespace Sandwitch.Tier.Services.Classes
         /// </summary>
         /// <param name="viewModel">Injected <see cref="AddBandera"/></param>
         /// <returns>Instance of <see cref="Bandera"/></returns>
-        public async Task<Bandera> CheckName(AddBandera viewModel)
+        public async Task<Bandera> CheckName(AddBandera @viewModel)
         {
-            Bandera bandera = await Context.Bandera
+            Bandera @bandera = await Context.Bandera
                  .TagWith("CheckName")
                  .AsNoTracking()
-                 .FirstOrDefaultAsync(x => x.Name == viewModel.Name);
+                 .FirstOrDefaultAsync(x => x.Name == @viewModel.Name);
 
-            if (bandera != null)
+            if (@bandera != null)
             {
                 // Log
-                string logData = bandera.GetType().Name
+                string @logData = @bandera.GetType().Name
                     + " with Name "
-                    + bandera.Name
+                    + @bandera.Name
                     + " was already found at "
                     + DateTime.Now.ToShortTimeString();
 
-                Logger.WriteGetItemFoundLog(logData);
+                Logger.WriteGetItemFoundLog(@logData);
 
-                throw new Exception(bandera.GetType().Name
+                throw new Exception(@bandera.GetType().Name
                     + " with Name "
-                    + viewModel.Name
+                    + @viewModel.Name
                     + " already exists");
             }
 
-            return bandera;
+            return @bandera;
         }
 
         /// <summary>
@@ -242,27 +242,27 @@ namespace Sandwitch.Tier.Services.Classes
         /// </summary>
         /// <param name="viewModel">Injected <see cref="UpdateBandera"/></param>
         /// <returns>Instance of <see cref="Bandera"/></returns>
-        public async Task<Bandera> CheckName(UpdateBandera viewModel)
+        public async Task<Bandera> CheckName(UpdateBandera @viewModel)
         {
-            Bandera bandera = await Context.Bandera
+            Bandera @bandera = await Context.Bandera
                  .TagWith("CheckName")
                  .AsNoTracking()
-                 .FirstOrDefaultAsync(x => x.Name == viewModel.Name && x.Id != viewModel.Id);
+                 .FirstOrDefaultAsync(x => x.Name == @viewModel.Name && x.Id != viewModel.Id);
 
-            if (bandera != null)
+            if (@bandera != null)
             {
                 // Log
-                string logData = bandera.GetType().Name
+                string @logData = @bandera.GetType().Name
                     + " with Name "
-                    + bandera.Name
+                    + @bandera.Name
                     + " was already found at "
                     + DateTime.Now.ToShortTimeString();
 
-                Logger.WriteGetItemFoundLog(logData);
+                Logger.WriteGetItemFoundLog(@logData);
 
-                throw new Exception(bandera.GetType().Name
+                throw new Exception(@bandera.GetType().Name
                     + " with Name "
-                    + viewModel.Name
+                    + @viewModel.Name
                     + " already exists");
             }
 

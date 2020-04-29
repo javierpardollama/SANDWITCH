@@ -27,12 +27,12 @@ namespace Sandwitch.Tier.Services.Tests.Classes
         /// </summary>
         public void SetUpMapper()
         {
-            MapperConfiguration config = new MapperConfiguration(cfg =>
+            MapperConfiguration @config = new MapperConfiguration(cfg =>
             {
                 cfg.AddProfile(new ModelingProfile());
             });
 
-            Mapper = config.CreateMapper();
+            Mapper = @config.CreateMapper();
         }
 
         /// <summary>

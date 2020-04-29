@@ -29,11 +29,11 @@ namespace Sandwitch.Tier.Services.Classes
         /// <param name="context">Injected <see cref="IApplicationContext"/></param>
         /// <param name="mapper">Injected <see cref="IMapper"/></param>
         /// <param name="logger">Injected <see cref="ILogger"/></param>
-        public ProvinciaService(IApplicationContext context,
-                                IMapper mapper,
-                                ILogger<ProvinciaService> logger) : base(context,
-                                                                          mapper,
-                                                                          logger)
+        public ProvinciaService(IApplicationContext @context,
+                                IMapper @mapper,
+                                ILogger<ProvinciaService> @logger) : base(@context,
+                                                                          @mapper,
+                                                                          @logger)
         {
         }
 
@@ -42,19 +42,19 @@ namespace Sandwitch.Tier.Services.Classes
         /// </summary>
         /// <param name="viewModel">Injected <see cref="AddProvincia"/></param>
         /// <returns>Instance of <see cref="ViewProvincia"/></returns>
-        public async Task<ViewProvincia> AddProvincia(AddProvincia viewModel)
+        public async Task<ViewProvincia> AddProvincia(AddProvincia @viewModel)
         {
-            await CheckName(viewModel);
+            await CheckName(@viewModel);
 
-            Provincia provincia = new Provincia
+            Provincia @provincia = new Provincia
             {
-                Name = viewModel.Name,
-                ImageUri = viewModel.ImageUri
+                Name = @viewModel.Name,
+                ImageUri = @viewModel.ImageUri
             };
 
             try
             {
-                await Context.Provincia.AddAsync(provincia);
+                await Context.Provincia.AddAsync(@provincia);
 
                 await Context.SaveChangesAsync();
             }
@@ -64,15 +64,15 @@ namespace Sandwitch.Tier.Services.Classes
             }
 
             // Log
-            string logData = provincia.GetType().Name
+            string @logData = @provincia.GetType().Name
                 + " with Id "
-                + provincia.Id
+                + @provincia.Id
                 + " was added at "
                 + DateTime.Now.ToShortTimeString();
 
-            Logger.WriteInsertItemLog(logData);
+            Logger.WriteInsertItemLog(@logData);
 
-            return Mapper.Map<ViewProvincia>(provincia);
+            return Mapper.Map<ViewProvincia>(@provincia);
         }
 
         /// <summary>
@@ -81,14 +81,14 @@ namespace Sandwitch.Tier.Services.Classes
         /// <returns>Instance of <see cref="IList{ViewProvincia}"/></returns>
         public async Task<IList<ViewProvincia>> FindAllProvincia()
         {
-            IList<Provincia> provincias = await Context.Provincia
+            IList<Provincia> @provincias = await Context.Provincia
                 .TagWith("FindAllProvincia")
                 .AsQueryable()
                 .AsNoTracking()
                 .Include(x => x.Poblaciones)
                 .ToListAsync();
 
-            return Mapper.Map<IList<ViewProvincia>>(provincias);
+            return Mapper.Map<IList<ViewProvincia>>(@provincias);
         }
 
         /// <summary>
@@ -98,28 +98,28 @@ namespace Sandwitch.Tier.Services.Classes
         /// <returns>Instance of <see cref="Provincia"/></returns>
         public async Task<Provincia> FindProvinciaById(int id)
         {
-            Provincia provincia = await Context.Provincia
+            Provincia @provincia = await Context.Provincia
                 .TagWith("FindProvinciaById")
                 .FirstOrDefaultAsync(x => x.Id == id);
 
-            if (provincia == null)
+            if (@provincia == null)
             {
                 // Log
-                string logData = provincia.GetType().Name
+                string @logData = @provincia.GetType().Name
                     + " with Id "
                     + id
                     + " was not found at "
                     + DateTime.Now.ToShortTimeString();
 
-                Logger.WriteGetItemNotFoundLog(logData);
+                Logger.WriteGetItemNotFoundLog(@logData);
 
-                throw new Exception(provincia.GetType().Name
+                throw new Exception(@provincia.GetType().Name
                     + " with Id "
                     + id
                     + " does not exist");
             }
 
-            return provincia;
+            return @provincia;
         }
 
         /// <summary>
@@ -131,20 +131,20 @@ namespace Sandwitch.Tier.Services.Classes
         {
             try
             {
-                Provincia provincia = await FindProvinciaById(id);
+                Provincia @provincia = await FindProvinciaById(id);
 
-                Context.Provincia.Remove(provincia);
+                Context.Provincia.Remove(@provincia);
 
                 await Context.SaveChangesAsync();
 
                 // Log
-                string logData = provincia.GetType().Name
+                string @logData = @provincia.GetType().Name
                     + " with Id "
-                    + provincia.Id
+                    + @provincia.Id
                     + " was removed at "
                     + DateTime.Now.ToShortTimeString();
 
-                Logger.WriteDeleteItemLog(logData);
+                Logger.WriteDeleteItemLog(@logData);
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -157,35 +157,35 @@ namespace Sandwitch.Tier.Services.Classes
         /// </summary>
         /// <param name="viewModel">Injected <see cref="UpdateProvincia"/></param>
         /// <returns>Instance of <see cref="ViewProvincia"/></returns>
-        public async Task<ViewProvincia> UpdateProvincia(UpdateProvincia viewModel)
+        public async Task<ViewProvincia> UpdateProvincia(UpdateProvincia @viewModel)
         {
-            await CheckName(viewModel);
+            await CheckName(@viewModel);
 
-            Provincia provincia = await FindProvinciaById(viewModel.Id);
-            provincia.Name = viewModel.Name;
-            provincia.ImageUri = viewModel.ImageUri;
+            Provincia @provincia = await FindProvinciaById(@viewModel.Id);
+            @provincia.Name = @viewModel.Name;
+            @provincia.ImageUri = @viewModel.ImageUri;
 
             try
             {
-                Context.Provincia.Update(provincia);
+                Context.Provincia.Update(@provincia);
 
                 await Context.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException)
             {
-                await CheckName(viewModel);
+                await CheckName(@viewModel);
             }
 
             // Log
-            string logData = provincia.GetType().Name
+            string @logData = @provincia.GetType().Name
                 + " with Id "
-                + provincia.Id
+                + @provincia.Id
                 + " was modified at "
                 + DateTime.Now.ToShortTimeString();
 
-            Logger.WriteUpdateItemLog(logData);
+            Logger.WriteUpdateItemLog(@logData);
 
-            return Mapper.Map<ViewProvincia>(provincia);
+            return Mapper.Map<ViewProvincia>(@provincia);
         }
 
         /// <summary>
@@ -193,27 +193,27 @@ namespace Sandwitch.Tier.Services.Classes
         /// </summary>
         /// <param name="viewModel">Injected <see cref="AddProvincia"/></param>
         /// <returns>Instance of <see cref="Provincia"/></returns>
-        public async Task<Provincia> CheckName(AddProvincia viewModel)
+        public async Task<Provincia> CheckName(AddProvincia @viewModel)
         {
-            Provincia provincia = await Context.Provincia
+            Provincia @provincia = await Context.Provincia
                  .AsNoTracking()
                  .TagWith("CheckName")
-                 .FirstOrDefaultAsync(x => x.Name == viewModel.Name);
+                 .FirstOrDefaultAsync(x => x.Name == @viewModel.Name);
 
-            if (provincia != null)
+            if (@provincia != null)
             {
                 // Log
-                string logData = provincia.GetType().Name
+                string @logData = @provincia.GetType().Name
                     + " with Name "
-                    + provincia.Name
+                    + @provincia.Name
                     + " was already found at "
                     + DateTime.Now.ToShortTimeString();
 
-                Logger.WriteGetItemFoundLog(logData);
+                Logger.WriteGetItemFoundLog(@logData);
 
-                throw new Exception(provincia.GetType().Name
+                throw new Exception(@provincia.GetType().Name
                     + " with Name "
-                    + viewModel.Name
+                    + @viewModel.Name
                     + " already exists");
             }
 
@@ -225,31 +225,31 @@ namespace Sandwitch.Tier.Services.Classes
         /// </summary>
         /// <param name="viewModel">Injected <see cref="AddProvincia"/></param>
         /// <returns>Instance of <see cref="Provincia"/></returns>
-        public async Task<Provincia> CheckName(UpdateProvincia viewModel)
+        public async Task<Provincia> CheckName(UpdateProvincia @viewModel)
         {
-            Provincia provincia = await Context.Provincia
+            Provincia @provincia = await Context.Provincia
                  .AsNoTracking()
                  .TagWith("CheckName")
-                 .FirstOrDefaultAsync(x => x.Name == viewModel.Name && x.Id != viewModel.Id);
+                 .FirstOrDefaultAsync(x => x.Name == @viewModel.Name && x.Id != @viewModel.Id);
 
-            if (provincia != null)
+            if (@provincia != null)
             {
                 // Log
-                string logData = provincia.GetType().Name
+                string @logData = @provincia.GetType().Name
                     + " with Name "
                     + provincia.Name
                     + " was already found at "
                     + DateTime.Now.ToShortTimeString();
 
-                Logger.WriteGetItemFoundLog(logData);
+                Logger.WriteGetItemFoundLog(@logData);
 
                 throw new Exception(provincia.GetType().Name
                     + " with Name "
-                    + viewModel.Name
+                    + @viewModel.Name
                     + " already exists");
             }
 
-            return provincia;
+            return @provincia;
         }
     }
 }

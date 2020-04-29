@@ -49,7 +49,7 @@ namespace Sandwitch.Tier.Services.Tests.Classes
         /// </summary>
         private void SetUpLogger()
         {
-            ILoggerFactory loggerFactory = LoggerFactory.Create(builder =>
+            ILoggerFactory @loggerFactory = LoggerFactory.Create(builder =>
             {
                 builder
                     .AddFilter("Microsoft", LogLevel.Warning)
@@ -57,20 +57,20 @@ namespace Sandwitch.Tier.Services.Tests.Classes
                     .AddConsole();
             });
 
-            Logger = loggerFactory.CreateLogger<HistoricoService>();
+            Logger = @loggerFactory.CreateLogger<HistoricoService>();
         }
 
         /// <summary>
         /// Sets Up Context
         /// </summary>
         /// <param name="context">Injected <see cref="ApplicationContext"/></param>
-        private void SetUpContext(ApplicationContext context)
+        private void SetUpContext(ApplicationContext @context)
         {
-            context.Arenal.Add(new Arenal { Name = "Arenal 1", LastModified = DateTime.Now, Deleted = false });
-            context.Poblacion.Add(new Poblacion { Name = "Poblacion 1", LastModified = DateTime.Now, Deleted = false });
-            context.Bandera.Add(new Bandera { Name = "Poblacion 1", LastModified = DateTime.Now, Deleted = false });
+            @context.Arenal.Add(new Arenal { Name = "Arenal 1", LastModified = DateTime.Now, Deleted = false });
+            @context.Poblacion.Add(new Poblacion { Name = "Poblacion 1", LastModified = DateTime.Now, Deleted = false });
+            @context.Bandera.Add(new Bandera { Name = "Poblacion 1", LastModified = DateTime.Now, Deleted = false });
 
-            context.SaveChanges();
+            @context.SaveChanges();
         }
 
         /// <summary>
@@ -80,13 +80,13 @@ namespace Sandwitch.Tier.Services.Tests.Classes
         [Test]
         public async Task FindArenalById()
         {
-            using (ApplicationContext context = new ApplicationContext(this.Options))
+            using (ApplicationContext @context = new ApplicationContext(this.Options))
             {
-                SetUpContext(context);
+                SetUpContext(@context);
 
-                HistoricoService service = new HistoricoService(context, Mapper, Logger);
+                HistoricoService @service = new HistoricoService(@context, Mapper, Logger);
 
-                await service.FindArenalById(context.Arenal.FirstOrDefault().Id);
+                await @service.FindArenalById(@context.Arenal.FirstOrDefault().Id);
             };
 
             Assert.Pass();
@@ -99,13 +99,13 @@ namespace Sandwitch.Tier.Services.Tests.Classes
         [Test]
         public async Task FindBanderaById()
         {
-            using (ApplicationContext context = new ApplicationContext(this.Options))
+            using (ApplicationContext @context = new ApplicationContext(this.Options))
             {
-                SetUpContext(context);
+                SetUpContext(@context);
 
-                HistoricoService service = new HistoricoService(context, Mapper, Logger);
+                HistoricoService @service = new HistoricoService(@context, Mapper, Logger);
 
-                await service.FindBanderaById(context.Bandera.FirstOrDefault().Id);
+                await @service.FindBanderaById(@context.Bandera.FirstOrDefault().Id);
             };
 
             Assert.Pass();
@@ -118,11 +118,11 @@ namespace Sandwitch.Tier.Services.Tests.Classes
         [Test]
         public async Task AddHistorico()
         {
-            using (ApplicationContext context = new ApplicationContext(this.Options))
+            using (ApplicationContext @context = new ApplicationContext(this.Options))
             {
-                SetUpContext(context);
+                SetUpContext(@context);
 
-                HistoricoService service = new HistoricoService(context, Mapper, Logger);
+                HistoricoService @service = new HistoricoService(@context, Mapper, Logger);
 
                 AddHistorico historico = new AddHistorico()
                 {
@@ -136,7 +136,7 @@ namespace Sandwitch.Tier.Services.Tests.Classes
                 };
 
 
-                await service.AddHistorico(historico);
+                await @service.AddHistorico(historico);
             };
 
             Assert.Pass();

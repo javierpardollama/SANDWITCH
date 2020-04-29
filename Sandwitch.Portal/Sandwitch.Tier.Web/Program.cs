@@ -19,9 +19,9 @@ namespace Sandwitch.Tier.Web
         /// Main
         /// </summary>
         /// <param name="args">Injected <see cref="string[]"/></param>
-        public static void Main(string[] args)
+        public static void Main(string[] @args)
         {
-            using IWebHost host = BuildWebHost(args);
+            using IWebHost host = BuildWebHost(@args);
             ApplyWebHostMigrations(host.Services);
 
             host.Run();
@@ -32,7 +32,7 @@ namespace Sandwitch.Tier.Web
         /// </summary>
         /// <param name="args">Injected <see cref="string[]"/></param>
         /// <returns></returns>
-        public static IWebHost BuildWebHost(string[] args) => WebHost.CreateDefaultBuilder(args)
+        public static IWebHost BuildWebHost(string[] @args) => WebHost.CreateDefaultBuilder(@args)
             .UseStartup<Startup>()
             .UseSerilog((hostingContext, loggerConfiguration) => loggerConfiguration
                 .ReadFrom.Configuration(hostingContext.Configuration))
@@ -42,7 +42,7 @@ namespace Sandwitch.Tier.Web
         /// Applies WebHost Migrations
         /// </summary>
         /// <param name="serviceProvider">Injected <see cref="IServiceProvider"/></param>
-        public static void ApplyWebHostMigrations(IServiceProvider serviceProvider)
+        public static void ApplyWebHostMigrations(IServiceProvider @serviceProvider)
         {
             using IServiceScope serviceScope = serviceProvider.CreateScope();
             IServiceProvider scopeServiceProvider = serviceScope.ServiceProvider;

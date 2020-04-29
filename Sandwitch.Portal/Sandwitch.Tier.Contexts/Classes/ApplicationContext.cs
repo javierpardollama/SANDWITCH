@@ -19,7 +19,7 @@ namespace Sandwitch.Tier.Contexts.Classes
         /// Initializes a new Instance of <see cref="ApplicationContext"/>
         /// </summary>
         /// <param name="options">Injected <see cref="DbContextOptions{ApplicationContext}"/></param>
-        public ApplicationContext(DbContextOptions<ApplicationContext> options) : base(options)
+        public ApplicationContext(DbContextOptions<ApplicationContext> @options) : base(@options)
         {
         }
 
@@ -107,9 +107,9 @@ namespace Sandwitch.Tier.Contexts.Classes
         /// Overrides Model Creation
         /// </summary>
         /// <param name="modelBuilder">Injected <see cref="ModelBuilder"/></param>
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        protected override void OnModelCreating(ModelBuilder @modelBuilder)
         {
-            modelBuilder.AddCustomizedFilters();
+            @modelBuilder.AddCustomizedFilters();
         }
     }
 }

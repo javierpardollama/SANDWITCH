@@ -6,7 +6,6 @@ using Microsoft.Extensions.Logging;
 
 using NUnit.Framework;
 
-using Sandwitch.Tier.Contexts.Classes;
 using Sandwitch.Tier.Entities.Classes;
 using Sandwitch.Tier.Services.Classes;
 using Sandwitch.Tier.ViewModels.Classes.Additions;
@@ -25,6 +24,11 @@ namespace Sandwitch.Tier.Services.Tests.Classes
         private ILogger<HistoricoService> Logger;
 
         /// <summary>
+        /// Instance of <see cref="HistoricoService"/>
+        /// </summary>
+        private HistoricoService HistoricoService;
+
+        /// <summary>
         /// Initializes a new Instance of <see cref="TestArenalService"/>
         /// </summary>
         public TestHistoricoService()
@@ -37,11 +41,36 @@ namespace Sandwitch.Tier.Services.Tests.Classes
         [SetUp]
         public void Setup()
         {
-            SetUpMapper();
+            SetUpSettings();
+
+            SetUpConfiguration();
 
             SetUpOptions();
 
+            SetUpServices();
+
+            SetUpMapper();
+
             SetUpLogger();
+
+            SetUpContext();
+
+            HistoricoService = new HistoricoService(Context, Mapper, Logger);
+        }
+
+        /// <summary>
+        /// Tears Down
+        /// </summary>
+        [TearDown]
+        public void TearDown()
+        {
+            Context.Arenal.RemoveRange(Context.Arenal.ToList());
+
+            Context.Bandera.RemoveRange(Context.Bandera.ToList());
+
+            Context.Poblacion.RemoveRange(Context.Poblacion.ToList());
+
+            Context.SaveChanges();
         }
 
         /// <summary>
@@ -63,14 +92,13 @@ namespace Sandwitch.Tier.Services.Tests.Classes
         /// <summary>
         /// Sets Up Context
         /// </summary>
-        /// <param name="context">Injected <see cref="ApplicationContext"/></param>
-        private void SetUpContext(ApplicationContext @context)
+        private void SetUpContext()
         {
-            @context.Arenal.Add(new Arenal { Name = "Arenal 1", LastModified = DateTime.Now, Deleted = false });
-            @context.Poblacion.Add(new Poblacion { Name = "Poblacion 1", LastModified = DateTime.Now, Deleted = false });
-            @context.Bandera.Add(new Bandera { Name = "Poblacion 1", LastModified = DateTime.Now, Deleted = false });
+            Context.Arenal.Add(new Arenal { Name = "Arenal 1", LastModified = DateTime.Now, Deleted = false });
+            Context.Poblacion.Add(new Poblacion { Name = "Poblacion 1", LastModified = DateTime.Now, Deleted = false });
+            Context.Bandera.Add(new Bandera { Name = "Poblacion 1", LastModified = DateTime.Now, Deleted = false });
 
-            @context.SaveChanges();
+            Context.SaveChanges();
         }
 
         /// <summary>
@@ -80,14 +108,7 @@ namespace Sandwitch.Tier.Services.Tests.Classes
         [Test]
         public async Task FindArenalById()
         {
-            using (ApplicationContext @context = new ApplicationContext(this.Options))
-            {
-                SetUpContext(@context);
-
-                HistoricoService @service = new HistoricoService(@context, Mapper, Logger);
-
-                await @service.FindArenalById(@context.Arenal.FirstOrDefault().Id);
-            };
+            await HistoricoService.FindArenalById(Context.Arenal.FirstOrDefault().Id);
 
             Assert.Pass();
         }
@@ -99,14 +120,7 @@ namespace Sandwitch.Tier.Services.Tests.Classes
         [Test]
         public async Task FindBanderaById()
         {
-            using (ApplicationContext @context = new ApplicationContext(this.Options))
-            {
-                SetUpContext(@context);
-
-                HistoricoService @service = new HistoricoService(@context, Mapper, Logger);
-
-                await @service.FindBanderaById(@context.Bandera.FirstOrDefault().Id);
-            };
+            await HistoricoService.FindBanderaById(Context.Bandera.FirstOrDefault().Id);
 
             Assert.Pass();
         }
@@ -118,26 +132,18 @@ namespace Sandwitch.Tier.Services.Tests.Classes
         [Test]
         public async Task AddHistorico()
         {
-            using (ApplicationContext @context = new ApplicationContext(this.Options))
+            AddHistorico historico = new AddHistorico()
             {
-                SetUpContext(@context);
-
-                HistoricoService @service = new HistoricoService(@context, Mapper, Logger);
-
-                AddHistorico historico = new AddHistorico()
-                {
-                    BanderaId = context.Bandera.FirstOrDefault().Id,
-                    AltaMarAlba = DateTime.Now,
-                    AltaMarOcaso = DateTime.Now,
-                    ArenalId = context.Arenal.FirstOrDefault().Id,
-                    BajaMarAlba = DateTime.Now,
-                    BajaMarOcaso = DateTime.Now,
-                    Temperatura = 20
-                };
-
-
-                await @service.AddHistorico(historico);
+                BanderaId = Context.Bandera.FirstOrDefault().Id,
+                AltaMarAlba = DateTime.Now,
+                AltaMarOcaso = DateTime.Now,
+                ArenalId = Context.Arenal.FirstOrDefault().Id,
+                BajaMarAlba = DateTime.Now,
+                BajaMarOcaso = DateTime.Now,
+                Temperatura = 20
             };
+
+            await HistoricoService.AddHistorico(historico);
 
             Assert.Pass();
         }

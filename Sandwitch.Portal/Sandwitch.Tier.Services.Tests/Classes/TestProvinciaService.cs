@@ -6,7 +6,6 @@ using Microsoft.Extensions.Logging;
 
 using NUnit.Framework;
 
-using Sandwitch.Tier.Contexts.Classes;
 using Sandwitch.Tier.Entities.Classes;
 using Sandwitch.Tier.Services.Classes;
 using Sandwitch.Tier.ViewModels.Classes.Additions;
@@ -25,11 +24,18 @@ namespace Sandwitch.Tier.Services.Tests.Classes
         /// </summary>
         private ILogger<ProvinciaService> Logger;
 
+
+        /// <summary>
+        /// Instance of <see cref="ProvinciaService"/>
+        /// </summary>
+        private ProvinciaService ProvinciaService;
+
+
         /// <summary>
         /// Initializes a new Instance of <see cref="TestArenalService"/>
         /// </summary>
         public TestProvinciaService()
-        {            
+        {
         }
 
         /// <summary>
@@ -38,11 +44,21 @@ namespace Sandwitch.Tier.Services.Tests.Classes
         [SetUp]
         public void Setup()
         {
-            SetUpMapper();
+            SetUpSettings();
+
+            SetUpConfiguration();
 
             SetUpOptions();
 
-            SetUpLogger();         
+            SetUpServices();
+
+            SetUpMapper();
+
+            SetUpLogger();
+
+            SetUpContext();
+
+            ProvinciaService = new ProvinciaService(Context, Mapper, Logger);
         }
 
         /// <summary>
@@ -54,7 +70,7 @@ namespace Sandwitch.Tier.Services.Tests.Classes
             {
                 builder
                     .AddFilter("Microsoft", LogLevel.Warning)
-                    .AddFilter("System", LogLevel.Warning)                    
+                    .AddFilter("System", LogLevel.Warning)
                     .AddConsole();
             });
 
@@ -64,14 +80,13 @@ namespace Sandwitch.Tier.Services.Tests.Classes
         /// <summary>
         /// Sets Up Context
         /// </summary>
-        /// <param name="context">Injected <see cref="ApplicationContext"/></param>
-        private void SetUpContext(ApplicationContext @context)
+        private void SetUpContext()
         {
-            @context.Provincia.Add(new Provincia { Name = "Provincia 1", LastModified = DateTime.Now, Deleted = false });
-            @context.Provincia.Add(new Provincia { Name = "Provincia 2", LastModified = DateTime.Now, Deleted = false });
-            @context.Provincia.Add(new Provincia { Name = "Provincia 3", LastModified = DateTime.Now, Deleted = false });
+            Context.Provincia.Add(new Provincia { Name = "Provincia " + Guid.NewGuid().ToString(), LastModified = DateTime.Now, Deleted = false });
+            Context.Provincia.Add(new Provincia { Name = "Provincia " + Guid.NewGuid().ToString(), LastModified = DateTime.Now, Deleted = false });
+            Context.Provincia.Add(new Provincia { Name = "Provincia " + Guid.NewGuid().ToString(), LastModified = DateTime.Now, Deleted = false });
 
-            @context.SaveChanges();
+            Context.SaveChanges();
         }
 
         /// <summary>
@@ -81,14 +96,7 @@ namespace Sandwitch.Tier.Services.Tests.Classes
         [Test]
         public async Task FindAllProvincia()
         {
-            using (ApplicationContext @context = new ApplicationContext(this.Options))
-            {
-                SetUpContext(@context);
-
-                ProvinciaService @service = new ProvinciaService(@context, Mapper, Logger);
-
-                await @service.FindAllProvincia();
-            };
+            await ProvinciaService.FindAllProvincia();
 
             Assert.Pass();
         }
@@ -100,14 +108,7 @@ namespace Sandwitch.Tier.Services.Tests.Classes
         [Test]
         public async Task FindProvinciaById()
         {
-            using (ApplicationContext @context = new ApplicationContext(this.Options))
-            {
-                SetUpContext(@context);
-
-                ProvinciaService @service = new ProvinciaService(@context, Mapper, Logger);
-
-                await @service.FindProvinciaById(@context.Provincia.FirstOrDefault().Id);
-            };
+            await ProvinciaService.FindProvinciaById(Context.Provincia.FirstOrDefault().Id);
 
             Assert.Pass();
         }
@@ -119,14 +120,7 @@ namespace Sandwitch.Tier.Services.Tests.Classes
         [Test]
         public async Task RemoveProvinciaById()
         {
-            using (ApplicationContext @context = new ApplicationContext(this.Options))
-            {
-                SetUpContext(@context);
-
-                ProvinciaService @service = new ProvinciaService(@context, Mapper, Logger);
-
-                await @service.RemoveProvinciaById(@context.Provincia.FirstOrDefault().Id);
-            };
+            await ProvinciaService.RemoveProvinciaById(Context.Provincia.FirstOrDefault().Id);
 
             Assert.Pass();
         }
@@ -140,19 +134,12 @@ namespace Sandwitch.Tier.Services.Tests.Classes
         {
             UpdateProvincia @provincia = new UpdateProvincia()
             {
-                Id = 2,
+                Id = Context.Provincia.FirstOrDefault().Id,
                 ImageUri = "URL/Provincia_21_500px.png",
                 Name = "Provincia 21"
             };
 
-            using (ApplicationContext @context = new ApplicationContext(this.Options))
-            {
-                SetUpContext(@context);
-
-                ProvinciaService @service = new ProvinciaService(@context, Mapper, Logger);
-
-                await @service.UpdateProvincia(@provincia);
-            };
+            await ProvinciaService.UpdateProvincia(@provincia);
 
             Assert.Pass();
         }
@@ -170,14 +157,7 @@ namespace Sandwitch.Tier.Services.Tests.Classes
                 Name = "Provincia 4"
             };
 
-            using (ApplicationContext @context = new ApplicationContext(this.Options))
-            {
-                SetUpContext(@context);
-
-                ProvinciaService @service = new ProvinciaService(@context, Mapper, Logger);
-
-                await @service.AddProvincia(@provincia);
-            };
+            await ProvinciaService.AddProvincia(@provincia);
 
             Assert.Pass();
         }
@@ -192,17 +172,10 @@ namespace Sandwitch.Tier.Services.Tests.Classes
             AddProvincia @provincia = new AddProvincia()
             {
                 ImageUri = "URL/Provincia_4_500px.png",
-                Name = "Provincia 4"
+                Name = Context.Provincia.FirstOrDefault().Name
             };
 
-            using (ApplicationContext @context = new ApplicationContext(this.Options))
-            {
-                SetUpContext(@context);
-
-                ProvinciaService @service = new ProvinciaService(@context, Mapper, Logger);
-
-                Exception exception = Assert.ThrowsAsync<Exception>(async () => await @service.CheckName(@provincia));
-            };
+            Exception exception = Assert.ThrowsAsync<Exception>(async () => await ProvinciaService.CheckName(@provincia));
 
             Assert.Pass();
         }

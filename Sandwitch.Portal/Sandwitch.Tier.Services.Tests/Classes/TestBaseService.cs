@@ -15,7 +15,7 @@ namespace Sandwitch.Tier.Services.Tests.Classes
     /// <summary>
     /// Represents a <see cref="TestBaseService"/> class.
     /// </summary>
-    public class TestBaseService
+    public abstract class TestBaseService
     {
         /// <summary>
         /// Instance of <see cref="IApplicationContext"/>

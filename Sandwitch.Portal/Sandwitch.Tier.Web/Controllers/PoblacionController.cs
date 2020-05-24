@@ -32,7 +32,7 @@ namespace Sandwitch.Tier.Web.Controllers
         /// Updates Poblacion
         /// </summary>
         /// <param name="viewModel">Injected <see cref="UpdatePoblacion"/></param>
-        /// <returns>Instance of <see cref="JsonResult"/></returns>
+        /// <returns>Instance of <see cref="Task{JsonResult}"/></returns>
         [HttpPut]
         [Route("updatepoblacion")]
         public async Task<IActionResult> UpdatePoblacion([FromBody]UpdatePoblacion @viewModel) => new JsonResult(value: await Service.UpdatePoblacion(@viewModel));
@@ -40,7 +40,7 @@ namespace Sandwitch.Tier.Web.Controllers
         /// <summary>
         /// Finds All Poblacion
         /// </summary>
-        /// <returns>Instance of <see cref="JsonResult"/></returns>
+        /// <returns>Instance of <see cref="Task{JsonResult}"/></returns>
         [HttpGet]
         [Route("findallpoblacion")]
         public async Task<IActionResult> FindAllPoblacion() => new JsonResult(value: await Service.FindAllPoblacion());
@@ -49,7 +49,7 @@ namespace Sandwitch.Tier.Web.Controllers
         /// Finds All Poblacion By Provincia Id
         /// </summary>
         /// <param name="id">Injected <see cref="int"/></param>
-        /// <returns>Instance of <see cref="JsonResult"/></returns>
+        /// <returns>Instance of <see cref="Task{JsonResult}"/></returns>
         [HttpGet]
         [Route("findallpoblacionbyprovinciaid/{id}")]
         public async Task<IActionResult> FindAllPoblacionByProvinciaId(int @id) => new JsonResult(value: await Service.FindAllPoblacionByProvinciaId(@id));
@@ -58,7 +58,7 @@ namespace Sandwitch.Tier.Web.Controllers
         /// Adds Poblacion
         /// </summary>
         /// <param name="viewModel">Injected <see cref="AddPoblacion"/></param>
-        /// <returns>Instance of <see cref="JsonResult"/></returns>
+        /// <returns>Instance of <see cref="Task{JsonResult}"/></returns>
         [HttpPost]
         [Route("addpoblacion")]
         public async Task<IActionResult> AddPoblacion([FromBody]AddPoblacion @viewModel) => new JsonResult(value: await Service.AddPoblacion(@viewModel));
@@ -67,7 +67,7 @@ namespace Sandwitch.Tier.Web.Controllers
         /// Removes Poblacion By Id
         /// </summary>
         /// <param name="id">Injected <see cref="int"/></param>
-        /// <returns>Instance of <see cref="JsonResult"/></returns>
+        /// <returns>Instance of <see cref="Task{JsonResult}"/></returns>
         [HttpDelete]
         [Route("removepoblacionbyid/{id}")]
         public async Task<IActionResult> RemovePoblacionById(int @id)

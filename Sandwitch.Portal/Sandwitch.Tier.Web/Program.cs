@@ -31,7 +31,7 @@ namespace Sandwitch.Tier.Web
         /// Builds WebHost
         /// </summary>
         /// <param name="args">Injected <see cref="string[]"/></param>
-        /// <returns></returns>
+        /// <returns>Instance of <see cref="IWebHost"/></returns>
         public static IWebHost BuildWebHost(string[] @args) => WebHost.CreateDefaultBuilder(@args)
             .UseStartup<Startup>()
             .UseSerilog((hostingContext, loggerConfiguration) => loggerConfiguration

@@ -32,7 +32,7 @@ namespace Sandwitch.Tier.Web.Controllers
         /// Updates Provincia
         /// </summary>
         /// <param name="viewModel">Injected <see cref="UpdateProvincia"/></param>
-        /// <returns>Instance of <see cref="JsonResult"/></returns>
+        /// <returns>Instance of <see cref="Task{JsonResult}"/></returns>
         [HttpPut]
         [Route("updateprovincia")]
         public async Task<IActionResult> UpdateProvincia([FromBody]UpdateProvincia @viewModel) => new JsonResult(value: await Service.UpdateProvincia(@viewModel));
@@ -40,7 +40,7 @@ namespace Sandwitch.Tier.Web.Controllers
         /// <summary>
         /// Finds All Provincia
         /// </summary>
-        /// <returns>Instance of <see cref="JsonResult"/></returns>
+        /// <returns>Instance of <see cref="Task{JsonResult}"/></returns>
         [HttpGet]
         [Route("findallprovincia")]
         public async Task<IActionResult> FindAllProvincia() => new JsonResult(value: await Service.FindAllProvincia());
@@ -49,7 +49,7 @@ namespace Sandwitch.Tier.Web.Controllers
         /// Adds Provincia
         /// </summary>
         /// <param name="viewModel">Injected <see cref="AddProvincia"/></param>
-        /// <returns>Instance of <see cref="JsonResult"/></returns>
+        /// <returns>Instance of <see cref="Task{JsonResult}"/></returns>
         [HttpPost]
         [Route("addprovincia")]
         public async Task<IActionResult> AddProvincia([FromBody]AddProvincia @viewModel) => new JsonResult(value: await Service.AddProvincia(@viewModel));
@@ -58,7 +58,7 @@ namespace Sandwitch.Tier.Web.Controllers
         /// Removes Provincia By Id
         /// </summary>
         /// <param name="id">Injected <see cref="int"/></param>
-        /// <returns>Instance of <see cref="JsonResult"/></returns>
+        /// <returns>Instance of <see cref="Task{JsonResult}"/></returns>
         [HttpDelete]
         [Route("removeprovinciabyid/{id}")]
         public async Task<IActionResult> RemoveProvinciaById(int @id)

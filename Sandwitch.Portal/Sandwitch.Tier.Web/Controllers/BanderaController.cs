@@ -32,7 +32,7 @@ namespace Sandwitch.Tier.Web.Controllers
         /// Updates Bandera
         /// </summary>
         /// <param name="viewModel">Injected <see cref="AddHistorico"/></param>
-        /// <returns>Instance of <see cref="JsonResult"/></returns>
+        /// <returns>Instance of <see cref="Task{JsonResult}"/></returns>
         [HttpPut]
         [Route("updatebandera")]
         public async Task<IActionResult> UpdateBandera([FromBody]UpdateBandera @viewModel) => new JsonResult(value: await Service.UpdateBandera(@viewModel));
@@ -40,7 +40,7 @@ namespace Sandwitch.Tier.Web.Controllers
         /// <summary>
         /// Finds All Bandera
         /// </summary>
-        /// <returns>Instance of <see cref="JsonResult"/></returns>
+        /// <returns>Instance of <see cref="Task{JsonResult}"/></returns>
         [HttpGet]
         [Route("findallbandera")]
         public async Task<IActionResult> FindAllBandera() => new JsonResult(value: await Service.FindAllBandera());
@@ -49,7 +49,7 @@ namespace Sandwitch.Tier.Web.Controllers
         /// Finds All Historico By Bandera Id
         /// </summary>
         /// <param name="id">Injected <see cref="int"/></param>
-        /// <returns>Instance of <see cref="JsonResult"/></returns>
+        /// <returns>Instance of <see cref="Task{JsonResult}"/></returns>
         [HttpGet]
         [Route("findallhistoricobybanderaid/{id}")]
         public async Task<IActionResult> FindAllHistoricoByBanderaId(int @id) => new JsonResult(value: await Service.FindAllHistoricoByBanderaId(@id));
@@ -58,7 +58,7 @@ namespace Sandwitch.Tier.Web.Controllers
         /// Adds Bandera
         /// </summary>
         /// <param name="viewModel">Injected <see cref="AddBandera"/></param>
-        /// <returns>Instance of <see cref="JsonResult"/></returns>
+        /// <returns>Instance of <see cref="Task{JsonResult}"/></returns>
         [HttpPost]
         [Route("addbandera")]
         public async Task<IActionResult> AddBandera([FromBody]AddBandera @viewModel) => new JsonResult(value: await Service.AddBandera(@viewModel));
@@ -67,7 +67,7 @@ namespace Sandwitch.Tier.Web.Controllers
         /// Removes Bandera ById
         /// </summary>
         /// <param name="id">Injected <see cref="int"/></param>
-        /// <returns>Instance of <see cref="JsonResult"/></returns>
+        /// <returns>Instance of <see cref="Task{JsonResult}"/></returns>
         [HttpDelete]
         [Route("removebanderabyid/{id}")]
         public async Task<IActionResult> RemoveBanderaById(int @id)

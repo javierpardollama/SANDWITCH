@@ -41,7 +41,7 @@ namespace Sandwitch.Tier.Services.Classes
         /// Adds Bandera
         /// </summary>
         /// <param name="viewModel">Injected <see cref="AddBandera"/></param>
-        /// <returns>Instance of <see cref="ViewBandera"/></returns>
+        /// <returns>Instance of <see cref="Task{ViewBandera}"/></returns>
         public async Task<ViewBandera> AddBandera(AddBandera @viewModel)
         {
             await CheckName(@viewModel);
@@ -78,7 +78,7 @@ namespace Sandwitch.Tier.Services.Classes
         /// <summary>
         /// Finds All Bandera
         /// </summary>
-        /// <returns>Instance of <see cref="IList{ViewBandera}"/></returns>
+        /// <returns>Instance of <see cref="Task{IList{ViewBandera}}"/></returns>
         public async Task<IList<ViewBandera>> FindAllBandera()
         {
             IList<Bandera> @banderas = await Context.Bandera
@@ -112,7 +112,7 @@ namespace Sandwitch.Tier.Services.Classes
         /// Finds Bandera By Id
         /// </summary>
         /// <param name="id">Injected <see cref="int"/></param>
-        /// <returns>Instance of <see cref="Bandera"/></returns>
+        /// <returns>Instance of <see cref="Task{Bandera}"/></returns>
         public async Task<Bandera> FindBanderaById(int @id)
         {
             Bandera @bandera = await Context.Bandera
@@ -173,7 +173,7 @@ namespace Sandwitch.Tier.Services.Classes
         /// Updates Bandera
         /// </summary>
         /// <param name="viewModel">Injected <see cref="UpdateBandera"/></param>
-        /// <returns>Instance of <see cref="ViewBandera"/></returns>
+        /// <returns>Instance of <see cref="Task{ViewBandera}"/></returns>
         public async Task<ViewBandera> UpdateBandera(UpdateBandera @viewModel)
         {
             await CheckName(@viewModel);
@@ -209,7 +209,7 @@ namespace Sandwitch.Tier.Services.Classes
         /// Checks Name
         /// </summary>
         /// <param name="viewModel">Injected <see cref="AddBandera"/></param>
-        /// <returns>Instance of <see cref="Bandera"/></returns>
+        /// <returns>Instance of <see cref="Task{Bandera}"/></returns>
         public async Task<Bandera> CheckName(AddBandera @viewModel)
         {
             Bandera @bandera = await Context.Bandera
@@ -241,7 +241,7 @@ namespace Sandwitch.Tier.Services.Classes
         /// Checks Name
         /// </summary>
         /// <param name="viewModel">Injected <see cref="UpdateBandera"/></param>
-        /// <returns>Instance of <see cref="Bandera"/></returns>
+        /// <returns>Instance of <see cref="Task{Bandera}"/></returns>
         public async Task<Bandera> CheckName(UpdateBandera @viewModel)
         {
             Bandera @bandera = await Context.Bandera

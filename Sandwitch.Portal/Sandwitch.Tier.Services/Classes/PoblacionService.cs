@@ -41,7 +41,7 @@ namespace Sandwitch.Tier.Services.Classes
         /// Adds Poblacion
         /// </summary>
         /// <param name="viewModel">Injected <see cref="AddPoblacion"/></param>
-        /// <returns>Instance of <see cref="ViewPoblacion"/></returns>
+        /// <returns>Instance of <see cref="Task{ViewPoblacion}"/></returns>
         public async Task<ViewPoblacion> AddPoblacion(AddPoblacion @viewModel)
         {
             await CheckName(@viewModel);
@@ -79,7 +79,7 @@ namespace Sandwitch.Tier.Services.Classes
         /// <summary>
         /// Finds All Poblacion
         /// </summary>
-        /// <returns>Instance of <see cref="IList{ViewPoblacion}"/></returns>
+        /// <returns>Instance of <see cref="Task{IList{ViewPoblacion}}"/></returns>
         public async Task<IList<ViewPoblacion>> FindAllPoblacion()
         {
             IList<Poblacion> @poblaciones = await Context.Poblacion
@@ -96,7 +96,7 @@ namespace Sandwitch.Tier.Services.Classes
         /// Finds All Poblacion By Provincia Id
         /// </summary>
         /// <param name="id">Injected <see cref="int"/></param>
-        /// <returns>Instance of <see cref="IList{ViewPoblacion}"/></returns>
+        /// <returns>Instance of <see cref="Task{IList{ViewPoblacion}}"/></returns>
         public async Task<IList<ViewPoblacion>> FindAllPoblacionByProvinciaId(int @id)
         {
             IList<Poblacion> @poblaciones = await Context.Poblacion
@@ -114,7 +114,7 @@ namespace Sandwitch.Tier.Services.Classes
         /// Finds Poblacion By Id
         /// </summary>
         /// <param name="id">Injected <see cref="int"/></param>
-        /// <returns>Instance of <see cref="Poblacion"/></returns>
+        /// <returns>Instance of <see cref="Task{Poblacion}"/></returns>
         public async Task<Poblacion> FindPoblacionById(int id)
         {
             Poblacion @poblacion = await Context.Poblacion
@@ -145,7 +145,7 @@ namespace Sandwitch.Tier.Services.Classes
         /// Finds Provincia By Id
         /// </summary>
         /// <param name="id">Injected <see cref="int"/></param>
-        /// <returns>Instance of <see cref="Provincia"/></returns>
+        /// <returns>Instance of <see cref="Task{Provincia}"/></returns>
         public async Task<Provincia> FindProvinciaById(int @id)
         {
             Provincia @provincia = await Context.Provincia
@@ -206,7 +206,7 @@ namespace Sandwitch.Tier.Services.Classes
         /// Updates Poblacion
         /// </summary>
         /// <param name="viewModel">Injected <see cref="UpdatePoblacion"/></param>
-        /// <returns>Instance of <see cref="ViewPoblacion"/></returns>
+        /// <returns>Instance of <see cref="Task{ViewPoblacion}"/></returns>
         public async Task<ViewPoblacion> UpdatePoblacion(UpdatePoblacion @viewModel)
         {
             await CheckName(@viewModel);
@@ -243,7 +243,7 @@ namespace Sandwitch.Tier.Services.Classes
         /// Checks Name
         /// </summary>
         /// <param name="viewModel">Injected <see cref="AddPoblacion"/></param>
-        /// <returns>Instance of <see cref="Poblacion"/></returns>
+        /// <returns>Instance of <see cref="Task{Poblacion}"/></returns>
         public async Task<Poblacion> CheckName(AddPoblacion @viewModel)
         {
             Poblacion @poblacion = await Context.Poblacion
@@ -275,7 +275,7 @@ namespace Sandwitch.Tier.Services.Classes
         /// Checks Name
         /// </summary>
         /// <param name="viewModel">Injected <see cref="AddPoblacion"/></param>
-        /// <returns>Instance of <see cref="Poblacion"/></returns>
+        /// <returns>Instance of <see cref="Task{Poblacion}"/></returns>
         public async Task<Poblacion> CheckName(UpdatePoblacion @viewModel)
         {
             Poblacion @poblacion = await Context.Poblacion

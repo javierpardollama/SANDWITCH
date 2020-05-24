@@ -41,7 +41,7 @@ namespace Sandwitch.Tier.Services.Classes
         /// Adds Provincia
         /// </summary>
         /// <param name="viewModel">Injected <see cref="AddProvincia"/></param>
-        /// <returns>Instance of <see cref="ViewProvincia"/></returns>
+        /// <returns>Instance of <see cref="Task{ViewProvincia}"/></returns>
         public async Task<ViewProvincia> AddProvincia(AddProvincia @viewModel)
         {
             await CheckName(@viewModel);
@@ -78,7 +78,7 @@ namespace Sandwitch.Tier.Services.Classes
         /// <summary>
         /// Finds All Provincia
         /// </summary>
-        /// <returns>Instance of <see cref="IList{ViewProvincia}"/></returns>
+        /// <returns>Instance of <see cref="Task{IList{ViewProvincia}}"/></returns>
         public async Task<IList<ViewProvincia>> FindAllProvincia()
         {
             IList<Provincia> @provincias = await Context.Provincia
@@ -95,7 +95,7 @@ namespace Sandwitch.Tier.Services.Classes
         /// Finds Provincia By Id
         /// </summary>
         /// <param name="id">Injected <see cref="int"/></param>
-        /// <returns>Instance of <see cref="Provincia"/></returns>
+        /// <returns>Instance of <see cref="Task{Provincia}"/></returns>
         public async Task<Provincia> FindProvinciaById(int id)
         {
             Provincia @provincia = await Context.Provincia
@@ -156,7 +156,7 @@ namespace Sandwitch.Tier.Services.Classes
         /// Updates Provincia
         /// </summary>
         /// <param name="viewModel">Injected <see cref="UpdateProvincia"/></param>
-        /// <returns>Instance of <see cref="ViewProvincia"/></returns>
+        /// <returns>Instance of <see cref="Task{ViewProvincia}"/></returns>
         public async Task<ViewProvincia> UpdateProvincia(UpdateProvincia @viewModel)
         {
             await CheckName(@viewModel);
@@ -192,7 +192,7 @@ namespace Sandwitch.Tier.Services.Classes
         /// Checks Name
         /// </summary>
         /// <param name="viewModel">Injected <see cref="AddProvincia"/></param>
-        /// <returns>Instance of <see cref="Provincia"/></returns>
+        /// <returns>Instance of <see cref="Task{Provincia}"/></returns>
         public async Task<Provincia> CheckName(AddProvincia @viewModel)
         {
             Provincia @provincia = await Context.Provincia
@@ -224,7 +224,7 @@ namespace Sandwitch.Tier.Services.Classes
         /// Checks Name
         /// </summary>
         /// <param name="viewModel">Injected <see cref="AddProvincia"/></param>
-        /// <returns>Instance of <see cref="Provincia"/></returns>
+        /// <returns>Instance of <see cref="Task{Provincia}"/></returns>
         public async Task<Provincia> CheckName(UpdateProvincia @viewModel)
         {
             Provincia @provincia = await Context.Provincia

@@ -16,28 +16,28 @@ namespace Sandwitch.Tier.Services.Interfaces
         /// <summary>
         /// Finds All Poblacion
         /// </summary>
-        /// <returns>Instance of <see cref="IList{ViewPoblacion}"/></returns>
+        /// <returns>Instance of <see cref="Task{IList{ViewPoblacion}}"/></returns>
         Task<IList<ViewPoblacion>> FindAllPoblacion();
 
         /// <summary>
         /// Finds All Poblacion By Provincia Id
         /// </summary>
         /// <param name="id">Injected <see cref="int"/></param>
-        /// <returns>Instance of <see cref="IList{ViewPoblacion}"/></returns>
+        /// <returns>Instance of <see cref="Task{IList{ViewPoblacion}}"/></returns>
         Task<IList<ViewPoblacion>> FindAllPoblacionByProvinciaId(int @id);
 
         /// <summary>
         /// Finds Poblacion By Id
         /// </summary>
         /// <param name="id">Injected <see cref="int"/></param>
-        /// <returns>Instance of <see cref="Poblacion"/></returns>
+        /// <returns>Instance of <see cref="Task{Poblacion}"/></returns>
         Task<Poblacion> FindPoblacionById(int @id);
 
         /// <summary>
         /// Finds Provincia By Id
         /// </summary>
         /// <param name="id">Injected <see cref="int"/></param>
-        /// <returns>Instance of <see cref="Provincia"/></returns>
+        /// <returns>Instance of <see cref="Task{Provincia}"/></returns>
         Task<Provincia> FindProvinciaById(int @id);
 
         /// <summary>
@@ -51,28 +51,28 @@ namespace Sandwitch.Tier.Services.Interfaces
         /// Updates Poblacion
         /// </summary>
         /// <param name="viewModel">Injected <see cref="UpdatePoblacion"/></param>
-        /// <returns>Instance of <see cref="ViewPoblacion"/></returns>
+        /// <returns>Instance of <see cref="Task{ViewPoblacion}"/></returns>
         Task<ViewPoblacion> UpdatePoblacion(UpdatePoblacion @viewModel);
 
         /// <summary>
         /// Adds Poblacion
         /// </summary>
         /// <param name="viewModel">Injected <see cref="AddPoblacion"/></param>
-        /// <returns>Instance of <see cref="ViewPoblacion"/></returns>
+        /// <returns>Instance of <see cref="Task{ViewPoblacion}"/></returns>
         Task<ViewPoblacion> AddPoblacion(AddPoblacion @viewModel);
 
         /// <summary>
         /// Checks Name
         /// </summary>
         /// <param name="viewModel">Injected <see cref="AddPoblacion"/></param>
-        /// <returns>Instance of <see cref="Poblacion"/></returns>
+        /// <returns>Instance of <see cref="Task{Poblacion}"/></returns>
         Task<Poblacion> CheckName(AddPoblacion @viewModel);
 
         /// <summary>
         /// Checks Name
         /// </summary>
         /// <param name="viewModel">Injected <see cref="AddPoblacion"/></param>
-        /// <returns>Instance of <see cref="Poblacion"/></returns>
+        /// <returns>Instance of <see cref="Task{Poblacion}"/></returns>
         Task<Poblacion> CheckName(UpdatePoblacion @viewModel);
     }
 }

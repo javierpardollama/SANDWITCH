@@ -18,7 +18,7 @@ namespace Sandwitch.Tier.Services.Tests.Classes
     public abstract class TestBaseService
     {
         /// <summary>
-        /// Instance of <see cref="IApplicationContext"/>
+        /// Instance of <see cref="IMapper"/>
         /// </summary>
         public IMapper Mapper;
 
@@ -78,7 +78,7 @@ namespace Sandwitch.Tier.Services.Tests.Classes
         }      
 
         /// <summary>
-        /// Sets Settings
+        /// Sets Up Settings
         /// </summary>
         public void SetUpSettings()
         {

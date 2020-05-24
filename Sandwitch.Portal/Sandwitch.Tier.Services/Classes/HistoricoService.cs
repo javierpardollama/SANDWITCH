@@ -39,7 +39,7 @@ namespace Sandwitch.Tier.Services.Classes
         /// Finds Arenal By Id
         /// </summary>
         /// <param name="id">Injected <see cref="int"/></param>
-        /// <returns>Instance of <see cref="Arenal"/></returns>
+        /// <returns>Instance of <see cref="Task{Arenal}"/></returns>
         public async Task<Arenal> FindArenalById(int @id)
         {
             Arenal @arenal = await Context.Arenal
@@ -73,7 +73,7 @@ namespace Sandwitch.Tier.Services.Classes
         /// Finds Bandera By Id
         /// </summary>
         /// <param name="id">Injected <see cref="int"/></param>
-        /// <returns>Instance of <see cref="Bandera"/></returns>
+        /// <returns>Instance of <see cref="Task{Bandera}"/></returns>
         public async Task<Bandera> FindBanderaById(int @id)
         {
             Bandera @bandera = await Context.Bandera
@@ -104,7 +104,7 @@ namespace Sandwitch.Tier.Services.Classes
         /// Adds Historico
         /// </summary>
         /// <param name="viewModel">Injected <see cref="AddHistorico"/></param>
-        /// <returns>Instance of <see cref="ViewHistorico"/></returns>
+        /// <returns>Instance of <see cref="Task{ViewHistorico}"/></returns>
         public async Task<ViewHistorico> AddHistorico(AddHistorico @viewModel)
         {
             Historico @historico = new Historico

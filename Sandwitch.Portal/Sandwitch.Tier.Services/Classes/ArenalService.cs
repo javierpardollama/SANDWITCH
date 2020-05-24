@@ -42,7 +42,7 @@ namespace Sandwitch.Tier.Services.Classes
         /// Adds Arenal
         /// </summary>
         /// <param name="viewModel">Injected <see cref="AddArenal"/></param>
-        /// <returns>Instance of <see cref="ViewArenal"/></returns>
+        /// <returns>Instance of <see cref="Task{ViewArenal}"/></returns>
         public async Task<ViewArenal> AddArenal(AddArenal @viewModel)
         {
             await CheckName(@viewModel);
@@ -126,7 +126,7 @@ namespace Sandwitch.Tier.Services.Classes
         /// <summary>
         /// Finds All Arenal
         /// </summary>
-        /// <returns>Instance of <see cref="IList{ViewArenal}"/></returns>
+        /// <returns>Instance of <see cref="Task{IList{ViewArenal}}"/></returns>
         public async Task<IList<ViewArenal>> FindAllArenal()
         {
             ICollection<Arenal> @arenales = await Context.Arenal
@@ -145,7 +145,7 @@ namespace Sandwitch.Tier.Services.Classes
         /// Finds All Arenal By Poblacion Id
         /// </summary>
         /// <param name="id">Injected <see cref="int"/></param>
-        /// <returns>Instance of <see cref="IList{ViewArenal}"/></returns>
+        /// <returns>Instance of <see cref="Task{IList{ViewArenal}}"/></returns>
         public async Task<IList<ViewArenal>> FindAllArenalByPoblacionId(int @id)
         {
             ICollection<Arenal> @arenales = await Context.ArenalPoblacion
@@ -167,7 +167,7 @@ namespace Sandwitch.Tier.Services.Classes
         /// Finds All Historico By Arenal Id
         /// </summary>
         /// <param name="id">Injected <see cref="int"/></param>
-        /// <returns>Instance of <see cref="IList{ViewHistorico}"/></returns>
+        /// <returns>Instance of <see cref="Task{IList{ViewHistorico}}"/></returns>
         public async Task<IList<ViewHistorico>> FindAllHistoricoByArenalId(int @id)
         {
             ICollection<Historico> @historicos = await Context.Historico
@@ -186,7 +186,7 @@ namespace Sandwitch.Tier.Services.Classes
         /// Finds Arenal By Id
         /// </summary>
         /// <param name="id">Injected <see cref="int"/></param>
-        /// <returns>Instance of <see cref="Arenal"/></returns>
+        /// <returns>Instance of <see cref="Task{Arenal}"/></returns>
         public async Task<Arenal> FindArenalById(int @id)
         {
             Arenal @arenal = await Context.Arenal
@@ -220,7 +220,7 @@ namespace Sandwitch.Tier.Services.Classes
         /// Finds Poblacion By Id
         /// </summary>
         /// <param name="id">Injected <see cref="int"/></param>
-        /// <returns>Instance of <see cref="Poblacion"/></returns>
+        /// <returns>Instance of <see cref="Task{Poblacion}"/></returns>
         public async Task<Poblacion> FindPoblacionById(int @id)
         {
             Poblacion @poblacion = await Context.Poblacion
@@ -251,7 +251,7 @@ namespace Sandwitch.Tier.Services.Classes
         /// Finds Bandera By Id
         /// </summary>
         /// <param name="id">Injected <see cref="int"/></param>
-        /// <returns>Instance of <see cref="Bandera"/></returns>
+        /// <returns>Instance of <see cref="Task{Bandera}"/></returns>
         public async Task<Bandera> FindBanderaById(int @id)
         {
             Bandera @bandera = await Context.Bandera
@@ -312,7 +312,7 @@ namespace Sandwitch.Tier.Services.Classes
         /// Updates Arenal
         /// </summary>
         /// <param name="viewModel">Injected <see cref="UpdateArenal"/></param>
-        /// <returns>Instance of <see cref="ViewArenal"/></returns>
+        /// <returns>Instance of <see cref="Task{ViewArenal}"/></returns>
         public async Task<ViewArenal> UpdateArenal(UpdateArenal @viewModel)
         {
             await CheckName(@viewModel);
@@ -394,7 +394,7 @@ namespace Sandwitch.Tier.Services.Classes
         /// Checks Name
         /// </summary>
         /// <param name="viewModel">Injected <see cref="AddArenal"/></param>
-        /// <returns>Instance of <see cref="Arenal"/></returns>
+        /// <returns>Instance of <see cref="Task{Arenal}"/></returns>
         public async Task<Arenal> CheckName(AddArenal @viewModel)
         {
             Arenal @arenal = await Context.Arenal
@@ -426,7 +426,7 @@ namespace Sandwitch.Tier.Services.Classes
         /// Checks Name
         /// </summary>
         /// <param name="viewModel">Injected <see cref="UpdateArenal"/></param>
-        /// <returns>Instance of <see cref="Arenal"/></returns>
+        /// <returns>Instance of <see cref="Task{Arenal}"/></returns>
         public async Task<Arenal> CheckName(UpdateArenal @viewModel)
         {
             Arenal @arenal = await Context.Arenal

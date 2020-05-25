@@ -46,13 +46,13 @@ namespace Sandwitch.Tier.Contexts.Interfaces
         /// <summary>
         /// Saves Changes Syncronously
         /// </summary>
-        /// <returns>Istance of <see cref="int"/></returns>
+        /// <returns>Instance of <see cref="int"/></returns>
         int SaveChanges();
 
         /// <summary>
         /// Saves Changes Asyncronously
         /// </summary>
-        /// <returns>Istance of <see cref="Task{int}"/></returns>
+        /// <returns>Instance of <see cref="Task{int}"/></returns>
         Task<int> SaveChangesAsync();
     }
 }

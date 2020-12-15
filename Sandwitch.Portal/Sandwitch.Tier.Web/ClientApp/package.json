@@ -37,7 +37,7 @@
     "@types/node": "^12.12.35",
     "@typescript-eslint/eslint-plugin": "^4.10.0",
     "@typescript-eslint/parser": "^4.10.0",
-    "codelyzer": "^5.2.2",
+    "codelyzer": "^6.0.1",
     "eslint": "^7.15.0",
     "jasmine-core": "^3.5.0",
     "jasmine-spec-reporter": "^6.0.0",

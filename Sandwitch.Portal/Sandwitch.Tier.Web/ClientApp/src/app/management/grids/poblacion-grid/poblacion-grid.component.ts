@@ -23,7 +23,7 @@ import {
 @Component({
   selector: 'app-poblacion-grid',
   templateUrl: './poblacion-grid.component.html',
-  styleUrls: ['./poblacion-grid.component.css']
+  styleUrls: ['./poblacion-grid.component.scss']
 })
 export class PoblacionGridComponent implements OnInit {
 

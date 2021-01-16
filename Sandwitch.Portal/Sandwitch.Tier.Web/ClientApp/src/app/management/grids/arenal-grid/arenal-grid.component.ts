@@ -25,7 +25,7 @@ import {
 @Component({
     selector: 'app-arenal-grid',
     templateUrl: './arenal-grid.component.html',
-    styleUrls: ['./arenal-grid.component.css']
+    styleUrls: ['./arenal-grid.component.scss']
 })
 export class ArenalGridComponent implements OnInit {
 

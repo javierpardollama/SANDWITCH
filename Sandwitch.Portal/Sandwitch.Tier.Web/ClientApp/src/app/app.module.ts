@@ -32,6 +32,7 @@ import { MatTableModule } from '@angular/material/table';
 import { NumericTypeDirective } from './../directives/numeric-type.directive';
 
 // App
+import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
@@ -106,33 +107,7 @@ import { PoblacionUpdateModalComponent } from './management/modals/updates/pobla
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    RouterModule.forRoot([
-      {
-        path: '',
-        component: HomeComponent,
-        pathMatch: 'full'
-      },
-      {
-        path: 'management/banderas',
-        component: BanderaGridComponent,
-        pathMatch: 'full'
-      },
-      {
-        path: 'management/poblaciones',
-        component: PoblacionGridComponent,
-        pathMatch: 'full'
-      },
-      {
-        path: 'management/provincias',
-        component: ProvinciaGridComponent,
-        pathMatch: 'full'
-      },
-      {
-        path: 'management/arenales',
-        component: ArenalGridComponent,
-        pathMatch: 'full'
-      }
-    ])
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

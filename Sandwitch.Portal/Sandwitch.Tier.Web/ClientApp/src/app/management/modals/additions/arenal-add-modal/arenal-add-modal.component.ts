@@ -27,7 +27,7 @@ import { TimeAppVariants } from '../../../../../variants/time.app.variants';
 @Component({
   selector: 'app-arenal-add-modal',
   templateUrl: './arenal-add-modal.component.html',
-  styleUrls: ['./arenal-add-modal.component.css']
+  styleUrls: ['./arenal-add-modal.component.scss']
 })
 export class ArenalAddModalComponent implements OnInit {
 

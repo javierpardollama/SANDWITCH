@@ -30,7 +30,7 @@ import { TimeAppVariants } from './../../../../../variants/time.app.variants';
 @Component({
   selector: 'app-arenal-update-modal',
   templateUrl: './arenal-update-modal.component.html',
-  styleUrls: ['./arenal-update-modal.component.css']
+  styleUrls: ['./arenal-update-modal.component.scss']
 })
 export class ArenalUpdateModalComponent implements OnInit {
 

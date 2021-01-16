@@ -24,7 +24,7 @@ import {
 @Component({
   selector: 'app-bandera-grid',
   templateUrl: './bandera-grid.component.html',
-  styleUrls: ['./bandera-grid.component.css']
+  styleUrls: ['./bandera-grid.component.scss']
 })
 export class BanderaGridComponent implements OnInit {
 

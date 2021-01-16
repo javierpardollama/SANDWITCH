@@ -24,7 +24,7 @@ import {
 @Component({
   selector: 'app-provincia-grid',
   templateUrl: './provincia-grid.component.html',
-  styleUrls: ['./provincia-grid.component.css']
+  styleUrls: ['./provincia-grid.component.scss']
 })
 export class ProvinciaGridComponent implements OnInit {
 

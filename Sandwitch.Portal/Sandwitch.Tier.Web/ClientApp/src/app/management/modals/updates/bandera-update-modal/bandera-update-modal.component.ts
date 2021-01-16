@@ -26,7 +26,7 @@ import { TimeAppVariants } from './../../../../../variants/time.app.variants';
 @Component({
   selector: 'app-bandera-update-modal',
   templateUrl: './bandera-update-modal.component.html',
-  styleUrls: ['./bandera-update-modal.component.css']
+  styleUrls: ['./bandera-update-modal.component.scss']
 })
 export class BanderaUpdateModalComponent implements OnInit {
 

@@ -26,7 +26,7 @@ import { TimeAppVariants } from './../../../../../variants/time.app.variants';
 @Component({
   selector: 'app-provincia-update-modal',
   templateUrl: './provincia-update-modal.component.html',
-  styleUrls: ['./provincia-update-modal.component.css']
+  styleUrls: ['./provincia-update-modal.component.scss']
 })
 export class ProvinciaUpdateModalComponent implements OnInit {
 

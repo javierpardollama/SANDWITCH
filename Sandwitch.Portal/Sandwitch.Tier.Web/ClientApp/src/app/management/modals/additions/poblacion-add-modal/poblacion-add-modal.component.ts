@@ -27,7 +27,7 @@ import { TimeAppVariants } from './../../../../../variants/time.app.variants';
 @Component({
   selector: 'app-poblacion-add-modal',
   templateUrl: './poblacion-add-modal.component.html',
-  styleUrls: ['./poblacion-add-modal.component.css']
+  styleUrls: ['./poblacion-add-modal.component.scss']
 })
 export class PoblacionAddModalComponent implements OnInit {
 

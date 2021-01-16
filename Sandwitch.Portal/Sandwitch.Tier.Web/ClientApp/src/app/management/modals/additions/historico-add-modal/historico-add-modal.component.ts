@@ -38,7 +38,7 @@ import { FormatAppVariants } from './../../../../../variants/format.app.variants
 @Component({
   selector: 'app-historico-add-modal',
   templateUrl: './historico-add-modal.component.html',
-  styleUrls: ['./historico-add-modal.component.css']
+  styleUrls: ['./historico-add-modal.component.scss']
 })
 export class HistoricoAddModalComponent implements OnInit {
 

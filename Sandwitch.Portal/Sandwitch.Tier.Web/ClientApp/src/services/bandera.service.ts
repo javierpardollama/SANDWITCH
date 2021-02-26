@@ -10,11 +10,11 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 
 import { Injectable } from '@angular/core';
 
-import { Observable } from 'rxjs';
-
 import { catchError } from 'rxjs/operators';
 
 import { BaseService } from './base.service';
+
+import { PageBase } from 'src/viewmodels/pagination/pagebase';
 
 @Injectable({
     providedIn: 'root',
@@ -35,7 +35,12 @@ export class BanderaService extends BaseService {
 
     public FindAllBandera(): Promise<ViewBandera[]> {
         return this.httpClient.get<ViewBandera[]>('api/bandera/findallbandera')
-            .pipe(catchError(this.HandleError<ViewBandera[]>('FindAllBandera', []))).toPromise();            
+            .pipe(catchError(this.HandleError<ViewBandera[]>('FindAllBandera', []))).toPromise();
+    }
+
+    public FindPaginatedBandera(viewModel: PageBase): Promise<ViewBandera[]> {
+        return this.httpClient.post<ViewBandera[]>('api/bandera/findpaginatedbandera', viewModel)
+            .pipe(catchError(this.HandleError<ViewBandera[]>('FindPaginatedBandera', []))).toPromise();
     }
 
     public AddBandera(viewModel: AddBandera): Promise<ViewBandera> {

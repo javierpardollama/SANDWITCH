@@ -10,11 +10,11 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 
 import { Injectable } from '@angular/core';
 
-import { Observable } from 'rxjs';
-
 import { catchError } from 'rxjs/operators';
 
 import { BaseService } from './base.service';
+
+import { PageBase } from 'src/viewmodels/pagination/pagebase';
 
 @Injectable({
     providedIn: 'root',
@@ -36,6 +36,11 @@ export class ProvinciaService extends BaseService {
     public FindAllProvincia(): Promise<ViewProvincia[]> {
         return this.httpClient.get<ViewProvincia[]>('api/provincia/findallprovincia')
             .pipe(catchError(this.HandleError<ViewProvincia[]>('FindAllProvincia', []))).toPromise();
+    }
+
+    public FindPaginatedProvincia(viewModel: PageBase): Promise<ViewProvincia[]> {
+        return this.httpClient.post<ViewProvincia[]>('api/provincia/findpaginatedprovincia', viewModel)
+            .pipe(catchError(this.HandleError<ViewProvincia[]>('FindPaginatedProvincia', []))).toPromise();
     }
 
     public AddProvincia(viewModel: AddProvincia): Promise<ViewProvincia> {

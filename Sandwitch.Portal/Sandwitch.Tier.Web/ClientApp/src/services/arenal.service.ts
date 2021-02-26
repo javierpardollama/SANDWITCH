@@ -10,11 +10,11 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 
 import { Injectable } from '@angular/core';
 
-import { Observable } from 'rxjs';
-
 import { catchError } from 'rxjs/operators';
 
 import { BaseService } from './base.service';
+
+import { PageBase } from 'src/viewmodels/pagination/pagebase';
 
 @Injectable({
     providedIn: 'root',
@@ -36,6 +36,11 @@ export class ArenalService extends BaseService {
     public FindAllArenal(): Promise<ViewArenal[]> {
         return this.httpClient.get<ViewArenal[]>('api/arenal/findallarenal')
             .pipe(catchError(this.HandleError<ViewArenal[]>('FindAllArenal', []))).toPromise();
+    }
+
+    public FindPaginatedArenal(viewModel: PageBase): Promise<ViewArenal[]> {
+        return this.httpClient.post<ViewArenal[]>('api/arenal/findpaginatedarenal', viewModel)
+            .pipe(catchError(this.HandleError<ViewArenal[]>('FindPaginatedArenal', undefined))).toPromise();
     }
 
     public FindAllArenalByPoblacionId(id: number): Promise<ViewArenal[]> {

@@ -105,7 +105,7 @@ namespace Sandwitch.Tier.Services.Classes
                 .AsNoTracking()
                 .Include(x => x.Poblaciones)
                 .Skip(@viewmodel.Skip)
-                .Take(@viewmodel.Skip)
+                .Take(@viewmodel.Take)
                 .ToListAsync();
 
             return Mapper.Map<IList<ViewProvincia>>(@provincias);

@@ -1,5 +1,12 @@
+.grid-container {
+max-height: 450px;
+overflow: auto;
+}
+
 table {
 width: 100%;
+overflow: auto;
+max-height: 450px;
 }
 
 .grid-page{

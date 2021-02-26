@@ -51,7 +51,7 @@ namespace Sandwitch.Tier.Web.Controllers
         /// </summary>
         /// <param name="viewModel">Injected <see cref="PageBase"/></param>
         /// <returns>Instance of <see cref="Task{JsonResult}"/></returns>
-        [HttpGet]
+        [HttpPost]
         [Route("findpaginatedpoblacion")]
         public async Task<IActionResult> FindPaginatedPoblacion([FromBody] PageBase @viewModel) => new JsonResult(value: await Service.FindPaginatedPoblacion(@viewModel));
 

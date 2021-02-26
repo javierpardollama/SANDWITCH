@@ -10,11 +10,11 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 
 import { Injectable } from '@angular/core';
 
-import { Observable } from 'rxjs';
-
 import { catchError } from 'rxjs/operators';
 
 import { BaseService } from './base.service';
+
+import { PageBase } from 'src/viewmodels/pagination/pagebase';
 
 @Injectable({
     providedIn: 'root',
@@ -36,6 +36,11 @@ export class PoblacionService extends BaseService {
     public FindAllPoblacion(): Promise<ViewPoblacion[]> {
         return this.httpClient.get<ViewPoblacion[]>('api/poblacion/findallpoblacion')
             .pipe(catchError(this.HandleError<ViewPoblacion[]>('FindAllPoblacion', []))).toPromise();
+    }
+
+    public FindPaginatedPoblacion(viewModel: PageBase): Promise<ViewPoblacion[]> {
+        return this.httpClient.post<ViewPoblacion[]>('api/poblacion/findpaginatedpoblacion', viewModel)
+            .pipe(catchError(this.HandleError<ViewPoblacion[]>('FindPaginatedPoblacion', []))).toPromise();
     }
 
     public FindAllPoblacionByProvinciaId(id: number): Promise<ViewPoblacion[]> {

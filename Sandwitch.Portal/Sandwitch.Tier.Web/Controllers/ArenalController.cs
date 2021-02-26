@@ -52,7 +52,7 @@ namespace Sandwitch.Tier.Web.Controllers
         /// </summary>
         /// <param name="viewModel">Injected <see cref="PageBase"/></param>
         /// <returns>Instance of <see cref="Task{JsonResult}"/></returns>
-        [HttpGet]
+        [HttpPost]
         [Route("findpaginatedarenal")]
         public async Task<IActionResult> FindPaginatedArenal([FromBody] PageBase @viewModel) => new JsonResult(value: await Service.FindPaginatedArenal(@viewModel));
 

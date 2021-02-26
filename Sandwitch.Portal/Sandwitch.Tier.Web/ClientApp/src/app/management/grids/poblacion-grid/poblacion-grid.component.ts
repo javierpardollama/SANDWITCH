@@ -1,4 +1,5 @@
 import {
+  AfterViewInit,
   Component,
   OnInit,
   ViewChild
@@ -19,13 +20,15 @@ import {
 import {
   PoblacionAddModalComponent
 } from './../../modals/additions/poblacion-add-modal/poblacion-add-modal.component';
+import { PageBase } from 'src/viewmodels/pagination/pagebase';
+import { ScrollAppVariants } from 'src/variants/scroll.app.variants';
 
 @Component({
   selector: 'app-poblacion-grid',
   templateUrl: './poblacion-grid.component.html',
   styleUrls: ['./poblacion-grid.component.scss']
 })
-export class PoblacionGridComponent implements OnInit {
+export class PoblacionGridComponent implements OnInit, AfterViewInit {
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
@@ -36,6 +39,12 @@ export class PoblacionGridComponent implements OnInit {
 
   public dataSource: MatTableDataSource<ViewPoblacion>;
 
+  public page: PageBase =
+    {
+      Skip: 0,
+      Take: 10
+    };
+
   // Constructor
   constructor(
     private poblacionService: PoblacionService,
@@ -45,12 +54,16 @@ export class PoblacionGridComponent implements OnInit {
 
   // Life Cicle
   ngOnInit() {
-    this.FindAllPoblacion();
+    window.addEventListener('scroll', this.scrollEvent, true);
+  }
+
+  ngAfterViewInit(): void {
+    this.FindPaginatedPoblacion();
   }
 
   // Get Data from Service
-  public async FindAllPoblacion() {
-    this.ELEMENT_DATA = await this.poblacionService.FindAllPoblacion();
+  public async FindPaginatedPoblacion() {
+    this.ELEMENT_DATA = await this.poblacionService.FindPaginatedPoblacion(this.page);
 
     this.SetupMyTableSettings();
   }
@@ -76,7 +89,7 @@ export class PoblacionGridComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      this.FindAllPoblacion();
+      this.FindPaginatedPoblacion();
     });
   }
   public AddRecord() {
@@ -85,7 +98,29 @@ export class PoblacionGridComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      this.FindAllPoblacion();
+      this.FindPaginatedPoblacion();
     });
+  }
+
+  private scrollEvent = async (e: any): Promise<void> => {
+    const tableViewHeight = e.target.offsetHeight // viewport: container class with 500px
+    const tableScrollHeight = e.target.scrollHeight // length of the table
+    const scrollLocation = e.target.scrollTop; // how far user scrolled     
+
+    // If the user has scrolled within 200px of the bottom, add more data
+    const limit = tableScrollHeight - tableViewHeight - ScrollAppVariants.AppScrollBuffer;
+
+    if (scrollLocation > limit) {
+
+      this.page =
+      {
+        Skip: this.ELEMENT_DATA.length,
+        Take: this.page.Take++
+      };
+
+      this.ELEMENT_DATA = this.ELEMENT_DATA.concat(await this.poblacionService.FindPaginatedPoblacion(this.page));
+
+      this.SetupMyTableSettings();
+    }
   }
 }

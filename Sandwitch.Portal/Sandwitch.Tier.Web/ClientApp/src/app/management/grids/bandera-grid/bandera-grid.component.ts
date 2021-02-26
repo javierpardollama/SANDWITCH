@@ -1,4 +1,5 @@
 import {
+  AfterViewInit,
   Component,
   OnInit,
   ViewChild
@@ -20,13 +21,15 @@ import {
 import {
   BanderaAddModalComponent
 } from './../../modals/additions/bandera-add-modal/bandera-add-modal.component';
+import { PageBase } from 'src/viewmodels/pagination/pagebase';
+import { ScrollAppVariants } from 'src/variants/scroll.app.variants';
 
 @Component({
   selector: 'app-bandera-grid',
   templateUrl: './bandera-grid.component.html',
   styleUrls: ['./bandera-grid.component.scss']
 })
-export class BanderaGridComponent implements OnInit {
+export class BanderaGridComponent implements OnInit, AfterViewInit {
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
@@ -37,6 +40,12 @@ export class BanderaGridComponent implements OnInit {
 
   public dataSource: MatTableDataSource<ViewBandera>;
 
+  public page: PageBase =
+    {
+      Skip: 0,
+      Take: 10
+    };
+
   // Constructor
   constructor(
     private banderaService: BanderaService,
@@ -46,12 +55,16 @@ export class BanderaGridComponent implements OnInit {
 
   // Life Cicle
   ngOnInit() {
-    this.FindAllBandera();
+    window.addEventListener('scroll', this.scrollEvent, true);
+  }
+
+  ngAfterViewInit(): void {
+    this.FindPaginatedBandera();
   }
 
   // Get Data from Service
-  public async FindAllBandera() {
-    this.ELEMENT_DATA = await this.banderaService.FindAllBandera();
+  public async FindPaginatedBandera() {
+    this.ELEMENT_DATA = await this.banderaService.FindPaginatedBandera(this.page);
 
     this.SetupMyTableSettings();
   }
@@ -77,7 +90,7 @@ export class BanderaGridComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      this.FindAllBandera();
+      this.FindPaginatedBandera();
     });
   }
 
@@ -87,7 +100,29 @@ export class BanderaGridComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      this.FindAllBandera();
+      this.FindPaginatedBandera();
     });
+  }
+
+  private scrollEvent = async (e: any): Promise<void> => {
+    const tableViewHeight = e.target.offsetHeight // viewport: container class with 500px
+    const tableScrollHeight = e.target.scrollHeight // length of the table
+    const scrollLocation = e.target.scrollTop; // how far user scrolled     
+
+    // If the user has scrolled within 200px of the bottom, add more data
+    const limit = tableScrollHeight - tableViewHeight - ScrollAppVariants.AppScrollBuffer;
+
+    if (scrollLocation > limit) {
+
+      this.page =
+      {
+        Skip: this.ELEMENT_DATA.length,
+        Take: this.page.Take++
+      };
+
+      this.ELEMENT_DATA = this.ELEMENT_DATA.concat(await this.banderaService.FindPaginatedBandera(this.page));
+
+      this.SetupMyTableSettings();
+    }
   }
 }

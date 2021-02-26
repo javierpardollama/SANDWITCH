@@ -156,8 +156,8 @@ namespace Sandwitch.Tier.Services.Classes
                .Include(x => x.ArenalPoblaciones)
                .ThenInclude(x => x.Poblacion)
                .Include(x => x.Historicos)
-               .Take(@viewmodel.Take)
                .Skip(@viewmodel.Skip)
+               .Take(@viewmodel.Take)              
                .ToListAsync();
 
             return Mapper.Map<IList<ViewArenal>>(@arenales);

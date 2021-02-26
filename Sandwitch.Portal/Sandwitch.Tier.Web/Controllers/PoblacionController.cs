@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 using Sandwitch.Tier.Services.Interfaces;
 using Sandwitch.Tier.ViewModels.Classes.Additions;
+using Sandwitch.Tier.ViewModels.Classes.Pagination;
 using Sandwitch.Tier.ViewModels.Classes.Updates;
 
 namespace Sandwitch.Tier.Web.Controllers
@@ -44,6 +45,15 @@ namespace Sandwitch.Tier.Web.Controllers
         [HttpGet]
         [Route("findallpoblacion")]
         public async Task<IActionResult> FindAllPoblacion() => new JsonResult(value: await Service.FindAllPoblacion());
+
+        /// <summary>
+        /// Finds Paginated Poblacion
+        /// </summary>
+        /// <param name="viewModel">Injected <see cref="PageBase"/></param>
+        /// <returns>Instance of <see cref="Task{JsonResult}"/></returns>
+        [HttpGet]
+        [Route("findpaginatedpoblacion")]
+        public async Task<IActionResult> FindPaginatedPoblacion([FromBody] PageBase @viewModel) => new JsonResult(value: await Service.FindPaginatedPoblacion(@viewModel));
 
         /// <summary>
         /// Finds All Poblacion By Provincia Id

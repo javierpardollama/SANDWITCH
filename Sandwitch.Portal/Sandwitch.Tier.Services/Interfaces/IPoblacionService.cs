@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 
 using Sandwitch.Tier.Entities.Classes;
 using Sandwitch.Tier.ViewModels.Classes.Additions;
+using Sandwitch.Tier.ViewModels.Classes.Pagination;
 using Sandwitch.Tier.ViewModels.Classes.Updates;
 using Sandwitch.Tier.ViewModels.Classes.Views;
 
@@ -18,6 +19,13 @@ namespace Sandwitch.Tier.Services.Interfaces
         /// </summary>
         /// <returns>Instance of <see cref="Task{IList{ViewPoblacion}}"/></returns>
         Task<IList<ViewPoblacion>> FindAllPoblacion();
+
+        /// <summary>
+        /// Finds Paginated Poblacion
+        /// </summary>
+        /// <param name="viewModel">Injected <see cref="PageBase"/></param>
+        /// <returns>Instance of <see cref="Task{IList{ViewPoblacion}}"/></returns>
+        Task<IList<ViewPoblacion>> FindPaginatedPoblacion(PageBase @viewmodel);
 
         /// <summary>
         /// Finds All Poblacion By Provincia Id

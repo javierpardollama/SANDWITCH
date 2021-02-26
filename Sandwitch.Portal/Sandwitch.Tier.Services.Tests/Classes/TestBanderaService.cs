@@ -9,6 +9,7 @@ using NUnit.Framework;
 using Sandwitch.Tier.Entities.Classes;
 using Sandwitch.Tier.Services.Classes;
 using Sandwitch.Tier.ViewModels.Classes.Additions;
+using Sandwitch.Tier.ViewModels.Classes.Pagination;
 using Sandwitch.Tier.ViewModels.Classes.Updates;
 
 namespace Sandwitch.Tier.Services.Tests.Classes
@@ -104,6 +105,18 @@ namespace Sandwitch.Tier.Services.Tests.Classes
         public async Task FindAllBandera()
         {
             await BanderaService.FindAllBandera();
+
+            Assert.Pass();
+        }
+
+        /// <summary>
+        /// Finds Paginated Bandera
+        /// </summary>
+        /// <returns>Instance of <see cref="Task"/></returns>
+        [Test]
+        public async Task FindPaginatedBandera()
+        {
+            await BanderaService.FindPaginatedBandera(new PageBase { Skip = 10, Take = 10 });
 
             Assert.Pass();
         }

@@ -13,6 +13,7 @@ using Sandwitch.Tier.Entities.Classes;
 using Sandwitch.Tier.Logging.Classes;
 using Sandwitch.Tier.Services.Interfaces;
 using Sandwitch.Tier.ViewModels.Classes.Additions;
+using Sandwitch.Tier.ViewModels.Classes.Pagination;
 using Sandwitch.Tier.ViewModels.Classes.Updates;
 using Sandwitch.Tier.ViewModels.Classes.Views;
 
@@ -88,6 +89,25 @@ namespace Sandwitch.Tier.Services.Classes
                 .AsNoTracking()
                 .Include(x => x.Provincia)
                 .ToListAsync();
+
+            return Mapper.Map<IList<ViewPoblacion>>(@poblaciones);
+        }
+
+        /// <summary>
+        /// Finds Paginated Poblacion
+        /// </summary>
+        /// <param name="viewModel">Injected <see cref="PageBase"/></param>
+        /// <returns>Instance of <see cref="Task{IList{ViewPoblacion}}"/></returns>
+        public async Task<IList<ViewPoblacion>> FindPaginatedPoblacion(PageBase @viewmodel) 
+        {
+            IList<Poblacion> @poblaciones = await Context.Poblacion
+               .TagWith("FindPaginatedPoblacion")
+               .AsQueryable()
+               .AsNoTracking()
+               .Include(x => x.Provincia)
+               .Skip(@viewmodel.Skip)
+               .Take(@viewmodel.Skip)
+               .ToListAsync();
 
             return Mapper.Map<IList<ViewPoblacion>>(@poblaciones);
         }

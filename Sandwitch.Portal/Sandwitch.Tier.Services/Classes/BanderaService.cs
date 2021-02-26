@@ -13,6 +13,7 @@ using Sandwitch.Tier.Entities.Classes;
 using Sandwitch.Tier.Logging.Classes;
 using Sandwitch.Tier.Services.Interfaces;
 using Sandwitch.Tier.ViewModels.Classes.Additions;
+using Sandwitch.Tier.ViewModels.Classes.Pagination;
 using Sandwitch.Tier.ViewModels.Classes.Updates;
 using Sandwitch.Tier.ViewModels.Classes.Views;
 
@@ -84,6 +85,23 @@ namespace Sandwitch.Tier.Services.Classes
             IList<Bandera> @banderas = await Context.Bandera
                 .TagWith("FindAllBandera")
                 .AsNoTracking()
+                .ToListAsync();
+
+            return Mapper.Map<IList<ViewBandera>>(@banderas);
+        }
+
+        /// <summary>
+        /// Finds Paginated Bandera
+        /// </summary>
+        /// <param name="viewModel">Injected <see cref="PageBase"/></param>
+        /// <returns>Instance of <see cref="Task{IList{ViewBandera}}"/></returns>
+        public async Task<IList<ViewBandera>> FindPaginatedBandera(PageBase @viewmodel)
+        {
+            IList<Bandera> @banderas = await Context.Bandera
+                .TagWith("FindPaginatedBandera")
+                .AsNoTracking()
+                .Skip(viewmodel.Skip)
+                .Take(viewmodel.Take)
                 .ToListAsync();
 
             return Mapper.Map<IList<ViewBandera>>(@banderas);

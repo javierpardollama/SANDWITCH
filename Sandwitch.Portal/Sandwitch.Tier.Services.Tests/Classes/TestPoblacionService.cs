@@ -9,6 +9,7 @@ using NUnit.Framework;
 using Sandwitch.Tier.Entities.Classes;
 using Sandwitch.Tier.Services.Classes;
 using Sandwitch.Tier.ViewModels.Classes.Additions;
+using Sandwitch.Tier.ViewModels.Classes.Pagination;
 using Sandwitch.Tier.ViewModels.Classes.Updates;
 
 namespace Sandwitch.Tier.Services.Tests.Classes
@@ -112,6 +113,18 @@ namespace Sandwitch.Tier.Services.Tests.Classes
         public async Task FindAllPoblacion()
         {
             await PoblacionService.FindAllPoblacion();
+
+            Assert.Pass();
+        }
+
+        /// <summary>
+        /// Finds Paginated Poblacion
+        /// </summary>
+        /// <returns>Instance of <see cref="Task"/></returns>
+        [Test]
+        public async Task FindPaginatedPoblacion()
+        {
+            await PoblacionService.FindPaginatedPoblacion(new PageBase { Skip = 10, Take = 10 });
 
             Assert.Pass();
         }

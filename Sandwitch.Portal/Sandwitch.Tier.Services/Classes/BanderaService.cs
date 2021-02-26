@@ -100,8 +100,8 @@ namespace Sandwitch.Tier.Services.Classes
             IList<Bandera> @banderas = await Context.Bandera
                 .TagWith("FindPaginatedBandera")
                 .AsNoTracking()
-                .Skip(viewmodel.Skip)
-                .Take(viewmodel.Take)
+                .Skip(@viewmodel.Skip)
+                .Take(@viewmodel.Take)
                 .ToListAsync();
 
             return Mapper.Map<IList<ViewBandera>>(@banderas);

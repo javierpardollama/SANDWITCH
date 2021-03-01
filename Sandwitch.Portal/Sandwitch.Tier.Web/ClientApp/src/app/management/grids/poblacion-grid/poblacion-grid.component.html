@@ -48,5 +48,7 @@
       <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="GetRecord(row)">
       </tr>
     </table>
+
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
   </div>
 </div>

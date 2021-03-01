@@ -1,7 +1,6 @@
 import {
   AfterViewInit,
   Component,
-  OnInit,
   ViewChild
 } from '@angular/core';
 
@@ -22,14 +21,14 @@ import {
   ProvinciaAddModalComponent
 } from './../../modals/additions/provincia-add-modal/provincia-add-modal.component';
 import { PageBase } from 'src/viewmodels/pagination/pagebase';
-import { ScrollAppVariants } from 'src/variants/scroll.app.variants';
+import { merge } from 'rxjs';
 
 @Component({
   selector: 'app-provincia-grid',
   templateUrl: './provincia-grid.component.html',
   styleUrls: ['./provincia-grid.component.scss']
 })
-export class ProvinciaGridComponent implements OnInit, AfterViewInit {
+export class ProvinciaGridComponent implements AfterViewInit {
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
@@ -54,12 +53,20 @@ export class ProvinciaGridComponent implements OnInit, AfterViewInit {
   }
 
   // Life Cicle
-  ngOnInit() {
-    window.addEventListener('scroll', this.scrollEvent, true);
-  }
-
   ngAfterViewInit(): void {
+
+    // If the user changes the sort order, reset back to the first page.
+    this.sort.sortChange.subscribe(() => this.paginator.pageIndex = 0);
+
+    this.page =
+    {
+      Skip: 0,
+      Take: (this.paginator.pageSize + 2)
+    };
+
     this.FindPaginatedProvincia();
+
+    this.TriggerPagination();
   }
 
   // Get Data from Service
@@ -89,7 +96,7 @@ export class ProvinciaGridComponent implements OnInit, AfterViewInit {
       data: row
     });
 
-    dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterClosed().subscribe(() => {
       this.FindPaginatedProvincia();
     });
   }
@@ -99,30 +106,22 @@ export class ProvinciaGridComponent implements OnInit, AfterViewInit {
       width: '450px',
     });
 
-    dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterClosed().subscribe(() => {
       this.FindPaginatedProvincia();
     });
   }
 
-  private scrollEvent = async (e: any): Promise<void> => {
-    const tableViewHeight = e.target.offsetHeight // viewport: container class with 500px
-    const tableScrollHeight = e.target.scrollHeight // length of the table
-    const scrollLocation = e.target.scrollTop; // how far user scrolled     
+  public TriggerPagination() {
 
-    // If the user has scrolled within 200px of the bottom, add more data
-    const limit = tableScrollHeight - tableViewHeight - ScrollAppVariants.AppScrollBuffer;
-
-    if (scrollLocation > limit) {
+    merge(this.paginator.page).pipe().subscribe(() => {
 
       this.page =
       {
-        Skip: this.ELEMENT_DATA.length,
-        Take: this.page.Take++
+        Skip: 0,
+        Take: this.paginator.pageSize * (this.paginator.pageIndex + 2)
       };
 
-      this.ELEMENT_DATA = this.ELEMENT_DATA.concat(await this.provinciaService.FindPaginatedProvincia(this.page));
-
-      this.SetupMyTableSettings();
-    }
+      this.FindPaginatedProvincia();
+    });
   }
 }

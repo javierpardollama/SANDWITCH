@@ -9,8 +9,6 @@ import {
 
 import { HttpClientModule } from '@angular/common/http';
 
-import { RouterModule } from '@angular/router';
-
 // Angular Material
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -27,9 +25,6 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
-
-// Directives
-import { NumericTypeDirective } from './../directives/numeric-type.directive';
 
 // App
 import { AppRoutingModule } from './app-routing.module';
@@ -59,8 +54,6 @@ import { PoblacionUpdateModalComponent } from './management/modals/updates/pobla
 
 @NgModule({
   declarations: [
-    // Directives
-    NumericTypeDirective,
     // App
     AppComponent,
     NavMenuComponent,
@@ -82,10 +75,6 @@ import { PoblacionUpdateModalComponent } from './management/modals/updates/pobla
     BanderaUpdateModalComponent,
     ProvinciaUpdateModalComponent,
     PoblacionUpdateModalComponent
-  ],
-  exports: [
-    // Directives
-    NumericTypeDirective
   ],
   imports: [
     // Angular Material

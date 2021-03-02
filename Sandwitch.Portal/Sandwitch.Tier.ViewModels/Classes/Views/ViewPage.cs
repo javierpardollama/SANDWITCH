@@ -9,9 +9,9 @@ namespace Sandwitch.Tier.ViewModels.Classes.Views
     public class ViewPage<T> 
     {
         /// <summary>
-        /// Gets or Sets <see cref="Count"/>
+        /// Gets or Sets <see cref="Length"/>
         /// </summary>
-        public int Count { get; set; }
+        public int Length { get; set; }
 
         /// <summary>
         /// Gets or Sets <see cref="Index"/>

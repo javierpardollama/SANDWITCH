@@ -1,5 +1,5 @@
 export interface ViewPage<T> {
-    Count: number;
+    Length: number;
     Index: number;
     Size: number;
     Items: T[];

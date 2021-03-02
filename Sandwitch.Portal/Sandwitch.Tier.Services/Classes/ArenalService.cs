@@ -151,7 +151,7 @@ namespace Sandwitch.Tier.Services.Classes
         {
             ViewPage<ViewArenal> @page = new ViewPage<ViewArenal>
             {
-                Count = Context.Arenal.TagWith("FindCountPoblacion").Count(),
+                Length = Context.Arenal.TagWith("FindCountPoblacion").Count(),
                 Index = @viewmodel.Index,
                 Size = @viewmodel.Size,
                 Items = Mapper.Map<IList<ViewArenal>>(await Context.Arenal

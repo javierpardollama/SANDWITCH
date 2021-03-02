@@ -74,7 +74,7 @@ export class PoblacionGridComponent implements AfterViewInit {
 
     this.ELEMENT_DATA = this.ELEMENT_DATA.concat(view.Items);
 
-    this.page.Length = view.Count;
+    this.page.Length = view.Length;
 
     this.dataSource.data = this.ELEMENT_DATA;
   }

@@ -101,7 +101,7 @@ namespace Sandwitch.Tier.Services.Classes
         {
             ViewPage<ViewProvincia> @page = new ViewPage<ViewProvincia>
             {
-                Count = Context.Provincia.TagWith("FindCountProvincia").Count(),
+                Length = Context.Provincia.TagWith("FindCountProvincia").Count(),
                 Index = @viewmodel.Index,
                 Size = @viewmodel.Size,
                 Items = Mapper.Map<IList<ViewProvincia>>(await Context.Provincia

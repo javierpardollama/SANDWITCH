@@ -75,7 +75,7 @@ export class ProvinciaGridComponent implements AfterViewInit {
 
     this.ELEMENT_DATA = this.ELEMENT_DATA.concat(view.Items);
 
-    this.page.Length = view.Count;
+    this.page.Length = view.Length;
 
     this.dataSource.data = this.ELEMENT_DATA;
   }
@@ -113,12 +113,11 @@ export class ProvinciaGridComponent implements AfterViewInit {
     });
   }
 
-  public async TurnPage(event: PageEvent) {
+  public async TurnThePage(event: PageEvent) {
     this.page =
     {
       Index: event.pageIndex,
-      Size: event.pageSize,
-      Length : event.length
+      Size: event.pageSize     
     };
 
     await this.FindPaginatedProvincia();

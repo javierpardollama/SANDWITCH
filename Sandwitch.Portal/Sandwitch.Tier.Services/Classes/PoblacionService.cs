@@ -13,7 +13,7 @@ using Sandwitch.Tier.Entities.Classes;
 using Sandwitch.Tier.Logging.Classes;
 using Sandwitch.Tier.Services.Interfaces;
 using Sandwitch.Tier.ViewModels.Classes.Additions;
-using Sandwitch.Tier.ViewModels.Classes.Pagination;
+using Sandwitch.Tier.ViewModels.Classes.Filters;
 using Sandwitch.Tier.ViewModels.Classes.Updates;
 using Sandwitch.Tier.ViewModels.Classes.Views;
 
@@ -96,20 +96,26 @@ namespace Sandwitch.Tier.Services.Classes
         /// <summary>
         /// Finds Paginated Poblacion
         /// </summary>
-        /// <param name="viewModel">Injected <see cref="PageBase"/></param>
-        /// <returns>Instance of <see cref="Task{IList{ViewPoblacion}}"/></returns>
-        public async Task<IList<ViewPoblacion>> FindPaginatedPoblacion(PageBase @viewmodel) 
+        /// <param name="viewModel">Injected <see cref="FilterPage"/></param>
+        /// <returns>Instance of <see cref="Task{ViewPage{ViewPoblacion}}"/></returns>
+        public async Task<ViewPage<ViewPoblacion>> FindPaginatedPoblacion(FilterPage @viewmodel)
         {
-            IList<Poblacion> @poblaciones = await Context.Poblacion
-               .TagWith("FindPaginatedPoblacion")
-               .AsQueryable()
-               .AsNoTracking()
-               .Include(x => x.Provincia)
-               .Skip(@viewmodel.Skip)
-               .Take(@viewmodel.Take)
-               .ToListAsync();
+            ViewPage<ViewPoblacion> @page = new ViewPage<ViewPoblacion>
+            {
+                Count = Context.Poblacion.TagWith("FindCountPoblacion").Count(),
+                Index = @viewmodel.Index,
+                Size = @viewmodel.Size,
+                Items = Mapper.Map<IList<ViewPoblacion>>(await Context.Poblacion
+                .TagWith("FindPaginatedPoblacion")
+                .AsQueryable()
+                .AsNoTracking()
+                .Include(x => x.Provincia)
+                .Skip(@viewmodel.Index * @viewmodel.Size)
+                .Take(@viewmodel.Size)
+                .ToListAsync())
+            };
 
-            return Mapper.Map<IList<ViewPoblacion>>(@poblaciones);
+            return @page;
         }
 
         /// <summary>

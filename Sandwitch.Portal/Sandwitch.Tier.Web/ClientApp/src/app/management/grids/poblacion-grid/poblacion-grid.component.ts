@@ -1,11 +1,10 @@
 import {
   AfterViewInit,
   Component,
-  OnInit,
   ViewChild
 } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { MatPaginator } from '@angular/material/paginator';
+import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 
@@ -20,8 +19,8 @@ import {
 import {
   PoblacionAddModalComponent
 } from './../../modals/additions/poblacion-add-modal/poblacion-add-modal.component';
-import { PageBase } from 'src/viewmodels/pagination/pagebase';
-import { merge } from 'rxjs';
+
+import { FilterPage } from 'src/viewmodels/filters/filterpage';
 
 @Component({
   selector: 'app-poblacion-grid',
@@ -33,16 +32,17 @@ export class PoblacionGridComponent implements AfterViewInit {
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
 
-  public ELEMENT_DATA: ViewPoblacion[];
+  public ELEMENT_DATA: ViewPoblacion[] = [];
 
   public displayedColumns: string[] = ['Id', 'Name', 'Provincia', 'ImageUri', 'LastModified'];
 
-  public dataSource: MatTableDataSource<ViewPoblacion>;
+  public dataSource: MatTableDataSource<ViewPoblacion> = new MatTableDataSource<ViewPoblacion>();
 
-  public page: PageBase =
+  public page: FilterPage =
     {
-      Skip: 0,
-      Take: 10
+      Index: 0,
+      Size: 0,
+      Length: 0
     };
 
   // Constructor
@@ -54,26 +54,29 @@ export class PoblacionGridComponent implements AfterViewInit {
 
   // Life Cicle
   ngAfterViewInit(): void {
+    this.SetupMyTableSettings();
 
     // If the user changes the sort order, reset back to the first page.
     this.sort.sortChange.subscribe(() => this.paginator.pageIndex = 0);
 
     this.page =
     {
-      Skip: 0,
-      Take: (this.paginator.pageSize + 2)
+      Index: 0,
+      Size: this.paginator.pageSize
     };
 
-    this.FindPaginatedPoblacion();
-
-    this.TriggerPagination();
+    this.FindPaginatedPoblacion();    
   }
 
   // Get Data from Service
   public async FindPaginatedPoblacion() {
-    this.ELEMENT_DATA = await this.poblacionService.FindPaginatedPoblacion(this.page);
+    const view = await this.poblacionService.FindPaginatedPoblacion(this.page);
 
-    this.SetupMyTableSettings();
+    this.ELEMENT_DATA = this.ELEMENT_DATA.concat(view.Items);
+
+    this.page.Length = view.Count;
+
+    this.dataSource.data = this.ELEMENT_DATA;
   }
 
   // Setup Table Settings
@@ -111,17 +114,13 @@ export class PoblacionGridComponent implements AfterViewInit {
     });
   }
 
-  public TriggerPagination() {
+  public async TurnPage(event: PageEvent) {
+    this.page =
+    {
+      Index: event.pageIndex,
+      Size: event.pageSize
+    };
 
-    merge(this.paginator.page).pipe().subscribe(() => {
-
-      this.page =
-      {
-        Skip: 0,
-        Take: this.paginator.pageSize * (this.paginator.pageIndex + 2)
-      };
-
-      this.FindPaginatedPoblacion();
-    });
+    await this.FindPaginatedPoblacion();
   }
 }

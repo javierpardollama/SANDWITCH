@@ -2,6 +2,8 @@ import { AddArenal } from './../viewmodels/additions/addarenal';
 
 import { UpdateArenal } from './../viewmodels/updates/updatearenal';
 
+import { ViewPage } from './../viewmodels/views/viewpage';
+
 import { ViewArenal } from './../viewmodels/views/viewarenal';
 
 import { HttpClient } from '@angular/common/http';
@@ -14,7 +16,8 @@ import { catchError } from 'rxjs/operators';
 
 import { BaseService } from './base.service';
 
-import { PageBase } from 'src/viewmodels/pagination/pagebase';
+import { FilterPage } from 'src/viewmodels/filters/filterpage';
+
 
 @Injectable({
     providedIn: 'root',
@@ -38,9 +41,9 @@ export class ArenalService extends BaseService {
             .pipe(catchError(this.HandleError<ViewArenal[]>('FindAllArenal', []))).toPromise();
     }
 
-    public FindPaginatedArenal(viewModel: PageBase): Promise<ViewArenal[]> {
-        return this.httpClient.post<ViewArenal[]>('api/arenal/findpaginatedarenal', viewModel)
-            .pipe(catchError(this.HandleError<ViewArenal[]>('FindPaginatedArenal', undefined))).toPromise();
+    public FindPaginatedArenal(viewModel: FilterPage): Promise<ViewPage<ViewArenal>> {
+        return this.httpClient.post<ViewPage<ViewArenal>>('api/arenal/findpaginatedarenal', viewModel)
+            .pipe(catchError(this.HandleError<ViewPage<ViewArenal>>('FindPaginatedArenal', undefined))).toPromise();
     }
 
     public FindAllArenalByPoblacionId(id: number): Promise<ViewArenal[]> {

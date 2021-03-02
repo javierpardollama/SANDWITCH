@@ -13,7 +13,7 @@ using Sandwitch.Tier.Entities.Classes;
 using Sandwitch.Tier.Logging.Classes;
 using Sandwitch.Tier.Services.Interfaces;
 using Sandwitch.Tier.ViewModels.Classes.Additions;
-using Sandwitch.Tier.ViewModels.Classes.Pagination;
+using Sandwitch.Tier.ViewModels.Classes.Filters;
 using Sandwitch.Tier.ViewModels.Classes.Updates;
 using Sandwitch.Tier.ViewModels.Classes.Views;
 
@@ -93,18 +93,25 @@ namespace Sandwitch.Tier.Services.Classes
         /// <summary>
         /// Finds Paginated Bandera
         /// </summary>
-        /// <param name="viewModel">Injected <see cref="PageBase"/></param>
-        /// <returns>Instance of <see cref="Task{IList{ViewBandera}}"/></returns>
-        public async Task<IList<ViewBandera>> FindPaginatedBandera(PageBase @viewmodel)
+        /// <param name="viewModel">Injected <see cref="FilterPage"/></param>
+        /// <returns>Instance of <see cref="Task{ViewPage{ViewBandera}}"/></returns>
+        public async Task<ViewPage<ViewBandera>> FindPaginatedBandera(FilterPage @viewmodel)
         {
-            IList<Bandera> @banderas = await Context.Bandera
-                .TagWith("FindPaginatedBandera")
-                .AsNoTracking()
-                .Skip(@viewmodel.Skip)
-                .Take(@viewmodel.Take)
-                .ToListAsync();
+            ViewPage<ViewBandera> @page = new ViewPage<ViewBandera>
+            {
+                Count = Context.Bandera.TagWith("FindCountBandera").Count(),
+                Index = @viewmodel.Index,
+                Size = @viewmodel.Size,
+                Items = Mapper.Map<IList<ViewBandera>>(await Context.Bandera
+               .TagWith("FindPaginatedBandera")
+               .AsQueryable()
+               .AsNoTracking()
+               .Skip(@viewmodel.Index* @viewmodel.Size)
+               .Take(@viewmodel.Size)
+               .ToListAsync())
+            };
 
-            return Mapper.Map<IList<ViewBandera>>(@banderas);
+            return @page;
         }
 
         /// <summary>

@@ -2,6 +2,8 @@ import { AddBandera } from './../viewmodels/additions/addbandera';
 
 import { UpdateBandera } from './../viewmodels/updates/updatebandera';
 
+import { ViewPage } from './../viewmodels/views/viewpage';
+
 import { ViewBandera } from './../viewmodels/views/viewbandera';
 
 import { HttpClient } from '@angular/common/http';
@@ -14,7 +16,7 @@ import { catchError } from 'rxjs/operators';
 
 import { BaseService } from './base.service';
 
-import { PageBase } from 'src/viewmodels/pagination/pagebase';
+import { FilterPage } from 'src/viewmodels/filters/filterpage';
 
 @Injectable({
     providedIn: 'root',
@@ -38,9 +40,9 @@ export class BanderaService extends BaseService {
             .pipe(catchError(this.HandleError<ViewBandera[]>('FindAllBandera', []))).toPromise();
     }
 
-    public FindPaginatedBandera(viewModel: PageBase): Promise<ViewBandera[]> {
-        return this.httpClient.post<ViewBandera[]>('api/bandera/findpaginatedbandera', viewModel)
-            .pipe(catchError(this.HandleError<ViewBandera[]>('FindPaginatedBandera', []))).toPromise();
+    public FindPaginatedBandera(viewModel: FilterPage): Promise<ViewPage<ViewBandera>> {
+        return this.httpClient.post<ViewPage<ViewBandera>>('api/bandera/findpaginatedbandera', viewModel)
+            .pipe(catchError(this.HandleError<ViewPage<ViewBandera>>('FindPaginatedBandera', undefined))).toPromise();
     }
 
     public AddBandera(viewModel: AddBandera): Promise<ViewBandera> {

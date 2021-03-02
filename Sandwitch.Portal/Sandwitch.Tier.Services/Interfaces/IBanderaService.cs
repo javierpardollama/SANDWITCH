@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 
 using Sandwitch.Tier.Entities.Classes;
 using Sandwitch.Tier.ViewModels.Classes.Additions;
-using Sandwitch.Tier.ViewModels.Classes.Pagination;
+using Sandwitch.Tier.ViewModels.Classes.Filters;
 using Sandwitch.Tier.ViewModels.Classes.Updates;
 using Sandwitch.Tier.ViewModels.Classes.Views;
 
@@ -23,9 +23,9 @@ namespace Sandwitch.Tier.Services.Interfaces
         /// <summary>
         /// Finds Paginated Bandera
         /// </summary>
-        /// <param name="viewModel">Injected <see cref="PageBase"/></param>
-        /// <returns>Instance of <see cref="Task{IList{ViewBandera}}"/></returns>
-        Task<IList<ViewBandera>> FindPaginatedBandera(PageBase @viewmodel);
+        /// <param name="viewModel">Injected <see cref="FilterPage"/></param>
+        /// <returns>Instance of <see cref="Task{ViewPage{ViewBandera}}"/></returns>
+        Task<ViewPage<ViewBandera>> FindPaginatedBandera(FilterPage @viewmodel);
 
         /// <summary>
         /// Finds All Historico By Poblacion Id

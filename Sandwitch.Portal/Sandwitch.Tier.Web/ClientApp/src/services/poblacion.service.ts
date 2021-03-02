@@ -2,6 +2,8 @@ import { AddPoblacion } from './../viewmodels/additions/addpoblacion';
 
 import { UpdatePoblacion } from './../viewmodels/updates/updatepoblacion';
 
+import { ViewPage } from './../viewmodels/views/viewpage';
+
 import { ViewPoblacion } from './../viewmodels/views/viewpoblacion';
 
 import { HttpClient } from '@angular/common/http';
@@ -14,7 +16,7 @@ import { catchError } from 'rxjs/operators';
 
 import { BaseService } from './base.service';
 
-import { PageBase } from 'src/viewmodels/pagination/pagebase';
+import { FilterPage } from 'src/viewmodels/filters/filterpage';
 
 @Injectable({
     providedIn: 'root',
@@ -38,9 +40,9 @@ export class PoblacionService extends BaseService {
             .pipe(catchError(this.HandleError<ViewPoblacion[]>('FindAllPoblacion', []))).toPromise();
     }
 
-    public FindPaginatedPoblacion(viewModel: PageBase): Promise<ViewPoblacion[]> {
-        return this.httpClient.post<ViewPoblacion[]>('api/poblacion/findpaginatedpoblacion', viewModel)
-            .pipe(catchError(this.HandleError<ViewPoblacion[]>('FindPaginatedPoblacion', []))).toPromise();
+    public FindPaginatedPoblacion(viewModel: FilterPage): Promise<ViewPage<ViewPoblacion>> {
+        return this.httpClient.post<ViewPage<ViewPoblacion>>('api/poblacion/findpaginatedpoblacion', viewModel)
+            .pipe(catchError(this.HandleError<ViewPage<ViewPoblacion>>('FindPaginatedPoblacion', undefined))).toPromise();
     }
 
     public FindAllPoblacionByProvinciaId(id: number): Promise<ViewPoblacion[]> {

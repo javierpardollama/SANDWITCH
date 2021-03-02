@@ -13,7 +13,7 @@ using Sandwitch.Tier.Entities.Classes;
 using Sandwitch.Tier.Logging.Classes;
 using Sandwitch.Tier.Services.Interfaces;
 using Sandwitch.Tier.ViewModels.Classes.Additions;
-using Sandwitch.Tier.ViewModels.Classes.Pagination;
+using Sandwitch.Tier.ViewModels.Classes.Filters;
 using Sandwitch.Tier.ViewModels.Classes.Updates;
 using Sandwitch.Tier.ViewModels.Classes.Views;
 
@@ -93,22 +93,28 @@ namespace Sandwitch.Tier.Services.Classes
         }
 
         /// <summary>
-        /// Finds All Provincia
+        /// Finds Paginated Provincia
         /// </summary>
-        /// <param name="viewModel">Injected <see cref="PageBase"/></param>
-        /// <returns>Instance of <see cref="Task{IList{ViewProvincia}}"/></returns>
-        public async Task<IList<ViewProvincia>> FindPaginatedProvincia(PageBase @viewmodel) 
+        /// <param name="viewModel">Injected <see cref="FilterPage"/></param>
+        /// <returns>Instance of <see cref="Task{ViewPage{ViewProvincia}}"/></returns>
+        public async Task<ViewPage<ViewProvincia>> FindPaginatedProvincia(FilterPage @viewmodel) 
         {
-            IList<Provincia> @provincias = await Context.Provincia
+            ViewPage<ViewProvincia> @page = new ViewPage<ViewProvincia>
+            {
+                Count = Context.Provincia.TagWith("FindCountProvincia").Count(),
+                Index = @viewmodel.Index,
+                Size = @viewmodel.Size,
+                Items = Mapper.Map<IList<ViewProvincia>>(await Context.Provincia
                 .TagWith("FindPaginatedProvincia")
                 .AsQueryable()
                 .AsNoTracking()
                 .Include(x => x.Poblaciones)
-                .Skip(@viewmodel.Skip)
-                .Take(@viewmodel.Take)
-                .ToListAsync();
+                .Skip(@viewmodel.Index * @viewmodel.Size)
+                .Take(@viewmodel.Size)
+                .ToListAsync())
+            };
 
-            return Mapper.Map<IList<ViewProvincia>>(@provincias);
+            return @page;
         }
 
         /// <summary>

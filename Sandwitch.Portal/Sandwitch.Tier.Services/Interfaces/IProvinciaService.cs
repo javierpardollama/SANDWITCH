@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 
 using Sandwitch.Tier.Entities.Classes;
 using Sandwitch.Tier.ViewModels.Classes.Additions;
-using Sandwitch.Tier.ViewModels.Classes.Pagination;
+using Sandwitch.Tier.ViewModels.Classes.Filters;
 using Sandwitch.Tier.ViewModels.Classes.Updates;
 using Sandwitch.Tier.ViewModels.Classes.Views;
 
@@ -20,9 +20,9 @@ namespace Sandwitch.Tier.Services.Interfaces
         /// <summary>
         /// Finds Paginated Provincia
         /// </summary>
-        /// <param name="viewModel">Injected <see cref="PageBase"/></param>
-        /// <returns>Instance of <see cref="Task{IList{ViewProvincia}}"/></returns>
-        Task<IList<ViewProvincia>> FindPaginatedProvincia(PageBase @viewmodel);
+        /// <param name="viewModel">Injected <see cref="FilterPage"/></param>
+        /// <returns>Instance of <see cref="Task{ViewPage{ViewProvincia}}"/></returns>
+        Task<ViewPage<ViewProvincia>> FindPaginatedProvincia(FilterPage @viewmodel);
 
         /// <summary>
         /// Finds Provincia By Id

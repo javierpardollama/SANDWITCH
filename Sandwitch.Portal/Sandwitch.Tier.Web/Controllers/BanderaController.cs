@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 using Sandwitch.Tier.Services.Interfaces;
 using Sandwitch.Tier.ViewModels.Classes.Additions;
-using Sandwitch.Tier.ViewModels.Classes.Pagination;
+using Sandwitch.Tier.ViewModels.Classes.Filters;
 using Sandwitch.Tier.ViewModels.Classes.Updates;
 
 namespace Sandwitch.Tier.Web.Controllers
@@ -53,7 +53,7 @@ namespace Sandwitch.Tier.Web.Controllers
         /// <returns>Instance of <see cref="Task{JsonResult}"/></returns>
         [HttpPost]
         [Route("findpaginatedbandera")]
-        public async Task<IActionResult> FindPaginatedBandera([FromBody] PageBase @viewModel) => new JsonResult(value: await Service.FindPaginatedBandera(@viewModel));
+        public async Task<IActionResult> FindPaginatedBandera([FromBody] FilterPage @viewModel) => new JsonResult(value: await Service.FindPaginatedBandera(@viewModel));
 
         /// <summary>
         /// Finds All Historico By Bandera Id

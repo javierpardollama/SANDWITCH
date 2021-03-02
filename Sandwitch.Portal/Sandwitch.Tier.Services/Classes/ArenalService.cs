@@ -14,7 +14,7 @@ using Sandwitch.Tier.Entities.Classes;
 using Sandwitch.Tier.Logging.Classes;
 using Sandwitch.Tier.Services.Interfaces;
 using Sandwitch.Tier.ViewModels.Classes.Additions;
-using Sandwitch.Tier.ViewModels.Classes.Pagination;
+using Sandwitch.Tier.ViewModels.Classes.Filters;
 using Sandwitch.Tier.ViewModels.Classes.Updates;
 using Sandwitch.Tier.ViewModels.Classes.Views;
 
@@ -145,22 +145,28 @@ namespace Sandwitch.Tier.Services.Classes
         /// <summary>
         /// Finds Paginated Arenal
         /// </summary>
-        /// <param name="viewModel">Injected <see cref="PageBase"/></param>
-        /// <returns>Instance of <see cref="Task{IList{ViewArenal}}"/></returns>
-        public async Task<IList<ViewArenal>> FindPaginatedArenal(PageBase @viewmodel) 
+        /// <param name="viewModel">Injected <see cref="FilterPage"/></param>
+        /// <returns>Instance of <see cref="Task{ViewPage{ViewArenal}}"/></returns>
+        public async Task<ViewPage<ViewArenal>> FindPaginatedArenal(FilterPage @viewmodel)
         {
-            ICollection<Arenal> @arenales = await Context.Arenal
-               .TagWith("FindPaginatedArenal")
+            ViewPage<ViewArenal> @page = new ViewPage<ViewArenal>
+            {
+                Count = Context.Arenal.TagWith("FindCountPoblacion").Count(),
+                Index = @viewmodel.Index,
+                Size = @viewmodel.Size,
+                Items = Mapper.Map<IList<ViewArenal>>(await Context.Arenal
+               .TagWith("FindPaginatedPoblacion")
                .AsQueryable()
                .AsNoTracking()
                .Include(x => x.ArenalPoblaciones)
                .ThenInclude(x => x.Poblacion)
                .Include(x => x.Historicos)
-               .Skip(@viewmodel.Skip)
-               .Take(@viewmodel.Take)              
-               .ToListAsync();
+               .Skip(@viewmodel.Index * @viewmodel.Size)
+               .Take(@viewmodel.Size)
+               .ToListAsync())
+            };
 
-            return Mapper.Map<IList<ViewArenal>>(@arenales);
+            return @page;
         }
 
         /// <summary>

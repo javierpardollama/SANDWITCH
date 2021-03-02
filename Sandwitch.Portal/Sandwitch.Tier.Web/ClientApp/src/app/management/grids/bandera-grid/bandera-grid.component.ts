@@ -5,7 +5,7 @@ import {
 } from '@angular/core';
 
 import { MatDialog } from '@angular/material/dialog';
-import { MatPaginator } from '@angular/material/paginator';
+import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 
@@ -20,8 +20,8 @@ import {
 import {
   BanderaAddModalComponent
 } from './../../modals/additions/bandera-add-modal/bandera-add-modal.component';
-import { PageBase } from 'src/viewmodels/pagination/pagebase';
-import { merge } from 'rxjs';
+
+import { FilterPage } from 'src/viewmodels/filters/filterpage';
 
 @Component({
   selector: 'app-bandera-grid',
@@ -33,16 +33,17 @@ export class BanderaGridComponent implements AfterViewInit {
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
 
-  public ELEMENT_DATA: ViewBandera[];
+  public ELEMENT_DATA: ViewBandera[] = [];
 
   public displayedColumns: string[] = ['Id', 'Name', 'ImageUri', 'LastModified'];
 
-  public dataSource: MatTableDataSource<ViewBandera>;
+  public dataSource: MatTableDataSource<ViewBandera> = new MatTableDataSource<ViewBandera>();
 
-  public page: PageBase =
+  public page: FilterPage =
     {
-      Skip: 0,
-      Take: 10
+      Index: 0,
+      Size: 0,
+      Length: 0
     };
 
   // Constructor
@@ -55,31 +56,34 @@ export class BanderaGridComponent implements AfterViewInit {
   // Life Cicle
   ngAfterViewInit(): void {
 
+    this.SetupMyTableSettings();
+
     // If the user changes the sort order, reset back to the first page.
     this.sort.sortChange.subscribe(() => this.paginator.pageIndex = 0);
 
     this.page =
     {
-      Skip: 0,
-      Take: (this.paginator.pageSize + 2)
+      Index: 0,
+      Size: this.paginator.pageSize
     };
 
     this.FindPaginatedBandera();
 
-    this.TriggerPagination();
   }
 
   // Get Data from Service
   public async FindPaginatedBandera() {
-    this.ELEMENT_DATA = await this.banderaService.FindPaginatedBandera(this.page);
+    const view = await this.banderaService.FindPaginatedBandera(this.page);
 
-    this.SetupMyTableSettings();
+    this.ELEMENT_DATA = this.ELEMENT_DATA.concat(view.Items);
+
+    this.page.Length = view.Count;
+
+    this.dataSource.data = this.ELEMENT_DATA;
   }
 
   // Setup Table Settings
   public SetupMyTableSettings() {
-    this.dataSource = new MatTableDataSource(this.ELEMENT_DATA);
-
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }
@@ -111,17 +115,13 @@ export class BanderaGridComponent implements AfterViewInit {
     });
   }
 
-  public TriggerPagination() {
+  public async TurnPage(event: PageEvent) {
+    this.page =
+    {
+      Index: event.pageIndex,
+      Size: event.pageSize
+    };
 
-    merge(this.paginator.page).pipe().subscribe(() => {
-
-      this.page =
-      {
-        Skip: 0,
-        Take: this.paginator.pageSize * (this.paginator.pageIndex + 2)
-      };
-
-      this.FindPaginatedBandera();
-    });
+    await this.FindPaginatedBandera();
   }
 }

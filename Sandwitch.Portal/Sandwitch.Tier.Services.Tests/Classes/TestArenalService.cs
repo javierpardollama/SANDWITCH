@@ -10,7 +10,7 @@ using NUnit.Framework;
 using Sandwitch.Tier.Entities.Classes;
 using Sandwitch.Tier.Services.Classes;
 using Sandwitch.Tier.ViewModels.Classes.Additions;
-using Sandwitch.Tier.ViewModels.Classes.Pagination;
+using Sandwitch.Tier.ViewModels.Classes.Filters;
 using Sandwitch.Tier.ViewModels.Classes.Updates;
 
 namespace Sandwitch.Tier.Services.Tests.Classes
@@ -129,7 +129,7 @@ namespace Sandwitch.Tier.Services.Tests.Classes
         [Test]
         public async Task FindPaginatedArenal()
         {
-            await ArenalService.FindPaginatedArenal(new PageBase { Skip = 10, Take = 10 });
+            await ArenalService.FindPaginatedArenal(new FilterPage { Index = 1, Size = 5 });
 
             Assert.Pass();
         }

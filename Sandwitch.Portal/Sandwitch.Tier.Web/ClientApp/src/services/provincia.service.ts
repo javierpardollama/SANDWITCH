@@ -2,6 +2,8 @@ import { AddProvincia } from '../viewmodels/additions/addprovincia';
 
 import { UpdateProvincia } from '../viewmodels/updates/updateprovincia';
 
+import { ViewPage } from './../viewmodels/views/viewpage';
+
 import { ViewProvincia } from '../viewmodels/views/viewprovincia';
 
 import { HttpClient } from '@angular/common/http';
@@ -14,7 +16,7 @@ import { catchError } from 'rxjs/operators';
 
 import { BaseService } from './base.service';
 
-import { PageBase } from 'src/viewmodels/pagination/pagebase';
+import { FilterPage } from 'src/viewmodels/filters/filterpage';
 
 @Injectable({
     providedIn: 'root',
@@ -38,9 +40,9 @@ export class ProvinciaService extends BaseService {
             .pipe(catchError(this.HandleError<ViewProvincia[]>('FindAllProvincia', []))).toPromise();
     }
 
-    public FindPaginatedProvincia(viewModel: PageBase): Promise<ViewProvincia[]> {
-        return this.httpClient.post<ViewProvincia[]>('api/provincia/findpaginatedprovincia', viewModel)
-            .pipe(catchError(this.HandleError<ViewProvincia[]>('FindPaginatedProvincia', []))).toPromise();
+    public FindPaginatedProvincia(viewModel: FilterPage): Promise<ViewPage<ViewProvincia>> {
+        return this.httpClient.post<ViewPage<ViewProvincia>>('api/provincia/findpaginatedprovincia', viewModel)
+            .pipe(catchError(this.HandleError<ViewPage<ViewProvincia>>('FindPaginatedProvincia', undefined))).toPromise();
     }
 
     public AddProvincia(viewModel: AddProvincia): Promise<ViewProvincia> {

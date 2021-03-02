@@ -1,4 +1,4 @@
-<div *ngIf="!dataSource" class="spinner-container">
+<div *ngIf="dataSource.data.length == 0" class="spinner-container">
   <div class="spinner"></div>
 </div>
 
@@ -43,6 +43,7 @@
       </tr>
     </table>
 
-    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+    <mat-paginator [length]="page?.Length" [pageSizeOptions]="[5, 10, 25, 100]" (page)="TurnPage($event)">
+    </mat-paginator>
   </div>
 </div>

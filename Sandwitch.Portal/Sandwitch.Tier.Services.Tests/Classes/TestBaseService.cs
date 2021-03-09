@@ -7,7 +7,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 using Sandwitch.Tier.Contexts.Classes;
-using Sandwitch.Tier.Contexts.Interfaces;
 using Sandwitch.Tier.Mappings.Classes;
 
 namespace Sandwitch.Tier.Services.Tests.Classes

@@ -73,7 +73,7 @@ namespace Sandwitch.Tier.Web
             // Register the Mvc services to the services container
             @services.AddCustomizedServices();
 
-            @services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_3_0)
+            @services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Latest)
             .AddNewtonsoftJson(options =>
            {
                options.SerializerSettings.Formatting = Formatting.Indented;

@@ -97,7 +97,7 @@ namespace Sandwitch.Tier.Services.Classes
         /// </summary>
         /// <param name="viewModel">Injected <see cref="FilterPage"/></param>
         /// <returns>Instance of <see cref="Task{ViewPage{ViewProvincia}}"/></returns>
-        public async Task<ViewPage<ViewProvincia>> FindPaginatedProvincia(FilterPage @viewmodel) 
+        public async Task<ViewPage<ViewProvincia>> FindPaginatedProvincia(FilterPage @viewmodel)
         {
             ViewPage<ViewProvincia> @page = new ViewPage<ViewProvincia>
             {

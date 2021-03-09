@@ -106,7 +106,7 @@ namespace Sandwitch.Tier.Services.Classes
                .TagWith("FindPaginatedBandera")
                .AsQueryable()
                .AsNoTracking()
-               .Skip(@viewmodel.Index* @viewmodel.Size)
+               .Skip(@viewmodel.Index * @viewmodel.Size)
                .Take(@viewmodel.Size)
                .ToListAsync())
             };

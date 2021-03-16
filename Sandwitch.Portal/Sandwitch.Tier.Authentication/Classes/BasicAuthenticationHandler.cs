@@ -15,7 +15,7 @@ using Sandwitch.Tier.ViewModels.Classes.Auth;
 namespace Sandwitch.Tier.Authentication.Classes
 {
     /// <summary>
-    /// Represents a <see cref="BasicAuthenticationHandler"/> class. Inherits <see cref="AuthenticationHandler{AuthenticationSchemeOptions}"/> Implements <see cref="IAuthenticationService"/>
+    /// Represents a <see cref="BasicAuthenticationHandler"/> class. Inherits <see cref="AuthenticationHandler{AuthenticationSchemeOptions}"/> Implements <see cref="IBasicAuthenticationHandler"/>
     /// </summary>
     public class BasicAuthenticationHandler : AuthenticationHandler<AuthenticationSchemeOptions>, IBasicAuthenticationHandler
     {
@@ -30,11 +30,11 @@ namespace Sandwitch.Tier.Authentication.Classes
         /// <param name="encoder">Injected <see cref="UrlEncoder"/></param>
         /// <param name="clock">Injected <see cref="ISystemClock"/></param>
         /// <param name="authenticationService">Injected <see cref="IAuthenticationService"/></param>
-        public BasicAuthenticationHandler(IOptionsMonitor<AuthenticationSchemeOptions> options,
-                                          ILoggerFactory logger,
-                                          UrlEncoder encoder,
-                                          ISystemClock clock,
-                                          Interfaces.IAuthenticationService @authenticationService) : base(options, logger, encoder, clock)
+        public BasicAuthenticationHandler(IOptionsMonitor<AuthenticationSchemeOptions> @options,
+                                          ILoggerFactory @logger,
+                                          UrlEncoder @encoder,
+                                          ISystemClock @clock,
+                                          Interfaces.IAuthenticationService @authenticationService) : base(@options, @logger, @encoder, @clock)
         {
             this.AuthenticationService = @authenticationService;
         }
@@ -46,14 +46,14 @@ namespace Sandwitch.Tier.Authentication.Classes
         /// <returns>Instance of <see cref="AuthenticationTicket"/></returns>
         public AuthenticationTicket GetAuthenticationTicket(AuthSignIn @authSign)
         {
-            List<Claim> claims = new()
+            List<Claim> @claims = new()
             {               
                  new Claim(ClaimTypes.Name, @authSign.UserName),
                  new Claim(ClaimTypes.System, Environment.MachineName),
             };
 
             return new AuthenticationTicket(
-                new ClaimsPrincipal(identity: new ClaimsIdentity(claims: claims,
+                new ClaimsPrincipal(identity: new ClaimsIdentity(claims: @claims,
                                                                  authenticationType: Scheme.Name)),
                 authenticationScheme: Scheme.Name);
         }

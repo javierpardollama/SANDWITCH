@@ -21,7 +21,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sandwitch.Tier.ExceptionHan
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sandwitch.Tier.Constants", "Sandwitch.Tier.Constants\Sandwitch.Tier.Constants.csproj", "{CFB21FC5-89BD-4ED8-A958-E34BB1C7C9B5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sandwitch.Tier.Services.Tests", "Sandwitch.Tier.Services.Tests\Sandwitch.Tier.Services.Tests.csproj", "{B2293561-1911-460C-A87C-66CFD2E6876E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sandwitch.Tier.Services.Tests", "Sandwitch.Tier.Services.Tests\Sandwitch.Tier.Services.Tests.csproj", "{B2293561-1911-460C-A87C-66CFD2E6876E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sandwitch.Tier.Settings", "Sandwitch.Tier.Settings\Sandwitch.Tier.Settings.csproj", "{ED298DD0-D041-45FA-82C1-E141EAC9496A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sandwitch.Tier.Authentication", "Sandwitch.Tier.Authentication\Sandwitch.Tier.Authentication.csproj", "{F71F7C2E-11F0-4EDA-BC29-AE05A71DDE1A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sandwitch.Tier.Helpers", "Sandwitch.Tier.Helpers\Sandwitch.Tier.Helpers.csproj", "{77F3F29A-CA75-46C4-91F3-D66AADED067D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -69,6 +75,18 @@ Global
 		{B2293561-1911-460C-A87C-66CFD2E6876E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B2293561-1911-460C-A87C-66CFD2E6876E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B2293561-1911-460C-A87C-66CFD2E6876E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ED298DD0-D041-45FA-82C1-E141EAC9496A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ED298DD0-D041-45FA-82C1-E141EAC9496A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ED298DD0-D041-45FA-82C1-E141EAC9496A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ED298DD0-D041-45FA-82C1-E141EAC9496A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F71F7C2E-11F0-4EDA-BC29-AE05A71DDE1A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F71F7C2E-11F0-4EDA-BC29-AE05A71DDE1A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F71F7C2E-11F0-4EDA-BC29-AE05A71DDE1A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F71F7C2E-11F0-4EDA-BC29-AE05A71DDE1A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{77F3F29A-CA75-46C4-91F3-D66AADED067D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{77F3F29A-CA75-46C4-91F3-D66AADED067D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{77F3F29A-CA75-46C4-91F3-D66AADED067D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{77F3F29A-CA75-46C4-91F3-D66AADED067D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 using Sandwitch.Tier.Services.Interfaces;
@@ -13,6 +14,7 @@ namespace Sandwitch.Tier.Web.Controllers
     [Route("api/historico")]
     [Produces("application/json")]
     [ApiController]
+    [Authorize]
     public class HistoricoController : ControllerBase
     {
         /// <summary>

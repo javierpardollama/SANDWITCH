@@ -65,7 +65,7 @@ export class PoblacionGridComponent implements AfterViewInit {
       Size: this.paginator.pageSize
     };
 
-    this.FindPaginatedPoblacion();    
+    this.FindPaginatedPoblacion();
   }
 
   // Get Data from Service
@@ -114,7 +114,7 @@ export class PoblacionGridComponent implements AfterViewInit {
     });
   }
 
-  public async TurnPage(event: PageEvent) {
+  public async TurnThePage(event: PageEvent) {
     this.page =
     {
       Index: event.pageIndex,

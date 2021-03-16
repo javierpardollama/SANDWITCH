@@ -116,7 +116,7 @@ export class ArenalGridComponent implements AfterViewInit {
         });
     }
 
-    public async TurnPage(event: PageEvent) {
+    public async TurnThePage(event: PageEvent) {
         this.page =
         {
             Index: event.pageIndex,

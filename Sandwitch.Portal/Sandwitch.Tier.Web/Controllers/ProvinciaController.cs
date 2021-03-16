@@ -1,6 +1,7 @@
 ﻿using System.Net;
 using System.Threading.Tasks;
 
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 using Sandwitch.Tier.Services.Interfaces;
@@ -16,6 +17,7 @@ namespace Sandwitch.Tier.Web.Controllers
     [Route("api/provincia")]
     [Produces("application/json")]
     [ApiController]
+    [Authorize]
     public class ProvinciaController : ControllerBase
     {
         /// <summary>

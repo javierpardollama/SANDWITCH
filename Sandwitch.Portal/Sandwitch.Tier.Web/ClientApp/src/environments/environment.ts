@@ -2,7 +2,10 @@
 // `ng build ---prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
-export const environment = {
+export const environment =
+{
+  ApiLock: "Pauline",
+  ApiKey: "T/R4J6eyvNG<6ne!",
   production: false
 };
 

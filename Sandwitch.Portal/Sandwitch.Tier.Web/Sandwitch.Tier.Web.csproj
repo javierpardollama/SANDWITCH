@@ -43,7 +43,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Sandwitch.Tier.Authentication\Sandwitch.Tier.Authentication.csproj" />
     <ProjectReference Include="..\Sandwitch.Tier.Services\Sandwitch.Tier.Services.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="ClientApp\src\interceptors\" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

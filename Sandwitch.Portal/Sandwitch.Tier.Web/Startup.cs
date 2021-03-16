@@ -14,6 +14,7 @@ using Newtonsoft.Json.Serialization;
 
 using Sandwitch.Tier.Contexts.Classes;
 using Sandwitch.Tier.Mappings.Classes;
+using Sandwitch.Tier.Settings.Classes;
 using Sandwitch.Tier.Web.Extensions;
 
 namespace Sandwitch.Tier.Web
@@ -44,6 +45,11 @@ namespace Sandwitch.Tier.Web
         /// </summary>
         public IMapper Mapper { get; set; }
 
+        /// <summary>
+        /// Gets or Sets <see cref="ApiSettings"/>
+        /// </summary>
+        public ApiSettings ApiSettings { get; private set; }
+
         // This method gets called by the runtime. Use this method to add services to the container.
         /// <summary>
         /// Configures Services
@@ -72,6 +78,11 @@ namespace Sandwitch.Tier.Web
 
             // Register the Mvc services to the services container
             @services.AddCustomizedServices();
+          
+            services.Configure<ApiSettings>(Configuration.GetSection("Api"));
+
+            // Add customized Authentication to the services container.
+            @services.AddCustomizedAuthentication();
 
             @services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Latest)
             .AddNewtonsoftJson(options =>
@@ -86,6 +97,8 @@ namespace Sandwitch.Tier.Web
             {
                 configuration.RootPath = "ClientApp/dist";
             });
+
+                  
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -117,6 +130,9 @@ namespace Sandwitch.Tier.Web
             }
 
             @app.UseRouting();
+
+            @app.UseAuthentication();
+            @app.UseAuthorization();
 
             @app.UseEndpoints(endpoints =>
             {

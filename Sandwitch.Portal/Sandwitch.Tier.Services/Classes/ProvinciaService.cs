@@ -47,7 +47,7 @@ namespace Sandwitch.Tier.Services.Classes
         {
             await CheckName(@viewModel);
 
-            Provincia @provincia = new Provincia
+            Provincia @provincia = new()
             {
                 Name = @viewModel.Name,
                 ImageUri = @viewModel.ImageUri
@@ -99,9 +99,9 @@ namespace Sandwitch.Tier.Services.Classes
         /// <returns>Instance of <see cref="Task{ViewPage{ViewProvincia}}"/></returns>
         public async Task<ViewPage<ViewProvincia>> FindPaginatedProvincia(FilterPage @viewmodel)
         {
-            ViewPage<ViewProvincia> @page = new ViewPage<ViewProvincia>
+            ViewPage<ViewProvincia> @page = new()
             {
-                Length = Context.Provincia.TagWith("FindCountProvincia").Count(),
+                Length = Context.Provincia.TagWith("CountAllProvincia").Count(),
                 Index = @viewmodel.Index,
                 Size = @viewmodel.Size,
                 Items = Mapper.Map<IList<ViewProvincia>>(await Context.Provincia

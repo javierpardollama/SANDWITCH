@@ -47,7 +47,7 @@ namespace Sandwitch.Tier.Services.Classes
         {
             await CheckName(@viewModel);
 
-            Poblacion @poblacion = new Poblacion
+            Poblacion @poblacion = new()
             {
                 Name = @viewModel.Name,
                 Provincia = await FindProvinciaById(@viewModel.ProvinciaId),
@@ -100,9 +100,9 @@ namespace Sandwitch.Tier.Services.Classes
         /// <returns>Instance of <see cref="Task{ViewPage{ViewPoblacion}}"/></returns>
         public async Task<ViewPage<ViewPoblacion>> FindPaginatedPoblacion(FilterPage @viewmodel)
         {
-            ViewPage<ViewPoblacion> @page = new ViewPage<ViewPoblacion>
+            ViewPage<ViewPoblacion> @page = new()
             {
-                Length = Context.Poblacion.TagWith("FindCountPoblacion").Count(),
+                Length = Context.Poblacion.TagWith("CountAllPoblacion").Count(),
                 Index = @viewmodel.Index,
                 Size = @viewmodel.Size,
                 Items = Mapper.Map<IList<ViewPoblacion>>(await Context.Poblacion

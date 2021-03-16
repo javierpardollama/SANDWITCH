@@ -48,7 +48,7 @@ namespace Sandwitch.Tier.Services.Classes
         {
             await CheckName(@viewModel);
 
-            Arenal @arenal = new Arenal
+            Arenal @arenal = new()
             {
                 Name = @viewModel.Name,
                 ArenalPoblaciones = new List<ArenalPoblacion>(),
@@ -94,7 +94,7 @@ namespace Sandwitch.Tier.Services.Classes
             {
                 Poblacion @poblacion = await FindPoblacionById(x);
 
-                ArenalPoblacion @arenalPoblacion = new ArenalPoblacion
+                ArenalPoblacion @arenalPoblacion = new()
                 {
                     Arenal = @entity,
                     Poblacion = @poblacion,
@@ -111,7 +111,7 @@ namespace Sandwitch.Tier.Services.Classes
         /// <returns>Instance of <see cref="Task"/></returns>
         public async Task AddHistorico(Arenal @entity)
         {
-            Historico @historico = new Historico
+            Historico @historico = new()
             {
                 Arenal = @entity,
                 Bandera = await FindBanderaById((int)FlagIdentifiers.Amarilla),
@@ -149,9 +149,9 @@ namespace Sandwitch.Tier.Services.Classes
         /// <returns>Instance of <see cref="Task{ViewPage{ViewArenal}}"/></returns>
         public async Task<ViewPage<ViewArenal>> FindPaginatedArenal(FilterPage @viewmodel)
         {
-            ViewPage<ViewArenal> @page = new ViewPage<ViewArenal>
+            ViewPage<ViewArenal> @page = new()
             {
-                Length = Context.Arenal.TagWith("FindCountPoblacion").Count(),
+                Length = Context.Arenal.TagWith("CountAllPoblacion").Count(),
                 Index = @viewmodel.Index,
                 Size = @viewmodel.Size,
                 Items = Mapper.Map<IList<ViewArenal>>(await Context.Arenal
@@ -388,7 +388,7 @@ namespace Sandwitch.Tier.Services.Classes
             {
                 Poblacion @poblacion = await FindPoblacionById(x);
 
-                ArenalPoblacion @arenalPoblacion = new ArenalPoblacion
+                ArenalPoblacion @arenalPoblacion = new()
                 {
                     Arenal = @entity,
                     Poblacion = @poblacion,
@@ -405,7 +405,7 @@ namespace Sandwitch.Tier.Services.Classes
         /// <returns>Instance of <see cref="Task"/></returns>
         public async Task UpdateHistorico(Arenal @entity)
         {
-            Historico @historico = new Historico
+            Historico @historico = new()
             {
                 Arenal = @entity,
                 Bandera = await FindBanderaById((int)FlagIdentifiers.Amarilla),

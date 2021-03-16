@@ -47,7 +47,7 @@ namespace Sandwitch.Tier.Services.Classes
         {
             await CheckName(@viewModel);
 
-            Bandera @bandera = new Bandera
+            Bandera @bandera = new()
             {
                 Name = @viewModel.Name,
                 ImageUri = @viewModel.ImageUri
@@ -97,9 +97,9 @@ namespace Sandwitch.Tier.Services.Classes
         /// <returns>Instance of <see cref="Task{ViewPage{ViewBandera}}"/></returns>
         public async Task<ViewPage<ViewBandera>> FindPaginatedBandera(FilterPage @viewmodel)
         {
-            ViewPage<ViewBandera> @page = new ViewPage<ViewBandera>
+            ViewPage<ViewBandera> @page = new()
             {
-                Length = Context.Bandera.TagWith("FindCountBandera").Count(),
+                Length = Context.Bandera.TagWith("CountAllBandera").Count(),
                 Index = @viewmodel.Index,
                 Size = @viewmodel.Size,
                 Items = Mapper.Map<IList<ViewBandera>>(await Context.Bandera

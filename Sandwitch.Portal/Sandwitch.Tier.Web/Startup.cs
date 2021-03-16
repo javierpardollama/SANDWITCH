@@ -43,12 +43,7 @@ namespace Sandwitch.Tier.Web
         /// <summary>
         /// Gets or Sets <see cref="IMapper"/>
         /// </summary>
-        public IMapper Mapper { get; set; }
-
-        /// <summary>
-        /// Gets or Sets <see cref="ApiSettings"/>
-        /// </summary>
-        public ApiSettings ApiSettings { get; private set; }
+        public IMapper Mapper { get; set; }       
 
         // This method gets called by the runtime. Use this method to add services to the container.
         /// <summary>
@@ -107,7 +102,7 @@ namespace Sandwitch.Tier.Web
         /// </summary>
         /// <param name="app">Injected <see cref="IApplicationBuilder"/></param>
         /// <param name="env">Injected <see cref="IWebHostEnvironment"/></param>
-        public void Configure(IApplicationBuilder @app, IWebHostEnvironment @env)
+        public static void Configure(IApplicationBuilder @app, IWebHostEnvironment @env)
         {
             if (@env.IsDevelopment())
             {
@@ -124,6 +119,7 @@ namespace Sandwitch.Tier.Web
 
             @app.UseHttpsRedirection();
             @app.UseStaticFiles();
+
             if (!@env.IsDevelopment())
             {
                 @app.UseSpaStaticFiles();

@@ -44,7 +44,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Sandwitch.Tier.Authentication\Sandwitch.Tier.Authentication.csproj" />
-    <ProjectReference Include="..\Sandwitch.Tier.Services\Sandwitch.Tier.Services.csproj" />
   </ItemGroup>
 
   <ItemGroup>

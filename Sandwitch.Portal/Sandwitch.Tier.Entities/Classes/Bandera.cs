@@ -1,11 +1,14 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
+using Microsoft.EntityFrameworkCore;
+
 namespace Sandwitch.Tier.Entities.Classes
 {
     /// <summary>
     /// Represents a <see cref="Bandera"/> class. Inherits <see cref="Base"/>
     /// </summary>
+    [Index(nameof(Name))]
     public partial class Bandera : Base
     {
         /// <summary>

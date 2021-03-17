@@ -29,7 +29,7 @@ namespace Sandwitch.Tier.Services.Tests.Classes
         /// <summary>
         /// Instance of <see cref="ApplicationContext"/>
         /// </summary>
-        public ApplicationContext Context;      
+        public ApplicationContext Context;
 
         /// <summary>
         /// Instance of <see cref="ServiceCollection"/>
@@ -44,7 +44,7 @@ namespace Sandwitch.Tier.Services.Tests.Classes
         /// <summary>
         /// Instance of <see cref="DbContextOptions{ApplicationContext}"/>
         /// </summary>
-        private DbContextOptions<ApplicationContext> Options;       
+        private DbContextOptions<ApplicationContext> Options;
 
         /// <summary>
         /// Sets Up Services
@@ -68,41 +68,34 @@ namespace Sandwitch.Tier.Services.Tests.Classes
         /// </summary>
         public void SetUpMapper()
         {
-            MapperConfiguration @config = new MapperConfiguration(cfg =>
+            MapperConfiguration @config = new(cfg =>
             {
                 cfg.AddProfile(new ModelingProfile());
             });
 
             Mapper = @config.CreateMapper();
-        }      
+        }
 
         /// <summary>
         /// Sets Up Settings
         /// </summary>
-        public void SetUpSettings()
-        {
-            Settings = new Dictionary<string, string>()
+        public void SetUpSettings() => Settings = new Dictionary<string, string>()
             {
-                {"ConnectionStrings:DefaultConnection","Data Source=sandwitch.db" }
+                {"ConnectionStrings:DefaultConnection","Data Source=sandwitch.db"},
+                {"Api:ApiLock","Pauline"},
+                {"Api:ApiKey","T/R4J6eyvNG<6ne!"}
             };
-        }
 
         /// <summary>
         /// Sets Up Configuration
         /// </summary>
-        public void SetUpConfiguration()
-        {
-            Configuration = new ConfigurationBuilder().AddInMemoryCollection(Settings).Build();
-        }
+        public void SetUpConfiguration() => Configuration = new ConfigurationBuilder().AddInMemoryCollection(Settings).Build();
 
         /// <summary>
         /// Sets Up Options
         /// </summary>
-        public void SetUpOptions()
-        {
-            Options = new DbContextOptionsBuilder<ApplicationContext>()
+        public void SetUpOptions() => Options = new DbContextOptionsBuilder<ApplicationContext>()
            .UseInMemoryDatabase(databaseName: "Data Source=sandwitch.db")
            .Options;
-        }
     }
 }

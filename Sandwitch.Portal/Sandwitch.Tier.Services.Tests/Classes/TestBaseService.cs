@@ -1,9 +1,7 @@
-﻿using System.Collections.Generic;
-
+﻿
 using AutoMapper;
 
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 
@@ -21,7 +19,7 @@ namespace Sandwitch.Tier.Services.Tests.Classes
         /// <summary>
         /// Instance of <see cref="IMapper"/>
         /// </summary>
-        public IMapper Mapper;
+        protected IMapper Mapper;
 
         /// <summary>
         /// Instance of <see cref="IOptions{ApiSettings}"/>
@@ -31,12 +29,12 @@ namespace Sandwitch.Tier.Services.Tests.Classes
         /// <summary>
         /// Instance of <see cref="ApplicationContext"/>
         /// </summary>
-        public ApplicationContext Context;
+        protected ApplicationContext Context;
 
         /// <summary>
         /// Instance of <see cref="ServiceCollection"/>
         /// </summary>
-        private ServiceCollection Services;       
+        protected ServiceCollection Services;
 
         /// <summary>
         /// Instance of <see cref="DbContextOptions{ApplicationContext}"/>
@@ -46,7 +44,7 @@ namespace Sandwitch.Tier.Services.Tests.Classes
         /// <summary>
         /// Sets Up Services
         /// </summary>
-        public void SetUpServices()
+        protected void SetUpServices()
         {
             Services = new ServiceCollection();
 
@@ -62,7 +60,7 @@ namespace Sandwitch.Tier.Services.Tests.Classes
         /// <summary>
         /// Sets Up Mapper
         /// </summary>
-        public void SetUpMapper()
+        protected void SetUpMapper()
         {
             MapperConfiguration @config = new(cfg =>
             {
@@ -70,12 +68,12 @@ namespace Sandwitch.Tier.Services.Tests.Classes
             });
 
             Mapper = @config.CreateMapper();
-        }       
+        }
 
         /// <summary>
         /// Sets Up Api Options
         /// </summary>
-        public void SetUpApiOptions() => ApiOptions = Options.Create(new ApiSettings()
+        protected void SetUpApiOptions() => ApiOptions = Options.Create(new ApiSettings()
         {
            ApiLock = "Pauline",
            ApiKey = "T/R4J6eyvNG<6ne!"
@@ -84,7 +82,7 @@ namespace Sandwitch.Tier.Services.Tests.Classes
         /// <summary>
         /// Sets Up Context Options
         /// </summary>
-        public void SetUpContextOptions() => ContextOptions = new DbContextOptionsBuilder<ApplicationContext>()
+        protected void SetUpContextOptions() => ContextOptions = new DbContextOptionsBuilder<ApplicationContext>()
            .UseInMemoryDatabase(databaseName: "Data Source=sandwitch.db")
            .Options;
     }

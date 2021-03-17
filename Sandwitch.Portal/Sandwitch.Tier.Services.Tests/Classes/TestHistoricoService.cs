@@ -41,11 +41,9 @@ namespace Sandwitch.Tier.Services.Tests.Classes
         [SetUp]
         public void Setup()
         {
-            SetUpSettings();
+            SetUpContextOptions();
 
-            SetUpConfiguration();
-
-            SetUpOptions();
+            SetUpApiOptions();
 
             SetUpServices();
 

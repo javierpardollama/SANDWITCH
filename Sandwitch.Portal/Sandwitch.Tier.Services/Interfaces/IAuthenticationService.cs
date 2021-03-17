@@ -1,7 +1,7 @@
 ﻿
 using Sandwitch.Tier.ViewModels.Classes.Auth;
 
-namespace Sandwitch.Tier.Authentication.Interfaces
+namespace Sandwitch.Tier.Services.Interfaces
 {
     /// <summary>
     /// Represents a <see cref="IAuthenticationService"/> interface.

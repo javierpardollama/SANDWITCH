@@ -1,7 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 
-using Sandwitch.Tier.Authentication.Classes;
-using Sandwitch.Tier.Authentication.Interfaces;
 using Sandwitch.Tier.Services.Classes;
 using Sandwitch.Tier.Services.Interfaces;
 

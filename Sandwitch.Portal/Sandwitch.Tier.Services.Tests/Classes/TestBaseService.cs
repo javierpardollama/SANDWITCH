@@ -5,9 +5,11 @@ using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
 
 using Sandwitch.Tier.Contexts.Classes;
 using Sandwitch.Tier.Mappings.Classes;
+using Sandwitch.Tier.Settings.Classes;
 
 namespace Sandwitch.Tier.Services.Tests.Classes
 {
@@ -22,9 +24,9 @@ namespace Sandwitch.Tier.Services.Tests.Classes
         public IMapper Mapper;
 
         /// <summary>
-        /// Instance of <see cref="IConfiguration"/>
+        /// Instance of <see cref="IOptions{ApiSettings}"/>
         /// </summary>
-        public IConfiguration Configuration;
+        protected IOptions<ApiSettings> ApiOptions;
 
         /// <summary>
         /// Instance of <see cref="ApplicationContext"/>
@@ -34,17 +36,12 @@ namespace Sandwitch.Tier.Services.Tests.Classes
         /// <summary>
         /// Instance of <see cref="ServiceCollection"/>
         /// </summary>
-        private ServiceCollection Services;
-
-        /// <summary>
-        /// Instance of <see cref="Dictionary{string, string}"/>
-        /// </summary>
-        private Dictionary<string, string> Settings;
+        private ServiceCollection Services;       
 
         /// <summary>
         /// Instance of <see cref="DbContextOptions{ApplicationContext}"/>
         /// </summary>
-        private DbContextOptions<ApplicationContext> Options;
+        protected DbContextOptions<ApplicationContext> ContextOptions;
 
         /// <summary>
         /// Sets Up Services
@@ -54,12 +51,11 @@ namespace Sandwitch.Tier.Services.Tests.Classes
             Services = new ServiceCollection();
 
             Services
-                .AddSingleton(Configuration)
                 .AddDbContext<ApplicationContext>(o => o.UseSqlite("Data Source=sandwitch.db"));
 
             Services.AddLogging();
 
-            Context = new ApplicationContext(Options);
+            Context = new ApplicationContext(ContextOptions);
         }
 
 
@@ -74,27 +70,21 @@ namespace Sandwitch.Tier.Services.Tests.Classes
             });
 
             Mapper = @config.CreateMapper();
-        }
+        }       
 
         /// <summary>
-        /// Sets Up Settings
+        /// Sets Up Api Options
         /// </summary>
-        public void SetUpSettings() => Settings = new Dictionary<string, string>()
-            {
-                {"ConnectionStrings:DefaultConnection","Data Source=sandwitch.db"},
-                {"Api:ApiLock","Pauline"},
-                {"Api:ApiKey","T/R4J6eyvNG<6ne!"}
-            };
+        public void SetUpApiOptions() => ApiOptions = Options.Create(new ApiSettings()
+        {
+           ApiLock = "Pauline",
+           ApiKey = "T/R4J6eyvNG<6ne!"
+        });
 
         /// <summary>
-        /// Sets Up Configuration
+        /// Sets Up Context Options
         /// </summary>
-        public void SetUpConfiguration() => Configuration = new ConfigurationBuilder().AddInMemoryCollection(Settings).Build();
-
-        /// <summary>
-        /// Sets Up Options
-        /// </summary>
-        public void SetUpOptions() => Options = new DbContextOptionsBuilder<ApplicationContext>()
+        public void SetUpContextOptions() => ContextOptions = new DbContextOptionsBuilder<ApplicationContext>()
            .UseInMemoryDatabase(databaseName: "Data Source=sandwitch.db")
            .Options;
     }

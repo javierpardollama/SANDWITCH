@@ -19,7 +19,7 @@ namespace Sandwitch.Tier.Authentication.Classes
     /// </summary>
     public class BasicAuthenticationHandler : AuthenticationHandler<AuthenticationSchemeOptions>, IBasicAuthenticationHandler
     {
-        private readonly Interfaces.IAuthenticationService AuthenticationService;
+        private readonly Services.Interfaces.IAuthenticationService AuthenticationService;
 
 
         /// <summary>
@@ -34,7 +34,7 @@ namespace Sandwitch.Tier.Authentication.Classes
                                           ILoggerFactory @logger,
                                           UrlEncoder @encoder,
                                           ISystemClock @clock,
-                                          Interfaces.IAuthenticationService @authenticationService) : base(@options, @logger, @encoder, @clock)
+                                           Services.Interfaces.IAuthenticationService @authenticationService) : base(@options, @logger, @encoder, @clock)
         {
             this.AuthenticationService = @authenticationService;
         }

@@ -1,28 +1,25 @@
-﻿using Microsoft.Extensions.Options;
+﻿using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 
-using Sandwitch.Tier.Authentication.Interfaces;
+using Sandwitch.Tier.Services.Interfaces;
 using Sandwitch.Tier.Settings.Classes;
 using Sandwitch.Tier.ViewModels.Classes.Auth;
 
-namespace Sandwitch.Tier.Authentication.Classes
+namespace Sandwitch.Tier.Services.Classes
 {
     /// <summary>
-    /// Represents a <see cref="AuthenticationService"/> class. Implements <see cref="IAuthenticationService"/>
+    /// Represents a <see cref="AuthenticationService"/> class.  Inherits <see cref="BaseService"/>. Implements <see cref="IAuthenticationService"/>.
     /// </summary>
-    public class AuthenticationService : IAuthenticationService
-    {
-        /// <summary>
-        /// Instance of <see cref="IOptions{ApiSettings}"/>
-        /// </summary>
-        private readonly IOptions<ApiSettings> ApiSettings;
+    public class AuthenticationService : BaseService, IAuthenticationService
+    {       
 
         /// <summary>
         /// Initializes a new Instance of <see cref="AuthenticationService"/>
         /// </summary>
         /// <param name="apiSettings">Injected <see cref="IOptions{ApiSettings}"/></param>
-        public AuthenticationService(IOptions<ApiSettings> @apiSettings)
-        {
-            ApiSettings = @apiSettings;
+        public AuthenticationService(ILogger<AuthenticationService> @logger,
+                                     IOptions<ApiSettings> @apiSettings) : base(@logger, @apiSettings)
+        {           
         }
 
         /// <summary>

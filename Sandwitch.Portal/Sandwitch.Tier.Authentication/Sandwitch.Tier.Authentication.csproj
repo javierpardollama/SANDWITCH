@@ -15,7 +15,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Sandwitch.Tier.Helpers\Sandwitch.Tier.Helpers.csproj" />
-    <ProjectReference Include="..\Sandwitch.Tier.Settings\Sandwitch.Tier.Settings.csproj" />
+    <ProjectReference Include="..\Sandwitch.Tier.Services\Sandwitch.Tier.Services.csproj" />
   </ItemGroup>
 
   <ItemGroup>

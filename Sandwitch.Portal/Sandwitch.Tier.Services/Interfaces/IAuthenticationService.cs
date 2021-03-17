@@ -4,9 +4,9 @@ using Sandwitch.Tier.ViewModels.Classes.Auth;
 namespace Sandwitch.Tier.Services.Interfaces
 {
     /// <summary>
-    /// Represents a <see cref="IAuthenticationService"/> interface.
+    /// Represents a <see cref="IAuthenticationService"/> interface. Inherits <see cref="IBaseService"/>
     /// </summary>
-    public interface IAuthenticationService
+    public interface IAuthenticationService : IBaseService
     {
         /// <summary>
         /// Checks wether Credentials are valid or not

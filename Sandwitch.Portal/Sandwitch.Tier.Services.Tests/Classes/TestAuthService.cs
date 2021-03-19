@@ -12,7 +12,6 @@ namespace Sandwitch.Tier.Services.Tests.Classes
     /// Represents a <see cref="TestAuthService"/> class. Inherits <see cref="TestBaseService"/>
     /// </summary>
     [TestFixture]
-
     public class TestAuthService : TestBaseService
     {
         /// <summary>

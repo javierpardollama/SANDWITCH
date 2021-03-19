@@ -8,16 +8,16 @@ using Sandwitch.Tier.ViewModels.Classes.Auth;
 namespace Sandwitch.Tier.Services.Classes
 {
     /// <summary>
-    /// Represents a <see cref="AuthenticationService"/> class.  Inherits <see cref="BaseService"/>. Implements <see cref="IAuthenticationService"/>.
+    /// Represents a <see cref="AuthService"/> class.  Inherits <see cref="BaseService"/>. Implements <see cref="IAuthService"/>.
     /// </summary>
-    public class AuthenticationService : BaseService, IAuthenticationService
+    public class AuthService : BaseService, IAuthService
     {       
 
         /// <summary>
-        /// Initializes a new Instance of <see cref="AuthenticationService"/>
+        /// Initializes a new Instance of <see cref="AuthService"/>
         /// </summary>
         /// <param name="apiSettings">Injected <see cref="IOptions{ApiSettings}"/></param>
-        public AuthenticationService(ILogger<AuthenticationService> @logger,
+        public AuthService(ILogger<AuthService> @logger,
                                      IOptions<ApiSettings> @apiSettings) : base(@logger, @apiSettings)
         {           
         }

@@ -22,7 +22,7 @@ namespace Sandwitch.Tier.Web.Extensions
             @this.AddTransient<IArenalService, ArenalService>();
             @this.AddTransient<IHistoricoService, HistoricoService>();
 
-            @this.AddTransient<IAuthenticationService, AuthenticationService>();
+            @this.AddTransient<IAuthService, AuthService>();
             // Add other services here
         }
     }

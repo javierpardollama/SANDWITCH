@@ -9,26 +9,26 @@ using Sandwitch.Tier.ViewModels.Classes.Auth;
 namespace Sandwitch.Tier.Services.Tests.Classes
 {
     /// <summary>
-    /// Represents a <see cref="TestAuthenticationService"/> class. Inherits <see cref="TestBaseService"/>
+    /// Represents a <see cref="TestAuthService"/> class. Inherits <see cref="TestBaseService"/>
     /// </summary>
     [TestFixture]
 
-    public class TestAuthenticationService : TestBaseService
+    public class TestAuthService : TestBaseService
     {
         /// <summary>
         /// Instance of <see cref="ILogger{BanderaService}"/>
         /// </summary>
-        private ILogger<AuthenticationService> Logger;
+        private ILogger<AuthService> Logger;
 
         /// <summary>
         /// Instance of <see cref="AuthenticationService"/>
         /// </summary>
-        private AuthenticationService AuthenticationService;
+        private AuthService AuthService;
 
         /// <summary>
-        /// Initializes a new Instance of <see cref="TestAuthenticationService"/>
+        /// Initializes a new Instance of <see cref="TestAuthService"/>
         /// </summary>
-        public TestAuthenticationService()
+        public TestAuthService()
         {
         }
 
@@ -48,7 +48,7 @@ namespace Sandwitch.Tier.Services.Tests.Classes
 
             SetUpLogger();
 
-            AuthenticationService = new AuthenticationService(Logger, ApiOptions);
+            AuthService = new AuthService(Logger, ApiOptions);
         }
 
         /// <summary>
@@ -64,7 +64,7 @@ namespace Sandwitch.Tier.Services.Tests.Classes
                     .AddConsole();
             });
 
-            Logger = @loggerFactory.CreateLogger<AuthenticationService>();
+            Logger = @loggerFactory.CreateLogger<AuthService>();
         }
 
         /// <summary>
@@ -82,7 +82,7 @@ namespace Sandwitch.Tier.Services.Tests.Classes
         [Test]
         public void CanAuthenticate() 
         {
-            AuthenticationService.CanAuthenticate(new AuthSignIn() 
+            AuthService.CanAuthenticate(new AuthSignIn() 
             {
                 PassWord = "Pauline",
                 UserName = "T/R4J6eyvNG<6ne!"

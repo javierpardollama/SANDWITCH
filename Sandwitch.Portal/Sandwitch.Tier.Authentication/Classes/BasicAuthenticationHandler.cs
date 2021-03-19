@@ -10,6 +10,7 @@ using Microsoft.Extensions.Options;
 
 using Sandwitch.Tier.Authentication.Interfaces;
 using Sandwitch.Tier.Helpers.Classes;
+using Sandwitch.Tier.Services.Interfaces;
 using Sandwitch.Tier.ViewModels.Classes.Auth;
 
 namespace Sandwitch.Tier.Authentication.Classes
@@ -19,7 +20,7 @@ namespace Sandwitch.Tier.Authentication.Classes
     /// </summary>
     public class BasicAuthenticationHandler : AuthenticationHandler<AuthenticationSchemeOptions>, IBasicAuthenticationHandler
     {
-        private readonly Services.Interfaces.IAuthenticationService AuthenticationService;
+        private readonly IAuthService AuthService;
 
 
         /// <summary>
@@ -29,14 +30,14 @@ namespace Sandwitch.Tier.Authentication.Classes
         /// <param name="logger">Injected <see cref="ILoggerFactory"/></param>
         /// <param name="encoder">Injected <see cref="UrlEncoder"/></param>
         /// <param name="clock">Injected <see cref="ISystemClock"/></param>
-        /// <param name="authenticationService">Injected <see cref="IAuthenticationService"/></param>
+        /// <param name="@authService">Injected <see cref="IAuthService"/></param>
         public BasicAuthenticationHandler(IOptionsMonitor<AuthenticationSchemeOptions> @options,
                                           ILoggerFactory @logger,
                                           UrlEncoder @encoder,
                                           ISystemClock @clock,
-                                           Services.Interfaces.IAuthenticationService @authenticationService) : base(@options, @logger, @encoder, @clock)
+                                          IAuthService @authService) : base(@options, @logger, @encoder, @clock)
         {
-            this.AuthenticationService = @authenticationService;
+            this.AuthService = @authService;
         }
 
         /// <summary>
@@ -70,7 +71,7 @@ namespace Sandwitch.Tier.Authentication.Classes
             }
             else
             {
-                return AuthenticationService.CanAuthenticate(CredentialHelper.GetRequestCredentials(Request))
+                return AuthService.CanAuthenticate(CredentialHelper.GetRequestCredentials(Request))
                     ? Task.FromResult(AuthenticateResult.Success(ticket: GetAuthenticationTicket(authSign: CredentialHelper.GetRequestCredentials(Request))))
                     : Task.FromResult(AuthenticateResult.Fail("Authorization Error. Authentication Error"));
             }

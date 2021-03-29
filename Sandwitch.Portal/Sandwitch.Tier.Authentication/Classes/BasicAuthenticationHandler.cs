@@ -20,8 +20,10 @@ namespace Sandwitch.Tier.Authentication.Classes
     /// </summary>
     public class BasicAuthenticationHandler : AuthenticationHandler<AuthenticationSchemeOptions>, IBasicAuthenticationHandler
     {
+        /// <summary>
+        /// Instance of <see cref="IAuthService"/>
+        /// </summary>
         private readonly IAuthService AuthService;
-
 
         /// <summary>
         /// Initializes a new Instance of <see cref="BasicAuthenticationHandler"/>
@@ -30,7 +32,7 @@ namespace Sandwitch.Tier.Authentication.Classes
         /// <param name="logger">Injected <see cref="ILoggerFactory"/></param>
         /// <param name="encoder">Injected <see cref="UrlEncoder"/></param>
         /// <param name="clock">Injected <see cref="ISystemClock"/></param>
-        /// <param name="@authService">Injected <see cref="IAuthService"/></param>
+        /// <param name="authService">Injected <see cref="IAuthService"/></param>
         public BasicAuthenticationHandler(IOptionsMonitor<AuthenticationSchemeOptions> @options,
                                           ILoggerFactory @logger,
                                           UrlEncoder @encoder,

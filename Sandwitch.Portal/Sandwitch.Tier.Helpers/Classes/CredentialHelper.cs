@@ -8,8 +8,16 @@ using Sandwitch.Tier.ViewModels.Classes.Auth;
 
 namespace Sandwitch.Tier.Helpers.Classes
 {
+    /// <summary>
+    /// Represents a <see cref="CredentialHelper"/> class.
+    /// </summary>
     public static class CredentialHelper
     {
+        /// <summary>
+        /// Gets Request Credentials
+        /// </summary>
+        /// <param name="request">Injected <see cref="HttpRequest"/></param>
+        /// <returns>Instance of <see cref="AuthSignIn"/></returns>
         public static AuthSignIn GetRequestCredentials(HttpRequest @request)
         {
             AuthenticationHeaderValue @authenticationHeader = AuthenticationHeaderValue.Parse(@request.Headers["Authorization"]);

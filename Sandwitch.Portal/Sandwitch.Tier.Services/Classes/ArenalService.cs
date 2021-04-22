@@ -151,11 +151,11 @@ namespace Sandwitch.Tier.Services.Classes
         {
             ViewPage<ViewArenal> @page = new()
             {
-                Length = Context.Arenal.TagWith("CountAllPoblacion").Count(),
+                Length = Context.Arenal.TagWith("CountAllArenal").Count(),
                 Index = @viewmodel.Index,
                 Size = @viewmodel.Size,
                 Items = Mapper.Map<IList<ViewArenal>>(await Context.Arenal
-               .TagWith("FindPaginatedPoblacion")
+               .TagWith("FindPaginatedArenal")
                .AsQueryable()
                .AsNoTracking()
                .Include(x => x.ArenalPoblaciones)

@@ -107,7 +107,7 @@ namespace Sandwitch.Tier.Services.Classes
         /// <returns>Instance of <see cref="Task{ViewHistorico}"/></returns>
         public async Task<ViewHistorico> AddHistorico(AddHistorico @viewModel)
         {
-            Historico @historico = new Historico
+            Historico @historico = new()
             {
                 Arenal = await FindArenalById(@viewModel.ArenalId),
                 Bandera = await FindBanderaById(@viewModel.BanderaId),

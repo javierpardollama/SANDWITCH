@@ -23,11 +23,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sandwitch.Tier.Constants", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sandwitch.Tier.Services.Tests", "Sandwitch.Tier.Services.Tests\Sandwitch.Tier.Services.Tests.csproj", "{B2293561-1911-460C-A87C-66CFD2E6876E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sandwitch.Tier.Settings", "Sandwitch.Tier.Settings\Sandwitch.Tier.Settings.csproj", "{ED298DD0-D041-45FA-82C1-E141EAC9496A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sandwitch.Tier.Settings", "Sandwitch.Tier.Settings\Sandwitch.Tier.Settings.csproj", "{ED298DD0-D041-45FA-82C1-E141EAC9496A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sandwitch.Tier.Authentication", "Sandwitch.Tier.Authentication\Sandwitch.Tier.Authentication.csproj", "{F71F7C2E-11F0-4EDA-BC29-AE05A71DDE1A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sandwitch.Tier.Authentication", "Sandwitch.Tier.Authentication\Sandwitch.Tier.Authentication.csproj", "{F71F7C2E-11F0-4EDA-BC29-AE05A71DDE1A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sandwitch.Tier.Helpers", "Sandwitch.Tier.Helpers\Sandwitch.Tier.Helpers.csproj", "{77F3F29A-CA75-46C4-91F3-D66AADED067D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sandwitch.Tier.Helpers", "Sandwitch.Tier.Helpers\Sandwitch.Tier.Helpers.csproj", "{77F3F29A-CA75-46C4-91F3-D66AADED067D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -89,7 +89,7 @@ export class PoblacionGridComponent implements AfterViewInit {
 
   // Filter Data
   public ApplyMyFilter(target: EventTarget | null) {
-    this.dataSource.filter = (target as HTMLTextAreaElement).value.trim().toLowerCase();
+    this.dataSource.filter = (target as HTMLInputElement).value.trim().toLowerCase();
   }
 
   // Get Record from Table

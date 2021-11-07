@@ -25,7 +25,7 @@ import { TimeAppVariants } from './../../../../../variants/time.app.variants';
 })
 export class ProvinciaAddModalComponent implements OnInit {
 
-  public formGroup: FormGroup;
+  public formGroup!: FormGroup;
 
   // Constructor
   constructor(

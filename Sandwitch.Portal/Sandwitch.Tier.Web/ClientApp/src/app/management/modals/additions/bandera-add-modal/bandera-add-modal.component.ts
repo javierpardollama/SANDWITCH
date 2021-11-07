@@ -27,7 +27,7 @@ import { TimeAppVariants } from './../../../../../variants/time.app.variants';
 })
 export class BanderaAddModalComponent implements OnInit {
 
-  public formGroup: FormGroup;
+  public formGroup!: FormGroup;
 
   // Constructor
   constructor(
@@ -55,7 +55,7 @@ export class BanderaAddModalComponent implements OnInit {
   // Form Actions
   async onSubmit(viewModel: AddBandera) {
     let bandera = await this.banderaService.AddBandera(viewModel);
-    
+
     if (bandera !== undefined) {
       this.matSnackBar.open(
         TextAppVariants.AppOperationSuccessCoreText,

@@ -34,9 +34,9 @@ import { TimeAppVariants } from './../../../../../variants/time.app.variants';
 })
 export class PoblacionUpdateModalComponent implements OnInit {
 
-  public formGroup: FormGroup;
+  public formGroup!: FormGroup;
 
-  public provincias: ViewProvincia[];
+  public provincias: ViewProvincia[] = [];
 
   // Constructor
   constructor(

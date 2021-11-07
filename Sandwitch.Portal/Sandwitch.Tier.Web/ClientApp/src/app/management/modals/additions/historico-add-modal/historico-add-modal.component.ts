@@ -42,11 +42,11 @@ import { FormatAppVariants } from './../../../../../variants/format.app.variants
 })
 export class HistoricoAddModalComponent implements OnInit {
 
-  public formGroup: FormGroup;
+  public datePipe: DatePipe = new DatePipe(LocaleAppVariants.AppUnitedStatesEnglishLocale);
 
-  public datePipe: DatePipe;
+  public formGroup!: FormGroup;
 
-  public banderas: ViewBandera[];
+  public banderas: ViewBandera[] = [];
 
   // Constructor
   constructor(

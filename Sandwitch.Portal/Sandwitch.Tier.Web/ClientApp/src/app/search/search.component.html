@@ -7,7 +7,7 @@
     <input matInput placeholder="Provincia" aria-label="Provincia" [matAutocomplete]="auto"
       [formControl]="provinciaCtrl">
     <mat-autocomplete #auto="matAutocomplete" (optionSelected)='FindAllPoblacionByProvinciaId($event.option.id)'>
-      <mat-option *ngFor="let provincia of filteredProvincias | async" [value]="provincia.Name" [id]="provincia.Id">
+      <mat-option *ngFor="let provincia of filteredProvincias | async" [value]="provincia.Name" [id]="provincia.Id.toString()">
         <img class="search-option-img" aria-label="provincia.Name" aria-hidden [src]="provincia.ImageUri" height="25">
         <span>{{provincia.Name}}</span>
       </mat-option>
@@ -18,7 +18,7 @@
     <input matInput placeholder="Poblacion" aria-label="Poblacion" [matAutocomplete]="auto"
       [formControl]="poblacionCtrl">
     <mat-autocomplete #auto="matAutocomplete" (optionSelected)='FindAllArenalByPoblacionId($event.option.id)'>
-      <mat-option *ngFor="let poblacion of filteredPoblaciones | async" [value]="poblacion.Name" [id]="poblacion.Id">
+      <mat-option *ngFor="let poblacion of filteredPoblaciones | async" [value]="poblacion.Name" [id]="poblacion.Id.toString()">
         <img class="search-option-img" aria-label="poblacion.Name" aria-hidden [src]="poblacion.ImageUri" height="25">
         <span>{{poblacion.Name}}</span>
       </mat-option>

@@ -34,9 +34,9 @@ import { TimeAppVariants } from './../../../../../variants/time.app.variants';
 })
 export class ArenalUpdateModalComponent implements OnInit {
 
-  public formGroup: FormGroup;
-
-  public provincias: ViewProvincia[];
+  public formGroup!: FormGroup ;
+  
+  public provincias: ViewProvincia[] = [];
 
 
   // Constructor

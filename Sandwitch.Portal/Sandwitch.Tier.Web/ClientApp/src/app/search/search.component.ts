@@ -6,7 +6,7 @@ import { MatDialog } from '@angular/material/dialog';
 
 import { FormControl } from '@angular/forms';
 
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 
 import {
   map,
@@ -36,11 +36,11 @@ import {
 export class SearchComponent implements OnInit {
 
   // Data
-  public poblaciones: ViewPoblacion[];
-  public filteredPoblaciones: Observable<ViewPoblacion[]>;
-  public provincias: ViewProvincia[];
-  public filteredProvincias: Observable<ViewProvincia[]>;
-  public arenales: ViewArenal[];
+  public poblaciones: ViewPoblacion[] = [];
+  public filteredPoblaciones: Observable<ViewPoblacion[]> = of([]);
+  public provincias: ViewProvincia[] = [];
+  public filteredProvincias: Observable<ViewProvincia[]> = of([]);
+  public arenales: ViewArenal[] = [];
 
   // Control
   public poblacionCtrl = new FormControl();
@@ -61,8 +61,8 @@ export class SearchComponent implements OnInit {
   }
 
   // Get Data from Service
-  public async FindAllArenalByPoblacionId(id: number) {
-    this.arenales = await this.arenalService.FindAllArenalByPoblacionId(id);
+  public async FindAllArenalByPoblacionId(id: string) {
+    this.arenales = await this.arenalService.FindAllArenalByPoblacionId(Number(id));
   }
 
   // Get Data from Service
@@ -77,8 +77,8 @@ export class SearchComponent implements OnInit {
   }
 
   // Get Data from Service
-  public async FindAllPoblacionByProvinciaId(id: number) {
-    this.poblaciones = await this.poblacionService.FindAllPoblacionByProvinciaId(id);
+  public async FindAllPoblacionByProvinciaId(id: string) {
+    this.poblaciones = await this.poblacionService.FindAllPoblacionByProvinciaId(Number(id));
 
     this.filteredPoblaciones = this.poblacionCtrl.valueChanges
       .pipe(

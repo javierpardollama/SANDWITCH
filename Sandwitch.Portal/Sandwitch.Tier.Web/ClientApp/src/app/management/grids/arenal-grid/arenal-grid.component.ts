@@ -31,8 +31,8 @@ import { FilterPage } from 'src/viewmodels/filters/filterpage';
 })
 export class ArenalGridComponent implements AfterViewInit {
 
-    @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
-    @ViewChild(MatSort, { static: true }) sort: MatSort;
+    @ViewChild(MatPaginator) paginator!: MatPaginator;
+    @ViewChild(MatSort) sort!: MatSort;
 
     public ELEMENT_DATA: ViewArenal[] = [];
 
@@ -90,8 +90,8 @@ export class ArenalGridComponent implements AfterViewInit {
     }
 
     // Filter Data
-    public ApplyMyFilter(filterValue: string) {
-        this.dataSource.filter = filterValue.trim().toLowerCase();
+    public ApplyMyFilter(target: EventTarget | null) {
+        this.dataSource.filter = (target as HTMLTextAreaElement).value.trim().toLowerCase();
     }
 
     // Get Record from Table

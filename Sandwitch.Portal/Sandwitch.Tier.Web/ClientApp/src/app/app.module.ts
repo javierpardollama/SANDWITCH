@@ -93,7 +93,7 @@ import { AuthInterceptor } from 'src/interceptors/auth.interceptor';
     MatTableModule,
     MatSortModule,
     MatFormFieldModule,
-    BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
+    BrowserModule,
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,

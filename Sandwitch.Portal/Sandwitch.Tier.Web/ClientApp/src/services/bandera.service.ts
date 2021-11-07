@@ -17,6 +17,7 @@ import { catchError } from 'rxjs/operators';
 import { BaseService } from './base.service';
 
 import { FilterPage } from 'src/viewmodels/filters/filterpage';
+import { firstValueFrom } from 'rxjs';
 
 @Injectable({
     providedIn: 'root',
@@ -25,29 +26,29 @@ import { FilterPage } from 'src/viewmodels/filters/filterpage';
 export class BanderaService extends BaseService {
 
     public constructor(
-        protected httpClient: HttpClient,
-        protected matSnackBar: MatSnackBar) {
+        protected override httpClient: HttpClient,
+        protected override matSnackBar: MatSnackBar) {
         super(httpClient, matSnackBar);
     }
 
     public UpdateBandera(viewModel: UpdateBandera): Promise<ViewBandera> {
-        return this.httpClient.put<ViewBandera>('api/bandera/updatebandera', viewModel)
-            .pipe(catchError(this.HandleError<ViewBandera>('UpdateBandera', undefined))).toPromise();
+        return firstValueFrom(this.httpClient.put<ViewBandera>('api/bandera/updatebandera', viewModel)
+            .pipe(catchError(this.HandleError<ViewBandera>('UpdateBandera', undefined))));
     }
 
     public FindAllBandera(): Promise<ViewBandera[]> {
-        return this.httpClient.get<ViewBandera[]>('api/bandera/findallbandera')
-            .pipe(catchError(this.HandleError<ViewBandera[]>('FindAllBandera', []))).toPromise();
+        return firstValueFrom(this.httpClient.get<ViewBandera[]>('api/bandera/findallbandera')
+            .pipe(catchError(this.HandleError<ViewBandera[]>('FindAllBandera', []))));
     }
 
     public FindPaginatedBandera(viewModel: FilterPage): Promise<ViewPage<ViewBandera>> {
-        return this.httpClient.post<ViewPage<ViewBandera>>('api/bandera/findpaginatedbandera', viewModel)
-            .pipe(catchError(this.HandleError<ViewPage<ViewBandera>>('FindPaginatedBandera', undefined))).toPromise();
+        return firstValueFrom(this.httpClient.post<ViewPage<ViewBandera>>('api/bandera/findpaginatedbandera', viewModel)
+            .pipe(catchError(this.HandleError<ViewPage<ViewBandera>>('FindPaginatedBandera', undefined))));
     }
 
     public AddBandera(viewModel: AddBandera): Promise<ViewBandera> {
-        return this.httpClient.post<ViewBandera>('api/bandera/addbandera', viewModel)
-            .pipe(catchError(this.HandleError<ViewBandera>('AddBandera', undefined))).toPromise();
+        return firstValueFrom(this.httpClient.post<ViewBandera>('api/bandera/addbandera', viewModel)
+            .pipe(catchError(this.HandleError<ViewBandera>('AddBandera', undefined))));
     }
 
     public RemoveBanderaById(id: number) {

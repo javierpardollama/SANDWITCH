@@ -17,6 +17,7 @@ import { catchError } from 'rxjs/operators';
 import { BaseService } from './base.service';
 
 import { FilterPage } from 'src/viewmodels/filters/filterpage';
+import { firstValueFrom } from 'rxjs';
 
 @Injectable({
     providedIn: 'root',
@@ -25,29 +26,29 @@ import { FilterPage } from 'src/viewmodels/filters/filterpage';
 export class ProvinciaService extends BaseService {
 
     public constructor(
-        protected httpClient: HttpClient,
-        protected matSnackBar: MatSnackBar) {
+        protected override httpClient: HttpClient,
+        protected override matSnackBar: MatSnackBar) {
         super(httpClient, matSnackBar);
     }
 
     public UpdateProvincia(viewModel: UpdateProvincia): Promise<ViewProvincia> {
-        return this.httpClient.put<ViewProvincia>('api/provincia/updateprovincia', viewModel)
-            .pipe(catchError(this.HandleError<ViewProvincia>('UpdateProvincia', undefined))).toPromise();
+        return firstValueFrom(this.httpClient.put<ViewProvincia>('api/provincia/updateprovincia', viewModel)
+            .pipe(catchError(this.HandleError<ViewProvincia>('UpdateProvincia', undefined))));
     }
 
     public FindAllProvincia(): Promise<ViewProvincia[]> {
-        return this.httpClient.get<ViewProvincia[]>('api/provincia/findallprovincia')
-            .pipe(catchError(this.HandleError<ViewProvincia[]>('FindAllProvincia', []))).toPromise();
+        return firstValueFrom(this.httpClient.get<ViewProvincia[]>('api/provincia/findallprovincia')
+            .pipe(catchError(this.HandleError<ViewProvincia[]>('FindAllProvincia', []))));
     }
 
     public FindPaginatedProvincia(viewModel: FilterPage): Promise<ViewPage<ViewProvincia>> {
-        return this.httpClient.post<ViewPage<ViewProvincia>>('api/provincia/findpaginatedprovincia', viewModel)
-            .pipe(catchError(this.HandleError<ViewPage<ViewProvincia>>('FindPaginatedProvincia', undefined))).toPromise();
+        return firstValueFrom(this.httpClient.post<ViewPage<ViewProvincia>>('api/provincia/findpaginatedprovincia', viewModel)
+            .pipe(catchError(this.HandleError<ViewPage<ViewProvincia>>('FindPaginatedProvincia', undefined))));
     }
 
     public AddProvincia(viewModel: AddProvincia): Promise<ViewProvincia> {
-        return this.httpClient.post<ViewProvincia>('api/provincia/addprovincia', viewModel)
-            .pipe(catchError(this.HandleError<ViewProvincia>('AddProvincia', undefined))).toPromise();
+        return firstValueFrom(this.httpClient.post<ViewProvincia>('api/provincia/addprovincia', viewModel)
+            .pipe(catchError(this.HandleError<ViewProvincia>('AddProvincia', undefined))));
     }
 
     public RemoveProvinciaById(id: number) {

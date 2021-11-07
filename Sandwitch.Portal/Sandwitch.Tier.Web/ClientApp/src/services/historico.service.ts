@@ -12,6 +12,8 @@ import { catchError } from 'rxjs/operators';
 
 import { BaseService } from './base.service';
 
+import { firstValueFrom } from 'rxjs';
+
 @Injectable({
     providedIn: 'root',
 })
@@ -19,13 +21,13 @@ import { BaseService } from './base.service';
 export class HistoricoService extends BaseService {
 
     public constructor(
-        protected httpClient: HttpClient,
-        protected matSnackBar: MatSnackBar) {
+        protected override httpClient: HttpClient,
+        protected override matSnackBar: MatSnackBar) {
         super(httpClient, matSnackBar);
     }
 
     public AddHistorico(viewModel: AddHistorico): Promise<ViewHistorico> {
-        return this.httpClient.post<ViewHistorico>('api/historico/addhistorico', viewModel)
-            .pipe(catchError(this.HandleError<ViewHistorico>('AddHistorico', undefined))).toPromise();
+        return firstValueFrom(this.httpClient.post<ViewHistorico>('api/historico/addhistorico', viewModel)
+            .pipe(catchError(this.HandleError<ViewHistorico>('AddHistorico', undefined))));
     }
 }

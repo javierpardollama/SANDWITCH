@@ -18,6 +18,8 @@ import { BaseService } from './base.service';
 
 import { FilterPage } from 'src/viewmodels/filters/filterpage';
 
+import { firstValueFrom } from 'rxjs';
+
 
 @Injectable({
     providedIn: 'root',
@@ -26,34 +28,34 @@ import { FilterPage } from 'src/viewmodels/filters/filterpage';
 export class ArenalService extends BaseService {
 
     public constructor(
-        protected httpClient: HttpClient,
-        protected matSnackBar: MatSnackBar) {
+        protected override httpClient: HttpClient,
+        protected override matSnackBar: MatSnackBar) {
         super(httpClient, matSnackBar);
     }
 
     public UpdateArenal(viewModel: UpdateArenal): Promise<ViewArenal> {
-        return this.httpClient.put<ViewArenal>('api/arenal/updatearenal', viewModel)
-            .pipe(catchError(this.HandleError<ViewArenal>('UpdateArenal', undefined))).toPromise();
+        return firstValueFrom(this.httpClient.put<ViewArenal>('api/arenal/updatearenal', viewModel)
+            .pipe(catchError(this.HandleError<ViewArenal>('UpdateArenal', undefined))));
     }
 
     public FindAllArenal(): Promise<ViewArenal[]> {
-        return this.httpClient.get<ViewArenal[]>('api/arenal/findallarenal')
-            .pipe(catchError(this.HandleError<ViewArenal[]>('FindAllArenal', []))).toPromise();
+        return firstValueFrom(this.httpClient.get<ViewArenal[]>('api/arenal/findallarenal')
+            .pipe(catchError(this.HandleError<ViewArenal[]>('FindAllArenal', []))));
     }
 
     public FindPaginatedArenal(viewModel: FilterPage): Promise<ViewPage<ViewArenal>> {
-        return this.httpClient.post<ViewPage<ViewArenal>>('api/arenal/findpaginatedarenal', viewModel)
-            .pipe(catchError(this.HandleError<ViewPage<ViewArenal>>('FindPaginatedArenal', undefined))).toPromise();
+        return firstValueFrom(this.httpClient.post<ViewPage<ViewArenal>>('api/arenal/findpaginatedarenal', viewModel)
+            .pipe(catchError(this.HandleError<ViewPage<ViewArenal>>('FindPaginatedArenal', undefined))));
     }
 
     public FindAllArenalByPoblacionId(id: number): Promise<ViewArenal[]> {
-        return this.httpClient.get<ViewArenal[]>('api/arenal/findallarenalbypoblacionid/' + id)
-            .pipe(catchError(this.HandleError<ViewArenal[]>('FindAllArenalByPoblacionId', []))).toPromise();
+        return firstValueFrom(this.httpClient.get<ViewArenal[]>('api/arenal/findallarenalbypoblacionid/' + id)
+            .pipe(catchError(this.HandleError<ViewArenal[]>('FindAllArenalByPoblacionId', []))));
     }
 
     public AddArenal(viewModel: AddArenal): Promise<ViewArenal> {
-        return this.httpClient.post<ViewArenal>('api/arenal/addarenal', viewModel)
-            .pipe(catchError(this.HandleError<ViewArenal>('AddArenal', undefined))).toPromise();
+        return firstValueFrom(this.httpClient.post<ViewArenal>('api/arenal/addarenal', viewModel)
+            .pipe(catchError(this.HandleError<ViewArenal>('AddArenal', undefined))));
     }
 
     public RemoveArenalById(id: number) {

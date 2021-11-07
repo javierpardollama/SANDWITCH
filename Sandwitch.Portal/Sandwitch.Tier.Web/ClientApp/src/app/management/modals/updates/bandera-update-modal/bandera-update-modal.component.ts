@@ -30,7 +30,7 @@ import { TimeAppVariants } from './../../../../../variants/time.app.variants';
 })
 export class BanderaUpdateModalComponent implements OnInit {
 
-  public formGroup: FormGroup;
+  public formGroup!: FormGroup;
 
   // Constructor
   constructor(

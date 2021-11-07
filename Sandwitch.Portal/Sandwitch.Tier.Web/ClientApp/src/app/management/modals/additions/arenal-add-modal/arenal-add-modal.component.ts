@@ -31,9 +31,9 @@ import { TimeAppVariants } from '../../../../../variants/time.app.variants';
 })
 export class ArenalAddModalComponent implements OnInit {
 
-  public formGroup: FormGroup;
+  public formGroup!: FormGroup;
 
-  public provincias: ViewProvincia[];
+  public provincias: ViewProvincia[] = [];
 
   // Constructor
   constructor(
@@ -62,7 +62,7 @@ export class ArenalAddModalComponent implements OnInit {
   // Form Actions
   async onSubmit(viewModel: AddArenal) {
     let arenal = await this.arenalService.AddArenal(viewModel);
-    
+
     if (arenal !== undefined) {
       this.matSnackBar.open(
         TextAppVariants.AppOperationSuccessCoreText,

@@ -30,8 +30,8 @@ import { FilterPage } from 'src/viewmodels/filters/filterpage';
 })
 export class ProvinciaGridComponent implements AfterViewInit {
 
-  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
-  @ViewChild(MatSort, { static: true }) sort: MatSort;
+  @ViewChild(MatPaginator, { static: true }) paginator!: MatPaginator;
+  @ViewChild(MatSort, { static: true }) sort!: MatSort;
 
   public ELEMENT_DATA: ViewProvincia[] = [];
 
@@ -66,7 +66,7 @@ export class ProvinciaGridComponent implements AfterViewInit {
       Size: this.paginator.pageSize,
       Length: 0
     };
-    this.FindPaginatedProvincia();    
+    this.FindPaginatedProvincia();
   }
 
   // Get Data from Service
@@ -87,8 +87,8 @@ export class ProvinciaGridComponent implements AfterViewInit {
   }
 
   // Filter Data
-  public ApplyMyFilter(filterValue: string) {
-    this.dataSource.filter = filterValue.trim().toLowerCase();
+  public ApplyMyFilter(target: EventTarget | null) {
+    this.dataSource.filter = (target as HTMLTextAreaElement).value.trim().toLowerCase();
   }
 
   // Get Record from Table
@@ -117,7 +117,7 @@ export class ProvinciaGridComponent implements AfterViewInit {
     this.page =
     {
       Index: event.pageIndex,
-      Size: event.pageSize     
+      Size: event.pageSize
     };
 
     await this.FindPaginatedProvincia();

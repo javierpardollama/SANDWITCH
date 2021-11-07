@@ -31,9 +31,9 @@ import { TimeAppVariants } from './../../../../../variants/time.app.variants';
 })
 export class PoblacionAddModalComponent implements OnInit {
 
-  public formGroup: FormGroup;
+  public formGroup!: FormGroup;
 
-  public provincias: ViewProvincia[];
+  public provincias: ViewProvincia[] = [];
 
   // Constructor
   constructor(
@@ -64,7 +64,7 @@ export class PoblacionAddModalComponent implements OnInit {
   // Form Actions
   async onSubmit(viewModel: AddPoblacion) {
     let poblacion = await this.poblacionService.AddPoblacion(viewModel);
-    
+
     if (poblacion !== undefined) {
       this.matSnackBar.open(
         TextAppVariants.AppOperationSuccessCoreText,

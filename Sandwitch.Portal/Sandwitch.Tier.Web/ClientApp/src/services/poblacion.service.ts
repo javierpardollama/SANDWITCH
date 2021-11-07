@@ -18,6 +18,8 @@ import { BaseService } from './base.service';
 
 import { FilterPage } from 'src/viewmodels/filters/filterpage';
 
+import { firstValueFrom } from 'rxjs';
+
 @Injectable({
     providedIn: 'root',
 })
@@ -25,38 +27,38 @@ import { FilterPage } from 'src/viewmodels/filters/filterpage';
 export class PoblacionService extends BaseService {
 
     public constructor(
-        protected httpClient: HttpClient,
-        protected matSnackBar: MatSnackBar) {
+        protected override httpClient: HttpClient,
+        protected override matSnackBar: MatSnackBar) {
         super(httpClient, matSnackBar);
     }
 
     public UpdatePoblacion(viewModel: UpdatePoblacion): Promise<ViewPoblacion> {
-        return this.httpClient.put<ViewPoblacion>('api/poblacion/updatepoblacion', viewModel)
-            .pipe(catchError(this.HandleError<ViewPoblacion>('UpdatePoblacion', undefined))).toPromise();
+        return firstValueFrom(this.httpClient.put<ViewPoblacion>('api/poblacion/updatepoblacion', viewModel)
+            .pipe(catchError(this.HandleError<ViewPoblacion>('UpdatePoblacion', undefined))));
     }
 
     public FindAllPoblacion(): Promise<ViewPoblacion[]> {
-        return this.httpClient.get<ViewPoblacion[]>('api/poblacion/findallpoblacion')
-            .pipe(catchError(this.HandleError<ViewPoblacion[]>('FindAllPoblacion', []))).toPromise();
+        return firstValueFrom(this.httpClient.get<ViewPoblacion[]>('api/poblacion/findallpoblacion')
+            .pipe(catchError(this.HandleError<ViewPoblacion[]>('FindAllPoblacion', []))));
     }
 
     public FindPaginatedPoblacion(viewModel: FilterPage): Promise<ViewPage<ViewPoblacion>> {
-        return this.httpClient.post<ViewPage<ViewPoblacion>>('api/poblacion/findpaginatedpoblacion', viewModel)
-            .pipe(catchError(this.HandleError<ViewPage<ViewPoblacion>>('FindPaginatedPoblacion', undefined))).toPromise();
+        return firstValueFrom(this.httpClient.post<ViewPage<ViewPoblacion>>('api/poblacion/findpaginatedpoblacion', viewModel)
+            .pipe(catchError(this.HandleError<ViewPage<ViewPoblacion>>('FindPaginatedPoblacion', undefined))));
     }
 
     public FindAllPoblacionByProvinciaId(id: number): Promise<ViewPoblacion[]> {
-        return this.httpClient.get<ViewPoblacion[]>('api/poblacion/findallpoblacionbyprovinciaid/' + id)
-            .pipe(catchError(this.HandleError<ViewPoblacion[]>('FindAllPoblacionByProvinciaId', []))).toPromise();
+        return firstValueFrom(this.httpClient.get<ViewPoblacion[]>('api/poblacion/findallpoblacionbyprovinciaid/' + id)
+            .pipe(catchError(this.HandleError<ViewPoblacion[]>('FindAllPoblacionByProvinciaId', []))));
     }
 
     public AddPoblacion(viewModel: AddPoblacion): Promise<ViewPoblacion> {
-        return this.httpClient.post<ViewPoblacion>('api/poblacion/addpoblacion', viewModel)
-            .pipe(catchError(this.HandleError<ViewPoblacion>('AddPoblacion', undefined))).toPromise();
+        return firstValueFrom(this.httpClient.post<ViewPoblacion>('api/poblacion/addpoblacion', viewModel)
+            .pipe(catchError(this.HandleError<ViewPoblacion>('AddPoblacion', undefined))));
     }
 
     public RemovePoblacionById(id: number) {
         return this.httpClient.delete<any>('api/poblacion/removepoblacionbyid/' + id)
-            .pipe(catchError(this.HandleError<any>('RemovePoblacionById', undefined))).toPromise();
+            .pipe(catchError(this.HandleError<any>('RemovePoblacionById', undefined)));
     }
 }

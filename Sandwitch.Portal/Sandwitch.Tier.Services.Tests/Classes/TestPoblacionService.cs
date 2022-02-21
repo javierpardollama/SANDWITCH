@@ -182,7 +182,7 @@ namespace Sandwitch.Tier.Services.Tests.Classes
         [Test]
         public async Task UpdatePoblacion()
         {
-            UpdatePoblacion @poblacion = new UpdatePoblacion()
+            UpdatePoblacion @Poblacion = new()
             {
                 Id = Context.Poblacion.FirstOrDefault().Id,
                 ImageUri = "URL/Poblacion_21_500px.png",
@@ -190,7 +190,7 @@ namespace Sandwitch.Tier.Services.Tests.Classes
                 ProvinciaId = Context.Provincia.FirstOrDefault().Id
             };
 
-            await PoblacionService.UpdatePoblacion(@poblacion);
+            await PoblacionService.UpdatePoblacion(@Poblacion);
 
             Assert.Pass();
         }
@@ -202,14 +202,14 @@ namespace Sandwitch.Tier.Services.Tests.Classes
         [Test]
         public async Task AddPoblacion()
         {
-            AddPoblacion @poblacion = new AddPoblacion()
+            AddPoblacion @Poblacion = new()
             {
                 ImageUri = "URL/Poblacion_4_500px.png",
                 Name = "Poblacion 4",
                 ProvinciaId = 1
             };
 
-            await PoblacionService.AddPoblacion(@poblacion);
+            await PoblacionService.AddPoblacion(@Poblacion);
 
             Assert.Pass();
         }
@@ -221,13 +221,13 @@ namespace Sandwitch.Tier.Services.Tests.Classes
         [Test]
         public void CheckName()
         {
-            AddPoblacion @poblacion = new AddPoblacion()
+            AddPoblacion @Poblacion = new()
             {
                 ImageUri = "URL/Poblacion_3_500px.png",
                 Name = Context.Poblacion.FirstOrDefault().Name
             };
 
-            Exception exception = Assert.ThrowsAsync<Exception>(async () => await PoblacionService.CheckName(@poblacion));
+            Exception exception = Assert.ThrowsAsync<Exception>(async () => await PoblacionService.CheckName(@Poblacion));
 
             Assert.Pass();
         }

@@ -143,14 +143,14 @@ namespace Sandwitch.Tier.Services.Tests.Classes
         [Test]
         public async Task UpdateProvincia()
         {
-            UpdateProvincia @provincia = new UpdateProvincia()
+            UpdateProvincia @Provincia = new()
             {
                 Id = Context.Provincia.FirstOrDefault().Id,
                 ImageUri = "URL/Provincia_21_500px.png",
                 Name = "Provincia 21"
             };
 
-            await ProvinciaService.UpdateProvincia(@provincia);
+            await ProvinciaService.UpdateProvincia(@Provincia);
 
             Assert.Pass();
         }
@@ -162,13 +162,13 @@ namespace Sandwitch.Tier.Services.Tests.Classes
         [Test]
         public async Task AddProvincia()
         {
-            AddProvincia @provincia = new AddProvincia()
+            AddProvincia @Provincia = new()
             {
                 ImageUri = "URL/Provincia_4_500px.png",
                 Name = "Provincia 4"
             };
 
-            await ProvinciaService.AddProvincia(@provincia);
+            await ProvinciaService.AddProvincia(@Provincia);
 
             Assert.Pass();
         }
@@ -180,7 +180,7 @@ namespace Sandwitch.Tier.Services.Tests.Classes
         [Test]
         public void CheckName()
         {
-            AddProvincia @provincia = new AddProvincia()
+            AddProvincia @provincia = new()
             {
                 ImageUri = "URL/Provincia_4_500px.png",
                 Name = Context.Provincia.FirstOrDefault().Name

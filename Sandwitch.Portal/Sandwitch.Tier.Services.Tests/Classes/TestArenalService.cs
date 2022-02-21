@@ -211,14 +211,14 @@ namespace Sandwitch.Tier.Services.Tests.Classes
         [Test]
         public async Task UpdateArenal()
         {
-            UpdateArenal @provincia = new UpdateArenal()
+            UpdateArenal @Provincia = new()
             {
                 Id = Context.Arenal.FirstOrDefault().Id,
                 Name = "Arenal 21",
                 PoblacionesId = new List<int>() { Context.Poblacion.FirstOrDefault().Id }
             };
 
-            await ArenalService.UpdateArenal(@provincia);
+            await ArenalService.UpdateArenal(@Provincia);
 
             Assert.Pass();
         }
@@ -230,13 +230,13 @@ namespace Sandwitch.Tier.Services.Tests.Classes
         [Test]
         public async Task AddArenal()
         {
-            AddArenal @provincia = new AddArenal()
+            AddArenal @Provincia = new()
             {
                 Name = "Arenal 4",
                 PoblacionesId = new List<int>() { 1, 2 },
             };
 
-            await ArenalService.AddArenal(@provincia);
+            await ArenalService.AddArenal(@Provincia);
 
             Assert.Pass();
         }
@@ -248,13 +248,13 @@ namespace Sandwitch.Tier.Services.Tests.Classes
         [Test]
         public void CheckName()
         {
-            AddArenal @provincia = new AddArenal()
+            AddArenal @Provincia = new()
             {
                 PoblacionesId = new List<int>() { 1, 2 },
                 Name = Context.Arenal.FirstOrDefault().Name
             };
 
-            Exception exception = Assert.ThrowsAsync<Exception>(async () => await ArenalService.CheckName(@provincia));
+            Exception exception = Assert.ThrowsAsync<Exception>(async () => await ArenalService.CheckName(@Provincia));
 
             Assert.Pass();
         }

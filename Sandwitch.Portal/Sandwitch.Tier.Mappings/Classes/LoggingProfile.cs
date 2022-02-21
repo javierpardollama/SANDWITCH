@@ -15,8 +15,8 @@ namespace Sandwitch.Tier.Mappings.Classes
         /// <summary>
         /// Instance of <see cref="Dictionary{Enum, LogLevel}"/>
         /// </summary>
-        public static readonly Dictionary<Enum, LogLevel> LogLevelMapings = new Dictionary<Enum, LogLevel>
-    {
+        public static readonly Dictionary<Enum, LogLevel> LogLevelMapings = new()
+        {
     { ApplicationEvents.InsertItem, LogLevel.Information },
     { ApplicationEvents.UpdateItem, LogLevel.Information },
     { ApplicationEvents.DeleteItem, LogLevel.Information },

@@ -130,7 +130,7 @@ namespace Sandwitch.Tier.Services.Tests.Classes
         [Test]
         public async Task AddHistorico()
         {
-            AddHistorico historico = new AddHistorico()
+            AddHistorico @Historico = new()
             {
                 BanderaId = Context.Bandera.FirstOrDefault().Id,
                 AltaMarAlba = DateTime.Now,
@@ -141,7 +141,7 @@ namespace Sandwitch.Tier.Services.Tests.Classes
                 Temperatura = 20
             };
 
-            await HistoricoService.AddHistorico(historico);
+            await HistoricoService.AddHistorico(@Historico);
 
             Assert.Pass();
         }

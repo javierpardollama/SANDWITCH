@@ -162,14 +162,14 @@ namespace Sandwitch.Tier.Services.Tests.Classes
         [Test]
         public async Task UpdateBandera()
         {
-            UpdateBandera bandera = new UpdateBandera()
+            UpdateBandera @Bandera = new()
             {
                 Id = Context.Bandera.FirstOrDefault().Id,
                 ImageUri = "URL/Bandera_21_500px.png",
                 Name = "Bandera 21"
             };
 
-            await BanderaService.UpdateBandera(bandera);
+            await BanderaService.UpdateBandera(@Bandera);
 
             Assert.Pass();
         }
@@ -181,13 +181,13 @@ namespace Sandwitch.Tier.Services.Tests.Classes
         [Test]
         public async Task AddBandera()
         {
-            AddBandera @bandera = new AddBandera()
+            AddBandera @Bandera = new()
             {
                 ImageUri = "URL/Bandera_4_500px.png",
                 Name = "Bandera 4"
             };
 
-            await BanderaService.AddBandera(@bandera);
+            await BanderaService.AddBandera(@Bandera);
 
             Assert.Pass();
         }
@@ -199,12 +199,12 @@ namespace Sandwitch.Tier.Services.Tests.Classes
         [Test]
         public void CheckName()
         {
-            AddBandera @bandera = new AddBandera()
+            AddBandera @Bandera = new()
             {
                 ImageUri = "URL/Bandera_3_500px.png",
                 Name = Context.Bandera.FirstOrDefault().Name
             };
-            Exception exception = Assert.ThrowsAsync<Exception>(async () => await BanderaService.CheckName(@bandera));
+            Exception exception = Assert.ThrowsAsync<Exception>(async () => await BanderaService.CheckName(@Bandera));
 
             Assert.Pass();
         }

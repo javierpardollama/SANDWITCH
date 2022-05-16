@@ -45,6 +45,7 @@ namespace Sandwitch.Tier.Services.Classes
             Arenal @arenal = await Context.Arenal
                 .TagWith("FindArenalById")
                 .AsQueryable()
+                .AsSplitQuery()
                 .Include(x => x.ArenalPoblaciones)
                 .ThenInclude(x => x.Poblacion)
                 .FirstOrDefaultAsync(x => x.Id == @id);

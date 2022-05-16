@@ -86,6 +86,7 @@ namespace Sandwitch.Tier.Services.Classes
                 .TagWith("FindAllProvincia")
                 .AsQueryable()
                 .AsNoTracking()
+                .AsSplitQuery()
                 .Include(x => x.Poblaciones)
                 .ToListAsync();
 
@@ -108,6 +109,7 @@ namespace Sandwitch.Tier.Services.Classes
                 .TagWith("FindPaginatedProvincia")
                 .AsQueryable()
                 .AsNoTracking()
+                .AsSplitQuery()
                 .Include(x => x.Poblaciones)
                 .Skip(@viewmodel.Index * @viewmodel.Size)
                 .Take(@viewmodel.Size)

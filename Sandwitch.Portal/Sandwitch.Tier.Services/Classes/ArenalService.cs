@@ -134,6 +134,7 @@ namespace Sandwitch.Tier.Services.Classes
                 .TagWith("FindAllArenal")
                 .AsQueryable()
                 .AsNoTracking()
+                .AsSplitQuery()
                 .Include(x => x.ArenalPoblaciones)
                 .ThenInclude(x => x.Poblacion)
                 .Include(x => x.Historicos)
@@ -180,6 +181,7 @@ namespace Sandwitch.Tier.Services.Classes
                .TagWith("FindAllArenalByPoblacionId")
                .AsQueryable()
                .AsNoTracking()
+               .AsSplitQuery()
                .Include(x => x.Poblacion)
                .Include(x => x.Arenal)
                .ThenInclude(x => x.Historicos)
@@ -202,6 +204,7 @@ namespace Sandwitch.Tier.Services.Classes
                .TagWith("FindAllHistoricoByArenalId")
                .AsQueryable()
                .AsNoTracking()
+               .AsSplitQuery()
                .Include(x => x.Arenal)
                .Include(x => x.Bandera)
                .Where(x => x.Arenal.Id == @id)
@@ -220,6 +223,7 @@ namespace Sandwitch.Tier.Services.Classes
             Arenal @arenal = await Context.Arenal
                 .TagWith("FindArenalById")
                 .AsQueryable()
+                .AsSplitQuery()
                 .Include(x => x.ArenalPoblaciones)
                 .ThenInclude(x => x.Poblacion)
                 .FirstOrDefaultAsync(x => x.Id == @id);

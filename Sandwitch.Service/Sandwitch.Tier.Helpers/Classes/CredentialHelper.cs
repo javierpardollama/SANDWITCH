@@ -1,10 +1,9 @@
-﻿using System;
-using System.Net.Http.Headers;
-using System.Text;
-
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 
 using Sandwitch.Tier.ViewModels.Classes.Auth;
+
+using System.Net.Http.Headers;
+using System.Text;
 
 namespace Sandwitch.Tier.Helpers.Classes
 {

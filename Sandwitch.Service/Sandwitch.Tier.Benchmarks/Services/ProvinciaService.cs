@@ -18,9 +18,9 @@ namespace Sandwitch.Tier.Benchmarks.Services
             HttpResponseMessage @response = await Client.GetAsync("findallprovincia");
             @response.EnsureSuccessStatusCode();
             string @responseBody = await @response.Content.ReadAsStringAsync();
-            var @poblaciones = JsonSerializer.Deserialize<List<ViewProvincia>>(@responseBody);
+            var @provincias = JsonSerializer.Deserialize<List<ViewProvincia>>(@responseBody);
 
-            return @poblaciones;
+            return @provincias;
 
         }
 
@@ -32,9 +32,9 @@ namespace Sandwitch.Tier.Benchmarks.Services
             HttpResponseMessage @response = await Client.PostAsync("findpaginatedprovincia", @content);
             @response.EnsureSuccessStatusCode();
             string @responseBody = await @response.Content.ReadAsStringAsync();
-            var @poblaciones = JsonSerializer.Deserialize<ViewPage<ViewProvincia>>(@responseBody);
+            var @provincias = JsonSerializer.Deserialize<ViewPage<ViewProvincia>>(@responseBody);
 
-            return @poblaciones;
+            return @provincias;
         }
 
     }

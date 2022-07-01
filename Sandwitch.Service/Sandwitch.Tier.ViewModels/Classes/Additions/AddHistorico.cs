@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Sandwitch.Tier.ViewModels.Classes.Additions
+﻿namespace Sandwitch.Tier.ViewModels.Classes.Additions
 {
     /// <summary>
     /// Represents a <see cref="AddHistorico"/> class.

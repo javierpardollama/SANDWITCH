@@ -18,9 +18,9 @@ namespace Sandwitch.Tier.Benchmarks.Services
             HttpResponseMessage @response = await Client.GetAsync("findallbandera");
             @response.EnsureSuccessStatusCode();
             string @responseBody = await @response.Content.ReadAsStringAsync();
-            var @stars = JsonSerializer.Deserialize<List<ViewBandera>>(@responseBody);
+            var @banderas = JsonSerializer.Deserialize<List<ViewBandera>>(@responseBody);
 
-            return @stars;
+            return @banderas;
 
         }
 
@@ -32,9 +32,9 @@ namespace Sandwitch.Tier.Benchmarks.Services
             HttpResponseMessage @response = await Client.PostAsync("findpaginatedbandera", @content);
             @response.EnsureSuccessStatusCode();
             string @responseBody = await @response.Content.ReadAsStringAsync();
-            var @star = JsonSerializer.Deserialize<ViewPage<ViewBandera>>(@responseBody);
+            var @banderas = JsonSerializer.Deserialize<ViewPage<ViewBandera>>(@responseBody);
 
-            return @star;
+            return @banderas;
         }
 
     }

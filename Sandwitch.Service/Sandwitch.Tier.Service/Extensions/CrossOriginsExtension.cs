@@ -20,7 +20,7 @@ namespace Sandwitch.Tier.Service.Extensions
                 options.AddDefaultPolicy(
                     policy =>
                     {
-                        policy.WithOrigins(ApiSettings.Clients.ToArray())
+                        policy.WithOrigins(ApiSettings.ApiClients.ToArray())
                                                                   .AllowCredentials()
                                                                   .AllowAnyMethod()
                                                                   .AllowAnyHeader();

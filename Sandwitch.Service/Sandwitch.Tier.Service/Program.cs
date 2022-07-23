@@ -11,7 +11,6 @@ using Sandwitch.Tier.Settings.Classes;
 
 using Serilog;
 
-using System.Text.Json;
 using System.Text.Json.Serialization;
 
 var @builder = WebApplication.CreateBuilder(args);
@@ -22,7 +21,11 @@ var @builder = WebApplication.CreateBuilder(args);
              options.UseSqlite(@builder.Configuration.GetConnectionString("DefaultConnection")));
 
 @builder.Services.AddControllers()
-                .AddJsonOptions(options => { options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles; options.JsonSerializerOptions.DictionaryKeyPolicy = JsonNamingPolicy.CamelCase; });
+                .AddJsonOptions(options =>
+                {
+                    options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
+                    options.JsonSerializerOptions.PropertyNamingPolicy = null;
+                });
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 @builder.Services.AddEndpointsApiExplorer();

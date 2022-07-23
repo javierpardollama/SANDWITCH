@@ -1,4 +1,6 @@
-﻿namespace Sandwitch.Tier.ViewModels.Classes.Views
+﻿using System.Collections.Generic;
+
+namespace Sandwitch.Tier.ViewModels.Classes.Views
 {
     /// <summary>
     /// Represents a <see cref="ViewPage{T}"/> class.

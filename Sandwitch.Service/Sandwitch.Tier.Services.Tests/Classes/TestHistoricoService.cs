@@ -7,6 +7,10 @@ using Sandwitch.Tier.Entities.Classes;
 using Sandwitch.Tier.Services.Classes;
 using Sandwitch.Tier.ViewModels.Classes.Additions;
 
+using System;
+using System.Linq;
+using System.Threading.Tasks;
+
 namespace Sandwitch.Tier.Services.Tests.Classes
 {
     /// <summary>

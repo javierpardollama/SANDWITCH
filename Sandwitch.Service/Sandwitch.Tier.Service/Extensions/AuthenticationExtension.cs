@@ -1,5 +1,6 @@
 ﻿
 using Microsoft.AspNetCore.Authentication;
+using Microsoft.Extensions.DependencyInjection;
 
 using Sandwitch.Tier.Authentication.Classes;
 

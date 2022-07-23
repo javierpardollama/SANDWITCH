@@ -1,0 +1,126 @@
+.search-form {
+min-width: 200px;
+max-width: 600px;
+width: 100%;
+position: relative;
+left: 28%;
+}
+
+.search-half-width {
+width: 50%;
+padding-top:8px;
+padding-right:8px;
+padding-bottom:8px;
+}
+
+.search-option-img {
+vertical-align: middle;
+margin-right: 8px;
+}
+
+[dir='rtl'] .search-option-img {
+margin-right: 0;
+margin-left: 8px;
+}
+
+.search-card {
+max-width: 400px;
+float: left;
+margin:8px;
+background-color: #F5F5F5;
+}
+
+/* MATERIAL OVERRIDE */
+mat-card-header
+{
+padding:8px;
+background-color: #912db9;
+}
+
+/* MATERIAL OVERRIDE */
+mat-card-title{
+color: #FFFFFF;
+}
+
+/* MATERIAL OVERRIDE */
+mat-card-content
+{
+overflow: hidden; 
+background-color: #F5F5F5;
+}
+
+.search-result{
+position: relative;
+}
+
+.search-card-sand-image{
+background-image: url('./../../assets/img/iconos/Arenal_500px.png');
+background-size: cover;
+}
+
+.search-card-flag-image
+{
+max-width: 300px;
+}
+
+.search-card-content
+{
+float: left;
+margin-right:8px;
+}
+.search-card-content-line
+{
+clear: both;
+padding:8px;
+
+}
+
+.search-card-content-line-update
+{
+color:#0080ff;
+display: flex;
+align-items: center;
+justify-content: center
+}
+
+.search-card-content-tide
+{
+float: left;  
+padding-top:8px;
+padding-right:8px;
+padding-bottom:8px;
+}
+
+.search-card-warm-image{
+background-image: url('./../../assets/img/iconos/Temperatura_500px.png');
+background-size: cover;
+}  
+
+.search-card-low-tide-image{
+background-image: url('./../../assets/img/iconos/BajaMar_500px.png');
+background-size: cover;
+}  
+
+.search-card-high-tide-image{
+background-image: url('./../../assets/img/iconos/PleaMar_500px.png');
+background-size: cover;
+}  
+
+.search-card-update-image{
+background-image: url('./../../assets/img/iconos/Update_500px.png');
+background-size: cover;
+}  
+
+@media screen and (max-width: 960px) 
+{
+.search-form {
+
+width: 100%;
+position: relative;
+left:8%
+}
+
+.search-half-width {
+width: 80%;
+}
+}

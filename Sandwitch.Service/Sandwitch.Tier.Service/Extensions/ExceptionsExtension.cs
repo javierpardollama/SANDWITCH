@@ -1,4 +1,6 @@
 ﻿
+using Microsoft.AspNetCore.Builder;
+
 using Sandwitch.Tier.ExceptionHandling.Middlewares;
 
 namespace Sandwitch.Tier.Service.Extensions

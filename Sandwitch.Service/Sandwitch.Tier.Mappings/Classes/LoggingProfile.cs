@@ -3,6 +3,9 @@ using Microsoft.Extensions.Logging;
 
 using Sandwitch.Tier.Constants.Enums;
 
+using System;
+using System.Collections.Generic;
+
 namespace Sandwitch.Tier.Mappings.Classes
 {
     /// <summary>

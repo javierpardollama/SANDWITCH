@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace Sandwitch.Tier.Entities.Classes

@@ -3,6 +3,9 @@ using Microsoft.EntityFrameworkCore;
 
 using Sandwitch.Tier.Entities.Classes;
 
+using System;
+using System.Threading.Tasks;
+
 namespace Sandwitch.Tier.Contexts.Interfaces
 {
     /// <summary>

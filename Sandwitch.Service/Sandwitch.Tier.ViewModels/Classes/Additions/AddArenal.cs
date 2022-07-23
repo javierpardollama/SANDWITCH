@@ -1,4 +1,6 @@
-﻿namespace Sandwitch.Tier.ViewModels.Classes.Additions
+﻿using System.Collections.Generic;
+
+namespace Sandwitch.Tier.ViewModels.Classes.Additions
 {
     /// <summary>
     /// Represents a <see cref="AddArenal"/> class.

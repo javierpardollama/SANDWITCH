@@ -1,4 +1,6 @@
-﻿namespace Sandwitch.Tier.ViewModels.Classes.Updates
+﻿using System.Collections.Generic;
+
+namespace Sandwitch.Tier.ViewModels.Classes.Updates
 {
     /// <summary>
     /// Represents a <see cref="UpdateArenal"/> class. Inherits <see cref="UpdateBase"/>

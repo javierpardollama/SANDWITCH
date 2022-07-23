@@ -2,8 +2,10 @@
 
 using Sandwitch.Tier.ViewModels.Classes.Views;
 
+using System;
 using System.Net;
 using System.Text.Json;
+using System.Threading.Tasks;
 
 namespace Sandwitch.Tier.ExceptionHandling.Middlewares
 {

@@ -2,6 +2,7 @@
 
 using Sandwitch.Tier.ViewModels.Classes.Auth;
 
+using System;
 using System.Net.Http.Headers;
 using System.Text;
 

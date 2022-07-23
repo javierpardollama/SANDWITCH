@@ -1,4 +1,8 @@
+using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 
 using Sandwitch.Tier.Contexts.Classes;
 using Sandwitch.Tier.Mappings.Classes;
@@ -7,6 +11,7 @@ using Sandwitch.Tier.Settings.Classes;
 
 using Serilog;
 
+using System.Text.Json;
 using System.Text.Json.Serialization;
 
 var @builder = WebApplication.CreateBuilder(args);
@@ -17,7 +22,7 @@ var @builder = WebApplication.CreateBuilder(args);
              options.UseSqlite(@builder.Configuration.GetConnectionString("DefaultConnection")));
 
 @builder.Services.AddControllers()
-                .AddJsonOptions(options => { options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles; });
+                .AddJsonOptions(options => { options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles; options.JsonSerializerOptions.DictionaryKeyPolicy = JsonNamingPolicy.CamelCase; });
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 @builder.Services.AddEndpointsApiExplorer();
@@ -34,10 +39,14 @@ var @builder = WebApplication.CreateBuilder(args);
 
 @builder.Services.AddResponseCaching();
 
+var @settings = new ApiSettings();
+@builder.Configuration.GetSection("Api").Bind(@settings);
 @builder.Services.Configure<ApiSettings>(@builder.Configuration.GetSection("Api"));
 
 // Add customized Authentication to the services container.
 @builder.Services.AddCustomizedAuthentication();
+
+@builder.Services.AddCustomizedOrigins(@settings);
 
 @builder.Host.UseSerilog((hostingContext, loggerConfiguration) => loggerConfiguration
                 .ReadFrom.Configuration(hostingContext.Configuration));
@@ -59,6 +68,8 @@ if (@app.Environment.IsDevelopment())
 
 @app.UseAuthentication();
 @app.UseAuthorization();
+
+@app.UseCors();
 
 @app.MapControllers();
 

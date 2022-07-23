@@ -35,27 +35,27 @@ export class BanderaService extends BaseService {
     }
 
     public UpdateBandera(viewModel: UpdateBandera): Promise<ViewBandera> {
-        return firstValueFrom(this.httpClient.put<ViewBandera>(`${environment.Service}api/bandera/updatebandera`, viewModel)
+        return firstValueFrom(this.httpClient.put<ViewBandera>(`${environment.ApiService}api/bandera/updatebandera`, viewModel)
             .pipe(catchError(this.HandleError<ViewBandera>('UpdateBandera', undefined))));
     }
 
     public FindAllBandera(): Promise<ViewBandera[]> {
-        return firstValueFrom(this.httpClient.get<ViewBandera[]>(`${environment.Service}api/bandera/findallbandera`)
+        return firstValueFrom(this.httpClient.get<ViewBandera[]>(`${environment.ApiService}api/bandera/findallbandera`)
             .pipe(catchError(this.HandleError<ViewBandera[]>('FindAllBandera', []))));
     }
 
     public FindPaginatedBandera(viewModel: FilterPage): Promise<ViewPage<ViewBandera>> {
-        return firstValueFrom(this.httpClient.post<ViewPage<ViewBandera>>(`${environment.Service}api/bandera/findpaginatedbandera`, viewModel)
+        return firstValueFrom(this.httpClient.post<ViewPage<ViewBandera>>(`${environment.ApiService}api/bandera/findpaginatedbandera`, viewModel)
             .pipe(catchError(this.HandleError<ViewPage<ViewBandera>>('FindPaginatedBandera', undefined))));
     }
 
     public AddBandera(viewModel: AddBandera): Promise<ViewBandera> {
-        return firstValueFrom(this.httpClient.post<ViewBandera>(`${environment.Service}api/bandera/addbandera`, viewModel)
+        return firstValueFrom(this.httpClient.post<ViewBandera>(`${environment.ApiService}api/bandera/addbandera`, viewModel)
             .pipe(catchError(this.HandleError<ViewBandera>('AddBandera', undefined))));
     }
 
     public RemoveBanderaById(id: number) {
-        return this.httpClient.delete<any>(`${environment.Service}api/bandera/removebanderabyid/` + id)
+        return this.httpClient.delete<any>(`${environment.ApiService}api/bandera/removebanderabyid/` + id)
             .pipe(catchError(this.HandleError<any>('RemoveBanderaById', undefined)));
     }
 }

@@ -45,6 +45,7 @@ namespace Sandwitch.Tier.Web.Controllers
         /// </summary>
         /// <returns>Instance of <see cref="Task{JsonResult}"/></returns>
         [HttpGet]
+        [ResponseCache(Duration = 10, Location = ResponseCacheLocation.Any, NoStore = false)]
         [Route("findallpoblacion")]
         public async Task<IActionResult> FindAllPoblacion() => new JsonResult(value: await Service.FindAllPoblacion());
 

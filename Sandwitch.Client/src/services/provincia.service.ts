@@ -35,27 +35,27 @@ export class ProvinciaService extends BaseService {
     }
 
     public UpdateProvincia(viewModel: UpdateProvincia): Promise<ViewProvincia> {
-        return firstValueFrom(this.httpClient.put<ViewProvincia>(`${environment.Service}api/provincia/updateprovincia`, viewModel)
+        return firstValueFrom(this.httpClient.put<ViewProvincia>(`${environment.ApiService}api/provincia/updateprovincia`, viewModel)
             .pipe(catchError(this.HandleError<ViewProvincia>('UpdateProvincia', undefined))));
     }
 
     public FindAllProvincia(): Promise<ViewProvincia[]> {
-        return firstValueFrom(this.httpClient.get<ViewProvincia[]>(`${environment.Service}api/provincia/findallprovincia`)
+        return firstValueFrom(this.httpClient.get<ViewProvincia[]>(`${environment.ApiService}api/provincia/findallprovincia`)
             .pipe(catchError(this.HandleError<ViewProvincia[]>('FindAllProvincia', []))));
     }
 
     public FindPaginatedProvincia(viewModel: FilterPage): Promise<ViewPage<ViewProvincia>> {
-        return firstValueFrom(this.httpClient.post<ViewPage<ViewProvincia>>(`${environment.Service}api/provincia/findpaginatedprovincia`, viewModel)
+        return firstValueFrom(this.httpClient.post<ViewPage<ViewProvincia>>(`${environment.ApiService}api/provincia/findpaginatedprovincia`, viewModel)
             .pipe(catchError(this.HandleError<ViewPage<ViewProvincia>>('FindPaginatedProvincia', undefined))));
     }
 
     public AddProvincia(viewModel: AddProvincia): Promise<ViewProvincia> {
-        return firstValueFrom(this.httpClient.post<ViewProvincia>(`${environment.Service}api/provincia/addprovincia`, viewModel)
+        return firstValueFrom(this.httpClient.post<ViewProvincia>(`${environment.ApiService}api/provincia/addprovincia`, viewModel)
             .pipe(catchError(this.HandleError<ViewProvincia>('AddProvincia', undefined))));
     }
 
     public RemoveProvinciaById(id: number) {
-        return this.httpClient.delete<any>(`${environment.Service}api/provincia/removeprovinciabyid/` + id)
+        return this.httpClient.delete<any>(`${environment.ApiService}api/provincia/removeprovinciabyid/` + id)
             .pipe(catchError(this.HandleError<any>('RemoveProvinciaById', undefined)));
     }
 }

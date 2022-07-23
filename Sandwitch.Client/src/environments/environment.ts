@@ -6,7 +6,7 @@ export const environment =
 {
   ApiLock: "Peach",
   ApiKey: "T/R4J6eyvNG<6ne!",
-  Service:"https://localhost:7297/",
+  ApiService:"https://localhost:7297/",
   production: false
 };
 

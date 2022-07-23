@@ -46,6 +46,7 @@ namespace Sandwitch.Tier.Web.Controllers
         /// <param name="id">Injected <see cref="int"/></param>
         /// <returns>Instance of <see cref="Task{JsonResult}"/></returns>
         [HttpGet]
+        [ResponseCache(Duration = 10, Location = ResponseCacheLocation.Any, NoStore = false)]
         [Route("findallarenal")]
         public async Task<IActionResult> FindAllarenal() => new JsonResult(value: await Service.FindAllArenal());
 

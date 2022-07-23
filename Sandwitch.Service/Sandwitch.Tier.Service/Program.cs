@@ -54,7 +54,7 @@ var @settings = new ApiSettings();
 @builder.Host.UseSerilog((hostingContext, loggerConfiguration) => loggerConfiguration
                 .ReadFrom.Configuration(hostingContext.Configuration));
 
-var @app = builder.Build();
+var @app = @builder.Build();
 
 // Configure the HTTP request pipeline.
 if (@app.Environment.IsDevelopment())
@@ -72,7 +72,10 @@ if (@app.Environment.IsDevelopment())
 @app.UseAuthentication();
 @app.UseAuthorization();
 
+// UseCors must be called before UseResponseCaching
 @app.UseCors();
+
+@app.UseResponseCaching();
 
 @app.MapControllers();
 

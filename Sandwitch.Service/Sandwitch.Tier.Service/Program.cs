@@ -54,6 +54,8 @@ var @settings = new ApiSettings();
 @builder.Host.UseSerilog((hostingContext, loggerConfiguration) => loggerConfiguration
                 .ReadFrom.Configuration(hostingContext.Configuration));
 
+@builder.Services.AddHealthChecks();
+
 var @app = @builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -78,5 +80,7 @@ if (@app.Environment.IsDevelopment())
 @app.UseResponseCaching();
 
 @app.MapControllers();
+
+@app.MapHealthChecks("/healthz");
 
 @app.Run();

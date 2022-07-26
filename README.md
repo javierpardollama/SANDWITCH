@@ -6,16 +6,16 @@ Este proyecto surge como una solución para gestionar el estado actual de las pl
 
 Este Proyecto está construido siguiendo el patrón de N capas:
 
-1. [Data Tier](https://github.com/javierpardollama/SANDWITCH/tree/master/Sandwitch.Portal/Sandwitch.Tier.Contexts)
+1. [Data Tier](https://github.com/javierpardollama/SANDWITCH/tree/master/Sandwitch.Service/Sandwitch.Tier.Contexts)
 
 En Esta capa la información es almacenada y redistribuida al sistema de almacenamiento de datos.
 
-2. [Logic Tier](https://github.com/javierpardollama/SANDWITCH/tree/master/Sandwitch.Portal/Sandwitch.Tier.Services)
+2. [Logic Tier](https://github.com/javierpardollama/SANDWITCH/tree/master/Sandwitch.Service/Sandwitch.Tier.Services)
 
 En esta capa se coordina el envío y/o recepción entre la capa de datos (Data Tier) y la capa de presentación (Presentation Tier). 
 Además, toma decisiones lógicas, realiza cálculos y se encarga de procesar órdenes distintas.
 
-3. [Presentation Tier](https://github.com/javierpardollama/SANDWITCH/tree/master/Sandwitch.Portal/Sandwitch.Tier.Web)
+3. [Presentation Tier](https://github.com/javierpardollama/SANDWITCH/tree/master/Sandwitch.Client)
 
 En esta capa se traducen las distintas órdenes y resultados a una forma que el usuario pueda comprender.
 

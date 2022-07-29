@@ -6,14 +6,14 @@ using System.Linq;
 
 namespace Sandwitch.Tier.Service.Extensions
 {
-    public static class CrossOriginsExtension
+    public static class CrossOriginRequestsExtension
     {
         /// <summary>
         /// Seeds Customized Origins
         /// </summary>
         /// <param name="this">Injected <see cref="IServiceCollection"/></param>
         /// <param name="ApiSettings">Injected <see cref="ApiSettings"/></param>
-        public static void AddCustomizedOrigins(this IServiceCollection @this, ApiSettings ApiSettings)
+        public static void AddCustomizedCrossOriginRequests(this IServiceCollection @this, ApiSettings ApiSettings)
         {
             @this.AddCors(options =>
             {

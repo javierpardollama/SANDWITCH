@@ -49,7 +49,7 @@ var @settings = new ApiSettings();
 // Add customized Authentication to the services container.
 @builder.Services.AddCustomizedAuthentication();
 
-@builder.Services.AddCustomizedOrigins(@settings);
+@builder.Services.AddCustomizedCrossOriginRequests(@settings);
 
 @builder.Host.UseSerilog((hostingContext, loggerConfiguration) => loggerConfiguration
                 .ReadFrom.Configuration(hostingContext.Configuration));

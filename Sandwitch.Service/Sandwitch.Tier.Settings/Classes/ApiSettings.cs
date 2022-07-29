@@ -20,6 +20,6 @@ namespace Sandwitch.Tier.Settings.Classes
         /// <summary>
         /// Gets or Sets <see cref=ApiClients""/>
         /// </summary>
-        public IList<string> ApiClients { get; set; }
+        public IList<string> ApiAudiences { get; set; }
     }
 }

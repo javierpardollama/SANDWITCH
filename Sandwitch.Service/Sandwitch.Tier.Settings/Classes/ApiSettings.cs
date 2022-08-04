@@ -18,7 +18,7 @@ namespace Sandwitch.Tier.Settings.Classes
         public string ApiKey { get; set; }
 
         /// <summary>
-        /// Gets or Sets <see cref=ApiClients""/>
+        /// Gets or Sets <see cref="ApiAudiences"/>
         /// </summary>
         public IList<string> ApiAudiences { get; set; }
     }

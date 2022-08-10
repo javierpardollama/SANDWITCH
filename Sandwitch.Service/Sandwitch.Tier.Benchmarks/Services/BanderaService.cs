@@ -31,7 +31,7 @@ namespace Sandwitch.Tier.Benchmarks.Services
         }
 
         [Benchmark]
-        public async Task<ViewPage<ViewBandera>> FindPaginatedTrackingNo()
+        public async Task<ViewPage<ViewBandera>> FindPaginatedBandera()
         {
             Client.DefaultRequestHeaders.Authorization = new BasicAuthenticationHeaderValue("Peach", "T/R4J6eyvNG<6ne!");
 

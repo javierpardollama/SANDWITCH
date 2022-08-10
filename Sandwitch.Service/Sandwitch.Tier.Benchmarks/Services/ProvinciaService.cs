@@ -17,7 +17,7 @@ namespace Sandwitch.Tier.Benchmarks.Services
     {
         static readonly NetworkCredential Credentials = new("Peach", "T/R4J6eyvNG<6ne!");
         static readonly HttpClientHandler Handler = new() { Credentials = Credentials };
-        static readonly HttpClient Client = new(Handler) { BaseAddress = new Uri("https://localhost:7214/api/provincia/") };
+        static readonly HttpClient Client = new(Handler) { BaseAddress = new Uri("https://localhost:7297/api/provincia/") };
 
         [Benchmark]
         public async Task<IList<ViewProvincia>> FindAllProvincia()

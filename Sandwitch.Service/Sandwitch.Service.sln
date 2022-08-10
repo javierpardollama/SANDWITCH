@@ -3,33 +3,33 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32616.157
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sandwitch.Tier.Authentication", "Sandwitch.Tier.Authentication\Sandwitch.Tier.Authentication.csproj", "{5337DCA8-C769-46EC-B065-D140AA5C1742}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sandwitch.Tier.Authentication", "Sandwitch.Tier.Authentication\Sandwitch.Tier.Authentication.csproj", "{5337DCA8-C769-46EC-B065-D140AA5C1742}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sandwitch.Tier.Constants", "Sandwitch.Tier.Constants\Sandwitch.Tier.Constants.csproj", "{0510A6EB-C258-46B4-ABAC-ED304865337C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sandwitch.Tier.Constants", "Sandwitch.Tier.Constants\Sandwitch.Tier.Constants.csproj", "{0510A6EB-C258-46B4-ABAC-ED304865337C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sandwitch.Tier.Entities", "Sandwitch.Tier.Entities\Sandwitch.Tier.Entities.csproj", "{06B7DE59-362E-407F-B4BA-A3525BDAA03C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sandwitch.Tier.Entities", "Sandwitch.Tier.Entities\Sandwitch.Tier.Entities.csproj", "{06B7DE59-362E-407F-B4BA-A3525BDAA03C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sandwitch.Tier.ViewModels", "Sandwitch.Tier.ViewModels\Sandwitch.Tier.ViewModels.csproj", "{88D52CDE-6924-4E1F-8D8C-E705BD55CADE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sandwitch.Tier.ViewModels", "Sandwitch.Tier.ViewModels\Sandwitch.Tier.ViewModels.csproj", "{88D52CDE-6924-4E1F-8D8C-E705BD55CADE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sandwitch.Tier.Settings", "Sandwitch.Tier.Settings\Sandwitch.Tier.Settings.csproj", "{C3E0453F-782B-47CE-BD45-B42D6137A48F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sandwitch.Tier.Settings", "Sandwitch.Tier.Settings\Sandwitch.Tier.Settings.csproj", "{C3E0453F-782B-47CE-BD45-B42D6137A48F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sandwitch.Tier.ExceptionHandling", "Sandwitch.Tier.ExceptionHandling\Sandwitch.Tier.ExceptionHandling.csproj", "{BE4E9D0D-6F42-4892-9C2D-BD11C3D0F5F0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sandwitch.Tier.ExceptionHandling", "Sandwitch.Tier.ExceptionHandling\Sandwitch.Tier.ExceptionHandling.csproj", "{BE4E9D0D-6F42-4892-9C2D-BD11C3D0F5F0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sandwitch.Tier.Helpers", "Sandwitch.Tier.Helpers\Sandwitch.Tier.Helpers.csproj", "{953DF3CA-C7C5-4AC8-8091-840032C928C1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sandwitch.Tier.Helpers", "Sandwitch.Tier.Helpers\Sandwitch.Tier.Helpers.csproj", "{953DF3CA-C7C5-4AC8-8091-840032C928C1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sandwitch.Tier.Logging", "Sandwitch.Tier.Logging\Sandwitch.Tier.Logging.csproj", "{C5EB6823-2BA4-4CD7-BB71-E0F8E5476893}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sandwitch.Tier.Logging", "Sandwitch.Tier.Logging\Sandwitch.Tier.Logging.csproj", "{C5EB6823-2BA4-4CD7-BB71-E0F8E5476893}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sandwitch.Tier.Mappings", "Sandwitch.Tier.Mappings\Sandwitch.Tier.Mappings.csproj", "{ED2CDC13-9DEA-4864-ACB5-EB240C8BDEBE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sandwitch.Tier.Mappings", "Sandwitch.Tier.Mappings\Sandwitch.Tier.Mappings.csproj", "{ED2CDC13-9DEA-4864-ACB5-EB240C8BDEBE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sandwitch.Tier.Services", "Sandwitch.Tier.Services\Sandwitch.Tier.Services.csproj", "{A0B3BAF7-FDF1-4BE9-824A-D866E5F67333}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sandwitch.Tier.Services", "Sandwitch.Tier.Services\Sandwitch.Tier.Services.csproj", "{A0B3BAF7-FDF1-4BE9-824A-D866E5F67333}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sandwitch.Tier.Services.Tests", "Sandwitch.Tier.Services.Tests\Sandwitch.Tier.Services.Tests.csproj", "{1FC6C130-D8EC-4112-960D-FD48BCBFEE1B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sandwitch.Tier.Services.Tests", "Sandwitch.Tier.Services.Tests\Sandwitch.Tier.Services.Tests.csproj", "{1FC6C130-D8EC-4112-960D-FD48BCBFEE1B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sandwitch.Tier.Contexts", "Sandwitch.Tier.Contexts\Sandwitch.Tier.Contexts.csproj", "{22C954FB-1AF0-48FA-B143-BC60777FB643}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sandwitch.Tier.Contexts", "Sandwitch.Tier.Contexts\Sandwitch.Tier.Contexts.csproj", "{22C954FB-1AF0-48FA-B143-BC60777FB643}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sandwitch.Tier.Service", "Sandwitch.Tier.Service\Sandwitch.Tier.Service.csproj", "{0DB56344-FCEF-4747-AA54-30220B5EBE35}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sandwitch.Tier.Service", "Sandwitch.Tier.Service\Sandwitch.Tier.Service.csproj", "{0DB56344-FCEF-4747-AA54-30220B5EBE35}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sandwitch.Tier.Benchmarks", "Sandwitch.Tier.Benchmarks\Sandwitch.Tier.Benchmarks.csproj", "{D0FAEAE0-0ECC-49E6-91F4-27FC82C76165}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sandwitch.Tier.Benchmarks", "Sandwitch.Tier.Benchmarks\Sandwitch.Tier.Benchmarks.csproj", "{D0FAEAE0-0ECC-49E6-91F4-27FC82C76165}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

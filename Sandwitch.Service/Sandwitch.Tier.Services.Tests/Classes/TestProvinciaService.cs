@@ -82,9 +82,9 @@ namespace Sandwitch.Tier.Services.Tests.Classes
         /// </summary>
         private void SetUpContext()
         {
-            Context.Provincia.Add(new Provincia { Name = "Provincia " + Guid.NewGuid().ToString(), LastModified = DateTime.Now, Deleted = false });
-            Context.Provincia.Add(new Provincia { Name = "Provincia " + Guid.NewGuid().ToString(), LastModified = DateTime.Now, Deleted = false });
-            Context.Provincia.Add(new Provincia { Name = "Provincia " + Guid.NewGuid().ToString(), LastModified = DateTime.Now, Deleted = false });
+            Context.Provincia.Add(new Provincia { Name = "Provincia " + Guid.NewGuid().ToString(), ImageUri = "URL/Provincia_01_500px.png", LastModified = DateTime.Now, Deleted = false });
+            Context.Provincia.Add(new Provincia { Name = "Provincia " + Guid.NewGuid().ToString(), ImageUri = "URL/Provincia_02_500px.png", LastModified = DateTime.Now, Deleted = false });
+            Context.Provincia.Add(new Provincia { Name = "Provincia " + Guid.NewGuid().ToString(), ImageUri = "URL/Provincia_03_500px.png", LastModified = DateTime.Now, Deleted = false });
 
             Context.SaveChanges();
         }

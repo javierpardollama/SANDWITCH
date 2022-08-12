@@ -94,8 +94,8 @@ namespace Sandwitch.Tier.Services.Tests.Classes
         private void SetUpContext()
         {
             Context.Arenal.Add(new Arenal { Name = "Arenal 1", LastModified = DateTime.Now, Deleted = false });
-            Context.Poblacion.Add(new Poblacion { Name = "Poblacion 1", LastModified = DateTime.Now, Deleted = false });
-            Context.Bandera.Add(new Bandera { Name = "Poblacion 1", LastModified = DateTime.Now, Deleted = false });
+            Context.Poblacion.Add(new Poblacion { Name = "Poblacion 1", ImageUri = "URL/Poblacion_01_500px.png", LastModified = DateTime.Now, Deleted = false });
+            Context.Bandera.Add(new Bandera { Name = "Bandera 1", ImageUri = "URL/Bandera_01_500px.png", LastModified = DateTime.Now, Deleted = false });
 
             Context.SaveChanges();
         }

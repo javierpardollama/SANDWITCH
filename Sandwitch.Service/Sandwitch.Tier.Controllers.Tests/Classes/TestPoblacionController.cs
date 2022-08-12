@@ -13,6 +13,7 @@ using System.Threading.Tasks;
 
 namespace Sandwitch.Tier.Controllers.Tests.Classes
 {
+    [TestFixture]
     public class TestPoblacionController
     {
         static readonly HttpClient Client = new() { BaseAddress = new Uri("https://localhost:7297/api/poblacion/") };

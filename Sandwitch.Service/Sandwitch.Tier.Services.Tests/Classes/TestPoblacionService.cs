@@ -95,11 +95,11 @@ namespace Sandwitch.Tier.Services.Tests.Classes
         /// </summary>
         private void SetUpContext()
         {
-            Context.Provincia.Add(new Provincia { Name = "Provincia " + Guid.NewGuid().ToString(), LastModified = DateTime.Now, Deleted = false });
+            Context.Provincia.Add(new Provincia { Name = "Provincia " + Guid.NewGuid().ToString(), ImageUri = "URL/Provincia_04_500px.png", LastModified = DateTime.Now, Deleted = false });
 
-            Context.Poblacion.Add(new Poblacion { Name = "Poblacion " + Guid.NewGuid().ToString(), LastModified = DateTime.Now, Deleted = false });
-            Context.Poblacion.Add(new Poblacion { Name = "Poblacion " + Guid.NewGuid().ToString(), LastModified = DateTime.Now, Deleted = false });
-            Context.Poblacion.Add(new Poblacion { Name = "Poblacion " + Guid.NewGuid().ToString(), LastModified = DateTime.Now, Deleted = false });
+            Context.Poblacion.Add(new Poblacion { Name = "Poblacion " + Guid.NewGuid().ToString(), ImageUri = "URL/Poblacion_01_500px.png", LastModified = DateTime.Now, Deleted = false });
+            Context.Poblacion.Add(new Poblacion { Name = "Poblacion " + Guid.NewGuid().ToString(), ImageUri = "URL/Poblacion_02_500px.png", LastModified = DateTime.Now, Deleted = false });
+            Context.Poblacion.Add(new Poblacion { Name = "Poblacion " + Guid.NewGuid().ToString(), ImageUri = "URL/Poblacion_03_500px.png", LastModified = DateTime.Now, Deleted = false });
 
             Context.SaveChanges();
         }

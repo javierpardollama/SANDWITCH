@@ -31,7 +31,6 @@ namespace Sandwitch.Tier.Controllers.Tests.Classes
         [TearDown]
         public void TearDown()
         {
-            Client.Dispose();
         }
 
         [Test]

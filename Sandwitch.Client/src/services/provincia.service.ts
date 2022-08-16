@@ -54,8 +54,8 @@ export class ProvinciaService extends BaseService {
             .pipe(catchError(this.HandleError<ViewProvincia>('AddProvincia', undefined))));
     }
 
-    public RemoveProvinciaById(id: number): Promise<void> {
-        return this.httpClient.delete<any>(`${environment.ApiService}api/provincia/removeprovinciabyid/` + id)
-            .pipe(catchError(this.HandleError<any>('RemoveProvinciaById', undefined)));
+    public RemoveProvinciaById(id: number): Promise<any> {
+        return firstValueFrom(this.httpClient.delete<void>(`${environment.ApiService}api/provincia/removeprovinciabyid/` + id)
+            .pipe(catchError(this.HandleError<any>('RemoveProvinciaById', undefined))));
     }
 }

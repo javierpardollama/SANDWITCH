@@ -11,30 +11,12 @@
       </button>
       <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse" [ngClass]='{"show": isExpanded}'>
         <ul class="navbar-nav flex-grow">
-          <li class="nav-item" [routerLinkActive]='["link-active"]'>
-            <a class="nav-link text-dark" [routerLink]='["/management/provincias"]'>
-              <div class="nav-menu-option-image nav-menu-land-image"></div>
-              <span class="nav-option-link">Provincias</span>
+          <li *ngFor="let Link of NavigationLinks" class="nav-item" [routerLinkActive]='["link-active"]'>
+            <a class="nav-link text-dark" [routerLink]=Link.Link>
+              <div class={{Link.Class}}></div>
+              <span class="nav-option-link">{{Link.Label}}</span>
             </a>
-          </li>
-          <li class="nav-item" [routerLinkActive]='["link-active"]'>
-            <a class="nav-link text-dark" [routerLink]='["/management/poblaciones"]'>
-              <div class="nav-menu-option-image nav-menu-town-image"></div>
-              <span class="nav-option-link">Poblaciones</span>
-            </a>
-          </li>
-          <li class="nav-item" [routerLinkActive]='["link-active"]'>
-            <a class="nav-link text-dark" [routerLink]='["/management/arenales"]'>
-              <div class="nav-menu-option-image nav-menu-sand-image"></div>
-              <span class="nav-option-link">Arenales</span>
-            </a>
-          </li>
-          <li class="nav-item" [routerLinkActive]='["link-active"]'>
-            <a class="nav-link text-dark" [routerLink]='["/management/banderas"]'>
-              <div class="nav-menu-option-image nav-menu-flag-image"></div>
-              <span class="nav-option-link">Banderas</span>
-            </a>
-          </li>
+          </li>         
         </ul>
       </div>
     </div>

@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { NavigationService } from '../../services/navigation.service';
+import { ViewLink } from '../../viewmodels/views/viewlink';
 
 @Component({
   selector: 'app-nav-menu',
@@ -7,6 +9,14 @@ import { Component } from '@angular/core';
 })
 export class NavMenuComponent {
   isExpanded = false;
+
+  NavigationLinks: ViewLink[];
+
+  // Constructor
+  constructor(
+    private navigationService: NavigationService) {
+    this.NavigationLinks = this.navigationService.GetManagementNavigationLinks();
+  }
 
   collapse() {
     this.isExpanded = false;

@@ -52,7 +52,7 @@ export class ProvinciaAddModalComponent implements OnInit {
   async onSubmit(viewModel: AddProvincia) {
     let provincia = await this.provinciaService.AddProvincia(viewModel);
 
-    if (provincia !== undefined) {
+    if (provincia) {
       this.matSnackBar.open(
         TextAppVariants.AppOperationSuccessCoreText,
         TextAppVariants.AppOkButtonText,

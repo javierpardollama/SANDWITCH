@@ -94,9 +94,9 @@ export class HistoricoAddModalComponent implements OnInit {
 
   // Form Actions
   async onSubmit(viewModel: AddHistorico) {
-    let historico = await this.historicoService.AddHistorico(viewModel)
+    let historico = await this.historicoService.AddHistorico(viewModel);
 
-    if (historico !== undefined) {
+    if (historico) {
       this.matSnackBar.open(
         TextAppVariants.AppOperationSuccessCoreText,
         TextAppVariants.AppOkButtonText,

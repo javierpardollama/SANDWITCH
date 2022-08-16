@@ -59,7 +59,7 @@ export class PoblacionService extends BaseService {
             .pipe(catchError(this.HandleError<ViewPoblacion>('AddPoblacion', undefined))));
     }
 
-    public RemovePoblacionById(id: number) {
+    public RemovePoblacionById(id: number): Promise<void> {
         return this.httpClient.delete<any>(`${environment.ApiService}api/poblacion/removepoblacionbyid/` + id)
             .pipe(catchError(this.HandleError<any>('RemovePoblacionById', undefined)));
     }

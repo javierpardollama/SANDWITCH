@@ -30,7 +30,7 @@ import { TimeAppVariants } from './../../../../../variants/time.app.variants';
 })
 export class ProvinciaUpdateModalComponent implements OnInit {
 
-  public formGroup!: FormGroup ;
+  public formGroup!: FormGroup;
 
   // Constructor
   constructor(
@@ -59,7 +59,7 @@ export class ProvinciaUpdateModalComponent implements OnInit {
   async onSubmit(viewModel: UpdateProvincia) {
     let provincia = await this.provinciaService.UpdateProvincia(viewModel)
 
-    if (provincia !== undefined) {
+    if (provincia) {
       this.matSnackBar.open(
         TextAppVariants.AppOperationSuccessCoreText,
         TextAppVariants.AppOkButtonText,
@@ -69,15 +69,15 @@ export class ProvinciaUpdateModalComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  onDelete(viewModel: UpdateProvincia) {
-    this.provinciaService.RemoveProvinciaById(viewModel.Id).subscribe(provincia => {
-      this.matSnackBar.open(
-        TextAppVariants.AppOperationSuccessCoreText,
-        TextAppVariants.AppOkButtonText,
-        { duration: TimeAppVariants.AppToastSecondTicks * TimeAppVariants.AppTimeSecondTicks }
-      );
+  async onDelete(viewModel: UpdateProvincia) {
+    await this.provinciaService.RemoveProvinciaById(viewModel.Id);
+    
+    this.matSnackBar.open(
+      TextAppVariants.AppOperationSuccessCoreText,
+      TextAppVariants.AppOkButtonText,
+      { duration: TimeAppVariants.AppToastSecondTicks * TimeAppVariants.AppTimeSecondTicks }
+    );
 
-      this.dialogRef.close();
-    });
+    this.dialogRef.close();
   }
 }

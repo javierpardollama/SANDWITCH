@@ -65,7 +65,7 @@ export class PoblacionAddModalComponent implements OnInit {
   async onSubmit(viewModel: AddPoblacion) {
     let poblacion = await this.poblacionService.AddPoblacion(viewModel);
 
-    if (poblacion !== undefined) {
+    if (poblacion) {
       this.matSnackBar.open(
         TextAppVariants.AppOperationSuccessCoreText,
         TextAppVariants.AppOkButtonText,

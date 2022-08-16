@@ -59,7 +59,7 @@ export class ArenalService extends BaseService {
             .pipe(catchError(this.HandleError<ViewArenal>('AddArenal', undefined))));
     }
 
-    public RemoveArenalById(id: number) {
+    public RemoveArenalById(id: number): Promise<void> {
         return this.httpClient.delete<any>(`${environment.ApiService}api/arenal/removearenalbyid/` + id)
             .pipe(catchError(this.HandleError<any>('RemoveArenalById', undefined)));
     }

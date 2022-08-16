@@ -34,8 +34,8 @@ import { TimeAppVariants } from './../../../../../variants/time.app.variants';
 })
 export class ArenalUpdateModalComponent implements OnInit {
 
-  public formGroup!: FormGroup ;
-  
+  public formGroup!: FormGroup;
+
   public provincias: ViewProvincia[] = [];
 
 
@@ -68,26 +68,26 @@ export class ArenalUpdateModalComponent implements OnInit {
   async onSubmit(viewModel: UpdateArenal) {
     let arenal = await this.arenalService.UpdateArenal(viewModel);
 
-      if (arenal !== undefined) {
-        this.matSnackBar.open(
-          TextAppVariants.AppOperationSuccessCoreText,
-          TextAppVariants.AppOkButtonText,
-          { duration: TimeAppVariants.AppToastSecondTicks * TimeAppVariants.AppTimeSecondTicks });
-      }
-
-      this.dialogRef.close();
-  }
-
-  onDelete(viewModel: UpdateArenal) {
-    this.arenalService.RemoveArenalById(viewModel.Id).subscribe(arenal => {
-
+    if (arenal) {
       this.matSnackBar.open(
         TextAppVariants.AppOperationSuccessCoreText,
         TextAppVariants.AppOkButtonText,
         { duration: TimeAppVariants.AppToastSecondTicks * TimeAppVariants.AppTimeSecondTicks });
+    }
 
-      this.dialogRef.close();
-    });
+    this.dialogRef.close();
+  }
+
+  async onDelete(viewModel: UpdateArenal) {
+    await this.arenalService.RemoveArenalById(viewModel.Id);
+
+    this.matSnackBar.open(
+      TextAppVariants.AppOperationSuccessCoreText,
+      TextAppVariants.AppOkButtonText,
+      { duration: TimeAppVariants.AppToastSecondTicks * TimeAppVariants.AppTimeSecondTicks });
+
+    this.dialogRef.close();
+
   }
 
   // Get Data from Service

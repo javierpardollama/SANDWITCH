@@ -54,7 +54,7 @@ export class BanderaService extends BaseService {
             .pipe(catchError(this.HandleError<ViewBandera>('AddBandera', undefined))));
     }
 
-    public RemoveBanderaById(id: number) {
+    public RemoveBanderaById(id: number): Promise<void> {
         return this.httpClient.delete<any>(`${environment.ApiService}api/bandera/removebanderabyid/` + id)
             .pipe(catchError(this.HandleError<any>('RemoveBanderaById', undefined)));
     }

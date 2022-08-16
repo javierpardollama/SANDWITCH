@@ -56,7 +56,7 @@ export class BanderaAddModalComponent implements OnInit {
   async onSubmit(viewModel: AddBandera) {
     let bandera = await this.banderaService.AddBandera(viewModel);
 
-    if (bandera !== undefined) {
+    if (bandera) {
       this.matSnackBar.open(
         TextAppVariants.AppOperationSuccessCoreText,
         TextAppVariants.AppOkButtonText,

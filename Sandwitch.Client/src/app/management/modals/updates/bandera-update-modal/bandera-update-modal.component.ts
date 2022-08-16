@@ -57,28 +57,27 @@ export class BanderaUpdateModalComponent implements OnInit {
 
   // Form Actions
   async onSubmit(viewModel: UpdateBandera) {
-    let bandera = await this.banderaService.UpdateBandera(viewModel)
+    let bandera = await this.banderaService.UpdateBandera(viewModel);
 
-      if (bandera !== undefined) {
-        this.matSnackBar.open(
-          TextAppVariants.AppOperationSuccessCoreText,
-          TextAppVariants.AppOkButtonText,
-          { duration: TimeAppVariants.AppToastSecondTicks * TimeAppVariants.AppTimeSecondTicks });
-      }
-
-      this.dialogRef.close();
-   
-  }
-
-  onDelete(viewModel: UpdateBandera) {
-    this.banderaService.RemoveBanderaById(viewModel.Id).subscribe(bandera => {
-
+    if (bandera) {
       this.matSnackBar.open(
         TextAppVariants.AppOperationSuccessCoreText,
         TextAppVariants.AppOkButtonText,
         { duration: TimeAppVariants.AppToastSecondTicks * TimeAppVariants.AppTimeSecondTicks });
+    }
 
-      this.dialogRef.close();
-    });
+    this.dialogRef.close();
+
+  }
+
+  async onDelete(viewModel: UpdateBandera) {
+    await this.banderaService.RemoveBanderaById(viewModel.Id);
+
+    this.matSnackBar.open(
+      TextAppVariants.AppOperationSuccessCoreText,
+      TextAppVariants.AppOkButtonText,
+      { duration: TimeAppVariants.AppToastSecondTicks * TimeAppVariants.AppTimeSecondTicks });
+
+    this.dialogRef.close();
   }
 }

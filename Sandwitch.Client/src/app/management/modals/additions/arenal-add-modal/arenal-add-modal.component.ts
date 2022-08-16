@@ -63,7 +63,7 @@ export class ArenalAddModalComponent implements OnInit {
   async onSubmit(viewModel: AddArenal) {
     let arenal = await this.arenalService.AddArenal(viewModel);
 
-    if (arenal !== undefined) {
+    if (arenal) {
       this.matSnackBar.open(
         TextAppVariants.AppOperationSuccessCoreText,
         TextAppVariants.AppOkButtonText,

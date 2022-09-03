@@ -55,13 +55,13 @@ namespace Sandwitch.Tier.ExceptionHandling.Middlewares
             @context.Response.ContentType = "application/json";
             @context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
 
-            ViewException viewException = new()
+            ViewException @viewException = new()
             {
                 StatusCode = @context.Response.StatusCode,
                 Message = @exception.Message
             };
 
-            return @context.Response.WriteAsync(JsonSerializer.Serialize(viewException, new JsonSerializerOptions() { WriteIndented = true }));
+            return @context.Response.WriteAsync(JsonSerializer.Serialize(@viewException, new JsonSerializerOptions() { WriteIndented = true }));
         }
     }
 }

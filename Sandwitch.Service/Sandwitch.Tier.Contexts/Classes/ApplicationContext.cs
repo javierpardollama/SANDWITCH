@@ -79,26 +79,26 @@ namespace Sandwitch.Tier.Contexts.Classes
         /// </summary>
         private void UpdateSoftStatus()
         {
-            foreach (EntityEntry entity in ChangeTracker.Entries())
+            foreach (EntityEntry @entity in ChangeTracker.Entries())
             {
-                switch (entity.State)
+                switch (@entity.State)
                 {
                     case EntityState.Added:
-                        entity.CurrentValues["LastModified"] = DateTime.Now;
-                        entity.State = EntityState.Added;
-                        entity.CurrentValues["Deleted"] = false;
+                        @entity.CurrentValues["LastModified"] = DateTime.Now;
+                        @entity.State = EntityState.Added;
+                        @entity.CurrentValues["Deleted"] = false;
                         break;
 
                     case EntityState.Modified:
-                        entity.CurrentValues["LastModified"] = DateTime.Now;
-                        entity.State = EntityState.Modified;
-                        entity.CurrentValues["Deleted"] = false;
+                        @entity.CurrentValues["LastModified"] = DateTime.Now;
+                        @entity.State = EntityState.Modified;
+                        @entity.CurrentValues["Deleted"] = false;
                         break;
 
                     case EntityState.Deleted:
-                        entity.CurrentValues["LastModified"] = DateTime.Now;
-                        entity.State = EntityState.Modified;
-                        entity.CurrentValues["Deleted"] = true;
+                        @entity.CurrentValues["LastModified"] = DateTime.Now;
+                        @entity.State = EntityState.Modified;
+                        @entity.CurrentValues["Deleted"] = true;
                         break;
                 }
             }

@@ -6,7 +6,6 @@ import { environment } from 'src/environments/environment';
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        console.log(environment);
         request = request.clone({
             setHeaders: {
                 Authorization: `Basic ${window.btoa(environment.ApiLock + ':' + environment.ApiKey)}`

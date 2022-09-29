@@ -38,24 +38,24 @@ namespace Sandwitch.Tier.ViewModels.Classes.Views
         /// Gets or Sets <see cref="BajaMarAlba"/>
         /// </summary>
         [XmlElement("baja-mar-alba")]
-        public DateTime BajaMarAlba { get; set; }
+        public TimeSpan BajaMarAlba { get; set; }
 
         /// <summary>
         /// Gets or Sets <see cref="BajaMarOcaso"/>
         /// </summary>
         [XmlElement("baja-mar-ocaso")]
-        public DateTime BajaMarOcaso { get; set; }
+        public TimeSpan BajaMarOcaso { get; set; }
 
         /// <summary>
         /// Gets or Sets <see cref="AltaMarAlba"/>
         /// </summary>
         [XmlElement("alta-mar-alba")]
-        public DateTime AltaMarAlba { get; set; }
+        public TimeSpan AltaMarAlba { get; set; }
 
         /// <summary>
         /// Gets or Sets <see cref="AltaMarOcaso"/>
         /// </summary>
         [XmlElement("alta-mar-ocaso")]
-        public DateTime AltaMarOcaso { get; set; }
+        public TimeSpan AltaMarOcaso { get; set; }
     }
 }

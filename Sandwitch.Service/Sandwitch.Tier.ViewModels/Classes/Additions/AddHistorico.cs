@@ -32,21 +32,21 @@ namespace Sandwitch.Tier.ViewModels.Classes.Additions
         /// <summary>
         /// Gets or Sets <see cref="BajaMarAlba"/>
         /// </summary>
-        public DateTime BajaMarAlba { get; set; }
+        public TimeSpan BajaMarAlba { get; set; }
 
         /// <summary>
         /// Gets or Sets <see cref="BajaMarOcaso"/>
         /// </summary>
-        public DateTime BajaMarOcaso { get; set; }
+        public TimeSpan BajaMarOcaso { get; set; }
 
         /// <summary>
         /// Gets or Sets <see cref="AltaMarAlba"/>
         /// </summary>
-        public DateTime AltaMarAlba { get; set; }
+        public TimeSpan AltaMarAlba { get; set; }
 
         /// <summary>
         /// Gets or Sets <see cref="AltaMarOcaso"/>
         /// </summary>
-        public DateTime AltaMarOcaso { get; set; }
+        public TimeSpan AltaMarOcaso { get; set; }
     }
 }

@@ -134,11 +134,11 @@ namespace Sandwitch.Tier.Services.Tests.Classes
             AddHistorico @Historico = new()
             {
                 BanderaId = Context.Bandera.FirstOrDefault().Id,
-                AltaMarAlba = DateTime.Now,
-                AltaMarOcaso = DateTime.Now,
+                AltaMarAlba = DateTime.Now.TimeOfDay,
+                AltaMarOcaso = DateTime.Now.TimeOfDay,
                 ArenalId = Context.Arenal.FirstOrDefault().Id,
-                BajaMarAlba = DateTime.Now,
-                BajaMarOcaso = DateTime.Now,
+                BajaMarAlba = DateTime.Now.TimeOfDay,
+                BajaMarOcaso = DateTime.Now.TimeOfDay,
                 Temperatura = 20
             };
 

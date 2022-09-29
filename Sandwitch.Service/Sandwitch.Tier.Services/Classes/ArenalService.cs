@@ -116,10 +116,10 @@ namespace Sandwitch.Tier.Services.Classes
             {
                 Arenal = @entity,
                 Bandera = await FindBanderaById((int)FlagIdentifiers.Amarilla),
-                BajaMarAlba = DateTime.Now,
-                BajaMarOcaso = DateTime.Now,
-                AltaMarAlba = DateTime.Now,
-                AltaMarOcaso = DateTime.Now,
+                BajaMarAlba = DateTime.Now.TimeOfDay,
+                BajaMarOcaso = DateTime.Now.TimeOfDay,
+                AltaMarAlba = DateTime.Now.TimeOfDay,
+                AltaMarOcaso = DateTime.Now.TimeOfDay,
                 Temperatura = 20,
             };
             @entity.Historicos.Add(@historico);
@@ -414,10 +414,10 @@ namespace Sandwitch.Tier.Services.Classes
             {
                 Arenal = @entity,
                 Bandera = await FindBanderaById((int)FlagIdentifiers.Amarilla),
-                BajaMarAlba = DateTime.Now,
-                BajaMarOcaso = DateTime.Now,
-                AltaMarAlba = DateTime.Now,
-                AltaMarOcaso = DateTime.Now,
+                BajaMarAlba = DateTime.Now.TimeOfDay,
+                BajaMarOcaso = DateTime.Now.TimeOfDay,
+                AltaMarAlba = DateTime.Now.TimeOfDay,
+                AltaMarOcaso = DateTime.Now.TimeOfDay,
                 Temperatura = 20,
             };
             @entity.Historicos.Add(@historico);

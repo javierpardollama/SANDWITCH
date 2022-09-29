@@ -35,24 +35,24 @@ namespace Sandwitch.Tier.Entities.Classes
         /// Gets or Sets <see cref="BajaMarAlba"/>
         /// </summary>
         [Required]
-        public DateTime BajaMarAlba { get; set; }
+        public TimeSpan BajaMarAlba { get; set; }
 
         /// <summary>
         /// Gets or Sets <see cref="BajaMarOcaso"/>
         /// </summary>
         [Required]
-        public DateTime BajaMarOcaso { get; set; }
+        public TimeSpan BajaMarOcaso { get; set; }
 
         /// <summary>
         /// Gets or Sets <see cref="AltaMarAlba"/>
         /// </summary>
         [Required]
-        public DateTime AltaMarAlba { get; set; }
+        public TimeSpan AltaMarAlba { get; set; }
 
         /// <summary>
         /// Gets or Sets <see cref="AltaMarOcaso"/>
         /// </summary>
         [Required]
-        public DateTime AltaMarOcaso { get; set; }
+        public TimeSpan AltaMarOcaso { get; set; }
     }
 }

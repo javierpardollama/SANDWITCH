@@ -54,7 +54,7 @@ namespace Sandwitch.Tier.Services.Classes
             if (@arenal == null)
             {
                 // Log
-                string @logData = @arenal.GetType().Name
+                string @logData = nameof(@arenal)
                     + " with Id "
                     + @id
                     + " was not found at "
@@ -62,7 +62,7 @@ namespace Sandwitch.Tier.Services.Classes
 
                 Logger.WriteGetItemNotFoundLog(@logData);
 
-                throw new Exception(@arenal.GetType().Name
+                throw new Exception(nameof(@arenal)
                     + " with Id "
                     + @id
                     + " does not exist");
@@ -85,7 +85,7 @@ namespace Sandwitch.Tier.Services.Classes
             if (@bandera == null)
             {
                 // Log
-                string @logData = @bandera.GetType().Name
+                string @logData = nameof(@bandera)
                     + " with Id "
                     + @id
                     + " was not found at "
@@ -93,7 +93,7 @@ namespace Sandwitch.Tier.Services.Classes
 
                 Logger.WriteGetItemNotFoundLog(@logData);
 
-                throw new Exception(@bandera.GetType().Name
+                throw new Exception(nameof(@bandera)
                     + " with Id "
                     + @id
                     + " does not exist");
@@ -125,7 +125,7 @@ namespace Sandwitch.Tier.Services.Classes
             await Context.SaveChangesAsync();
 
             // Log
-            string @logData = @historico.GetType().Name
+            string @logData = nameof(@historico)
                 + " with Id "
                 + historico.Id
                 + " was added at "

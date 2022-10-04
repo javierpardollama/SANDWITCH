@@ -66,7 +66,7 @@ namespace Sandwitch.Tier.Services.Classes
             }
 
             // Log
-            string @logData = @bandera.GetType().Name
+            string @logData = nameof(@bandera)
                 + " with Id "
                 + @bandera.Id
                 + " was added at "
@@ -150,7 +150,7 @@ namespace Sandwitch.Tier.Services.Classes
             if (@bandera == null)
             {
                 // Log
-                string @logData = @bandera.GetType().Name
+                string @logData = nameof(@bandera)
                     + " with Id "
                     + @id
                     + " was not found at "
@@ -158,7 +158,7 @@ namespace Sandwitch.Tier.Services.Classes
 
                 Logger.WriteGetItemNotFoundLog(@logData);
 
-                throw new Exception(@bandera.GetType().Name
+                throw new Exception(nameof(@bandera)
                     + " with Id "
                     + @id
                     + " does not exist");
@@ -183,7 +183,7 @@ namespace Sandwitch.Tier.Services.Classes
                 await Context.SaveChangesAsync();
 
                 // Log
-                string @logData = @bandera.GetType().Name
+                string @logData = nameof(@bandera)
                     + " with Id "
                     + @bandera.Id
                     + " was removed at "
@@ -222,7 +222,7 @@ namespace Sandwitch.Tier.Services.Classes
             }
 
             // Log
-            string @logData = @bandera.GetType().Name
+            string @logData = nameof(@bandera)
                 + " with Id "
                 + @bandera.Id
                 + " was modified at "
@@ -248,7 +248,7 @@ namespace Sandwitch.Tier.Services.Classes
             if (@bandera != null)
             {
                 // Log
-                string @logData = @bandera.GetType().Name
+                string @logData = nameof(@bandera)
                     + " with Name "
                     + @bandera.Name
                     + " was already found at "
@@ -256,7 +256,7 @@ namespace Sandwitch.Tier.Services.Classes
 
                 Logger.WriteGetItemFoundLog(@logData);
 
-                throw new Exception(@bandera.GetType().Name
+                throw new Exception(nameof(@bandera)
                     + " with Name "
                     + @viewModel.Name
                     + " already exists");
@@ -280,7 +280,7 @@ namespace Sandwitch.Tier.Services.Classes
             if (@bandera != null)
             {
                 // Log
-                string @logData = @bandera.GetType().Name
+                string @logData = nameof(@bandera)
                     + " with Name "
                     + @bandera.Name
                     + " was already found at "
@@ -288,7 +288,7 @@ namespace Sandwitch.Tier.Services.Classes
 
                 Logger.WriteGetItemFoundLog(@logData);
 
-                throw new Exception(@bandera.GetType().Name
+                throw new Exception(nameof(@bandera)
                     + " with Name "
                     + @viewModel.Name
                     + " already exists");

@@ -66,7 +66,7 @@ namespace Sandwitch.Tier.Services.Classes
             }
 
             // Log
-            string @logData = @provincia.GetType().Name
+            string @logData = nameof(@provincia)
                 + " with Id "
                 + @provincia.Id
                 + " was added at "
@@ -134,7 +134,7 @@ namespace Sandwitch.Tier.Services.Classes
             if (@provincia == null)
             {
                 // Log
-                string @logData = @provincia.GetType().Name
+                string @logData = nameof(@provincia)
                     + " with Id "
                     + id
                     + " was not found at "
@@ -142,7 +142,7 @@ namespace Sandwitch.Tier.Services.Classes
 
                 Logger.WriteGetItemNotFoundLog(@logData);
 
-                throw new Exception(@provincia.GetType().Name
+                throw new Exception(nameof(@provincia)
                     + " with Id "
                     + id
                     + " does not exist");
@@ -167,7 +167,7 @@ namespace Sandwitch.Tier.Services.Classes
                 await Context.SaveChangesAsync();
 
                 // Log
-                string @logData = @provincia.GetType().Name
+                string @logData = nameof(@provincia)
                     + " with Id "
                     + @provincia.Id
                     + " was removed at "
@@ -206,7 +206,7 @@ namespace Sandwitch.Tier.Services.Classes
             }
 
             // Log
-            string @logData = @provincia.GetType().Name
+            string @logData = nameof(@provincia)
                 + " with Id "
                 + @provincia.Id
                 + " was modified at "
@@ -232,7 +232,7 @@ namespace Sandwitch.Tier.Services.Classes
             if (@provincia != null)
             {
                 // Log
-                string @logData = @provincia.GetType().Name
+                string @logData = nameof(@provincia)
                     + " with Name "
                     + @provincia.Name
                     + " was already found at "
@@ -240,7 +240,7 @@ namespace Sandwitch.Tier.Services.Classes
 
                 Logger.WriteGetItemFoundLog(@logData);
 
-                throw new Exception(@provincia.GetType().Name
+                throw new Exception(nameof(@provincia)
                     + " with Name "
                     + @viewModel.Name
                     + " already exists");
@@ -264,7 +264,7 @@ namespace Sandwitch.Tier.Services.Classes
             if (@provincia != null)
             {
                 // Log
-                string @logData = @provincia.GetType().Name
+                string @logData = nameof(@provincia)
                     + " with Name "
                     + provincia.Name
                     + " was already found at "
@@ -272,7 +272,7 @@ namespace Sandwitch.Tier.Services.Classes
 
                 Logger.WriteGetItemFoundLog(@logData);
 
-                throw new Exception(provincia.GetType().Name
+                throw new Exception(nameof(provincia)
                     + " with Name "
                     + @viewModel.Name
                     + " already exists");

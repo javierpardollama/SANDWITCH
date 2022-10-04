@@ -72,7 +72,7 @@ namespace Sandwitch.Tier.Services.Classes
             }
 
             // Log
-            string @logData = @arenal.GetType().ToString()
+            string @logData = nameof(@arenal)
                 + " with Id "
                 + @arenal.Id
                 + " was added at "
@@ -232,7 +232,7 @@ namespace Sandwitch.Tier.Services.Classes
             if (@arenal == null)
             {
                 // Log
-                string @logData = @arenal.GetType().Name
+                string @logData = nameof(@arenal)
                     + " with Id "
                     + @id
                     + " was not found at "
@@ -240,7 +240,7 @@ namespace Sandwitch.Tier.Services.Classes
 
                 Logger.WriteGetItemNotFoundLog(@logData);
 
-                throw new Exception(@arenal.GetType().Name
+                throw new Exception(nameof(@arenal)
                     + " with Id "
                     + @id
                     + " does not exist");
@@ -263,7 +263,7 @@ namespace Sandwitch.Tier.Services.Classes
             if (@poblacion == null)
             {
                 // Log
-                string @logData = @poblacion.GetType().Name
+                string @logData = nameof(@poblacion)
                     + " with Id "
                     + @id
                     + " was not found at "
@@ -271,7 +271,7 @@ namespace Sandwitch.Tier.Services.Classes
 
                 Logger.WriteGetItemNotFoundLog(@logData);
 
-                throw new Exception(@poblacion.GetType().Name
+                throw new Exception(nameof(@poblacion)
                     + " with Id "
                     + @id
                     + " does not exist");
@@ -294,7 +294,7 @@ namespace Sandwitch.Tier.Services.Classes
             if (@bandera == null)
             {
                 // Log
-                string @logData = @bandera.GetType().Name
+                string @logData = nameof(@bandera)
                     + " with Id "
                     + @id
                     + " was not found at "
@@ -302,7 +302,7 @@ namespace Sandwitch.Tier.Services.Classes
 
                 Logger.WriteGetItemNotFoundLog(@logData);
 
-                throw new Exception(@bandera.GetType().Name
+                throw new Exception(nameof(@bandera)
                     + " with Id "
                     + @id
                     + " does not exist");
@@ -327,7 +327,7 @@ namespace Sandwitch.Tier.Services.Classes
                 await Context.SaveChangesAsync();
 
                 // Log
-                string @logData = @arenal.GetType().Name
+                string @logData = nameof(@arenal)
                     + " with Id"
                     + @arenal.Id
                     + " was removed at "
@@ -371,7 +371,7 @@ namespace Sandwitch.Tier.Services.Classes
             }
 
             // Log
-            string @logData = @arenal.GetType().Name
+            string @logData = nameof(@arenal)
                 + " with Id"
                 + @arenal.Id
                 + " was modified at "
@@ -438,7 +438,7 @@ namespace Sandwitch.Tier.Services.Classes
             if (@arenal != null)
             {
                 // Log
-                string @logData = @arenal.GetType().Name
+                string @logData = nameof(@arenal)
                     + " with Name "
                     + @arenal.Name
                     + " was already found at "
@@ -446,7 +446,7 @@ namespace Sandwitch.Tier.Services.Classes
 
                 Logger.WriteGetItemFoundLog(@logData);
 
-                throw new Exception(@arenal.GetType().Name
+                throw new Exception(nameof(@arenal)
                     + " with Name "
                     + @viewModel.Name
                     + " already exists");
@@ -470,7 +470,7 @@ namespace Sandwitch.Tier.Services.Classes
             if (@arenal != null)
             {
                 // Log
-                string @logData = @arenal.GetType().Name
+                string @logData = nameof(@arenal)
                     + " with Name "
                     + @arenal.Name
                     + " was already found at "
@@ -478,7 +478,7 @@ namespace Sandwitch.Tier.Services.Classes
 
                 Logger.WriteGetItemFoundLog(@logData);
 
-                throw new Exception(@arenal.GetType().Name
+                throw new Exception(nameof(@arenal)
                     + " with Name "
                     + @viewModel.Name
                     + " already exists");

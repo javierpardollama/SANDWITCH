@@ -1,4 +1,9 @@
 ﻿
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+
 using Microsoft.Extensions.Logging;
 
 using NUnit.Framework;
@@ -8,11 +13,6 @@ using Sandwitch.Tier.Services.Classes;
 using Sandwitch.Tier.ViewModels.Classes.Additions;
 using Sandwitch.Tier.ViewModels.Classes.Filters;
 using Sandwitch.Tier.ViewModels.Classes.Updates;
-
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Sandwitch.Tier.Services.Tests.Classes
 {

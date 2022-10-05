@@ -1,9 +1,8 @@
-﻿
+﻿using System.Threading.Tasks;
+
 using Sandwitch.Tier.Entities.Classes;
 using Sandwitch.Tier.ViewModels.Classes.Additions;
 using Sandwitch.Tier.ViewModels.Classes.Views;
-
-using System.Threading.Tasks;
 
 namespace Sandwitch.Tier.Services.Interfaces
 {

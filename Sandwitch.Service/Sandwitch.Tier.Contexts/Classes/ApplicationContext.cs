@@ -1,13 +1,13 @@
 ﻿
+using System;
+using System.Threading.Tasks;
+
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 using Sandwitch.Tier.Contexts.Extensions;
 using Sandwitch.Tier.Contexts.Interfaces;
 using Sandwitch.Tier.Entities.Classes;
-
-using System;
-using System.Threading.Tasks;
 
 namespace Sandwitch.Tier.Contexts.Classes
 {

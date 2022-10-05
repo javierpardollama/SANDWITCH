@@ -1,5 +1,4 @@
-﻿
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 
 using Sandwitch.Tier.ExceptionHandling.Middlewares;
 

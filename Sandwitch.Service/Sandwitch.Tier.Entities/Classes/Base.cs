@@ -1,8 +1,8 @@
-﻿using Sandwitch.Tier.Entities.Interfaces;
-
-using System;
+﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+
+using Sandwitch.Tier.Entities.Interfaces;
 
 namespace Sandwitch.Tier.Entities.Classes
 {

@@ -1,7 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
-
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+
+using Microsoft.EntityFrameworkCore;
 
 namespace Sandwitch.Tier.Entities.Classes
 {

@@ -1,5 +1,4 @@
-﻿
-using Sandwitch.Tier.ViewModels.Classes.Auth;
+﻿using Sandwitch.Tier.ViewModels.Classes.Auth;
 
 namespace Sandwitch.Tier.Services.Interfaces
 {

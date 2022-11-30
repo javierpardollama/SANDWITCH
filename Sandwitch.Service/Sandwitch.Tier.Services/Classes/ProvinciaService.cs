@@ -102,7 +102,7 @@ namespace Sandwitch.Tier.Services.Classes
         {
             ViewPage<ViewProvincia> @page = new()
             {
-                Length = Context.Provincia.TagWith("CountAllProvincia").Count(),
+                Length = await Context.Provincia.TagWith("CountAllProvincia").CountAsync(),
                 Index = @viewmodel.Index,
                 Size = @viewmodel.Size,
                 Items = Mapper.Map<IList<ViewProvincia>>(await Context.Provincia
@@ -245,7 +245,7 @@ namespace Sandwitch.Tier.Services.Classes
                     + " already exists");
             }
 
-            return provincia;
+            return @provincia;
         }
 
         /// <summary>

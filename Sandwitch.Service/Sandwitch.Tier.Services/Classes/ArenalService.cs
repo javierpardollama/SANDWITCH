@@ -152,7 +152,7 @@ namespace Sandwitch.Tier.Services.Classes
         {
             ViewPage<ViewArenal> @page = new()
             {
-                Length = Context.Arenal.TagWith("CountAllArenal").Count(),
+                Length = await Context.Arenal.TagWith("CountAllArenal").CountAsync(),
                 Index = @viewmodel.Index,
                 Size = @viewmodel.Size,
                 Items = Mapper.Map<IList<ViewArenal>>(await Context.Arenal

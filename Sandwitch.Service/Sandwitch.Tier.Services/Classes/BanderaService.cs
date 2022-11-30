@@ -99,7 +99,7 @@ namespace Sandwitch.Tier.Services.Classes
         {
             ViewPage<ViewBandera> @page = new()
             {
-                Length = Context.Bandera.TagWith("CountAllBandera").Count(),
+                Length = await Context.Bandera.TagWith("CountAllBandera").CountAsync(),
                 Index = @viewmodel.Index,
                 Size = @viewmodel.Size,
                 Items = Mapper.Map<IList<ViewBandera>>(await Context.Bandera

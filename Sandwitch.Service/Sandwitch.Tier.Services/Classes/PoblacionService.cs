@@ -66,13 +66,13 @@ namespace Sandwitch.Tier.Services.Classes
             }
 
             // Log
-            string logData = nameof(@poblacion)
+            string @logData = nameof(@poblacion)
                 + " with Id "
                 + @poblacion.Id
                 + " was added at "
                 + DateTime.Now.ToShortTimeString();
 
-            Logger.WriteInsertItemLog(logData);
+            Logger.WriteInsertItemLog(@logData);
 
             return Mapper.Map<ViewPoblacion>(@poblacion);
         }
@@ -103,7 +103,7 @@ namespace Sandwitch.Tier.Services.Classes
         {
             ViewPage<ViewPoblacion> @page = new()
             {
-                Length = Context.Poblacion.TagWith("CountAllPoblacion").Count(),
+                Length = await Context.Poblacion.TagWith("CountAllPoblacion").CountAsync(),
                 Index = @viewmodel.Index,
                 Size = @viewmodel.Size,
                 Items = Mapper.Map<IList<ViewPoblacion>>(await Context.Poblacion

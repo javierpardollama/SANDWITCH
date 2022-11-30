@@ -6,6 +6,9 @@ using Sandwitch.Tier.Settings.Classes;
 
 namespace Sandwitch.Tier.Service.Extensions
 {
+    /// <summary>
+    /// Represents a <see cref="CrossOriginRequestsExtension"/> class.
+    /// </summary>
     public static class CrossOriginRequestsExtension
     {
         /// <summary>

@@ -6,6 +6,9 @@ using Sandwitch.Tier.Contexts.Classes;
 
 namespace Sandwitch.Tier.Service.Extensions
 {
+    /// <summary>
+    /// Represents a <see cref="ApplicationExtension"/> class.
+    /// </summary>
     public static class ApplicationExtension
     {
         /// <summary>

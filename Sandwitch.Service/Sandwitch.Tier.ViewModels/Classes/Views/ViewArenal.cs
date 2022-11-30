@@ -33,7 +33,7 @@ namespace Sandwitch.Tier.ViewModels.Classes.Views
         /// Gets or Sets <see cref="LastHistorico"/>
         /// </summary>
         [XmlElement("last-historico")]
-        public virtual ViewHistorico LastHistorico => Historicos?.AsQueryable().OrderBy(x => x.LastModified.Date).Last();
+        public virtual ViewHistorico LastHistorico => Historicos?.AsQueryable().OrderBy(x => x.LastModified.Date).LastOrDefault();
 
         /// <summary>
         /// Gets or Sets <see cref="ArenalPoblaciones"/>

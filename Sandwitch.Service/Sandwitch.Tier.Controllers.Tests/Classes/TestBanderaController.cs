@@ -21,7 +21,7 @@ namespace Sandwitch.Tier.Controllers.Tests.Classes
         static readonly HttpClient Client = new() { BaseAddress = new Uri("https://localhost:7297/api/bandera/") };
 
         /// <summary>
-        /// Initializes a new Insatcen of <see cref="TestBanderaController"/>
+        /// Initializes a new Instance of <see cref="TestBanderaController"/>
         /// </summary>
         public TestBanderaController()
         {

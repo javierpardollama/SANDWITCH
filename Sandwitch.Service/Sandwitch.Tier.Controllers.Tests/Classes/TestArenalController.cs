@@ -20,7 +20,7 @@ namespace Sandwitch.Tier.Controllers.Tests.Classes
         static readonly HttpClient Client = new() { BaseAddress = new Uri("https://localhost:7297/api/arenal/") };
 
         /// <summary>
-        /// Initializes a new Insatcen of <see cref="TestArenalController"/>
+        /// Initializes a new Instance of <see cref="TestArenalController"/>
         /// </summary>
         public TestArenalController() 
         {

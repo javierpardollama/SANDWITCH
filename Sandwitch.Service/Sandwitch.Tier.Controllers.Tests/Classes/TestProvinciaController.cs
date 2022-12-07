@@ -14,9 +14,19 @@ using Sandwitch.Tier.ViewModels.Classes.Views;
 namespace Sandwitch.Tier.Controllers.Tests.Classes
 {
     [TestFixture]
+    [Parallelizable(ParallelScope.All)]
+
     public class TestProvinciaController
     {
         static readonly HttpClient Client = new() { BaseAddress = new Uri("https://localhost:7297/api/provincia/") };
+
+        /// <summary>
+        /// Initializes a new Insatcen of <see cref="TestProvinciaController"/>
+        /// </summary>
+        public TestProvinciaController()
+        {
+            Client.DefaultRequestHeaders.Authorization = new BasicAuthenticationHeaderValue("Peach", "T/R4J6eyvNG<6ne!");
+        }
 
         /// <summary>
         /// Sets Up
@@ -37,7 +47,6 @@ namespace Sandwitch.Tier.Controllers.Tests.Classes
         [Test]
         public async Task FindAllProvincia()
         {
-            Client.DefaultRequestHeaders.Authorization = new BasicAuthenticationHeaderValue("Peach", "T/R4J6eyvNG<6ne!");
 
             HttpResponseMessage @response = await Client.GetAsync("findallprovincia");
             @response.EnsureSuccessStatusCode();
@@ -50,7 +59,6 @@ namespace Sandwitch.Tier.Controllers.Tests.Classes
         [Test]
         public async Task FindPaginatedProvincia()
         {
-            Client.DefaultRequestHeaders.Authorization = new BasicAuthenticationHeaderValue("Peach", "T/R4J6eyvNG<6ne!");
 
             var @content = JsonContent.Create(new FilterPage { Index = 0, Size = 20 });
 

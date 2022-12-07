@@ -14,9 +14,18 @@ using Sandwitch.Tier.ViewModels.Classes.Views;
 namespace Sandwitch.Tier.Controllers.Tests.Classes
 {
     [TestFixture]
+    [Parallelizable(ParallelScope.All)]
     public class TestPoblacionController
     {
         static readonly HttpClient Client = new() { BaseAddress = new Uri("https://localhost:7297/api/poblacion/") };
+
+        /// <summary>
+        /// Initializes a new Insatcen of <see cref="TestPoblacionController"/>
+        /// </summary>
+        public TestPoblacionController()
+        {
+            Client.DefaultRequestHeaders.Authorization = new BasicAuthenticationHeaderValue("Peach", "T/R4J6eyvNG<6ne!");
+        }
 
         /// <summary>
         /// Sets Up
@@ -37,7 +46,6 @@ namespace Sandwitch.Tier.Controllers.Tests.Classes
         [Test]
         public async Task FindAllPoblacion()
         {
-            Client.DefaultRequestHeaders.Authorization = new BasicAuthenticationHeaderValue("Peach", "T/R4J6eyvNG<6ne!");
 
             HttpResponseMessage @response = await Client.GetAsync("findallpoblacion");
             @response.EnsureSuccessStatusCode();
@@ -50,7 +58,6 @@ namespace Sandwitch.Tier.Controllers.Tests.Classes
         [Test]
         public async Task FindAllPoblacionByProvinciaId()
         {
-            Client.DefaultRequestHeaders.Authorization = new BasicAuthenticationHeaderValue("Peach", "T/R4J6eyvNG<6ne!");
 
             HttpResponseMessage @response = await Client.GetAsync(string.Concat("findallpoblacionbyprovinciaid/", 1));
             @response.EnsureSuccessStatusCode();
@@ -63,7 +70,6 @@ namespace Sandwitch.Tier.Controllers.Tests.Classes
         [Test]
         public async Task FindPaginatedPoblacion()
         {
-            Client.DefaultRequestHeaders.Authorization = new BasicAuthenticationHeaderValue("Peach", "T/R4J6eyvNG<6ne!");
 
             var @content = JsonContent.Create(new FilterPage { Index = 0, Size = 20 });
 

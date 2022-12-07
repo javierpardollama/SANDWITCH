@@ -14,9 +14,19 @@ using Sandwitch.Tier.ViewModels.Classes.Views;
 namespace Sandwitch.Tier.Controllers.Tests.Classes
 {
     [TestFixture]
+    [Parallelizable(ParallelScope.All)]
+
     public class TestBanderaController
     {
         static readonly HttpClient Client = new() { BaseAddress = new Uri("https://localhost:7297/api/bandera/") };
+
+        /// <summary>
+        /// Initializes a new Insatcen of <see cref="TestBanderaController"/>
+        /// </summary>
+        public TestBanderaController()
+        {
+            Client.DefaultRequestHeaders.Authorization = new BasicAuthenticationHeaderValue("Peach", "T/R4J6eyvNG<6ne!");
+        }
 
         /// <summary>
         /// Sets Up
@@ -37,7 +47,6 @@ namespace Sandwitch.Tier.Controllers.Tests.Classes
         [Test]
         public async Task FindAllBandera()
         {
-            Client.DefaultRequestHeaders.Authorization = new BasicAuthenticationHeaderValue("Peach", "T/R4J6eyvNG<6ne!");
 
             HttpResponseMessage @response = await Client.GetAsync("findallbandera");
             @response.EnsureSuccessStatusCode();
@@ -50,7 +59,6 @@ namespace Sandwitch.Tier.Controllers.Tests.Classes
         [Test]
         public async Task FindPaginatedBandera()
         {
-            Client.DefaultRequestHeaders.Authorization = new BasicAuthenticationHeaderValue("Peach", "T/R4J6eyvNG<6ne!");
 
             var @content = JsonContent.Create(new FilterPage { Index = 0, Size = 20 });
 

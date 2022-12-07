@@ -1,8 +1,8 @@
-﻿using System.Linq;
-
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 
 using Sandwitch.Tier.Settings.Classes;
+
+using System.Linq;
 
 namespace Sandwitch.Tier.Service.Extensions
 {

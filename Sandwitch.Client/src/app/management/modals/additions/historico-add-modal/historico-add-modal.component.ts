@@ -4,7 +4,7 @@ import {
   Inject
 } from '@angular/core';
 
-import { DatePipe, Time } from '@angular/common';
+import { Time } from '@angular/common';
 
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';

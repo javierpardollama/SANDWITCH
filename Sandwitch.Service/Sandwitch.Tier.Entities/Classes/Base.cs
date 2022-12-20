@@ -16,21 +16,25 @@ namespace Sandwitch.Tier.Entities.Classes
         /// </summary>
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Required]
-        [ConcurrencyCheck]
         public int Id { get; set; }
 
         /// <summary>
         /// Gets or Sets <see cref="LastModified"/>
         /// </summary>
         [Required]
-        [ConcurrencyCheck]
         public DateTime LastModified { get; set; }
 
         /// <summary>
         /// Gets or Sets <see cref="Deleted"/>
         /// </summary>
         [Required]
-        [ConcurrencyCheck]
         public bool Deleted { get; set; }
+
+        /// <summary>
+        /// Gets or Sets <see cref="Version"/>
+        /// </summary>
+        [Timestamp]
+        [ConcurrencyCheck]
+        public byte[] Version { get; set; }
     }
 }

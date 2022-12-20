@@ -32,8 +32,6 @@ import { TimeAppVariants } from './../../../../../variants/time.app.variants';
 
 import { ExpressionAppVariants } from './../../../../../variants/expression.app.variants';
 
-import { LocaleAppVariants } from './../../../../../variants/locale.app.variants';
-
 import { TimeService } from 'src/services/time.service';
 
 @Component({
@@ -42,8 +40,6 @@ import { TimeService } from 'src/services/time.service';
   styleUrls: ['./historico-add-modal.component.scss']
 })
 export class HistoricoAddModalComponent implements OnInit {
-
-  public datePipe: DatePipe = new DatePipe(LocaleAppVariants.AppUnitedStatesEnglishLocale);
 
   public formGroup!: FormGroup;
 
@@ -62,13 +58,7 @@ export class HistoricoAddModalComponent implements OnInit {
   // Life Cicle
   ngOnInit() {
     this.FindAllBandera();
-    this.CreateDateFormat();
     this.CreateForm();
-  }
-
-  // Pipes
-  CreateDateFormat() {
-    this.datePipe = new DatePipe(LocaleAppVariants.AppUnitedStatesEnglishLocale);
   }
 
   // Form

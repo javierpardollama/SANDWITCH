@@ -9,6 +9,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 
 import {
   FormBuilder,
+  FormControl,
   FormGroup,
   Validators
 } from '@angular/forms';
@@ -58,9 +59,9 @@ export class ArenalUpdateModalComponent implements OnInit {
   // Form
   CreateForm() {
     this.formGroup = this.formBuilder.group({
-      Id: [this.data.Id, [Validators.required]],
-      Name: [this.data.Name, [Validators.required]],
-      PoblacionesId: [this.data.Poblaciones.map(({ Id }) => Id), [Validators.required]]
+      Id: new FormControl<number>(this.data.Id, [Validators.required]),
+      Name: new FormControl<string>(this.data.Name, [Validators.required]),
+      PoblacionesId: new FormControl<number[]>(this.data.Poblaciones.map(({ Id }) => Id), [Validators.required])
     });
   }
 

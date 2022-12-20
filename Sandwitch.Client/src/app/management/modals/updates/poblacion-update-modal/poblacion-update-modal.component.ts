@@ -9,6 +9,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 
 import {
   FormBuilder,
+  FormControl,
   FormGroup,
   Validators
 } from '@angular/forms';
@@ -57,10 +58,10 @@ export class PoblacionUpdateModalComponent implements OnInit {
   // Form
   CreateForm() {
     this.formGroup = this.formBuilder.group({
-      Id: [this.data.Id, [Validators.required]],
-      Name: [this.data.Name, [Validators.required]],
-      ImageUri: [this.data.ImageUri, [Validators.required]],
-      ProvinciaId: [this.data.Provincia.Id, [Validators.required]]
+      Id: new FormControl<number>(this.data.Id, [Validators.required]),
+      Name: new FormControl<string>(this.data.Name, [Validators.required]),
+      ImageUri: new FormControl<string>(this.data.ImageUri, [Validators.required]),
+      ProvinciaId: new FormControl<number>(this.data.Provincia.Id, [Validators.required])
     });
   }
 

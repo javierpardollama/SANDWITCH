@@ -9,6 +9,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 
 import {
   FormBuilder,
+  FormControl,
   FormGroup,
   Validators
 } from '@angular/forms';
@@ -49,9 +50,9 @@ export class ProvinciaUpdateModalComponent implements OnInit {
   // Form
   CreateForm() {
     this.formGroup = this.formBuilder.group({
-      Id: [this.data.Id, [Validators.required]],
-      Name: [this.data.Name, [Validators.required]],
-      ImageUri: [this.data.ImageUri, [Validators.required]],
+      Id: new FormControl<number>(this.data.Id, [Validators.required]),
+      Name: new FormControl<string>(this.data.Name, [Validators.required]),
+      ImageUri: new FormControl<string>(this.data.ImageUri, [Validators.required]),
     });
   }
 
@@ -71,7 +72,7 @@ export class ProvinciaUpdateModalComponent implements OnInit {
 
   async onDelete(viewModel: UpdateProvincia) {
     await this.provinciaService.RemoveProvinciaById(viewModel.Id);
-    
+
     this.matSnackBar.open(
       TextAppVariants.AppOperationSuccessCoreText,
       TextAppVariants.AppOkButtonText,

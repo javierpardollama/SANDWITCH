@@ -8,6 +8,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 
 import {
   FormBuilder,
+  FormControl,
   FormGroup,
   Validators
 } from '@angular/forms';
@@ -53,11 +54,11 @@ export class PoblacionAddModalComponent implements OnInit {
   // Form
   CreateForm() {
     this.formGroup = this.formBuilder.group({
-      Name: [TextAppVariants.AppEmptyCoreText,
-      [Validators.required]],
-      ImageUri: [TextAppVariants.AppEmptyCoreText,
-      [Validators.required]],
-      ProvinciaId: [0, [Validators.required]]
+      Name: new FormControl<string>(TextAppVariants.AppEmptyCoreText,
+        [Validators.required]),
+      ImageUri: new FormControl<string>(TextAppVariants.AppEmptyCoreText,
+        [Validators.required]),
+      ProvinciaId: new FormControl<number>(0, [Validators.required])
     });
   }
 

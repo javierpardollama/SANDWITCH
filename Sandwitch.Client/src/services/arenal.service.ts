@@ -35,32 +35,32 @@ export class ArenalService extends BaseService {
     }
 
     public UpdateArenal(viewModel: UpdateArenal): Promise<ViewArenal> {
-        return firstValueFrom(this.httpClient.put<ViewArenal>(`${environment.ApiService}api/arenal/updatearenal`, viewModel)
+        return firstValueFrom(this.httpClient.put<ViewArenal>(`${environment.Api.Service}api/arenal/updatearenal`, viewModel)
             .pipe(catchError(this.HandleError<ViewArenal>('UpdateArenal', undefined))));
     }
 
     public FindAllArenal(): Promise<ViewArenal[]> {
-        return firstValueFrom(this.httpClient.get<ViewArenal[]>(`${environment.ApiService}api/arenal/findallarenal`)
+        return firstValueFrom(this.httpClient.get<ViewArenal[]>(`${environment.Api.Service}api/arenal/findallarenal`)
             .pipe(catchError(this.HandleError<ViewArenal[]>('FindAllArenal', []))));
     }
 
     public FindPaginatedArenal(viewModel: FilterPage): Promise<ViewPage<ViewArenal>> {
-        return firstValueFrom(this.httpClient.post<ViewPage<ViewArenal>>(`${environment.ApiService}api/arenal/findpaginatedarenal`, viewModel)
+        return firstValueFrom(this.httpClient.post<ViewPage<ViewArenal>>(`${environment.Api.Service}api/arenal/findpaginatedarenal`, viewModel)
             .pipe(catchError(this.HandleError<ViewPage<ViewArenal>>('FindPaginatedArenal', undefined))));
     }
 
     public FindAllArenalByPoblacionId(id: number): Promise<ViewArenal[]> {
-        return firstValueFrom(this.httpClient.get<ViewArenal[]>(`${environment.ApiService}api/arenal/findallarenalbypoblacionid/` + id)
+        return firstValueFrom(this.httpClient.get<ViewArenal[]>(`${environment.Api.Service}api/arenal/findallarenalbypoblacionid/` + id)
             .pipe(catchError(this.HandleError<ViewArenal[]>('FindAllArenalByPoblacionId', []))));
     }
 
     public AddArenal(viewModel: AddArenal): Promise<ViewArenal> {
-        return firstValueFrom(this.httpClient.post<ViewArenal>(`${environment.ApiService}api/arenal/addarenal`, viewModel)
+        return firstValueFrom(this.httpClient.post<ViewArenal>(`${environment.Api.Service}api/arenal/addarenal`, viewModel)
             .pipe(catchError(this.HandleError<ViewArenal>('AddArenal', undefined))));
     }
 
     public RemoveArenalById(id: number): Promise<any> {
-        return firstValueFrom(this.httpClient.delete<any>(`${environment.ApiService}api/arenal/removearenalbyid/` + id)
+        return firstValueFrom(this.httpClient.delete<any>(`${environment.Api.Service}api/arenal/removearenalbyid/` + id)
             .pipe(catchError(this.HandleError<any>('RemoveArenalById', undefined))));
     }
 }

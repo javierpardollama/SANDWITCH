@@ -4,9 +4,12 @@
 
 export const environment =
 {
-  ApiLock: "Peach",
-  ApiKey: "T/R4J6eyvNG<6ne!",
-  ApiService:"https://localhost:7297/",
+  Api:
+  {
+    Lock: "Peach",
+    Key: "T/R4J6eyvNG<6ne!",
+    Service:"https://localhost:7297/",
+  },
   production: false
 };
 

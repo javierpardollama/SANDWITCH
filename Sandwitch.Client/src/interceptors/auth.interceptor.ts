@@ -8,7 +8,7 @@ export class AuthInterceptor implements HttpInterceptor {
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         request = request.clone({
             setHeaders: {
-                Authorization: `Basic ${window.btoa(environment.ApiLock + ':' + environment.ApiKey)}`
+                Authorization: `Basic ${window.btoa(environment.Api.Lock + ':' + environment.Api.Key)}`
             }
         });
         

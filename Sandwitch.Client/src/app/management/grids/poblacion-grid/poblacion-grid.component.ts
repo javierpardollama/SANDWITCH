@@ -62,7 +62,8 @@ export class PoblacionGridComponent implements AfterViewInit {
     this.page =
     {
       Index: 0,
-      Size: this.paginator.pageSize
+      Size: this.paginator.pageSize,
+      Length: 0
     };
 
     this.FindPaginatedPoblacion();
@@ -72,7 +73,7 @@ export class PoblacionGridComponent implements AfterViewInit {
   public async FindPaginatedPoblacion() {
     const view = await this.poblacionService.FindPaginatedPoblacion(this.page);
 
-    this.ELEMENT_DATA = this.ELEMENT_DATA.concat(view.Items);
+    this.ELEMENT_DATA = Array.from(new Set(this.ELEMENT_DATA.concat(view.Items)));
 
     this.page.Length = view.Length;
 

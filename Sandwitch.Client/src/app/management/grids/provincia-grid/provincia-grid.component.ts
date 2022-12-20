@@ -73,7 +73,7 @@ export class ProvinciaGridComponent implements AfterViewInit {
   public async FindPaginatedProvincia() {
     const view = await this.provinciaService.FindPaginatedProvincia(this.page);
 
-    this.ELEMENT_DATA = this.ELEMENT_DATA.concat(view.Items);
+    this.ELEMENT_DATA = Array.from(new Set(this.ELEMENT_DATA.concat(view.Items)));
 
     this.page.Length = view.Length;
 

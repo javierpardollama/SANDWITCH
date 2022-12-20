@@ -64,7 +64,8 @@ export class BanderaGridComponent implements AfterViewInit {
     this.page =
     {
       Index: 0,
-      Size: this.paginator.pageSize
+      Size: this.paginator.pageSize,
+      Length: 0
     };
 
     this.FindPaginatedBandera();
@@ -75,7 +76,7 @@ export class BanderaGridComponent implements AfterViewInit {
   public async FindPaginatedBandera() {
     const view = await this.banderaService.FindPaginatedBandera(this.page);
 
-    this.ELEMENT_DATA = this.ELEMENT_DATA.concat(view.Items);
+    this.ELEMENT_DATA = Array.from(new Set(this.ELEMENT_DATA.concat(view.Items)));
 
     this.page.Length = view.Length;
 

@@ -29,7 +29,7 @@ export class HistoricoService extends BaseService {
     }
 
     public AddHistorico(viewModel: AddHistorico): Promise<ViewHistorico> {
-        return firstValueFrom(this.httpClient.post<ViewHistorico>(`${environment.ApiService}api/historico/addhistorico`, viewModel)
+        return firstValueFrom(this.httpClient.post<ViewHistorico>(`${environment.Api.Service}api/historico/addhistorico`, viewModel)
             .pipe(catchError(this.HandleError<ViewHistorico>('AddHistorico', undefined))));
     }
 }

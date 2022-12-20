@@ -64,8 +64,9 @@ export class ArenalGridComponent implements AfterViewInit {
 
         this.page =
         {
-            Index: 0,
-            Size: this.paginator.pageSize
+          Index: 0,
+          Size: this.paginator.pageSize,
+          Length: 0
         };
 
         this.FindPaginatedArenal();
@@ -76,7 +77,7 @@ export class ArenalGridComponent implements AfterViewInit {
 
         const view = await this.arenalService.FindPaginatedArenal(this.page);
 
-        this.ELEMENT_DATA = this.ELEMENT_DATA.concat(view.Items);
+        this.ELEMENT_DATA = Array.from(new Set(this.ELEMENT_DATA.concat(view.Items)));
 
         this.page.Length = view.Length;
 

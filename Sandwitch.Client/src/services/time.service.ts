@@ -8,13 +8,9 @@ import { Injectable } from '@angular/core';
 export class TimeService {
 
     public static Now(): Time {
-        
-        const now: Time =
-        {
+        return {
             hours: new Date().getHours(),
-            minutes: new Date().getMinutes()
+            minutes: new Date().getMinutes(),
         };
-
-        return now;
     }
 }

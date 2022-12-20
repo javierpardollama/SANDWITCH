@@ -4,13 +4,14 @@ import {
   Inject
 } from '@angular/core';
 
-import { DatePipe } from '@angular/common';
+import { DatePipe, Time } from '@angular/common';
 
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 import {
   FormBuilder,
+  FormControl,
   FormGroup,
   Validators
 } from '@angular/forms';
@@ -33,7 +34,7 @@ import { ExpressionAppVariants } from './../../../../../variants/expression.app.
 
 import { LocaleAppVariants } from './../../../../../variants/locale.app.variants';
 
-import { FormatAppVariants } from './../../../../../variants/format.app.variants';
+import { TimeService } from 'src/services/time.service';
 
 @Component({
   selector: 'app-historico-add-modal',
@@ -72,23 +73,22 @@ export class HistoricoAddModalComponent implements OnInit {
 
   // Form
   CreateForm() {
-
     this.formGroup = this.formBuilder.group({
-      ArenalId: [this.data.Id,
-      [Validators.required]],
-      BanderaId: [this.data.LastHistorico.Bandera.Id,
-      [Validators.required]],
-      Temperatura: [this.data.LastHistorico.Temperatura,
-      [Validators.required,
-      Validators.pattern(ExpressionAppVariants.AppNumberExpression)]],
-      BajaMarAlba: [this.datePipe.transform(new Date(), FormatAppVariants.HourFormat),
-      [Validators.required]],
-      AltaMarAlba: [this.datePipe.transform(new Date(), FormatAppVariants.HourFormat),
-      [Validators.required]],
-      BajaMarOcaso: [this.datePipe.transform(new Date(), FormatAppVariants.HourFormat),
-      [Validators.required]],
-      AltaMarOcaso: [this.datePipe.transform(new Date(), FormatAppVariants.HourFormat),
-      [Validators.required]],
+      ArenalId: new FormControl<number>(this.data.Id,
+        [Validators.required]),
+      BanderaId: new FormControl<number>(this.data.LastHistorico.Bandera.Id,
+        [Validators.required]),
+      Temperatura: new FormControl<number>(this.data.LastHistorico.Temperatura,
+        [Validators.required,
+        Validators.pattern(ExpressionAppVariants.AppNumberExpression)]),
+      BajaMarAlba: new FormControl<Time>(TimeService.Now(),
+        [Validators.required]),
+      AltaMarAlba: new FormControl<Time>(TimeService.Now(),
+        [Validators.required]),
+      BajaMarOcaso: new FormControl<Time>(TimeService.Now(),
+        [Validators.required]),
+      AltaMarOcaso: new FormControl<Time>(TimeService.Now(),
+        [Validators.required]),
     });
   }
 

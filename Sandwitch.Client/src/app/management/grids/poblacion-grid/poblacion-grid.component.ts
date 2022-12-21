@@ -73,11 +73,9 @@ export class PoblacionGridComponent implements AfterViewInit {
   public async FindPaginatedPoblacion() {
     const view = await this.poblacionService.FindPaginatedPoblacion(this.page);
 
-    this.ELEMENT_DATA = Array.from(new Set(this.ELEMENT_DATA.concat(view.Items)));
-
     this.page.Length = view.Length;
 
-    this.dataSource.data = this.ELEMENT_DATA;
+    this.dataSource.data = Array.from(this.ELEMENT_DATA.concat(view.Items).reduce((m, t): Map<ViewPoblacion, ViewPoblacion> => m.set(t.Id, t), new Map()).values());
   }
 
   // Setup Table Settings

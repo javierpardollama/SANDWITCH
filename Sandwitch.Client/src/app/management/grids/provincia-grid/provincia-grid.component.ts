@@ -70,7 +70,7 @@ export class ProvinciaGridComponent implements AfterViewInit {
   }
 
   // Get Data from Service
-  public async FindPaginatedProvincia() {
+  public async FindPaginatedProvincia(): Promise<void> {
     const view = await this.provinciaService.FindPaginatedProvincia(this.page);
 
     this.page.Length = view.Length;
@@ -79,18 +79,18 @@ export class ProvinciaGridComponent implements AfterViewInit {
   }
 
   // Setup Table Settings
-  public SetupMyTableSettings() {
+  public SetupMyTableSettings(): void {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }
 
   // Filter Data
-  public ApplyMyFilter(target: EventTarget | null) {
+  public ApplyMyFilter(target: EventTarget | null): void {
     this.dataSource.filter = (target as HTMLInputElement).value.trim().toLowerCase();
   }
 
   // Get Record from Table
-  public GetRecord(row: ViewProvincia) {
+  public GetRecord(row: ViewProvincia): void {
     const dialogRef = this.matDialog.open(ProvinciaUpdateModalComponent, {
       width: '450px',
       data: row
@@ -101,7 +101,7 @@ export class ProvinciaGridComponent implements AfterViewInit {
     });
   }
 
-  public AddRecord() {
+  public AddRecord(): void {
     const dialogRef = this.matDialog.open(ProvinciaAddModalComponent, {
       width: '450px',
     });
@@ -111,7 +111,7 @@ export class ProvinciaGridComponent implements AfterViewInit {
     });
   }
 
-  public async TurnThePage(event: PageEvent) {
+  public async TurnThePage(event: PageEvent): Promise<void> {
     this.page =
     {
       Index: event.pageIndex,

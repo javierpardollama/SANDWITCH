@@ -50,13 +50,13 @@ export class PoblacionUpdateModalComponent implements OnInit {
 
 
   // Life Cicle
-  ngOnInit() {
+  ngOnInit(): void {
     this.FindAllProvincia();
     this.CreateForm();
   }
 
   // Form
-  CreateForm() {
+  CreateForm(): void {
     this.formGroup = this.formBuilder.group({
       Id: new FormControl<number>(this.data.Id, [Validators.required]),
       Name: new FormControl<string>(this.data.Name, [Validators.required]),
@@ -66,7 +66,7 @@ export class PoblacionUpdateModalComponent implements OnInit {
   }
 
   // Form Actions
-  async onSubmit(viewModel: UpdatePoblacion) {
+  async onSubmit(viewModel: UpdatePoblacion): Promise<void> {
     let poblacion = await this.poblacionService.UpdatePoblacion(viewModel);
 
     if (poblacion) {
@@ -80,7 +80,7 @@ export class PoblacionUpdateModalComponent implements OnInit {
 
   }
 
-  async onDelete(viewModel: UpdatePoblacion) {
+  async onDelete(viewModel: UpdatePoblacion): Promise<void> {
     await this.poblacionService.RemovePoblacionById(viewModel.Id);
 
     this.matSnackBar.open(
@@ -93,7 +93,7 @@ export class PoblacionUpdateModalComponent implements OnInit {
   }
 
   // Get Data from Service
-  public async FindAllProvincia() {
+  public async FindAllProvincia(): Promise<void> {
     this.provincias = await this.provinciaService.FindAllProvincia();
   }
 }

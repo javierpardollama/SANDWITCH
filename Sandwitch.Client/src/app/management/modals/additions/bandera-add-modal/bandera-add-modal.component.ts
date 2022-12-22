@@ -39,12 +39,12 @@ export class BanderaAddModalComponent implements OnInit {
 
 
   // Life Cicle
-  ngOnInit() {
+  ngOnInit(): void {
     this.CreateForm();
   }
 
   // Form
-  CreateForm() {
+  CreateForm(): void {
     this.formGroup = this.formBuilder.group({
       Name: new FormControl<string>(TextAppVariants.AppEmptyCoreText,
         [Validators.required]),
@@ -54,7 +54,7 @@ export class BanderaAddModalComponent implements OnInit {
   }
 
   // Form Actions
-  async onSubmit(viewModel: AddBandera) {
+  async onSubmit(viewModel: AddBandera): Promise<void> {
     let bandera = await this.banderaService.AddBandera(viewModel);
 
     if (bandera) {

@@ -37,12 +37,12 @@ export class ProvinciaAddModalComponent implements OnInit {
 
 
   // Life Cicle
-  ngOnInit() {
+  ngOnInit(): void {
     this.CreateForm();
   }
 
   // Form
-  CreateForm() {
+  CreateForm(): void {
     this.formGroup = this.formBuilder.group({
       Name: new FormControl<string>(TextAppVariants.AppEmptyCoreText, [Validators.required]),
       ImageUri: new FormControl<string>(TextAppVariants.AppEmptyCoreText, [Validators.required]),
@@ -50,7 +50,7 @@ export class ProvinciaAddModalComponent implements OnInit {
   }
 
   // Form Actions
-  async onSubmit(viewModel: AddProvincia) {
+  async onSubmit(viewModel: AddProvincia): Promise<void> {
     let provincia = await this.provinciaService.AddProvincia(viewModel);
 
     if (provincia) {

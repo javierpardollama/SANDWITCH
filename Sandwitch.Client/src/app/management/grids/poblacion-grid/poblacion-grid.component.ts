@@ -70,7 +70,7 @@ export class PoblacionGridComponent implements AfterViewInit {
   }
 
   // Get Data from Service
-  public async FindPaginatedPoblacion() {
+  public async FindPaginatedPoblacion(): Promise<void> {
     const view = await this.poblacionService.FindPaginatedPoblacion(this.page);
 
     this.page.Length = view.Length;
@@ -79,7 +79,7 @@ export class PoblacionGridComponent implements AfterViewInit {
   }
 
   // Setup Table Settings
-  public SetupMyTableSettings() {
+  public SetupMyTableSettings(): void {
     this.dataSource = new MatTableDataSource(this.ELEMENT_DATA);
 
     this.dataSource.paginator = this.paginator;
@@ -87,12 +87,12 @@ export class PoblacionGridComponent implements AfterViewInit {
   }
 
   // Filter Data
-  public ApplyMyFilter(target: EventTarget | null) {
+  public ApplyMyFilter(target: EventTarget | null): void {
     this.dataSource.filter = (target as HTMLInputElement).value.trim().toLowerCase();
   }
 
   // Get Record from Table
-  public GetRecord(row: ViewPoblacion) {
+  public GetRecord(row: ViewPoblacion): void {
     const dialogRef = this.matDialog.open(PoblacionUpdateModalComponent, {
       width: '450px',
       data: row
@@ -103,7 +103,7 @@ export class PoblacionGridComponent implements AfterViewInit {
     });
   }
 
-  public AddRecord() {
+  public AddRecord(): void {
     const dialogRef = this.matDialog.open(PoblacionAddModalComponent, {
       width: '450px',
     });
@@ -113,7 +113,7 @@ export class PoblacionGridComponent implements AfterViewInit {
     });
   }
 
-  public async TurnThePage(event: PageEvent) {
+  public async TurnThePage(event: PageEvent): Promise<void> {
     this.page =
     {
       Index: event.pageIndex,

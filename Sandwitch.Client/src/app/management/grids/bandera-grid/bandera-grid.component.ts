@@ -73,7 +73,7 @@ export class BanderaGridComponent implements AfterViewInit {
   }
 
   // Get Data from Service
-  public async FindPaginatedBandera() {
+  public async FindPaginatedBandera(): Promise<void> {
     const view = await this.banderaService.FindPaginatedBandera(this.page);
 
     this.page.Length = view.Length;
@@ -82,18 +82,18 @@ export class BanderaGridComponent implements AfterViewInit {
   }
 
   // Setup Table Settings
-  public SetupMyTableSettings() {
+  public SetupMyTableSettings(): void {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }
 
   // Filter Data
-  public ApplyMyFilter(target: EventTarget | null) {
+  public ApplyMyFilter(target: EventTarget | null): void {
     this.dataSource.filter = (target as HTMLInputElement).value.trim().toLowerCase();
   }
 
   // Get Record from Table
-  public GetRecord(row: ViewBandera) {
+  public GetRecord(row: ViewBandera): void {
     const dialogRef = this.matDialog.open(BanderaUpdateModalComponent, {
       width: '450px',
       data: row
@@ -104,7 +104,7 @@ export class BanderaGridComponent implements AfterViewInit {
     });
   }
 
-  public AddRecord() {
+  public AddRecord(): void {
     const dialogRef = this.matDialog.open(BanderaAddModalComponent, {
       width: '450px',
     });

@@ -56,17 +56,17 @@ export class SearchComponent implements OnInit {
   }
 
   // Life Cicle
-  ngOnInit() {
+  ngOnInit(): void {
     this.FindAllProvincia();
   }
 
   // Get Data from Service
-  public async FindAllArenalByPoblacionId(id: string) {
+  public async FindAllArenalByPoblacionId(id: string): Promise<void> {
     this.arenales = await this.arenalService.FindAllArenalByPoblacionId(Number(id));
   }
 
   // Get Data from Service
-  public async FindAllProvincia() {
+  public async FindAllProvincia(): Promise<void> {
     this.provincias = await this.provinciaService.FindAllProvincia();
 
     this.filteredProvincias = this.provinciaCtrl.valueChanges
@@ -77,7 +77,7 @@ export class SearchComponent implements OnInit {
   }
 
   // Get Data from Service
-  public async FindAllPoblacionByProvinciaId(id: string) {
+  public async FindAllPoblacionByProvinciaId(id: string): Promise<void> {
     this.poblaciones = await this.poblacionService.FindAllPoblacionByProvinciaId(Number(id));
 
     this.filteredPoblaciones = this.poblacionCtrl.valueChanges
@@ -102,7 +102,7 @@ export class SearchComponent implements OnInit {
   }
 
   // Get Record from Card
-  public GetRecord(row: ViewArenal) {
+  public GetRecord(row: ViewArenal): void {
     const dialogRef = this.matDialog.open(HistoricoAddModalComponent, {
       width: '600px',
       data: row

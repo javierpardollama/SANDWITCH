@@ -73,7 +73,7 @@ export class ArenalGridComponent implements AfterViewInit {
     }
 
     // Get Data from Service
-    public async FindPaginatedArenal() {
+    public async FindPaginatedArenal(): Promise<void> {
         const view = await this.arenalService.FindPaginatedArenal(this.page);
 
         this.page.Length = view.Length;
@@ -82,18 +82,18 @@ export class ArenalGridComponent implements AfterViewInit {
     }
 
     // Setup Table Settings
-    public SetupMyTableSettings() {
+    public SetupMyTableSettings(): void {
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
     }
 
     // Filter Data
-    public ApplyMyFilter(target: EventTarget | null) {
+    public ApplyMyFilter(target: EventTarget | null): void {
         this.dataSource.filter = (target as HTMLInputElement).value.trim().toLowerCase();
     }
 
     // Get Record from Table
-    public GetRecord(row: ViewArenal) {
+    public GetRecord(row: ViewArenal): void {
         const dialogRef = this.matDialog.open(ArenalUpdateModalComponent, {
             width: '450px',
             data: row
@@ -104,7 +104,7 @@ export class ArenalGridComponent implements AfterViewInit {
         });
     }
 
-    public AddRecord() {
+    public AddRecord(): void {
         const dialogRef = this.matDialog.open(ArenalAddModalComponent, {
             width: '450px',
         });
@@ -114,7 +114,7 @@ export class ArenalGridComponent implements AfterViewInit {
         });
     }
 
-    public async TurnThePage(event: PageEvent) {
+    public async TurnThePage(event: PageEvent): Promise<void> {
         this.page =
         {
             Index: event.pageIndex,

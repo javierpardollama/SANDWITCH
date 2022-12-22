@@ -56,13 +56,13 @@ export class HistoricoAddModalComponent implements OnInit {
 
 
   // Life Cicle
-  ngOnInit() {
+  ngOnInit(): void {
     this.FindAllBandera();
     this.CreateForm();
   }
 
   // Form
-  CreateForm() {
+  CreateForm(): void {
     this.formGroup = this.formBuilder.group({
       ArenalId: new FormControl<number>(this.data.Id,
         [Validators.required]),
@@ -83,7 +83,7 @@ export class HistoricoAddModalComponent implements OnInit {
   }
 
   // Form Actions
-  async onSubmit(viewModel: AddHistorico) {
+  async onSubmit(viewModel: AddHistorico): Promise<void> {
     let historico = await this.historicoService.AddHistorico(viewModel);
 
     if (historico) {
@@ -97,7 +97,7 @@ export class HistoricoAddModalComponent implements OnInit {
   }
 
   // Get Data from Service
-  public async FindAllBandera() {
+  public async FindAllBandera(): Promise<void> {
     this.banderas = await this.banderaService.FindAllBandera();
   }
 }

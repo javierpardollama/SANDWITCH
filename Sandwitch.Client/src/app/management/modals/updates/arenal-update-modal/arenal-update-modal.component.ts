@@ -51,13 +51,13 @@ export class ArenalUpdateModalComponent implements OnInit {
 
 
   // Life Cicle
-  ngOnInit() {
+  ngOnInit(): void {
     this.FindAllProvincia();
     this.CreateForm();
   }
 
   // Form
-  CreateForm() {
+  CreateForm(): void {
     this.formGroup = this.formBuilder.group({
       Id: new FormControl<number>(this.data.Id, [Validators.required]),
       Name: new FormControl<string>(this.data.Name, [Validators.required]),
@@ -66,7 +66,7 @@ export class ArenalUpdateModalComponent implements OnInit {
   }
 
   // Form Actions
-  async onSubmit(viewModel: UpdateArenal) {
+  async onSubmit(viewModel: UpdateArenal): Promise<void> {
     let arenal = await this.arenalService.UpdateArenal(viewModel);
 
     if (arenal) {
@@ -79,7 +79,7 @@ export class ArenalUpdateModalComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  async onDelete(viewModel: UpdateArenal) {
+  async onDelete(viewModel: UpdateArenal): Promise<void> {
     await this.arenalService.RemoveArenalById(viewModel.Id);
 
     this.matSnackBar.open(
@@ -92,7 +92,7 @@ export class ArenalUpdateModalComponent implements OnInit {
   }
 
   // Get Data from Service
-  public async FindAllProvincia() {
+  public async FindAllProvincia(): Promise<void> {
     this.provincias = await this.provinciaService.FindAllProvincia();
   }
 }

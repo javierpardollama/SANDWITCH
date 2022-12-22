@@ -43,12 +43,12 @@ export class ProvinciaUpdateModalComponent implements OnInit {
 
 
   // Life Cicle
-  ngOnInit() {
+  ngOnInit(): void {
     this.CreateForm();
   }
 
   // Form
-  CreateForm() {
+  CreateForm(): void {
     this.formGroup = this.formBuilder.group({
       Id: new FormControl<number>(this.data.Id, [Validators.required]),
       Name: new FormControl<string>(this.data.Name, [Validators.required]),
@@ -57,7 +57,7 @@ export class ProvinciaUpdateModalComponent implements OnInit {
   }
 
   // Form Actions
-  async onSubmit(viewModel: UpdateProvincia) {
+  async onSubmit(viewModel: UpdateProvincia): Promise<void> {
     let provincia = await this.provinciaService.UpdateProvincia(viewModel)
 
     if (provincia) {
@@ -70,7 +70,7 @@ export class ProvinciaUpdateModalComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  async onDelete(viewModel: UpdateProvincia) {
+  async onDelete(viewModel: UpdateProvincia): Promise<void> {
     await this.provinciaService.RemoveProvinciaById(viewModel.Id);
 
     this.matSnackBar.open(

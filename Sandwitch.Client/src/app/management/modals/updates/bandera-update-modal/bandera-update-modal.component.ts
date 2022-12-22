@@ -43,12 +43,12 @@ export class BanderaUpdateModalComponent implements OnInit {
 
 
   // Life Cicle
-  ngOnInit() {
+  ngOnInit(): void {
     this.CreateForm();
   }
 
   // Form
-  CreateForm() {
+  CreateForm(): void {
     this.formGroup = this.formBuilder.group({
       Id: new FormControl<number>(this.data.Id, [Validators.required]),
       Name: new FormControl<string>(this.data.Name, [Validators.required]),
@@ -57,7 +57,7 @@ export class BanderaUpdateModalComponent implements OnInit {
   }
 
   // Form Actions
-  async onSubmit(viewModel: UpdateBandera) {
+  async onSubmit(viewModel: UpdateBandera): Promise<void> {
     let bandera = await this.banderaService.UpdateBandera(viewModel);
 
     if (bandera) {
@@ -71,7 +71,7 @@ export class BanderaUpdateModalComponent implements OnInit {
 
   }
 
-  async onDelete(viewModel: UpdateBandera) {
+  async onDelete(viewModel: UpdateBandera): Promise<void> {
     await this.banderaService.RemoveBanderaById(viewModel.Id);
 
     this.matSnackBar.open(

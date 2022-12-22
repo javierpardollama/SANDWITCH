@@ -18,11 +18,11 @@ export class NavMenuComponent {
     this.NavigationLinks = this.navigationService.GetManagementNavigationLinks();
   }
 
-  collapse() {
+  collapse(): void {
     this.isExpanded = false;
   }
 
-  toggle() {
+  toggle(): void {
     this.isExpanded = !this.isExpanded;
   }
 }

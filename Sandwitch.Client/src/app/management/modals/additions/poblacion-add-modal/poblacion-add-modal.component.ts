@@ -46,13 +46,13 @@ export class PoblacionAddModalComponent implements OnInit {
 
 
   // Life Cicle
-  ngOnInit() {
+  ngOnInit(): void {
     this.FindAllProvincia();
     this.CreateForm();
   }
 
   // Form
-  CreateForm() {
+  CreateForm(): void {
     this.formGroup = this.formBuilder.group({
       Name: new FormControl<string>(TextAppVariants.AppEmptyCoreText,
         [Validators.required]),
@@ -63,7 +63,7 @@ export class PoblacionAddModalComponent implements OnInit {
   }
 
   // Form Actions
-  async onSubmit(viewModel: AddPoblacion) {
+  async onSubmit(viewModel: AddPoblacion): Promise<void> {
     let poblacion = await this.poblacionService.AddPoblacion(viewModel);
 
     if (poblacion) {
@@ -77,7 +77,7 @@ export class PoblacionAddModalComponent implements OnInit {
   }
 
   // Get Data from Service
-  public async FindAllProvincia() {
+  public async FindAllProvincia(): Promise<void> {
     this.provincias = await this.provinciaService.FindAllProvincia();
   }
 }

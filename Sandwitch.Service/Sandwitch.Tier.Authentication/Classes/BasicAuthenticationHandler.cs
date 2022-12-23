@@ -9,6 +9,7 @@ using Sandwitch.Tier.ViewModels.Classes.Auth;
 
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Security.Claims;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
@@ -52,6 +53,7 @@ namespace Sandwitch.Tier.Authentication.Classes
             List<Claim> @claims = new()
             {               
                  new Claim(ClaimTypes.Name, @authSign.UserName),
+                 new Claim(ClaimTypes.Locality, CultureInfo.CurrentCulture.TwoLetterISOLanguageName),
                  new Claim(ClaimTypes.System, Environment.MachineName),
             };
 

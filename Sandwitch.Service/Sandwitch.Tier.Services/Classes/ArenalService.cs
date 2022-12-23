@@ -50,7 +50,7 @@ namespace Sandwitch.Tier.Services.Classes
 
             Arenal @arenal = new()
             {
-                Name = @viewModel.Name,
+                Name = @viewModel.Name.Trim(),
                 ArenalPoblaciones = new List<ArenalPoblacion>(),
                 Historicos = new List<Historico>()
             };
@@ -350,7 +350,7 @@ namespace Sandwitch.Tier.Services.Classes
             await CheckName(@viewModel);
 
             Arenal @arenal = await FindArenalById(@viewModel.Id);
-            @arenal.Name = @viewModel.Name;
+            @arenal.Name = @viewModel.Name.Trim();
             @arenal.ArenalPoblaciones = new List<ArenalPoblacion>();
             @arenal.Historicos = new List<Historico>();
 
@@ -432,7 +432,7 @@ namespace Sandwitch.Tier.Services.Classes
             Arenal @arenal = await Context.Arenal
                  .AsNoTracking()
                  .TagWith("CheckName")
-                 .FirstOrDefaultAsync(x => x.Name == @viewModel.Name);
+                 .FirstOrDefaultAsync(x => x.Name == @viewModel.Name.Trim());
 
             if (@arenal != null)
             {
@@ -464,7 +464,7 @@ namespace Sandwitch.Tier.Services.Classes
             Arenal @arenal = await Context.Arenal
                  .AsNoTracking()
                  .TagWith("CheckName")
-                 .FirstOrDefaultAsync(x => x.Name == @viewModel.Name && x.Id != @viewModel.Id);
+                 .FirstOrDefaultAsync(x => x.Name == @viewModel.Name.Trim() && x.Id != @viewModel.Id);
 
             if (@arenal != null)
             {

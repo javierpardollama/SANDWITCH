@@ -49,8 +49,8 @@ namespace Sandwitch.Tier.Services.Classes
 
             Bandera @bandera = new()
             {
-                Name = @viewModel.Name,
-                ImageUri = @viewModel.ImageUri
+                Name = @viewModel.Name.Trim(),
+                ImageUri = @viewModel.ImageUri.Trim()
             };
 
             try
@@ -206,8 +206,8 @@ namespace Sandwitch.Tier.Services.Classes
             await CheckName(@viewModel);
 
             Bandera @bandera = await FindBanderaById(@viewModel.Id);
-            @bandera.Name = @viewModel.Name;
-            @bandera.ImageUri = @viewModel.ImageUri;
+            @bandera.Name = @viewModel.Name.Trim();
+            @bandera.ImageUri = @viewModel.ImageUri.Trim();
 
             try
             {
@@ -242,7 +242,7 @@ namespace Sandwitch.Tier.Services.Classes
             Bandera @bandera = await Context.Bandera
                  .TagWith("CheckName")
                  .AsNoTracking()
-                 .FirstOrDefaultAsync(x => x.Name == @viewModel.Name);
+                 .FirstOrDefaultAsync(x => x.Name == @viewModel.Name.Trim());
 
             if (@bandera != null)
             {
@@ -274,7 +274,7 @@ namespace Sandwitch.Tier.Services.Classes
             Bandera @bandera = await Context.Bandera
                  .TagWith("CheckName")
                  .AsNoTracking()
-                 .FirstOrDefaultAsync(x => x.Name == @viewModel.Name && x.Id != viewModel.Id);
+                 .FirstOrDefaultAsync(x => x.Name == @viewModel.Name.Trim() && x.Id != viewModel.Id);
 
             if (@bandera != null)
             {

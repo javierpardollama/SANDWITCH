@@ -49,8 +49,8 @@ namespace Sandwitch.Tier.Services.Classes
 
             Provincia @provincia = new()
             {
-                Name = @viewModel.Name,
-                ImageUri = @viewModel.ImageUri
+                Name = @viewModel.Name.Trim(),
+                ImageUri = @viewModel.ImageUri.Trim()
             };
 
             try
@@ -190,8 +190,8 @@ namespace Sandwitch.Tier.Services.Classes
             await CheckName(@viewModel);
 
             Provincia @provincia = await FindProvinciaById(@viewModel.Id);
-            @provincia.Name = @viewModel.Name;
-            @provincia.ImageUri = @viewModel.ImageUri;
+            @provincia.Name = @viewModel.Name.Trim();
+            @provincia.ImageUri = @viewModel.ImageUri.Trim();
 
             try
             {
@@ -226,7 +226,7 @@ namespace Sandwitch.Tier.Services.Classes
             Provincia @provincia = await Context.Provincia
                  .AsNoTracking()
                  .TagWith("CheckName")
-                 .FirstOrDefaultAsync(x => x.Name == @viewModel.Name);
+                 .FirstOrDefaultAsync(x => x.Name == @viewModel.Name.Trim());
 
             if (@provincia != null)
             {
@@ -258,7 +258,7 @@ namespace Sandwitch.Tier.Services.Classes
             Provincia @provincia = await Context.Provincia
                  .AsNoTracking()
                  .TagWith("CheckName")
-                 .FirstOrDefaultAsync(x => x.Name == @viewModel.Name && x.Id != @viewModel.Id);
+                 .FirstOrDefaultAsync(x => x.Name == @viewModel.Name.Trim() && x.Id != @viewModel.Id);
 
             if (@provincia != null)
             {

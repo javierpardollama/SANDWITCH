@@ -49,9 +49,9 @@ namespace Sandwitch.Tier.Services.Classes
 
             Poblacion @poblacion = new()
             {
-                Name = @viewModel.Name,
+                Name = @viewModel.Name.Trim(),
                 Provincia = await FindProvinciaById(@viewModel.ProvinciaId),
-                ImageUri = @viewModel.ImageUri
+                ImageUri = @viewModel.ImageUri.Trim()
             };
 
             try
@@ -241,9 +241,9 @@ namespace Sandwitch.Tier.Services.Classes
             await CheckName(@viewModel);
 
             Poblacion @poblacion = await FindPoblacionById(@viewModel.Id);
-            @poblacion.Name = @viewModel.Name;
+            @poblacion.Name = @viewModel.Name.Trim();
             @poblacion.Provincia = await FindProvinciaById(@viewModel.ProvinciaId);
-            @poblacion.ImageUri = @viewModel.ImageUri;
+            @poblacion.ImageUri = @viewModel.ImageUri.Trim();
 
             try
             {
@@ -278,7 +278,7 @@ namespace Sandwitch.Tier.Services.Classes
             Poblacion @poblacion = await Context.Poblacion
                  .AsNoTracking()
                  .TagWith("CheckName")
-                 .FirstOrDefaultAsync(x => x.Name == @viewModel.Name);
+                 .FirstOrDefaultAsync(x => x.Name == @viewModel.Name.Trim());
 
             if (@poblacion != null)
             {
@@ -310,7 +310,7 @@ namespace Sandwitch.Tier.Services.Classes
             Poblacion @poblacion = await Context.Poblacion
                  .AsNoTracking()
                  .TagWith("CheckName")
-                 .FirstOrDefaultAsync(x => x.Name == @viewModel.Name & x.Id != @viewModel.Id);
+                 .FirstOrDefaultAsync(x => x.Name == @viewModel.Name.Trim() & x.Id != @viewModel.Id);
 
             if (@poblacion != null)
             {

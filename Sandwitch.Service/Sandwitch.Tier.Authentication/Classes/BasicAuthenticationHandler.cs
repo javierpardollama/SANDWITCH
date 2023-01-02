@@ -51,9 +51,10 @@ namespace Sandwitch.Tier.Authentication.Classes
         public AuthenticationTicket GetAuthenticationTicket(AuthSignIn @authSign)
         {
             List<Claim> @claims = new()
-            {               
+            {
                  new Claim(ClaimTypes.Name, @authSign.UserName),
                  new Claim(ClaimTypes.Locality, CultureInfo.CurrentCulture.TwoLetterISOLanguageName),
+                 new Claim(ClaimTypes.Version, System.Environment.OSVersion.VersionString),
                  new Claim(ClaimTypes.System, Environment.MachineName),
             };
 

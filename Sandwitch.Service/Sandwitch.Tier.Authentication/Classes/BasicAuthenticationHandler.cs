@@ -67,7 +67,7 @@ namespace Sandwitch.Tier.Authentication.Classes
         /// <summary>
         /// Handles Authentication Asynchronously
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Instance of <see cref="AuthenticateResult"/></returns>
         protected override Task<AuthenticateResult> HandleAuthenticateAsync()
         {
             if (!Request.Headers.ContainsKey("Authorization"))

@@ -32,6 +32,6 @@ namespace Sandwitch.Tier.Entities.Classes
         /// <summary>
         /// Gets or Sets <see cref="Historicos"/>
         /// </summary>
-        public virtual IList<Historico> Historicos { get; set; }
+        public virtual ICollection<Historico> Historicos { get; set; } = new HashSet<Historico>();
     }
 }

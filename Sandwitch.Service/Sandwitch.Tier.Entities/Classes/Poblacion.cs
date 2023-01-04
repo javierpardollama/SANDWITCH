@@ -20,7 +20,6 @@ namespace Sandwitch.Tier.Entities.Classes
         /// Gets or Sets <see cref="Name"/>
         /// </summary>
         [Required]
-        [ConcurrencyCheck]
         public string Name { get; set; }
 
         /// <summary>

@@ -13,47 +13,48 @@ namespace Sandwitch.Tier.Contexts.Interfaces
     /// </summary>
     public interface IApplicationContext : IDisposable
     {
+        private string Test { get => string.Empty; set => this.Test = string.Empty; }
 
         /// <summary>
         /// Gets or Sets <see cref="DbSet{Provincia}"/>
         /// </summary>
-        DbSet<Provincia> Provincia { get; set; }
+        public DbSet<Provincia> Provincia { get; set; }
 
         /// <summary>
         /// Gets or Sets <see cref="DbSet{Poblacion}"/>
         /// </summary>
-        DbSet<Poblacion> Poblacion { get; set; }
+        public DbSet<Poblacion> Poblacion { get; set; }
 
         /// <summary>
         /// Gets or Sets <see cref="DbSet{Bandera}"/>
         /// </summary>
-        DbSet<Bandera> Bandera { get; set; }
+        public DbSet<Bandera> Bandera { get; set; }
 
         /// <summary>
         /// Gets or Sets <see cref="DbSet{Arenal}"/>
         /// </summary>
-        DbSet<Arenal> Arenal { get; set; }
+        public DbSet<Arenal> Arenal { get; set; }
 
         /// <summary>
         /// Gets or Sets <see cref="DbSet{ArenalPoblacion}"/>
         /// </summary>
-        DbSet<ArenalPoblacion> ArenalPoblacion { get; set; }
+        public DbSet<ArenalPoblacion> ArenalPoblacion { get; set; }
 
         /// <summary>
         /// Gets or Sets <see cref="DbSet{Historico}"/>
         /// </summary>
-        DbSet<Historico> Historico { get; set; }
+        public DbSet<Historico> Historico { get; set; }
 
         /// <summary>
         /// Saves Changes Syncronously
         /// </summary>
         /// <returns>Instance of <see cref="int"/></returns>
-        int SaveChanges();
+        public int SaveChanges();
 
         /// <summary>
         /// Saves Changes Asyncronously
         /// </summary>
         /// <returns>Instance of <see cref="Task{int}"/></returns>
-        Task<int> SaveChangesAsync();
+        public Task<int> SaveChangesAsync();
     }
 }

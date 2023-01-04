@@ -18,62 +18,62 @@ namespace Sandwitch.Tier.Services.Interfaces
         /// Finds All Bandera
         /// </summary>
         /// <returns>Instance of <see cref="Task{IList{ViewBandera}}"/></returns>
-        Task<IList<ViewBandera>> FindAllBandera();
+        public Task<IList<ViewBandera>> FindAllBandera();
 
         /// <summary>
         /// Finds Paginated Bandera
         /// </summary>
         /// <param name="viewModel">Injected <see cref="FilterPage"/></param>
         /// <returns>Instance of <see cref="Task{ViewPage{ViewBandera}}"/></returns>
-        Task<ViewPage<ViewBandera>> FindPaginatedBandera(FilterPage @viewmodel);
+        public Task<ViewPage<ViewBandera>> FindPaginatedBandera(FilterPage @viewmodel);
 
         /// <summary>
         /// Finds All Historico By Poblacion Id
         /// </summary>
         /// <param name="id">Injected <see cref="int"/></param>
         /// <returns>Instance of <see cref="Task{IList{ViewHistorico}}"/></returns>
-        Task<IList<ViewHistorico>> FindAllHistoricoByBanderaId(int @id);
+        public Task<IList<ViewHistorico>> FindAllHistoricoByBanderaId(int @id);
 
         /// <summary>
         /// Finds Bandera By Id
         /// </summary>
         /// <param name="id">Injected <see cref="int"/></param>
         /// <returns>Instance of <see cref="Task{Bandera}"/></returns>
-        Task<Bandera> FindBanderaById(int @id);
+        public Task<Bandera> FindBanderaById(int @id);
 
         /// <summary>
         /// Removes Bandera By Id
         /// </summary>
         /// <param name="id">Injected <see cref="int"/></param>
         /// <returns>Instance of <see cref="Task"/></returns>
-        Task RemoveBanderaById(int @id);
+        public Task RemoveBanderaById(int @id);
 
         /// <summary>
         /// Updates Bandera
         /// </summary>
         /// <param name="viewModel">Injected <see cref="UpdateBandera"/></param>
         /// <returns>Instance of <see cref="Task{ViewBandera}"/></returns>
-        Task<ViewBandera> UpdateBandera(UpdateBandera @viewModel);
+        public Task<ViewBandera> UpdateBandera(UpdateBandera @viewModel);
 
         /// <summary>
         /// Adds Bandera
         /// </summary>
         /// <param name="viewModel">Injected <see cref="AddBandera"/></param>
         /// <returns>Instance of <see cref="Task{ViewBandera}"/></returns>
-        Task<ViewBandera> AddBandera(AddBandera @viewModel);
+        public Task<ViewBandera> AddBandera(AddBandera @viewModel);
 
         /// <summary>
         /// Checks Name
         /// </summary>
         /// <param name="viewModel">Injected <see cref="AddBandera"/></param>
         /// <returns>Instance of <see cref="Task{Bandera}"/></returns>
-        Task<Bandera> CheckName(AddBandera @viewModel);
+        public Task<Bandera> CheckName(AddBandera @viewModel);
 
         /// <summary>
         /// Checks Name
         /// </summary>
         /// <param name="viewModel">Injected <see cref="UpdateBandera"/></param>
         /// <returns>Instance of <see cref="Task{Bandera}"/></returns>
-        Task<Bandera> CheckName(UpdateBandera @viewModel);
+        public Task<Bandera> CheckName(UpdateBandera @viewModel);
     }
 }

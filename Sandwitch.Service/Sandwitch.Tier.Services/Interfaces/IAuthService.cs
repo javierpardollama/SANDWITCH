@@ -12,6 +12,6 @@ namespace Sandwitch.Tier.Services.Interfaces
         /// </summary>
         /// <param name="authSignIn">Injected <see cref="AuthSignIn"/></param>
         /// <returns>Instance of <see cref="bool"/></returns>
-        bool CanAuthenticate(AuthSignIn @authSignIn);
+        public bool CanAuthenticate(AuthSignIn @authSignIn);
     }
 }

@@ -14,6 +14,6 @@ namespace Sandwitch.Tier.Authentication.Interfaces
         /// </summary>
         /// <param name="authSignIn">Injected <see cref="AuthSignIn"/></param>
         /// <returns>Instance of <see cref="AuthenticationTicket"/></returns>
-        AuthenticationTicket GetAuthenticationTicket(AuthSignIn @authSign);
+        public AuthenticationTicket GetAuthenticationTicket(AuthSignIn @authSign);
     }
 }

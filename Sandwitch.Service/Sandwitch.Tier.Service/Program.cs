@@ -47,7 +47,7 @@ var @settings = new ApiSettings();
 @builder.Services.Configure<ApiSettings>(@builder.Configuration.GetSection("Api"));
 
 // Add customized Authentication to the services container.
-@builder.Services.AddCustomizedAuthentication();
+@builder.Services.AddCustomizedAuthentication(@settings);
 
 @builder.Services.AddCustomizedCrossOriginRequests(@settings);
 

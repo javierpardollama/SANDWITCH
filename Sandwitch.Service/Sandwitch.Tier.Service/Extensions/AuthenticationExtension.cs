@@ -19,11 +19,11 @@ namespace Sandwitch.Tier.Service.Extensions
         /// </summary>
         /// <param name="this">Injected <see cref="IServiceCollection"/></param>
         /// <param name="ApiSettings">Injected <see cref="ApiSettings"/></param>
-        public static void AddCustomizedAuthentication(this IServiceCollection @this, ApiSettings ApiSettings)
+        public static void AddCustomizedAuthentication(this IServiceCollection @this, ApiSettings @ApiSettings)
         {
             @this.AddAuthentication(AuthenticationSchemes.Basic.ToString())
                 .AddScheme<AuthenticationSchemeOptions, BasicAuthenticationHandler>(AuthenticationSchemes.Basic.ToString(),
-                                                                                    options => options.ClaimsIssuer = ApiSettings.ClaimsIssuer);
+                                                                                    options => options.ClaimsIssuer = @ApiSettings.ClaimsIssuer);
         }
     }
 }

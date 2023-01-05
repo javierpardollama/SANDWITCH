@@ -16,14 +16,14 @@ namespace Sandwitch.Tier.Service.Extensions
         /// </summary>
         /// <param name="this">Injected <see cref="IServiceCollection"/></param>
         /// <param name="ApiSettings">Injected <see cref="ApiSettings"/></param>
-        public static void AddCustomizedCrossOriginRequests(this IServiceCollection @this, ApiSettings ApiSettings)
+        public static void AddCustomizedCrossOriginRequests(this IServiceCollection @this, ApiSettings @ApiSettings)
         {
             @this.AddCors(options =>
             {
                 options.AddDefaultPolicy(
                     policy =>
                     {
-                        policy.WithOrigins(ApiSettings.ApiAudiences.ToArray())
+                        policy.WithOrigins(@ApiSettings.ApiAudiences.ToArray())
                                                                   .AllowCredentials()
                                                                   .AllowAnyMethod()
                                                                   .AllowAnyHeader();

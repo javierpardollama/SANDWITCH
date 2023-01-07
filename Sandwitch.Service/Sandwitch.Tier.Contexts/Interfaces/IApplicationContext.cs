@@ -13,8 +13,6 @@ namespace Sandwitch.Tier.Contexts.Interfaces
     /// </summary>
     public interface IApplicationContext : IDisposable
     {
-        private string Test { get => string.Empty; set => this.Test = string.Empty; }
-
         /// <summary>
         /// Gets or Sets <see cref="DbSet{Provincia}"/>
         /// </summary>

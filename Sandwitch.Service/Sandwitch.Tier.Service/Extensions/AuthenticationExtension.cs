@@ -23,7 +23,7 @@ namespace Sandwitch.Tier.Service.Extensions
         {
             @this.AddAuthentication(AuthenticationSchemes.Basic.ToString())
                 .AddScheme<AuthenticationSchemeOptions, BasicAuthenticationHandler>(AuthenticationSchemes.Basic.ToString(),
-                                                                                    options => options.ClaimsIssuer = @ApiSettings.ClaimsIssuer);
+                                                                                    options => options.ClaimsIssuer = @ApiSettings.ApiIssuer);
         }
     }
 }

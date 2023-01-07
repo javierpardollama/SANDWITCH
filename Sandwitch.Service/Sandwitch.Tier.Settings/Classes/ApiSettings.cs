@@ -23,8 +23,8 @@ namespace Sandwitch.Tier.Settings.Classes
         public IList<string> ApiAudiences { get; set; }
 
         /// <summary>
-        /// Gets or Sets <see cref="ClaimsIssuer"/>
+        /// Gets or Sets <see cref="ApiIssuer"/>
         /// </summary>
-        public string ClaimsIssuer { get; set; }
+        public string ApiIssuer { get; set; }
     }
 }

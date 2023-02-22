@@ -55,7 +55,7 @@ namespace Sandwitch.Tier.Authentication.Classes
                  new Claim(ClaimTypes.Name, @authSign.UserName),
                  new Claim(ClaimTypes.AuthenticationInstant, DateTime.Now.ToString()),
                  new Claim(ClaimTypes.Locality, CultureInfo.CurrentCulture.TwoLetterISOLanguageName),
-                 new Claim(ClaimTypes.Version, System.Environment.OSVersion.VersionString),
+                 new Claim(ClaimTypes.Version, Environment.OSVersion.VersionString),
                  new Claim(ClaimTypes.System, Environment.MachineName)
             };
 

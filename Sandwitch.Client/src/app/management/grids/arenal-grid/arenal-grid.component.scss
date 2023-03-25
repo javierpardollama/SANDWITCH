@@ -28,12 +28,12 @@ width: fit-content !important;
 
 @media screen and (max-width: 960px) 
 {
-.mat-header-row
+.mat-mdc-header-row
 {
 display: none;
 }
 
-.mat-cell
+.mat-mdc-cell
 {        
 width: 100%;
 float: left;
@@ -41,7 +41,7 @@ border-style: none;
 padding: 8px;
 }          
 
-.mat-table .mat-row {
+.mat-mdc-table .mat-mdc-row {
 border-bottom-width: 1px;
 border-bottom-style: solid;
 border-bottom-color: rgba(0,0,0,.12);        

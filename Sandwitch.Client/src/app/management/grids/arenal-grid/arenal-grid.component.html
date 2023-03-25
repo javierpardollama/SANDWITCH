@@ -30,9 +30,9 @@
       <ng-container matColumnDef="Poblaciones">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Poblaciones </th>
         <td mat-cell *matCellDef="let row">
-          <mat-chip-list>
+          <mat-chip-listbox>
             <mat-chip *ngFor="let poblacion of row.Poblaciones">{{poblacion.Name}}</mat-chip>
-          </mat-chip-list>
+          </mat-chip-listbox>
         </td>
       </ng-container>
 

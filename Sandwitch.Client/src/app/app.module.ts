@@ -1,5 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 
+import { NgOptimizedImage } from '@angular/common';
+
 import { NgModule } from '@angular/core';
 
 import {
@@ -52,7 +54,7 @@ import { BanderaUpdateModalComponent } from './management/modals/updates/bandera
 import { ProvinciaUpdateModalComponent } from './management/modals/updates/provincia-update-modal/provincia-update-modal.component';
 import { PoblacionUpdateModalComponent } from './management/modals/updates/poblacion-update-modal/poblacion-update-modal.component';
 import { AuthInterceptor } from 'src/interceptors/auth.interceptor';
-import { NgOptimizedImage } from '@angular/common';
+
 
 @NgModule({
   declarations: [

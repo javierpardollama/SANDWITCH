@@ -28,7 +28,7 @@
         <mat-select formControlName="PoblacionesId" multiple>
           <mat-optgroup *ngFor="let provincia of provincias" [label]="provincia.Name">
             <mat-option *ngFor="let poblacion of provincia.Poblaciones" [value]="poblacion.Id">
-              <img class="select-option-img" aria-hidden [src]="poblacion.ImageUri" height="25">
+              <img class="select-option-img" aria-hidden ngSrc="{{poblacion.ImageUri}}" height="25" width="25">
               <span>{{poblacion.Name}}</span>
             </mat-option>
           </mat-optgroup>

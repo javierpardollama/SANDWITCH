@@ -8,7 +8,7 @@
       [formControl]="provinciaCtrl">
     <mat-autocomplete #auto="matAutocomplete" (optionSelected)='FindAllPoblacionByProvinciaId($event.option.id)'>
       <mat-option *ngFor="let provincia of filteredProvincias | async" [value]="provincia.Name" [id]="provincia.Id.toString()">
-        <img class="search-option-img" aria-label="provincia.Name" aria-hidden [src]="provincia.ImageUri" height="25">
+        <img class="search-option-img" aria-label="provincia.Name" aria-hidden ngSrc="{{provincia.ImageUri}}" height="25" width="25">
         <span>{{provincia.Name}}</span>
       </mat-option>
     </mat-autocomplete>
@@ -19,7 +19,7 @@
       [formControl]="poblacionCtrl">
     <mat-autocomplete #auto="matAutocomplete" (optionSelected)='FindAllArenalByPoblacionId($event.option.id)'>
       <mat-option *ngFor="let poblacion of filteredPoblaciones | async" [value]="poblacion.Name" [id]="poblacion.Id.toString()">
-        <img class="search-option-img" aria-label="poblacion.Name" aria-hidden [src]="poblacion.ImageUri" height="25">
+        <img class="search-option-img" aria-label="poblacion.Name" aria-hidden ngSrc="{{poblacion.ImageUri}}" height="25" width="25">
         <span>{{poblacion.Name}}</span>
       </mat-option>
     </mat-autocomplete>
@@ -33,7 +33,7 @@
       <mat-card-title>{{arenal.Name}}</mat-card-title>
     </mat-card-header>
     <mat-card-content>
-      <img class="search-card-flag-image" mat-card-image src="{{arenal.LastHistorico.Bandera.ImageUri}}"
+      <img class="search-card-flag-image" mat-card-image ngSrc="{{arenal.LastHistorico.Bandera.ImageUri}}" fill
         alt="{{arenal.LastHistorico.Bandera.Name}}">
 
       <mat-divider></mat-divider>

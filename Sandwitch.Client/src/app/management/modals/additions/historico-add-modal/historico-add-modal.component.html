@@ -12,7 +12,7 @@
         <mat-label>Bandera</mat-label>
         <mat-select formControlName="BanderaId">
           <mat-option *ngFor="let bandera of banderas" [value]="bandera.Id">
-            <img class="select-option-img" aria-hidden [src]="bandera.ImageUri" height="25">
+            <img class="select-option-img" aria-hidden ngSrc="{{bandera.ImageUri}}" height="25" width="25">
             <span>{{bandera.Name}}</span>
           </mat-option>
         </mat-select>

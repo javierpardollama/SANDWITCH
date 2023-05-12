@@ -43,7 +43,6 @@ namespace Sandwitch.Tier.Web.Controllers
         /// <summary>
         /// Finds All Arenal
         /// </summary>
-        /// <param name="id">Injected <see cref="int"/></param>
         /// <returns>Instance of <see cref="Task{JsonResult}"/></returns>
         [HttpGet]
         [ResponseCache(Duration = 10, Location = ResponseCacheLocation.Any, NoStore = false)]
@@ -53,7 +52,7 @@ namespace Sandwitch.Tier.Web.Controllers
         /// <summary>
         /// Finds Paginated Arenal
         /// </summary>
-        /// <param name="viewModel">Injected <see cref="PageBase"/></param>
+        /// <param name="viewModel">Injected <see cref="FilterPage"/></param>
         /// <returns>Instance of <see cref="Task{JsonResult}"/></returns>
         [HttpPost]
         [Route("findpaginatedarenal")]

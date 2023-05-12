@@ -52,7 +52,7 @@ namespace Sandwitch.Tier.Web.Controllers
         /// <summary>
         /// Finds Paginated Bandera
         /// </summary>
-        /// <param name="viewModel">Injected <see cref="PageBase"/></param>
+        /// <param name="viewModel">Injected <see cref="FilterPage"/></param>
         /// <returns>Instance of <see cref="Task{JsonResult}"/></returns>
         [HttpPost]
         [Route("findpaginatedbandera")]

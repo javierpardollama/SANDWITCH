@@ -12,29 +12,26 @@ namespace Sandwitch.Tier.Helpers.Classes
         /// Gets Next Available Number
         /// </summary>
         /// <param name="sequence">Injected <see cref="IReadOnlyCollection{int}"/></param>
+        /// <param name="offset">Injected <see cref="int"/></param>
         /// <returns>Instance of <see cref="int"/></returns>
-        public static int GetNextAvailableNumber(IReadOnlyCollection<int> sequence, int offset = 0)
+        public static int GetNextAvailableNumber(IReadOnlyCollection<int> @sequence, int @offset = 0)
         {
-            // If the list is null or empty, returns the default offset (this uses 0, modify as needed) + 1
-            if (sequence == null)
+            if (@sequence == null || !@sequence.Any())
             {
-                return offset + 1;
+                return @offset;
             }
 
-            // Orders the values ascending
-            var vals = sequence.OrderBy(s => s).ToList();
+            var @ordered = @sequence.OrderBy(s => s).ToList();
 
-            // Finds the first value where Sequence Number is different from (index + 1)
-            var firstGap = vals.TakeWhile((s, idx) => s == idx + 1).Count();
+            var @losts = Enumerable.Range(offset, @ordered.Last()).Except(@ordered).ToList();
 
-            // Takes the Sequence Number from the previous item and increment
-            if (firstGap > 0)
+            if (@losts.Any())
             {
-                return vals[firstGap - 1] + 1;
+                return @losts.First();
             }
             else
             {
-                return 1;
+                return @ordered.Last() + 1;
             }
         }
     }

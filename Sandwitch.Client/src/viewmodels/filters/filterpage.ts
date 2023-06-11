@@ -1,5 +1,5 @@
 export interface FilterPage {
-    Index?: number;
-    Size?: number;
-    Length?: number;
+    Index: number;
+    Size: number;
+    Length: number;
 }

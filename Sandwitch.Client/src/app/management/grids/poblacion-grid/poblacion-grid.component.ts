@@ -1,10 +1,10 @@
 import {
   AfterViewInit,
   Component,
+  OnInit,
   ViewChild
 } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 
@@ -27,9 +27,8 @@ import { FilterPage } from 'src/viewmodels/filters/filterpage';
   templateUrl: './poblacion-grid.component.html',
   styleUrls: ['./poblacion-grid.component.scss']
 })
-export class PoblacionGridComponent implements AfterViewInit {
+export class PoblacionGridComponent implements OnInit, AfterViewInit {
 
-  @ViewChild(MatPaginator, { static: true }) paginator!: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort!: MatSort;
 
   public ELEMENT_DATA: ViewPoblacion[] = [];
@@ -41,7 +40,7 @@ export class PoblacionGridComponent implements AfterViewInit {
   public page: FilterPage =
     {
       Index: 0,
-      Size: 0,
+      Size: 15,
       Length: 0
     };
 
@@ -49,23 +48,14 @@ export class PoblacionGridComponent implements AfterViewInit {
   constructor(
     private poblacionService: PoblacionService,
     public matDialog: MatDialog) {
-
   }
 
   // Life Cicle
+  ngOnInit(): void {
+    window.addEventListener('scroll', this.TurnThePage, true);
+  }
+
   ngAfterViewInit(): void {
-    this.SetupMyTableSettings();
-
-    // If the user changes the sort order, reset back to the first page.
-    this.sort.sortChange.subscribe(() => this.paginator.pageIndex = 0);
-
-    this.page =
-    {
-      Index: 0,
-      Size: this.paginator.pageSize,
-      Length: 0
-    };
-
     this.FindPaginatedPoblacion();
   }
 
@@ -75,15 +65,9 @@ export class PoblacionGridComponent implements AfterViewInit {
 
     this.page.Length = view.Length;
 
-    this.dataSource.data = Array.from(this.ELEMENT_DATA.concat(view.Items).reduce((m, t): Map<ViewPoblacion, ViewPoblacion> => m.set(t.Id, t), new Map()).values());
-  }
+    this.ELEMENT_DATA = this.ELEMENT_DATA.concat(view.Items);
 
-  // Setup Table Settings
-  public SetupMyTableSettings(): void {
-    this.dataSource = new MatTableDataSource(this.ELEMENT_DATA);
-
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
+    this.dataSource.data = this.ELEMENT_DATA;
   }
 
   // Filter Data
@@ -113,13 +97,16 @@ export class PoblacionGridComponent implements AfterViewInit {
     });
   }
 
-  public async TurnThePage(event: PageEvent): Promise<void> {
-    this.page =
-    {
-      Index: event.pageIndex,
-      Size: event.pageSize
-    };
+  private TurnThePage = async (e: any): Promise<void> => {
+    const tableViewHeight = e.target.offsetHeight;
+    const tableScrollHeight = e.target.scrollHeight;
+    const scrollLocation = e.target.scrollTop;
 
-    await this.FindPaginatedPoblacion();
+    const limit = tableScrollHeight - tableViewHeight - this.page.Size;
+    
+    if (scrollLocation > limit) {
+      this.page.Index++;
+      await this.FindPaginatedPoblacion();
+    }
   }
 }

@@ -1,12 +1,10 @@
 import {
     AfterViewInit,
     Component,
-    ViewChild
+    OnInit
 } from '@angular/core';
 
 import { MatDialog } from '@angular/material/dialog';
-import { MatPaginator, PageEvent } from '@angular/material/paginator';
-import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 
 import { ViewArenal } from './../../../../viewmodels/views/viewarenal';
@@ -29,10 +27,7 @@ import { FilterPage } from 'src/viewmodels/filters/filterpage';
     templateUrl: './arenal-grid.component.html',
     styleUrls: ['./arenal-grid.component.scss']
 })
-export class ArenalGridComponent implements AfterViewInit {
-
-    @ViewChild(MatPaginator) paginator!: MatPaginator;
-    @ViewChild(MatSort) sort!: MatSort;
+export class ArenalGridComponent implements OnInit, AfterViewInit {
 
     public ELEMENT_DATA: ViewArenal[] = [];
 
@@ -43,7 +38,7 @@ export class ArenalGridComponent implements AfterViewInit {
     public page: FilterPage =
         {
             Index: 0,
-            Size: 0,
+            Size: 15,
             Length: 0
         };
 
@@ -51,24 +46,14 @@ export class ArenalGridComponent implements AfterViewInit {
     constructor(
         private arenalService: ArenalService,
         public matDialog: MatDialog) {
-
     }
 
     // Life Cicle
+    ngOnInit(): void {
+        window.addEventListener('scroll', this.TurnThePage, true);
+    }
+
     ngAfterViewInit(): void {
-
-        this.SetupMyTableSettings();
-
-        // If the user changes the sort order, reset back to the first page.
-        this.sort.sortChange.subscribe(() => this.paginator.pageIndex = 0);
-
-        this.page =
-        {
-          Index: 0,
-          Size: this.paginator.pageSize,
-          Length: 0
-        };
-
         this.FindPaginatedArenal();
     }
 
@@ -78,13 +63,9 @@ export class ArenalGridComponent implements AfterViewInit {
 
         this.page.Length = view.Length;
 
-        this.dataSource.data = Array.from(this.ELEMENT_DATA.concat(view.Items).reduce((m, t): Map<ViewArenal, ViewArenal> => m.set(t.Id, t), new Map()).values());
-    }
+        this.ELEMENT_DATA = this.ELEMENT_DATA.concat(view.Items);
 
-    // Setup Table Settings
-    public SetupMyTableSettings(): void {
-        this.dataSource.paginator = this.paginator;
-        this.dataSource.sort = this.sort;
+        this.dataSource.data = this.ELEMENT_DATA;
     }
 
     // Filter Data
@@ -114,13 +95,17 @@ export class ArenalGridComponent implements AfterViewInit {
         });
     }
 
-    public async TurnThePage(event: PageEvent): Promise<void> {
-        this.page =
-        {
-            Index: event.pageIndex,
-            Size: event.pageSize,
-        };
 
-        await this.FindPaginatedArenal();
+    private TurnThePage = async (e: any): Promise<void> => {
+        const tableViewHeight = e.target.offsetHeight;
+        const tableScrollHeight = e.target.scrollHeight;
+        const scrollLocation = e.target.scrollTop;
+
+        const limit = tableScrollHeight - tableViewHeight - this.page.Size;
+
+        if (scrollLocation > limit) {
+            this.page.Index++;
+            await this.FindPaginatedArenal();
+        }
     }
 }

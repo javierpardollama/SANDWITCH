@@ -1,6 +1,7 @@
 import {
   AfterViewInit,
   Component,
+  OnDestroy,
   OnInit,
   ViewChild
 } from '@angular/core';
@@ -21,13 +22,14 @@ import {
 } from './../../modals/additions/poblacion-add-modal/poblacion-add-modal.component';
 
 import { FilterPage } from 'src/viewmodels/filters/filterpage';
+import { ViewScroll } from 'src/viewmodels/views/viewscroll';
 
 @Component({
   selector: 'app-poblacion-grid',
   templateUrl: './poblacion-grid.component.html',
   styleUrls: ['./poblacion-grid.component.scss']
 })
-export class PoblacionGridComponent implements OnInit, AfterViewInit {
+export class PoblacionGridComponent implements OnInit, AfterViewInit, OnDestroy {
 
   @ViewChild(MatSort, { static: true }) sort!: MatSort;
 
@@ -57,6 +59,10 @@ export class PoblacionGridComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit(): void {
     this.FindPaginatedPoblacion();
+  }
+
+  ngOnDestroy(): void {
+    window.removeEventListener('scroll', this.TurnThePage, true);
   }
 
   // Get Data from Service
@@ -97,14 +103,11 @@ export class PoblacionGridComponent implements OnInit, AfterViewInit {
     });
   }
 
-  private TurnThePage = async (e: any): Promise<void> => {
-    const tableViewHeight = e.target.offsetHeight;
-    const tableScrollHeight = e.target.scrollHeight;
-    const scrollLocation = e.target.scrollTop;
+  private TurnThePage = async (event: Event): Promise<void> => {
 
-    const limit = tableScrollHeight - tableViewHeight - this.page.Size;
-    
-    if (scrollLocation > limit) {
+    let scroll: ViewScroll = new ViewScroll(event.target as HTMLElement, this.page.Size);
+
+    if (scroll.IsReached()) {
       this.page.Index++;
       await this.FindPaginatedPoblacion();
     }

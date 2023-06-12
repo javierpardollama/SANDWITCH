@@ -1,6 +1,7 @@
 import {
     AfterViewInit,
     Component,
+    OnDestroy,
     OnInit
 } from '@angular/core';
 
@@ -20,6 +21,7 @@ import {
 } from './../../modals/additions/arenal-add-modal/arenal-add-modal.component';
 
 import { FilterPage } from 'src/viewmodels/filters/filterpage';
+import { ViewScroll } from 'src/viewmodels/views/viewscroll';
 
 
 @Component({
@@ -27,7 +29,7 @@ import { FilterPage } from 'src/viewmodels/filters/filterpage';
     templateUrl: './arenal-grid.component.html',
     styleUrls: ['./arenal-grid.component.scss']
 })
-export class ArenalGridComponent implements OnInit, AfterViewInit {
+export class ArenalGridComponent implements OnInit, AfterViewInit, OnDestroy {
 
     public ELEMENT_DATA: ViewArenal[] = [];
 
@@ -55,6 +57,10 @@ export class ArenalGridComponent implements OnInit, AfterViewInit {
 
     ngAfterViewInit(): void {
         this.FindPaginatedArenal();
+    }
+
+    ngOnDestroy(): void {
+        window.removeEventListener('scroll', this.TurnThePage, true);
     }
 
     // Get Data from Service
@@ -96,14 +102,11 @@ export class ArenalGridComponent implements OnInit, AfterViewInit {
     }
 
 
-    private TurnThePage = async (e: any): Promise<void> => {
-        const tableViewHeight = e.target.offsetHeight;
-        const tableScrollHeight = e.target.scrollHeight;
-        const scrollLocation = e.target.scrollTop;
+    private TurnThePage = async (event: Event): Promise<void> => {
 
-        const limit = tableScrollHeight - tableViewHeight - this.page.Size;
+        let scroll: ViewScroll = new ViewScroll(event.target as HTMLElement, this.page.Size);
 
-        if (scrollLocation > limit) {
+        if (scroll.IsReached()) {
             this.page.Index++;
             await this.FindPaginatedArenal();
         }

@@ -1,6 +1,7 @@
 import {
   AfterViewInit,
   Component,
+  OnDestroy,
   OnInit
 } from '@angular/core';
 
@@ -20,13 +21,14 @@ import {
 } from './../../modals/additions/bandera-add-modal/bandera-add-modal.component';
 
 import { FilterPage } from 'src/viewmodels/filters/filterpage';
+import { ViewScroll } from 'src/viewmodels/views/viewscroll';
 
 @Component({
   selector: 'app-bandera-grid',
   templateUrl: './bandera-grid.component.html',
   styleUrls: ['./bandera-grid.component.scss']
 })
-export class BanderaGridComponent implements OnInit, AfterViewInit {
+export class BanderaGridComponent implements OnInit, AfterViewInit, OnDestroy {
 
   public ELEMENT_DATA: ViewBandera[] = [];
 
@@ -55,6 +57,10 @@ export class BanderaGridComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit(): void {
     this.FindPaginatedBandera();
+  }
+
+  ngOnDestroy(): void {
+    window.removeEventListener('scroll', this.TurnThePage, true);
   }
 
   // Get Data from Service
@@ -95,14 +101,11 @@ export class BanderaGridComponent implements OnInit, AfterViewInit {
     });
   }
 
-  private TurnThePage = async (e: any): Promise<void> => {
-    const tableViewHeight = e.target.offsetHeight;
-    const tableScrollHeight = e.target.scrollHeight;
-    const scrollLocation = e.target.scrollTop;
+  private TurnThePage = async (event: Event): Promise<void> => {
 
-    const limit = tableScrollHeight - tableViewHeight - this.page.Size;
-    
-    if (scrollLocation > limit) {
+    let scroll: ViewScroll = new ViewScroll(event.target as HTMLElement, this.page.Size);
+
+    if (scroll.IsReached()) {
       this.page.Index++;
       await this.FindPaginatedBandera();
     }

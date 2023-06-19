@@ -15,7 +15,6 @@ namespace Sandwitch.Tier.Controllers.Tests.Classes
 {
     [TestFixture]
     [Parallelizable(ParallelScope.All)]
-
     public class TestBanderaController
     {
         static readonly HttpClient Client = new() { BaseAddress = new Uri("https://localhost:7297/api/bandera/") };

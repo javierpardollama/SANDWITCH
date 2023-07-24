@@ -26,7 +26,8 @@ namespace Sandwitch.Tier.Service.Extensions
                         policy.WithOrigins(@ApiSettings.ApiAudiences.ToArray())
                                                                   .AllowCredentials()
                                                                   .AllowAnyMethod()
-                                                                  .AllowAnyHeader();
+                                                                  .AllowAnyHeader()
+                                                                  .Build();
                     });
 
             });

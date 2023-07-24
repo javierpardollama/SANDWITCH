@@ -50,7 +50,7 @@ export class ArenalService extends BaseService {
     }
 
     public FindAllArenalByPoblacionId(id: number): Promise<ViewArenal[]> {
-        return firstValueFrom(this.httpClient.get<ViewArenal[]>(`${environment.Api.Service}api/arenal/findallarenalbypoblacionid/` + id)
+        return firstValueFrom(this.httpClient.get<ViewArenal[]>(`${environment.Api.Service}api/arenal/findallarenalbypoblacionid/${id}`)
             .pipe(catchError(this.HandleError<ViewArenal[]>('FindAllArenalByPoblacionId', []))));
     }
 
@@ -60,7 +60,7 @@ export class ArenalService extends BaseService {
     }
 
     public RemoveArenalById(id: number): Promise<any> {
-        return firstValueFrom(this.httpClient.delete<any>(`${environment.Api.Service}api/arenal/removearenalbyid/` + id)
+        return firstValueFrom(this.httpClient.delete<any>(`${environment.Api.Service}api/arenal/removearenalbyid/${id}`)
             .pipe(catchError(this.HandleError<any>('RemoveArenalById', undefined))));
     }
 }

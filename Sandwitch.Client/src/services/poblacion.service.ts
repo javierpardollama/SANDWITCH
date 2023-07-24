@@ -50,7 +50,7 @@ export class PoblacionService extends BaseService {
     }
 
     public FindAllPoblacionByProvinciaId(id: number): Promise<ViewPoblacion[]> {
-        return firstValueFrom(this.httpClient.get<ViewPoblacion[]>(`${environment.Api.Service}api/poblacion/findallpoblacionbyprovinciaid/` + id)
+        return firstValueFrom(this.httpClient.get<ViewPoblacion[]>(`${environment.Api.Service}api/poblacion/findallpoblacionbyprovinciaid/${id}`)
             .pipe(catchError(this.HandleError<ViewPoblacion[]>('FindAllPoblacionByProvinciaId', []))));
     }
 
@@ -60,7 +60,7 @@ export class PoblacionService extends BaseService {
     }
 
     public RemovePoblacionById(id: number): Promise<any> {
-        return firstValueFrom(this.httpClient.delete<any>(`${environment.Api.Service}api/poblacion/removepoblacionbyid/` + id)
+        return firstValueFrom(this.httpClient.delete<any>(`${environment.Api.Service}api/poblacion/removepoblacionbyid/${id}`)
             .pipe(catchError(this.HandleError<any>('RemovePoblacionById', undefined))));
     }
 }

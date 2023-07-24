@@ -55,7 +55,7 @@ export class ProvinciaService extends BaseService {
     }
 
     public RemoveProvinciaById(id: number): Promise<any> {
-        return firstValueFrom(this.httpClient.delete<void>(`${environment.Api.Service}api/provincia/removeprovinciabyid/` + id)
+        return firstValueFrom(this.httpClient.delete<void>(`${environment.Api.Service}api/provincia/removeprovinciabyid/${id}`)
             .pipe(catchError(this.HandleError<any>('RemoveProvinciaById', undefined))));
     }
 }

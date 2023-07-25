@@ -148,13 +148,13 @@ namespace Sandwitch.Tier.Services.Classes
         /// </summary>
         /// <param name="viewModel">Injected <see cref="FilterPage"/></param>
         /// <returns>Instance of <see cref="Task{ViewPage{ViewArenal}}"/></returns>
-        public async Task<ViewPage<ViewArenal>> FindPaginatedArenal(FilterPage @viewmodel)
+        public async Task<ViewPage<ViewArenal>> FindPaginatedArenal(FilterPage @viewModel)
         {
             ViewPage<ViewArenal> @page = new()
             {
                 Length = await Context.Arenal.TagWith("CountAllArenal").CountAsync(),
-                Index = @viewmodel.Index,
-                Size = @viewmodel.Size,
+                Index = @viewModel.Index,
+                Size = @viewModel.Size,
                 Items = Mapper.Map<IList<ViewArenal>>(await Context.Arenal
                .TagWith("FindPaginatedArenal")
                .AsQueryable()
@@ -162,8 +162,8 @@ namespace Sandwitch.Tier.Services.Classes
                .Include(x => x.ArenalPoblaciones)
                .ThenInclude(x => x.Poblacion)
                .Include(x => x.Historicos)
-               .Skip(@viewmodel.Index * @viewmodel.Size)
-               .Take(@viewmodel.Size)
+               .Skip(@viewModel.Index * @viewModel.Size)
+               .Take(@viewModel.Size)
                .ToListAsync())
             };
 

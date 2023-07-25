@@ -95,20 +95,20 @@ namespace Sandwitch.Tier.Services.Classes
         /// </summary>
         /// <param name="viewModel">Injected <see cref="FilterPage"/></param>
         /// <returns>Instance of <see cref="Task{ViewPage{ViewBandera}}"/></returns>
-        public async Task<ViewPage<ViewBandera>> FindPaginatedBandera(FilterPage @viewmodel)
+        public async Task<ViewPage<ViewBandera>> FindPaginatedBandera(FilterPage @viewModel)
         {
             ViewPage<ViewBandera> @page = new()
             {
                 Length = await Context.Bandera.TagWith("CountAllBandera").CountAsync(),
-                Index = @viewmodel.Index,
-                Size = @viewmodel.Size,
+                Index = @viewModel.Index,
+                Size = @viewModel.Size,
                 Items = Mapper.Map<IList<ViewBandera>>(await Context.Bandera
                .TagWith("FindPaginatedBandera")
                .AsQueryable()
                .AsNoTracking()
                .AsSplitQuery()
-               .Skip(@viewmodel.Index * @viewmodel.Size)
-               .Take(@viewmodel.Size)
+               .Skip(@viewModel.Index * @viewModel.Size)
+               .Take(@viewModel.Size)
                .ToListAsync())
             };
 

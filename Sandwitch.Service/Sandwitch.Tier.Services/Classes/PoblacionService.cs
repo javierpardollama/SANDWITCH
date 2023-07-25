@@ -99,21 +99,21 @@ namespace Sandwitch.Tier.Services.Classes
         /// </summary>
         /// <param name="viewModel">Injected <see cref="FilterPage"/></param>
         /// <returns>Instance of <see cref="Task{ViewPage{ViewPoblacion}}"/></returns>
-        public async Task<ViewPage<ViewPoblacion>> FindPaginatedPoblacion(FilterPage @viewmodel)
+        public async Task<ViewPage<ViewPoblacion>> FindPaginatedPoblacion(FilterPage @viewModel)
         {
             ViewPage<ViewPoblacion> @page = new()
             {
                 Length = await Context.Poblacion.TagWith("CountAllPoblacion").CountAsync(),
-                Index = @viewmodel.Index,
-                Size = @viewmodel.Size,
+                Index = @viewModel.Index,
+                Size = @viewModel.Size,
                 Items = Mapper.Map<IList<ViewPoblacion>>(await Context.Poblacion
                 .TagWith("FindPaginatedPoblacion")
                 .AsQueryable()
                 .AsNoTracking()
                 .AsSplitQuery()
                 .Include(x => x.Provincia)
-                .Skip(@viewmodel.Index * @viewmodel.Size)
-                .Take(@viewmodel.Size)
+                .Skip(@viewModel.Index * @viewModel.Size)
+                .Take(@viewModel.Size)
                 .ToListAsync())
             };
 

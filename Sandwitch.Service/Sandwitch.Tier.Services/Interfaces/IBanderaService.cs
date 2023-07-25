@@ -25,7 +25,7 @@ namespace Sandwitch.Tier.Services.Interfaces
         /// </summary>
         /// <param name="viewModel">Injected <see cref="FilterPage"/></param>
         /// <returns>Instance of <see cref="Task{ViewPage{ViewBandera}}"/></returns>
-        public Task<ViewPage<ViewBandera>> FindPaginatedBandera(FilterPage @viewmodel);
+        public Task<ViewPage<ViewBandera>> FindPaginatedBandera(FilterPage @viewModel);
 
         /// <summary>
         /// Finds All Historico By Poblacion Id

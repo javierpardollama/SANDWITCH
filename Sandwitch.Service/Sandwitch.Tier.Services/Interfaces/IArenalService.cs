@@ -25,7 +25,7 @@ namespace Sandwitch.Tier.Services.Interfaces
         /// </summary>
         /// <param name="viewModel">Injected <see cref="FilterPage"/></param>
         /// <returns>Instance of <see cref="Task{ViewPage{ViewArenal}}"/></returns>
-        public Task<ViewPage<ViewArenal>> FindPaginatedArenal(FilterPage @viewmodel);
+        public Task<ViewPage<ViewArenal>> FindPaginatedArenal(FilterPage @viewModel);
 
         /// <summary>
         /// Finds All Arenal By Poblacion Id

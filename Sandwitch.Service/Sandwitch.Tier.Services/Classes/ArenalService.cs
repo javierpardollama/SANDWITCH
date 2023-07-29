@@ -132,7 +132,6 @@ namespace Sandwitch.Tier.Services.Classes
         {
             ICollection<Arenal> @arenales = await Context.Arenal
                 .TagWith("FindAllArenal")
-                .AsQueryable()
                 .AsNoTracking()
                 .AsSplitQuery()
                 .Include(x => x.ArenalPoblaciones)
@@ -152,13 +151,17 @@ namespace Sandwitch.Tier.Services.Classes
         {
             ViewPage<ViewArenal> @page = new()
             {
-                Length = await Context.Arenal.TagWith("CountAllArenal").CountAsync(),
+                Length = await Context.Arenal
+                .TagWith("CountAllArenal")
+                .AsSplitQuery()
+                .AsNoTracking()
+                .CountAsync(),
                 Index = @viewModel.Index,
                 Size = @viewModel.Size,
                 Items = Mapper.Map<IList<ViewArenal>>(await Context.Arenal
                .TagWith("FindPaginatedArenal")
-               .AsQueryable()
                .AsNoTracking()
+               .AsSplitQuery()
                .Include(x => x.ArenalPoblaciones)
                .ThenInclude(x => x.Poblacion)
                .Include(x => x.Historicos)
@@ -179,7 +182,6 @@ namespace Sandwitch.Tier.Services.Classes
         {
             ICollection<Arenal> @arenales = await Context.ArenalPoblacion
                .TagWith("FindAllArenalByPoblacionId")
-               .AsQueryable()
                .AsNoTracking()
                .AsSplitQuery()
                .Include(x => x.Poblacion)
@@ -202,7 +204,6 @@ namespace Sandwitch.Tier.Services.Classes
         {
             ICollection<Historico> @historicos = await Context.Historico
                .TagWith("FindAllHistoricoByArenalId")
-               .AsQueryable()
                .AsNoTracking()
                .AsSplitQuery()
                .Include(x => x.Arenal)
@@ -431,6 +432,7 @@ namespace Sandwitch.Tier.Services.Classes
         {
             Arenal @arenal = await Context.Arenal
                  .AsNoTracking()
+                 .AsSplitQuery()
                  .TagWith("CheckName")
                  .FirstOrDefaultAsync(x => x.Name == @viewModel.Name.Trim());
 
@@ -463,6 +465,7 @@ namespace Sandwitch.Tier.Services.Classes
         {
             Arenal @arenal = await Context.Arenal
                  .AsNoTracking()
+                 .AsSplitQuery()
                  .TagWith("CheckName")
                  .FirstOrDefaultAsync(x => x.Name == @viewModel.Name.Trim() && x.Id != @viewModel.Id);
 

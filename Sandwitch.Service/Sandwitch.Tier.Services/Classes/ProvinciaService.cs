@@ -84,7 +84,6 @@ namespace Sandwitch.Tier.Services.Classes
         {
             IList<Provincia> @provincias = await Context.Provincia
                 .TagWith("FindAllProvincia")
-                .AsQueryable()
                 .AsNoTracking()
                 .AsSplitQuery()
                 .Include(x => x.Poblaciones)
@@ -102,18 +101,21 @@ namespace Sandwitch.Tier.Services.Classes
         {
             ViewPage<ViewProvincia> @page = new()
             {
-                Length = await Context.Provincia.TagWith("CountAllProvincia").CountAsync(),
+                Length = await Context.Provincia
+                    .AsNoTracking()
+                    .AsSplitQuery()
+                    .TagWith("CountAllProvincia")
+                    .CountAsync(),
                 Index = @viewModel.Index,
                 Size = @viewModel.Size,
                 Items = Mapper.Map<IList<ViewProvincia>>(await Context.Provincia
-                .TagWith("FindPaginatedProvincia")
-                .AsQueryable()
-                .AsNoTracking()
-                .AsSplitQuery()
-                .Include(x => x.Poblaciones)
-                .Skip(@viewModel.Index * @viewModel.Size)
-                .Take(@viewModel.Size)
-                .ToListAsync())
+                    .TagWith("FindPaginatedProvincia")
+                    .AsNoTracking()
+                    .AsSplitQuery()
+                    .Include(x => x.Poblaciones)
+                    .Skip(@viewModel.Index * @viewModel.Size)
+                    .Take(@viewModel.Size)
+                    .ToListAsync())
             };
 
             return @page;
@@ -225,6 +227,7 @@ namespace Sandwitch.Tier.Services.Classes
         {
             Provincia @provincia = await Context.Provincia
                  .AsNoTracking()
+                 .AsSplitQuery()
                  .TagWith("CheckName")
                  .FirstOrDefaultAsync(x => x.Name == @viewModel.Name.Trim());
 
@@ -257,6 +260,7 @@ namespace Sandwitch.Tier.Services.Classes
         {
             Provincia @provincia = await Context.Provincia
                  .AsNoTracking()
+                 .AsSplitQuery()
                  .TagWith("CheckName")
                  .FirstOrDefaultAsync(x => x.Name == @viewModel.Name.Trim() && x.Id != @viewModel.Id);
 

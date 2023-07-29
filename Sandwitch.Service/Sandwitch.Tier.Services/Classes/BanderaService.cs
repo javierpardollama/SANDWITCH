@@ -85,6 +85,7 @@ namespace Sandwitch.Tier.Services.Classes
             IList<Bandera> @banderas = await Context.Bandera
                 .TagWith("FindAllBandera")
                 .AsNoTracking()
+                .AsSplitQuery()
                 .ToListAsync();
 
             return Mapper.Map<IList<ViewBandera>>(@banderas);
@@ -99,12 +100,15 @@ namespace Sandwitch.Tier.Services.Classes
         {
             ViewPage<ViewBandera> @page = new()
             {
-                Length = await Context.Bandera.TagWith("CountAllBandera").CountAsync(),
+                Length = await Context.Bandera
+                    .TagWith("CountAllBandera")
+                    .AsNoTracking()
+                    .AsSplitQuery()
+                    .CountAsync(),
                 Index = @viewModel.Index,
                 Size = @viewModel.Size,
                 Items = Mapper.Map<IList<ViewBandera>>(await Context.Bandera
                .TagWith("FindPaginatedBandera")
-               .AsQueryable()
                .AsNoTracking()
                .AsSplitQuery()
                .Skip(@viewModel.Index * @viewModel.Size)
@@ -124,7 +128,6 @@ namespace Sandwitch.Tier.Services.Classes
         {
             ICollection<Historico> @historicos = await Context.Historico
                .TagWith("FindAllHistoricoByBanderaId")
-               .AsQueryable()
                .AsNoTracking()
                .AsSplitQuery()
                .Include(x => x.Arenal)
@@ -242,6 +245,7 @@ namespace Sandwitch.Tier.Services.Classes
             Bandera @bandera = await Context.Bandera
                  .TagWith("CheckName")
                  .AsNoTracking()
+                 .AsSplitQuery()
                  .FirstOrDefaultAsync(x => x.Name == @viewModel.Name.Trim());
 
             if (@bandera != null)
@@ -274,6 +278,7 @@ namespace Sandwitch.Tier.Services.Classes
             Bandera @bandera = await Context.Bandera
                  .TagWith("CheckName")
                  .AsNoTracking()
+                 .AsSplitQuery()
                  .FirstOrDefaultAsync(x => x.Name == @viewModel.Name.Trim() && x.Id != viewModel.Id);
 
             if (@bandera != null)

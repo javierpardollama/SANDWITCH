@@ -85,7 +85,6 @@ namespace Sandwitch.Tier.Services.Classes
         {
             IList<Poblacion> @poblaciones = await Context.Poblacion
                 .TagWith("FindAllPoblacion")
-                .AsQueryable()
                 .AsNoTracking()
                 .AsSplitQuery()
                 .Include(x => x.Provincia)
@@ -103,18 +102,21 @@ namespace Sandwitch.Tier.Services.Classes
         {
             ViewPage<ViewPoblacion> @page = new()
             {
-                Length = await Context.Poblacion.TagWith("CountAllPoblacion").CountAsync(),
+                Length = await Context.Poblacion
+                    .TagWith("CountAllPoblacion")
+                    .AsNoTracking()
+                    .AsSplitQuery()
+                    .CountAsync(),
                 Index = @viewModel.Index,
                 Size = @viewModel.Size,
                 Items = Mapper.Map<IList<ViewPoblacion>>(await Context.Poblacion
-                .TagWith("FindPaginatedPoblacion")
-                .AsQueryable()
-                .AsNoTracking()
-                .AsSplitQuery()
-                .Include(x => x.Provincia)
-                .Skip(@viewModel.Index * @viewModel.Size)
-                .Take(@viewModel.Size)
-                .ToListAsync())
+                    .TagWith("FindPaginatedPoblacion")
+                    .AsNoTracking()
+                    .AsSplitQuery()
+                    .Include(x => x.Provincia)
+                    .Skip(@viewModel.Index * @viewModel.Size)
+                    .Take(@viewModel.Size)
+                    .ToListAsync())
             };
 
             return @page;
@@ -129,7 +131,6 @@ namespace Sandwitch.Tier.Services.Classes
         {
             IList<Poblacion> @poblaciones = await Context.Poblacion
               .TagWith("FindAllPoblacionByProvinciaId")
-              .AsQueryable()
               .AsNoTracking()
               .AsSplitQuery()
               .Include(x => x.Provincia)
@@ -277,6 +278,7 @@ namespace Sandwitch.Tier.Services.Classes
         {
             Poblacion @poblacion = await Context.Poblacion
                  .AsNoTracking()
+                 .AsSplitQuery()
                  .TagWith("CheckName")
                  .FirstOrDefaultAsync(x => x.Name == @viewModel.Name.Trim());
 
@@ -309,6 +311,7 @@ namespace Sandwitch.Tier.Services.Classes
         {
             Poblacion @poblacion = await Context.Poblacion
                  .AsNoTracking()
+                 .AsSplitQuery()
                  .TagWith("CheckName")
                  .FirstOrDefaultAsync(x => x.Name == @viewModel.Name.Trim() & x.Id != @viewModel.Id);
 

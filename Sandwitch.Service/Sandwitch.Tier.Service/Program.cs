@@ -74,7 +74,7 @@ if (@app.Environment.IsDevelopment())
     @app.UseMigrations();
 }
 
-@app.UseCustomizedExceptionMiddlewares();
+@app.UseCustomizedMiddlewares();
 
 @app.UseHttpsRedirection();
 

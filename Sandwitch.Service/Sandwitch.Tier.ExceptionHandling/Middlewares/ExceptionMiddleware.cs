@@ -7,7 +7,7 @@ using System.Net;
 using System.Text.Json;
 using System.Threading.Tasks;
 
-namespace Sandwitch.Tier.ExceptionHandling.Middlewares
+namespace Sandwitch.Tier.Middlewares.Middlewares
 {
     /// <summary>
     /// Represents a <see cref="ExceptionMiddleware"/> class
@@ -43,7 +43,7 @@ namespace Sandwitch.Tier.ExceptionHandling.Middlewares
         }
 
         /// <summary>
-        /// Handles Expception Asynchronously
+        /// Handles Exception Asynchronously
         /// </summary>
         /// <param name="context">Injected <see cref="HttpContext"/></param>
         /// <param name="exception">Injected <see cref="Exception"/></param>

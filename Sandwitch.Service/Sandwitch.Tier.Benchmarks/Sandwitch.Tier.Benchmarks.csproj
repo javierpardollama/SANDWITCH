@@ -9,7 +9,7 @@
 
 	<ItemGroup>
 		<PackageReference Include="BenchmarkDotNet" Version="0.13.7" />
-		<PackageReference Include="IdentityModel" Version="6.1.0" />
+		<PackageReference Include="IdentityModel" Version="6.2.0" />
 	</ItemGroup>
 
 	<ItemGroup>

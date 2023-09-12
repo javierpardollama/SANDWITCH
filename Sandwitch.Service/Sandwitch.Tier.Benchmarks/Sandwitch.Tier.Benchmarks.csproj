@@ -8,7 +8,7 @@
   </PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="BenchmarkDotNet" Version="0.13.7" />
+		<PackageReference Include="BenchmarkDotNet" Version="0.13.8" />
 		<PackageReference Include="IdentityModel" Version="6.2.0" />
 	</ItemGroup>
 

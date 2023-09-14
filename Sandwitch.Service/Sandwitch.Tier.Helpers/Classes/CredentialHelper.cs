@@ -20,7 +20,7 @@ namespace Sandwitch.Tier.Helpers.Classes
         /// <returns>Instance of <see cref="AuthSignIn"/></returns>
         public static AuthSignIn GetRequestCredentials(HttpRequest @request)
         {
-            AuthenticationHeaderValue @authenticationHeader = AuthenticationHeaderValue.Parse(@request.Headers["Authorization"]);
+            AuthenticationHeaderValue @authenticationHeader = AuthenticationHeaderValue.Parse(@request.Headers.Authorization);
 
             byte[] @encoded = Convert.FromBase64String(@authenticationHeader.Parameter);
 

@@ -10,6 +10,7 @@ using Sandwitch.Tier.ViewModels.Classes.Auth;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
 using System.Security.Claims;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
@@ -71,7 +72,7 @@ namespace Sandwitch.Tier.Authentication.Classes
         /// <returns>Instance of <see cref="AuthenticateResult"/></returns>
         protected override Task<AuthenticateResult> HandleAuthenticateAsync()
         {
-            if (!Request.Headers.ContainsKey("Authorization"))
+            if (!Request.Headers.Authorization.Any())
             {
                 return Task.FromResult(AuthenticateResult.Fail("Authorization Error. Header Not Found"));
             }

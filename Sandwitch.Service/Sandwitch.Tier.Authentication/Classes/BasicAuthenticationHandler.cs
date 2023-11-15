@@ -33,13 +33,11 @@ namespace Sandwitch.Tier.Authentication.Classes
         /// <param name="options">Injected <see cref="IOptionsMonitor{AuthenticationSchemeOptions}"/></param>
         /// <param name="logger">Injected <see cref="ILoggerFactory"/></param>
         /// <param name="encoder">Injected <see cref="UrlEncoder"/></param>
-        /// <param name="clock">Injected <see cref="ISystemClock"/></param>
         /// <param name="authService">Injected <see cref="IAuthService"/></param>
         public BasicAuthenticationHandler(IOptionsMonitor<AuthenticationSchemeOptions> @options,
                                           ILoggerFactory @logger,
-                                          UrlEncoder @encoder,
-                                          ISystemClock @clock,
-                                          IAuthService @authService) : base(@options, @logger, @encoder, @clock)
+                                          UrlEncoder @encoder,                                        
+                                          IAuthService @authService) : base(@options, @logger, @encoder)
         {
             this.AuthService = @authService;
         }

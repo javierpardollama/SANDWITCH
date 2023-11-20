@@ -7,7 +7,6 @@ using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Json;
-using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace Sandwitch.Tier.Benchmarks.Services
@@ -23,8 +22,7 @@ namespace Sandwitch.Tier.Benchmarks.Services
 
             HttpResponseMessage @response = await Client.GetAsync("findallarenal");
             @response.EnsureSuccessStatusCode();
-            string @responseBody = await @response.Content.ReadAsStringAsync();
-            var @arenales = JsonSerializer.Deserialize<List<ViewArenal>>(@responseBody);
+            var @arenales = await @response.Content.ReadFromJsonAsync<List<ViewArenal>>();
 
             return @arenales;
 
@@ -37,8 +35,7 @@ namespace Sandwitch.Tier.Benchmarks.Services
 
             HttpResponseMessage @response = await Client.GetAsync(string.Concat("findallarenalbypoblacionid/",1));
             @response.EnsureSuccessStatusCode();
-            string @responseBody = await @response.Content.ReadAsStringAsync();
-            var @arenales = JsonSerializer.Deserialize<List<ViewArenal>>(@responseBody);
+            var @arenales = await @response.Content.ReadFromJsonAsync<List<ViewArenal>>();
 
             return @arenales;
 
@@ -51,8 +48,7 @@ namespace Sandwitch.Tier.Benchmarks.Services
 
             HttpResponseMessage @response = await Client.GetAsync(string.Concat("findallhistoricobyarenalid/",1));
             @response.EnsureSuccessStatusCode();
-            string @responseBody = await @response.Content.ReadAsStringAsync();
-            var @historicos = JsonSerializer.Deserialize<List<ViewHistorico>>(@responseBody);
+            var @historicos = await @response.Content.ReadFromJsonAsync<List<ViewHistorico>>();
 
             return @historicos;
 
@@ -67,8 +63,7 @@ namespace Sandwitch.Tier.Benchmarks.Services
 
             HttpResponseMessage @response = await Client.PostAsync("findpaginatedarenal", @content);
             @response.EnsureSuccessStatusCode();
-            string @responseBody = await @response.Content.ReadAsStringAsync();
-            var @arenales = JsonSerializer.Deserialize<ViewPage<ViewArenal>>(@responseBody);
+            var @arenales = await @response.Content.ReadFromJsonAsync<ViewPage<ViewArenal>>();
 
             return @arenales;
         }

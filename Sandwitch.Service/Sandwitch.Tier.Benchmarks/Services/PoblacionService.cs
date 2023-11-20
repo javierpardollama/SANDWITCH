@@ -7,7 +7,6 @@ using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Json;
-using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace Sandwitch.Tier.Benchmarks.Services
@@ -23,8 +22,7 @@ namespace Sandwitch.Tier.Benchmarks.Services
 
             HttpResponseMessage @response = await Client.GetAsync("findallpoblacion");
             @response.EnsureSuccessStatusCode();
-            string @responseBody = await @response.Content.ReadAsStringAsync();
-            var @poblaciones = JsonSerializer.Deserialize<List<ViewPoblacion>>(@responseBody);
+            var @poblaciones = await @response.Content.ReadFromJsonAsync<List<ViewPoblacion>>();
 
             return @poblaciones;
 
@@ -37,8 +35,7 @@ namespace Sandwitch.Tier.Benchmarks.Services
 
             HttpResponseMessage @response = await Client.GetAsync(string.Concat("findallpoblacionbyprovinciaid/", 1));
             @response.EnsureSuccessStatusCode();
-            string @responseBody = await @response.Content.ReadAsStringAsync();
-            var @poblaciones = JsonSerializer.Deserialize<List<ViewPoblacion>>(@responseBody);
+            var @poblaciones = await @response.Content.ReadFromJsonAsync<List<ViewPoblacion>>();
 
             return @poblaciones;
 
@@ -53,10 +50,10 @@ namespace Sandwitch.Tier.Benchmarks.Services
 
             HttpResponseMessage @response = await Client.PostAsync("findpaginatedpoblacion", @content);
             @response.EnsureSuccessStatusCode();
-            string @responseBody = await @response.Content.ReadAsStringAsync();
-            var @poblaciones = JsonSerializer.Deserialize<ViewPage<ViewPoblacion>>(@responseBody);
+            var @poblaciones = await @response.Content.ReadFromJsonAsync<ViewPage<ViewPoblacion>>();
 
             return @poblaciones;
+          
         }
 
     }

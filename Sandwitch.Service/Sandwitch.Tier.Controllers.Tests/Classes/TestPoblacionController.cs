@@ -8,7 +8,6 @@ using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Json;
-using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace Sandwitch.Tier.Controllers.Tests.Classes
@@ -46,11 +45,9 @@ namespace Sandwitch.Tier.Controllers.Tests.Classes
         [Test]
         public async Task FindAllPoblacion()
         {
-
             HttpResponseMessage @response = await Client.GetAsync("findallpoblacion");
             @response.EnsureSuccessStatusCode();
-            string @responseBody = await @response.Content.ReadAsStringAsync();
-            var @poblaciones = JsonSerializer.Deserialize<List<ViewPoblacion>>(@responseBody);
+            var @poblaciones = await @response.Content.ReadFromJsonAsync<List<ViewPoblacion>>();          
 
             Assert.Pass();
         }
@@ -58,11 +55,9 @@ namespace Sandwitch.Tier.Controllers.Tests.Classes
         [Test]
         public async Task FindAllPoblacionByProvinciaId()
         {
-
             HttpResponseMessage @response = await Client.GetAsync(string.Concat("findallpoblacionbyprovinciaid/", 1));
             @response.EnsureSuccessStatusCode();
-            string @responseBody = await @response.Content.ReadAsStringAsync();
-            var @poblaciones = JsonSerializer.Deserialize<List<ViewPoblacion>>(@responseBody);
+            var @poblaciones = await @response.Content.ReadFromJsonAsync<List<ViewPoblacion>>();         
 
             Assert.Pass();
         }
@@ -70,13 +65,11 @@ namespace Sandwitch.Tier.Controllers.Tests.Classes
         [Test]
         public async Task FindPaginatedPoblacion()
         {
-
             var @content = JsonContent.Create(new FilterPage { Index = 0, Size = 20 });
 
             HttpResponseMessage @response = await Client.PostAsync("findpaginatedpoblacion", @content);
             @response.EnsureSuccessStatusCode();
-            string @responseBody = await @response.Content.ReadAsStringAsync();
-            var @poblaciones = JsonSerializer.Deserialize<ViewPage<ViewPoblacion>>(@responseBody);
+            var @poblaciones = await @response.Content.ReadFromJsonAsync<ViewPage<ViewPoblacion>>();
 
             Assert.Pass();
         }

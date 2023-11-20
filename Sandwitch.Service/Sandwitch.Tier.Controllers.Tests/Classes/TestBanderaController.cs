@@ -8,7 +8,6 @@ using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Json;
-using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace Sandwitch.Tier.Controllers.Tests.Classes
@@ -46,11 +45,9 @@ namespace Sandwitch.Tier.Controllers.Tests.Classes
         [Test]
         public async Task FindAllBandera()
         {
-
             HttpResponseMessage @response = await Client.GetAsync("findallbandera");
             @response.EnsureSuccessStatusCode();
-            string @responseBody = await @response.Content.ReadAsStringAsync();
-            var @banderas = JsonSerializer.Deserialize<List<ViewBandera>>(@responseBody);
+            var @banderas = await @response.Content.ReadFromJsonAsync<List<ViewBandera>>();           
 
             Assert.Pass();
         }
@@ -58,13 +55,11 @@ namespace Sandwitch.Tier.Controllers.Tests.Classes
         [Test]
         public async Task FindPaginatedBandera()
         {
-
             var @content = JsonContent.Create(new FilterPage { Index = 0, Size = 20 });
 
             HttpResponseMessage @response = await Client.PostAsync("findpaginatedbandera", @content);
             @response.EnsureSuccessStatusCode();
-            string @responseBody = await @response.Content.ReadAsStringAsync();
-            var @banderas = JsonSerializer.Deserialize<ViewPage<ViewBandera>>(@responseBody);
+            var @banderas = await @response.Content.ReadFromJsonAsync<ViewPage<ViewBandera>>();
 
             Assert.Pass();
         }

@@ -8,7 +8,6 @@ using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Json;
-using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace Sandwitch.Tier.Controllers.Tests.Classes
@@ -45,11 +44,9 @@ namespace Sandwitch.Tier.Controllers.Tests.Classes
         [Test]
         public async Task FindAllarenal()
         {
-
             HttpResponseMessage @response = await Client.GetAsync("findallarenal");
             @response.EnsureSuccessStatusCode();
-            string @responseBody = await @response.Content.ReadAsStringAsync();
-            var @arenales = JsonSerializer.Deserialize<List<ViewArenal>>(@responseBody);
+            var @arenales = await @response.Content.ReadFromJsonAsync<List<ViewArenal>>();           
 
             Assert.Pass();
         }
@@ -57,11 +54,9 @@ namespace Sandwitch.Tier.Controllers.Tests.Classes
         [Test]
         public async Task FindAllArenalByPoblacionId()
         {
-
             HttpResponseMessage @response = await Client.GetAsync(string.Concat("findallarenalbypoblacionid/", 1));
             @response.EnsureSuccessStatusCode();
-            string @responseBody = await @response.Content.ReadAsStringAsync();
-            var @arenales = JsonSerializer.Deserialize<List<ViewArenal>>(@responseBody);
+            var @arenales = await @response.Content.ReadFromJsonAsync<List<ViewArenal>>();
 
             Assert.Pass();
         }
@@ -69,11 +64,9 @@ namespace Sandwitch.Tier.Controllers.Tests.Classes
         [Test]
         public async Task FindAllHistoricoByArenalId()
         {
-
             HttpResponseMessage @response = await Client.GetAsync(string.Concat("findallhistoricobyarenalid/", 1));
             @response.EnsureSuccessStatusCode();
-            string @responseBody = await @response.Content.ReadAsStringAsync();
-            var @historicos = JsonSerializer.Deserialize<List<ViewHistorico>>(@responseBody);
+            var @historicos = await @response.Content.ReadFromJsonAsync<List<ViewHistorico>>();
 
             Assert.Pass();
         }
@@ -81,13 +74,11 @@ namespace Sandwitch.Tier.Controllers.Tests.Classes
         [Test]
         public async Task FindPaginatedArenal()
         {
-
             var @content = JsonContent.Create(new FilterPage { Index = 0, Size = 20 });
 
             HttpResponseMessage @response = await Client.PostAsync("findpaginatedarenal", @content);
             @response.EnsureSuccessStatusCode();
-            string @responseBody = await @response.Content.ReadAsStringAsync();
-            var @arenales = JsonSerializer.Deserialize<ViewPage<ViewArenal>>(@responseBody);
+            var @arenales = await @response.Content.ReadFromJsonAsync<ViewPage<ViewArenal>>();
 
             Assert.Pass();
         }

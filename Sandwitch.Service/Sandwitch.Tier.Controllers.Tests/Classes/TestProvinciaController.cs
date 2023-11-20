@@ -8,7 +8,6 @@ using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Json;
-using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace Sandwitch.Tier.Controllers.Tests.Classes
@@ -46,11 +45,9 @@ namespace Sandwitch.Tier.Controllers.Tests.Classes
         [Test]
         public async Task FindAllProvincia()
         {
-
             HttpResponseMessage @response = await Client.GetAsync("findallprovincia");
             @response.EnsureSuccessStatusCode();
-            string @responseBody = await @response.Content.ReadAsStringAsync();
-            var @provincias = JsonSerializer.Deserialize<List<ViewProvincia>>(@responseBody);
+            var @provincias = await @response.Content.ReadFromJsonAsync<List<ViewProvincia>>();          
 
             Assert.Pass();
         }
@@ -58,13 +55,11 @@ namespace Sandwitch.Tier.Controllers.Tests.Classes
         [Test]
         public async Task FindPaginatedProvincia()
         {
-
             var @content = JsonContent.Create(new FilterPage { Index = 0, Size = 20 });
 
             HttpResponseMessage @response = await Client.PostAsync("findpaginatedprovincia", @content);
             @response.EnsureSuccessStatusCode();
-            string @responseBody = await @response.Content.ReadAsStringAsync();
-            var @provincias = JsonSerializer.Deserialize<ViewPage<ViewProvincia>>(@responseBody);
+            var @provincias = await @response.Content.ReadFromJsonAsync<ViewPage<ViewProvincia>>();
 
             Assert.Pass();
         }

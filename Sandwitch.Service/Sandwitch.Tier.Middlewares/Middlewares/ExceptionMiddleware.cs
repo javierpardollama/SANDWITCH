@@ -12,19 +12,9 @@ namespace Sandwitch.Tier.Middlewares.Middlewares
     /// <summary>
     /// Represents a <see cref="ExceptionMiddleware"/> class
     /// </summary>
-    public class ExceptionMiddleware
-    {
-        /// <summary>
-        /// Instance of <see cref="RequestDelegate"/>
-        /// </summary>
-        private readonly RequestDelegate Request;
-
-        /// <summary>
-        /// Initializes a new Instance of <see cref="ExceptionMiddleware"/>
-        /// </summary>
-        /// <param name="request">Injected <see cref="RequestDelegate"/></param>
-        public ExceptionMiddleware(RequestDelegate request) => Request = request;
-
+    /// <param name="request">Injected <see cref="RequestDelegate"/></param>
+    public class ExceptionMiddleware(RequestDelegate @request)
+    {      
         /// <summary>
         /// Invoques Asynchronously
         /// </summary>
@@ -34,7 +24,7 @@ namespace Sandwitch.Tier.Middlewares.Middlewares
         {
             try
             {
-                await Request(@context);
+                await @request(@context);
             }
             catch (Exception @exception)
             {

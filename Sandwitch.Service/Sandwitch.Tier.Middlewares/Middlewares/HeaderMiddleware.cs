@@ -8,19 +8,9 @@ namespace Sandwitch.Tier.Middlewares.Middlewares
     /// <summary>
     /// Represents a <see cref="HeaderMiddleware"/> class
     /// </summary>
-    public class HeaderMiddleware
-    {
-        /// <summary>
-        /// Instance of <see cref="RequestDelegate"/>
-        /// </summary>
-        private readonly RequestDelegate Request;
-
-        /// <summary>
-        /// Initializes a new Instance of <see cref="HeaderMiddleware"/>
-        /// </summary>
-        /// <param name="request">Injected <see cref="RequestDelegate"/></param>
-        public HeaderMiddleware(RequestDelegate request) => Request = request;
-
+    /// <param name="request">Injected <see cref="RequestDelegate"/></param>
+    public class HeaderMiddleware(RequestDelegate @request)
+    {     
 
         /// <summary>
         /// Handles Requests Asynchronously
@@ -37,7 +27,7 @@ namespace Sandwitch.Tier.Middlewares.Middlewares
             context.Response.Headers.ContentSecurityPolicy = new StringValues("default-src: https:; frame-ancestors 'self' X-Frame-Options: SAMEORIGIN");
             context.Response.Headers.StrictTransportSecurity = new StringValues("max-age=16070400; includeSubDomains; preload");
 
-            await this.Request(context);
+            await @request(context);
         }
     }
 }

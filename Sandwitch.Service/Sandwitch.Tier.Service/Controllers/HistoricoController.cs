@@ -10,25 +10,15 @@ using System.Threading.Tasks;
 namespace Sandwitch.Tier.Web.Controllers
 {
     /// <summary>
-    /// Represents a <see cref="HistoricoController"/> class. Inherits <see cref="ControllerBase"/>
+    /// Represents a <see cref="HistoricoController"/> class. Inherits <see cref="ControllerBase"/> 
     /// </summary>
+    /// <param name="service">Injected <see cref="IHistoricoService"/></param>
     [Route("api/historico")]
     [Produces("application/json")]
     [ApiController]
     [Authorize]
-    public class HistoricoController : ControllerBase
-    {
-        /// <summary>
-        /// Instance of <see cref="IHistoricoService"/>
-        /// </summary>
-        private readonly IHistoricoService Service;
-
-        /// <summary>
-        /// Initializes a new Instance of <see cref="HistoricoController"/>
-        /// </summary>
-        /// <param name="service">Injected <see cref="IHistoricoService"/></param>
-        public HistoricoController(IHistoricoService @service) => Service = @service;
-
+    public class HistoricoController(IHistoricoService @service) : ControllerBase
+    {       
         /// <summary>
         /// Adds Historico
         /// </summary>
@@ -36,6 +26,6 @@ namespace Sandwitch.Tier.Web.Controllers
         /// <returns>Instance of <see cref="Task{JsonResult}"/></returns>
         [HttpPost]
         [Route("addhistorico")]
-        public async Task<IActionResult> AddHistorico([FromBody]AddHistorico @viewModel) => new JsonResult(value: await Service.AddHistorico(@viewModel));
+        public async Task<IActionResult> AddHistorico([FromBody]AddHistorico @viewModel) => new JsonResult(value: await @service.AddHistorico(@viewModel));
     }
 }

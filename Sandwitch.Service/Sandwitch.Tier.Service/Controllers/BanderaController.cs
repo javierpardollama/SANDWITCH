@@ -12,25 +12,15 @@ using System.Threading.Tasks;
 namespace Sandwitch.Tier.Web.Controllers
 {
     /// <summary>
-    /// Represents a <see cref="BanderaController"/> class. Inherits <see cref="ControllerBase"/>
+    /// Represents a <see cref="BanderaController"/> class. Inherits <see cref="ControllerBase"/> 
     /// </summary>
+    /// <param name="service">Injected <see cref="IBanderaService"/></param>
     [Route("api/bandera")]
     [Produces("application/json")]
     [ApiController]
     [Authorize]
-    public class BanderaController : ControllerBase
-    {
-        /// <summary>
-        /// Instance of <see cref="IBanderaService"/>
-        /// </summary>
-        private readonly IBanderaService Service;
-
-        /// <summary>
-        /// Initializes a new Instance of <see cref="BanderaController"/>
-        /// </summary>
-        /// <param name="service">Injected <see cref="IBanderaService"/></param>
-        public BanderaController(IBanderaService @service) => Service = @service;
-
+    public class BanderaController(IBanderaService @service) : ControllerBase
+    {       
         /// <summary>
         /// Updates Bandera
         /// </summary>
@@ -38,7 +28,7 @@ namespace Sandwitch.Tier.Web.Controllers
         /// <returns>Instance of <see cref="Task{JsonResult}"/></returns>
         [HttpPut]
         [Route("updatebandera")]
-        public async Task<IActionResult> UpdateBandera([FromBody]UpdateBandera @viewModel) => new JsonResult(value: await Service.UpdateBandera(@viewModel));
+        public async Task<IActionResult> UpdateBandera([FromBody]UpdateBandera @viewModel) => new JsonResult(value: await @service.UpdateBandera(@viewModel));
 
         /// <summary>
         /// Finds All Bandera
@@ -47,7 +37,7 @@ namespace Sandwitch.Tier.Web.Controllers
         [HttpGet]
         [ResponseCache(Duration = 10, Location = ResponseCacheLocation.Any, NoStore = false)]
         [Route("findallbandera")]
-        public async Task<IActionResult> FindAllBandera() => new JsonResult(value: await Service.FindAllBandera());
+        public async Task<IActionResult> FindAllBandera() => new JsonResult(value: await @service.FindAllBandera());
 
         /// <summary>
         /// Finds Paginated Bandera
@@ -56,7 +46,7 @@ namespace Sandwitch.Tier.Web.Controllers
         /// <returns>Instance of <see cref="Task{JsonResult}"/></returns>
         [HttpPost]
         [Route("findpaginatedbandera")]
-        public async Task<IActionResult> FindPaginatedBandera([FromBody] FilterPage @viewModel) => new JsonResult(value: await Service.FindPaginatedBandera(@viewModel));
+        public async Task<IActionResult> FindPaginatedBandera([FromBody] FilterPage @viewModel) => new JsonResult(value: await @service.FindPaginatedBandera(@viewModel));
 
         /// <summary>
         /// Finds All Historico By Bandera Id
@@ -65,7 +55,7 @@ namespace Sandwitch.Tier.Web.Controllers
         /// <returns>Instance of <see cref="Task{JsonResult}"/></returns>
         [HttpGet]
         [Route("findallhistoricobybanderaid/{id}")]
-        public async Task<IActionResult> FindAllHistoricoByBanderaId(int @id) => new JsonResult(value: await Service.FindAllHistoricoByBanderaId(@id));
+        public async Task<IActionResult> FindAllHistoricoByBanderaId(int @id) => new JsonResult(value: await @service.FindAllHistoricoByBanderaId(@id));
 
         /// <summary>
         /// Adds Bandera
@@ -74,7 +64,7 @@ namespace Sandwitch.Tier.Web.Controllers
         /// <returns>Instance of <see cref="Task{JsonResult}"/></returns>
         [HttpPost]
         [Route("addbandera")]
-        public async Task<IActionResult> AddBandera([FromBody]AddBandera @viewModel) => new JsonResult(value: await Service.AddBandera(@viewModel));
+        public async Task<IActionResult> AddBandera([FromBody]AddBandera @viewModel) => new JsonResult(value: await @service.AddBandera(@viewModel));
 
         /// <summary>
         /// Removes Bandera ById
@@ -85,7 +75,7 @@ namespace Sandwitch.Tier.Web.Controllers
         [Route("removebanderabyid/{id}")]
         public async Task<IActionResult> RemoveBanderaById(int @id)
         {
-            await Service.RemoveBanderaById(@id);
+            await @service.RemoveBanderaById(@id);
 
             return new JsonResult((int)HttpStatusCode.OK);
         }

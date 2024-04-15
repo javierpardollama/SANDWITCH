@@ -12,25 +12,15 @@ using System.Threading.Tasks;
 namespace Sandwitch.Tier.Web.Controllers
 {
     /// <summary>
-    /// Represents a <see cref="ProvinciaController"/> class. Inherits <see cref="ControllerBase"/>
+    /// Represents a <see cref="ProvinciaController"/> class. Inherits <see cref="ControllerBase"/> 
     /// </summary>
+    /// <param name="service">Injected <see cref="IArenalService"/></param>
     [Route("api/provincia")]
     [Produces("application/json")]
     [ApiController]
     [Authorize]
-    public class ProvinciaController : ControllerBase
+    public class ProvinciaController(IProvinciaService @service) : ControllerBase
     {
-        /// <summary>
-        /// Instance of <see cref="IProvinciaService"/>
-        /// </summary>
-        private readonly IProvinciaService Service;
-
-        /// <summary>
-        /// Initializes a new Instance of <see cref="ProvinciaController"/>
-        /// </summary>
-        /// <param name="service">Injected <see cref="IProvinciaService"/></param>
-        public ProvinciaController(IProvinciaService @service) => Service = @service;
-
         /// <summary>
         /// Updates Provincia
         /// </summary>
@@ -38,7 +28,7 @@ namespace Sandwitch.Tier.Web.Controllers
         /// <returns>Instance of <see cref="Task{JsonResult}"/></returns>
         [HttpPut]
         [Route("updateprovincia")]
-        public async Task<IActionResult> UpdateProvincia([FromBody]UpdateProvincia @viewModel) => new JsonResult(value: await Service.UpdateProvincia(@viewModel));
+        public async Task<IActionResult> UpdateProvincia([FromBody]UpdateProvincia @viewModel) => new JsonResult(value: await @service.UpdateProvincia(@viewModel));
 
         /// <summary>
         /// Finds All Provincia
@@ -47,7 +37,7 @@ namespace Sandwitch.Tier.Web.Controllers
         [HttpGet]
         [ResponseCache(Duration = 10, Location = ResponseCacheLocation.Any, NoStore = false)]
         [Route("findallprovincia")]
-        public async Task<IActionResult> FindAllProvincia() => new JsonResult(value: await Service.FindAllProvincia());
+        public async Task<IActionResult> FindAllProvincia() => new JsonResult(value: await @service.FindAllProvincia());
 
         /// <summary>
         /// Finds Paginated Provincia
@@ -56,7 +46,7 @@ namespace Sandwitch.Tier.Web.Controllers
         /// <returns>Instance of <see cref="Task{JsonResult}"/></returns>
         [HttpPost]
         [Route("findpaginatedprovincia")]
-        public async Task<IActionResult> FindPaginatedProvincia([FromBody] FilterPage @viewModel) => new JsonResult(value: await Service.FindPaginatedProvincia(@viewModel));
+        public async Task<IActionResult> FindPaginatedProvincia([FromBody] FilterPage @viewModel) => new JsonResult(value: await @service.FindPaginatedProvincia(@viewModel));
 
         /// <summary>
         /// Adds Provincia
@@ -65,7 +55,7 @@ namespace Sandwitch.Tier.Web.Controllers
         /// <returns>Instance of <see cref="Task{JsonResult}"/></returns>
         [HttpPost]
         [Route("addprovincia")]
-        public async Task<IActionResult> AddProvincia([FromBody]AddProvincia @viewModel) => new JsonResult(value: await Service.AddProvincia(@viewModel));
+        public async Task<IActionResult> AddProvincia([FromBody]AddProvincia @viewModel) => new JsonResult(value: await @service.AddProvincia(@viewModel));
 
         /// <summary>
         /// Removes Provincia By Id
@@ -76,7 +66,7 @@ namespace Sandwitch.Tier.Web.Controllers
         [Route("removeprovinciabyid/{id}")]
         public async Task<IActionResult> RemoveProvinciaById(int @id)
         {
-            await Service.RemoveProvinciaById(@id);
+            await @service.RemoveProvinciaById(@id);
 
             return new JsonResult((int)HttpStatusCode.OK);
         }

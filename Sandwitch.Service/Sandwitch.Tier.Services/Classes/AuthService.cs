@@ -9,10 +9,7 @@ namespace Sandwitch.Tier.Services.Classes
 {
     /// <summary>
     /// Represents a <see cref="AuthService"/> class.  Inherits <see cref="BaseService"/>. Implements <see cref="IAuthService"/>.
-    /// </summary>
-    /// <remarks>
-    /// Initializes a new Instance of <see cref="AuthService"/>
-    /// </remarks>
+    /// </summary>   
     /// <param name="apiSettings">Injected <see cref="IOptions{ApiSettings}"/></param>
     public class AuthService(ILogger<AuthService> @logger,
                              IOptions<ApiSettings> @apiSettings) : BaseService(@logger, @apiSettings), IAuthService

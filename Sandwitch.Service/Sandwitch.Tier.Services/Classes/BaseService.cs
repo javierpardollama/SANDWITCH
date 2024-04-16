@@ -54,9 +54,8 @@ namespace Sandwitch.Tier.Services.Classes
         /// </summary>
         /// <param name="logger">Injected <see cref="ILogger"/></param>
         /// <param name="apiSettings">Injected <see cref="IOptions{ApiSettings}"/></param>
-        public BaseService(
-            ILogger @logger,
-            IOptions<ApiSettings> @apiSettings) 
+        public BaseService(ILogger @logger,
+                           IOptions<ApiSettings> @apiSettings) 
         {
             Logger = @logger;
             ApiSettings = @apiSettings;

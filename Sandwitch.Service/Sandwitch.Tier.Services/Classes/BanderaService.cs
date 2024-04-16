@@ -1,4 +1,9 @@
-﻿using AutoMapper;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+
+using AutoMapper;
 
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
@@ -12,31 +17,20 @@ using Sandwitch.Tier.ViewModels.Classes.Filters;
 using Sandwitch.Tier.ViewModels.Classes.Updates;
 using Sandwitch.Tier.ViewModels.Classes.Views;
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
 namespace Sandwitch.Tier.Services.Classes
 {
     /// <summary>
     /// Represents a <see cref="BanderaService"/> class. Inherits <see cref="BaseService"/>. Implements <see cref="IBanderaService"/>
-    /// </summary>
-    public class BanderaService : BaseService, IBanderaService
+    /// </summary>    
+    /// <param name="context">Injected <see cref="IApplicationContext"/></param>
+    /// <param name="mapper">Injected <see cref="IMapper"/></param>
+    /// <param name="logger">Injected <see cref="ILogger"/></param>
+    public class BanderaService(IApplicationContext @context,
+                          IMapper @mapper,
+                          ILogger<BanderaService> @logger) : BaseService(@context,
+                                                                  @mapper,
+                                                                  @logger), IBanderaService
     {
-        /// <summary>
-        /// Initializes a new Instance of <see cref="BanderaService"/>
-        /// </summary>
-        /// <param name="context">Injected <see cref="IApplicationContext"/></param>
-        /// <param name="mapper">Injected <see cref="IMapper"/></param>
-        /// <param name="logger">Injected <see cref="ILogger"/></param>
-        public BanderaService(IApplicationContext @context,
-                              IMapper @mapper,
-                              ILogger<BanderaService> @logger) : base(@context,
-                                                                      @mapper,
-                                                                      @logger)
-        {
-        }
 
         /// <summary>
         /// Adds Bandera

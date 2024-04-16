@@ -10,17 +10,13 @@ namespace Sandwitch.Tier.Services.Classes
     /// <summary>
     /// Represents a <see cref="AuthService"/> class.  Inherits <see cref="BaseService"/>. Implements <see cref="IAuthService"/>.
     /// </summary>
-    public class AuthService : BaseService, IAuthService
-    {       
-
-        /// <summary>
-        /// Initializes a new Instance of <see cref="AuthService"/>
-        /// </summary>
-        /// <param name="apiSettings">Injected <see cref="IOptions{ApiSettings}"/></param>
-        public AuthService(ILogger<AuthService> @logger,
-                                     IOptions<ApiSettings> @apiSettings) : base(@logger, @apiSettings)
-        {           
-        }
+    /// <remarks>
+    /// Initializes a new Instance of <see cref="AuthService"/>
+    /// </remarks>
+    /// <param name="apiSettings">Injected <see cref="IOptions{ApiSettings}"/></param>
+    public class AuthService(ILogger<AuthService> @logger,
+                             IOptions<ApiSettings> @apiSettings) : BaseService(@logger, @apiSettings), IAuthService
+    {
 
         /// <summary>
         /// Checks wether Credentials are valid or not

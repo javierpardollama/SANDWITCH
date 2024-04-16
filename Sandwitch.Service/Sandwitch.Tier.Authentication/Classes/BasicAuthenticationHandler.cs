@@ -1,4 +1,12 @@
-﻿using Microsoft.AspNetCore.Authentication;
+﻿using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.Linq;
+using System.Security.Claims;
+using System.Text.Encodings.Web;
+using System.Threading.Tasks;
+
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 
@@ -7,40 +15,24 @@ using Sandwitch.Tier.Helpers.Classes;
 using Sandwitch.Tier.Services.Interfaces;
 using Sandwitch.Tier.ViewModels.Classes.Auth;
 
-using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Security.Claims;
-using System.Text.Encodings.Web;
-using System.Threading.Tasks;
-
 namespace Sandwitch.Tier.Authentication.Classes
 {
     /// <summary>
     /// Represents a <see cref="BasicAuthenticationHandler"/> class. Inherits <see cref="AuthenticationHandler{AuthenticationSchemeOptions}"/> Implements <see cref="IBasicAuthenticationHandler"/>
-    /// </summary>
-    public class BasicAuthenticationHandler : AuthenticationHandler<AuthenticationSchemeOptions>, IBasicAuthenticationHandler
+    /// </summary>   
+    /// <param name="options">Injected <see cref="IOptionsMonitor{AuthenticationSchemeOptions}"/></param>
+    /// <param name="logger">Injected <see cref="ILoggerFactory"/></param>
+    /// <param name="encoder">Injected <see cref="UrlEncoder"/></param>
+    /// <param name="authService">Injected <see cref="IAuthService"/></param>
+    public class BasicAuthenticationHandler(IOptionsMonitor<AuthenticationSchemeOptions> @options,
+                                      ILoggerFactory @logger,
+                                      UrlEncoder @encoder,
+                                      IAuthService @authService) : AuthenticationHandler<AuthenticationSchemeOptions>(@options, @logger, @encoder), IBasicAuthenticationHandler
     {
         /// <summary>
         /// Instance of <see cref="IAuthService"/>
         /// </summary>
-        private readonly IAuthService AuthService;
-
-        /// <summary>
-        /// Initializes a new Instance of <see cref="BasicAuthenticationHandler"/>
-        /// </summary>
-        /// <param name="options">Injected <see cref="IOptionsMonitor{AuthenticationSchemeOptions}"/></param>
-        /// <param name="logger">Injected <see cref="ILoggerFactory"/></param>
-        /// <param name="encoder">Injected <see cref="UrlEncoder"/></param>
-        /// <param name="authService">Injected <see cref="IAuthService"/></param>
-        public BasicAuthenticationHandler(IOptionsMonitor<AuthenticationSchemeOptions> @options,
-                                          ILoggerFactory @logger,
-                                          UrlEncoder @encoder,                                        
-                                          IAuthService @authService) : base(@options, @logger, @encoder)
-        {
-            this.AuthService = @authService;
-        }
+        private readonly IAuthService AuthService = @authService;
 
         /// <summary>
         /// Gets Authentication Ticket
@@ -49,14 +41,14 @@ namespace Sandwitch.Tier.Authentication.Classes
         /// <returns>Instance of <see cref="AuthenticationTicket"/></returns>
         public AuthenticationTicket GetAuthenticationTicket(AuthSignIn @authSign)
         {
-            List<Claim> @claims = new()
-            {                
+            List<Claim> @claims =
+            [
                  new Claim(ClaimTypes.Name, @authSign.UserName),
                  new Claim(ClaimTypes.AuthenticationInstant, DateTime.Now.ToString()),
                  new Claim(ClaimTypes.Locality, CultureInfo.CurrentCulture.TwoLetterISOLanguageName),
                  new Claim(ClaimTypes.Version, Environment.OSVersion.VersionString),
                  new Claim(ClaimTypes.System, Environment.MachineName)
-            };
+            ];
 
             return new AuthenticationTicket(
                 new ClaimsPrincipal(identity: new ClaimsIdentity(claims: @claims,

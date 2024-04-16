@@ -21,22 +21,16 @@ namespace Sandwitch.Tier.Services.Classes
 {
     /// <summary>
     /// Represents a <see cref="ProvinciaService"/> class. Inherits <see cref="BaseService"/>. Implements <see cref="IProvinciaService"/>
-    /// </summary>
-    public class ProvinciaService : BaseService, IProvinciaService
+    /// </summary>    
+    /// <param name="context">Injected <see cref="IApplicationContext"/></param>
+    /// <param name="mapper">Injected <see cref="IMapper"/></param>
+    /// <param name="logger">Injected <see cref="ILogger"/></param>
+    public class ProvinciaService(IApplicationContext @context,
+                            IMapper @mapper,
+                            ILogger<ProvinciaService> @logger) : BaseService(@context,
+                                                                      @mapper,
+                                                                      @logger), IProvinciaService
     {
-        /// <summary>
-        /// Initializes a new Instance of <see cref="ProvinciaService"/>
-        /// </summary>
-        /// <param name="context">Injected <see cref="IApplicationContext"/></param>
-        /// <param name="mapper">Injected <see cref="IMapper"/></param>
-        /// <param name="logger">Injected <see cref="ILogger"/></param>
-        public ProvinciaService(IApplicationContext @context,
-                                IMapper @mapper,
-                                ILogger<ProvinciaService> @logger) : base(@context,
-                                                                          @mapper,
-                                                                          @logger)
-        {
-        }
 
         /// <summary>
         /// Adds Provincia

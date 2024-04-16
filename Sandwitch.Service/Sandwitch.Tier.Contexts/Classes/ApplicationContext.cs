@@ -1,4 +1,7 @@
 ﻿
+using System;
+using System.Threading.Tasks;
+
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 
@@ -6,23 +9,14 @@ using Sandwitch.Tier.Contexts.Extensions;
 using Sandwitch.Tier.Contexts.Interfaces;
 using Sandwitch.Tier.Entities.Classes;
 
-using System;
-using System.Threading.Tasks;
-
 namespace Sandwitch.Tier.Contexts.Classes
 {
     /// <summary>
     /// Represents a <see cref="ApplicationContext"/> class. Inherits <see cref="DbContext"/>. Implements <see cref="IApplicationContext"/>
-    /// </summary>
-    public class ApplicationContext : DbContext, IApplicationContext
+    /// </summary>    
+    /// <param name="options">Injected <see cref="DbContextOptions{ApplicationContext}"/></param>
+    public class ApplicationContext(DbContextOptions<ApplicationContext> @options) : DbContext(@options), IApplicationContext
     {
-        /// <summary>
-        /// Initializes a new Instance of <see cref="ApplicationContext"/>
-        /// </summary>
-        /// <param name="options">Injected <see cref="DbContextOptions{ApplicationContext}"/></param>
-        public ApplicationContext(DbContextOptions<ApplicationContext> @options) : base(@options)
-        {
-        }
 
         /// <summary>
         /// Gets or Sets <see cref="DbSet{Provincia}"/>

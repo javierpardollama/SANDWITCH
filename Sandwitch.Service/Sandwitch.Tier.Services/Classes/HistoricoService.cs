@@ -1,4 +1,8 @@
-﻿using AutoMapper;
+﻿using System;
+using System.Linq;
+using System.Threading.Tasks;
+
+using AutoMapper;
 
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
@@ -10,30 +14,20 @@ using Sandwitch.Tier.Services.Interfaces;
 using Sandwitch.Tier.ViewModels.Classes.Additions;
 using Sandwitch.Tier.ViewModels.Classes.Views;
 
-using System;
-using System.Linq;
-using System.Threading.Tasks;
-
 namespace Sandwitch.Tier.Services.Classes
 {
     /// <summary>
     /// Represents a <see cref="HistoricoService"/> class. Inherits <see cref="BaseService"/>. Implements <see cref="IHistoricoService"/>
-    /// </summary>
-    public class HistoricoService : BaseService, IHistoricoService
+    /// </summary>    
+    /// <param name="context">Injected <see cref="IApplicationContext"/></param>
+    /// <param name="mapper">Injected <see cref="IMapper"/></param>
+    /// <param name="logger">Injected <see cref="ILogger"/></param>
+    public class HistoricoService(IApplicationContext @context,
+                            IMapper @mapper,
+                            ILogger<HistoricoService> @logger) : BaseService(@context,
+                                                                      @mapper,
+                                                                      @logger), IHistoricoService
     {
-        /// <summary>
-        /// Initializes a new Instance of <see cref="HistoricoService"/>
-        /// </summary>
-        /// <param name="context">Injected <see cref="IApplicationContext"/></param>
-        /// <param name="mapper">Injected <see cref="IMapper"/></param>
-        /// <param name="logger">Injected <see cref="ILogger"/></param>
-        public HistoricoService(IApplicationContext @context,
-                                IMapper @mapper,
-                                ILogger<HistoricoService> @logger) : base(@context,
-                                                                          @mapper,
-                                                                          @logger)
-        {
-        }
 
         /// <summary>
         /// Finds Arenal By Id

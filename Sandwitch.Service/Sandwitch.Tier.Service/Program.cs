@@ -1,3 +1,8 @@
+using System;
+using System.IO;
+using System.Reflection;
+using System.Text.Json.Serialization;
+
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -10,11 +15,6 @@ using Sandwitch.Tier.Service.Extensions;
 using Sandwitch.Tier.Settings.Classes;
 
 using Serilog;
-
-using System;
-using System.IO;
-using System.Reflection;
-using System.Text.Json.Serialization;
 
 var @builder = WebApplication.CreateBuilder(args);
 

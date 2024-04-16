@@ -1,6 +1,4 @@
-﻿using System.Linq;
-
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 
 using Sandwitch.Tier.Settings.Classes;
 
@@ -23,7 +21,7 @@ namespace Sandwitch.Tier.Service.Extensions
                 options.AddDefaultPolicy(
                     policy =>
                     {
-                        policy.WithOrigins(@ApiSettings.ApiAudiences.ToArray())
+                        policy.WithOrigins([.. @ApiSettings.ApiAudiences])
                                                                   .AllowCredentials()
                                                                   .AllowAnyMethod()
                                                                   .AllowAnyHeader()

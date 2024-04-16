@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
 using System.Security.Claims;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
@@ -28,12 +27,7 @@ namespace Sandwitch.Tier.Authentication.Classes
                                       ILoggerFactory @logger,
                                       UrlEncoder @encoder,
                                       IAuthService @authService) : AuthenticationHandler<AuthenticationSchemeOptions>(@options, @logger, @encoder), IBasicAuthenticationHandler
-    {
-        /// <summary>
-        /// Instance of <see cref="IAuthService"/>
-        /// </summary>
-        private readonly IAuthService AuthService = @authService;
-
+    {       
         /// <summary>
         /// Gets Authentication Ticket
         /// </summary>
@@ -62,13 +56,13 @@ namespace Sandwitch.Tier.Authentication.Classes
         /// <returns>Instance of <see cref="AuthenticateResult"/></returns>
         protected override Task<AuthenticateResult> HandleAuthenticateAsync()
         {
-            if (!Request.Headers.Authorization.Any())
+            if (Request.Headers.Authorization.Count == 0)
             {
                 return Task.FromResult(AuthenticateResult.Fail("Authorization Error. Header Not Found"));
             }
             else
             {
-                return AuthService.CanAuthenticate(CredentialHelper.GetRequestCredentials(Request))
+                return @authService.CanAuthenticate(CredentialHelper.GetRequestCredentials(Request))
                     ? Task.FromResult(AuthenticateResult.Success(ticket: GetAuthenticationTicket(authSign: CredentialHelper.GetRequestCredentials(Request))))
                     : Task.FromResult(AuthenticateResult.Fail("Authorization Error. Authentication Error"));
             }

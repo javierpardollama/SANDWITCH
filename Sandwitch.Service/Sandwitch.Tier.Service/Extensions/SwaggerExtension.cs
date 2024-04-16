@@ -14,7 +14,7 @@ namespace Sandwitch.Tier.Service.Extensions
     public static class SwaggerExtension
     {
         /// <summary>
-        /// Extends Customized Authentication
+        /// Extends Customized Swagger Configuration
         /// </summary>
         /// <param name="this">Injected <see cref="IServiceCollection"/></param>        
         public static void AddCustomizedSwagger(this IServiceCollection @this)

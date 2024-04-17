@@ -33,6 +33,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sandwitch.Tier.Benchmarks",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sandwitch.Tier.Controllers.Tests", "Sandwitch.Tier.Controllers.Tests\Sandwitch.Tier.Controllers.Tests.csproj", "{947ADA64-F29A-4E8F-8D6A-ED3B90BBFB8F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sandwitch.Tier.Client.Tests", "Sandwitch.Tier.Client.Tests\Sandwitch.Tier.Client.Tests.csproj", "{65247CB8-A1D5-42E0-91AB-326AFC96BF65}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -99,6 +101,10 @@ Global
 		{947ADA64-F29A-4E8F-8D6A-ED3B90BBFB8F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{947ADA64-F29A-4E8F-8D6A-ED3B90BBFB8F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{947ADA64-F29A-4E8F-8D6A-ED3B90BBFB8F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{65247CB8-A1D5-42E0-91AB-326AFC96BF65}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{65247CB8-A1D5-42E0-91AB-326AFC96BF65}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{65247CB8-A1D5-42E0-91AB-326AFC96BF65}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{65247CB8-A1D5-42E0-91AB-326AFC96BF65}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

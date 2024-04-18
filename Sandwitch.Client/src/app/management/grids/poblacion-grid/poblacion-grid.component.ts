@@ -69,11 +69,11 @@ export class PoblacionGridComponent implements OnInit, AfterViewInit, OnDestroy 
   public async FindPaginatedPoblacion(): Promise<void> {
     const view = await this.poblacionService.FindPaginatedPoblacion(this.page);
 
-    this.page.Length = view.Length;
-
-    this.ELEMENT_DATA = Array.from(this.ELEMENT_DATA.concat(view.Items).reduce((m, t): Map<ViewPoblacion, ViewPoblacion> => m.set(t.Id, t), new Map()).values());
-
-    this.dataSource.data = this.ELEMENT_DATA;
+    if (view) {
+      this.page.Length = view?.Length;
+      this.ELEMENT_DATA = Array.from(this.ELEMENT_DATA.concat(view?.Items).reduce((m, t): Map<ViewPoblacion, ViewPoblacion> => m.set(t?.Id, t), new Map()).values());
+      this.dataSource.data = this.ELEMENT_DATA;
+    }
   }
 
   // Filter Data

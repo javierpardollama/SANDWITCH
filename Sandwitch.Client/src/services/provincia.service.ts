@@ -21,6 +21,7 @@ import { FilterPage } from 'src/viewmodels/filters/filterpage';
 import { firstValueFrom } from 'rxjs';
 
 import { environment } from 'src/environments/environment';
+import { Router } from '@angular/router';
 
 @Injectable({
     providedIn: 'root',
@@ -30,8 +31,9 @@ export class ProvinciaService extends BaseService {
 
     public constructor(
         protected override httpClient: HttpClient,
-        protected override matSnackBar: MatSnackBar) {
-        super(httpClient, matSnackBar);
+        protected override matSnackBar: MatSnackBar,
+        protected override router: Router) {
+        super(httpClient, matSnackBar, router);
     }
 
     public UpdateProvincia(viewModel: UpdateProvincia): Promise<ViewProvincia> {

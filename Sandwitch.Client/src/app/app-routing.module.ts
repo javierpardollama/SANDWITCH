@@ -5,6 +5,7 @@ import { ArenalGridComponent } from './management/grids/arenal-grid/arenal-grid.
 import { BanderaGridComponent } from './management/grids/bandera-grid/bandera-grid.component';
 import { PoblacionGridComponent } from './management/grids/poblacion-grid/poblacion-grid.component';
 import { ProvinciaGridComponent } from './management/grids/provincia-grid/provincia-grid.component';
+import { UnknownComponent } from './unknown/unknown.component';
 
 @NgModule({
   imports: [RouterModule.forRoot([
@@ -31,6 +32,11 @@ import { ProvinciaGridComponent } from './management/grids/provincia-grid/provin
     {
       path: 'management/arenales',
       component: ArenalGridComponent,
+      pathMatch: 'full'
+    },
+    {
+      path: 'unknown',
+      component: UnknownComponent,
       pathMatch: 'full'
     }
   ])

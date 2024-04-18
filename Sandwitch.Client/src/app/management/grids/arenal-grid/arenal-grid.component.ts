@@ -67,11 +67,11 @@ export class ArenalGridComponent implements OnInit, AfterViewInit, OnDestroy {
     public async FindPaginatedArenal(): Promise<void> {
         const view = await this.arenalService.FindPaginatedArenal(this.page);
 
-        this.page.Length = view.Length;
-
-        this.ELEMENT_DATA = Array.from(this.ELEMENT_DATA.concat(view.Items).reduce((m, t): Map<ViewArenal, ViewArenal> => m.set(t.Id, t), new Map()).values());
-
-        this.dataSource.data = this.ELEMENT_DATA;
+        if (view) {
+            this.page.Length = view.Length;
+            this.ELEMENT_DATA = Array.from(this.ELEMENT_DATA.concat(view.Items).reduce((m, t): Map<ViewArenal, ViewArenal> => m.set(t.Id, t), new Map()).values());
+            this.dataSource.data = this.ELEMENT_DATA;
+        }
     }
 
     // Filter Data

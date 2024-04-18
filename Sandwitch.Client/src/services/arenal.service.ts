@@ -20,6 +20,7 @@ import { FilterPage } from 'src/viewmodels/filters/filterpage';
 
 import { firstValueFrom } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { Router } from '@angular/router';
 
 
 @Injectable({
@@ -30,8 +31,9 @@ export class ArenalService extends BaseService {
 
     public constructor(
         protected override httpClient: HttpClient,
-        protected override matSnackBar: MatSnackBar) {
-        super(httpClient, matSnackBar);
+        protected override matSnackBar: MatSnackBar,
+        protected override router: Router) {
+        super(httpClient, matSnackBar, router);
     }
 
     public UpdateArenal(viewModel: UpdateArenal): Promise<ViewArenal> {

@@ -34,6 +34,7 @@ import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
 import { SearchComponent } from './search/search.component';
+import { UnknownComponent } from './unknown/unknown.component';
 
 // App-Grid
 import { BanderaGridComponent } from './management/grids/bandera-grid/bandera-grid.component';
@@ -63,6 +64,7 @@ import { AuthInterceptor } from 'src/interceptors/auth.interceptor';
     NavMenuComponent,
     HomeComponent,
     SearchComponent,
+    UnknownComponent,
     // App-Grid
     BanderaGridComponent,
     PoblacionGridComponent,

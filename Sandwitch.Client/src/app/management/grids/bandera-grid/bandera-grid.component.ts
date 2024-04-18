@@ -67,11 +67,11 @@ export class BanderaGridComponent implements OnInit, AfterViewInit, OnDestroy {
   public async FindPaginatedBandera(): Promise<void> {
     const view = await this.banderaService.FindPaginatedBandera(this.page);
 
-    this.page.Length = view.Length;
-
-    this.ELEMENT_DATA = Array.from(this.ELEMENT_DATA.concat(view.Items).reduce((m, t): Map<ViewBandera, ViewBandera> => m.set(t.Id, t), new Map()).values());
-
-    this.dataSource.data = this.ELEMENT_DATA;
+    if (view) {
+      this.page.Length = view?.Length;
+      this.ELEMENT_DATA = Array.from(this.ELEMENT_DATA.concat(view?.Items).reduce((m, t): Map<ViewBandera, ViewBandera> => m.set(t?.Id, t), new Map()).values());
+      this.dataSource.data = this.ELEMENT_DATA;
+    }
   }
 
   // Filter Data

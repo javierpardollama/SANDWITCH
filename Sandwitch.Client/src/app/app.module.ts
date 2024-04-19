@@ -35,6 +35,7 @@ import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
 import { SearchComponent } from './search/search.component';
 import { UnknownComponent } from './unknown/unknown.component';
+import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
 
 // App-Grid
 import { BanderaGridComponent } from './management/grids/bandera-grid/bandera-grid.component';
@@ -65,6 +66,7 @@ import { AuthInterceptor } from 'src/interceptors/auth.interceptor';
     HomeComponent,
     SearchComponent,
     UnknownComponent,
+    UnauthorizedComponent,
     // App-Grid
     BanderaGridComponent,
     PoblacionGridComponent,

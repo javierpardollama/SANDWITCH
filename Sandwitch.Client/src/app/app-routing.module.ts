@@ -6,6 +6,7 @@ import { BanderaGridComponent } from './management/grids/bandera-grid/bandera-gr
 import { PoblacionGridComponent } from './management/grids/poblacion-grid/poblacion-grid.component';
 import { ProvinciaGridComponent } from './management/grids/provincia-grid/provincia-grid.component';
 import { UnknownComponent } from './unknown/unknown.component';
+import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
 
 @NgModule({
   imports: [RouterModule.forRoot([
@@ -37,6 +38,11 @@ import { UnknownComponent } from './unknown/unknown.component';
     {
       path: 'unknown',
       component: UnknownComponent,
+      pathMatch: 'full'
+    },
+    {
+      path: 'unauthorized',
+      component: UnauthorizedComponent,
       pathMatch: 'full'
     }
   ])

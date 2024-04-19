@@ -43,8 +43,12 @@ export class BaseService {
                         exception.Message,
                         TextAppVariants.AppOkButtonText,
                         { duration: TimeAppVariants.AppToastSecondTicks * TimeAppVariants.AppTimeSecondTicks });
-                    break;              
+                    break;
 
+
+                case CodeAppVariants.UNAUTHORIZED:
+                    this.router.navigate(["unauthorized"]);
+                    break;
                 default:
                     this.router.navigate(["unknown"]);
                     break;

@@ -44,8 +44,6 @@ export class BaseService {
                         TextAppVariants.AppOkButtonText,
                         { duration: TimeAppVariants.AppToastSecondTicks * TimeAppVariants.AppTimeSecondTicks });
                     break;
-
-
                 case CodeAppVariants.UNAUTHORIZED:
                     this.router.navigate(["unauthorized"]);
                     break;

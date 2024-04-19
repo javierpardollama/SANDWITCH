@@ -15,8 +15,4 @@
     <PackageReference Include="NUnit3TestAdapter" Version="4.5.0" />
     <PackageReference Include="Selenium.Support" Version="4.19.0" />
   </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Drivers\" />
-  </ItemGroup>
 </Project>

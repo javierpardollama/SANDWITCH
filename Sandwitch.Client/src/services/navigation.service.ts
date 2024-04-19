@@ -11,23 +11,27 @@ export class NavigationService {
     public GetManagementNavigationLinks(): ViewLink[] {
         return [
             {
+                Id:'nav-provincias',
                 Label: 'Provincias',
                 Link: './management/provincias',
                 Index: 0,
                 Class:'nav-menu-option-image nav-menu-land-image'
             }, {
+                Id:'nav-poblaciones',
                 Label: 'Poblaciones',
                 Link: './management/poblaciones',
                 Index: 1,
                 Class:'nav-menu-option-image nav-menu-town-image'
             },
             {
+                Id:'nav-arenales',
                 Label: 'Arenales',
                 Link: './management/arenales',
                 Index: 2,
                 Class:'nav-menu-option-image nav-menu-sand-image'
             },
             {
+                Id:'nav-banderas',
                 Label: 'Banderas',
                 Link: './management/banderas',
                 Index: 3,

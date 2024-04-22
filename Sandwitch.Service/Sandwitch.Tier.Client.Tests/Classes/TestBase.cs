@@ -63,13 +63,16 @@ namespace Sandwitch.Tier.Client.Tests.Classes
 
         private void RecordConsole()
         {
-            var logs = Driver.Manage().Logs;
+            if (TestContext.CurrentContext.Result.Outcome == ResultState.Error)
+            {
+                var logs = Driver.Manage().Logs;
 
-            var entries = logs.GetLog(LogType.Browser).Where(x => x.Level == LogLevel.Severe).Select(x => x.Message).ToList();
+                var entries = logs.GetLog(LogType.Browser).Where(x => x.Level == LogLevel.Severe).Select(x => x.Message).ToList();
 
-            var json = JsonSerializer.Serialize(entries);
+                var json = JsonSerializer.Serialize(entries);
 
-            File.WriteAllText($"{Path}/{TestContext.CurrentContext.Test.Name}.json", json);
+                File.WriteAllText($"{Path}/{TestContext.CurrentContext.Test.Name}.json", json);
+            }
         }
     }
 }

@@ -15,7 +15,7 @@ namespace Sandwitch.Tier.Contexts.Migrations
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
-            modelBuilder.HasAnnotation("ProductVersion", "7.0.1");
+            modelBuilder.HasAnnotation("ProductVersion", "8.0.4");
 
             modelBuilder.Entity("Sandwitch.Tier.Entities.Classes.Arenal", b =>
                 {
@@ -30,7 +30,6 @@ namespace Sandwitch.Tier.Contexts.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Name")
-                        .IsConcurrencyToken()
                         .IsRequired()
                         .HasColumnType("TEXT");
 
@@ -95,7 +94,6 @@ namespace Sandwitch.Tier.Contexts.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Name")
-                        .IsConcurrencyToken()
                         .IsRequired()
                         .HasColumnType("TEXT");
 
@@ -144,16 +142,24 @@ namespace Sandwitch.Tier.Contexts.Migrations
                     b.Property<double>("Temperatura")
                         .HasColumnType("REAL");
 
+                    b.Property<double>("Velocidad")
+                        .HasColumnType("REAL");
+
                     b.Property<byte[]>("Version")
                         .IsConcurrencyToken()
                         .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("BLOB");
+
+                    b.Property<int>("VientoId")
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
 
                     b.HasIndex("ArenalId");
 
                     b.HasIndex("BanderaId");
+
+                    b.HasIndex("VientoId");
 
                     b.ToTable("Historico");
                 });
@@ -175,7 +181,6 @@ namespace Sandwitch.Tier.Contexts.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Name")
-                        .IsConcurrencyToken()
                         .IsRequired()
                         .HasColumnType("TEXT");
 
@@ -228,6 +233,38 @@ namespace Sandwitch.Tier.Contexts.Migrations
                     b.ToTable("Provincia");
                 });
 
+            modelBuilder.Entity("Sandwitch.Tier.Entities.Classes.Viento", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("Deleted")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("ImageUri")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("LastModified")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<byte[]>("Version")
+                        .IsConcurrencyToken()
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("BLOB");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Name");
+
+                    b.ToTable("Viento");
+                });
+
             modelBuilder.Entity("Sandwitch.Tier.Entities.Classes.ArenalPoblacion", b =>
                 {
                     b.HasOne("Sandwitch.Tier.Entities.Classes.Arenal", "Arenal")
@@ -261,9 +298,17 @@ namespace Sandwitch.Tier.Contexts.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("Sandwitch.Tier.Entities.Classes.Viento", "Viento")
+                        .WithMany("Historicos")
+                        .HasForeignKey("VientoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("Arenal");
 
                     b.Navigation("Bandera");
+
+                    b.Navigation("Viento");
                 });
 
             modelBuilder.Entity("Sandwitch.Tier.Entities.Classes.Poblacion", b =>
@@ -297,6 +342,11 @@ namespace Sandwitch.Tier.Contexts.Migrations
             modelBuilder.Entity("Sandwitch.Tier.Entities.Classes.Provincia", b =>
                 {
                     b.Navigation("Poblaciones");
+                });
+
+            modelBuilder.Entity("Sandwitch.Tier.Entities.Classes.Viento", b =>
+                {
+                    b.Navigation("Historicos");
                 });
 #pragma warning restore 612, 618
         }

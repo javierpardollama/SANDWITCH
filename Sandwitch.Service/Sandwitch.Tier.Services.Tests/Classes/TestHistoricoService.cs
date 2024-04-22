@@ -95,6 +95,7 @@ namespace Sandwitch.Tier.Services.Tests.Classes
             Context.Arenal.Add(new Arenal { Name = "Arenal 1", LastModified = DateTime.Now, Deleted = false });
             Context.Poblacion.Add(new Poblacion { Name = "Poblacion 1", ImageUri = "URL/Poblacion_01_500px.png", LastModified = DateTime.Now, Deleted = false });
             Context.Bandera.Add(new Bandera { Name = "Bandera 1", ImageUri = "URL/Bandera_01_500px.png", LastModified = DateTime.Now, Deleted = false });
+            Context.Viento.Add(new Viento { Name = "Viento 1", ImageUri = "URL/Viento_01_500px.png", LastModified = DateTime.Now, Deleted = false });
 
             Context.SaveChanges();
         }
@@ -124,6 +125,18 @@ namespace Sandwitch.Tier.Services.Tests.Classes
         }
 
         /// <summary>
+        /// Finds Viento By Id
+        /// </summary>
+        /// <returns>Instance of <see cref="Task"/></returns>
+        [Test]
+        public async Task FindVientoById()
+        {
+            await HistoricoService.FindVientoById(Context.Viento.FirstOrDefault().Id);
+
+            Assert.Pass();
+        }
+
+        /// <summary>
         /// Adds Historico
         /// </summary>
         /// <returns>Instance of <see cref="Task"/></returns>
@@ -133,12 +146,14 @@ namespace Sandwitch.Tier.Services.Tests.Classes
             AddHistorico @Historico = new()
             {
                 BanderaId = Context.Bandera.FirstOrDefault().Id,
+                VientoId = Context.Viento.FirstOrDefault().Id,
                 AltaMarAlba = DateTime.Now.TimeOfDay,
                 AltaMarOcaso = DateTime.Now.TimeOfDay,
                 ArenalId = Context.Arenal.FirstOrDefault().Id,
                 BajaMarAlba = DateTime.Now.TimeOfDay,
                 BajaMarOcaso = DateTime.Now.TimeOfDay,
-                Temperatura = 20
+                Temperatura = 20,
+                Velocidad = 10
             };
 
             await HistoricoService.AddHistorico(@Historico);

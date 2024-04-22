@@ -1,0 +1,10 @@
+DELETE FROM Viento;
+delete from sqlite_sequence where name='Viento';
+INSERT INTO Viento (LASTMODIFIED,NAME, IMAGEURI) VALUES(date('now'),"Norte","/assets/img/direcciones\N_500px.png");
+INSERT INTO Viento (LASTMODIFIED,NAME, IMAGEURI) VALUES(date('now'),"Noroeste ","/assets/img/direcciones\NW_500px.png");
+INSERT INTO Viento (LASTMODIFIED,NAME, IMAGEURI) VALUES(date('now'),"Oeste","/assets/img/direcciones\W_500px.png");
+INSERT INTO Viento (LASTMODIFIED,NAME, IMAGEURI) VALUES(date('now'),"Sudoeste ","/assets/img/direcciones\SW_500px.png");
+INSERT INTO Viento (LASTMODIFIED,NAME, IMAGEURI) VALUES(date('now'),"Sur","/assets/img/direcciones\S_500px.png");
+INSERT INTO Viento (LASTMODIFIED,NAME, IMAGEURI) VALUES(date('now'),"Sudeste","/assets/img/direcciones\SE_500px.png");
+INSERT INTO Viento (LASTMODIFIED,NAME, IMAGEURI) VALUES(date('now'),"Este","/assets/img/direcciones\E_500px.png");
+INSERT INTO Viento (LASTMODIFIED,NAME, IMAGEURI) VALUES(date('now'),"Noreste","/assets/img/direcciones\NE_500px.png");

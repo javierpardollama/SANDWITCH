@@ -36,6 +36,13 @@ export class NavigationService {
                 Link: './management/banderas',
                 Index: 3,
                 Class:'nav-menu-option-image nav-menu-flag-image'
+            },
+            {
+                Id:'nav-vientos',
+                Label: 'Vientos',
+                Link: './management/vientos',
+                Index: 4,
+                Class:'nav-menu-option-image nav-menu-compass-image'
             }
         ];
     }    

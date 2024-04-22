@@ -1,14 +1,14 @@
-﻿using NUnit.Framework;
-using NUnit.Framework.Internal;
-
-using Sandwitch.Tier.ViewModels.Classes.Filters;
-using Sandwitch.Tier.ViewModels.Classes.Views;
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
+
+using NUnit.Framework;
+using NUnit.Framework.Internal;
+
+using Sandwitch.Tier.ViewModels.Classes.Filters;
+using Sandwitch.Tier.ViewModels.Classes.Views;
 
 namespace Sandwitch.Tier.Controllers.Tests.Classes
 {

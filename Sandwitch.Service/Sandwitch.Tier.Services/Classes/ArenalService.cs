@@ -109,11 +109,13 @@ namespace Sandwitch.Tier.Services.Classes
             {
                 Arenal = @entity,
                 Bandera = await FindBanderaById((int)FlagIdentifiers.Amarilla),
+                Viento = await FindVientoById((int)WindIdentifiers.Norte),
                 BajaMarAlba = DateTime.Now.TimeOfDay,
                 BajaMarOcaso = DateTime.Now.TimeOfDay,
                 AltaMarAlba = DateTime.Now.TimeOfDay,
                 AltaMarOcaso = DateTime.Now.TimeOfDay,
                 Temperatura = 20,
+                Velocidad = 0,
             };
             @entity.Historicos.Add(@historico);
         }
@@ -179,9 +181,11 @@ namespace Sandwitch.Tier.Services.Classes
                .AsNoTracking()
                .AsSplitQuery()
                .Include(x => x.Poblacion)
-               .Include(x => x.Arenal)
-               .ThenInclude(x => x.Historicos)
+               .Include(x => x.Arenal.Historicos)
+               .ThenInclude(x => x.Viento)
+               .Include(x => x.Arenal.Historicos)
                .ThenInclude(x => x.Bandera)
+               .Include(x => x.Arenal)            
                .Where(x => x.Poblacion.Id == @id)
                .Select(x => x.Arenal)
                .ToListAsync();
@@ -202,6 +206,7 @@ namespace Sandwitch.Tier.Services.Classes
                .AsSplitQuery()
                .Include(x => x.Arenal)
                .Include(x => x.Bandera)
+               .Include(x => x.Viento)
                .Where(x => x.Arenal.Id == @id)
                .ToListAsync();
 
@@ -303,6 +308,37 @@ namespace Sandwitch.Tier.Services.Classes
             }
 
             return @bandera;
+        }
+
+        /// <summary>
+        /// Finds Viento By Id
+        /// </summary>
+        /// <param name="id">Injected <see cref="int"/></param>
+        /// <returns>Instance of <see cref="Task{Viento}"/></returns>
+        public async Task<Viento> FindVientoById(int @id)
+        {
+            Viento @viento = await Context.Viento
+                 .TagWith("FindVientoById")
+                 .FirstOrDefaultAsync(x => x.Id == @id);
+
+            if (@viento == null)
+            {
+                // Log
+                string @logData = nameof(@viento)
+                    + " with Id "
+                    + @id
+                    + " was not found at "
+                    + DateTime.Now.ToShortTimeString();
+
+                Logger.WriteGetItemNotFoundLog(@logData);
+
+                throw new Exception(nameof(@viento)
+                    + " with Id "
+                    + @id
+                    + " does not exist");
+            }
+
+            return @viento;
         }
 
         /// <summary>
@@ -408,11 +444,13 @@ namespace Sandwitch.Tier.Services.Classes
             {
                 Arenal = @entity,
                 Bandera = await FindBanderaById((int)FlagIdentifiers.Amarilla),
+                Viento = await FindVientoById((int)WindIdentifiers.Norte),
                 BajaMarAlba = DateTime.Now.TimeOfDay,
                 BajaMarOcaso = DateTime.Now.TimeOfDay,
                 AltaMarAlba = DateTime.Now.TimeOfDay,
                 AltaMarOcaso = DateTime.Now.TimeOfDay,
                 Temperatura = 20,
+                Velocidad = 0
             };
             @entity.Historicos.Add(@historico);
         }

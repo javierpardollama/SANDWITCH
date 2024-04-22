@@ -20,11 +20,15 @@ import { ViewArenal } from './../../../../../viewmodels/views/viewarenal';
 
 import { ViewBandera } from './../../../../../viewmodels/views/viewbandera';
 
+import { ViewViento } from '../../../../../viewmodels/views/viewviento';
+
 import { AddHistorico } from './../../../../../viewmodels/additions/addhistorico';
 
 import { HistoricoService } from './../../../../../services/historico.service';
 
 import { BanderaService } from './../../../../../services/bandera.service';
+
+import { VientoService } from '../../../../../services/viento.service';
 
 import { TextAppVariants } from './../../../../../variants/text.app.variants';
 
@@ -45,10 +49,13 @@ export class HistoricoAddModalComponent implements OnInit {
 
   public banderas: ViewBandera[] = [];
 
+  public vientos: ViewViento[] = [];
+
   // Constructor
   constructor(
     private historicoService: HistoricoService,
     private banderaService: BanderaService,
+    private vientoService: VientoService,
     private formBuilder: FormBuilder,
     public dialogRef: MatDialogRef<HistoricoAddModalComponent>,
     private matSnackBar: MatSnackBar,
@@ -58,6 +65,7 @@ export class HistoricoAddModalComponent implements OnInit {
   // Life Cicle
   ngOnInit(): void {
     this.FindAllBandera();
+    this.FindAllViento();
     this.CreateForm();
   }
 
@@ -69,6 +77,11 @@ export class HistoricoAddModalComponent implements OnInit {
       BanderaId: new FormControl<number>(this.data.LastHistorico.Bandera.Id,
         [Validators.required]),
       Temperatura: new FormControl<number>(this.data.LastHistorico.Temperatura,
+        [Validators.required,
+        Validators.pattern(ExpressionAppVariants.AppNumberExpression)]),
+      VientoId: new FormControl<number>(this.data.LastHistorico.Viento.Id,
+        [Validators.required]),
+      Velocidad: new FormControl<number>(this.data.LastHistorico.Velocidad,
         [Validators.required,
         Validators.pattern(ExpressionAppVariants.AppNumberExpression)]),
       BajaMarAlba: new FormControl<Time>(TimeService.Now(),
@@ -99,5 +112,10 @@ export class HistoricoAddModalComponent implements OnInit {
   // Get Data from Service
   public async FindAllBandera(): Promise<void> {
     this.banderas = await this.banderaService.FindAllBandera();
+  }
+
+  // Get Data from Service
+  public async FindAllViento(): Promise<void> {
+    this.vientos = await this.vientoService.FindAllViento();
   }
 }

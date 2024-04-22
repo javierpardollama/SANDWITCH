@@ -25,6 +25,16 @@ namespace Sandwitch.Tier.ViewModels.Classes.Additions
         public int BanderaId { get; set; }
 
         /// <summary>
+        /// Gets or Sets <see cref="VientoId"/>
+        /// </summary>
+        public int VientoId { get; set; }
+
+        /// <summary>
+        /// Gets or Sets <see cref="Velocidad"/>
+        /// </summary>
+        public double Velocidad { get; set; }
+
+        /// <summary>
         /// Gets or Sets <see cref="Temperatura"/>
         /// </summary>
         public double Temperatura { get; set; }

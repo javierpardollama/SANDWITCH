@@ -96,6 +96,37 @@ namespace Sandwitch.Tier.Services.Classes
         }
 
         /// <summary>
+        /// Finds Viento By Id
+        /// </summary>
+        /// <param name="id">Injected <see cref="int"/></param>
+        /// <returns>Instance of <see cref="Task{Viento}"/></returns>
+        public async Task<Viento> FindVientoById(int @id)
+        {
+            Viento @viento = await Context.Viento
+                 .TagWith("FindVientoById")
+                 .FirstOrDefaultAsync(x => x.Id == @id);
+
+            if (@viento == null)
+            {
+                // Log
+                string @logData = nameof(@viento)
+                    + " with Id "
+                    + @id
+                    + " was not found at "
+                    + DateTime.Now.ToShortTimeString();
+
+                Logger.WriteGetItemNotFoundLog(@logData);
+
+                throw new Exception(nameof(@viento)
+                    + " with Id "
+                    + @id
+                    + " does not exist");
+            }
+
+            return @viento;
+        }
+
+        /// <summary>
         /// Adds Historico
         /// </summary>
         /// <param name="viewModel">Injected <see cref="AddHistorico"/></param>
@@ -106,6 +137,8 @@ namespace Sandwitch.Tier.Services.Classes
             {
                 Arenal = await FindArenalById(@viewModel.ArenalId),
                 Bandera = await FindBanderaById(@viewModel.BanderaId),
+                Viento = await FindVientoById(viewModel.VientoId),
+                Velocidad = viewModel.Velocidad,
                 BajaMarAlba = @viewModel.BajaMarAlba,
                 BajaMarOcaso = @viewModel.BajaMarOcaso,
                 AltaMarAlba = @viewModel.AltaMarAlba,

@@ -21,7 +21,7 @@
     padding: 8px;
 }
 
-.modal-content-tide {
+.modal-content-cell {
     float: left;
     padding-top: 8px;
     padding-right: 8px;
@@ -60,5 +60,15 @@
 
 .modal-flag-image {
     background-image: url('/assets/img/iconos/Bandera_500px.png');
+    background-size: cover;
+}
+
+.modal-wind-image {
+    background-image: url('/assets/img/iconos/Wind_500px.png');
+    background-size: cover;
+}
+
+.modal-compass-image {
+    background-image: url('/assets/img/iconos/Compass_500px.png');
     background-size: cover;
 }

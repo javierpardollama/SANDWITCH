@@ -18,6 +18,7 @@ namespace Sandwitch.Tier.Service.Extensions
         {
             @this.AddTransient<IProvinciaService, ProvinciaService>();
             @this.AddTransient<IPoblacionService, PoblacionService>();
+            @this.AddTransient<IVientoService, VientoService>();
             @this.AddTransient<IBanderaService, BanderaService>();
             @this.AddTransient<IArenalService, ArenalService>();
             @this.AddTransient<IHistoricoService, HistoricoService>();

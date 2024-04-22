@@ -29,6 +29,11 @@ namespace Sandwitch.Tier.Contexts.Interfaces
         public DbSet<Bandera> Bandera { get; set; }
 
         /// <summary>
+        /// Gets or Sets <see cref="DbSet{Viento}"/>
+        /// </summary>
+        public DbSet<Viento> Viento { get; set; }
+
+        /// <summary>
         /// Gets or Sets <see cref="DbSet{Arenal}"/>
         /// </summary>
         public DbSet<Arenal> Arenal { get; set; }

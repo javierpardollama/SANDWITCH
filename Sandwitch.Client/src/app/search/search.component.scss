@@ -79,7 +79,7 @@ mat-card-content {
     justify-content: center
 }
 
-.search-card-content-tide {
+.search-card-content-cell {
     float: left;
     padding-top: 8px;
     padding-right: 8px;
@@ -103,6 +103,16 @@ mat-card-content {
 
 .search-card-update-image {
     background-image: url('/assets/img/iconos/Update_500px.png');
+    background-size: cover;
+}
+
+.search-card-compass-image {
+    background-image: url('/assets/img/iconos/Compass_500px.png');
+    background-size: cover;
+}
+
+.search-card-wind-image {
+    background-image: url('/assets/img/iconos/Wind_500px.png');
     background-size: cover;
 }
 

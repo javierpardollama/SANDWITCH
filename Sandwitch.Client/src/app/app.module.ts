@@ -42,10 +42,12 @@ import { BanderaGridComponent } from './management/grids/bandera-grid/bandera-gr
 import { PoblacionGridComponent } from './management/grids/poblacion-grid/poblacion-grid.component';
 import { ProvinciaGridComponent } from './management/grids/provincia-grid/provincia-grid.component';
 import { ArenalGridComponent } from './management/grids/arenal-grid/arenal-grid.component';
+import { VientoGridComponent } from './management/grids/viento-grid/viento-grid.component';
 
 // App-Modal-Adition
 import { ArenalAddModalComponent } from './management/modals/additions/arenal-add-modal/arenal-add-modal.component';
 import { BanderaAddModalComponent } from './management/modals/additions/bandera-add-modal/bandera-add-modal.component';
+import { VientoAddModalComponent } from './management/modals/additions/viento-add-modal/viento-add-modal.component';
 import { ProvinciaAddModalComponent } from './management/modals/additions/provincia-add-modal/provincia-add-modal.component';
 import { PoblacionAddModalComponent } from './management/modals/additions/poblacion-add-modal/poblacion-add-modal.component';
 import { HistoricoAddModalComponent } from './management/modals/additions/historico-add-modal/historico-add-modal.component';
@@ -53,6 +55,7 @@ import { HistoricoAddModalComponent } from './management/modals/additions/histor
 // App-Modal-Update
 import { ArenalUpdateModalComponent } from './management/modals/updates/arenal-update-modal/arenal-update-modal.component';
 import { BanderaUpdateModalComponent } from './management/modals/updates/bandera-update-modal/bandera-update-modal.component';
+import { VientoUpdateModalComponent } from './management/modals/updates/viento-update-modal/viento-update-modal.component';
 import { ProvinciaUpdateModalComponent } from './management/modals/updates/provincia-update-modal/provincia-update-modal.component';
 import { PoblacionUpdateModalComponent } from './management/modals/updates/poblacion-update-modal/poblacion-update-modal.component';
 import { AuthInterceptor } from 'src/interceptors/auth.interceptor';
@@ -69,18 +72,21 @@ import { AuthInterceptor } from 'src/interceptors/auth.interceptor';
     UnauthorizedComponent,
     // App-Grid
     BanderaGridComponent,
+    VientoGridComponent,
     PoblacionGridComponent,
     ProvinciaGridComponent,
     ArenalGridComponent,
     // App-Modal-Adition
     ArenalAddModalComponent,
     BanderaAddModalComponent,
+    VientoAddModalComponent,
     ProvinciaAddModalComponent,
     PoblacionAddModalComponent,
     HistoricoAddModalComponent,
     // App-Modal-Update
     ArenalUpdateModalComponent,
     BanderaUpdateModalComponent,
+    VientoUpdateModalComponent,
     ProvinciaUpdateModalComponent,
     PoblacionUpdateModalComponent
   ],

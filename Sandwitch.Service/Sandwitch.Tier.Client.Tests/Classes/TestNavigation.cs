@@ -61,6 +61,13 @@ namespace Sandwitch.Tier.Client.Tests.Classes
             Assert.That(Driver.Url.Contains("banderas"), Is.True);
         }
 
+        [Test]
+        public void Vientos()
+        {
+            Driver.FindElement(By.Id("nav-vientos")).Click();
+
+            Assert.That(Driver.Url.Contains("vientos"), Is.True);
+        }
 
         [OneTimeTearDown]
         public void TearDown()

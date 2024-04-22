@@ -16,7 +16,7 @@ import { catchError } from 'rxjs/operators';
 
 import { BaseService } from './base.service';
 
-import { FilterPage } from 'src/viewmodels/filters/filterpage';
+import { FilterPage } from './../viewmodels/filters/filterpage';
 
 import { firstValueFrom } from 'rxjs';
 

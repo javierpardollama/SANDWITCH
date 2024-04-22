@@ -20,10 +20,22 @@ namespace Sandwitch.Tier.Entities.Classes
         public virtual Bandera Bandera { get; set; }
 
         /// <summary>
+        /// Gets or Sets <see cref="Viento"/>
+        /// </summary>      
+        [Required]
+        public virtual Viento Viento { get; set; }
+
+        /// <summary>
         /// Gets or Sets <see cref="Arenal"/>
         /// </summary>
         [Required]
         public virtual Arenal Arenal { get; set; }
+
+        /// <summary>
+        /// Gets or Sets <see cref="Velocidad"/>
+        /// </summary>
+        [Required]
+        public double Velocidad { get; set; }
 
         /// <summary>
         /// Gets or Sets <see cref="Temperatura"/>

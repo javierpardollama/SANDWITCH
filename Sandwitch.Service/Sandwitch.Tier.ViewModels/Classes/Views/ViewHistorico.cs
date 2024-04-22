@@ -17,6 +17,12 @@ namespace Sandwitch.Tier.ViewModels.Classes.Views
         }
 
         /// <summary>
+        /// Gets or Sets <see cref="Viento"/>
+        /// </summary>
+        [XmlElement("viento")]
+        public virtual ViewViento Viento { get; set; }
+
+        /// <summary>
         /// Gets or Sets <see cref="Bandera"/>
         /// </summary>
         [XmlElement("bandera")]
@@ -27,6 +33,12 @@ namespace Sandwitch.Tier.ViewModels.Classes.Views
         /// </summary>
         [XmlElement("arenal")]
         public virtual ViewArenal Arenal { get; set; }
+
+        /// <summary>
+        /// Gets or Sets <see cref="Velocidad"/>
+        /// </summary>
+        [XmlElement("velocidad")]
+        public double Velocidad { get; set; }
 
         /// <summary>
         /// Gets or Sets <see cref="Temperatura"/>

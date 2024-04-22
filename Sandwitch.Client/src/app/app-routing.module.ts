@@ -7,12 +7,18 @@ import { PoblacionGridComponent } from './management/grids/poblacion-grid/poblac
 import { ProvinciaGridComponent } from './management/grids/provincia-grid/provincia-grid.component';
 import { UnknownComponent } from './unknown/unknown.component';
 import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
+import { VientoGridComponent } from './management/grids/viento-grid/viento-grid.component';
 
 @NgModule({
   imports: [RouterModule.forRoot([
     {
       path: '',
       component: HomeComponent,
+      pathMatch: 'full'
+    },
+    {
+      path: 'management/vientos',
+      component: VientoGridComponent,
       pathMatch: 'full'
     },
     {

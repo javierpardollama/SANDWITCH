@@ -34,6 +34,11 @@ namespace Sandwitch.Tier.Contexts.Classes
         public virtual DbSet<Bandera> Bandera { get; set; }
 
         /// <summary>
+        /// Gets or Sets <see cref="DbSet{Viento}"/>
+        /// </summary>
+        public virtual DbSet<Viento> Viento { get; set; }
+
+        /// <summary>
         /// Gets or Sets <see cref="DbSet{Arenal}"/>
         /// </summary>
         public virtual DbSet<Arenal> Arenal { get; set; }

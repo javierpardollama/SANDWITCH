@@ -19,6 +19,7 @@ namespace Sandwitch.Tier.Contexts.Extensions
             @this.Entity<Provincia>().HasQueryFilter(p => !p.Deleted);
             @this.Entity<Poblacion>().HasQueryFilter(p => !p.Deleted);
             @this.Entity<Bandera>().HasQueryFilter(p => !p.Deleted);
+            @this.Entity<Viento>().HasQueryFilter(p => !p.Deleted);
             @this.Entity<Arenal>().HasQueryFilter(p => !p.Deleted);
             @this.Entity<ArenalPoblacion>().HasQueryFilter(p => !p.Deleted);
             @this.Entity<Historico>().HasQueryFilter(p => !p.Deleted);

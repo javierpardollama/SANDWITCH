@@ -17,6 +17,8 @@ namespace Sandwitch.Tier.Mappings.Classes
         {
             CreateMap<Bandera, ViewBandera>();
 
+            CreateMap<Viento, ViewViento>();
+
             CreateMap<Provincia, ViewProvincia>();
 
             CreateMap<Poblacion, ViewPoblacion>();

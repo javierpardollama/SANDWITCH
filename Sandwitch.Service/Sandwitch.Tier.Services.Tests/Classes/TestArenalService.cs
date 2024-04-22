@@ -102,6 +102,8 @@ namespace Sandwitch.Tier.Services.Tests.Classes
 
             Context.Bandera.Add(new Bandera { Name = "Bandera " + Guid.NewGuid().ToString(), ImageUri = "Banderas/Bandera_1_500.png", LastModified = DateTime.Now, Deleted = false });
 
+            Context.Viento.Add(new Viento { Name = "Viento " + Guid.NewGuid().ToString(), ImageUri = "Vientos/Viento.png", LastModified = DateTime.Now, Deleted = false });
+
             Context.Arenal.Add(new Arenal { Name = "Arenal " + Guid.NewGuid().ToString(), LastModified = DateTime.Now, Deleted = false });
             Context.Arenal.Add(new Arenal { Name = "Arenal " + Guid.NewGuid().ToString(), LastModified = DateTime.Now, Deleted = false });
             Context.Arenal.Add(new Arenal { Name = "Arenal " + Guid.NewGuid().ToString(), LastModified = DateTime.Now, Deleted = false });

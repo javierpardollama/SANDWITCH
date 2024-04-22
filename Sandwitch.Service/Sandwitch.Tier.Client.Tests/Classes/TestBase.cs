@@ -39,8 +39,11 @@ namespace Sandwitch.Tier.Client.Tests.Classes
         [TearDown]
         public void TearDown()
         {
-            RecordScreen();
-            RecordConsole();
+            if (TestContext.CurrentContext.Result.Outcome == ResultState.Error)
+            {
+                RecordScreen();
+                RecordConsole();
+            }
         }
 
         [OneTimeTearDown]
@@ -51,28 +54,22 @@ namespace Sandwitch.Tier.Client.Tests.Classes
 
         private void RecordScreen()
         {
-            if (TestContext.CurrentContext.Result.Outcome == ResultState.Error)
-            {
-                var screenshot = Driver.TakeScreenshot();
+            var screenshot = Driver.TakeScreenshot();
 
-                Directory.CreateDirectory(Path);
+            Directory.CreateDirectory(Path);
 
-                screenshot.SaveAsFile($"{Path}/{TestContext.CurrentContext.Test.Name}.png");
-            }
+            screenshot.SaveAsFile($"{Path}/{TestContext.CurrentContext.Test.Name}.png");
         }
 
         private void RecordConsole()
         {
-            if (TestContext.CurrentContext.Result.Outcome == ResultState.Error)
-            {
-                var logs = Driver.Manage().Logs;
+            var logs = Driver.Manage().Logs;
 
-                var entries = logs.GetLog(LogType.Browser).Where(x => x.Level == LogLevel.Severe).Select(x => x.Message).ToList();
+            var entries = logs.GetLog(LogType.Browser).Where(x => x.Level == LogLevel.Severe).Select(x => x.Message).ToList();
 
-                var json = JsonSerializer.Serialize(entries);
+            var json = JsonSerializer.Serialize(entries);
 
-                File.WriteAllText($"{Path}/{TestContext.CurrentContext.Test.Name}.json", json);
-            }
+            File.WriteAllText($"{Path}/{TestContext.CurrentContext.Test.Name}.json", json);
         }
     }
 }

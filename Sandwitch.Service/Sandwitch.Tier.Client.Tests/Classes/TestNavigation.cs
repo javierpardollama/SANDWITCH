@@ -56,8 +56,7 @@ namespace Sandwitch.Tier.Client.Tests.Classes
         [Test]
         public void Banderas()
         {
-            Driver.FindElement(By.Id("nav-banderas")).Click(); ;
-
+            Driver.FindElement(By.Id("nav-banderas")).Click();
 
             Assert.That(Driver.Url.Contains("banderas"), Is.True);
         }

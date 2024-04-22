@@ -11,7 +11,7 @@ using OpenQA.Selenium.Support.UI;
 namespace Sandwitch.Tier.Client.Tests.Classes
 {
     [TestFixture]
-    public class TestPoblaciones
+    public class TestPoblaciones : TestBase
     {
         private ChromeDriver Driver;
         private WebDriverWait Wait;
@@ -33,25 +33,31 @@ namespace Sandwitch.Tier.Client.Tests.Classes
         [Test]
         public void Add()
         {
-            Wait.Until(d => d.FindElement(By.Id("nav-poblaciones"))).Click();
+            Test(() =>
+            {
+                Wait.Until(d => d.FindElement(By.Id("nav-poblaciones"))).Click();
 
-            Wait.Until(d => d.FindElement(By.ClassName("add-button"))).Click();
+                Wait.Until(d => d.FindElement(By.ClassName("add-button"))).Click();
 
-            Wait.Until(d => d.FindElement(By.Id("poblacion-add-modal")).Displayed);
+                Wait.Until(d => d.FindElement(By.Id("poblacion-add-modal")).Displayed);
 
-            new Actions(Driver).KeyDown(Keys.Escape).Perform();
+                new Actions(Driver).KeyDown(Keys.Escape).Perform();
+            });
         }
 
         [Test]
         public void Edit()
         {
-            Wait.Until(d => d.FindElement(By.Id("nav-poblaciones"))).Click();
+            Test(() =>
+            {
+                Wait.Until(d => d.FindElement(By.Id("nav-poblaciones"))).Click();
 
-            Wait.Until(d => d.FindElements(By.TagName("td")).First()).Click();
+                Wait.Until(d => d.FindElements(By.TagName("td")).First()).Click();
 
-            Wait.Until(d => d.FindElement(By.Id("poblacion-update-modal")).Displayed);
+                Wait.Until(d => d.FindElement(By.Id("poblacion-update-modal")).Displayed);
 
-            new Actions(Driver).KeyDown(Keys.Escape).Perform();
+                new Actions(Driver).KeyDown(Keys.Escape).Perform();
+            });
         }
 
         [OneTimeTearDown]

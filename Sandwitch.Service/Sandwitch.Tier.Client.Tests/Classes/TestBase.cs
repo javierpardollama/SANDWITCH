@@ -7,7 +7,6 @@ using OpenQA.Selenium.Support.Extensions;
 using OpenQA.Selenium.Support.UI;
 
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text.Json;
@@ -35,7 +34,7 @@ namespace Sandwitch.Tier.Client.Tests.Classes
 
             Driver.Navigate().GoToUrl("https://localhost:4200");
         }
-       
+
 
         [TearDown]
         public void TearDown()
@@ -50,7 +49,7 @@ namespace Sandwitch.Tier.Client.Tests.Classes
             Driver.Quit();
         }
 
-        private void RecordScreen() 
+        private void RecordScreen()
         {
             if (TestContext.CurrentContext.Result.Outcome == ResultState.Error)
             {
@@ -58,7 +57,7 @@ namespace Sandwitch.Tier.Client.Tests.Classes
 
                 Directory.CreateDirectory(Path);
 
-                screenshot.SaveAsFile($"{Path}/{TestContext.CurrentContext.Test.Name}.png");               
+                screenshot.SaveAsFile($"{Path}/{TestContext.CurrentContext.Test.Name}.png");
             }
         }
 
@@ -66,7 +65,7 @@ namespace Sandwitch.Tier.Client.Tests.Classes
         {
             var logs = Driver.Manage().Logs;
 
-            var entries = logs.GetLog(LogType.Browser).Where(x => x.Level == LogLevel.Severe).Select(x => x.Message).ToList();        
+            var entries = logs.GetLog(LogType.Browser).Where(x => x.Level == LogLevel.Severe).Select(x => x.Message).ToList();
 
             var json = JsonSerializer.Serialize(entries);
 

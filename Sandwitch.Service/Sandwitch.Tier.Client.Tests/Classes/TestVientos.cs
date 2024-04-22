@@ -1,9 +1,9 @@
-﻿using System.Linq;
-
-using NUnit.Framework;
+﻿using NUnit.Framework;
 
 using OpenQA.Selenium;
 using OpenQA.Selenium.Interactions;
+
+using System.Linq;
 
 namespace Sandwitch.Tier.Client.Tests.Classes
 {
@@ -32,6 +32,6 @@ namespace Sandwitch.Tier.Client.Tests.Classes
             Wait.Until(d => d.FindElement(By.Id("viento-update-modal")).Displayed);
 
             new Actions(Driver).KeyDown(Keys.Escape).Perform();
-        }      
+        }
     }
 }

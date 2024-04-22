@@ -33,8 +33,13 @@ namespace Sandwitch.Tier.Client.Tests.Classes
             };
 
             Driver.Navigate().GoToUrl("https://localhost:4200");
-        }
+        }       
 
+        [OneTimeTearDown]
+        public void OneTimeTearDown()
+        {
+            Driver.Quit();
+        }
 
         [TearDown]
         public void TearDown()
@@ -44,12 +49,6 @@ namespace Sandwitch.Tier.Client.Tests.Classes
                 RecordScreen();
                 RecordConsole();
             }
-        }
-
-        [OneTimeTearDown]
-        public void OneTimeTearDown()
-        {
-            Driver.Quit();
         }
 
         private void RecordScreen()

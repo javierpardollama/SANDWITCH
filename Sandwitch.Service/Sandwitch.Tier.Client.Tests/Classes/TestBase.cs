@@ -65,6 +65,7 @@ namespace Sandwitch.Tier.Client.Tests.Classes
         private void RecordConsole()
         {
             var logs = Driver.Manage().Logs;
+
             var entries = logs.GetLog(LogType.Browser).Where(x => x.Level == LogLevel.Severe).Select(x => x.Message).ToList();        
 
             var json = JsonSerializer.Serialize(entries);

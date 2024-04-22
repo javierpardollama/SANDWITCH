@@ -1,13 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-
-using NUnit.Framework;
+﻿using NUnit.Framework;
+using NUnit.Framework.Interfaces;
 
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.Extensions;
 using OpenQA.Selenium.Support.UI;
+
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Text.Json;
 
 namespace Sandwitch.Tier.Client.Tests.Classes
 {
@@ -16,6 +19,8 @@ namespace Sandwitch.Tier.Client.Tests.Classes
         protected ChromeDriver Driver;
 
         protected WebDriverWait Wait;
+
+        private readonly string Path = $"{AppDomain.CurrentDomain.BaseDirectory}/{DateTime.Now.ToString(@"yyyy-MM-dd")}/{TestContext.CurrentContext.Test.ClassName}";
 
         [OneTimeSetUp]
         public void Setup()
@@ -30,30 +35,41 @@ namespace Sandwitch.Tier.Client.Tests.Classes
 
             Driver.Navigate().GoToUrl("https://localhost:4200");
         }
+       
 
-        protected List<string> GetBrowserError()
+        [TearDown]
+        public void TearDown()
         {
-            var logs = Driver.Manage().Logs;
-            var logEntries = logs.GetLog(LogType.Browser);
-            return logEntries.Where(x => x.Level == LogLevel.Severe).Select(x => x.Message).ToList();          
+            RecordScreen();
+            RecordConsole();
         }
 
-        protected void Test(Action action)
+        [OneTimeTearDown]
+        public void OneTimeTearDown()
         {
-            try
-            {
-                action();
-            }
-            catch (Exception)
+            Driver.Quit();
+        }
+
+        private void RecordScreen() 
+        {
+            if (TestContext.CurrentContext.Result.Outcome == ResultState.Error)
             {
                 var screenshot = Driver.TakeScreenshot();
 
-                var filePath = $"{DateTime.Now}-{action.Method.Name}";
+                Directory.CreateDirectory(Path);
 
-                screenshot.SaveAsFile(filePath);
-
-                throw;
+                screenshot.SaveAsFile($"{Path}/{TestContext.CurrentContext.Test.Name}.png");               
             }
+        }
+
+        private void RecordConsole()
+        {
+            var logs = Driver.Manage().Logs;
+            var entries = logs.GetLog(LogType.Browser).Where(x => x.Level == LogLevel.Severe).Select(x => x.Message).ToList();        
+
+            var json = JsonSerializer.Serialize(entries);
+
+            File.WriteAllText($"{Path}/{TestContext.CurrentContext.Test.Name}.json", json);
         }
     }
 }

@@ -13,7 +13,7 @@ using System.Text.Json;
 
 namespace Sandwitch.Tier.Client.Tests.Classes
 {
-    public abstract class TestBase
+    public class TestBase
     {
         protected ChromeDriver Driver;
 

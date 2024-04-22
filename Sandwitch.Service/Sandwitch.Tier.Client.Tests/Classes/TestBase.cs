@@ -39,7 +39,7 @@ namespace Sandwitch.Tier.Client.Tests.Classes
         [TearDown]
         public void TearDown()
         {
-            if (TestContext.CurrentContext.Result.Outcome == ResultState.Error)
+            if (TestContext.CurrentContext.Result.Outcome.Matches(ResultState.Error))
             {
                 RecordScreen();
                 RecordConsole();

@@ -48,13 +48,23 @@
     background-size: cover;
 }
 
-.modal-low-tide-image {
-    background-image: url('/assets/img/iconos/BajaMar_500px.png');
+.modal-low-sun-tide-image {
+    background-image: url('/assets/img/iconos/Sun_Low_Tide_500px.png');
     background-size: cover;
 }
 
-.modal-high-tide-image {
-    background-image: url('/assets/img/iconos/PleaMar_500px.png');
+.modal-high-sun-tide-image {
+    background-image: url('/assets/img/iconos/Sun_High_Tide_500px.png');
+    background-size: cover;
+}
+
+.modal-low-night_tide-image {
+    background-image: url('/assets/img/iconos/Night_Low_Tide_500px.png');
+    background-size: cover;
+}
+
+.modal-high-night_tide-image {
+    background-image: url('/assets/img/iconos/Night_High_Tide_500px.png');
     background-size: cover;
 }
 

@@ -91,13 +91,23 @@ mat-card-content {
     background-size: cover;
 }
 
-.search-card-low-tide-image {
-    background-image: url('/assets/img/iconos/BajaMar_500px.png');
+.search-card-low-sun-tide-image {
+    background-image: url('/assets/img/iconos/Sun_Low_Tide_500px.png');
     background-size: cover;
 }
 
-.search-card-high-tide-image {
-    background-image: url('/assets/img/iconos/PleaMar_500px.png');
+.search-card-high-sun-tide-image {
+    background-image: url('/assets/img/iconos/Sun_High_Tide_500px.png');
+    background-size: cover;
+}
+
+.search-card-low-night_tide-image {
+    background-image: url('/assets/img/iconos/Night_Low_Tide_500px.png');
+    background-size: cover;
+}
+
+.search-card-high-night_tide-image {
+    background-image: url('/assets/img/iconos/Night_High_Tide_500px.png');
     background-size: cover;
 }
 

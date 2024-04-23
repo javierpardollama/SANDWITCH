@@ -20,6 +20,8 @@ namespace Sandwitch.Tier.Client.Tests.Classes
             Wait.Until(d => d.FindElement(By.Id("arenal-add-modal")).Displayed);
 
             new Actions(Driver).KeyDown(Keys.Escape).Perform();
+
+            Assert.Pass();
         }
 
         [Test]
@@ -32,6 +34,8 @@ namespace Sandwitch.Tier.Client.Tests.Classes
             Wait.Until(d => d.FindElement(By.Id("arenal-update-modal")).Displayed);
 
             new Actions(Driver).KeyDown(Keys.Escape).Perform();
+
+            Assert.Pass();
         }
     }
 }

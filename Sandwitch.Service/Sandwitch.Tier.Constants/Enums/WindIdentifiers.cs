@@ -28,21 +28,21 @@
         /// <summary>
         /// Sur <see cref="WindIdentifiers"/>
         /// </summary>
-        Sur = 1,
+        Sur = 5,
 
         /// <summary>
         /// Sudeste <see cref="WindIdentifiers"/>
         /// </summary>
-        Sudeste = 2,
+        Sudeste = 6,
 
         /// <summary>
         /// Este <see cref="WindIdentifiers"/>
         /// </summary>
-        Este = 3,
+        Este = 7,
 
         /// <summary>
         /// Noreste <see cref="WindIdentifiers"/>
         /// </summary>
-        Noreste = 4,
+        Noreste = 8,
     }
 }

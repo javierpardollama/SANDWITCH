@@ -21,10 +21,7 @@ namespace Sandwitch.Tier.Controllers.Tests.Classes
         /// <summary>
         /// Initializes a new Instance of <see cref="TestVientoController"/>
         /// </summary>
-        public TestVientoController()
-        {
-            Client.DefaultRequestHeaders.Authorization = new BasicAuthenticationHeaderValue("Peach", "T/R4J6eyvNG<6ne!");
-        }
+        public TestVientoController() => Client.DefaultRequestHeaders.Authorization = new BasicAuthenticationHeaderValue("Peach", "T/R4J6eyvNG<6ne!");
 
         /// <summary>
         /// Sets Up

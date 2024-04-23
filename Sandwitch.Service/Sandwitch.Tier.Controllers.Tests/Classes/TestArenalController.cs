@@ -21,10 +21,7 @@ namespace Sandwitch.Tier.Controllers.Tests.Classes
         /// <summary>
         /// Initializes a new Instance of <see cref="TestArenalController"/>
         /// </summary>
-        public TestArenalController() 
-        {
-            Client.DefaultRequestHeaders.Authorization = new BasicAuthenticationHeaderValue("Peach", "T/R4J6eyvNG<6ne!");
-        }
+        public TestArenalController() => Client.DefaultRequestHeaders.Authorization = new BasicAuthenticationHeaderValue("Peach", "T/R4J6eyvNG<6ne!");
 
         /// <summary>
         /// Sets Up

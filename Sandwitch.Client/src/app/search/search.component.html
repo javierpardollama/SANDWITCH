@@ -4,6 +4,7 @@
 
 <form class="search-form">
   <mat-form-field class="search-half-width">
+    <mat-label>Provincia</mat-label>
     <input matInput placeholder="Provincia" aria-label="Provincia" [matAutocomplete]="auto"
       [formControl]="provinciaCtrl">
     <mat-autocomplete #auto="matAutocomplete" (optionSelected)='FindAllPoblacionByProvinciaId($event.option.id)'>
@@ -15,6 +16,7 @@
   </mat-form-field>
 
   <mat-form-field class="search-half-width" *ngIf="poblaciones">
+    <mat-label>Poblacion</mat-label>
     <input matInput placeholder="Poblacion" aria-label="Poblacion" [matAutocomplete]="auto"
       [formControl]="poblacionCtrl">
     <mat-autocomplete #auto="matAutocomplete" (optionSelected)='FindAllArenalByPoblacionId($event.option.id)'>

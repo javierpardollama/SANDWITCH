@@ -37,6 +37,6 @@ namespace Sandwitch.Tier.Entities.Classes
         /// <summary>
         /// Gets or Sets <see cref="ArenalPoblaciones"/>
         /// </summary>
-        public virtual ICollection<ArenalPoblacion> ArenalPoblaciones { get; set; } = new HashSet<ArenalPoblacion>();
+        public virtual ICollection<ArenalPoblacion> ArenalPoblaciones { get; set; } = [];
     }
 }

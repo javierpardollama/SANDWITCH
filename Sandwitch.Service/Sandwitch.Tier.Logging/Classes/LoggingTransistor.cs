@@ -126,9 +126,9 @@ namespace Sandwitch.Tier.Logging.Classes
         /// <returns>Instance of <see cref="LogLevel"/></returns>
         private static LogLevel GetApplicationEventLevel(Enum @appEventData)
         {
-            if (LoggingProfile.LogLevelMapings.ContainsKey(@appEventData))
+            if (LoggingProfile.LogLevelMapings.TryGetValue(@appEventData, out LogLevel value))
             {
-                return LoggingProfile.LogLevelMapings[@appEventData];
+                return value;
             }
             else
             {

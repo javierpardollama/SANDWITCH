@@ -16,7 +16,7 @@ namespace Sandwitch.Tier.Helpers.Classes
         /// <returns>Instance of <see cref="int"/></returns>
         public static int GetNextAvailableNumber(IReadOnlyCollection<int> @sequence, int @offset = 0)
         {
-            if (@sequence == null || !@sequence.Any())
+            if (@sequence == null || @sequence.Count == 0)
             {
                 return @offset;
             }
@@ -25,7 +25,7 @@ namespace Sandwitch.Tier.Helpers.Classes
 
             var @losts = Enumerable.Range(offset, @ordered.Last()).Except(@ordered).ToList();
 
-            if (@losts.Any())
+            if (@losts.Count != 0)
             {
                 return @losts.First();
             }

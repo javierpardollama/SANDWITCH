@@ -19,7 +19,7 @@ namespace Sandwitch.Tier.Client.Tests.Classes
 
         protected WebDriverWait Wait;
 
-        private readonly string Path = $"{AppDomain.CurrentDomain.BaseDirectory}/{DateTime.Now.ToString(@"yyyy-MM-dd")}/{TestContext.CurrentContext.Test.ClassName}";
+        private readonly string Path = $"{AppDomain.CurrentDomain.BaseDirectory}/{DateTime.Now:yyyy-MM-dd}/{TestContext.CurrentContext.Test.ClassName}";
 
         [OneTimeSetUp]
         public void Setup()

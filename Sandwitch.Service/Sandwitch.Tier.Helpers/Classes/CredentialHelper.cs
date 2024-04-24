@@ -24,7 +24,7 @@ namespace Sandwitch.Tier.Helpers.Classes
 
             byte[] @encoded = Convert.FromBase64String(@authenticationHeader.Parameter);
 
-            string[] @decoded = Encoding.UTF8.GetString(@encoded).Split(new[] { ':' }, 2);
+            string[] @decoded = Encoding.UTF8.GetString(@encoded).Split([':'], 2);
 
             return new AuthSignIn
             {

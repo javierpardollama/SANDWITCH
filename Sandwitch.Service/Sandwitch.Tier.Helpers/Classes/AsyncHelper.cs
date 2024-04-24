@@ -14,7 +14,7 @@ namespace Sandwitch.Tier.Helpers.Classes
         /// <summary>
         /// Instance of <see cref="TaskFactory"/>
         /// </summary>
-        private static readonly TaskFactory TaskFactory = new TaskFactory(CancellationToken.None,
+        private static readonly TaskFactory TaskFactory = new(CancellationToken.None,
                                                                           TaskCreationOptions.None,
                                                                           TaskContinuationOptions.None,
                                                                           TaskScheduler.Default);

@@ -22,7 +22,7 @@ namespace Sandwitch.Tier.Client.Tests.Classes
         private readonly string Path = $"{AppDomain.CurrentDomain.BaseDirectory}/{DateTime.Now:yyyy-MM-dd}/{TestContext.CurrentContext.Test.ClassName}";
 
         [OneTimeSetUp]
-        public void Setup()
+        public void OneTimeSetUp()
         {
             Driver = new ChromeDriver();
             Driver.Manage().Window.Maximize();

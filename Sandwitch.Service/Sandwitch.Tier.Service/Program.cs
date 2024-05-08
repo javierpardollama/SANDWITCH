@@ -59,8 +59,6 @@ var @settings = new ApiSettings();
 
 @builder.Services.AddHealthChecks();
 
-@builder.Services.AddDistributedMemoryCache();
-
 @builder.Services.AddRateLimiter(_ => _
     .AddFixedWindowLimiter(policyName: "fixed", options =>
     {

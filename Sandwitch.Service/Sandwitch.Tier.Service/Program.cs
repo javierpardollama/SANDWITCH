@@ -1,6 +1,9 @@
+using System;
 using System.Text.Json.Serialization;
+using System.Threading.RateLimiting;
 
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.RateLimiting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -56,6 +59,18 @@ var @settings = new ApiSettings();
 
 @builder.Services.AddHealthChecks();
 
+@builder.Services.AddDistributedMemoryCache();
+
+@builder.Services.AddRateLimiter(_ => _
+    .AddFixedWindowLimiter(policyName: "fixed", options =>
+    {
+        options.PermitLimit = 4;
+        options.Window = TimeSpan.FromSeconds(12);
+        options.QueueProcessingOrder = QueueProcessingOrder.OldestFirst;
+        options.QueueLimit = 2;
+    }));
+
+
 var @app = @builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -78,6 +93,8 @@ if (@app.Environment.IsDevelopment())
 @app.UseAuthorization();
 
 @app.UseResponseCaching();
+
+@app.UseRateLimiter();
 
 @app.MapControllers();
 

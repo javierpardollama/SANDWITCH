@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.RateLimiting;
 
 using Sandwitch.Tier.Services.Interfaces;
 using Sandwitch.Tier.ViewModels.Classes.Additions;
@@ -19,6 +20,7 @@ namespace Sandwitch.Tier.Web.Controllers
     [Produces("application/json")]
     [ApiController]
     [Authorize]
+    [EnableRateLimiting("fixed")]
     public class ProvinciaController(IProvinciaService @service) : ControllerBase
     {
         /// <summary>

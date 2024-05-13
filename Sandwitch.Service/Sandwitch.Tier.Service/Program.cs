@@ -1,9 +1,6 @@
-using System;
 using System.Text.Json.Serialization;
-using System.Threading.RateLimiting;
 
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.RateLimiting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -59,14 +56,12 @@ var @settings = new ApiSettings();
 
 @builder.Services.AddHealthChecks();
 
-@builder.Services.AddRateLimiter(_ => _
-    .AddFixedWindowLimiter(policyName: "fixed", options =>
-    {
-        options.PermitLimit = 4;
-        options.Window = TimeSpan.FromSeconds(12);
-        options.QueueProcessingOrder = QueueProcessingOrder.OldestFirst;
-        options.QueueLimit = 2;
-    }));
+// Register the Rate Limit Settings to the configuration container.
+var @RateSettings = new RateLimitSettings();
+@builder.Configuration.GetSection("RateLimit").Bind(@RateSettings);
+@builder.Services.Configure<RateLimitSettings>(@builder.Configuration.GetSection("RateLimit"));
+
+@builder.Services.AddCustomizedRateLimiter(@RateSettings);
 
 
 var @app = @builder.Build();

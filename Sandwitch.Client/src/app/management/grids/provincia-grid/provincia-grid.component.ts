@@ -105,7 +105,7 @@ export class ProvinciaGridComponent implements OnInit, AfterViewInit, OnDestroy 
 
     let scroll: ViewScroll = new ViewScroll(event.target as HTMLElement, this.page.Size);
 
-    if (scroll.IsReached()) {
+    if (scroll.IsReached() && this.ELEMENT_DATA.length < this.page.Length) {
       this.page.Index++;
       await this.FindPaginatedProvincia();
     }

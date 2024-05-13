@@ -9,7 +9,7 @@ import { VientoAddModalComponent } from '../../modals/additions/viento-add-modal
 import { VientoUpdateModalComponent } from '../../modals/updates/viento-update-modal/viento-update-modal.component';
 
 @Component({
-  selector: 'app-viento-grid',  
+  selector: 'app-viento-grid',
   templateUrl: './viento-grid.component.html',
   styleUrl: './viento-grid.component.scss'
 })
@@ -89,7 +89,7 @@ export class VientoGridComponent {
 
     let scroll: ViewScroll = new ViewScroll(event.target as HTMLElement, this.page.Size);
 
-    if (scroll.IsReached()) {
+    if (scroll.IsReached() && this.ELEMENT_DATA.length < this.page.Length) {
       this.page.Index++;
       await this.FindPaginatedViento();
     }

@@ -105,9 +105,9 @@ export class PoblacionGridComponent implements OnInit, AfterViewInit, OnDestroy 
 
   private TurnThePage = async (event: Event): Promise<void> => {
 
-    let scroll: ViewScroll = new ViewScroll(event.target as HTMLElement, this.page.Size);
+    let scroll: ViewScroll = new ViewScroll(event.target as HTMLElement, this.page.Size, this.ELEMENT_DATA.length, this.page.Length);
 
-    if (scroll.IsReached() && this.ELEMENT_DATA.length < this.page.Length) {
+    if (scroll.IsReached()) {
       this.page.Index++;
       await this.FindPaginatedPoblacion();
     }

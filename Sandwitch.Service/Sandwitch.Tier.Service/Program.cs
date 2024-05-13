@@ -42,14 +42,14 @@ var @builder = WebApplication.CreateBuilder(args);
 
 @builder.Services.AddResponseCaching();
 
-var @settings = new ApiSettings();
-@builder.Configuration.GetSection("Api").Bind(@settings);
+var @Apisettings = new ApiSettings();
+@builder.Configuration.GetSection("Api").Bind(@Apisettings);
 @builder.Services.Configure<ApiSettings>(@builder.Configuration.GetSection("Api"));
 
 // Add customized Authentication to the services container.
-@builder.Services.AddCustomizedAuthentication(@settings);
+@builder.Services.AddCustomizedAuthentication(@Apisettings);
 
-@builder.Services.AddCustomizedCrossOriginRequests(@settings);
+@builder.Services.AddCustomizedCrossOriginRequests(@Apisettings);
 
 @builder.Host.UseSerilog((hostingContext, loggerConfiguration) => loggerConfiguration
                 .ReadFrom.Configuration(hostingContext.Configuration));

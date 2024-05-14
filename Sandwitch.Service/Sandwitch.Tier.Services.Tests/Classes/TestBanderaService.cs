@@ -92,6 +92,8 @@ namespace Sandwitch.Tier.Services.Tests.Classes
         [OneTimeTearDown]
         public void OneTimeTearDown()
         {
+            Context.Bandera.RemoveRange(Context.Bandera.ToList());
+
             Context.SaveChanges();
         }
 

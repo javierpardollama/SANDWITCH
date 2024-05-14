@@ -68,6 +68,8 @@ namespace Sandwitch.Tier.Services.Tests.Classes
 
             Context.Poblacion.RemoveRange(Context.Poblacion.ToList());
 
+            Context.Viento.RemoveRange(Context.Viento.ToList());
+
             Context.SaveChanges();
         }
 

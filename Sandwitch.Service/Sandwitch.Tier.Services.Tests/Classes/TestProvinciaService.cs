@@ -89,6 +89,17 @@ namespace Sandwitch.Tier.Services.Tests.Classes
         }
 
         /// <summary>
+        /// Tears Down
+        /// </summary>
+        [OneTimeTearDown]
+        public void OneTimeTearDown()
+        {
+            Context.Provincia.RemoveRange(Context.Provincia.ToList());
+
+            Context.SaveChanges();
+        }
+
+        /// <summary>
         /// Finds All Provincia
         /// </summary>
         /// <returns>Instance of <see cref="Task"/></returns>

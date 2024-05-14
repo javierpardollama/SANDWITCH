@@ -40,8 +40,8 @@ namespace Sandwitch.Tier.Services.Tests.Classes
         /// <summary>
         /// Sets Up
         /// </summary>
-        [SetUp]
-        public void Setup()
+        [OneTimeSetUp]
+        public void OneTimeSetUp()
         {
             SetUpContextOptions();
 
@@ -89,8 +89,8 @@ namespace Sandwitch.Tier.Services.Tests.Classes
         /// <summary>
         /// Tears Down
         /// </summary>
-        [TearDown]
-        public void TearDown()
+        [OneTimeTearDown]
+        public void OneTimeTearDown()
         {
             Context.SaveChanges();
         }

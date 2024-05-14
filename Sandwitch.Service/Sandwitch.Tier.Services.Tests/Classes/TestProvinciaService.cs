@@ -42,8 +42,8 @@ namespace Sandwitch.Tier.Services.Tests.Classes
         /// <summary>
         /// Sets Up
         /// </summary>
-        [SetUp]
-        public void Setup()
+        [OneTimeSetUp]
+        public void OneTimeSetUp()
         {
             SetUpContextOptions();
 

@@ -42,8 +42,8 @@ namespace Sandwitch.Tier.Services.Tests.Classes
         /// <summary>
         /// Sets Up
         /// </summary>
-        [SetUp]
-        public void Setup()
+        [OneTimeSetUp]
+        public void OneTimeSetUp()
         {
             SetUpContextOptions();
 
@@ -63,8 +63,8 @@ namespace Sandwitch.Tier.Services.Tests.Classes
         /// <summary>
         /// Tears Down
         /// </summary>
-        [TearDown]
-        public void TearDown()
+        [OneTimeTearDown]
+        public void OneTimeTearDown()
         {
             Context.Poblacion.RemoveRange(Context.Poblacion.ToList());
 
@@ -206,7 +206,7 @@ namespace Sandwitch.Tier.Services.Tests.Classes
             {
                 ImageUri = "URL/Poblacion_4_500px.png",
                 Name = "Poblacion 4",
-                ProvinciaId = 1
+                ProvinciaId = Context.Provincia.FirstOrDefault().Id
             };
 
             await PoblacionService.AddPoblacion(@Poblacion);
@@ -224,7 +224,8 @@ namespace Sandwitch.Tier.Services.Tests.Classes
             AddPoblacion @Poblacion = new()
             {
                 ImageUri = "URL/Poblacion_3_500px.png",
-                Name = Context.Poblacion.FirstOrDefault().Name
+                Name = Context.Poblacion.FirstOrDefault().Name,
+                ProvinciaId = Context.Provincia.FirstOrDefault().Id
             };
 
             Exception exception = Assert.ThrowsAsync<Exception>(async () => await PoblacionService.CheckName(@Poblacion));

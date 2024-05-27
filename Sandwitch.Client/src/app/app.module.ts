@@ -9,7 +9,7 @@ import {
   ReactiveFormsModule
 } from '@angular/forms';
 
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 // Angular Material
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -61,61 +61,56 @@ import { PoblacionUpdateModalComponent } from './management/modals/updates/pobla
 import { AuthInterceptor } from 'src/interceptors/auth.interceptor';
 
 
-@NgModule({
-  declarations: [
-    // App
-    AppComponent,
-    NavMenuComponent,
-    HomeComponent,
-    SearchComponent,
-    UnknownComponent,
-    UnauthorizedComponent,
-    // App-Grid
-    BanderaGridComponent,
-    VientoGridComponent,
-    PoblacionGridComponent,
-    ProvinciaGridComponent,
-    ArenalGridComponent,
-    // App-Modal-Adition
-    ArenalAddModalComponent,
-    BanderaAddModalComponent,
-    VientoAddModalComponent,
-    ProvinciaAddModalComponent,
-    PoblacionAddModalComponent,
-    HistoricoAddModalComponent,
-    // App-Modal-Update
-    ArenalUpdateModalComponent,
-    BanderaUpdateModalComponent,
-    VientoUpdateModalComponent,
-    ProvinciaUpdateModalComponent,
-    PoblacionUpdateModalComponent
-  ],
-  imports: [
-    // Angular Material
-    BrowserAnimationsModule,
-    MatDividerModule,
-    MatSelectModule,
-    MatInputModule,
-    MatDialogModule,
-    MatPaginatorModule,
-    MatButtonModule,
-    MatSnackBarModule,
-    MatChipsModule,
-    MatAutocompleteModule,
-    MatCardModule,
-    MatTableModule,
-    MatSortModule,
-    MatFormFieldModule,
-    BrowserModule,
-    HttpClientModule,
-    FormsModule,
-    ReactiveFormsModule,
-    AppRoutingModule,
-    NgOptimizedImage,
-  ],
-  providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
-  ],
-  bootstrap: [AppComponent]
-})
+@NgModule({ declarations: [
+        // App
+        AppComponent,
+        NavMenuComponent,
+        HomeComponent,
+        SearchComponent,
+        UnknownComponent,
+        UnauthorizedComponent,
+        // App-Grid
+        BanderaGridComponent,
+        VientoGridComponent,
+        PoblacionGridComponent,
+        ProvinciaGridComponent,
+        ArenalGridComponent,
+        // App-Modal-Adition
+        ArenalAddModalComponent,
+        BanderaAddModalComponent,
+        VientoAddModalComponent,
+        ProvinciaAddModalComponent,
+        PoblacionAddModalComponent,
+        HistoricoAddModalComponent,
+        // App-Modal-Update
+        ArenalUpdateModalComponent,
+        BanderaUpdateModalComponent,
+        VientoUpdateModalComponent,
+        ProvinciaUpdateModalComponent,
+        PoblacionUpdateModalComponent
+    ],
+    bootstrap: [AppComponent], imports: [
+        // Angular Material
+        BrowserAnimationsModule,
+        MatDividerModule,
+        MatSelectModule,
+        MatInputModule,
+        MatDialogModule,
+        MatPaginatorModule,
+        MatButtonModule,
+        MatSnackBarModule,
+        MatChipsModule,
+        MatAutocompleteModule,
+        MatCardModule,
+        MatTableModule,
+        MatSortModule,
+        MatFormFieldModule,
+        BrowserModule,
+        FormsModule,
+        ReactiveFormsModule,
+        AppRoutingModule,
+        NgOptimizedImage], providers: [
+        { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+        provideHttpClient(withInterceptorsFromDi()),
+    ] })
 export class AppModule { }

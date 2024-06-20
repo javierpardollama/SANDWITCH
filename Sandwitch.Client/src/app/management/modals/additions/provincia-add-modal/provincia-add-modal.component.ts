@@ -16,8 +16,12 @@ import {
 import { AddProvincia } from './../../../../../viewmodels/additions/addprovincia';
 
 import { ProvinciaService } from './../../../../../services/provincia.service';
+
 import { TextAppVariants } from './../../../../../variants/text.app.variants';
+
 import { TimeAppVariants } from './../../../../../variants/time.app.variants';
+
+import { ExpressionAppVariants } from './../../../../../variants/expression.app.variants';
 
 @Component({
   selector: 'app-provincia-add-modal',
@@ -44,8 +48,11 @@ export class ProvinciaAddModalComponent implements OnInit {
   // Form
   CreateForm(): void {
     this.formGroup = this.formBuilder.group({
-      Name: new FormControl<string>(TextAppVariants.AppEmptyCoreText, 
-        [Validators.required, Validators.pattern(new RegExp(/^[0-9A-Za-zÀ-ÖØ-öø-ÿ .\-`']*$/))]),
+      Name: new FormControl<string>(TextAppVariants.AppEmptyCoreText,
+        [
+          Validators.required,
+          Validators.pattern(new RegExp(ExpressionAppVariants.AppPoorInputValidationExpression))
+        ]),
       ImageUri: new FormControl<string>(TextAppVariants.AppEmptyCoreText, [Validators.required]),
     });
   }

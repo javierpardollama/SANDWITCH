@@ -28,6 +28,8 @@ import { TextAppVariants } from './../../../../../variants/text.app.variants';
 
 import { TimeAppVariants } from './../../../../../variants/time.app.variants';
 
+import { ExpressionAppVariants } from './../../../../../variants/expression.app.variants';
+
 @Component({
   selector: 'app-arenal-update-modal',
   templateUrl: './arenal-update-modal.component.html',
@@ -60,7 +62,11 @@ export class ArenalUpdateModalComponent implements OnInit {
   CreateForm(): void {
     this.formGroup = this.formBuilder.group({
       Id: new FormControl<number>(this.data.Id, [Validators.required]),
-      Name: new FormControl<string>(this.data.Name, [Validators.required, Validators.pattern(new RegExp(/^[0-9A-Za-zÀ-ÖØ-öø-ÿ .\-`']*$/))]),
+      Name: new FormControl<string>(this.data.Name,
+        [
+          Validators.required,
+          Validators.pattern(new RegExp(ExpressionAppVariants.AppPoorInputValidationExpression))
+        ]),
       PoblacionesId: new FormControl<number[]>(this.data.Poblaciones.map(({ Id }) => Id), [Validators.required])
     });
   }

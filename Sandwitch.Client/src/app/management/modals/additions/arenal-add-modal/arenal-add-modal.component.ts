@@ -25,6 +25,8 @@ import { TextAppVariants } from '../../../../../variants/text.app.variants';
 
 import { TimeAppVariants } from '../../../../../variants/time.app.variants';
 
+import { ExpressionAppVariants } from '../../../../../variants/expression.app.variants';
+
 @Component({
   selector: 'app-arenal-add-modal',
   templateUrl: './arenal-add-modal.component.html',
@@ -55,7 +57,10 @@ export class ArenalAddModalComponent implements OnInit {
   CreateForm(): void {
     this.formGroup = this.formBuilder.group({
       Name: new FormControl<string>(TextAppVariants.AppEmptyCoreText,
-        [Validators.required, Validators.pattern(new RegExp(/^[0-9A-Za-zÀ-ÖØ-öø-ÿ .\-`']*$/))]),
+        [
+          Validators.required,
+          Validators.pattern(new RegExp(ExpressionAppVariants.AppPoorInputValidationExpression))
+        ]),
       PoblacionesId: new FormControl<number[]>([], [Validators.required])
     });
   }

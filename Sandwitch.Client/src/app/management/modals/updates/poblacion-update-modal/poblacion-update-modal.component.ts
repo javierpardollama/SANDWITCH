@@ -59,7 +59,7 @@ export class PoblacionUpdateModalComponent implements OnInit {
   CreateForm(): void {
     this.formGroup = this.formBuilder.group({
       Id: new FormControl<number>(this.data.Id, [Validators.required]),
-      Name: new FormControl<string>(this.data.Name, [Validators.required]),
+      Name: new FormControl<string>(this.data.Name, [Validators.required, Validators.pattern(new RegExp(/^[0-9A-Za-zÀ-ÖØ-öø-ÿ .\-`']*$/))]),
       ImageUri: new FormControl<string>(this.data.ImageUri, [Validators.required]),
       ProvinciaId: new FormControl<number>(this.data.Provincia.Id, [Validators.required])
     });

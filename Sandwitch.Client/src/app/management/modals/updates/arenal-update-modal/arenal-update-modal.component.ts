@@ -60,7 +60,7 @@ export class ArenalUpdateModalComponent implements OnInit {
   CreateForm(): void {
     this.formGroup = this.formBuilder.group({
       Id: new FormControl<number>(this.data.Id, [Validators.required]),
-      Name: new FormControl<string>(this.data.Name, [Validators.required]),
+      Name: new FormControl<string>(this.data.Name, [Validators.required, Validators.pattern(new RegExp(/^[0-9A-Za-zÀ-ÖØ-öø-ÿ .\-`']*$/))]),
       PoblacionesId: new FormControl<number[]>(this.data.Poblaciones.map(({ Id }) => Id), [Validators.required])
     });
   }

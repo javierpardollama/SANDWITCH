@@ -55,7 +55,7 @@ export class ArenalAddModalComponent implements OnInit {
   CreateForm(): void {
     this.formGroup = this.formBuilder.group({
       Name: new FormControl<string>(TextAppVariants.AppEmptyCoreText,
-        [Validators.required]),
+        [Validators.required, Validators.pattern(new RegExp(/^[0-9A-Za-zÀ-ÖØ-öø-ÿ .\-`']*$/))]),
       PoblacionesId: new FormControl<number[]>([], [Validators.required])
     });
   }

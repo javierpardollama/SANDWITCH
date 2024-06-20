@@ -47,7 +47,7 @@ export class VientoAddModalComponent implements OnInit {
   CreateForm(): void {
     this.formGroup = this.formBuilder.group({
       Name: new FormControl<string>(TextAppVariants.AppEmptyCoreText,
-        [Validators.required]),
+        [Validators.required, Validators.pattern(new RegExp(/^[0-9A-Za-zÀ-ÖØ-öø-ÿ .\-`']*$/))]),
       ImageUri: new FormControl<string>(TextAppVariants.AppEmptyCoreText,
         [Validators.required]),
     });

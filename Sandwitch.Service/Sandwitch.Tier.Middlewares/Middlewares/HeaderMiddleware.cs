@@ -26,7 +26,7 @@ namespace Sandwitch.Tier.Middlewares.Middlewares
             @context.Response.Headers.XXSSProtection = new StringValues("0");
             @context.Response.Headers.ContentSecurityPolicy = new StringValues("default-src 'self'");
 
-            await request(@context);
+            await @request(@context);
         }
     }
 }

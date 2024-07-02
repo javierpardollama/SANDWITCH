@@ -59,7 +59,7 @@ export class ArenalAddModalComponent implements OnInit {
       Name: new FormControl<string>(TextAppVariants.AppEmptyCoreText,
         [
           Validators.required,
-          Validators.pattern(new RegExp(ExpressionAppVariants.AppPoorInputValidationExpression))
+          Validators.pattern(new RegExp(ExpressionAppVariants.AppNameExpression))
         ]),
       PoblacionesId: new FormControl<number[]>([], [Validators.required])
     });

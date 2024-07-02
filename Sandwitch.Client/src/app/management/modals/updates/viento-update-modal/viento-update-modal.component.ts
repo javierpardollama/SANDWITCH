@@ -56,7 +56,7 @@ export class VientoUpdateModalComponent implements OnInit {
       Name: new FormControl<string>(this.data.Name,
         [
           Validators.required,
-          Validators.pattern(new RegExp(ExpressionAppVariants.AppPoorInputValidationExpression))
+          Validators.pattern(new RegExp(ExpressionAppVariants.AppNameExpression))
         ]),
       ImageUri: new FormControl<string>(this.data.ImageUri, [Validators.required]),
     });

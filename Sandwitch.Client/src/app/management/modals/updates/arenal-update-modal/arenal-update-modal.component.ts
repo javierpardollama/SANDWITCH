@@ -65,7 +65,7 @@ export class ArenalUpdateModalComponent implements OnInit {
       Name: new FormControl<string>(this.data.Name,
         [
           Validators.required,
-          Validators.pattern(new RegExp(ExpressionAppVariants.AppPoorInputValidationExpression))
+          Validators.pattern(new RegExp(ExpressionAppVariants.AppNameExpression))
         ]),
       PoblacionesId: new FormControl<number[]>(this.data.Poblaciones.map(({ Id }) => Id), [Validators.required])
     });

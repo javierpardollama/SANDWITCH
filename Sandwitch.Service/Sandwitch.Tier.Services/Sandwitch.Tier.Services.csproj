@@ -8,7 +8,6 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\Sandwitch.Tier.Contexts\Sandwitch.Tier.Contexts.csproj" />
-		<ProjectReference Include="..\Sandwitch.Tier.Middlewares\Sandwitch.Tier.Middlewares.csproj" />
 		<ProjectReference Include="..\Sandwitch.Tier.Logging\Sandwitch.Tier.Logging.csproj" />
 		<ProjectReference Include="..\Sandwitch.Tier.Settings\Sandwitch.Tier.Settings.csproj" />
 	</ItemGroup>

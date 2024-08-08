@@ -19,6 +19,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Sandwitch.Tier.Middlewares\Sandwitch.Tier.Middlewares.csproj" />
+    <ProjectReference Include="..\Sandwitch.Tier.Telemetry\Sandwitch.Tier.Telemetry.csproj" />
   </ItemGroup>
 
 </Project>

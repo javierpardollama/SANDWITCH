@@ -15,6 +15,8 @@ using Serilog;
 
 var @builder = WebApplication.CreateBuilder(args);
 
+@builder.AddServiceDefaults();
+
 // Add services to the container.
 
 @builder.Services.AddDbContext<ApplicationContext>(options =>
@@ -66,6 +68,8 @@ var @RateSettings = new RateLimitSettings();
 
 var @app = @builder.Build();
 
+@app.MapDefaultEndpoints();
+
 // Configure the HTTP request pipeline.
 if (@app.Environment.IsDevelopment())
 {
@@ -90,7 +94,5 @@ if (@app.Environment.IsDevelopment())
 @app.UseRateLimiter();
 
 @app.MapControllers();
-
-@app.MapHealthChecks("/healthz");
 
 @app.Run();

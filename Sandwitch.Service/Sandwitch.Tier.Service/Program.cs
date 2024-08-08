@@ -56,8 +56,6 @@ var @Apisettings = new ApiSettings();
 @builder.Host.UseSerilog((hostingContext, loggerConfiguration) => loggerConfiguration
                 .ReadFrom.Configuration(hostingContext.Configuration));
 
-@builder.Services.AddHealthChecks();
-
 // Register the Rate Limit Settings to the configuration container.
 var @RateSettings = new RateLimitSettings();
 @builder.Configuration.GetSection("RateLimit").Bind(@RateSettings);

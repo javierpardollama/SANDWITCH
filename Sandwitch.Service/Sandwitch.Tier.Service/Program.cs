@@ -53,9 +53,6 @@ var @Apisettings = new ApiSettings();
 
 @builder.Services.AddCustomizedCrossOriginRequests(@Apisettings);
 
-@builder.Host.UseSerilog((hostingContext, loggerConfiguration) => loggerConfiguration
-                .ReadFrom.Configuration(hostingContext.Configuration));
-
 // Register the Rate Limit Settings to the configuration container.
 var @RateSettings = new RateLimitSettings();
 @builder.Configuration.GetSection("RateLimit").Bind(@RateSettings);

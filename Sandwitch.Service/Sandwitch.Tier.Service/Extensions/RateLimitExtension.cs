@@ -22,10 +22,9 @@ namespace Sandwitch.Tier.Service.Extensions
         public static void AddCustomizedRateLimiter(this IServiceCollection @this, RateLimitSettings @RateSettings)
         {
             @this.AddRateLimiter(_ => _
-             .AddFixedWindowLimiter(policyName: @RateSettings.PolicyName, options =>
+             .AddConcurrencyLimiter(policyName: @RateSettings.PolicyName, options =>
              {
-                 options.PermitLimit = @RateSettings.PermitLimit;
-                 options.Window = TimeSpan.FromSeconds(@RateSettings.Window);
+                 options.PermitLimit = @RateSettings.PermitLimit;                
                  options.QueueProcessingOrder = (QueueProcessingOrder)@RateSettings.QueueProcessingOrder;
                  options.QueueLimit = @RateSettings.QueueLimit;
              }));

@@ -1,11 +1,10 @@
-﻿using System;
-using System.Threading.RateLimiting;
-
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.RateLimiting;
 using Microsoft.Extensions.DependencyInjection;
 
 using Sandwitch.Tier.Settings.Classes;
+
+using System.Threading.RateLimiting;
 
 namespace Sandwitch.Tier.Service.Extensions
 {

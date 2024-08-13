@@ -20,7 +20,7 @@ namespace Sandwitch.Tier.Web.Controllers
     [Produces("application/json")]
     [ApiController]
     [Authorize]
-    [EnableRateLimiting("fixed")]
+    [EnableRateLimiting("Concurrency")]
     public class ArenalController(IArenalService @service) : ControllerBase
     {      
 

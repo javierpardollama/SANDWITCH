@@ -5,6 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
 using Sandwitch.Tier.Contexts.Classes;
+using Sandwitch.Tier.Contexts.Interceptors;
 using Sandwitch.Tier.Mappings.Classes;
 using Sandwitch.Tier.Service.Extensions;
 using Sandwitch.Tier.Settings.Classes;
@@ -18,7 +19,10 @@ var @builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 @builder.Services.AddDbContext<ApplicationContext>(options =>
-             options.UseSqlite(@builder.Configuration.GetConnectionString("DefaultConnection")));
+{
+    options.AddInterceptors(new SoftDeleteInterceptor());
+    options.UseSqlite(@builder.Configuration.GetConnectionString("DefaultConnection"));
+});
 
 @builder.Services.AddControllers()
                 .AddJsonOptions(options =>

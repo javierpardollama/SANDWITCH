@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Sandwitch.Tier.Entities.Classes;
 
 using System;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Sandwitch.Tier.Contexts.Interfaces
@@ -57,7 +58,8 @@ namespace Sandwitch.Tier.Contexts.Interfaces
         /// <summary>
         /// Saves Changes Asyncronously
         /// </summary>
+        /// <param name="cancellationToken">Injected <see cref="CancellationToken"/></param>
         /// <returns>Instance of <see cref="Task{int}"/></returns>
-        public Task<int> SaveChangesAsync();
+        public Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
     }
 }

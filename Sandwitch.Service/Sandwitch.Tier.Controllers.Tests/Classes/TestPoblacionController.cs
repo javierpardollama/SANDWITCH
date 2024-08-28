@@ -1,14 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Net.Http;
-using System.Net.Http.Json;
-using System.Threading.Tasks;
-
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using NUnit.Framework.Internal;
 
 using Sandwitch.Tier.ViewModels.Classes.Filters;
 using Sandwitch.Tier.ViewModels.Classes.Views;
+
+using System;
+using System.Collections.Generic;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Net.Http.Json;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace Sandwitch.Tier.Controllers.Tests.Classes
 {
@@ -21,7 +23,7 @@ namespace Sandwitch.Tier.Controllers.Tests.Classes
         /// <summary>
         /// Initializes a new Instance of <see cref="TestPoblacionController"/>
         /// </summary>
-        public TestPoblacionController() => Client.DefaultRequestHeaders.Authorization = new BasicAuthenticationHeaderValue("Peach", "T/R4J6eyvNG<6ne!");
+        public TestPoblacionController() => Client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", Convert.ToBase64String(Encoding.UTF8.GetBytes("Peach" + ":" + "T/R4J6eyvNG<6ne!")));
 
         /// <summary>
         /// Sets Up

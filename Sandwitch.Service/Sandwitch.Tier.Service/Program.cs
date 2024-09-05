@@ -14,8 +14,6 @@ using System.Text.Json.Serialization;
 
 var @builder = WebApplication.CreateBuilder(args);
 
-@builder.AddServiceDefaults();
-
 // Add services to the container.
 
 @builder.Services.AddDbContext<ApplicationContext>(options =>
@@ -62,15 +60,9 @@ var @RateSettings = new RateLimitSettings();
 
 @builder.Services.AddCustomizedRateLimiter(@RateSettings);
 
-// Wherever your services are being registered.
-// Before the call to Build().
-@builder.Services.AddRequestTimeouts();
-@builder.Services.AddOutputCache();
-
+@builder.AddCustomizedAspireServices();
 
 var @app = @builder.Build();
-
-@app.MapDefaultEndpoints();
 
 // Configure the HTTP request pipeline.
 if (@app.Environment.IsDevelopment())
@@ -96,6 +88,8 @@ if (@app.Environment.IsDevelopment())
 @app.UseRateLimiter();
 
 @app.MapControllers();
+
+@app.MapDefaultHealthEndpoints();
 
 // Wherever your app has been built, before the call to Run().
 @app.UseRequestTimeouts();

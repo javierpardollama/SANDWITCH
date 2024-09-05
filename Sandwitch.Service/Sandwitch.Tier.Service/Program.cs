@@ -77,7 +77,8 @@ if (@app.Environment.IsDevelopment())
 
 @app.UseHttpsRedirection();
 
-// UseCors must be called before UseResponseCaching, UseAuthentication, UseAuthorization
+// UseCors() must be called before UseResponseCaching(), UseAuthentication(), UseAuthorization().
+// Learn more about configuring app pipeline at https://learn.microsoft.com/en-us/aspnet/core/fundamentals/middleware/?view=aspnetcore-8.0
 @app.UseCors();
 
 @app.UseAuthentication();
@@ -91,7 +92,6 @@ if (@app.Environment.IsDevelopment())
 
 @app.MapDefaultHealthEndpoints();
 
-// Wherever your app has been built, before the call to Run().
 @app.UseRequestTimeouts();
 @app.UseOutputCache();
 

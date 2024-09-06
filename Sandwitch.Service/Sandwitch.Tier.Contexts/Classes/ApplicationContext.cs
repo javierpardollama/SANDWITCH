@@ -10,6 +10,7 @@ using Sandwitch.Tier.Contexts.Extensions;
 using Sandwitch.Tier.Contexts.Interceptors;
 using Sandwitch.Tier.Contexts.Interfaces;
 using Sandwitch.Tier.Entities.Classes;
+using Sandwitch.Tier.Entities.Interfaces;
 
 namespace Sandwitch.Tier.Contexts.Classes
 {
@@ -86,26 +87,26 @@ namespace Sandwitch.Tier.Contexts.Classes
         /// </summary>
         private void UpdateSoftStatus()
         {
-            foreach (EntityEntry @entity in ChangeTracker.Entries())
+            foreach (EntityEntry @entity in ChangeTracker.Entries<IBase>())
             {
                 switch (@entity.State)
                 {
                     case EntityState.Added:
-                        @entity.CurrentValues["LastModified"] = DateTime.Now;
+                        @entity.Property(nameof(IBase.LastModified)).CurrentValue = DateTime.Now;
                         @entity.State = EntityState.Added;
-                        @entity.CurrentValues["Deleted"] = false;
+                        @entity.Property(nameof(IBase.Deleted)).CurrentValue = false;
                         break;
 
                     case EntityState.Modified:
-                        @entity.CurrentValues["LastModified"] = DateTime.Now;
+                        @entity.Property(nameof(IBase.LastModified)).CurrentValue = DateTime.Now;
                         @entity.State = EntityState.Modified;
-                        @entity.CurrentValues["Deleted"] = false;
+                        @entity.Property(nameof(IBase.Deleted)).CurrentValue = false;
                         break;
 
                     case EntityState.Deleted:
-                        @entity.CurrentValues["LastModified"] = DateTime.Now;
+                        @entity.Property(nameof(IBase.LastModified)).CurrentValue = DateTime.Now;
                         @entity.State = EntityState.Modified;
-                        @entity.CurrentValues["Deleted"] = true;
+                        @entity.Property(nameof(IBase.Deleted)).CurrentValue = true;
                         break;
                 }
             }

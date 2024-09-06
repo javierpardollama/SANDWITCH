@@ -108,14 +108,19 @@ namespace Microsoft.Extensions.Hosting
 
         public static WebApplication MapDefaultHealthEndpoints(this WebApplication @app)
         {
-            // All health checks must pass for app to be considered ready to accept traffic after starting
+
+            @app.MapGroup("").CacheOutput("HealthChecks").WithRequestTimeout("HealthChecks");
+
+            // All health checks must pass for app to be
+            // considered ready to accept traffic after starting
             @app.MapHealthChecks("/health");
 
-            // Only health checks tagged with the "live" tag must pass for app to be considered alive
-            @app.MapHealthChecks("/alive", new HealthCheckOptions
+            // Only health checks tagged with the "live" tag
+            // must pass for app to be considered alive
+            @app.MapHealthChecks("/alive", new()
             {
-                Predicate = r => r.Tags.Contains("live")
-            });
+                Predicate = static r => r.Tags.Contains("live")
+            });          
 
             return @app;
         }

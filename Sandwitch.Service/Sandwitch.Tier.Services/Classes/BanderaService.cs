@@ -174,7 +174,13 @@ namespace Sandwitch.Tier.Services.Classes
             {
                 Bandera @bandera = await FindBanderaById(@id);
 
-                Context.Bandera.Remove(@bandera);
+                @bandera.Deleted = true;
+                @bandera.LastModified = DateTime.Now;
+
+
+                Context.Bandera.Update(@bandera);
+
+                //Context.Bandera.Remove(@bandera);
 
                 await Context.SaveChangesAsync();
 

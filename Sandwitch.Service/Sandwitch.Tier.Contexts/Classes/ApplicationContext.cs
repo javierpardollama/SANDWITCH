@@ -60,5 +60,55 @@ namespace Sandwitch.Tier.Contexts.Classes
         /// </summary>
         /// <param name="modelBuilder">Injected <see cref="ModelBuilder"/></param>
         protected override void OnModelCreating(ModelBuilder @modelBuilder) => @modelBuilder.AddCustomizedFilters();
+
+        /// <summary>
+        /// Saves Changes Syncronously
+        /// </summary>
+        /// <returns>Instance of <see cref="int"/></returns>
+        public override int SaveChanges()
+        {
+            //UpdateSoftStatus();
+            return base.SaveChanges();
+        }
+
+        /// <summary>
+        /// Saves Changes Asyncronously
+        /// </summary>
+        /// <returns>Instance of <see cref="Task{int}"/></returns>
+        public async Task<int> SaveChangesAsync()
+        {
+            //UpdateSoftStatus();
+            return await base.SaveChangesAsync();
+        }
+
+        /// <summary>
+        /// Overrides Tracking
+        /// </summary>
+        private void UpdateSoftStatus()
+        {
+            foreach (EntityEntry @entity in ChangeTracker.Entries())
+            {
+                switch (@entity.State)
+                {
+                    case EntityState.Added:
+                        @entity.CurrentValues["LastModified"] = DateTime.Now;
+                        @entity.State = EntityState.Added;
+                        @entity.CurrentValues["Deleted"] = false;
+                        break;
+
+                    case EntityState.Modified:
+                        @entity.CurrentValues["LastModified"] = DateTime.Now;
+                        @entity.State = EntityState.Modified;
+                        @entity.CurrentValues["Deleted"] = false;
+                        break;
+
+                    case EntityState.Deleted:
+                        @entity.CurrentValues["LastModified"] = DateTime.Now;
+                        @entity.State = EntityState.Modified;
+                        @entity.CurrentValues["Deleted"] = true;
+                        break;
+                }
+            }
+        }
     }
 }

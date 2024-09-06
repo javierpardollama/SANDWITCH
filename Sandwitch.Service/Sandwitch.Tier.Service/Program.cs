@@ -18,7 +18,7 @@ var @builder = WebApplication.CreateBuilder(args);
 
 @builder.Services.AddDbContext<ApplicationContext>(options =>
 {
-    options.AddInterceptors(new SoftDeleteInterceptor());
+    //options.AddInterceptors(new SoftDeleteInterceptor());
     options.UseSqlite(@builder.Configuration.GetConnectionString("DefaultConnection"));
 });
 

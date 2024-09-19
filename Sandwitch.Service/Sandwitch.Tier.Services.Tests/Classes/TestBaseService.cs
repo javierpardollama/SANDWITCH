@@ -48,9 +48,8 @@ namespace Sandwitch.Tier.Services.Tests.Classes
             Services = new ServiceCollection();
 
             Services
-                .AddDbContext<ApplicationContext>(o => o.UseSqlite("Data Source=sandwitch.db"));
-
-            Services.AddLogging();
+                .AddLogging()
+                .AddDbContext<ApplicationContext>(o => o.UseInMemoryDatabase("sandwitch.db"));
 
             Context = new ApplicationContext(ContextOptions);
         }
@@ -82,7 +81,7 @@ namespace Sandwitch.Tier.Services.Tests.Classes
         /// Sets Up Context Options
         /// </summary>
         protected void SetUpContextOptions() => ContextOptions = new DbContextOptionsBuilder<ApplicationContext>()
-           .UseInMemoryDatabase(databaseName: "Data Source=sandwitch.db")
+           .UseInMemoryDatabase("sandwitch.db")
            .Options;
     }
 }

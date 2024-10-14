@@ -5,6 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 
 using Sandwitch.Tier.Contexts.Classes;
+using Sandwitch.Tier.Contexts.Interceptors;
 using Sandwitch.Tier.Mappings.Classes;
 using Sandwitch.Tier.Settings.Classes;
 
@@ -49,7 +50,11 @@ namespace Sandwitch.Tier.Services.Tests.Classes
 
             Services
                 .AddLogging()
-                .AddDbContext<ApplicationContext>(o => o.UseInMemoryDatabase("sandwitch.db"));
+                .AddDbContext<ApplicationContext>(o => 
+                { 
+                    o.UseInMemoryDatabase("sandwitch.db"); 
+                    o.AddInterceptors(new SoftDeleteInterceptor()); 
+                });
 
             Context = new ApplicationContext(ContextOptions);
         }

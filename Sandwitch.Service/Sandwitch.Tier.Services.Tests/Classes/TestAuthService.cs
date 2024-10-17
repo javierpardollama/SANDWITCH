@@ -58,15 +58,6 @@ namespace Sandwitch.Tier.Services.Tests.Classes
         }
 
         /// <summary>
-        /// Tears Down
-        /// </summary>
-        [OneTimeTearDown]
-        public void OneTimeTearDown()
-        {
-            Context.SaveChanges();
-        }
-
-        /// <summary>
         /// Can Authenticate
         /// </summary>
         [Test]

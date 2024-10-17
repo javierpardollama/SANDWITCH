@@ -82,3 +82,9 @@
     background-image: url('/assets/img/iconos/Compass_500px.png');
     background-size: cover;
 }
+
+@media screen and (max-width: 960px) {
+    .modal-content-cell {
+        padding-right: unset;
+    }
+}

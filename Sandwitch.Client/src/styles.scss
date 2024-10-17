@@ -46,6 +46,12 @@ display: flex;
 justify-content: center;   
 }
 
+@media screen and (max-width: 960px) {
+    .mat-mdc-dialog-container {
+        height: unset !important;
+    }
+}
+
 /* SPINNER ANIMATION */
 @-webkit-keyframes sk-rotateplane {
 0% { -webkit-transform: perspective(120px) }

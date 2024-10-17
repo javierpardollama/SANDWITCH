@@ -38,7 +38,6 @@ namespace Sandwitch.Tier.Client.Tests.Classes
         [OneTimeTearDown]
         public void OneTimeTearDown()
         {
-            Driver.Close();
             Driver.Quit();            
         }
 

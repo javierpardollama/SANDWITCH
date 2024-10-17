@@ -43,17 +43,13 @@ namespace Sandwitch.Tier.Services.Tests.Classes
         [OneTimeSetUp]
         public void OneTimeSetUp()
         {
-            SetUpContextOptions();
-
-            SetUpApiOptions();
-
-            SetUpServices();
+            SetUpContext();
 
             SetUpMapper();
 
             SetUpLogger();
 
-            SetUpContext();
+            SetUpData();
 
             VientoService = new VientoService(Context, Mapper, Logger);
         }
@@ -77,7 +73,7 @@ namespace Sandwitch.Tier.Services.Tests.Classes
         /// <summary>
         /// Sets Up Context
         /// </summary>
-        private void SetUpContext()
+        private void SetUpData()
         {
             Context.Viento.Add(new Viento { Name = "Viento " + Guid.NewGuid().ToString(), ImageUri = "Vientos/Viento_1_500.png", LastModified = DateTime.Now, Deleted = false });
             Context.Viento.Add(new Viento { Name = "Viento " + Guid.NewGuid().ToString(), ImageUri = "Vientos/Viento_2_500.png", LastModified = DateTime.Now, Deleted = false });

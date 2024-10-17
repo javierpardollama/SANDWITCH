@@ -43,17 +43,13 @@ namespace Sandwitch.Tier.Services.Tests.Classes
         [OneTimeSetUp]
         public void OneTimeSetUp()
         {
-            SetUpContextOptions();
-
-            SetUpApiOptions();
-
-            SetUpServices();
+            SetUpContext();
 
             SetUpMapper();
 
             SetUpLogger();
 
-            SetUpContext();
+            SetUpData();
 
             BanderaService = new BanderaService(Context, Mapper, Logger);
         }
@@ -75,9 +71,9 @@ namespace Sandwitch.Tier.Services.Tests.Classes
         }
 
         /// <summary>
-        /// Sets Up Context
+        /// Sets Up Data
         /// </summary>
-        private void SetUpContext()
+        private void SetUpData()
         {
             Context.Bandera.Add(new Bandera { Name = "Bandera " + Guid.NewGuid().ToString(), ImageUri = "Banderas/Bandera_1_500.png", LastModified = DateTime.Now, Deleted = false });
             Context.Bandera.Add(new Bandera { Name = "Bandera " + Guid.NewGuid().ToString(), ImageUri = "Banderas/Bandera_2_500.png", LastModified = DateTime.Now, Deleted = false });

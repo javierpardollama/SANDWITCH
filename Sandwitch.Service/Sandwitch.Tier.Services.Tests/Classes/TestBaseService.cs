@@ -17,48 +17,38 @@ namespace Sandwitch.Tier.Services.Tests.Classes
     public abstract class TestBaseService
     {
         /// <summary>
-        /// Instance of <see cref="IMapper"/>
+        /// Gets or Sets <see cref="IMapper"/>
         /// </summary>
-        protected IMapper Mapper;
+        protected IMapper Mapper { get; set; }
 
         /// <summary>
-        /// Instance of <see cref="IOptions{ApiSettings}"/>
+        /// Gets or Sets <see cref="IOptions{ApiSettings}"/>
         /// </summary>
-        protected IOptions<ApiSettings> ApiOptions;
-
-        /// <summary>
-        /// Instance of <see cref="ApplicationContext"/>
-        /// </summary>
-        protected ApplicationContext Context;
-
-        /// <summary>
-        /// Instance of <see cref="ServiceCollection"/>
-        /// </summary>
-        protected ServiceCollection Services;
-
-        /// <summary>
-        /// Instance of <see cref="DbContextOptions{ApplicationContext}"/>
-        /// </summary>
-        protected DbContextOptions<ApplicationContext> ContextOptions;
-
-        /// <summary>
-        /// Sets Up Services
-        /// </summary>
-        protected void SetUpServices()
+        protected IOptions<ApiSettings> ApiOptions { get; set; } = Options.Create(new ApiSettings()
         {
-            Services = new ServiceCollection();
+            ApiLock = "Pauline",
+            ApiKey = "T/R4J6eyvNG<6ne!"
+        });
 
-            Services
-                .AddLogging()
-                .AddDbContext<ApplicationContext>(o => 
-                { 
-                    o.UseInMemoryDatabase("sandwitch.db"); 
-                    o.AddInterceptors(new SoftDeleteInterceptor()); 
-                });
+        /// <summary>
+        /// Gets or Sets <see cref="ApplicationContext"/>
+        /// </summary>
+        protected ApplicationContext Context { get; set; }
 
-            Context = new ApplicationContext(ContextOptions);
+        /// <summary>
+        /// Gets or Sets <see cref="DbContextOptionsBuilder{ApplicationContext}"/>
+        /// </summary>
+        protected DbContextOptionsBuilder<ApplicationContext> ContextOptionsBuilder { get; set; } = new DbContextOptionsBuilder<ApplicationContext>()
+           .UseInMemoryDatabase("sandwitch.db")
+           .AddInterceptors(new SoftDeleteInterceptor());
+
+        /// <summary>
+        /// Sets Up Context
+        /// </summary>
+        protected void SetUpContext()
+        {
+            Context = new ApplicationContext(ContextOptionsBuilder.Options);
         }
-
 
         /// <summary>
         /// Sets Up Mapper
@@ -71,22 +61,6 @@ namespace Sandwitch.Tier.Services.Tests.Classes
             });
 
             Mapper = @config.CreateMapper();
-        }
-
-        /// <summary>
-        /// Sets Up Api Options
-        /// </summary>
-        protected void SetUpApiOptions() => ApiOptions = Options.Create(new ApiSettings()
-        {
-           ApiLock = "Pauline",
-           ApiKey = "T/R4J6eyvNG<6ne!"
-        });
-
-        /// <summary>
-        /// Sets Up Context Options
-        /// </summary>
-        protected void SetUpContextOptions() => ContextOptions = new DbContextOptionsBuilder<ApplicationContext>()
-           .UseInMemoryDatabase("sandwitch.db")
-           .Options;
+        }        
     }
 }

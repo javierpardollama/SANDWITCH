@@ -36,14 +36,6 @@ namespace Sandwitch.Tier.Services.Tests.Classes
         [OneTimeSetUp]
         public void OneTimeSetUp()
         {
-            SetUpContextOptions();
-
-            SetUpApiOptions();
-
-            SetUpServices();
-
-            SetUpMapper();
-
             SetUpLogger();
 
             AuthService = new AuthService(Logger, ApiOptions);

@@ -46,17 +46,13 @@ namespace Sandwitch.Tier.Services.Tests.Classes
         [OneTimeSetUp]
         public void OneTimeSetUp()
         {
-            SetUpContextOptions();
-
-            SetUpApiOptions();
-
-            SetUpServices();
+            SetUpContext();
 
             SetUpMapper();
 
             SetUpLogger();
 
-            SetUpContext();
+            SetUpData();
 
             ArenalService = new ArenalService(Context, Mapper, Logger);
         }
@@ -93,9 +89,9 @@ namespace Sandwitch.Tier.Services.Tests.Classes
         }
 
         /// <summary>
-        /// Sets Up Context
+        /// Sets Up Data
         /// </summary>
-        private void SetUpContext()
+        private void SetUpData()
         {
             Context.Poblacion.Add(new Poblacion { Name = "Poblacion " + Guid.NewGuid().ToString(), ImageUri = "Poblaciones/Poblacion_1_500.png", LastModified = DateTime.Now, Deleted = false });
             Context.Poblacion.Add(new Poblacion { Name = "Poblacion " + Guid.NewGuid().ToString(), ImageUri = "Poblaciones/Poblacion_2_500.png", LastModified = DateTime.Now, Deleted = false });

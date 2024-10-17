@@ -45,17 +45,13 @@ namespace Sandwitch.Tier.Services.Tests.Classes
         [OneTimeSetUp]
         public void OneTimeSetUp()
         {
-            SetUpContextOptions();
-
-            SetUpApiOptions();
-
-            SetUpServices();
+            SetUpContext();
 
             SetUpMapper();
 
             SetUpLogger();
 
-            SetUpContext();
+            SetUpData();
 
             PoblacionService = new PoblacionService(Context, Mapper, Logger);
         }
@@ -90,9 +86,9 @@ namespace Sandwitch.Tier.Services.Tests.Classes
         }
 
         /// <summary>
-        /// Sets Up Context
+        /// Sets Up Data
         /// </summary>
-        private void SetUpContext()
+        private void SetUpData()
         {
             Context.Provincia.Add(new Provincia { Name = "Provincia " + Guid.NewGuid().ToString(), ImageUri = "URL/Provincia_04_500px.png", LastModified = DateTime.Now, Deleted = false });
 

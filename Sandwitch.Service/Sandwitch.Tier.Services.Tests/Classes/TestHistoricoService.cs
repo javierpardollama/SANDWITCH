@@ -41,17 +41,13 @@ namespace Sandwitch.Tier.Services.Tests.Classes
         [OneTimeSetUp]
         public void OneTimeSetUp()
         {
-            SetUpContextOptions();
-
-            SetUpApiOptions();
-
-            SetUpServices();
+            SetUpContext();
 
             SetUpMapper();
 
             SetUpLogger();
 
-            SetUpContext();
+            SetUpData();
 
             HistoricoService = new HistoricoService(Context, Mapper, Logger);
         }
@@ -90,9 +86,9 @@ namespace Sandwitch.Tier.Services.Tests.Classes
         }
 
         /// <summary>
-        /// Sets Up Context
+        /// Sets Up Data
         /// </summary>
-        private void SetUpContext()
+        private void SetUpData()
         {
             Context.Arenal.Add(new Arenal { Name = "Arenal 1", LastModified = DateTime.Now, Deleted = false });
             Context.Poblacion.Add(new Poblacion { Name = "Poblacion 1", ImageUri = "URL/Poblacion_01_500px.png", LastModified = DateTime.Now, Deleted = false });

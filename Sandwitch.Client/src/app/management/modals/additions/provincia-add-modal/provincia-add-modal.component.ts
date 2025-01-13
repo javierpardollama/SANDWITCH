@@ -38,28 +38,27 @@ import { MatTableModule } from '@angular/material/table';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-provincia-add-modal',
-  templateUrl: './provincia-add-modal.component.html',
-  styleUrls: ['./provincia-add-modal.component.scss'],
-  standalone: true,
-  imports: [
-      MatDividerModule,
-      MatSelectModule,
-      MatInputModule,
-      MatDialogModule,
-      MatPaginatorModule,
-      MatButtonModule,
-      MatSnackBarModule,
-      MatChipsModule,
-      MatAutocompleteModule,
-      MatCardModule,
-      MatTableModule,
-      MatSortModule,
-      MatFormFieldModule,
-      CommonModule,
-      FormsModule,
-      ReactiveFormsModule,
-      ]
+    selector: 'app-provincia-add-modal',
+    templateUrl: './provincia-add-modal.component.html',
+    styleUrls: ['./provincia-add-modal.component.scss'],
+    imports: [
+        MatDividerModule,
+        MatSelectModule,
+        MatInputModule,
+        MatDialogModule,
+        MatPaginatorModule,
+        MatButtonModule,
+        MatSnackBarModule,
+        MatChipsModule,
+        MatAutocompleteModule,
+        MatCardModule,
+        MatTableModule,
+        MatSortModule,
+        MatFormFieldModule,
+        CommonModule,
+        FormsModule,
+        ReactiveFormsModule,
+    ]
 })
 export class ProvinciaAddModalComponent implements OnInit {
 

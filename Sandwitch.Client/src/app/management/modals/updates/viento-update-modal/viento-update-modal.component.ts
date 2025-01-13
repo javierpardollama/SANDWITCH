@@ -41,27 +41,26 @@ import { MatTableModule } from '@angular/material/table';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-viento-update-modal',
-  templateUrl: './viento-update-modal.component.html',
-  styleUrls: ['./viento-update-modal.component.scss'],
-  standalone: true,
-  imports: [
-    MatDividerModule,
-    MatSelectModule,
-    MatInputModule,
-    MatDialogModule,
-    MatPaginatorModule,
-    MatButtonModule,
-    MatSnackBarModule,
-    MatChipsModule,
-    MatAutocompleteModule,
-    MatCardModule,
-    MatTableModule,
-    MatSortModule,
-    MatFormFieldModule,
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
+    selector: 'app-viento-update-modal',
+    templateUrl: './viento-update-modal.component.html',
+    styleUrls: ['./viento-update-modal.component.scss'],
+    imports: [
+        MatDividerModule,
+        MatSelectModule,
+        MatInputModule,
+        MatDialogModule,
+        MatPaginatorModule,
+        MatButtonModule,
+        MatSnackBarModule,
+        MatChipsModule,
+        MatAutocompleteModule,
+        MatCardModule,
+        MatTableModule,
+        MatSortModule,
+        MatFormFieldModule,
+        CommonModule,
+        FormsModule,
+        ReactiveFormsModule,
     ]
 })
 export class VientoUpdateModalComponent implements OnInit {

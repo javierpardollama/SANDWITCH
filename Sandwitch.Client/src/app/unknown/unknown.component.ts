@@ -17,28 +17,27 @@ import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-unknown',
-  templateUrl: './unknown.component.html',
-  styleUrl: './unknown.component.scss',
-  standalone: true,
-  imports: [
-      MatDividerModule,
-      MatSelectModule,
-      MatInputModule,
-      MatDialogModule,
-      MatPaginatorModule,
-      MatButtonModule,
-      MatSnackBarModule,
-      MatChipsModule,
-      MatAutocompleteModule,
-      MatCardModule,
-      MatTableModule,
-      MatSortModule,
-      MatFormFieldModule,
-      CommonModule,
-      FormsModule,
-      ReactiveFormsModule,
-      ]
+    selector: 'app-unknown',
+    templateUrl: './unknown.component.html',
+    styleUrl: './unknown.component.scss',
+    imports: [
+        MatDividerModule,
+        MatSelectModule,
+        MatInputModule,
+        MatDialogModule,
+        MatPaginatorModule,
+        MatButtonModule,
+        MatSnackBarModule,
+        MatChipsModule,
+        MatAutocompleteModule,
+        MatCardModule,
+        MatTableModule,
+        MatSortModule,
+        MatFormFieldModule,
+        CommonModule,
+        FormsModule,
+        ReactiveFormsModule,
+    ]
 })
 export class UnknownComponent {
 

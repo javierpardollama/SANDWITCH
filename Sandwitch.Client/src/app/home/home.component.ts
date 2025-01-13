@@ -17,27 +17,27 @@ import { SearchComponent } from '../search/search.component';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  standalone: true,
-  imports: [
-    MatDividerModule,
-    MatSelectModule,
-    MatInputModule,
-    MatDialogModule,
-    MatPaginatorModule,
-    MatButtonModule,
-    MatSnackBarModule,
-    MatChipsModule,
-    MatAutocompleteModule,
-    MatCardModule,
-    MatTableModule,
-    MatSortModule,
-    MatFormFieldModule,
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
-    SearchComponent]
+    selector: 'app-home',
+    templateUrl: './home.component.html',
+    imports: [
+        MatDividerModule,
+        MatSelectModule,
+        MatInputModule,
+        MatDialogModule,
+        MatPaginatorModule,
+        MatButtonModule,
+        MatSnackBarModule,
+        MatChipsModule,
+        MatAutocompleteModule,
+        MatCardModule,
+        MatTableModule,
+        MatSortModule,
+        MatFormFieldModule,
+        CommonModule,
+        FormsModule,
+        ReactiveFormsModule,
+        SearchComponent
+    ]
 })
 export class HomeComponent {
 }

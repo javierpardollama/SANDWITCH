@@ -37,27 +37,26 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-poblacion-grid',
-  templateUrl: './poblacion-grid.component.html',
-  styleUrls: ['./poblacion-grid.component.scss'],
-  standalone: true,
-  imports: [
-    MatDividerModule,
-    MatSelectModule,
-    MatInputModule,
-    MatDialogModule,
-    MatPaginatorModule,
-    MatButtonModule,
-    MatSnackBarModule,
-    MatChipsModule,
-    MatAutocompleteModule,
-    MatCardModule,
-    MatTableModule,
-    MatSortModule,
-    MatFormFieldModule,
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
+    selector: 'app-poblacion-grid',
+    templateUrl: './poblacion-grid.component.html',
+    styleUrls: ['./poblacion-grid.component.scss'],
+    imports: [
+        MatDividerModule,
+        MatSelectModule,
+        MatInputModule,
+        MatDialogModule,
+        MatPaginatorModule,
+        MatButtonModule,
+        MatSnackBarModule,
+        MatChipsModule,
+        MatAutocompleteModule,
+        MatCardModule,
+        MatTableModule,
+        MatSortModule,
+        MatFormFieldModule,
+        CommonModule,
+        FormsModule,
+        ReactiveFormsModule,
     ]
 })
 export class PoblacionGridComponent implements OnInit, AfterViewInit, OnDestroy {

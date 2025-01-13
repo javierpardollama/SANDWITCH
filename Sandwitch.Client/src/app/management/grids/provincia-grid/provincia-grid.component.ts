@@ -37,28 +37,27 @@ import { MatSortModule } from '@angular/material/sort';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-provincia-grid',
-  templateUrl: './provincia-grid.component.html',
-  styleUrls: ['./provincia-grid.component.scss'],
-  standalone: true,
-  imports: [
-      MatDividerModule,
-      MatSelectModule,
-      MatInputModule,
-      MatDialogModule,
-      MatPaginatorModule,
-      MatButtonModule,
-      MatSnackBarModule,
-      MatChipsModule,
-      MatAutocompleteModule,
-      MatCardModule,
-      MatTableModule,
-      MatSortModule,
-      MatFormFieldModule,
-      CommonModule,
-      FormsModule,
-      ReactiveFormsModule,
-      ]
+    selector: 'app-provincia-grid',
+    templateUrl: './provincia-grid.component.html',
+    styleUrls: ['./provincia-grid.component.scss'],
+    imports: [
+        MatDividerModule,
+        MatSelectModule,
+        MatInputModule,
+        MatDialogModule,
+        MatPaginatorModule,
+        MatButtonModule,
+        MatSnackBarModule,
+        MatChipsModule,
+        MatAutocompleteModule,
+        MatCardModule,
+        MatTableModule,
+        MatSortModule,
+        MatFormFieldModule,
+        CommonModule,
+        FormsModule,
+        ReactiveFormsModule,
+    ]
 })
 export class ProvinciaGridComponent implements OnInit, AfterViewInit, OnDestroy {
 

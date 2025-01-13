@@ -52,28 +52,28 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 
 @Component({
-  selector: 'app-historico-add-modal',
-  templateUrl: './historico-add-modal.component.html',
-  styleUrls: ['./historico-add-modal.component.scss'],
-  standalone: true,
-  imports: [
-    MatDividerModule,
-    MatSelectModule,
-    MatInputModule,
-    MatDialogModule,
-    MatPaginatorModule,
-    MatButtonModule,
-    MatSnackBarModule,
-    MatChipsModule,
-    MatAutocompleteModule,
-    MatCardModule,
-    MatTableModule,
-    MatSortModule,
-    MatFormFieldModule,
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
-    NgOptimizedImage]
+    selector: 'app-historico-add-modal',
+    templateUrl: './historico-add-modal.component.html',
+    styleUrls: ['./historico-add-modal.component.scss'],
+    imports: [
+        MatDividerModule,
+        MatSelectModule,
+        MatInputModule,
+        MatDialogModule,
+        MatPaginatorModule,
+        MatButtonModule,
+        MatSnackBarModule,
+        MatChipsModule,
+        MatAutocompleteModule,
+        MatCardModule,
+        MatTableModule,
+        MatSortModule,
+        MatFormFieldModule,
+        CommonModule,
+        FormsModule,
+        ReactiveFormsModule,
+        NgOptimizedImage
+    ]
 })
 export class HistoricoAddModalComponent implements OnInit {
 

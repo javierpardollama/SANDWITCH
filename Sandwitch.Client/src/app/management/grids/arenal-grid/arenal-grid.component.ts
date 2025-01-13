@@ -41,7 +41,6 @@ import { MatSortModule } from '@angular/material/sort';
     selector: 'app-arenal-grid',
     templateUrl: './arenal-grid.component.html',
     styleUrls: ['./arenal-grid.component.scss'],
-    standalone: true,
     imports: [
         MatDividerModule,
         MatSelectModule,
@@ -59,7 +58,7 @@ import { MatSortModule } from '@angular/material/sort';
         CommonModule,
         FormsModule,
         ReactiveFormsModule,
-        ]
+    ]
 })
 export class ArenalGridComponent implements OnInit, AfterViewInit, OnDestroy {
 

@@ -42,28 +42,28 @@ import { MatTableModule } from '@angular/material/table';
 import { CommonModule, NgOptimizedImage } from '@angular/common';
 
 @Component({
-  selector: 'app-arenal-add-modal',
-  templateUrl: './arenal-add-modal.component.html',
-  styleUrls: ['./arenal-add-modal.component.scss'],
-  standalone: true,
-  imports: [
-    MatDividerModule,
-    MatSelectModule,
-    MatInputModule,
-    MatDialogModule,
-    MatPaginatorModule,
-    MatButtonModule,
-    MatSnackBarModule,
-    MatChipsModule,
-    MatAutocompleteModule,
-    MatCardModule,
-    MatTableModule,
-    MatSortModule,
-    MatFormFieldModule,
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
-    NgOptimizedImage]
+    selector: 'app-arenal-add-modal',
+    templateUrl: './arenal-add-modal.component.html',
+    styleUrls: ['./arenal-add-modal.component.scss'],
+    imports: [
+        MatDividerModule,
+        MatSelectModule,
+        MatInputModule,
+        MatDialogModule,
+        MatPaginatorModule,
+        MatButtonModule,
+        MatSnackBarModule,
+        MatChipsModule,
+        MatAutocompleteModule,
+        MatCardModule,
+        MatTableModule,
+        MatSortModule,
+        MatFormFieldModule,
+        CommonModule,
+        FormsModule,
+        ReactiveFormsModule,
+        NgOptimizedImage
+    ]
 })
 export class ArenalAddModalComponent implements OnInit {
 

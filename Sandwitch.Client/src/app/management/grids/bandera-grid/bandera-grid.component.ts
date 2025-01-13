@@ -37,27 +37,26 @@ import { MatSortModule } from '@angular/material/sort';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-bandera-grid',
-  templateUrl: './bandera-grid.component.html',
-  styleUrls: ['./bandera-grid.component.scss'],
-  standalone: true,
-  imports: [
-    MatDividerModule,
-    MatSelectModule,
-    MatInputModule,
-    MatDialogModule,
-    MatPaginatorModule,
-    MatButtonModule,
-    MatSnackBarModule,
-    MatChipsModule,
-    MatAutocompleteModule,
-    MatCardModule,
-    MatTableModule,
-    MatSortModule,
-    MatFormFieldModule,
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
+    selector: 'app-bandera-grid',
+    templateUrl: './bandera-grid.component.html',
+    styleUrls: ['./bandera-grid.component.scss'],
+    imports: [
+        MatDividerModule,
+        MatSelectModule,
+        MatInputModule,
+        MatDialogModule,
+        MatPaginatorModule,
+        MatButtonModule,
+        MatSnackBarModule,
+        MatChipsModule,
+        MatAutocompleteModule,
+        MatCardModule,
+        MatTableModule,
+        MatSortModule,
+        MatFormFieldModule,
+        CommonModule,
+        FormsModule,
+        ReactiveFormsModule,
     ]
 })
 export class BanderaGridComponent implements OnInit, AfterViewInit, OnDestroy {

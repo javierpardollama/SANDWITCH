@@ -4,15 +4,17 @@ import {
   Inject
 } from '@angular/core';
 
-import { Time } from '@angular/common';
+import { CommonModule, NgOptimizedImage, Time } from '@angular/common';
 
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatDialogRef, MAT_DIALOG_DATA, MatDialogModule } from '@angular/material/dialog';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 
 import {
   FormBuilder,
   FormControl,
   FormGroup,
+  FormsModule,
+  ReactiveFormsModule,
   Validators
 } from '@angular/forms';
 
@@ -37,11 +39,41 @@ import { TimeAppVariants } from './../../../../../variants/time.app.variants';
 import { ExpressionAppVariants } from './../../../../../variants/expression.app.variants';
 
 import { TimeService } from 'src/services/time.service';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSelectModule } from '@angular/material/select';
+import { MatSortModule } from '@angular/material/sort';
+import { MatTableModule } from '@angular/material/table';
 
 @Component({
   selector: 'app-historico-add-modal',
   templateUrl: './historico-add-modal.component.html',
-  styleUrls: ['./historico-add-modal.component.scss']
+  styleUrls: ['./historico-add-modal.component.scss'],
+  standalone: true,
+  imports: [
+    MatDividerModule,
+    MatSelectModule,
+    MatInputModule,
+    MatDialogModule,
+    MatPaginatorModule,
+    MatButtonModule,
+    MatSnackBarModule,
+    MatChipsModule,
+    MatAutocompleteModule,
+    MatCardModule,
+    MatTableModule,
+    MatSortModule,
+    MatFormFieldModule,
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    NgOptimizedImage]
 })
 export class HistoricoAddModalComponent implements OnInit {
 

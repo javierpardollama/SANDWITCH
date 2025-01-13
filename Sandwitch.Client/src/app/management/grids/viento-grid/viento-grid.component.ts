@@ -1,17 +1,49 @@
 import { Component } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
-import { MatTableDataSource } from '@angular/material/table';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { VientoService } from '../../../../services/viento.service';
 import { FilterPage } from '../../../../viewmodels/filters/filterpage';
 import { ViewViento } from '../../../../viewmodels/views/viewviento';
 import { ViewScroll } from '../../../../viewmodels/views/viewscroll';
 import { VientoAddModalComponent } from '../../modals/additions/viento-add-modal/viento-add-modal.component';
 import { VientoUpdateModalComponent } from '../../modals/updates/viento-update-modal/viento-update-modal.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSelectModule } from '@angular/material/select';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatSortModule } from '@angular/material/sort';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-viento-grid',
   templateUrl: './viento-grid.component.html',
-  styleUrl: './viento-grid.component.scss'
+  styleUrl: './viento-grid.component.scss',
+  standalone: true,
+  imports: [
+    MatDividerModule,
+    MatSelectModule,
+    MatInputModule,
+    MatDialogModule,
+    MatPaginatorModule,
+    MatButtonModule,
+    MatSnackBarModule,
+    MatChipsModule,
+    MatAutocompleteModule,
+    MatCardModule,
+    MatTableModule,
+    MatSortModule,
+    MatFormFieldModule,
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    ]
 })
 export class VientoGridComponent {
   public ELEMENT_DATA: ViewViento[] = [];

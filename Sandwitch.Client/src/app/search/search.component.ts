@@ -2,9 +2,9 @@ import {
   Component,
   OnInit
 } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 
-import { FormControl } from '@angular/forms';
+import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { Observable, of } from 'rxjs';
 
@@ -27,11 +27,43 @@ import { ArenalService } from './../../services/arenal.service';
 import {
   HistoricoAddModalComponent
 } from './../management/modals/additions/historico-add-modal/historico-add-modal.component';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSelectModule } from '@angular/material/select';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatSortModule } from '@angular/material/sort';
+import { MatTableModule } from '@angular/material/table';
+import { CommonModule, NgOptimizedImage } from '@angular/common';
 
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
-  styleUrls: ['./search.component.scss']
+  styleUrls: ['./search.component.scss'],
+  standalone: true,
+  imports: [
+      MatDividerModule,
+      MatSelectModule,
+      MatInputModule,
+      MatDialogModule,
+      MatPaginatorModule,
+      MatButtonModule,
+      MatSnackBarModule,
+      MatChipsModule,
+      MatAutocompleteModule,
+      MatCardModule,
+      MatTableModule,
+      MatSortModule,
+      MatFormFieldModule,
+      CommonModule,
+      FormsModule,
+      ReactiveFormsModule,
+      NgOptimizedImage]
 })
 export class SearchComponent implements OnInit {
 

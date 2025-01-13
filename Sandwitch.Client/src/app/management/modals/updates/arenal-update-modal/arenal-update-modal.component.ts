@@ -4,13 +4,15 @@ import {
   Inject
 } from '@angular/core';
 
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatDialogRef, MAT_DIALOG_DATA, MatDialogModule } from '@angular/material/dialog';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 
 import {
   FormBuilder,
   FormControl,
   FormGroup,
+  FormsModule,
+  ReactiveFormsModule,
   Validators
 } from '@angular/forms';
 
@@ -29,11 +31,42 @@ import { TextAppVariants } from './../../../../../variants/text.app.variants';
 import { TimeAppVariants } from './../../../../../variants/time.app.variants';
 
 import { ExpressionAppVariants } from './../../../../../variants/expression.app.variants';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSelectModule } from '@angular/material/select';
+import { MatSortModule } from '@angular/material/sort';
+import { MatTableModule } from '@angular/material/table';
+import { CommonModule, NgOptimizedImage } from '@angular/common';
 
 @Component({
   selector: 'app-arenal-update-modal',
   templateUrl: './arenal-update-modal.component.html',
-  styleUrls: ['./arenal-update-modal.component.scss']
+  styleUrls: ['./arenal-update-modal.component.scss'],
+  standalone: true,
+  imports: [
+    MatDividerModule,
+    MatSelectModule,
+    MatInputModule,
+    MatDialogModule,
+    MatPaginatorModule,
+    MatButtonModule,
+    MatSnackBarModule,
+    MatChipsModule,
+    MatAutocompleteModule,
+    MatCardModule,
+    MatTableModule,
+    MatSortModule,
+    MatFormFieldModule,
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    NgOptimizedImage]
 })
 export class ArenalUpdateModalComponent implements OnInit {
 

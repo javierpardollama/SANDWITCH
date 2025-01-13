@@ -5,8 +5,8 @@ import {
   OnInit
 } from '@angular/core';
 
-import { MatDialog } from '@angular/material/dialog';
-import { MatTableDataSource } from '@angular/material/table';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 
 import { ViewBandera } from './../../../../viewmodels/views/viewbandera';
 
@@ -22,11 +22,43 @@ import {
 
 import { FilterPage } from 'src/viewmodels/filters/filterpage';
 import { ViewScroll } from 'src/viewmodels/views/viewscroll';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSelectModule } from '@angular/material/select';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatSortModule } from '@angular/material/sort';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-bandera-grid',
   templateUrl: './bandera-grid.component.html',
-  styleUrls: ['./bandera-grid.component.scss']
+  styleUrls: ['./bandera-grid.component.scss'],
+  standalone: true,
+  imports: [
+    MatDividerModule,
+    MatSelectModule,
+    MatInputModule,
+    MatDialogModule,
+    MatPaginatorModule,
+    MatButtonModule,
+    MatSnackBarModule,
+    MatChipsModule,
+    MatAutocompleteModule,
+    MatCardModule,
+    MatTableModule,
+    MatSortModule,
+    MatFormFieldModule,
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    ]
 })
 export class BanderaGridComponent implements OnInit, AfterViewInit, OnDestroy {
 

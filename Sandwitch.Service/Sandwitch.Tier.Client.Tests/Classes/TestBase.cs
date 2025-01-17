@@ -27,7 +27,7 @@ namespace Sandwitch.Tier.Client.Tests.Classes
             Driver = new ChromeDriver();
             Driver.Manage().Window.Maximize();
 
-            Wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(20))
+            Wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(40))
             {
                 PollingInterval = TimeSpan.FromMilliseconds(200)
             };

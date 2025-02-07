@@ -25,7 +25,7 @@ namespace Sandwitch.Tier.Helpers.Classes
 
             var @losts = Enumerable.Range(offset, @ordered.Last()).Except(@ordered).ToList();
 
-            if (@losts.Count != 0)
+            if (@losts.Count > 0)
             {
                 return @losts.First();
             }

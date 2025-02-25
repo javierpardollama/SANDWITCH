@@ -25,9 +25,9 @@ namespace Sandwitch.Tier.Web.Controllers
         /// Adds Historico
         /// </summary>
         /// <param name="viewModel">Injected <see cref="AddHistorico"/></param>
-        /// <returns>Instance of <see cref="Task{JsonResult}"/></returns>
+        /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>
         [HttpPost]
         [Route("addhistorico")]
-        public async Task<IActionResult> AddHistorico([FromBody]AddHistorico @viewModel) => new JsonResult(value: await @service.AddHistorico(@viewModel));
+        public async Task<IActionResult> AddHistorico([FromBody]AddHistorico @viewModel) => Ok(value: await @service.AddHistorico(@viewModel));
     }
 }

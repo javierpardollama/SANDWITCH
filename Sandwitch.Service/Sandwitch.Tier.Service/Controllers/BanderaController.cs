@@ -27,59 +27,59 @@ namespace Sandwitch.Tier.Web.Controllers
         /// Updates Bandera
         /// </summary>
         /// <param name="viewModel">Injected <see cref="AddHistorico"/></param>
-        /// <returns>Instance of <see cref="Task{JsonResult}"/></returns>
+        /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>
         [HttpPut]
         [Route("updatebandera")]
-        public async Task<IActionResult> UpdateBandera([FromBody]UpdateBandera @viewModel) => new JsonResult(value: await @service.UpdateBandera(@viewModel));
+        public async Task<IActionResult> UpdateBandera([FromBody]UpdateBandera @viewModel) => Ok(value: await @service.UpdateBandera(@viewModel));
 
         /// <summary>
         /// Finds All Bandera
         /// </summary>
-        /// <returns>Instance of <see cref="Task{JsonResult}"/></returns>
+        /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>
         [HttpGet]
         [ResponseCache(Duration = 10, Location = ResponseCacheLocation.Any, NoStore = false)]
         [Route("findallbandera")]
-        public async Task<IActionResult> FindAllBandera() => new JsonResult(value: await @service.FindAllBandera());
+        public async Task<IActionResult> FindAllBandera() => Ok(value: await @service.FindAllBandera());
 
         /// <summary>
         /// Finds Paginated Bandera
         /// </summary>
         /// <param name="viewModel">Injected <see cref="FilterPage"/></param>
-        /// <returns>Instance of <see cref="Task{JsonResult}"/></returns>
+        /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>
         [HttpPost]
         [Route("findpaginatedbandera")]
-        public async Task<IActionResult> FindPaginatedBandera([FromBody] FilterPage @viewModel) => new JsonResult(value: await @service.FindPaginatedBandera(@viewModel));
+        public async Task<IActionResult> FindPaginatedBandera([FromBody] FilterPage @viewModel) => Ok(value: await @service.FindPaginatedBandera(@viewModel));
 
         /// <summary>
         /// Finds All Historico By Bandera Id
         /// </summary>
         /// <param name="id">Injected <see cref="int"/></param>
-        /// <returns>Instance of <see cref="Task{JsonResult}"/></returns>
+        /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>
         [HttpGet]
         [Route("findallhistoricobybanderaid/{id}")]
-        public async Task<IActionResult> FindAllHistoricoByBanderaId(int @id) => new JsonResult(value: await @service.FindAllHistoricoByBanderaId(@id));
+        public async Task<IActionResult> FindAllHistoricoByBanderaId(int @id) => Ok(value: await @service.FindAllHistoricoByBanderaId(@id));
 
         /// <summary>
         /// Adds Bandera
         /// </summary>
         /// <param name="viewModel">Injected <see cref="AddBandera"/></param>
-        /// <returns>Instance of <see cref="Task{JsonResult}"/></returns>
+        /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>
         [HttpPost]
         [Route("addbandera")]
-        public async Task<IActionResult> AddBandera([FromBody]AddBandera @viewModel) => new JsonResult(value: await @service.AddBandera(@viewModel));
+        public async Task<IActionResult> AddBandera([FromBody]AddBandera @viewModel) => Ok(value: await @service.AddBandera(@viewModel));
 
         /// <summary>
         /// Removes Bandera ById
         /// </summary>
         /// <param name="id">Injected <see cref="int"/></param>
-        /// <returns>Instance of <see cref="Task{JsonResult}"/></returns>
+        /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>
         [HttpDelete]
         [Route("removebanderabyid/{id}")]
         public async Task<IActionResult> RemoveBanderaById(int @id)
         {
             await @service.RemoveBanderaById(@id);
 
-            return new JsonResult((int)HttpStatusCode.OK);
+            return Ok();
         }
     }
 }

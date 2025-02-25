@@ -27,59 +27,59 @@ namespace Sandwitch.Tier.Web.Controllers
         /// Updates Viento
         /// </summary>
         /// <param name="viewModel">Injected <see cref="AddHistorico"/></param>
-        /// <returns>Instance of <see cref="Task{JsonResult}"/></returns>
+        /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>
         [HttpPut]
         [Route("updateviento")]
-        public async Task<IActionResult> UpdateViento([FromBody]UpdateViento @viewModel) => new JsonResult(value: await @service.UpdateViento(@viewModel));
+        public async Task<IActionResult> UpdateViento([FromBody]UpdateViento @viewModel) => Ok(value: await @service.UpdateViento(@viewModel));
 
         /// <summary>
         /// Finds All Viento
         /// </summary>
-        /// <returns>Instance of <see cref="Task{JsonResult}"/></returns>
+        /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>
         [HttpGet]
         [ResponseCache(Duration = 10, Location = ResponseCacheLocation.Any, NoStore = false)]
         [Route("findallviento")]
-        public async Task<IActionResult> FindAllViento() => new JsonResult(value: await @service.FindAllViento());
+        public async Task<IActionResult> FindAllViento() => Ok(value: await @service.FindAllViento());
 
         /// <summary>
         /// Finds Paginated Viento
         /// </summary>
         /// <param name="viewModel">Injected <see cref="FilterPage"/></param>
-        /// <returns>Instance of <see cref="Task{JsonResult}"/></returns>
+        /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>
         [HttpPost]
         [Route("findpaginatedviento")]
-        public async Task<IActionResult> FindPaginatedViento([FromBody] FilterPage @viewModel) => new JsonResult(value: await @service.FindPaginatedViento(@viewModel));
+        public async Task<IActionResult> FindPaginatedViento([FromBody] FilterPage @viewModel) => Ok(value: await @service.FindPaginatedViento(@viewModel));
 
         /// <summary>
         /// Finds All Historico By Viento Id
         /// </summary>
         /// <param name="id">Injected <see cref="int"/></param>
-        /// <returns>Instance of <see cref="Task{JsonResult}"/></returns>
+        /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>
         [HttpGet]
         [Route("findallhistoricobyvientoid/{id}")]
-        public async Task<IActionResult> FindAllHistoricoByVientoId(int @id) => new JsonResult(value: await @service.FindAllHistoricoByVientoId(@id));
+        public async Task<IActionResult> FindAllHistoricoByVientoId(int @id) => Ok(value: await @service.FindAllHistoricoByVientoId(@id));
 
         /// <summary>
         /// Adds Viento
         /// </summary>
         /// <param name="viewModel">Injected <see cref="AddViento"/></param>
-        /// <returns>Instance of <see cref="Task{JsonResult}"/></returns>
+        /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>
         [HttpPost]
         [Route("addviento")]
-        public async Task<IActionResult> AddViento([FromBody]AddViento @viewModel) => new JsonResult(value: await @service.AddViento(@viewModel));
+        public async Task<IActionResult> AddViento([FromBody]AddViento @viewModel) => Ok(value: await @service.AddViento(@viewModel));
 
         /// <summary>
         /// Removes Viento ById
         /// </summary>
         /// <param name="id">Injected <see cref="int"/></param>
-        /// <returns>Instance of <see cref="Task{JsonResult}"/></returns>
+        /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>
         [HttpDelete]
         [Route("removevientobyid/{id}")]
         public async Task<IActionResult> RemoveVientoById(int @id)
         {
             await @service.RemoveVientoById(@id);
 
-            return new JsonResult((int)HttpStatusCode.OK);
+            return Ok();
         }
     }
 }

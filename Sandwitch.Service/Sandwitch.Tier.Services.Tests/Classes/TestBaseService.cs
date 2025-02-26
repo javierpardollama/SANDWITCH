@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 
 using Sandwitch.Tier.Contexts.Classes;

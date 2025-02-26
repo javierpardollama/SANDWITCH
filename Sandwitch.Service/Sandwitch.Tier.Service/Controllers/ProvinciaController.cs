@@ -1,16 +1,13 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.RateLimiting;
-
 using Sandwitch.Tier.Services.Interfaces;
 using Sandwitch.Tier.ViewModels.Classes.Additions;
 using Sandwitch.Tier.ViewModels.Classes.Filters;
 using Sandwitch.Tier.ViewModels.Classes.Updates;
-
-using System.Net;
 using System.Threading.Tasks;
 
-namespace Sandwitch.Tier.Web.Controllers
+namespace Sandwitch.Tier.Service.Controllers
 {
     /// <summary>
     /// Represents a <see cref="ProvinciaController"/> class. Inherits <see cref="ControllerBase"/> 

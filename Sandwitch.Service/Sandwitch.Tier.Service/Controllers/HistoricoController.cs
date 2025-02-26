@@ -2,13 +2,11 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.RateLimiting;
-
 using Sandwitch.Tier.Services.Interfaces;
 using Sandwitch.Tier.ViewModels.Classes.Additions;
-
 using System.Threading.Tasks;
 
-namespace Sandwitch.Tier.Web.Controllers
+namespace Sandwitch.Tier.Service.Controllers
 {
     /// <summary>
     /// Represents a <see cref="HistoricoController"/> class. Inherits <see cref="ControllerBase"/> 

@@ -42,7 +42,7 @@ namespace Sandwitch.Tier.Middlewares.Middlewares
         /// Handles Exception Asynchronously
         /// </summary>
         /// <param name="context">Injected <see cref="HttpContext"/></param>
-        /// <param name="exception">Injected <see cref="Exception"/></param>
+        /// <param name="exception">Injected <see cref="ServiceException"/></param>
         /// <returns>Instance of <see cref="ViewServiceException"/></returns>
         private static Task HandleExceptionAsync(
             HttpContext @context,

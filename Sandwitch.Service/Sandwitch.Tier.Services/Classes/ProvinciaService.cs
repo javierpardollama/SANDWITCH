@@ -5,6 +5,7 @@ using Microsoft.Extensions.Logging;
 
 using Sandwitch.Tier.Contexts.Interfaces;
 using Sandwitch.Tier.Entities.Classes;
+using Sandwitch.Tier.Exceptions.Exceptions;
 using Sandwitch.Tier.Logging.Classes;
 using Sandwitch.Tier.Services.Interfaces;
 using Sandwitch.Tier.ViewModels.Classes.Additions;
@@ -137,7 +138,7 @@ namespace Sandwitch.Tier.Services.Classes
 
                 Logger.WriteGetItemNotFoundLog(@logData);
 
-                throw new Exception(nameof(@provincia)
+                throw new ServiceException(nameof(@provincia)
                     + " with Id "
                     + id
                     + " does not exist");
@@ -236,7 +237,7 @@ namespace Sandwitch.Tier.Services.Classes
 
                 Logger.WriteGetItemFoundLog(@logData);
 
-                throw new Exception(nameof(@provincia)
+                throw new ServiceException(nameof(@provincia)
                     + " with Name "
                     + @viewModel.Name
                     + " already exists");
@@ -269,7 +270,7 @@ namespace Sandwitch.Tier.Services.Classes
 
                 Logger.WriteGetItemFoundLog(@logData);
 
-                throw new Exception(nameof(provincia)
+                throw new ServiceException(nameof(provincia)
                     + " with Name "
                     + @viewModel.Name
                     + " already exists");

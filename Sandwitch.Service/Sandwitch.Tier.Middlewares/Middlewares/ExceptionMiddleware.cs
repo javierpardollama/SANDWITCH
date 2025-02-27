@@ -1,11 +1,11 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Logging;
+using Sandwitch.Tier.Exceptions.Exceptions;
+using Sandwitch.Tier.ViewModels.Classes.Views;
+using System;
 using System.Net;
 using System.Text.Json;
 using System.Threading.Tasks;
-
-using Microsoft.AspNetCore.Http;
-
-using Sandwitch.Tier.ViewModels.Classes.Views;
 
 namespace Sandwitch.Tier.Middlewares.Middlewares
 {
@@ -13,8 +13,10 @@ namespace Sandwitch.Tier.Middlewares.Middlewares
     /// Represents a <see cref="ExceptionMiddleware"/> class
     /// </summary>
     /// <param name="request">Injected <see cref="RequestDelegate"/></param>
+    /// <param name="logger">Injected <see cref="ILogger"/></param>
     public class ExceptionMiddleware(RequestDelegate @request)
-    {      
+    {
+
         /// <summary>
         /// Invoques Asynchronously
         /// </summary>
@@ -26,9 +28,13 @@ namespace Sandwitch.Tier.Middlewares.Middlewares
             {
                 await @request(@context);
             }
-            catch (Exception @exception)
+            catch (ServiceException @exception)
             {
                 await HandleExceptionAsync(@context, @exception);
+            }
+            catch (Exception ex)
+            {
+                throw;
             }
         }
 
@@ -37,21 +43,21 @@ namespace Sandwitch.Tier.Middlewares.Middlewares
         /// </summary>
         /// <param name="context">Injected <see cref="HttpContext"/></param>
         /// <param name="exception">Injected <see cref="Exception"/></param>
-        /// <returns>Instance of <see cref="ViewException"/></returns>
+        /// <returns>Instance of <see cref="ViewServiceException"/></returns>
         private static Task HandleExceptionAsync(
             HttpContext @context,
-            Exception @exception)
+            ServiceException @exception)
         {
             @context.Response.ContentType = "application/json";
-            @context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
+            @context.Response.StatusCode = (int)HttpStatusCode.Conflict;
 
-            ViewException @viewException = new()
+            ViewServiceException @viewException = new()
             {
                 StatusCode = @context.Response.StatusCode,
                 Message = @exception.Message
             };
 
-            return @context.Response.WriteAsJsonAsync<ViewException>(@viewException, new JsonSerializerOptions() { WriteIndented = true });
+            return @context.Response.WriteAsJsonAsync(@viewException, new JsonSerializerOptions() { WriteIndented = true });
         }
     }
 }

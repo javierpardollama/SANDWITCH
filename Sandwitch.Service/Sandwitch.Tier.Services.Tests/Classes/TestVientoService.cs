@@ -3,6 +3,7 @@
 using NUnit.Framework;
 
 using Sandwitch.Tier.Entities.Classes;
+using Sandwitch.Tier.Exceptions.Exceptions;
 using Sandwitch.Tier.Services.Classes;
 using Sandwitch.Tier.ViewModels.Classes.Additions;
 using Sandwitch.Tier.ViewModels.Classes.Filters;
@@ -200,7 +201,7 @@ namespace Sandwitch.Tier.Services.Tests.Classes
                 ImageUri = "URL/Viento_3_500px.png",
                 Name = Context.Viento.FirstOrDefault().Name
             };
-            Exception exception = Assert.ThrowsAsync<Exception>(async () => await VientoService.CheckName(@Viento));
+            ServiceException exception = Assert.ThrowsAsync<ServiceException>(async () => await VientoService.CheckName(@Viento));
 
             Assert.Pass();
         }

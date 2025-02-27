@@ -1,14 +1,14 @@
 ﻿namespace Sandwitch.Tier.ViewModels.Classes.Views
 {
     /// <summary>
-    /// Represents a <see cref="ViewException"/> class.
+    /// Represents a <see cref="ViewServiceException"/> class.
     /// </summary>
-    public class ViewException
+    public class ViewServiceException
     {
         /// <summary>
-        /// Initializes a new Instance of <see cref="ViewException"/>
+        /// Initializes a new Instance of <see cref="ViewServiceException"/>
         /// </summary>
-        public ViewException()
+        public ViewServiceException()
         {
         }
 

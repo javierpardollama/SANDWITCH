@@ -4,6 +4,7 @@ using Microsoft.Extensions.Logging;
 using NUnit.Framework;
 
 using Sandwitch.Tier.Entities.Classes;
+using Sandwitch.Tier.Exceptions.Exceptions;
 using Sandwitch.Tier.Services.Classes;
 using Sandwitch.Tier.ViewModels.Classes.Additions;
 using Sandwitch.Tier.ViewModels.Classes.Filters;
@@ -253,7 +254,7 @@ namespace Sandwitch.Tier.Services.Tests.Classes
                 Name = Context.Arenal.FirstOrDefault().Name
             };
 
-            Exception exception = Assert.ThrowsAsync<Exception>(async () => await ArenalService.CheckName(@Provincia));
+            ServiceException exception = Assert.ThrowsAsync<ServiceException>(async () => await ArenalService.CheckName(@Provincia));
 
             Assert.Pass();
         }

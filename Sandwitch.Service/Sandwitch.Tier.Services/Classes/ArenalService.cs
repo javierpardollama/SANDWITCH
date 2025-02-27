@@ -1,22 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-using AutoMapper;
-
+﻿using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-
 using Sandwitch.Tier.Constants.Enums;
 using Sandwitch.Tier.Contexts.Interfaces;
 using Sandwitch.Tier.Entities.Classes;
+using Sandwitch.Tier.Exceptions.Exceptions;
 using Sandwitch.Tier.Logging.Classes;
 using Sandwitch.Tier.Services.Interfaces;
 using Sandwitch.Tier.ViewModels.Classes.Additions;
 using Sandwitch.Tier.ViewModels.Classes.Filters;
 using Sandwitch.Tier.ViewModels.Classes.Updates;
 using Sandwitch.Tier.ViewModels.Classes.Views;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Sandwitch.Tier.Services.Classes
 {
@@ -239,7 +237,7 @@ namespace Sandwitch.Tier.Services.Classes
 
                 Logger.WriteGetItemNotFoundLog(@logData);
 
-                throw new Exception(nameof(@arenal)
+                throw new ServiceException(nameof(@arenal)
                     + " with Id "
                     + @id
                     + " does not exist");
@@ -270,7 +268,7 @@ namespace Sandwitch.Tier.Services.Classes
 
                 Logger.WriteGetItemNotFoundLog(@logData);
 
-                throw new Exception(nameof(@poblacion)
+                throw new ServiceException(nameof(@poblacion)
                     + " with Id "
                     + @id
                     + " does not exist");
@@ -301,7 +299,7 @@ namespace Sandwitch.Tier.Services.Classes
 
                 Logger.WriteGetItemNotFoundLog(@logData);
 
-                throw new Exception(nameof(@bandera)
+                throw new ServiceException(nameof(@bandera)
                     + " with Id "
                     + @id
                     + " does not exist");
@@ -332,7 +330,7 @@ namespace Sandwitch.Tier.Services.Classes
 
                 Logger.WriteGetItemNotFoundLog(@logData);
 
-                throw new Exception(nameof(@viento)
+                throw new ServiceException(nameof(@viento)
                     + " with Id "
                     + @id
                     + " does not exist");
@@ -479,7 +477,7 @@ namespace Sandwitch.Tier.Services.Classes
 
                 Logger.WriteGetItemFoundLog(@logData);
 
-                throw new Exception(nameof(@arenal)
+                throw new ServiceException(nameof(@arenal)
                     + " with Name "
                     + @viewModel.Name
                     + " already exists");
@@ -512,7 +510,7 @@ namespace Sandwitch.Tier.Services.Classes
 
                 Logger.WriteGetItemFoundLog(@logData);
 
-                throw new Exception(nameof(@arenal)
+                throw new ServiceException(nameof(@arenal)
                     + " with Name "
                     + @viewModel.Name
                     + " already exists");

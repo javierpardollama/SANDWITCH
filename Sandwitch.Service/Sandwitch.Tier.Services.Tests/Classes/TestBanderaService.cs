@@ -3,6 +3,7 @@
 using NUnit.Framework;
 
 using Sandwitch.Tier.Entities.Classes;
+using Sandwitch.Tier.Exceptions.Exceptions;
 using Sandwitch.Tier.Services.Classes;
 using Sandwitch.Tier.ViewModels.Classes.Additions;
 using Sandwitch.Tier.ViewModels.Classes.Filters;
@@ -202,7 +203,7 @@ namespace Sandwitch.Tier.Services.Tests.Classes
                 ImageUri = "URL/Bandera_3_500px.png",
                 Name = Context.Bandera.FirstOrDefault().Name
             };
-            Exception exception = Assert.ThrowsAsync<Exception>(async () => await BanderaService.CheckName(@Bandera));
+            ServiceException exception = Assert.ThrowsAsync<ServiceException>(async () => await BanderaService.CheckName(@Bandera));
 
             Assert.Pass();
         }

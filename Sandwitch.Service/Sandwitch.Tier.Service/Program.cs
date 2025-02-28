@@ -7,6 +7,7 @@ using Microsoft.Extensions.Hosting;
 using Sandwitch.Tier.Contexts.Classes;
 using Sandwitch.Tier.Contexts.Interceptors;
 using Sandwitch.Tier.Mappings.Classes;
+using Sandwitch.Tier.Resilience;
 using Sandwitch.Tier.Service.Extensions;
 using Sandwitch.Tier.Settings.Classes;
 

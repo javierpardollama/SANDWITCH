@@ -8,7 +8,7 @@ namespace Sandwitch.Tier.Entities.Classes
     /// <summary>
     /// Represents a <see cref="Viento"/> class. Inherits <see cref="Base"/>
     /// </summary>
-    [Index(nameof(Name))]
+    [Index(nameof(Name), [nameof(Deleted)])]
     public partial class Viento : Base
     {
         /// <summary>

@@ -9,7 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-      <PackageReference Include="Swashbuckle.AspNetCore" Version="7.3.0" />
+      <PackageReference Include="Swashbuckle.AspNetCore" Version="7.3.1" />
 	  <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="9.0.0" />
 	  <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="9.0.2">
 	    <PrivateAssets>all</PrivateAssets>
@@ -19,7 +19,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Sandwitch.Tier.Middlewares\Sandwitch.Tier.Middlewares.csproj" />
-    <ProjectReference Include="..\Sandwitch.Tier.Telemetry\Sandwitch.Tier.Resilience.csproj" />
+    <ProjectReference Include="..\Sandwitch.Tier.Resilience\Sandwitch.Tier.Resilience.csproj" />
   </ItemGroup>
 
 </Project>

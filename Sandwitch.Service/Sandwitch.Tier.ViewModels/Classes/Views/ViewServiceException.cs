@@ -13,11 +13,6 @@
         }
 
         /// <summary>
-        /// Gets or Sets <see cref="StatusCode"/>
-        /// </summary>
-        public int StatusCode { get; set; }
-
-        /// <summary>
         /// Gets or Sets <see cref="Message"/>
         /// </summary>
         public string Message { get; set; }

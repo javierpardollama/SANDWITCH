@@ -53,11 +53,10 @@ namespace Sandwitch.Tier.Middlewares.Middlewares
 
             ViewServiceException @viewException = new()
             {
-                StatusCode = @context.Response.StatusCode,
                 Message = @exception.Message
             };
 
-            return @context.Response.WriteAsJsonAsync(@viewException, new JsonSerializerOptions() { WriteIndented = true });
+            return @context.Response.WriteAsJsonAsync(@viewException);
         }
     }
 }

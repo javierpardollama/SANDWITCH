@@ -1,4 +1,4 @@
-import { ViewException } from './../viewmodels/views/viewexception';
+import { ViewException } from '../viewmodels/views/viewserviceexception';
 
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 
@@ -33,7 +33,6 @@ export class BaseService {
                 case CodeAppVariants.CONFLICT:
                     const exception: ViewException = {
                         Message: response.error.Message,
-                        StatusCode: response.error.StatusCode
                     };
 
                     this.matSnackBar.open(

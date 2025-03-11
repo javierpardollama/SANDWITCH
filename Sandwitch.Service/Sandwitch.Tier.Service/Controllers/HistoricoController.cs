@@ -18,10 +18,13 @@ namespace Sandwitch.Tier.Service.Controllers
     [Authorize]
     [EnableRateLimiting("Concurrency")]
     public class HistoricoController(IHistoricoService @service) : ControllerBase
-    {       
+    {
         /// <summary>
         /// Adds Historico
         /// </summary>
+        /// <response code="200">Ok</response>
+        /// <response code="409">Conflict</response>
+        /// <response code="401">Unauthorized</response>
         /// <param name="viewModel">Injected <see cref="AddHistorico"/></param>
         /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>
         [HttpPost]

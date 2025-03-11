@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.RateLimiting;
 using Sandwitch.Tier.Services.Interfaces;
@@ -19,10 +20,13 @@ namespace Sandwitch.Tier.Service.Controllers
     [Authorize]
     [EnableRateLimiting("Concurrency")]
     public class BanderaController(IBanderaService @service) : ControllerBase
-    {       
+    {
         /// <summary>
         /// Updates Bandera
         /// </summary>
+        /// <response code="200">Ok</response>
+        /// <response code="409">Conflict</response>
+        /// <response code="401">Unauthorized</response>
         /// <param name="viewModel">Injected <see cref="AddHistorico"/></param>
         /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>
         [HttpPut]
@@ -32,14 +36,22 @@ namespace Sandwitch.Tier.Service.Controllers
         /// <summary>
         /// Finds All Bandera
         /// </summary>
+        /// <response code="200">Ok</response>
+        /// <response code="409">Conflict</response>
+        /// <response code="401">Unauthorized</response>
         /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>
         [HttpGet]
         [ResponseCache(Duration = 10, Location = ResponseCacheLocation.Any, NoStore = false)]
         [Route("findallbandera")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status409Conflict)]
         public async Task<IActionResult> FindAllBandera() => Ok(value: await @service.FindAllBandera());
 
         /// <summary>
         /// Finds Paginated Bandera
+        /// <response code="200">Ok</response>
+        /// <response code="409">Conflict</response>
+        /// <response code="401">Unauthorized</response>
         /// </summary>
         /// <param name="viewModel">Injected <see cref="FilterPage"/></param>
         /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>
@@ -50,6 +62,9 @@ namespace Sandwitch.Tier.Service.Controllers
         /// <summary>
         /// Finds All Historico By Bandera Id
         /// </summary>
+        /// <response code="200">Ok</response>
+        /// <response code="409">Conflict</response>
+        /// <response code="401">Unauthorized</response>
         /// <param name="id">Injected <see cref="int"/></param>
         /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>
         [HttpGet]
@@ -59,6 +74,9 @@ namespace Sandwitch.Tier.Service.Controllers
         /// <summary>
         /// Adds Bandera
         /// </summary>
+        /// <response code="200">Ok</response>
+        /// <response code="409">Conflict</response>
+        /// <response code="401">Unauthorized</response>
         /// <param name="viewModel">Injected <see cref="AddBandera"/></param>
         /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>
         [HttpPost]
@@ -68,6 +86,9 @@ namespace Sandwitch.Tier.Service.Controllers
         /// <summary>
         /// Removes Bandera ById
         /// </summary>
+        /// <response code="200">Ok</response>
+        /// <response code="409">Conflict</response>
+        /// <response code="401">Unauthorized</response>
         /// <param name="id">Injected <see cref="int"/></param>
         /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>
         [HttpDelete]

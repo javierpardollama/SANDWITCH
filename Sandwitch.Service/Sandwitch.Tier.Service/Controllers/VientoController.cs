@@ -19,10 +19,13 @@ namespace Sandwitch.Tier.Service.Controllers
     [Authorize]
     [EnableRateLimiting("Concurrency")]
     public class VientoController(IVientoService @service) : ControllerBase
-    {       
+    {
         /// <summary>
         /// Updates Viento
         /// </summary>
+        /// <response code="200">Ok</response>
+        /// <response code="409">Conflict</response>
+        /// <response code="401">Unauthorized</response>
         /// <param name="viewModel">Injected <see cref="AddHistorico"/></param>
         /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>
         [HttpPut]
@@ -32,6 +35,9 @@ namespace Sandwitch.Tier.Service.Controllers
         /// <summary>
         /// Finds All Viento
         /// </summary>
+        /// <response code="200">Ok</response>
+        /// <response code="409">Conflict</response>
+        /// <response code="401">Unauthorized</response>
         /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>
         [HttpGet]
         [ResponseCache(Duration = 10, Location = ResponseCacheLocation.Any, NoStore = false)]
@@ -41,6 +47,9 @@ namespace Sandwitch.Tier.Service.Controllers
         /// <summary>
         /// Finds Paginated Viento
         /// </summary>
+        /// <response code="200">Ok</response>
+        /// <response code="409">Conflict</response>
+        /// <response code="401">Unauthorized</response>
         /// <param name="viewModel">Injected <see cref="FilterPage"/></param>
         /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>
         [HttpPost]
@@ -50,6 +59,9 @@ namespace Sandwitch.Tier.Service.Controllers
         /// <summary>
         /// Finds All Historico By Viento Id
         /// </summary>
+        /// <response code="200">Ok</response>
+        /// <response code="409">Conflict</response>
+        /// <response code="401">Unauthorized</response>
         /// <param name="id">Injected <see cref="int"/></param>
         /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>
         [HttpGet]
@@ -59,6 +71,9 @@ namespace Sandwitch.Tier.Service.Controllers
         /// <summary>
         /// Adds Viento
         /// </summary>
+        /// <response code="200">Ok</response>
+        /// <response code="409">Conflict</response>
+        /// <response code="401">Unauthorized</response>
         /// <param name="viewModel">Injected <see cref="AddViento"/></param>
         /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>
         [HttpPost]
@@ -68,6 +83,9 @@ namespace Sandwitch.Tier.Service.Controllers
         /// <summary>
         /// Removes Viento ById
         /// </summary>
+        /// <response code="200">Ok</response>
+        /// <response code="409">Conflict</response>
+        /// <response code="401">Unauthorized</response>
         /// <param name="id">Injected <see cref="int"/></param>
         /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>
         [HttpDelete]

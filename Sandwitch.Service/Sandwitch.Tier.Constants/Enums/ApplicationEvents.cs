@@ -14,7 +14,7 @@
         /// Update <see cref="ApplicationEvents"/>
         /// </summary>
         UpdateItem = 2,
-        
+
         /// <summary>
         /// Delete <see cref="ApplicationEvents"/>
         /// </summary>

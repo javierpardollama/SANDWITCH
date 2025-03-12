@@ -46,7 +46,7 @@ namespace Sandwitch.Tier.Controllers.Tests.Classes
         {
             HttpResponseMessage @response = await Client.GetAsync("findallviento");
             @response.EnsureSuccessStatusCode();
-            var @vientos = await @response.Content.ReadFromJsonAsync<List<ViewViento>>();           
+            var @vientos = await @response.Content.ReadFromJsonAsync<List<ViewViento>>();
 
             Assert.Pass();
         }

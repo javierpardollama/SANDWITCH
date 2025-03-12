@@ -1,10 +1,8 @@
 ﻿
-using System;
-
 using Microsoft.Extensions.Logging;
-
 using Sandwitch.Tier.Constants.Enums;
 using Sandwitch.Tier.Mappings.Classes;
+using System;
 
 namespace Sandwitch.Tier.Logging.Classes
 {

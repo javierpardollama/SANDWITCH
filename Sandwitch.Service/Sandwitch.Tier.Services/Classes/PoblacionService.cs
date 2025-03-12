@@ -26,8 +26,7 @@ namespace Sandwitch.Tier.Services.Classes
     public class PoblacionService(IApplicationContext @context,
                                   IMapper @mapper,
                                   ILogger<PoblacionService> @logger) : BaseService(@context,
-                                                                      @mapper,
-                                                                      @logger), IPoblacionService
+                                                                      @mapper), IPoblacionService
     {
 
         /// <summary>
@@ -64,7 +63,7 @@ namespace Sandwitch.Tier.Services.Classes
                 + " was added at "
                 + DateTime.Now.ToShortTimeString();
 
-            Logger.WriteInsertItemLog(@logData);
+            @logger.WriteInsertItemLog(@logData);
 
             return Mapper.Map<ViewPoblacion>(@poblacion);
         }
@@ -152,7 +151,7 @@ namespace Sandwitch.Tier.Services.Classes
                     + " was not found at "
                     + DateTime.Now.ToShortTimeString();
 
-                Logger.WriteGetItemNotFoundLog(@logData);
+                @logger.WriteGetItemNotFoundLog(@logData);
 
                 throw new ServiceException(nameof(@poblacion)
                     + " with Id "
@@ -183,7 +182,7 @@ namespace Sandwitch.Tier.Services.Classes
                     + " was not found at "
                     + DateTime.Now.ToShortTimeString();
 
-                Logger.WriteGetItemNotFoundLog(@logData);
+                @logger.WriteGetItemNotFoundLog(@logData);
 
                 throw new ServiceException(nameof(@provincia)
                     + " with Id "
@@ -216,7 +215,7 @@ namespace Sandwitch.Tier.Services.Classes
                     + " was removed at "
                     + DateTime.Now.ToShortTimeString();
 
-                Logger.WriteDeleteItemLog(@logData);
+                @logger.WriteDeleteItemLog(@logData);
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -256,7 +255,7 @@ namespace Sandwitch.Tier.Services.Classes
                 + " was modified at "
                 + DateTime.Now.ToShortTimeString();
 
-            Logger.WriteUpdateItemLog(@logData);
+            @logger.WriteUpdateItemLog(@logData);
 
             return Mapper.Map<ViewPoblacion>(@poblacion);
         }
@@ -283,7 +282,7 @@ namespace Sandwitch.Tier.Services.Classes
                     + " was already found at "
                     + DateTime.Now.ToShortTimeString();
 
-                Logger.WriteGetItemFoundLog(@logData);
+                @logger.WriteGetItemFoundLog(@logData);
 
                 throw new ServiceException(nameof(@poblacion)
                     + " with Name "
@@ -316,7 +315,7 @@ namespace Sandwitch.Tier.Services.Classes
                     + " was already found at "
                     + DateTime.Now.ToShortTimeString();
 
-                Logger.WriteGetItemFoundLog(@logData);
+                @logger.WriteGetItemFoundLog(@logData);
 
                 throw new ServiceException(nameof(@poblacion)
                     + " with Name "

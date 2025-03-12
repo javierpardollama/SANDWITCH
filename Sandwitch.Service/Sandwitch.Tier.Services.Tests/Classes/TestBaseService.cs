@@ -60,6 +60,6 @@ namespace Sandwitch.Tier.Services.Tests.Classes
             });
 
             Mapper = @config.CreateMapper();
-        }        
+        }
     }
 }

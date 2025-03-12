@@ -8,7 +8,7 @@
         /// <summary>
         /// Initializes a new Instance of <see cref="FilterPage"/>
         /// </summary>
-        public FilterPage() 
+        public FilterPage()
         {
         }
 

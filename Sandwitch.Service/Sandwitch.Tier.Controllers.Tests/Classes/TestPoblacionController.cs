@@ -46,7 +46,7 @@ namespace Sandwitch.Tier.Controllers.Tests.Classes
         {
             HttpResponseMessage @response = await Client.GetAsync("findallpoblacion");
             @response.EnsureSuccessStatusCode();
-            var @poblaciones = await @response.Content.ReadFromJsonAsync<List<ViewPoblacion>>();          
+            var @poblaciones = await @response.Content.ReadFromJsonAsync<List<ViewPoblacion>>();
 
             Assert.Pass();
         }
@@ -56,7 +56,7 @@ namespace Sandwitch.Tier.Controllers.Tests.Classes
         {
             HttpResponseMessage @response = await Client.GetAsync(string.Concat("findallpoblacionbyprovinciaid/", 1));
             @response.EnsureSuccessStatusCode();
-            var @poblaciones = await @response.Content.ReadFromJsonAsync<List<ViewPoblacion>>();         
+            var @poblaciones = await @response.Content.ReadFromJsonAsync<List<ViewPoblacion>>();
 
             Assert.Pass();
         }

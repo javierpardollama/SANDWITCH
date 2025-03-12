@@ -12,7 +12,7 @@ namespace Sandwitch.Tier.Services.Classes
     /// </summary>   
     /// <param name="apiSettings">Injected <see cref="IOptions{ApiSettings}"/></param>
     public class AuthService(ILogger<AuthService> @logger,
-                             IOptions<ApiSettings> @apiSettings) : BaseService(@logger, @apiSettings), IAuthService
+                             IOptions<ApiSettings> @apiSettings) : BaseService(@apiSettings), IAuthService
     {
 
         /// <summary>

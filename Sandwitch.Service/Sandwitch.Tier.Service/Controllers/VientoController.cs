@@ -30,7 +30,7 @@ namespace Sandwitch.Tier.Service.Controllers
         /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>
         [HttpPut]
         [Route("updateviento")]
-        public async Task<IActionResult> UpdateViento([FromBody]UpdateViento @viewModel) => Ok(value: await @service.UpdateViento(@viewModel));
+        public async Task<IActionResult> UpdateViento([FromBody] UpdateViento @viewModel) => Ok(value: await @service.UpdateViento(@viewModel));
 
         /// <summary>
         /// Finds All Viento
@@ -78,7 +78,7 @@ namespace Sandwitch.Tier.Service.Controllers
         /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>
         [HttpPost]
         [Route("addviento")]
-        public async Task<IActionResult> AddViento([FromBody]AddViento @viewModel) => Ok(value: await @service.AddViento(@viewModel));
+        public async Task<IActionResult> AddViento([FromBody] AddViento @viewModel) => Ok(value: await @service.AddViento(@viewModel));
 
         /// <summary>
         /// Removes Viento ById

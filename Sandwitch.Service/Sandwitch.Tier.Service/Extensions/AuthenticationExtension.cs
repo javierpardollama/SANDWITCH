@@ -1,11 +1,9 @@
 ﻿
-using System.Net;
-
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.Extensions.DependencyInjection;
-
 using Sandwitch.Tier.Authentication.Classes;
 using Sandwitch.Tier.Settings.Classes;
+using System.Net;
 
 namespace Sandwitch.Tier.Service.Extensions
 {

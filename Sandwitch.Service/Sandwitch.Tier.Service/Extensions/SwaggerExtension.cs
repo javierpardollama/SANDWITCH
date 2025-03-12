@@ -1,10 +1,9 @@
-﻿using System;
+﻿using Microsoft.Extensions.DependencyInjection;
+using Microsoft.OpenApi.Models;
+using System;
 using System.IO;
 using System.Net;
 using System.Reflection;
-
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.OpenApi.Models;
 
 namespace Sandwitch.Tier.Service.Extensions
 {

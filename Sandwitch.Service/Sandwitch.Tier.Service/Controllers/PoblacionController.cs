@@ -30,7 +30,7 @@ namespace Sandwitch.Tier.Service.Controllers
         /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>
         [HttpPut]
         [Route("updatepoblacion")]
-        public async Task<IActionResult> UpdatePoblacion([FromBody]UpdatePoblacion @viewModel) => Ok(value: await @service.UpdatePoblacion(@viewModel));
+        public async Task<IActionResult> UpdatePoblacion([FromBody] UpdatePoblacion @viewModel) => Ok(value: await @service.UpdatePoblacion(@viewModel));
 
         /// <summary>
         /// Finds All Poblacion
@@ -78,7 +78,7 @@ namespace Sandwitch.Tier.Service.Controllers
         /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>
         [HttpPost]
         [Route("addpoblacion")]
-        public async Task<IActionResult> AddPoblacion([FromBody]AddPoblacion @viewModel) => Ok(value: await @service.AddPoblacion(@viewModel));
+        public async Task<IActionResult> AddPoblacion([FromBody] AddPoblacion @viewModel) => Ok(value: await @service.AddPoblacion(@viewModel));
 
         /// <summary>
         /// Removes Poblacion By Id

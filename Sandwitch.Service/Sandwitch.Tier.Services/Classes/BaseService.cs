@@ -1,6 +1,4 @@
 ﻿using AutoMapper;
-
-using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 
 using Sandwitch.Tier.Contexts.Interfaces;
@@ -25,11 +23,6 @@ namespace Sandwitch.Tier.Services.Classes
         protected readonly IMapper Mapper;
 
         /// <summary>
-        /// Instance of <see cref="ILogger"/>
-        /// </summary>
-        protected readonly ILogger Logger;
-
-        /// <summary>
         /// Instance of <see cref="IOptions{ApiSettings}"/>
         /// </summary>
         protected readonly IOptions<ApiSettings> ApiSettings;
@@ -39,25 +32,19 @@ namespace Sandwitch.Tier.Services.Classes
         /// </summary>
         /// <param name="context">Injected <see cref="IApplicationContext"/></param>
         /// <param name="mapper">Injected <see cref="IMapper"/></param>
-        /// <param name="logger">Injected <see cref="ILogger"/></param>
         public BaseService(IApplicationContext @context,
-                           IMapper @mapper,
-                           ILogger @logger)
+                           IMapper @mapper)
         {
             Context = @context;
             Mapper = @mapper;
-            Logger = @logger;
         }
 
         /// <summary>
         /// Initializes a new Instance of <see cref="BaseService"/>
         /// </summary>
-        /// <param name="logger">Injected <see cref="ILogger"/></param>
         /// <param name="apiSettings">Injected <see cref="IOptions{ApiSettings}"/></param>
-        public BaseService(ILogger @logger,
-                           IOptions<ApiSettings> @apiSettings) 
+        public BaseService(IOptions<ApiSettings> @apiSettings)
         {
-            Logger = @logger;
             ApiSettings = @apiSettings;
         }
     }

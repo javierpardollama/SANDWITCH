@@ -61,9 +61,9 @@ namespace Sandwitch.Tier.Services.Tests.Classes
         /// Can Authenticate
         /// </summary>
         [Test]
-        public void CanAuthenticate() 
+        public void CanAuthenticate()
         {
-            AuthService.CanAuthenticate(new AuthSignIn() 
+            AuthService.CanAuthenticate(new AuthSignIn()
             {
                 PassWord = "Pauline",
                 UserName = "T/R4J6eyvNG<6ne!"

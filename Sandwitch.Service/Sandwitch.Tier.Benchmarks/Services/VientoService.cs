@@ -24,7 +24,7 @@ namespace Sandwitch.Tier.Benchmarks.Services
 
             HttpResponseMessage @response = await Client.GetAsync("findallviento");
             @response.EnsureSuccessStatusCode();
-            var @vientos = await @response.Content.ReadFromJsonAsync<List<ViewViento>>();          
+            var @vientos = await @response.Content.ReadFromJsonAsync<List<ViewViento>>();
 
             return @vientos;
         }
@@ -38,7 +38,7 @@ namespace Sandwitch.Tier.Benchmarks.Services
 
             HttpResponseMessage @response = await Client.PostAsync("findpaginatedviento", @content);
             @response.EnsureSuccessStatusCode();
-            var @vientos = await @response.Content.ReadFromJsonAsync<ViewPage<ViewViento>>();           
+            var @vientos = await @response.Content.ReadFromJsonAsync<ViewPage<ViewViento>>();
 
             return @vientos;
         }

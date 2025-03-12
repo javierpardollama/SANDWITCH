@@ -23,7 +23,7 @@ namespace Sandwitch.Tier.Service.Extensions
             @this.AddRateLimiter(_ => _
              .AddConcurrencyLimiter(policyName: @RateSettings.PolicyName, options =>
              {
-                 options.PermitLimit = @RateSettings.PermitLimit;                
+                 options.PermitLimit = @RateSettings.PermitLimit;
                  options.QueueProcessingOrder = (QueueProcessingOrder)@RateSettings.QueueProcessingOrder;
                  options.QueueLimit = @RateSettings.QueueLimit;
              }));

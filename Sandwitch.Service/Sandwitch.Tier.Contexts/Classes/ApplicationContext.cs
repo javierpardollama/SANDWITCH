@@ -1,13 +1,6 @@
-﻿
-using System;
-using System.Threading;
-using System.Threading.Tasks;
-
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.ChangeTracking;
+﻿using Microsoft.EntityFrameworkCore;
 
 using Sandwitch.Tier.Contexts.Extensions;
-using Sandwitch.Tier.Contexts.Interceptors;
 using Sandwitch.Tier.Contexts.Interfaces;
 using Sandwitch.Tier.Entities.Classes;
 
@@ -53,7 +46,7 @@ namespace Sandwitch.Tier.Contexts.Classes
         /// <summary>
         /// Gets or Sets <see cref="DbSet{Historico}"/>
         /// </summary>
-        public virtual DbSet<Historico> Historico { get; set; }       
+        public virtual DbSet<Historico> Historico { get; set; }
 
         /// <summary>
         /// Overrides Model Creation

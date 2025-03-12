@@ -29,7 +29,7 @@ namespace Sandwitch.Tier.Contexts.Interceptors
                 switch (@entity.State)
                 {
                     case EntityState.Added:
-                        @entity.Property(nameof(IBase.LastModified)).CurrentValue = DateTime.Now;                       
+                        @entity.Property(nameof(IBase.LastModified)).CurrentValue = DateTime.Now;
                         @entity.State = EntityState.Added;
                         @entity.Property(nameof(IBase.Deleted)).CurrentValue = false;
                         break;
@@ -84,6 +84,6 @@ namespace Sandwitch.Tier.Contexts.Interceptors
             }
 
             return base.SavingChanges(eventData, result);
-        }       
+        }
     }
 }

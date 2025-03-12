@@ -31,7 +31,7 @@ namespace Sandwitch.Tier.Service.Controllers
         /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>
         [HttpPut]
         [Route("updatebandera")]
-        public async Task<IActionResult> UpdateBandera([FromBody]UpdateBandera @viewModel) => Ok(value: await @service.UpdateBandera(@viewModel));
+        public async Task<IActionResult> UpdateBandera([FromBody] UpdateBandera @viewModel) => Ok(value: await @service.UpdateBandera(@viewModel));
 
         /// <summary>
         /// Finds All Bandera
@@ -81,7 +81,7 @@ namespace Sandwitch.Tier.Service.Controllers
         /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>
         [HttpPost]
         [Route("addbandera")]
-        public async Task<IActionResult> AddBandera([FromBody]AddBandera @viewModel) => Ok(value: await @service.AddBandera(@viewModel));
+        public async Task<IActionResult> AddBandera([FromBody] AddBandera @viewModel) => Ok(value: await @service.AddBandera(@viewModel));
 
         /// <summary>
         /// Removes Bandera ById

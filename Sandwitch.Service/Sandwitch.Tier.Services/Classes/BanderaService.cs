@@ -22,12 +22,11 @@ namespace Sandwitch.Tier.Services.Classes
     /// </summary>    
     /// <param name="context">Injected <see cref="IApplicationContext"/></param>
     /// <param name="mapper">Injected <see cref="IMapper"/></param>
-    /// <param name="logger">Injected <see cref="ILogger"/></param>
+    /// <param name="logger">Injected <see cref="ILogger{BanderaService}"/></param>
     public class BanderaService(IApplicationContext @context,
                           IMapper @mapper,
                           ILogger<BanderaService> @logger) : BaseService(@context,
-                                                                  @mapper,
-                                                                  @logger), IBanderaService
+                                                                  @mapper), IBanderaService
     {
 
         /// <summary>
@@ -63,7 +62,7 @@ namespace Sandwitch.Tier.Services.Classes
                 + " was added at "
                 + DateTime.Now.ToShortTimeString();
 
-            Logger.WriteInsertItemLog(@logData);
+            @logger.WriteInsertItemLog(@logData);
 
             return Mapper.Map<ViewBandera>(@bandera);
         }
@@ -150,7 +149,7 @@ namespace Sandwitch.Tier.Services.Classes
                     + " was not found at "
                     + DateTime.Now.ToShortTimeString();
 
-                Logger.WriteGetItemNotFoundLog(@logData);
+                @logger.WriteGetItemNotFoundLog(@logData);
 
                 throw new ServiceException(nameof(@bandera)
                     + " with Id "
@@ -183,7 +182,7 @@ namespace Sandwitch.Tier.Services.Classes
                     + " was removed at "
                     + DateTime.Now.ToShortTimeString();
 
-                Logger.WriteDeleteItemLog(@logData);
+                @logger.WriteDeleteItemLog(@logData);
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -222,7 +221,7 @@ namespace Sandwitch.Tier.Services.Classes
                 + " was modified at "
                 + DateTime.Now.ToShortTimeString();
 
-            Logger.WriteUpdateItemLog(@logData);
+            @logger.WriteUpdateItemLog(@logData);
 
             return Mapper.Map<ViewBandera>(@bandera);
         }
@@ -249,7 +248,7 @@ namespace Sandwitch.Tier.Services.Classes
                     + " was already found at "
                     + DateTime.Now.ToShortTimeString();
 
-                Logger.WriteGetItemFoundLog(@logData);
+                @logger.WriteGetItemFoundLog(@logData);
 
                 throw new ServiceException(nameof(@bandera)
                     + " with Name "
@@ -282,7 +281,7 @@ namespace Sandwitch.Tier.Services.Classes
                     + " was already found at "
                     + DateTime.Now.ToShortTimeString();
 
-                Logger.WriteGetItemFoundLog(@logData);
+                @logger.WriteGetItemFoundLog(@logData);
 
                 throw new ServiceException(nameof(@bandera)
                     + " with Name "

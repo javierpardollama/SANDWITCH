@@ -15,7 +15,7 @@ namespace Sandwitch.Tier.Benchmarks.Services
 {
     public class ArenalService
     {
-        static readonly HttpClient Client = new() { BaseAddress = new Uri("https://localhost:7297/api/arenal/")};
+        static readonly HttpClient Client = new() { BaseAddress = new Uri("https://localhost:7297/api/arenal/") };
 
         [Benchmark]
         public async Task<IList<ViewArenal>> FindAllarenal()
@@ -35,7 +35,7 @@ namespace Sandwitch.Tier.Benchmarks.Services
         {
             Client.DefaultRequestHeaders.Authorization = Client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", Convert.ToBase64String(Encoding.UTF8.GetBytes("Peach" + ":" + "T/R4J6eyvNG<6ne!"))); ;
 
-            HttpResponseMessage @response = await Client.GetAsync(string.Concat("findallarenalbypoblacionid/",1));
+            HttpResponseMessage @response = await Client.GetAsync(string.Concat("findallarenalbypoblacionid/", 1));
             @response.EnsureSuccessStatusCode();
             var @arenales = await @response.Content.ReadFromJsonAsync<List<ViewArenal>>();
 
@@ -48,7 +48,7 @@ namespace Sandwitch.Tier.Benchmarks.Services
         {
             Client.DefaultRequestHeaders.Authorization = Client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", Convert.ToBase64String(Encoding.UTF8.GetBytes("Peach" + ":" + "T/R4J6eyvNG<6ne!"))); ;
 
-            HttpResponseMessage @response = await Client.GetAsync(string.Concat("findallhistoricobyarenalid/",1));
+            HttpResponseMessage @response = await Client.GetAsync(string.Concat("findallhistoricobyarenalid/", 1));
             @response.EnsureSuccessStatusCode();
             var @historicos = await @response.Content.ReadFromJsonAsync<List<ViewHistorico>>();
 

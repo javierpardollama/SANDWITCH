@@ -119,7 +119,7 @@ namespace Sandwitch.Tier.Resilience
             @app.MapHealthChecks("/alive", new()
             {
                 Predicate = static r => r.Tags.Contains("live")
-            });          
+            });
 
             return @app;
         }

@@ -29,7 +29,8 @@ namespace Sandwitch.Tier.Controllers.Tests.Classes
         /// Sets Up
         /// </summary>
         [SetUp]
-        public void Setup() { 
+        public void Setup()
+        {
         }
 
         /// <summary>
@@ -45,7 +46,7 @@ namespace Sandwitch.Tier.Controllers.Tests.Classes
         {
             HttpResponseMessage @response = await Client.GetAsync("findallarenal");
             @response.EnsureSuccessStatusCode();
-            var @arenales = await @response.Content.ReadFromJsonAsync<List<ViewArenal>>();           
+            var @arenales = await @response.Content.ReadFromJsonAsync<List<ViewArenal>>();
 
             Assert.Pass();
         }

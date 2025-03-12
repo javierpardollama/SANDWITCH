@@ -29,8 +29,7 @@ namespace Sandwitch.Tier.Services.Classes
     public class ProvinciaService(IApplicationContext @context,
                             IMapper @mapper,
                             ILogger<ProvinciaService> @logger) : BaseService(@context,
-                                                                      @mapper,
-                                                                      @logger), IProvinciaService
+                                                                      @mapper), IProvinciaService
     {
 
         /// <summary>
@@ -66,7 +65,7 @@ namespace Sandwitch.Tier.Services.Classes
                 + " was added at "
                 + DateTime.Now.ToShortTimeString();
 
-            Logger.WriteInsertItemLog(@logData);
+            @logger.WriteInsertItemLog(@logData);
 
             return Mapper.Map<ViewProvincia>(@provincia);
         }
@@ -136,7 +135,7 @@ namespace Sandwitch.Tier.Services.Classes
                     + " was not found at "
                     + DateTime.Now.ToShortTimeString();
 
-                Logger.WriteGetItemNotFoundLog(@logData);
+                @logger.WriteGetItemNotFoundLog(@logData);
 
                 throw new ServiceException(nameof(@provincia)
                     + " with Id "
@@ -169,7 +168,7 @@ namespace Sandwitch.Tier.Services.Classes
                     + " was removed at "
                     + DateTime.Now.ToShortTimeString();
 
-                Logger.WriteDeleteItemLog(@logData);
+                @logger.WriteDeleteItemLog(@logData);
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -208,7 +207,7 @@ namespace Sandwitch.Tier.Services.Classes
                 + " was modified at "
                 + DateTime.Now.ToShortTimeString();
 
-            Logger.WriteUpdateItemLog(@logData);
+            @logger.WriteUpdateItemLog(@logData);
 
             return Mapper.Map<ViewProvincia>(@provincia);
         }
@@ -235,7 +234,7 @@ namespace Sandwitch.Tier.Services.Classes
                     + " was already found at "
                     + DateTime.Now.ToShortTimeString();
 
-                Logger.WriteGetItemFoundLog(@logData);
+                @logger.WriteGetItemFoundLog(@logData);
 
                 throw new ServiceException(nameof(@provincia)
                     + " with Name "
@@ -268,7 +267,7 @@ namespace Sandwitch.Tier.Services.Classes
                     + " was already found at "
                     + DateTime.Now.ToShortTimeString();
 
-                Logger.WriteGetItemFoundLog(@logData);
+                @logger.WriteGetItemFoundLog(@logData);
 
                 throw new ServiceException(nameof(provincia)
                     + " with Name "

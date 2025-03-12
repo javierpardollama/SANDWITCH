@@ -1,7 +1,6 @@
-﻿using System.Threading.Tasks;
-
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Primitives;
+using System.Threading.Tasks;
 
 namespace Sandwitch.Tier.Middlewares.Middlewares
 {
@@ -10,7 +9,7 @@ namespace Sandwitch.Tier.Middlewares.Middlewares
     /// </summary>
     /// <param name="request">Injected <see cref="RequestDelegate"/></param>
     public class HeaderMiddleware(RequestDelegate @request)
-    {     
+    {
 
         /// <summary>
         /// Handles Requests Asynchronously

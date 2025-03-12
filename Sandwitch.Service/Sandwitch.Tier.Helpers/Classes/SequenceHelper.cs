@@ -16,7 +16,7 @@ namespace Sandwitch.Tier.Helpers.Classes
         /// <returns>Instance of <see cref="int"/></returns>
         public static int GetNextAvailableNumber(IReadOnlyCollection<int> @sequence, int @offset = 0)
         {
-            if (@sequence is { Count :<= 0})
+            if (@sequence is { Count: <= 0 })
             {
                 return @offset;
             }

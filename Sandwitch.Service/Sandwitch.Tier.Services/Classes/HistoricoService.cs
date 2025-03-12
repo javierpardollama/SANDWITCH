@@ -23,8 +23,7 @@ namespace Sandwitch.Tier.Services.Classes
     public class HistoricoService(IApplicationContext @context,
                             IMapper @mapper,
                             ILogger<HistoricoService> @logger) : BaseService(@context,
-                                                                      @mapper,
-                                                                      @logger), IHistoricoService
+                                                                      @mapper), IHistoricoService
     {
 
         /// <summary>
@@ -51,7 +50,7 @@ namespace Sandwitch.Tier.Services.Classes
                     + " was not found at "
                     + DateTime.Now.ToShortTimeString();
 
-                Logger.WriteGetItemNotFoundLog(@logData);
+                @logger.WriteGetItemNotFoundLog(@logData);
 
                 throw new ServiceException(nameof(@arenal)
                     + " with Id "
@@ -82,7 +81,7 @@ namespace Sandwitch.Tier.Services.Classes
                     + " was not found at "
                     + DateTime.Now.ToShortTimeString();
 
-                Logger.WriteGetItemNotFoundLog(@logData);
+                @logger.WriteGetItemNotFoundLog(@logData);
 
                 throw new ServiceException(nameof(@bandera)
                     + " with Id "
@@ -113,7 +112,7 @@ namespace Sandwitch.Tier.Services.Classes
                     + " was not found at "
                     + DateTime.Now.ToShortTimeString();
 
-                Logger.WriteGetItemNotFoundLog(@logData);
+                @logger.WriteGetItemNotFoundLog(@logData);
 
                 throw new ServiceException(nameof(@viento)
                     + " with Id "
@@ -155,7 +154,7 @@ namespace Sandwitch.Tier.Services.Classes
                 + " was added at "
                 + DateTime.Now.ToShortTimeString();
 
-            Logger.WriteInsertItemLog(@logData);
+            @logger.WriteInsertItemLog(@logData);
 
             return Mapper.Map<ViewHistorico>(@historico);
         }

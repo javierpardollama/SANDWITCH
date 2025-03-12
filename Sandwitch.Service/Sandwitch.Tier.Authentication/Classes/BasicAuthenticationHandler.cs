@@ -1,18 +1,16 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Authentication;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
+using Sandwitch.Tier.Authentication.Interfaces;
+using Sandwitch.Tier.Helpers.Classes;
+using Sandwitch.Tier.Services.Interfaces;
+using Sandwitch.Tier.ViewModels.Classes.Auth;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Security.Claims;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
-
-using Microsoft.AspNetCore.Authentication;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
-
-using Sandwitch.Tier.Authentication.Interfaces;
-using Sandwitch.Tier.Helpers.Classes;
-using Sandwitch.Tier.Services.Interfaces;
-using Sandwitch.Tier.ViewModels.Classes.Auth;
 
 namespace Sandwitch.Tier.Authentication.Classes
 {
@@ -27,7 +25,7 @@ namespace Sandwitch.Tier.Authentication.Classes
                                       ILoggerFactory @logger,
                                       UrlEncoder @encoder,
                                       IAuthService @authService) : AuthenticationHandler<AuthenticationSchemeOptions>(@options, @logger, @encoder), IBasicAuthenticationHandler
-    {       
+    {
         /// <summary>
         /// Gets Authentication Ticket
         /// </summary>

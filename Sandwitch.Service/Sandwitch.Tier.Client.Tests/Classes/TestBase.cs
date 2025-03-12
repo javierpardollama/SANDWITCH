@@ -33,12 +33,12 @@ namespace Sandwitch.Tier.Client.Tests.Classes
             };
 
             Driver.Navigate().GoToUrl("https://localhost:4200");
-        }       
+        }
 
         [OneTimeTearDown]
         public void OneTimeTearDown()
         {
-            Driver.Quit();            
+            Driver.Quit();
         }
 
         [TearDown]

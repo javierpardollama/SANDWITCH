@@ -30,7 +30,7 @@ namespace Sandwitch.Tier.Service.Controllers
         /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>
         [HttpPut]
         [Route("updateprovincia")]
-        public async Task<IActionResult> UpdateProvincia([FromBody]UpdateProvincia @viewModel) => Ok(value: await @service.UpdateProvincia(@viewModel));
+        public async Task<IActionResult> UpdateProvincia([FromBody] UpdateProvincia @viewModel) => Ok(value: await @service.UpdateProvincia(@viewModel));
 
         /// <summary>
         /// Finds All Provincia
@@ -66,7 +66,7 @@ namespace Sandwitch.Tier.Service.Controllers
         /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>
         [HttpPost]
         [Route("addprovincia")]
-        public async Task<IActionResult> AddProvincia([FromBody]AddProvincia @viewModel) => Ok(value: await @service.AddProvincia(@viewModel));
+        public async Task<IActionResult> AddProvincia([FromBody] AddProvincia @viewModel) => Ok(value: await @service.AddProvincia(@viewModel));
 
         /// <summary>
         /// Removes Provincia By Id

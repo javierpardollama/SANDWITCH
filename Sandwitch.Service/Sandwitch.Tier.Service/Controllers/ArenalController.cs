@@ -31,7 +31,7 @@ namespace Sandwitch.Tier.Service.Controllers
         /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>
         [HttpPut]
         [Route("updatearenal")]
-        public async Task<IActionResult> UpdateArenal([FromBody]UpdateArenal @viewModel) => Ok(value: await @service.UpdateArenal(@viewModel));
+        public async Task<IActionResult> UpdateArenal([FromBody] UpdateArenal @viewModel) => Ok(value: await @service.UpdateArenal(@viewModel));
 
         /// <summary>
         /// Finds All Arenal
@@ -91,7 +91,7 @@ namespace Sandwitch.Tier.Service.Controllers
         /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>
         [HttpPost]
         [Route("addarenal")]
-        public async Task<IActionResult> AddArenal([FromBody]AddArenal @viewModel) => Ok(value: await @service.AddArenal(@viewModel));
+        public async Task<IActionResult> AddArenal([FromBody] AddArenal @viewModel) => Ok(value: await @service.AddArenal(@viewModel));
 
         /// <summary>
         /// Removes Arenal By Id

@@ -46,7 +46,7 @@ namespace Sandwitch.Tier.Controllers.Tests.Classes
         {
             HttpResponseMessage @response = await Client.GetAsync("findallbandera");
             @response.EnsureSuccessStatusCode();
-            var @banderas = await @response.Content.ReadFromJsonAsync<List<ViewBandera>>();           
+            var @banderas = await @response.Content.ReadFromJsonAsync<List<ViewBandera>>();
 
             Assert.Pass();
         }

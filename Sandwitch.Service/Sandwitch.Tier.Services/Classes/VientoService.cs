@@ -22,7 +22,7 @@ namespace Sandwitch.Tier.Services.Classes
     /// </summary>    
     /// <param name="context">Injected <see cref="IApplicationContext"/></param>
     /// <param name="mapper">Injected <see cref="IMapper"/></param>
-    /// <param name="logger">Injected <see cref="ILogger"/></param>
+    /// <param name="logger">Injected <see cref="ILogger{VientoService}"/></param>
     public class VientoService(IApplicationContext @context,
                           IMapper @mapper,
                           ILogger<VientoService> @logger) : BaseService(@context,

@@ -19,7 +19,7 @@ namespace Sandwitch.Tier.Services.Classes
     /// </summary>    
     /// <param name="context">Injected <see cref="IApplicationContext"/></param>
     /// <param name="mapper">Injected <see cref="IMapper"/></param>
-    /// <param name="logger">Injected <see cref="ILogger"/></param>
+    /// <param name="logger">Injected <see cref="ILogger{HistoricoService}"/></param>
     public class HistoricoService(IApplicationContext @context,
                             IMapper @mapper,
                             ILogger<HistoricoService> @logger) : BaseService(@context,

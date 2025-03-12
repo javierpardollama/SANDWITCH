@@ -1,5 +1,4 @@
-﻿using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
+﻿using Microsoft.Extensions.Options;
 
 using Sandwitch.Tier.Services.Interfaces;
 using Sandwitch.Tier.Settings.Classes;
@@ -11,8 +10,7 @@ namespace Sandwitch.Tier.Services.Classes
     /// Represents a <see cref="AuthService"/> class.  Inherits <see cref="BaseService"/>. Implements <see cref="IAuthService"/>.
     /// </summary>   
     /// <param name="apiSettings">Injected <see cref="IOptions{ApiSettings}"/></param>
-    public class AuthService(ILogger<AuthService> @logger,
-                             IOptions<ApiSettings> @apiSettings) : BaseService(@apiSettings), IAuthService
+    public class AuthService(IOptions<ApiSettings> @apiSettings) : BaseService(@apiSettings), IAuthService
     {
 
         /// <summary>

@@ -22,7 +22,7 @@ namespace Sandwitch.Tier.Services.Classes
     /// </summary>   
     /// <param name="context">Injected <see cref="IApplicationContext"/></param>
     /// <param name="mapper">Injected <see cref="IMapper"/></param>
-    /// <param name="logger">Injected <see cref="ILogger"/></param>
+    /// <param name="logger">Injected <see cref="ILogger{PoblacionService}"/></param>
     public class PoblacionService(IApplicationContext @context,
                                   IMapper @mapper,
                                   ILogger<PoblacionService> @logger) : BaseService(@context,

@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Logging;
 using Sandwitch.Tier.Exceptions.Exceptions;
 using Sandwitch.Tier.ViewModels.Classes.Views;
 using System;
@@ -12,7 +11,6 @@ namespace Sandwitch.Tier.Middlewares.Middlewares
     /// Represents a <see cref="ExceptionMiddleware"/> class
     /// </summary>
     /// <param name="request">Injected <see cref="RequestDelegate"/></param>
-    /// <param name="logger">Injected <see cref="ILogger"/></param>
     public class ExceptionMiddleware(RequestDelegate @request)
     {
 

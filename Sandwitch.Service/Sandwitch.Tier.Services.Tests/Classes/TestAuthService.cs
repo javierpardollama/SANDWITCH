@@ -38,7 +38,7 @@ namespace Sandwitch.Tier.Services.Tests.Classes
         {
             SetUpLogger();
 
-            AuthService = new AuthService(Logger, ApiOptions);
+            AuthService = new AuthService(ApiOptions);
         }
 
         /// <summary>

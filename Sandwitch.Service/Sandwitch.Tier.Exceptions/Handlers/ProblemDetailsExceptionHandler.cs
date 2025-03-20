@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 namespace Sandwitch.Tier.Exceptions.Handlers
 {
     /// <summary>
-    /// Represents a <see cref="ServiceExceptionHandler"/> class. Implements <see cref="IExceptionHandler"/>
+    /// Represents a <see cref="ProblemDetailsExceptionHandler"/> class. Implements <see cref="IExceptionHandler"/>
     /// </summary>    
     /// <param name="problemDetailsService">Injected <see cref="IProblemDetailsService"/></param>
-    public class ServiceExceptionHandler(IProblemDetailsService @problemDetailsService) : IExceptionHandler
+    public class ProblemDetailsExceptionHandler(IProblemDetailsService @problemDetailsService) : IExceptionHandler
     {
         /// <summary>
         /// Handles Exception Async

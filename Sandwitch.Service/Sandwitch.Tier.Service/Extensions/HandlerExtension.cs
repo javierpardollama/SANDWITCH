@@ -14,7 +14,7 @@ namespace Sandwitch.Tier.Service.Extensions
         /// <param name="this">Injected <see cref="IServiceCollection"/></param>
         public static void AddCustomizedHandlers(this IServiceCollection @this)
         {
-            @this.AddExceptionHandler<ServiceExceptionHandler>();
+            @this.AddExceptionHandler<ProblemDetailsExceptionHandler>();
         }
 
     }

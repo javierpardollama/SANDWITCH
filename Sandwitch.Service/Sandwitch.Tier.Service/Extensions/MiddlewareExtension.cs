@@ -15,7 +15,6 @@ namespace Sandwitch.Tier.Service.Extensions
         /// <param name="this">Injected <see cref="WebApplication"/></param>
         public static void UseCustomizedMiddlewares(this WebApplication @this)
         {
-            @this.UseMiddleware<ExceptionMiddleware>();
             @this.UseMiddleware<HeaderMiddleware>();
 
             // Add other services here

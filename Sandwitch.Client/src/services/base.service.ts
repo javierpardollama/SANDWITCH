@@ -1,4 +1,4 @@
-import { ViewServiceException } from '../viewmodels/views/viewserviceexception';
+import { ExceptionProblemDetails } from '../viewmodels/exceptions/exceptionproblemdetails';
 
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 
@@ -30,13 +30,15 @@ export class BaseService {
         return (response: HttpErrorResponse): Observable<T> => {
 
             switch (response.status) {
-                case CodeAppVariants.CONFLICT:
-                    const exception: ViewServiceException = {
-                        Message: response.error.Message,
+                case CodeAppVariants.BAD_REQUEST:
+                    const exception: ExceptionProblemDetails = {
+                        Detail: response.error.Detail,
+                        Title: response.error.Title,
+                        Type : response.error.Type
                     };
 
                     this.matSnackBar.open(
-                        exception.Message,
+                        exception.Detail,
                         TextAppVariants.AppOkButtonText,
                         { duration: TimeAppVariants.AppToastSecondTicks * TimeAppVariants.AppTimeSecondTicks });
                     break;

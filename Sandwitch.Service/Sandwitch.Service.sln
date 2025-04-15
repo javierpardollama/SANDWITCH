@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32616.157
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sandwitch.Tier.Authentication", "Sandwitch.Tier.Authentication\Sandwitch.Tier.Authentication.csproj", "{5337DCA8-C769-46EC-B065-D140AA5C1742}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sandwitch.Tier.Handlers", "Sandwitch.Tier.Handlers\Sandwitch.Tier.Handlers.csproj", "{5337DCA8-C769-46EC-B065-D140AA5C1742}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sandwitch.Tier.Constants", "Sandwitch.Tier.Constants\Sandwitch.Tier.Constants.csproj", "{0510A6EB-C258-46B4-ABAC-ED304865337C}"
 EndProject

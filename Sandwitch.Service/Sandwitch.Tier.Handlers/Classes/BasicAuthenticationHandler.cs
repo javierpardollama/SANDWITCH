@@ -12,7 +12,7 @@ using System.Security.Claims;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
 
-namespace Sandwitch.Tier.Authentication.Classes
+namespace Sandwitch.Tier.Handlers.Classes
 {
     /// <summary>
     /// Represents a <see cref="BasicAuthenticationHandler"/> class. Inherits <see cref="AuthenticationHandler{AuthenticationSchemeOptions}"/> Implements <see cref="IBasicAuthenticationHandler"/>

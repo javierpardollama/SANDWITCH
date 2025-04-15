@@ -51,7 +51,7 @@ var @Apisettings = new ApiSettings();
 @builder.Services.Configure<ApiSettings>(@builder.Configuration.GetSection("Api"));
 
 // Add customized Authentication to the services container.
-@builder.Services.AddCustomizedAuthentication(@Apisettings);
+@builder.Services.AddCustomizedHandlers(@Apisettings);
 
 @builder.Services.AddCustomizedCrossOriginRequests(@Apisettings);
 
@@ -66,7 +66,6 @@ var @RateSettings = new RateLimitSettings();
 
 // Return the Problem Details format for non-successful responses
 @builder.Services.AddProblemDetails();
-@builder.Services.AddCustomizedHandlers();
 
 var @app = @builder.Build();
 
@@ -74,7 +73,7 @@ var @app = @builder.Build();
 if (@app.Environment.IsDevelopment())
 {
     @app.UseSwagger();
-    @app.UseSwaggerUI();
+    //@app.UseSwaggerUI();
 
     @app.UseMigrations();
 }

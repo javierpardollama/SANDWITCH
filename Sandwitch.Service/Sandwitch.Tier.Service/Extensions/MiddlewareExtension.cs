@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Builder;
-
+using Microsoft.Extensions.DependencyInjection;
 using Sandwitch.Tier.Middlewares.Middlewares;
 
 namespace Sandwitch.Tier.Service.Extensions
@@ -10,7 +10,7 @@ namespace Sandwitch.Tier.Service.Extensions
     public static class MiddlewareExtension
     {
         /// <summary>
-        /// Extends Customized Exception MiddleWare
+        /// Extends Customized MiddleWares
         /// </summary>
         /// <param name="this">Injected <see cref="WebApplication"/></param>
         public static void UseCustomizedMiddlewares(this WebApplication @this)
@@ -19,5 +19,6 @@ namespace Sandwitch.Tier.Service.Extensions
 
             // Add other services here
         }
+
     }
 }

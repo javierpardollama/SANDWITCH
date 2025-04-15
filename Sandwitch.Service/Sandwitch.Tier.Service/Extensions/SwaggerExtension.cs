@@ -28,7 +28,7 @@ namespace Sandwitch.Tier.Service.Extensions
                     Type = SecuritySchemeType.Http,
                     Scheme = AuthenticationSchemes.Basic.ToString(),
                     In = ParameterLocation.Header,
-                    Description = "Basic Authorization header using the Bearer scheme."
+                    Description = "Basic Authorization header using the Basic scheme."
                 });
                 options.AddSecurityRequirement(new OpenApiSecurityRequirement
                 {

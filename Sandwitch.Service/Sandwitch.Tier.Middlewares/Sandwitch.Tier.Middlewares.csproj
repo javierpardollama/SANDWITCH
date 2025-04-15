@@ -11,7 +11,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\Sandwitch.Tier.Authentication\Sandwitch.Tier.Authentication.csproj" />
+	  <ProjectReference Include="..\Sandwitch.Tier.Handlers\Sandwitch.Tier.Handlers.csproj" />
 	</ItemGroup>
 
 </Project>

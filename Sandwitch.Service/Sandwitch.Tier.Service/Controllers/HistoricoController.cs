@@ -23,8 +23,12 @@ namespace Sandwitch.Tier.Service.Controllers
         /// Adds Historico
         /// </summary>
         /// <response code="200">Ok</response>
-        /// <response code="409">Conflict</response>
+        /// <response code="400">BadRequest</response>
         /// <response code="401">Unauthorized</response>
+        /// <response code="408">RequestTimeout</response>
+        /// <response code="409">Conflict</response>
+        /// <response code="503">ServiceUnavailable</response>
+        /// <response code="500">InternalServerError</response>
         /// <param name="viewModel">Injected <see cref="AddHistorico"/></param>
         /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>
         [HttpPost]

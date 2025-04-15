@@ -1,8 +1,6 @@
-﻿
-using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Logging;
 using Sandwitch.Tier.Constants.Enums;
 using System;
-using System.Collections.Generic;
 
 namespace Sandwitch.Tier.Mappings.Classes
 {
@@ -12,16 +10,21 @@ namespace Sandwitch.Tier.Mappings.Classes
     public static class LoggingProfile
     {
         /// <summary>
-        /// Instance of <see cref="Dictionary{Enum, LogLevel}"/>
+        /// Maps
         /// </summary>
-        public static readonly Dictionary<Enum, LogLevel> LogLevelMapings = new()
+        /// <param name="enum">Injected <see cref="Enum"/></param>
+        /// <returns>Instance of <see cref="LogLevel"/></returns>
+        public static LogLevel Map(Enum @enum)
         {
-    { ApplicationEvents.InsertItem, LogLevel.Information },
-    { ApplicationEvents.UpdateItem, LogLevel.Information },
-    { ApplicationEvents.DeleteItem, LogLevel.Information },
-    { ApplicationEvents.GetItemNotFound, LogLevel.Error },
-    { ApplicationEvents.GetItemFound, LogLevel.Error }
-    };
-
+            return @enum switch
+            {
+                 ApplicationEvents.InsertItem => LogLevel.Information,
+                 ApplicationEvents.UpdateItem => LogLevel.Information,
+                 ApplicationEvents.DeleteItem => LogLevel.Information,
+                 ApplicationEvents.GetItemNotFound => LogLevel.Error,
+                 ApplicationEvents.GetItemFound => LogLevel.Error,
+                 _ => LogLevel.None,
+            };
+        }        
     }
 }

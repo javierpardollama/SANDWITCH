@@ -73,7 +73,7 @@ var @app = @builder.Build();
 if (@app.Environment.IsDevelopment())
 {
     @app.UseSwagger();
-    //@app.UseSwaggerUI();
+    @app.UseSwaggerUI();
 
     @app.UseMigrations();
 }
@@ -82,7 +82,6 @@ if (@app.Environment.IsDevelopment())
 
 @app.UseHttpsRedirection();
 
-// UseCors() must be called before UseResponseCaching(), UseAuthentication(), UseAuthorization().
 // Learn more about configuring app pipeline at https://learn.microsoft.com/en-us/aspnet/core/fundamentals/middleware/?view=aspnetcore-8.0
 @app.UseCors();
 
@@ -100,8 +99,7 @@ if (@app.Environment.IsDevelopment())
 @app.UseRequestTimeouts();
 @app.UseOutputCache();
 
-// Return the body of the response when the status code is not successful
-// (the default behavior is to return an empty body with a Status Code)
+// Return the body of the response when the status code is not successful (the default behavior is to return an empty body with a Status Code)
 @app.UseExceptionHandler();
 @app.UseStatusCodePages();
 

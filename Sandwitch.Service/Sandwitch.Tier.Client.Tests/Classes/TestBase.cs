@@ -1,4 +1,4 @@
-﻿using NUnit.Framework;
+using NUnit.Framework;
 using NUnit.Framework.Interfaces;
 
 using OpenQA.Selenium;
@@ -27,12 +27,12 @@ namespace Sandwitch.Tier.Client.Tests.Classes
             Driver = new ChromeDriver();
             Driver.Manage().Window.Maximize();
 
-            Wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(40))
+            Wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(60))
             {
-                PollingInterval = TimeSpan.FromMilliseconds(200)
+                PollingInterval = TimeSpan.FromMilliseconds(30)
             };
 
-            Driver.Navigate().GoToUrl("https://localhost:4200");
+            Driver.Navigate().GoToUrl("http://localhost:4200");
         }
 
         [OneTimeTearDown]

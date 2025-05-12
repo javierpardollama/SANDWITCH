@@ -87,7 +87,7 @@ namespace Sandwitch.Tier.Client.Tests.Classes
 
         private NetworkRequestHandler SetUpNetworkRequestHandler() => new()
         {
-            RequestMatcher = httrequest => true,
+            RequestMatcher = httprequest => true,
             RequestTransformer = http => { Requests.Add(http); return http; }
         };
 

@@ -24,9 +24,9 @@ namespace Sandwitch.Tier.Client.Tests.Classes
 
         private readonly string Path = $"{AppDomain.CurrentDomain.BaseDirectory}/{DateTime.Now:yyyy-MM-dd}/{TestContext.CurrentContext.Test.ClassName}";
 
-        private List<NetworkRequestSentEventArgs> Requests = [];
+        private List<HttpRequestData> Requests = [];
 
-        private List<NetworkResponseReceivedEventArgs> Responses = [];
+        private List<HttpResponseData> Responses = [];
 
         [OneTimeSetUp]
         public void OneTimeSetUp()
@@ -34,9 +34,7 @@ namespace Sandwitch.Tier.Client.Tests.Classes
             Driver = new ChromeDriver();
             Driver.Manage().Window.Maximize();
 
-            Network = Driver.Manage().Network;
-            Network.NetworkRequestSent += OnRequest;
-            Network.NetworkResponseReceived += OnResponse;
+            Network = Driver.Manage().Network;      
 
             Wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(60))
             {
@@ -44,8 +42,6 @@ namespace Sandwitch.Tier.Client.Tests.Classes
             };
 
             Driver.Navigate().GoToUrl("http://localhost:4200");
-
-            Network.StartMonitoring().Wait();
         }
 
         [SetUp]
@@ -53,20 +49,27 @@ namespace Sandwitch.Tier.Client.Tests.Classes
         {
             Responses = [];
             Requests = [];
+
+            Network.AddResponseHandler(SetUpNetworkResponseHandler());
+            Network.AddRequestHandler(SetUpNetworkRequestHandler());
+
+            Network.StartMonitoring().Wait();
         }
 
 
         [OneTimeTearDown]
         public void OneTimeTearDown()
         {
-            Network.StopMonitoring().Wait();
-
             Driver.Quit();
         }
 
         [TearDown]
         public void TearDown()
         {
+            Network.ClearRequestHandlers();
+            Network.ClearResponseHandlers();
+            Network.StopMonitoring().Wait();
+
             if (TestContext.CurrentContext.Result.Outcome.Matches(ResultState.Error))
             {
                 RecordScreen();
@@ -76,9 +79,17 @@ namespace Sandwitch.Tier.Client.Tests.Classes
             }
         }
 
-        private void OnRequest(object @sender, NetworkRequestSentEventArgs @request) => Requests.Add(@request);
+        private NetworkResponseHandler SetUpNetworkResponseHandler() => new()
+        {
+            ResponseMatcher = httpresponse => true,
+            ResponseTransformer = http => { Responses.Add(http); return http; }
+        };
 
-        private void OnResponse(object @sender, NetworkResponseReceivedEventArgs @response) => Responses.Add(@response);
+        private NetworkRequestHandler SetUpNetworkRequestHandler() => new()
+        {
+            RequestMatcher = httrequest => true,
+            RequestTransformer = http => { Requests.Add(http); return http; }
+        };
 
         private void RecordRequests()
         {

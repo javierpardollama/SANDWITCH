@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace Sandwitch.Tier.ViewModels.Classes.Updates
 {
@@ -17,11 +18,13 @@ namespace Sandwitch.Tier.ViewModels.Classes.Updates
         /// <summary>
         /// Gets or Sets <see cref="Name"/>
         /// </summary>
+        [Required]
         public string Name { get; set; }
 
         /// <summary>
         /// Gets or Sets <see cref="PoblacionesId"/>
         /// </summary>
+        [Required]
         public virtual IList<int> PoblacionesId { get; set; }
     }
 }

@@ -20,6 +20,7 @@ namespace Sandwitch.Tier.Mappings.Classes
             {
                 nameof(ArgumentNullException) => StatusCodes.Status400BadRequest,
                 nameof(UnauthorizedAccessException) => StatusCodes.Status401Unauthorized,
+                nameof(NullReferenceException) => StatusCodes.Status404NotFound,
                 nameof(TimeoutException) => StatusCodes.Status408RequestTimeout,
                 nameof(ServiceException) => StatusCodes.Status409Conflict,
                 _ => StatusCodes.Status500InternalServerError

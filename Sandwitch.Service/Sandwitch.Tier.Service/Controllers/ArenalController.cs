@@ -28,9 +28,10 @@ namespace Sandwitch.Tier.Service.Controllers
         /// <response code="400">BadRequest</response>
         /// <response code="401">Unauthorized</response>
         /// <response code="408">RequestTimeout</response>
+        /// <response code="404">NotFound</response>
         /// <response code="409">Conflict</response>
         /// <response code="503">ServiceUnavailable</response>
-        /// <response code="500">InternalServerError</response>
+        /// <response code="500">InternalServerError</response>     
         /// <param name="viewModel">Injected <see cref="UpdateArenal"/></param>
         /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>
         [HttpPut]
@@ -44,9 +45,10 @@ namespace Sandwitch.Tier.Service.Controllers
         /// <response code="400">BadRequest</response>
         /// <response code="401">Unauthorized</response>
         /// <response code="408">RequestTimeout</response>
+        /// <response code="404">NotFound</response>
         /// <response code="409">Conflict</response>
         /// <response code="503">ServiceUnavailable</response>
-        /// <response code="500">InternalServerError</response>
+        /// <response code="500">InternalServerError</response>     
         /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>
         [HttpGet]
         [ResponseCache(Duration = 10, Location = ResponseCacheLocation.Any, NoStore = false)]
@@ -60,9 +62,10 @@ namespace Sandwitch.Tier.Service.Controllers
         /// <response code="400">BadRequest</response>
         /// <response code="401">Unauthorized</response>
         /// <response code="408">RequestTimeout</response>
+        /// <response code="404">NotFound</response>
         /// <response code="409">Conflict</response>
         /// <response code="503">ServiceUnavailable</response>
-        /// <response code="500">InternalServerError</response>
+        /// <response code="500">InternalServerError</response>     
         /// <param name="viewModel">Injected <see cref="FilterPage"/></param>
         /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>
         [HttpPost]
@@ -76,9 +79,10 @@ namespace Sandwitch.Tier.Service.Controllers
         /// <response code="400">BadRequest</response>
         /// <response code="401">Unauthorized</response>
         /// <response code="408">RequestTimeout</response>
+        /// <response code="404">NotFound</response>
         /// <response code="409">Conflict</response>
         /// <response code="503">ServiceUnavailable</response>
-        /// <response code="500">InternalServerError</response>
+        /// <response code="500">InternalServerError</response>     
         /// <param name="id">Injected <see cref="int"/></param>
         /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>
         [HttpGet]
@@ -92,9 +96,10 @@ namespace Sandwitch.Tier.Service.Controllers
         /// <response code="400">BadRequest</response>
         /// <response code="401">Unauthorized</response>
         /// <response code="408">RequestTimeout</response>
+        /// <response code="404">NotFound</response>
         /// <response code="409">Conflict</response>
         /// <response code="503">ServiceUnavailable</response>
-        /// <response code="500">InternalServerError</response>
+        /// <response code="500">InternalServerError</response>     
         /// <param name="id">Injected <see cref="int"/></param>
         /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>
         [HttpGet]
@@ -124,9 +129,10 @@ namespace Sandwitch.Tier.Service.Controllers
         /// <response code="400">BadRequest</response>
         /// <response code="401">Unauthorized</response>
         /// <response code="408">RequestTimeout</response>
+        /// <response code="404">NotFound</response>
         /// <response code="409">Conflict</response>
         /// <response code="503">ServiceUnavailable</response>
-        /// <response code="500">InternalServerError</response>
+        /// <response code="500">InternalServerError</response>     
         /// <param name="id">Injected <see cref="int"/></param>
         /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>
         [HttpDelete]

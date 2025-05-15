@@ -1,4 +1,6 @@
-﻿namespace Sandwitch.Tier.ViewModels.Classes.Filters
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Sandwitch.Tier.ViewModels.Classes.Filters
 {
     /// <summary>
     /// Represents a <see cref="FilterPage"/> class.
@@ -15,11 +17,13 @@
         /// <summary>
         /// Gets or Sets <see cref="Index"/>
         /// </summary>
+        [Required]
         public int Index { get; set; }
 
         /// <summary>
         /// Gets or Sets <see cref="Size"/>
         /// </summary>
+        [Required]
         public int Size { get; set; }
     }
 }

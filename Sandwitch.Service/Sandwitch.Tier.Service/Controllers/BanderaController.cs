@@ -68,7 +68,6 @@ namespace Sandwitch.Tier.Service.Controllers
         /// <response code="409">Conflict</response>
         /// <response code="503">ServiceUnavailable</response>
         /// <response code="500">InternalServerError</response>     
-        /// </summary>
         /// <param name="viewModel">Injected <see cref="FilterPage"/></param>
         /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>
         [HttpPost]

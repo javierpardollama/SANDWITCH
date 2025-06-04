@@ -72,6 +72,8 @@ namespace Sandwitch.Tier.Client.Tests.Classes
 
             if (TestContext.CurrentContext.Result.Outcome.Matches(ResultState.Error))
             {
+                Directory.CreateDirectory(Path);
+                
                 RecordScreen();
                 RecordConsole();
                 RecordRequests();
@@ -81,13 +83,13 @@ namespace Sandwitch.Tier.Client.Tests.Classes
 
         private NetworkResponseHandler SetUpNetworkResponseHandler() => new()
         {
-            ResponseMatcher = httpresponse => true,
+            ResponseMatcher = _ => true,
             ResponseTransformer = http => { Responses.Add(http); return http; }
         };
 
         private NetworkRequestHandler SetUpNetworkRequestHandler() => new()
         {
-            RequestMatcher = httprequest => true,
+            RequestMatcher = _ => true,
             RequestTransformer = http => { Requests.Add(http); return http; }
         };
 
@@ -108,8 +110,6 @@ namespace Sandwitch.Tier.Client.Tests.Classes
         private void RecordScreen()
         {
             var screenshot = Driver.TakeScreenshot();
-
-            Directory.CreateDirectory(Path);
 
             screenshot.SaveAsFile($"{Path}/{TestContext.CurrentContext.Test.Name}.screen.png");
         }

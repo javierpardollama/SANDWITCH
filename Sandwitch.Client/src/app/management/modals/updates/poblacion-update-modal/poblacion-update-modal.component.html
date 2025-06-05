@@ -1,11 +1,11 @@
-<div id="poblacion-update-modal" class="container" novalidate>
-  <form [formGroup]="formGroup" class="form">
+<div id="poblacion-update-modal" class="container">
+  <form [formGroup]="formGroup" class="form" novalidate>
 
     <div class="modal-content-line">
       <div class="modal-option-image modal-identity-image" aria-label="Id"></div>
       <mat-form-field class="form-element">
         <mat-label>Id</mat-label>
-        <input matInput placeholder="Id" formControlName="Id" readonly>
+        <input type="number" matInput placeholder="Id" formControlName="Id" readonly>
         @if (!formGroup.controls['Id'].valid && formGroup.controls['Id'].touched) {
           <mat-error>
             Required field.
@@ -18,7 +18,7 @@
       <div class="modal-option-image modal-name-image" aria-label="Name"></div>
       <mat-form-field class="form-element">
         <mat-label>Name</mat-label>
-        <input matInput placeholder="Name" formControlName="Name">
+        <input type="text" matInput placeholder="Name" formControlName="Name">
         @if (!formGroup.controls['Name'].valid && formGroup.controls['Name'].touched) {
           <mat-error>
             Required field.
@@ -31,7 +31,7 @@
       <div class="modal-option-image modal-portrait-image" aria-label="ImageUri"></div>
       <mat-form-field class="form-element">
         <mat-label>ImageUri</mat-label>
-        <input matInput placeholder="ImageUri" formControlName="ImageUri">
+        <input type="url" matInput placeholder="ImageUri" formControlName="ImageUri">
         @if (!formGroup.controls['ImageUri'].valid && formGroup.controls['ImageUri'].touched) {
           <mat-error>
             Required field.

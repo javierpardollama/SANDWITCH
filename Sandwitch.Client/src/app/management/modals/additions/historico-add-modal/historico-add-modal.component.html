@@ -11,10 +11,12 @@
       <mat-form-field class="form-element">
         <mat-label>BanderaId</mat-label>
         <mat-select formControlName="BanderaId">
-          <mat-option *ngFor="let bandera of banderas" [value]="bandera.Id">
-            <img class="select-option-img" aria-hidden ngSrc="{{bandera.ImageUri}}" height="25" width="25">
-            <span>{{bandera.Name}}</span>
-          </mat-option>
+          @for (bandera of banderas; track bandera) {
+            <mat-option [value]="bandera.Id">
+              <img class="select-option-img" aria-hidden ngSrc="{{bandera.ImageUri}}" height="25" width="25">
+              <span>{{bandera.Name}}</span>
+            </mat-option>
+          }
         </mat-select>
       </mat-form-field>
     </div>
@@ -24,9 +26,11 @@
       <mat-form-field class="form-element">
         <mat-label>Temperatura</mat-label>
         <input type="number" matInput placeholder="Temperatura" formControlName="Temperatura">
-        <mat-error *ngIf="!formGroup.controls['Temperatura'].valid && formGroup.controls['Temperatura'].touched">
-          Required field.
-        </mat-error>
+        @if (!formGroup.controls['Temperatura'].valid && formGroup.controls['Temperatura'].touched) {
+          <mat-error>
+            Required field.
+          </mat-error>
+        }
       </mat-form-field>
     </div>
 
@@ -35,15 +39,17 @@
 
       <div class="modal-content-cell">
         <div class="modal-option-image modal-compass-image" aria-label="VientoId"></div>
-      <mat-form-field class="form-element">
-        <mat-label>VientoId</mat-label>
-        <mat-select formControlName="VientoId">
-          <mat-option *ngFor="let viento of vientos" [value]="viento.Id">
-            <img class="select-option-img" aria-hidden ngSrc="{{viento.ImageUri}}" height="25" width="25">
-            <span>{{viento.Name}}</span>
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
+        <mat-form-field class="form-element">
+          <mat-label>VientoId</mat-label>
+          <mat-select formControlName="VientoId">
+            @for (viento of vientos; track viento) {
+              <mat-option [value]="viento.Id">
+                <img class="select-option-img" aria-hidden ngSrc="{{viento.ImageUri}}" height="25" width="25">
+                <span>{{viento.Name}}</span>
+              </mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
       </div>
 
       <div class="modal-content-cell">
@@ -51,11 +57,13 @@
         <mat-form-field class="form-element">
           <mat-label>Velocidad</mat-label>
           <input type="number" matInput placeholder="Velocidad" formControlName="Velocidad">
-          <mat-error *ngIf="!formGroup.controls['Velocidad'].valid && formGroup.controls['Velocidad'].touched">
-            Required field.
-          </mat-error>
+          @if (!formGroup.controls['Velocidad'].valid && formGroup.controls['Velocidad'].touched) {
+            <mat-error>
+              Required field.
+            </mat-error>
+          }
         </mat-form-field>
-      </div>      
+      </div>
     </div>
 
     <div class="modal-content-line">
@@ -64,9 +72,11 @@
         <mat-form-field class="form-element">
           <mat-label>BajaMarAlba</mat-label>
           <input type="time" matInput placeholder="BajaMarAlba" formControlName="BajaMarAlba" step="1">
-          <mat-error *ngIf="!formGroup.controls['BajaMarAlba'].valid && formGroup.controls['BajaMarAlba'].touched">
-            Required field.
-          </mat-error>
+          @if (!formGroup.controls['BajaMarAlba'].valid && formGroup.controls['BajaMarAlba'].touched) {
+            <mat-error>
+              Required field.
+            </mat-error>
+          }
         </mat-form-field>
       </div>
       <div class="modal-content-cell">
@@ -74,9 +84,11 @@
         <mat-form-field class="form-element">
           <mat-label>AltaMarAlba</mat-label>
           <input type="time" matInput placeholder="AltaMarAlba" formControlName="AltaMarAlba" step="1">
-          <mat-error *ngIf="!formGroup.controls['AltaMarAlba'].valid && formGroup.controls['AltaMarAlba'].touched">
-            Required field.
-          </mat-error>
+          @if (!formGroup.controls['AltaMarAlba'].valid && formGroup.controls['AltaMarAlba'].touched) {
+            <mat-error>
+              Required field.
+            </mat-error>
+          }
         </mat-form-field>
       </div>
     </div>
@@ -87,9 +99,11 @@
         <mat-form-field class="form-element">
           <mat-label>BajaMarOcaso</mat-label>
           <input type="time" matInput placeholder="BajaMarOcaso" formControlName="BajaMarOcaso" step="1">
-          <mat-error *ngIf="!formGroup.controls['BajaMarOcaso'].valid && formGroup.controls['BajaMarOcaso'].touched">
-            Required field.
-          </mat-error>
+          @if (!formGroup.controls['BajaMarOcaso'].valid && formGroup.controls['BajaMarOcaso'].touched) {
+            <mat-error>
+              Required field.
+            </mat-error>
+          }
         </mat-form-field>
       </div>
       <div class="modal-content-cell">
@@ -97,9 +111,11 @@
         <mat-form-field class="form-element">
           <mat-label>AltaMarOcaso</mat-label>
           <input type="time" matInput placeholder="AltaMarOcaso" formControlName="AltaMarOcaso" step="1">
-          <mat-error *ngIf="!formGroup.controls['AltaMarOcaso'].valid && formGroup.controls['AltaMarOcaso'].touched">
-            Required field.
-          </mat-error>
+          @if (!formGroup.controls['AltaMarOcaso'].valid && formGroup.controls['AltaMarOcaso'].touched) {
+            <mat-error>
+              Required field.
+            </mat-error>
+          }
         </mat-form-field>
       </div>
     </div>

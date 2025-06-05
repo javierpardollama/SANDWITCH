@@ -4,7 +4,7 @@ import {
   Inject
 } from '@angular/core';
 
-import { CommonModule, NgOptimizedImage, Time } from '@angular/common';
+import { NgOptimizedImage, Time } from '@angular/common';
 
 import { MatDialogRef, MAT_DIALOG_DATA, MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
@@ -56,24 +56,23 @@ import { MatTableModule } from '@angular/material/table';
     templateUrl: './historico-add-modal.component.html',
     styleUrls: ['./historico-add-modal.component.scss'],
     imports: [
-        MatDividerModule,
-        MatSelectModule,
-        MatInputModule,
-        MatDialogModule,
-        MatPaginatorModule,
-        MatButtonModule,
-        MatSnackBarModule,
-        MatChipsModule,
-        MatAutocompleteModule,
-        MatCardModule,
-        MatTableModule,
-        MatSortModule,
-        MatFormFieldModule,
-        CommonModule,
-        FormsModule,
-        ReactiveFormsModule,
-        NgOptimizedImage
-    ]
+    MatDividerModule,
+    MatSelectModule,
+    MatInputModule,
+    MatDialogModule,
+    MatPaginatorModule,
+    MatButtonModule,
+    MatSnackBarModule,
+    MatChipsModule,
+    MatAutocompleteModule,
+    MatCardModule,
+    MatTableModule,
+    MatSortModule,
+    MatFormFieldModule,
+    FormsModule,
+    ReactiveFormsModule,
+    NgOptimizedImage
+]
 })
 export class HistoricoAddModalComponent implements OnInit {
 

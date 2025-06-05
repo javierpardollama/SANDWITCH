@@ -1,102 +1,106 @@
-<div *ngIf="provincias.length == 0" class="spinner-container">
-  <div class="spinner"></div>
-</div>
+@if (provincias.length == 0) {
+  <div class="spinner-container">
+    <div class="spinner"></div>
+  </div>
+}
 
 <form class="search-form">
   <mat-form-field class="search-half-width">
     <mat-label>Provincia</mat-label>
     <input matInput placeholder="Provincia" aria-label="Provincia" [matAutocomplete]="auto"
       [formControl]="provinciaCtrl">
-    <mat-autocomplete #auto="matAutocomplete" (optionSelected)='FindAllPoblacionByProvinciaId($event.option.id)'>
-      <mat-option *ngFor="let provincia of filteredProvincias | async" [value]="provincia.Name" [id]="provincia.Id.toString()">
-        <img class="search-option-img" aria-label="provincia.Name" aria-hidden ngSrc="{{provincia.ImageUri}}" height="25" width="25">
-        <span>{{provincia.Name}}</span>
-      </mat-option>
-    </mat-autocomplete>
-  </mat-form-field>
+      <mat-autocomplete #auto="matAutocomplete" (optionSelected)='FindAllPoblacionByProvinciaId($event.option.id)'>
+        @for (provincia of filteredProvincias | async; track provincia) {
+          <mat-option [value]="provincia.Name" [id]="provincia.Id.toString()">
+            <img class="search-option-img" aria-label="provincia.Name" aria-hidden ngSrc="{{provincia.ImageUri}}" height="25" width="25">
+            <span>{{provincia.Name}}</span>
+          </mat-option>
+        }
+      </mat-autocomplete>
+    </mat-form-field>
 
-  <mat-form-field class="search-half-width" *ngIf="poblaciones">
-    <mat-label>Poblacion</mat-label>
-    <input matInput placeholder="Poblacion" aria-label="Poblacion" [matAutocomplete]="auto"
-      [formControl]="poblacionCtrl">
-    <mat-autocomplete #auto="matAutocomplete" (optionSelected)='FindAllArenalByPoblacionId($event.option.id)'>
-      <mat-option *ngFor="let poblacion of filteredPoblaciones | async" [value]="poblacion.Name" [id]="poblacion.Id.toString()">
-        <img class="search-option-img" aria-label="poblacion.Name" aria-hidden ngSrc="{{poblacion.ImageUri}}" height="25" width="25">
-        <span>{{poblacion.Name}}</span>
-      </mat-option>
-    </mat-autocomplete>
-  </mat-form-field>
-</form>
+    @if (poblaciones) {
+      <mat-form-field class="search-half-width">
+        <mat-label>Poblacion</mat-label>
+        <input matInput placeholder="Poblacion" aria-label="Poblacion" [matAutocomplete]="auto"
+          [formControl]="poblacionCtrl">
+          <mat-autocomplete #auto="matAutocomplete" (optionSelected)='FindAllArenalByPoblacionId($event.option.id)'>
+            @for (poblacion of filteredPoblaciones | async; track poblacion) {
+              <mat-option [value]="poblacion.Name" [id]="poblacion.Id.toString()">
+                <img class="search-option-img" aria-label="poblacion.Name" aria-hidden ngSrc="{{poblacion.ImageUri}}" height="25" width="25">
+                <span>{{poblacion.Name}}</span>
+              </mat-option>
+            }
+          </mat-autocomplete>
+        </mat-form-field>
+      }
+    </form>
 
-<div class="search-result">
-  <mat-card *ngFor="let arenal of arenales" class="search-card" (click)="GetRecord(arenal)">
-    <mat-card-header>
-      <div mat-card-avatar class="search-card-sand-image"></div>
-      <mat-card-title>{{arenal.Name}}</mat-card-title>
-    </mat-card-header>
-    <mat-card-content>
-      <img class="search-card-flag-image" mat-card-image ngSrc="{{arenal.LastHistorico.Bandera.ImageUri}}" fill
-        alt="{{arenal.LastHistorico.Bandera.Name}}">
-
-      <mat-divider></mat-divider>
-
-      <div class="search-card-content-line search-card-content-line-update">
-        <div mat-card-avatar class="search-card-content search-card-update-image" aria-label="LastModified"></div>
-        <span>{{arenal.LastHistorico.LastModified | date: 'MMM d, y h:mm a'}}</span>
+    <div class="search-result">
+      @for (arenal of arenales; track arenal) {
+        <mat-card class="search-card" (click)="GetRecord(arenal)">
+          <mat-card-header>
+            <div mat-card-avatar class="search-card-sand-image"></div>
+            <mat-card-title>{{arenal.Name}}</mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <img class="search-card-flag-image" mat-card-image ngSrc="{{arenal.LastHistorico.Bandera.ImageUri}}" fill
+              alt="{{arenal.LastHistorico.Bandera.Name}}">
+              <mat-divider></mat-divider>
+              <div class="search-card-content-line search-card-content-line-update">
+                <div mat-card-avatar class="search-card-content search-card-update-image" aria-label="LastModified"></div>
+                <span>{{arenal.LastHistorico.LastModified | date: 'MMM d, y h:mm a'}}</span>
+              </div>
+              <mat-divider></mat-divider>
+              <div class="search-card-content-line">
+                <div mat-card-avatar class="search-card-content search-card-warm-image" aria-label="Temperatura"></div>
+                <div class="search-card-content">
+                  <span>{{arenal.LastHistorico.Temperatura}} ºC</span>
+                </div>
+              </div>
+              <div class="search-card-content-line">
+                <div class="search-card-content-cell">
+                  <div mat-card-avatar class="search-card-content search-card-compass-image" aria-label="Viento"></div>
+                  <div class="search-card-content">
+                    <span>{{arenal.LastHistorico.Viento.Name}}</span>
+                  </div>
+                </div>
+                <div class="search-card-content-cell">
+                  <div mat-card-avatar class="search-card-content search-card-wind-image" aria-label="Velocidad"></div>
+                  <div class="search-card-content">
+                    <span>{{arenal.LastHistorico.Velocidad}} m/s</span>
+                  </div>
+                </div>
+              </div>
+              <div class="search-card-content-line">
+                <div class="search-card-content-cell">
+                  <div mat-card-avatar class="search-card-content search-card-low-sun-tide-image" aria-label="BajaMarAlba"></div>
+                  <div class="search-card-content">
+                    <span>{{arenal.LastHistorico.BajaMarAlba}} </span>
+                  </div>
+                </div>
+                <div class="search-card-content-cell">
+                  <div mat-card-avatar class="search-card-content search-card-high-sun-tide-image" aria-label="AltaMarAlba"></div>
+                  <div class="search-card-content">
+                    <span>{{arenal.LastHistorico.AltaMarAlba}}</span>
+                  </div>
+                </div>
+              </div>
+              <div class="search-card-content-line">
+                <div class="search-card-content-cell">
+                  <div mat-card-avatar class="search-card-content search-card-low-night_tide-image" aria-label="BajaMarOcaso"></div>
+                  <div class="search-card-content">
+                    <span>{{arenal.LastHistorico.BajaMarOcaso}}</span>
+                  </div>
+                </div>
+                <div class="search-card-content-cell">
+                  <div mat-card-avatar class="search-card-content search-card-high-night_tide-image" aria-label="AltaMarOcaso"></div>
+                  <div class="search-card-content">
+                    <span>{{arenal.LastHistorico.AltaMarOcaso}}</span>
+                  </div>
+                </div>
+              </div>
+            </mat-card-content>
+          </mat-card>
+        }
       </div>
-
-      <mat-divider></mat-divider>
-
-      <div class="search-card-content-line">
-        <div mat-card-avatar class="search-card-content search-card-warm-image" aria-label="Temperatura"></div>
-        <div class="search-card-content">
-          <span>{{arenal.LastHistorico.Temperatura}} ºC</span>
-        </div>
-      </div>
-
-      <div class="search-card-content-line">
-        <div class="search-card-content-cell">
-          <div mat-card-avatar class="search-card-content search-card-compass-image" aria-label="Viento"></div>
-          <div class="search-card-content">
-            <span>{{arenal.LastHistorico.Viento.Name}}</span>
-          </div>
-        </div>
-        <div class="search-card-content-cell">
-          <div mat-card-avatar class="search-card-content search-card-wind-image" aria-label="Velocidad"></div>
-          <div class="search-card-content">
-            <span>{{arenal.LastHistorico.Velocidad}} m/s</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="search-card-content-line">
-        <div class="search-card-content-cell">
-          <div mat-card-avatar class="search-card-content search-card-low-sun-tide-image" aria-label="BajaMarAlba"></div>
-          <div class="search-card-content">
-            <span>{{arenal.LastHistorico.BajaMarAlba}} </span>
-          </div>
-        </div>
-        <div class="search-card-content-cell">
-          <div mat-card-avatar class="search-card-content search-card-high-sun-tide-image" aria-label="AltaMarAlba"></div>
-          <div class="search-card-content">
-            <span>{{arenal.LastHistorico.AltaMarAlba}}</span>
-          </div>
-        </div>
-      </div>
-      <div class="search-card-content-line">
-        <div class="search-card-content-cell">
-          <div mat-card-avatar class="search-card-content search-card-low-night_tide-image" aria-label="BajaMarOcaso"></div>
-          <div class="search-card-content">
-            <span>{{arenal.LastHistorico.BajaMarOcaso}}</span>
-          </div>
-        </div>
-        <div class="search-card-content-cell">
-          <div mat-card-avatar class="search-card-content search-card-high-night_tide-image" aria-label="AltaMarOcaso"></div>
-          <div class="search-card-content">
-            <span>{{arenal.LastHistorico.AltaMarOcaso}}</span>
-          </div>
-        </div>
-      </div>
-    </mat-card-content>
-  </mat-card>
-</div>

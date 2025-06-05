@@ -1,12 +1,14 @@
-<div *ngIf="dataSource.data.length == 0" class="spinner-container">
-  <div class="spinner"></div>
-</div>
+@if (dataSource.data.length == 0) {
+  <div class="spinner-container">
+    <div class="spinner"></div>
+  </div>
+}
 
 <div class="grid-page">
   <h4 class="breadcrumb">Management / Banderas</h4>
 
   <button type="button" mat-raised-button color="primary" class="add-button" (click)="AddRecord()"><span>Add
-      New &plus;</span></button>
+  New &plus;</span></button>
 
   <mat-form-field class="grid-filter">
     <input matInput (keyup)="ApplyMyFilter($event.target)" placeholder="Filter">

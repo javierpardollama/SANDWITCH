@@ -15,14 +15,17 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
+import { MatToolbarModule } from '@angular/material/toolbar';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { MatSidenavModule }from "@angular/material/sidenav";
 
 @Component({
     selector: 'app-nav-menu',
     templateUrl: './nav-menu.component.html',
     styleUrls: ['./nav-menu.component.scss'],
     imports: [
+        MatToolbarModule,
         MatDividerModule,
         MatSelectModule,
         MatInputModule,
@@ -40,6 +43,7 @@ import { RouterModule } from '@angular/router';
         FormsModule,
         ReactiveFormsModule,
         RouterModule,
+        MatSidenavModule,
     ]
 })
 export class NavMenuComponent {

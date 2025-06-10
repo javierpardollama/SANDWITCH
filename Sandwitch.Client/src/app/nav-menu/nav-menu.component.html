@@ -1,26 +1,26 @@
-<header>
-  <nav class='navbar navbar-expand-sm navbar-toggleable-sm navbar-light mb-3'>
-    <div class="container">
-      <a class="navbar-brand " [routerLink]='["/"]' (click)="collapse()">
-        <div class="nav-menu-option-image nav-menu-app-image"></div>
-        <span class="nav-option-link">Sandwitch</span>
-      </a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse"
-        aria-label="Toggle navigation" [attr.aria-expanded]="isExpanded" (click)="toggle()">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse" [ngClass]='{"show": isExpanded}'>
-        <ul class="navbar-nav flex-grow">
-          @for (Link of NavigationLinks; track Link) {
-            <li class="nav-item" [routerLinkActive]='["link-active"]'>
-              <a class="nav-link text-dark" [id]=Link.Id [routerLink]=Link.Link (click)="collapse()">
-                <div class={{Link.Class}}></div>
-                <span class="nav-option-link">{{Link.Label}}</span>
-              </a>
-            </li>
-          }
-        </ul>
-      </div>
-    </div>
-  </nav>
-</header>
+<div class="container">
+    <mat-toolbar>
+        <a (click)="sidenav.toggle()">
+            <div class="toolbar-option-image app-image"></div>
+            <span class="toolbar-option-link">Sandwitch</span>
+        </a>
+    </mat-toolbar>
+    <mat-sidenav-container>
+        <mat-sidenav #sidenav mode="over">
+            <ul>
+                @for (Link of NavigationLinks; track Link) {
+                    <li class="nav-item" [routerLinkActive]='["link-active"]'>
+                        <a class="nav-link" [id]=Link.Id [routerLink]=Link.Link>
+                            <div class={{Link.Class}}></div>
+                            <span class="nav-option-link">{{ Link.Label }}</span>
+                        </a>
+                    </li>
+                }
+            </ul>
+        </mat-sidenav>
+        <mat-sidenav-content>
+            <ng-content></ng-content>
+        </mat-sidenav-content>
+    </mat-sidenav-container>
+
+</div>

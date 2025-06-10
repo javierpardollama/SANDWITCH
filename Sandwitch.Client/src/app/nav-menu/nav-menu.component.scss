@@ -1,53 +1,86 @@
-nav{
-background-color: #673AB7 !important;
+mat-toolbar {
+  padding: 8px;
+  background-color: #673AB7;
 }
 
-nav *{
-color:#FFFFFF !important;
+.mat-drawer-container {
+  position: unset;
 }
 
-.nav-option-link{
-float:left;
-padding-left: 8px;
+.toolbar-option-link {
+  padding: 8px;
+  color: #FFFFFF !important;
 }
 
-a.navbar-brand {
-white-space: normal;
-text-align: center;
-word-break: break-all;
+.toolbar-option-image {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  object-fit: cover;
+  float: left;
 }
 
-.nav-menu-option-image{
-height: 40px;
-width: 40px;
-border-radius: 50%;
-flex-shrink: 0;
-object-fit: cover;
-float:left;
+ul {
+  list-style: none;
+  padding: 8px;
+  margin: 8px;
 }
 
-.nav-menu-app-image{
-background-image: url('/assets/img/iconos/Sandwitch_500px.png');
-background-size: cover;
-}  
-.nav-menu-sand-image{
-background-image: url('/assets/img/iconos/Arenal_500px.png');
-background-size: cover;
-}  
-.nav-menu-land-image{
-background-image: url('/assets/img/iconos/Provincia_500px.png');
-background-size: cover;
-}  
-.nav-menu-town-image{
-background-image: url('/assets/img/iconos/Poblacion_500px.png');
-background-size: cover;
-}  
-.nav-menu-flag-image{
-background-image: url('/assets/img/iconos/Bandera_500px.png');
-background-size: cover;
-}  
-.nav-menu-compass-image{
-    background-image: url('/assets/img/iconos/Compass_500px.png');
-    background-size: cover;
+.nav-item {
+  padding: 8px
+}
+
+.nav-link {
+  display: grid;
+  grid-auto-flow: column;
+  text-decoration: none;
+}
+
+.nav-option-link {
+  padding-left: 8px;
+}
+
+.nav-menu-option-image {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  object-fit: cover;
+}
+
+.app-image {
+  background-image: url('/assets/img/iconos/Sandwitch_500px.png');
+  background-size: cover;
+}
+
+.search-image {
+  background-image: url('/assets/img/iconos/Search_500px.png');
+  background-size: cover;
+}
+
+.sand-image {
+  background-image: url('/assets/img/iconos/Arenal_500px.png');
+  background-size: cover;
+}
+
+.land-image {
+  background-image: url('/assets/img/iconos/Provincia_500px.png');
+  background-size: cover;
+}
+
+.town-image {
+  background-image: url('/assets/img/iconos/Poblacion_500px.png');
+  background-size: cover;
+}
+
+.flag-image {
+  background-image: url('/assets/img/iconos/Bandera_500px.png');
+  background-size: cover;
+}
+
+.compass-image {
+  background-image: url('/assets/img/iconos/Compass_500px.png');
+  background-size: cover;
 }  
     

@@ -27,6 +27,8 @@ namespace Sandwitch.Tier.Client.Tests.Classes
         [Test]
         public void Edit()
         {
+            Wait.Until(d => d.FindElement(By.Id("nav-toggle"))).Click();
+            
             Wait.Until(d => d.FindElement(By.Id("nav-arenales"))).Click();
 
             Wait.Until(d => d.FindElements(By.TagName("td")).First()).Click();

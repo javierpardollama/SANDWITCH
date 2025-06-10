@@ -10,7 +10,7 @@
             <ul>
                 @for (Link of NavigationLinks; track Link) {
                     <li class="nav-item" [routerLinkActive]='["link-active"]'>
-                        <a class="nav-link" [id]=Link.Id [routerLink]=Link.Link>
+                        <a class="nav-link" [id]=Link.Id [routerLink]=Link.Link (click)="sidenav.close()">
                             <div class={{Link.Class}}></div>
                             <span class="nav-option-link">{{ Link.Label }}</span>
                         </a>

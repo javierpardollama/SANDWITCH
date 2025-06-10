@@ -13,6 +13,8 @@ namespace Sandwitch.Tier.Client.Tests.Classes
         [Test]
         public void Add()
         {
+            Wait.Until(d => d.FindElement(By.Id("nav-toggle"))).Click();
+            
             Wait.Until(d => d.FindElement(By.Id("nav-vientos"))).Click();
 
             Wait.Until(d => d.FindElement(By.ClassName("add-button"))).Click();
@@ -27,6 +29,8 @@ namespace Sandwitch.Tier.Client.Tests.Classes
         [Test]
         public void Edit()
         {
+            Wait.Until(d => d.FindElement(By.Id("nav-toggle"))).Click();
+            
             Wait.Until(d => d.FindElement(By.Id("nav-vientos"))).Click();
 
             Wait.Until(d => d.FindElements(By.TagName("td")).First()).Click();

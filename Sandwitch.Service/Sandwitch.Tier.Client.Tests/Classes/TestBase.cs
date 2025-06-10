@@ -41,7 +41,7 @@ namespace Sandwitch.Tier.Client.Tests.Classes
                 PollingInterval = TimeSpan.FromMilliseconds(30)
             };
 
-            Driver.Navigate().GoToUrl("http://localhost:4200");
+            Driver.Navigate().GoToUrl("https://localhost:4200");
         }
 
         [SetUp]

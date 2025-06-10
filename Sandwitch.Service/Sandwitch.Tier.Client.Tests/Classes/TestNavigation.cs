@@ -10,7 +10,9 @@ namespace Sandwitch.Tier.Client.Tests.Classes
         [Test]
         public void Home()
         {
-            Wait.Until(d => d.Url.Contains("Sandwitch"));
+            Wait.Until(d => d.FindElement(By.Id("nav-toggle"))).Click();
+            
+            Wait.Until(d => d.FindElement(By.Id("nav-search"))).Click();
 
             Assert.That(Driver.Title.Contains("Sandwitch"), Is.True);
         }
@@ -18,7 +20,9 @@ namespace Sandwitch.Tier.Client.Tests.Classes
         [Test]
         public void Provincias()
         {
-            Driver.FindElement(By.Id("nav-provincias")).Click();
+            Wait.Until(d => d.FindElement(By.Id("nav-toggle"))).Click();
+            
+            Wait.Until(d => d.FindElement(By.Id("nav-provincias"))).Click();
 
             Wait.Until(d => d.Url.Contains("provincias"));
 
@@ -28,7 +32,9 @@ namespace Sandwitch.Tier.Client.Tests.Classes
         [Test]
         public void Poblaciones()
         {
-            Driver.FindElement(By.Id("nav-poblaciones")).Click();
+            Wait.Until(d => d.FindElement(By.Id("nav-toggle"))).Click();
+            
+            Wait.Until(d => d.FindElement(By.Id("nav-poblaciones"))).Click();
 
             Wait.Until(d => d.Url.Contains("poblaciones"));
 
@@ -38,7 +44,9 @@ namespace Sandwitch.Tier.Client.Tests.Classes
         [Test]
         public void Arenales()
         {
-            Driver.FindElement(By.Id("nav-arenales")).Click();
+            Wait.Until(d => d.FindElement(By.Id("nav-toggle"))).Click();
+            
+            Wait.Until(d => d.FindElement(By.Id("nav-arenales"))).Click();
 
             Wait.Until(d => d.Url.Contains("arenales"));
 
@@ -48,7 +56,9 @@ namespace Sandwitch.Tier.Client.Tests.Classes
         [Test]
         public void Banderas()
         {
-            Driver.FindElement(By.Id("nav-banderas")).Click();
+            Wait.Until(d => d.FindElement(By.Id("nav-toggle"))).Click();
+            
+            Wait.Until(d => d.FindElement(By.Id("nav-banderas"))).Click();
 
             Wait.Until(d => d.Url.Contains("banderas"));
 
@@ -58,7 +68,9 @@ namespace Sandwitch.Tier.Client.Tests.Classes
         [Test]
         public void Vientos()
         {
-            Driver.FindElement(By.Id("nav-vientos")).Click();
+            Wait.Until(d => d.FindElement(By.Id("nav-toggle"))).Click();
+            
+            Wait.Until(d => d.FindElement(By.Id("nav-vientos"))).Click();
 
             Wait.Until(d => d.Url.Contains("vientos"));
 

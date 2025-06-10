@@ -32,20 +32,6 @@ background-color: #F5F5F5;
 animation: sk-rotateplane 1.2s infinite ease-in-out;
 }
 
-body{
-min-height:100vh; 
-display:flex; 
-flex-direction:column; 
-justify-content:space-between;
-}
-
-footer
-{
-width:100%;
-display: flex;
-justify-content: center;   
-}
-
 @media screen and (max-width: 960px) {
     .mat-mdc-dialog-container {
         height: unset !important;

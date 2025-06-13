@@ -12,7 +12,7 @@ export class NavigationService {
         return [
             {
                 Id:'nav-search',
-                Label: 'Search',
+                Label: 'Buscar',
                 Link: './',
                 Index: 0,
                 Class:'nav-menu-option-image search-image'

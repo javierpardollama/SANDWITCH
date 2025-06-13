@@ -7,11 +7,6 @@ mat-toolbar {
   position: unset;
 }
 
-.toolbar-option-link {
-  padding: 8px;
-  color: #FFFFFF !important;
-}
-
 .toolbar-option-image {
   height: 40px;
   width: 40px;
@@ -25,6 +20,25 @@ ul {
   list-style: none;
   padding: 8px;
   margin: 8px;
+}
+
+.nav-title
+{
+  display: flex;
+  box-sizing: border-box;
+  padding: 0 16px;
+  width: 100%;
+  flex-direction: row;
+  align-items: center;
+  white-space: nowrap;
+  height: var(--mat-toolbar-standard-height, 64px);
+  background-color: #673AB7;
+}
+
+.nav-title-text
+{
+  padding-left: 8px;
+  color:#FFFFFF;
 }
 
 .nav-item {
@@ -51,6 +65,11 @@ ul {
 
 .app-image {
   background-image: url('/assets/img/iconos/Sandwitch_500px.png');
+  background-size: cover;
+}
+
+.toolbox-image {
+  background-image: url('/assets/img/iconos/Toolbox_500px.png');
   background-size: cover;
 }
 

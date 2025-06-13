@@ -1,12 +1,15 @@
 <div class="container">
     <mat-toolbar>
         <a id="nav-toggle" (click)="sidenav.toggle()">
-            <div class="toolbar-option-image app-image"></div>
-            <span class="toolbar-option-link">Sandwitch</span>
+            <div class="toolbar-option-image toolbox-image"></div>
         </a>
     </mat-toolbar>
     <mat-sidenav-container>
         <mat-sidenav #sidenav mode="over">
+            <a class="nav-title">
+                <div class="nav-menu-option-image app-image"></div>
+                <span class="nav-title-text">Sandwitch</span>
+            </a>
             <ul>
                 @for (Link of NavigationLinks; track Link) {
                     <li class="nav-item" [routerLinkActive]='["link-active"]'>

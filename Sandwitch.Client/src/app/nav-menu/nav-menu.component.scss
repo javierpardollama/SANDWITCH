@@ -1,11 +1,17 @@
 mat-toolbar {
-  padding: 8px;
   background-color: #673AB7;
 }
 
 .mat-drawer-container {
   position: unset;
 }
+
+.toolbar-title{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  white-space: nowrap;
+ }
 
 .toolbar-option-image {
   height: 40px;
@@ -22,7 +28,7 @@ ul {
   margin: 8px;
 }
 
-.nav-title
+.app-title
 {
   display: flex;
   box-sizing: border-box;
@@ -33,12 +39,6 @@ ul {
   white-space: nowrap;
   height: var(--mat-toolbar-standard-height, 64px);
   background-color: #673AB7;
-}
-
-.nav-title-text
-{
-  padding-left: 8px;
-  color:#FFFFFF;
 }
 
 .nav-item {
@@ -63,13 +63,15 @@ ul {
   object-fit: cover;
 }
 
-.app-image {
-  background-image: url('/assets/img/iconos/Sandwitch_500px.png');
-  background-size: cover;
+.app-text
+{
+  color:#FFFFFF;
+  font-weight: bold;
+  padding-left: 8px
 }
 
-.toolbox-image {
-  background-image: url('/assets/img/iconos/Toolbox_500px.png');
+.app-image {
+  background-image: url('/assets/img/iconos/Sandwitch_500px.png');
   background-size: cover;
 }
 

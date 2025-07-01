@@ -47,7 +47,6 @@ import { MatSidenavModule }from "@angular/material/sidenav";
     ]
 })
 export class NavMenuComponent {
-  isExpanded = false;
 
   NavigationLinks: ViewLink[];
 
@@ -55,13 +54,5 @@ export class NavMenuComponent {
   constructor(
     private navigationService: NavigationService) {
     this.NavigationLinks = this.navigationService.GetManagementNavigationLinks();
-  }
-
-  collapse(): void {
-    this.isExpanded = false;
-  }
-
-  toggle(): void {
-    this.isExpanded = !this.isExpanded;
   }
 }

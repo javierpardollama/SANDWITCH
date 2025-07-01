@@ -12,21 +12,21 @@ import {
   map,
   startWith
 } from 'rxjs/operators';
-import { ViewPoblacion } from './../../viewmodels/views/viewpoblacion';
+import { ViewPoblacion } from '../../viewmodels/views/viewpoblacion';
 
-import { ViewProvincia } from './../../viewmodels/views/viewprovincia';
+import { ViewProvincia } from '../../viewmodels/views/viewprovincia';
 
-import { ViewArenal } from './../../viewmodels/views/viewarenal';
+import { ViewArenal } from '../../viewmodels/views/viewarenal';
 
-import { ProvinciaService } from './../../services/provincia.service';
+import { ProvinciaService } from '../../services/provincia.service';
 
-import { PoblacionService } from './../../services/poblacion.service';
+import { PoblacionService } from '../../services/poblacion.service';
 
-import { ArenalService } from './../../services/arenal.service';
+import { ArenalService } from '../../services/arenal.service';
 
 import {
   HistoricoAddModalComponent
-} from './../management/modals/additions/historico-add-modal/historico-add-modal.component';
+} from '../management/modals/additions/historico-add-modal/historico-add-modal.component';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -88,8 +88,8 @@ export class SearchComponent implements OnInit {
   }
 
   // Life Cicle
-  ngOnInit(): void {
-    this.FindAllProvincia();
+  async ngOnInit(): Promise<void> {
+    await this.FindAllProvincia();
   }
 
   // Get Data from Service
@@ -140,7 +140,7 @@ export class SearchComponent implements OnInit {
       data: row
     });
 
-    dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterClosed().subscribe(() => {
 
     });
   }

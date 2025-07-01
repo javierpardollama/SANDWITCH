@@ -8,17 +8,17 @@ import {
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 
-import { ViewArenal } from './../../../../viewmodels/views/viewarenal';
+import { ViewArenal } from '../../../../viewmodels/views/viewarenal';
 
-import { ArenalService } from './../../../../services/arenal.service';
+import { ArenalService } from '../../../../services/arenal.service';
 
 import {
     ArenalUpdateModalComponent
-} from './../../modals/updates/arenal-update-modal/arenal-update-modal.component';
+} from '../../modals/updates/arenal-update-modal/arenal-update-modal.component';
 
 import {
     ArenalAddModalComponent
-} from './../../modals/additions/arenal-add-modal/arenal-add-modal.component';
+} from '../../modals/additions/arenal-add-modal/arenal-add-modal.component';
 
 import { FilterPage } from 'src/viewmodels/filters/filterpage';
 import { ViewScroll } from 'src/viewmodels/views/viewscroll';
@@ -86,8 +86,8 @@ export class ArenalGridComponent implements OnInit, AfterViewInit, OnDestroy {
         window.addEventListener('scroll', this.TurnThePage, true);
     }
 
-    ngAfterViewInit(): void {
-        this.FindPaginatedArenal();
+    async ngAfterViewInit(): Promise<void> {
+        await this.FindPaginatedArenal();
     }
 
     ngOnDestroy(): void {
@@ -117,8 +117,8 @@ export class ArenalGridComponent implements OnInit, AfterViewInit, OnDestroy {
             data: row
         });
 
-        dialogRef.afterClosed().subscribe(() => {
-            this.FindPaginatedArenal();
+        dialogRef.afterClosed().subscribe(async () => {
+            await this.FindPaginatedArenal();
         });
     }
 
@@ -127,8 +127,8 @@ export class ArenalGridComponent implements OnInit, AfterViewInit, OnDestroy {
             width: '450px',
         });
 
-        dialogRef.afterClosed().subscribe(() => {
-            this.FindPaginatedArenal();
+        dialogRef.afterClosed().subscribe(async () => {
+            await this.FindPaginatedArenal();
         });
     }
 

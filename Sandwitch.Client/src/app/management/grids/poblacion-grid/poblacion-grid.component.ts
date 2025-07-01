@@ -9,17 +9,17 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatSort, MatSortModule } from '@angular/material/sort';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 
-import { ViewPoblacion } from './../../../../viewmodels/views/viewpoblacion';
+import { ViewPoblacion } from '../../../../viewmodels/views/viewpoblacion';
 
-import { PoblacionService } from './../../../../services/poblacion.service';
+import { PoblacionService } from '../../../../services/poblacion.service';
 
 import {
   PoblacionUpdateModalComponent
-} from './../../modals/updates/poblacion-update-modal/poblacion-update-modal.component';
+} from '../../modals/updates/poblacion-update-modal/poblacion-update-modal.component';
 
 import {
   PoblacionAddModalComponent
-} from './../../modals/additions/poblacion-add-modal/poblacion-add-modal.component';
+} from '../../modals/additions/poblacion-add-modal/poblacion-add-modal.component';
 
 import { FilterPage } from 'src/viewmodels/filters/filterpage';
 import { ViewScroll } from 'src/viewmodels/views/viewscroll';
@@ -87,8 +87,8 @@ export class PoblacionGridComponent implements OnInit, AfterViewInit, OnDestroy 
     window.addEventListener('scroll', this.TurnThePage, true);
   }
 
-  ngAfterViewInit(): void {
-    this.FindPaginatedPoblacion();
+  async ngAfterViewInit(): Promise<void> {
+    await this.FindPaginatedPoblacion();
   }
 
   ngOnDestroy(): void {
@@ -118,8 +118,8 @@ export class PoblacionGridComponent implements OnInit, AfterViewInit, OnDestroy 
       data: row
     });
 
-    dialogRef.afterClosed().subscribe(() => {
-      this.FindPaginatedPoblacion();
+    dialogRef.afterClosed().subscribe(async () => {
+      await this.FindPaginatedPoblacion();
     });
   }
 
@@ -128,8 +128,8 @@ export class PoblacionGridComponent implements OnInit, AfterViewInit, OnDestroy 
       width: '450px',
     });
 
-    dialogRef.afterClosed().subscribe(() => {
-      this.FindPaginatedPoblacion();
+    dialogRef.afterClosed().subscribe(async () => {
+      await this.FindPaginatedPoblacion();
     });
   }
 

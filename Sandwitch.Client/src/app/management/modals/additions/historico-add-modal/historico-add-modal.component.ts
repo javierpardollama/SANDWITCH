@@ -18,25 +18,25 @@ import {
   Validators
 } from '@angular/forms';
 
-import { ViewArenal } from './../../../../../viewmodels/views/viewarenal';
+import { ViewArenal } from '../../../../../viewmodels/views/viewarenal';
 
-import { ViewBandera } from './../../../../../viewmodels/views/viewbandera';
+import { ViewBandera } from '../../../../../viewmodels/views/viewbandera';
 
 import { ViewViento } from '../../../../../viewmodels/views/viewviento';
 
-import { AddHistorico } from './../../../../../viewmodels/additions/addhistorico';
+import { AddHistorico } from '../../../../../viewmodels/additions/addhistorico';
 
-import { HistoricoService } from './../../../../../services/historico.service';
+import { HistoricoService } from '../../../../../services/historico.service';
 
-import { BanderaService } from './../../../../../services/bandera.service';
+import { BanderaService } from '../../../../../services/bandera.service';
 
 import { VientoService } from '../../../../../services/viento.service';
 
-import { TextAppVariants } from './../../../../../variants/text.app.variants';
+import { TextAppVariants } from '../../../../../variants/text.app.variants';
 
-import { TimeAppVariants } from './../../../../../variants/time.app.variants';
+import { TimeAppVariants } from '../../../../../variants/time.app.variants';
 
-import { ExpressionAppVariants } from './../../../../../variants/expression.app.variants';
+import { ExpressionAppVariants } from '../../../../../variants/expression.app.variants';
 
 import { TimeService } from 'src/services/time.service';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
@@ -94,9 +94,9 @@ export class HistoricoAddModalComponent implements OnInit {
 
 
   // Life Cicle
-  ngOnInit(): void {
-    this.FindAllBandera();
-    this.FindAllViento();
+  async ngOnInit(): Promise<void> {
+    await this.FindAllBandera();
+    await this.FindAllViento();
     this.CreateForm();
   }
 

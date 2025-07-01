@@ -16,17 +16,17 @@ import {
   Validators
 } from '@angular/forms';
 
-import { ViewBandera } from './../../../../../viewmodels/views/viewbandera';
+import { ViewBandera } from '../../../../../viewmodels/views/viewbandera';
 
-import { UpdateBandera } from './../../../../../viewmodels/updates/updatebandera';
+import { UpdateBandera } from '../../../../../viewmodels/updates/updatebandera';
 
-import { BanderaService } from './../../../../../services/bandera.service';
+import { BanderaService } from '../../../../../services/bandera.service';
 
-import { TextAppVariants } from './../../../../../variants/text.app.variants';
+import { TextAppVariants } from '../../../../../variants/text.app.variants';
 
-import { TimeAppVariants } from './../../../../../variants/time.app.variants';
+import { TimeAppVariants } from '../../../../../variants/time.app.variants';
 
-import { ExpressionAppVariants } from './../../../../../variants/expression.app.variants';
+import { ExpressionAppVariants } from '../../../../../variants/expression.app.variants';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';

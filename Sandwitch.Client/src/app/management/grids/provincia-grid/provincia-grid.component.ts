@@ -8,17 +8,17 @@ import {
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 
-import { ViewProvincia } from './../../../../viewmodels/views/viewprovincia';
+import { ViewProvincia } from '../../../../viewmodels/views/viewprovincia';
 
-import { ProvinciaService } from './../../../../services/provincia.service';
+import { ProvinciaService } from '../../../../services/provincia.service';
 
 import {
   ProvinciaUpdateModalComponent
-} from './../../modals/updates/provincia-update-modal/provincia-update-modal.component';
+} from '../../modals/updates/provincia-update-modal/provincia-update-modal.component';
 
 import {
   ProvinciaAddModalComponent
-} from './../../modals/additions/provincia-add-modal/provincia-add-modal.component';
+} from '../../modals/additions/provincia-add-modal/provincia-add-modal.component';
 
 import { FilterPage } from 'src/viewmodels/filters/filterpage';
 import { ViewScroll } from 'src/viewmodels/views/viewscroll';
@@ -86,8 +86,8 @@ export class ProvinciaGridComponent implements OnInit, AfterViewInit, OnDestroy 
     window.addEventListener('scroll', this.TurnThePage, true);
   }
 
-  ngAfterViewInit(): void {
-    this.FindPaginatedProvincia();
+  async ngAfterViewInit(): Promise<void> {
+    await this.FindPaginatedProvincia();
   }
 
   ngOnDestroy(): void {
@@ -117,8 +117,8 @@ export class ProvinciaGridComponent implements OnInit, AfterViewInit, OnDestroy 
       data: row
     });
 
-    dialogRef.afterClosed().subscribe(() => {
-      this.FindPaginatedProvincia();
+    dialogRef.afterClosed().subscribe(async () => {
+      await this.FindPaginatedProvincia();
     });
   }
 
@@ -127,8 +127,8 @@ export class ProvinciaGridComponent implements OnInit, AfterViewInit, OnDestroy 
       width: '450px',
     });
 
-    dialogRef.afterClosed().subscribe(() => {
-      this.FindPaginatedProvincia();
+    dialogRef.afterClosed().subscribe(async () => {
+      await this.FindPaginatedProvincia();
     });
   }
 

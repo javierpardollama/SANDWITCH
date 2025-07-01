@@ -8,17 +8,17 @@ import {
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 
-import { ViewBandera } from './../../../../viewmodels/views/viewbandera';
+import { ViewBandera } from '../../../../viewmodels/views/viewbandera';
 
-import { BanderaService } from './../../../../services/bandera.service';
+import { BanderaService } from '../../../../services/bandera.service';
 
 import {
   BanderaUpdateModalComponent
-} from './../../modals/updates/bandera-update-modal/bandera-update-modal.component';
+} from '../../modals/updates/bandera-update-modal/bandera-update-modal.component';
 
 import {
   BanderaAddModalComponent
-} from './../../modals/additions/bandera-add-modal/bandera-add-modal.component';
+} from '../../modals/additions/bandera-add-modal/bandera-add-modal.component';
 
 import { FilterPage } from 'src/viewmodels/filters/filterpage';
 import { ViewScroll } from 'src/viewmodels/views/viewscroll';
@@ -86,8 +86,8 @@ export class BanderaGridComponent implements OnInit, AfterViewInit, OnDestroy {
     window.addEventListener('scroll', this.TurnThePage, true);
   }
 
-  ngAfterViewInit(): void {
-    this.FindPaginatedBandera();
+  async ngAfterViewInit(): Promise<void> {
+    await this.FindPaginatedBandera();
   }
 
   ngOnDestroy(): void {
@@ -117,8 +117,8 @@ export class BanderaGridComponent implements OnInit, AfterViewInit, OnDestroy {
       data: row
     });
 
-    dialogRef.afterClosed().subscribe(() => {
-      this.FindPaginatedBandera();
+    dialogRef.afterClosed().subscribe(async () => {
+      await this.FindPaginatedBandera();
     });
   }
 
@@ -127,8 +127,8 @@ export class BanderaGridComponent implements OnInit, AfterViewInit, OnDestroy {
       width: '450px',
     });
 
-    dialogRef.afterClosed().subscribe(() => {
-      this.FindPaginatedBandera();
+    dialogRef.afterClosed().subscribe(async () => {
+      await this.FindPaginatedBandera();
     });
   }
 

@@ -16,21 +16,21 @@ import {
   Validators
 } from '@angular/forms';
 
-import { ViewArenal } from './../../../../../viewmodels/views/viewarenal';
+import { ViewArenal } from '../../../../../viewmodels/views/viewarenal';
 
-import { ViewProvincia } from './../../../../../viewmodels/views/viewprovincia';
+import { ViewProvincia } from '../../../../../viewmodels/views/viewprovincia';
 
-import { UpdateArenal } from './../../../../../viewmodels/updates/updatearenal';
+import { UpdateArenal } from '../../../../../viewmodels/updates/updatearenal';
 
-import { ArenalService } from './../../../../../services/arenal.service';
+import { ArenalService } from '../../../../../services/arenal.service';
 
-import { ProvinciaService } from './../../../../../services/provincia.service';
+import { ProvinciaService } from '../../../../../services/provincia.service';
 
-import { TextAppVariants } from './../../../../../variants/text.app.variants';
+import { TextAppVariants } from '../../../../../variants/text.app.variants';
 
-import { TimeAppVariants } from './../../../../../variants/time.app.variants';
+import { TimeAppVariants } from '../../../../../variants/time.app.variants';
 
-import { ExpressionAppVariants } from './../../../../../variants/expression.app.variants';
+import { ExpressionAppVariants } from '../../../../../variants/expression.app.variants';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -85,8 +85,8 @@ export class ArenalUpdateModalComponent implements OnInit {
 
 
   // Life Cicle
-  ngOnInit(): void {
-    this.FindAllProvincia();
+  async ngOnInit(): Promise<void> {
+    await this.FindAllProvincia();
     this.CreateForm();
   }
 

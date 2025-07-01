@@ -15,19 +15,19 @@ import {
   Validators
 } from '@angular/forms';
 
-import { ViewProvincia } from './../../../../../viewmodels/views/viewprovincia';
+import { ViewProvincia } from '../../../../../viewmodels/views/viewprovincia';
 
-import { AddPoblacion } from './../../../../../viewmodels/additions/addpoblacion';
+import { AddPoblacion } from '../../../../../viewmodels/additions/addpoblacion';
 
-import { ProvinciaService } from './../../../../../services/provincia.service';
+import { ProvinciaService } from '../../../../../services/provincia.service';
 
-import { PoblacionService } from './../../../../../services/poblacion.service';
+import { PoblacionService } from '../../../../../services/poblacion.service';
 
-import { TextAppVariants } from './../../../../../variants/text.app.variants';
+import { TextAppVariants } from '../../../../../variants/text.app.variants';
 
-import { TimeAppVariants } from './../../../../../variants/time.app.variants';
+import { TimeAppVariants } from '../../../../../variants/time.app.variants';
 
-import { ExpressionAppVariants } from './../../../../../variants/expression.app.variants';
+import { ExpressionAppVariants } from '../../../../../variants/expression.app.variants';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -80,8 +80,8 @@ export class PoblacionAddModalComponent implements OnInit {
 
 
   // Life Cicle
-  ngOnInit(): void {
-    this.FindAllProvincia();
+  async ngOnInit(): Promise<void> {
+    await this.FindAllProvincia();
     this.CreateForm();
   }
 

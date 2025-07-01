@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {AfterViewInit, Component, OnDestroy, OnInit} from '@angular/core';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { VientoService } from '../../../../services/viento.service';
@@ -44,7 +44,7 @@ import { CommonModule } from '@angular/common';
         ReactiveFormsModule,
     ]
 })
-export class VientoGridComponent {
+export class VientoGridComponent implements OnInit, AfterViewInit, OnDestroy {
   public ELEMENT_DATA: ViewViento[] = [];
 
   public displayedColumns: string[] = ['Id', 'Name', 'ImageUri', 'LastModified'];
@@ -70,8 +70,8 @@ export class VientoGridComponent {
     window.addEventListener('scroll', this.TurnThePage, true);
   }
 
-  ngAfterViewInit(): void {
-    this.FindPaginatedViento();
+  async ngAfterViewInit(): Promise<void> {
+    await this.FindPaginatedViento();
   }
 
   ngOnDestroy(): void {
@@ -101,8 +101,8 @@ export class VientoGridComponent {
       data: row
     });
 
-    dialogRef.afterClosed().subscribe(() => {
-      this.FindPaginatedViento();
+    dialogRef.afterClosed().subscribe(async () => {
+      await this.FindPaginatedViento();
     });
   }
 
@@ -111,8 +111,8 @@ export class VientoGridComponent {
       width: '450px',
     });
 
-    dialogRef.afterClosed().subscribe(() => {
-      this.FindPaginatedViento();
+    dialogRef.afterClosed().subscribe(async () => {
+      await this.FindPaginatedViento();
     });
   }
 

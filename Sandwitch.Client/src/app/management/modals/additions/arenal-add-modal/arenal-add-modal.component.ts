@@ -15,13 +15,13 @@ import {
   Validators
 } from '@angular/forms';
 
-import { ViewProvincia } from './../../../../../viewmodels/views/viewprovincia';
+import { ViewProvincia } from '../../../../../viewmodels/views/viewprovincia';
 
-import { AddArenal } from './../../../../../viewmodels/additions/addarenal';
+import { AddArenal } from '../../../../../viewmodels/additions/addarenal';
 
-import { ArenalService } from './../../../../../services/arenal.service';
+import { ArenalService } from '../../../../../services/arenal.service';
 
-import { ProvinciaService } from './../../../../../services/provincia.service';
+import { ProvinciaService } from '../../../../../services/provincia.service';
 
 import { TextAppVariants } from '../../../../../variants/text.app.variants';
 
@@ -80,8 +80,8 @@ export class ArenalAddModalComponent implements OnInit {
 
 
   // Life Cicle
-  ngOnInit(): void {
-    this.FindAllProvincia();
+  async ngOnInit(): Promise<void> {
+    await this.FindAllProvincia();
     this.CreateForm();
   }
 

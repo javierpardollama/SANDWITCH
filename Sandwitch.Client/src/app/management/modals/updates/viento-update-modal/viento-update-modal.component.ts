@@ -26,7 +26,7 @@ import { TextAppVariants } from '../../../../../variants/text.app.variants';
 
 import { TimeAppVariants } from '../../../../../variants/time.app.variants';
 
-import { ExpressionAppVariants } from './../../../../../variants/expression.app.variants';
+import { ExpressionAppVariants } from '../../../../../variants/expression.app.variants';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';

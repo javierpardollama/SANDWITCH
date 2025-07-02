@@ -22,7 +22,8 @@ namespace Sandwitch.Tier.Service.Extensions
             @this.AddTransient<IBanderaService, BanderaService>();
             @this.AddTransient<IArenalService, ArenalService>();
             @this.AddTransient<IHistoricoService, HistoricoService>();
-
+            @this.AddTransient<IBuscadorService, BuscadorService>();
+            
             @this.AddTransient<IAuthService, AuthService>();
             // Add other services here
         }

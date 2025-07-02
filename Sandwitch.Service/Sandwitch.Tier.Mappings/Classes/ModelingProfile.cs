@@ -28,6 +28,8 @@ namespace Sandwitch.Tier.Mappings.Classes
             CreateMap<Historico, ViewHistorico>();
 
             CreateMap<Arenal, ViewArenal>();
+            
+            CreateMap<Buscador, ViewBuscador>();
         }
     }
 }

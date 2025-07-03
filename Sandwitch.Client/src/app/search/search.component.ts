@@ -12,22 +12,13 @@ import {
   map,
   startWith
 } from 'rxjs/operators';
-import { ViewPoblacion } from '../../viewmodels/views/viewpoblacion';
-
-import { ViewProvincia } from '../../viewmodels/views/viewprovincia';
 
 import { ViewArenal } from '../../viewmodels/views/viewarenal';
-
-import { ProvinciaService } from '../../services/provincia.service';
-
-import { PoblacionService } from '../../services/poblacion.service';
-
-import { ArenalService } from '../../services/arenal.service';
 
 import {
   HistoricoAddModalComponent
 } from '../management/modals/additions/historico-add-modal/historico-add-modal.component';
-import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatAutocompleteModule, MatOption } from '@angular/material/autocomplete';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatChipsModule } from '@angular/material/chips';
@@ -40,6 +31,9 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { CommonModule, NgOptimizedImage } from '@angular/common';
+import { Viewbuscador } from "../../viewmodels/views/viewbuscador";
+import { BuscadorService } from "../../services/buscador.service";
+import { FinderArenal } from "../../viewmodels/finders/finderarenal";
 
 @Component({
     selector: 'app-search',
@@ -68,69 +62,60 @@ import { CommonModule, NgOptimizedImage } from '@angular/common';
 export class SearchComponent implements OnInit {
 
   // Data
-  public poblaciones: ViewPoblacion[] = [];
-  public filteredPoblaciones: Observable<ViewPoblacion[]> = of([]);
-  public provincias: ViewProvincia[] = [];
-  public filteredProvincias: Observable<ViewProvincia[]> = of([]);
+  public buscadores : Viewbuscador[] = [];
+  public filteredBuscadores: Observable<Viewbuscador[]> = of([]);
   public arenales: ViewArenal[] = [];
 
   // Control
-  public poblacionCtrl = new FormControl();
-  public provinciaCtrl = new FormControl();
+  public buscadorCtrl = new FormControl();
 
   // Constructor
   constructor(
     public matDialog: MatDialog,
-    private provinciaService: ProvinciaService,
-    private poblacionService: PoblacionService,
-    private arenalService: ArenalService) {
+    private buscadorService: BuscadorService
+    ) {
 
   }
 
   // Life Cicle
   async ngOnInit(): Promise<void> {
-    await this.FindAllProvincia();
+    await this.FindAllBuscador();
   }
 
   // Get Data from Service
-  public async FindAllArenalByPoblacionId(id: string): Promise<void> {
-    this.arenales = await this.arenalService.FindAllArenalByPoblacionId(Number(id));
+  public async FindAllArenalByBuscadorId(option:MatOption<Viewbuscador>): Promise<void> {
+    console.log(option);
+
+      const finder : FinderArenal =
+        {
+            Id: Number(option.value.Id),
+            Type: option.value.Type
+        };
+
+      this.arenales = await this.buscadorService.FindAllArenalByBuscadorId(finder);
   }
 
   // Get Data from Service
-  public async FindAllProvincia(): Promise<void> {
-    this.provincias = await this.provinciaService.FindAllProvincia();
+  public async FindAllBuscador(): Promise<void> {
+    this.buscadores = await this.buscadorService.FindAllBuscador();
 
-    this.filteredProvincias = this.provinciaCtrl.valueChanges
+    this.filteredBuscadores = this.buscadorCtrl.valueChanges
       .pipe(
         startWith(''),
-        map(provincia => provincia ? this.FilterProvincias(provincia) : this.provincias.slice())
+        map(buscador => buscador ? this.FilterBuscadores(buscador) : this.buscadores.slice())
       );
   }
 
-  // Get Data from Service
-  public async FindAllPoblacionByProvinciaId(id: string): Promise<void> {
-    this.poblaciones = await this.poblacionService.FindAllPoblacionByProvinciaId(Number(id));
-
-    this.filteredPoblaciones = this.poblacionCtrl.valueChanges
-      .pipe(
-        startWith(''),
-        map(poblacion => poblacion ? this.FilterPoblaciones(poblacion) : this.poblaciones.slice())
-      );
-  }
 
   // Filter Data
-  public FilterProvincias(value: string): ViewProvincia[] {
+  public FilterBuscadores(value: string): Viewbuscador[] {
     const filterValue = value.toLowerCase();
 
-    return this.provincias.filter(provincia => provincia.Name.toLowerCase().indexOf(filterValue) === 0);
+    return this.buscadores.filter(buscador => buscador.Name.toLowerCase().indexOf(filterValue) === 0);
   }
 
-  // Filter Data
-  public FilterPoblaciones(value: string): ViewPoblacion[] {
-    const filterValue = value.toLowerCase();
-
-    return this.poblaciones.filter(poblacion => poblacion.Name.toLowerCase().indexOf(filterValue) === 0);
+  public displayFn(buscador:Viewbuscador): string {
+        return buscador ? buscador.Name : '';
   }
 
   // Get Record from Card

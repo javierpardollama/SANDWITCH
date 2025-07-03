@@ -1,4 +1,4 @@
-@if (provincias.length == 0) {
+@if (buscadores.length == 0) {
   <div class="spinner-container">
     <div class="spinner"></div>
   </div>
@@ -6,34 +6,18 @@
 
 <form class="search-form">
   <mat-form-field class="search-half-width">
-    <mat-label>Provincia</mat-label>
-    <input type="search" matInput placeholder="Provincia" aria-label="Provincia" [matAutocomplete]="auto"
-      [formControl]="provinciaCtrl">
-      <mat-autocomplete #auto="matAutocomplete" (optionSelected)='FindAllPoblacionByProvinciaId($event.option.id)'>
-        @for (provincia of filteredProvincias | async; track provincia) {
-          <mat-option [value]="provincia.Name" [id]="provincia.Id.toString()">
-            <img class="search-option-img" aria-label="provincia.Name" aria-hidden ngSrc="{{provincia.ImageUri}}" height="25" width="25">
-            <span>{{provincia.Name}}</span>
+    <mat-label>Buscador</mat-label>
+    <input type="search" matInput placeholder="Buscador" aria-label="Buscador" [matAutocomplete]="auto"
+      [formControl]="buscadorCtrl">
+      <mat-autocomplete #auto="matAutocomplete" (optionSelected)='FindAllArenalByBuscadorId($event.option)' [displayWith]="displayFn" >
+        @for (buscador of filteredBuscadores | async; track buscador) {
+          <mat-option [value]="buscador">
+            <img class="search-option-img" aria-label="buscador.Name" aria-hidden ngSrc="{{buscador.ImageUri}}" height="25" width="25">
+            <span>{{buscador.Name}}</span>
           </mat-option>
         }
       </mat-autocomplete>
     </mat-form-field>
-
-    @if (poblaciones) {
-      <mat-form-field class="search-half-width">
-        <mat-label>Poblacion</mat-label>
-        <input type="search" matInput placeholder="Poblacion" aria-label="Poblacion" [matAutocomplete]="auto"
-          [formControl]="poblacionCtrl">
-          <mat-autocomplete #auto="matAutocomplete" (optionSelected)='FindAllArenalByPoblacionId($event.option.id)'>
-            @for (poblacion of filteredPoblaciones | async; track poblacion) {
-              <mat-option [value]="poblacion.Name" [id]="poblacion.Id.toString()">
-                <img class="search-option-img" aria-label="poblacion.Name" aria-hidden ngSrc="{{poblacion.ImageUri}}" height="25" width="25">
-                <span>{{poblacion.Name}}</span>
-              </mat-option>
-            }
-          </mat-autocomplete>
-        </mat-form-field>
-      }
     </form>
 
     <div class="search-result">

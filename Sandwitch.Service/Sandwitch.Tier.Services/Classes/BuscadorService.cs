@@ -75,6 +75,7 @@ namespace Sandwitch.Tier.Services.Classes
                     .ThenInclude(x => x.Bandera)
                     .Where(@expression)
                     .Select(x => x.Arenal)
+                    .Distinct()
                     .ToListAsync();
             
             

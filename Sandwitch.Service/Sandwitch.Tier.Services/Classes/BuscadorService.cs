@@ -9,7 +9,6 @@ using Microsoft.Extensions.Logging;
 using Sandwitch.Tier.Contexts.Interfaces;
 using Sandwitch.Tier.Entities.Classes;
 using Sandwitch.Tier.Services.Interfaces;
-using Sandwitch.Tier.ViewModels.Classes.Filters;
 using Sandwitch.Tier.ViewModels.Classes.Finders;
 using Sandwitch.Tier.ViewModels.Classes.Views;
 

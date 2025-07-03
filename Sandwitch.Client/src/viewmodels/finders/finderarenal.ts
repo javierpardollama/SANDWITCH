@@ -1,4 +1,4 @@
 export interface FinderArenal{
-    Id:number;
-    Type:string;
+    Id: number;
+    Type: string;
 }

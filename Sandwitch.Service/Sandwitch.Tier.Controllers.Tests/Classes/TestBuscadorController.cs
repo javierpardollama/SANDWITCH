@@ -9,6 +9,7 @@ using System.Net.Http.Headers;
 using System.Net.Http.Json;
 using System.Text;
 using System.Threading.Tasks;
+using Sandwitch.Tier.ViewModels.Classes.Finders;
 
 namespace Sandwitch.Tier.Controllers.Tests.Classes
 {
@@ -52,7 +53,7 @@ namespace Sandwitch.Tier.Controllers.Tests.Classes
         [Test]
         public async Task FindAllArenalByBuscadorId()
         {
-            var @content = JsonContent.Create(new FilterBuscador { Id = 1, Type = "Poblacion"});
+            var @content = JsonContent.Create(new FinderArenal { Id = 1, Type = "Poblacion"});
 
             HttpResponseMessage @response = await Client.PostAsync("findallarenalbybuscadorid", @content);
             @response.EnsureSuccessStatusCode();

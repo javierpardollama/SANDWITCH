@@ -9,6 +9,7 @@ using Sandwitch.Tier.ViewModels.Classes.Filters;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
+using Sandwitch.Tier.ViewModels.Classes.Finders;
 
 namespace Sandwitch.Tier.Services.Tests.Classes
 {
@@ -116,7 +117,7 @@ namespace Sandwitch.Tier.Services.Tests.Classes
         [Test]
         public async Task FindAllArenalByBuscadorId()
         {
-            await BuscadorService.FindAllArenalByBuscadorId(new FilterBuscador() { Id = Context.Poblacion.FirstOrDefault().Id, Type = nameof(Poblacion) });
+            await BuscadorService.FindAllArenalByBuscadorId(new FinderArenal() { Id = Context.Poblacion.FirstOrDefault().Id, Type = nameof(Poblacion) });
 
             Assert.Pass();
         }

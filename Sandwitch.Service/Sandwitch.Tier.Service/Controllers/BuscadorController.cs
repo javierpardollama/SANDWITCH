@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.RateLimiting;
 using Sandwitch.Tier.Services.Interfaces;
 using Sandwitch.Tier.ViewModels.Classes.Filters;
 using System.Threading.Tasks;
+using Sandwitch.Tier.ViewModels.Classes.Finders;
 
 namespace Sandwitch.Tier.Service.Controllers
 {
@@ -51,6 +52,6 @@ namespace Sandwitch.Tier.Service.Controllers
         /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>
         [HttpPost]
         [Route("findallarenalbybuscadorid")]
-        public async Task<IActionResult> FindAllArenalByBuscadorId([FromBody] FilterBuscador @viewModel) => Ok(value: await @service.FindAllArenalByBuscadorId(@viewModel));
+        public async Task<IActionResult> FindAllArenalByBuscadorId([FromBody] FinderArenal @viewModel) => Ok(value: await @service.FindAllArenalByBuscadorId(@viewModel));
     }
 }

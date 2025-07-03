@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Sandwitch.Tier.ViewModels.Classes.Filters;
+using Sandwitch.Tier.ViewModels.Classes.Finders;
 using Sandwitch.Tier.ViewModels.Classes.Views;
 
 namespace Sandwitch.Tier.Services.Interfaces
@@ -19,7 +20,8 @@ namespace Sandwitch.Tier.Services.Interfaces
         /// <summary>
         /// Finds All Arenal By Buscador Id
         /// </summary>
+        /// <param name="viewModel">Injected <see cref="FinderArenal"/></param>
         /// <returns>Instance of <see cref="Task{IList{ViewArenal}}"/></returns>
-        public Task<IList<ViewArenal>> FindAllArenalByBuscadorId(FilterBuscador @viewModel);
+        public Task<IList<ViewArenal>> FindAllArenalByBuscadorId(FinderArenal @viewModel);
     }
 }

@@ -133,18 +133,6 @@ namespace Sandwitch.Tier.Services.Tests.Classes
         }
 
         /// <summary>
-        /// Finds All Arenal By Poblacion Id
-        /// </summary>
-        /// <returns>Instance of <see cref="Task"/></returns>
-        [Test]
-        public async Task FindAllArenalByPoblacionId()
-        {
-            await ArenalService.FindAllArenalByPoblacionId(1);
-
-            Assert.Pass();
-        }
-
-        /// <summary>
         /// Finds All Historico By Arenal Id
         /// </summary>
         /// <returns>Instance of <see cref="Task"/></returns>

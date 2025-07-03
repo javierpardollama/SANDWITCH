@@ -31,19 +31,6 @@ namespace Sandwitch.Tier.Benchmarks.Services
         }
 
         [Benchmark]
-        public async Task<IList<ViewArenal>> FindAllArenalByPoblacionId()
-        {
-            Client.DefaultRequestHeaders.Authorization = Client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", Convert.ToBase64String(Encoding.UTF8.GetBytes("Peach" + ":" + "T/R4J6eyvNG<6ne!"))); ;
-
-            HttpResponseMessage @response = await Client.GetAsync(string.Concat("findallarenalbypoblacionid/", 1));
-            @response.EnsureSuccessStatusCode();
-            var @arenales = await @response.Content.ReadFromJsonAsync<List<ViewArenal>>();
-
-            return @arenales;
-
-        }
-
-        [Benchmark]
         public async Task<IList<ViewHistorico>> FindAllHistoricoByArenalId()
         {
             Client.DefaultRequestHeaders.Authorization = Client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", Convert.ToBase64String(Encoding.UTF8.GetBytes("Peach" + ":" + "T/R4J6eyvNG<6ne!"))); ;

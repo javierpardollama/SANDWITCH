@@ -165,31 +165,7 @@ namespace Sandwitch.Tier.Services.Classes
 
             return @page;
         }
-
-        /// <summary>
-        /// Finds All Arenal By Poblacion Id
-        /// </summary>
-        /// <param name="id">Injected <see cref="int"/></param>
-        /// <returns>Instance of <see cref="Task{IList{ViewArenal}}"/></returns>
-        public async Task<IList<ViewArenal>> FindAllArenalByPoblacionId(int @id)
-        {
-            ICollection<Arenal> @arenales = await Context.ArenalPoblacion
-               .TagWith("FindAllArenalByPoblacionId")
-               .AsNoTracking()
-               .AsSplitQuery()
-               .Include(x => x.Poblacion)
-               .Include(x => x.Arenal.Historicos)
-               .ThenInclude(x => x.Viento)
-               .Include(x => x.Arenal.Historicos)
-               .ThenInclude(x => x.Bandera)
-               .Include(x => x.Arenal)
-               .Where(x => x.Poblacion.Id == @id)
-               .Select(x => x.Arenal)
-               .ToListAsync();
-
-            return Mapper.Map<IList<ViewArenal>>(@arenales);
-        }
-
+       
         /// <summary>
         /// Finds All Historico By Arenal Id
         /// </summary>

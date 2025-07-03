@@ -49,17 +49,7 @@ namespace Sandwitch.Tier.Controllers.Tests.Classes
             Assert.Pass();
         }
 
-        [Test]
-        public async Task FindAllArenalByPoblacionId()
-        {
-            HttpResponseMessage @response = await Client.GetAsync(string.Concat("findallarenalbypoblacionid/", 1));
-            @response.EnsureSuccessStatusCode();
-            var @arenales = await @response.Content.ReadFromJsonAsync<List<ViewArenal>>();
-
-            Assert.Pass();
-        }
-
-        [Test]
+       [Test]
         public async Task FindAllHistoricoByArenalId()
         {
             HttpResponseMessage @response = await Client.GetAsync(string.Concat("findallhistoricobyarenalid/", 1));

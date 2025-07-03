@@ -72,24 +72,7 @@ namespace Sandwitch.Tier.Service.Controllers
         [Route("findpaginatedarenal")]
         public async Task<IActionResult> FindPaginatedArenal([FromBody] FilterPage @viewModel) => Ok(value: await @service.FindPaginatedArenal(@viewModel));
 
-        /// <summary>
-        /// Finds All Arenal By Poblacion Id
-        /// </summary>
-        /// <response code="200">Ok</response>
-        /// <response code="400">BadRequest</response>
-        /// <response code="401">Unauthorized</response>
-        /// <response code="408">RequestTimeout</response>
-        /// <response code="404">NotFound</response>
-        /// <response code="409">Conflict</response>
-        /// <response code="503">ServiceUnavailable</response>
-        /// <response code="500">InternalServerError</response>     
-        /// <param name="id">Injected <see cref="int"/></param>
-        /// <returns>Instance of <see cref="Task{OkObjectResult}"/></returns>
-        [HttpGet]
-        [Route("findallarenalbypoblacionid/{id}")]
-        public async Task<IActionResult> FindAllArenalByPoblacionId(int @id) => Ok(value: await @service.FindAllArenalByPoblacionId(@id));
-
-        /// <summary>
+       /// <summary>
         /// Finds All Historico By Arenal Id
         /// </summary>
         /// <response code="200">Ok</response>

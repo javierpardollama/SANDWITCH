@@ -86,7 +86,7 @@ export class SearchComponent implements OnInit {
   public async FindAllArenalByBuscadorId(option:MatOption<Viewbuscador>): Promise<void> {
       const finder: FinderArenal =
           {
-              Id: Number(option.value.Id),
+              Id: option.value.Id,
               Type: option.value.Type
           };
 
@@ -113,7 +113,7 @@ export class SearchComponent implements OnInit {
   }
 
   // Display Option Name
-  public displayFn(buscador:Viewbuscador): string {
+  public displayFn(buscador: Viewbuscador): string {
         return buscador ? buscador.Name : '';
   }
 

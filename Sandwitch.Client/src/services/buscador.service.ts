@@ -14,7 +14,7 @@ import { firstValueFrom } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Router } from '@angular/router';
 
-import { Viewbuscador } from "../viewmodels/views/viewbuscador";
+import { ViewBuscador } from "../viewmodels/views/viewbuscador";
 import { FinderArenal } from "../viewmodels/finders/finderarenal";
 
 
@@ -31,9 +31,9 @@ export class BuscadorService extends BaseService {
         super(httpClient, matSnackBar, router);
     }
 
-    public FindAllBuscador(): Promise<Viewbuscador[]> {
-        return firstValueFrom(this.httpClient.get<Viewbuscador[]>(`${environment.Api.Service}api/buscador/findallbuscador`)
-            .pipe(catchError(this.HandleError<Viewbuscador[]>('FindAllBuscador', []))));
+    public FindAllBuscador(): Promise<ViewBuscador[]> {
+        return firstValueFrom(this.httpClient.get<ViewBuscador[]>(`${environment.Api.Service}api/buscador/findallbuscador`)
+            .pipe(catchError(this.HandleError<ViewBuscador[]>('FindAllBuscador', []))));
     }
 
     public FindAllArenalByBuscadorId(viewModel: FinderArenal): Promise<ViewArenal[]> {

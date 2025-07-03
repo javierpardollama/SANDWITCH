@@ -13,6 +13,9 @@ import {
   startWith
 } from 'rxjs/operators';
 
+import { ViewBuscador } from "../../viewmodels/views/viewbuscador";
+import { BuscadorService } from "../../services/buscador.service";
+import { FinderArenal } from "../../viewmodels/finders/finderarenal";
 import { ViewArenal } from '../../viewmodels/views/viewarenal';
 
 import {
@@ -31,9 +34,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { CommonModule, NgOptimizedImage } from '@angular/common';
-import { Viewbuscador } from "../../viewmodels/views/viewbuscador";
-import { BuscadorService } from "../../services/buscador.service";
-import { FinderArenal } from "../../viewmodels/finders/finderarenal";
+
 
 @Component({
     selector: 'app-search',
@@ -62,8 +63,8 @@ import { FinderArenal } from "../../viewmodels/finders/finderarenal";
 export class SearchComponent implements OnInit {
 
   // Data
-  public buscadores : Viewbuscador[] = [];
-  public filteredBuscadores: Observable<Viewbuscador[]> = of([]);
+  public buscadores : ViewBuscador[] = [];
+  public filteredBuscadores: Observable<ViewBuscador[]> = of([]);
   public arenales: ViewArenal[] = [];
 
   // Control
@@ -83,7 +84,7 @@ export class SearchComponent implements OnInit {
   }
 
   // Get Data from Service
-  public async FindAllArenalByBuscadorId(option: MatOption<Viewbuscador>): Promise<void> {
+  public async FindAllArenalByBuscadorId(option: MatOption<ViewBuscador>): Promise<void> {
       const finder: FinderArenal =
           {
               Id: option.value.Id,

@@ -1,4 +1,4 @@
-export interface Viewbuscador {
+export interface ViewBuscador {
     Id:number;
     Name:string;
     ImageUri:string;

@@ -41,19 +41,9 @@ export class ArenalService extends BaseService {
             .pipe(catchError(this.HandleError<ViewArenal>('UpdateArenal', undefined))));
     }
 
-    public FindAllArenal(): Promise<ViewArenal[]> {
-        return firstValueFrom(this.httpClient.get<ViewArenal[]>(`${environment.Api.Service}api/arenal/findallarenal`)
-            .pipe(catchError(this.HandleError<ViewArenal[]>('FindAllArenal', []))));
-    }
-
     public FindPaginatedArenal(viewModel: FilterPage): Promise<ViewPage<ViewArenal>> {
         return firstValueFrom(this.httpClient.post<ViewPage<ViewArenal>>(`${environment.Api.Service}api/arenal/findpaginatedarenal`, viewModel)
             .pipe(catchError(this.HandleError<ViewPage<ViewArenal>>('FindPaginatedArenal', undefined))));
-    }
-
-    public FindAllArenalByPoblacionId(id: number): Promise<ViewArenal[]> {
-        return firstValueFrom(this.httpClient.get<ViewArenal[]>(`${environment.Api.Service}api/arenal/findallarenalbypoblacionid/${id}`)
-            .pipe(catchError(this.HandleError<ViewArenal[]>('FindAllArenalByPoblacionId', []))));
     }
 
     public AddArenal(viewModel: AddArenal): Promise<ViewArenal> {

@@ -1,10 +1,10 @@
-import { AddBandera } from './../viewmodels/additions/addbandera';
+import { AddBandera } from '../viewmodels/additions/addbandera';
 
-import { UpdateBandera } from './../viewmodels/updates/updatebandera';
+import { UpdateBandera } from '../viewmodels/updates/updatebandera';
 
-import { ViewPage } from './../viewmodels/views/viewpage';
+import { ViewPage } from '../viewmodels/views/viewpage';
 
-import { ViewBandera } from './../viewmodels/views/viewbandera';
+import { ViewBandera } from '../viewmodels/views/viewbandera';
 
 import { HttpClient } from '@angular/common/http';
 
@@ -16,7 +16,7 @@ import { catchError } from 'rxjs/operators';
 
 import { BaseService } from './base.service';
 
-import { FilterPage } from './../viewmodels/filters/filterpage';
+import { FilterPage } from '../viewmodels/filters/filterpage';
 
 import { firstValueFrom } from 'rxjs';
 

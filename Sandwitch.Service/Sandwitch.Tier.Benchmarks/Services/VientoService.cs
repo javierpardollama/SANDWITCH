@@ -20,7 +20,7 @@ namespace Sandwitch.Tier.Benchmarks.Services
         [Benchmark]
         public async Task<IList<ViewViento>> FindAllViento()
         {
-            Client.DefaultRequestHeaders.Authorization = Client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", Convert.ToBase64String(Encoding.UTF8.GetBytes("Peach" + ":" + "T/R4J6eyvNG<6ne!"))); ;
+            Client.DefaultRequestHeaders.Authorization = Client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", Convert.ToBase64String(Encoding.UTF8.GetBytes("Peach" + ":" + "T/R4J6eyvNG<6ne!")));
 
             HttpResponseMessage @response = await Client.GetAsync("findallviento");
             @response.EnsureSuccessStatusCode();
@@ -32,7 +32,7 @@ namespace Sandwitch.Tier.Benchmarks.Services
         [Benchmark]
         public async Task<ViewPage<ViewViento>> FindPaginatedViento()
         {
-            Client.DefaultRequestHeaders.Authorization = Client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", Convert.ToBase64String(Encoding.UTF8.GetBytes("Peach" + ":" + "T/R4J6eyvNG<6ne!"))); ;
+            Client.DefaultRequestHeaders.Authorization = Client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", Convert.ToBase64String(Encoding.UTF8.GetBytes("Peach" + ":" + "T/R4J6eyvNG<6ne!")));
 
             var @content = JsonContent.Create(new FilterPage { Index = 0, Size = 20 });
 

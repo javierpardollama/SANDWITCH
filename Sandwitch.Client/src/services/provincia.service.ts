@@ -2,7 +2,7 @@ import { AddProvincia } from '../viewmodels/additions/addprovincia';
 
 import { UpdateProvincia } from '../viewmodels/updates/updateprovincia';
 
-import { ViewPage } from './../viewmodels/views/viewpage';
+import { ViewPage } from '../viewmodels/views/viewpage';
 
 import { ViewProvincia } from '../viewmodels/views/viewprovincia';
 

@@ -41,19 +41,9 @@ export class PoblacionService extends BaseService {
             .pipe(catchError(this.HandleError<ViewPoblacion>('UpdatePoblacion', undefined))));
     }
 
-    public FindAllPoblacion(): Promise<ViewPoblacion[]> {
-        return firstValueFrom(this.httpClient.get<ViewPoblacion[]>(`${environment.Api.Service}api/poblacion/findallpoblacion`)
-            .pipe(catchError(this.HandleError<ViewPoblacion[]>('FindAllPoblacion', []))));
-    }
-
     public FindPaginatedPoblacion(viewModel: FilterPage): Promise<ViewPage<ViewPoblacion>> {
         return firstValueFrom(this.httpClient.post<ViewPage<ViewPoblacion>>(`${environment.Api.Service}api/poblacion/findpaginatedpoblacion`, viewModel)
             .pipe(catchError(this.HandleError<ViewPage<ViewPoblacion>>('FindPaginatedPoblacion', undefined))));
-    }
-
-    public FindAllPoblacionByProvinciaId(id: number): Promise<ViewPoblacion[]> {
-        return firstValueFrom(this.httpClient.get<ViewPoblacion[]>(`${environment.Api.Service}api/poblacion/findallpoblacionbyprovinciaid/${id}`)
-            .pipe(catchError(this.HandleError<ViewPoblacion[]>('FindAllPoblacionByProvinciaId', []))));
     }
 
     public AddPoblacion(viewModel: AddPoblacion): Promise<ViewPoblacion> {

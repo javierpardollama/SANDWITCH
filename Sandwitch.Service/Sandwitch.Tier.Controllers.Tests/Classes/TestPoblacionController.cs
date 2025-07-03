@@ -1,5 +1,4 @@
 ﻿using NUnit.Framework;
-using NUnit.Framework.Internal;
 
 using Sandwitch.Tier.ViewModels.Classes.Filters;
 using Sandwitch.Tier.ViewModels.Classes.Views;
@@ -50,17 +49,7 @@ namespace Sandwitch.Tier.Controllers.Tests.Classes
 
             Assert.Pass();
         }
-
-        [Test]
-        public async Task FindAllPoblacionByProvinciaId()
-        {
-            HttpResponseMessage @response = await Client.GetAsync(string.Concat("findallpoblacionbyprovinciaid/", 1));
-            @response.EnsureSuccessStatusCode();
-            var @poblaciones = await @response.Content.ReadFromJsonAsync<List<ViewPoblacion>>();
-
-            Assert.Pass();
-        }
-
+      
         [Test]
         public async Task FindPaginatedPoblacion()
         {

@@ -125,18 +125,6 @@ namespace Sandwitch.Tier.Services.Tests.Classes
         }
 
         /// <summary>
-        /// Finds All Poblacion By Provincia Id
-        /// </summary>
-        /// <returns>Instance of <see cref="Task"/></returns>
-        [Test]
-        public async Task FindAllPoblacionByProvinciaId()
-        {
-            await PoblacionService.FindAllPoblacionByProvinciaId(Context.Provincia.FirstOrDefault().Id);
-
-            Assert.Pass();
-        }
-
-        /// <summary>
         /// Finds Poblacion By Id
         /// </summary>
         /// <returns>Instance of <see cref="Task"/></returns>

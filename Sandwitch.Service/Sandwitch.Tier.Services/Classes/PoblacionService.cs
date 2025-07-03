@@ -114,24 +114,6 @@ namespace Sandwitch.Tier.Services.Classes
         }
 
         /// <summary>
-        /// Finds All Poblacion By Provincia Id
-        /// </summary>
-        /// <param name="id">Injected <see cref="int"/></param>
-        /// <returns>Instance of <see cref="Task{IList{ViewPoblacion}}"/></returns>
-        public async Task<IList<ViewPoblacion>> FindAllPoblacionByProvinciaId(int @id)
-        {
-            IList<Poblacion> @poblaciones = await Context.Poblacion
-              .TagWith("FindAllPoblacionByProvinciaId")
-              .AsNoTracking()
-              .AsSplitQuery()
-              .Include(x => x.Provincia)
-              .Where(x => x.Provincia.Id == @id)
-              .ToListAsync();
-
-            return Mapper.Map<IList<ViewPoblacion>>(@poblaciones);
-        }
-
-        /// <summary>
         /// Finds Poblacion By Id
         /// </summary>
         /// <param name="id">Injected <see cref="int"/></param>

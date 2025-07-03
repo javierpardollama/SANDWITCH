@@ -20,7 +20,7 @@ namespace Sandwitch.Tier.Benchmarks.Services
         [Benchmark]
         public async Task<IList<ViewArenal>> FindAllarenal()
         {
-            Client.DefaultRequestHeaders.Authorization = Client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", Convert.ToBase64String(Encoding.UTF8.GetBytes("Peach" + ":" + "T/R4J6eyvNG<6ne!"))); ;
+            Client.DefaultRequestHeaders.Authorization = Client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", Convert.ToBase64String(Encoding.UTF8.GetBytes("Peach" + ":" + "T/R4J6eyvNG<6ne!")));
 
             HttpResponseMessage @response = await Client.GetAsync("findallarenal");
             @response.EnsureSuccessStatusCode();
@@ -33,7 +33,7 @@ namespace Sandwitch.Tier.Benchmarks.Services
         [Benchmark]
         public async Task<IList<ViewHistorico>> FindAllHistoricoByArenalId()
         {
-            Client.DefaultRequestHeaders.Authorization = Client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", Convert.ToBase64String(Encoding.UTF8.GetBytes("Peach" + ":" + "T/R4J6eyvNG<6ne!"))); ;
+            Client.DefaultRequestHeaders.Authorization = Client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", Convert.ToBase64String(Encoding.UTF8.GetBytes("Peach" + ":" + "T/R4J6eyvNG<6ne!")));
 
             HttpResponseMessage @response = await Client.GetAsync(string.Concat("findallhistoricobyarenalid/", 1));
             @response.EnsureSuccessStatusCode();
@@ -46,7 +46,7 @@ namespace Sandwitch.Tier.Benchmarks.Services
         [Benchmark]
         public async Task<ViewPage<ViewArenal>> FindPaginatedArenal()
         {
-            Client.DefaultRequestHeaders.Authorization = Client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", Convert.ToBase64String(Encoding.UTF8.GetBytes("Peach" + ":" + "T/R4J6eyvNG<6ne!"))); ;
+            Client.DefaultRequestHeaders.Authorization = Client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", Convert.ToBase64String(Encoding.UTF8.GetBytes("Peach" + ":" + "T/R4J6eyvNG<6ne!")));
 
             var @content = JsonContent.Create(new FilterPage { Index = 0, Size = 20 });
 

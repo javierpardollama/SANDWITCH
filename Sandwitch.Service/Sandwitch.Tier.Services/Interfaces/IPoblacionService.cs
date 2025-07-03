@@ -25,14 +25,7 @@ namespace Sandwitch.Tier.Services.Interfaces
         /// <param name="viewModel">Injected <see cref="FilterPage"/></param>
         /// <returns>Instance of <see cref="Task{ViewPage{ViewPoblacion}}"/></returns>
         public Task<ViewPage<ViewPoblacion>> FindPaginatedPoblacion(FilterPage @viewModel);
-
-        /// <summary>
-        /// Finds All Poblacion By Provincia Id
-        /// </summary>
-        /// <param name="id">Injected <see cref="int"/></param>
-        /// <returns>Instance of <see cref="Task{IList{ViewPoblacion}}"/></returns>
-        public Task<IList<ViewPoblacion>> FindAllPoblacionByProvinciaId(int @id);
-
+       
         /// <summary>
         /// Finds Poblacion By Id
         /// </summary>

@@ -5,7 +5,6 @@ using NUnit.Framework;
 
 using Sandwitch.Tier.Entities.Classes;
 using Sandwitch.Tier.Services.Classes;
-using Sandwitch.Tier.ViewModels.Classes.Filters;
 using System;
 using System.Linq;
 using System.Threading.Tasks;

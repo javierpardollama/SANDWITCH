@@ -1,5 +1,4 @@
 using NUnit.Framework;
-using Sandwitch.Tier.ViewModels.Classes.Filters;
 using Sandwitch.Tier.ViewModels.Classes.Views;
 
 using System;

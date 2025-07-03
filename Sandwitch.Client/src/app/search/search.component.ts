@@ -114,6 +114,7 @@ export class SearchComponent implements OnInit {
     return this.buscadores.filter(buscador => buscador.Name.toLowerCase().indexOf(filterValue) === 0);
   }
 
+  // Display Option Name
   public displayFn(buscador:Viewbuscador): string {
         return buscador ? buscador.Name : '';
   }

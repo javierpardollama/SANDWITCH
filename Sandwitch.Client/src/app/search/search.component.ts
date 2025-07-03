@@ -84,13 +84,11 @@ export class SearchComponent implements OnInit {
 
   // Get Data from Service
   public async FindAllArenalByBuscadorId(option:MatOption<Viewbuscador>): Promise<void> {
-    console.log(option);
-
-      const finder : FinderArenal =
-        {
-            Id: Number(option.value.Id),
-            Type: option.value.Type
-        };
+      const finder: FinderArenal =
+          {
+              Id: Number(option.value.Id),
+              Type: option.value.Type
+          };
 
       this.arenales = await this.buscadorService.FindAllArenalByBuscadorId(finder);
   }

@@ -13,9 +13,9 @@ public class AuthSignIn
     }
 
     /// <summary>
-    ///     Gets or Sets <see cref="UserName" />
+    ///     Gets or Sets <see cref="Name" />
     /// </summary>
-    public string UserName { get; set; }
+    public string Name { get; set; }
 
     /// <summary>
     ///     Gets or Sets <see cref="PassWord" />

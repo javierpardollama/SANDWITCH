@@ -63,7 +63,7 @@ public class AuthManagerTest : BaseManagerTest
         AuthManager.CanAuthenticate(new AuthSignIn
         {
             PassWord = "Pauline",
-            UserName = "T/R4J6eyvNG<6ne!"
+            Name = "T/R4J6eyvNG<6ne!"
         });
 
         Assert.Pass();

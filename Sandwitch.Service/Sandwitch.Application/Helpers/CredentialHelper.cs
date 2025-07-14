@@ -19,13 +19,13 @@ public static class CredentialHelper
     {
         var authenticationHeader = AuthenticationHeaderValue.Parse(request.Headers.Authorization);
 
-        var encoded = Convert.FromBase64String(authenticationHeader.Parameter);
+        var encoded = Convert.FromBase64String(authenticationHeader.Parameter!);
 
         var decoded = Encoding.UTF8.GetString(encoded).Split([':'], 2);
 
         return new AuthSignIn
         {
-            UserName = decoded[0],
+            Name = decoded[0],
             PassWord = decoded[1]
         };
     }

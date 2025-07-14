@@ -19,11 +19,9 @@ public class AuthManager(IOptions<ApiSettings> apiSettings) : BaseManager(apiSet
     /// <returns>Instance of <see cref="bool" /></returns>
     public bool CanAuthenticate(AuthSignIn authSignIn)
     {
-        var result = false;
-
-        if (ApiSettings.Value.ApiLock.Equals(authSignIn.UserName) &&
-            ApiSettings.Value.ApiKey.Equals(authSignIn.PassWord)) result = true;
-
-        return result;
+        bool @result = ApiSettings.Value.ApiLock == authSignIn.Name &&
+                 ApiSettings.Value.ApiKey == authSignIn.PassWord;
+        
+        return @result;
     }
 }

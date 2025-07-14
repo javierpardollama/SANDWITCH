@@ -31,9 +31,9 @@ public class BasicAuthenticationHandler(
     /// <returns>Instance of <see cref="AuthenticationTicket" /></returns>
     private AuthenticationTicket GetAuthenticationTicket(AuthSignIn authSignIn)
     {
-        List<Claim> claims =
+        List<Claim> @claims =
         [
-            new(ClaimTypes.Name, authSignIn.UserName),
+            new(ClaimTypes.Name, authSignIn.Name),
             new(ClaimTypes.AuthenticationInstant, DateTime.Now.ToString()),
             new(ClaimTypes.Locality, CultureInfo.CurrentCulture.TwoLetterISOLanguageName),
             new(ClaimTypes.Version, Environment.OSVersion.VersionString),
@@ -41,7 +41,7 @@ public class BasicAuthenticationHandler(
         ];
 
         return new AuthenticationTicket(
-            new ClaimsPrincipal(new ClaimsIdentity(claims,
+            new ClaimsPrincipal(new ClaimsIdentity(@claims,
                 Scheme.Name)),
             Scheme.Name);
     }

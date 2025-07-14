@@ -20,10 +20,10 @@ jobs:
         dotnet-version: '9.0.x'
 
     - name: Restore dependencies
-      run: dotnet restore ./Sandwitch.Service --configuration Release
+      run: dotnet restore ./Sandwitch.Service/Sandwitch.Service.csproj
 
     - name: Build project
-      run: dotnet build  ./Sandwitch.Service --configuration Release --no-restore
+      run: dotnet build  ./Sandwitch.Service/Sandwitch.Service.csproj --configuration Release --no-restore
 
     - name: Run tests
       run:  dotnet test ./Sandwitch.Service/Sandwitch.Test.Infrastructure/Sandwitch.Test.Infrastructure.csproj --no-build --verbosity normal

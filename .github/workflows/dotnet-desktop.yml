@@ -23,7 +23,10 @@ jobs:
       run: dotnet restore ./Sandwitch.Service
 
     - name: Build project
-      run: dotnet build  ./Sandwitch.Service --configuration Release --no-restore
+      run: dotnet build  ./Sandwitch.Service --no-restore
+
+    - name: List Test Projects
+      run: find . -name "*.csproj" | xargs grep IsTestProject
 
     - name: Run tests
-      run:  dotnet test ./Sandwitch.Service/Sandwitch.Test.Infrastructure --no-build --verbosity normal
+      run:  dotnet test ./Sandwitch.Service/Sandwitch.Test.Infrastructure --no-build

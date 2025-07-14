@@ -20,13 +20,10 @@ jobs:
         dotnet-version: '9.0.x'
 
     - name: Restore dependencies
-      run: dotnet restore ./Sandwitch.Service
+      run: dotnet restore ./Sandwitch.Service/Sandwitch.Service.csproj
 
-    - name: Build project
-      run: dotnet build  ./Sandwitch.Service --no-restore
+    - name: Build project (no restore)
+      run: dotnet build  ./Sandwitch.Service//Sandwitch.Service.csproj --no-restore
 
-    - name: List Test Projects
-      run: find . -name "*.csproj" | xargs grep IsTestProject
-
-    - name: Run tests
-      run:  dotnet test ./Sandwitch.Service/Sandwitch.Test.Infrastructure --no-build
+    - name: Run Tests (no build)
+      run:  dotnet test ./Sandwitch.Service/Sandwitch.Test.Infrastructure/Sandwitch.Test.Infrastructure.csproj --no-build

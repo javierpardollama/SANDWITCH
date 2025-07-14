@@ -6,13 +6,13 @@ on:
   pull_request:
     branches: [ main ]
 
+defaults:
+  run:
+    working-directory: Sandwitch.Service
+
 jobs:
   build:
-    runs-on: ubuntu-latest
-
-    defaults:
-      run:
-        working-directory: Sandwitch.Service
+    runs-on: ubuntu-latest   
 
     steps:
       - name: 📦 Checkout repository

@@ -20,11 +20,11 @@ public static class OpenApiInstaller
         {
             var xmlFilename = "Sandwitch.Service.xml";
             options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename));
-            options.AddSecurityDefinition(AuthenticationSchemes.Basic.ToString(), new OpenApiSecurityScheme
+            options.AddSecurityDefinition(nameof(AuthenticationSchemes.Basic), new OpenApiSecurityScheme
             {
                 Name = "Authorization",
                 Type = SecuritySchemeType.Http,
-                Scheme = AuthenticationSchemes.Basic.ToString(),
+                Scheme = nameof(AuthenticationSchemes.Basic),
                 In = ParameterLocation.Header,
                 Description = "Basic Authorization header using the Basic scheme."
             });
@@ -36,7 +36,7 @@ public static class OpenApiInstaller
                         Reference = new OpenApiReference
                         {
                             Type = ReferenceType.SecurityScheme,
-                            Id = AuthenticationSchemes.Basic.ToString()
+                            Id = nameof(AuthenticationSchemes.Basic)
                         }
                     },
                     Array.Empty<string>()

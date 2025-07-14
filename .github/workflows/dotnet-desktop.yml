@@ -20,7 +20,7 @@ jobs:
         dotnet-version: '9.0.x'
 
     - name: Restore dependencies
-      run: dotnet restore
+      run: dotnet restore Sandwitch.Service --configuration Release
 
     - name: Build project
       run: dotnet build  Sandwitch.Service --configuration Release --no-restore

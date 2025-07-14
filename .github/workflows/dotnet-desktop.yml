@@ -10,20 +10,24 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
+    defaults:
+      run:
+        working-directory: Sandwitch.Service
+
     steps:
-    - name: Checkout code
+    - name: 📦 Checkout repository
       uses: actions/checkout@v4
 
-    - name: Setup .NET SDK
+    - name: 🛠 Setup .NET SDK
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: '9.0.x'
 
-    - name: Restore solution dependencies
-      run: dotnet restore ./Sandwitch.Service
+    - name: 📥 Restore dependencies
+      run: dotnet restore
 
-    - name: Build solution     
-      run: dotnet build  ./Sandwitch.Service --no-restore    
+    - name: 🏗 Build project
+      run: dotnet build --no-restore    
 
-    - name: Run infrastructure tests      
-      run:  dotnet test ./Sandwitch.Service/Sandwitch.Test.Infrastructure --no-build
+    - name: ✅ Run tests      
+      run:  dotnet test Sandwitch.Test.Infrastructure --no-build

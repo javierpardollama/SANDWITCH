@@ -19,11 +19,11 @@ jobs:
       with:
         dotnet-version: '9.0.x'
 
-    - name: Restore dependencies
+    - name: Restore solution dependencies
       run: dotnet restore ./Sandwitch.Service/Sandwitch.Service.csproj
 
-    - name: Build project (no restore)
-      run: dotnet build  ./Sandwitch.Service//Sandwitch.Service.csproj --no-restore
+    - name: Build solution     
+      run: dotnet build  ./Sandwitch.Service --no-restore    
 
-    - name: Run Tests (no build)
-      run:  dotnet test ./Sandwitch.Service/Sandwitch.Test.Infrastructure/Sandwitch.Test.Infrastructure.csproj --no-build
+    - name: Run infrastructure tests      
+      run:  dotnet test ./Sandwitch.Service/Sandwitch.Test.Infrastructure --no-build

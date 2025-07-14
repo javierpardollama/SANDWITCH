@@ -29,7 +29,7 @@ public class PoblacionManager(
     {
         await CheckName(viewModel);
 
-        Poblacion poblacion = new()
+        Poblacion @poblacion = new()
         {
             Name = viewModel.Name.Trim(),
             Provincia = await FindProvinciaById(viewModel.ProvinciaId),
@@ -38,7 +38,7 @@ public class PoblacionManager(
 
         try
         {
-            await Context.Poblacion.AddAsync(poblacion);
+            await Context.Poblacion.AddAsync(@poblacion);
 
             await Context.SaveChangesAsync();
         }
@@ -48,15 +48,15 @@ public class PoblacionManager(
         }
 
         // Log
-        var logData = nameof(poblacion)
+        var logData = nameof(Poblacion)
                       + " with Id "
-                      + poblacion.Id
+                      + @poblacion.Id
                       + " was added at "
                       + DateTime.Now.ToShortTimeString();
 
         logger.LogInformation(logData);
 
-        return poblacion;
+        return @poblacion;
     }
 
     /// <summary>
@@ -65,14 +65,14 @@ public class PoblacionManager(
     /// <returns>Instance of <see cref="Task{IList{Poblacion}}" /></returns>
     public async Task<IList<Poblacion>> FindAllPoblacion()
     {
-        IList<Poblacion> poblaciones = await Context.Poblacion
+        IList<Poblacion> @poblaciones = await Context.Poblacion
             .TagWith("FindAllPoblacion")
             .AsNoTracking()
             .AsSplitQuery()
             .Include(x => x.Provincia)
             .ToListAsync();
 
-        return poblaciones;
+        return @poblaciones;
     }
 
     /// <summary>
@@ -82,7 +82,7 @@ public class PoblacionManager(
     /// <returns>Instance of <see cref="Task{Page{Poblacion}}" /></returns>
     public async Task<Page<Poblacion>> FindPaginatedPoblacion(FilterPage viewModel)
     {
-        Page<Poblacion> page = new()
+        Page<Poblacion> @page = new()
         {
             Length = await Context.Poblacion
                 .TagWith("CountAllPoblacion")
@@ -101,7 +101,7 @@ public class PoblacionManager(
                 .ToListAsync()
         };
 
-        return page;
+        return @page;
     }
 
     /// <summary>
@@ -111,14 +111,14 @@ public class PoblacionManager(
     /// <returns>Instance of <see cref="Task{Poblacion}" /></returns>
     public async Task<Poblacion> FindPoblacionById(int id)
     {
-        var poblacion = await Context.Poblacion
+        Poblacion @poblacion = await Context.Poblacion
             .TagWith("FindPoblacionById")
             .FirstOrDefaultAsync(x => x.Id == id);
 
-        if (poblacion == null)
+        if (@poblacion == null)
         {
             // Log
-            var logData = nameof(poblacion)
+            var logData = nameof(Poblacion)
                           + " with Id "
                           + id
                           + " was not found at "
@@ -126,13 +126,13 @@ public class PoblacionManager(
 
             logger.LogError(logData);
 
-            throw new ServiceException(nameof(poblacion)
+            throw new ServiceException(nameof(@poblacion)
                                        + " with Id "
                                        + id
                                        + " does not exist");
         }
 
-        return poblacion;
+        return @poblacion;
     }
 
     /// <summary>
@@ -142,14 +142,14 @@ public class PoblacionManager(
     /// <returns>Instance of <see cref="Task{Provincia}" /></returns>
     public async Task<Provincia> FindProvinciaById(int id)
     {
-        var provincia = await Context.Provincia
+        Provincia @provincia = await Context.Provincia
             .TagWith("FindProvinciaById")
             .FirstOrDefaultAsync(x => x.Id == id);
 
-        if (provincia == null)
+        if (@provincia == null)
         {
             // Log
-            var logData = nameof(provincia)
+            var logData = nameof(Provincia)
                           + " with Id "
                           + id
                           + " was not found at "
@@ -157,13 +157,13 @@ public class PoblacionManager(
 
             logger.LogError(logData);
 
-            throw new ServiceException(nameof(provincia)
+            throw new ServiceException(nameof(Provincia)
                                        + " with Id "
                                        + id
                                        + " does not exist");
         }
 
-        return provincia;
+        return @provincia;
     }
 
     /// <summary>
@@ -175,16 +175,16 @@ public class PoblacionManager(
     {
         try
         {
-            var poblacion = await FindPoblacionById(id);
+            Poblacion @poblacion = await FindPoblacionById(id);
 
-            Context.Poblacion.Remove(poblacion);
+            Context.Poblacion.Remove(@poblacion);
 
             await Context.SaveChangesAsync();
 
             // Log
-            var logData = nameof(poblacion)
+            var logData = nameof(Poblacion)
                           + " with Id "
-                          + poblacion.Id
+                          + @poblacion.Id
                           + " was removed at "
                           + DateTime.Now.ToShortTimeString();
 
@@ -205,14 +205,14 @@ public class PoblacionManager(
     {
         await CheckName(viewModel);
 
-        var poblacion = await FindPoblacionById(viewModel.Id);
-        poblacion.Name = viewModel.Name.Trim();
-        poblacion.Provincia = await FindProvinciaById(viewModel.ProvinciaId);
-        poblacion.ImageUri = viewModel.ImageUri.Trim();
+        Poblacion @poblacion = await FindPoblacionById(viewModel.Id);
+        @poblacion.Name = viewModel.Name.Trim();
+        @poblacion.Provincia = await FindProvinciaById(viewModel.ProvinciaId);
+        @poblacion.ImageUri = viewModel.ImageUri.Trim();
 
         try
         {
-            Context.Poblacion.Update(poblacion);
+            Context.Poblacion.Update(@poblacion);
 
             await Context.SaveChangesAsync();
         }
@@ -222,15 +222,15 @@ public class PoblacionManager(
         }
 
         // Log
-        var logData = nameof(poblacion)
+        var logData = nameof(Poblacion)
                       + " with Id "
-                      + poblacion.Id
+                      + @poblacion.Id
                       + " was modified at "
                       + DateTime.Now.ToShortTimeString();
 
         logger.LogInformation(logData);
 
-        return poblacion;
+        return @poblacion;
     }
 
     /// <summary>
@@ -240,30 +240,30 @@ public class PoblacionManager(
     /// <returns>Instance of <see cref="Task{Poblacion}" /></returns>
     public async Task<Poblacion> CheckName(AddPoblacion viewModel)
     {
-        var poblacion = await Context.Poblacion
+        Poblacion @poblacion = await Context.Poblacion
             .AsNoTracking()
             .AsSplitQuery()
             .TagWith("CheckName")
             .FirstOrDefaultAsync(x => x.Name == viewModel.Name.Trim());
 
-        if (poblacion != null)
+        if (@poblacion != null)
         {
             // Log
-            var logData = nameof(poblacion)
+            var logData = nameof(Poblacion)
                           + " with Name "
-                          + poblacion.Name
+                          + @poblacion.Name
                           + " was already found at "
                           + DateTime.Now.ToShortTimeString();
 
             logger.LogError(logData);
 
-            throw new ServiceException(nameof(poblacion)
+            throw new ServiceException(nameof(Poblacion)
                                        + " with Name "
                                        + viewModel.Name
                                        + " already exists");
         }
 
-        return poblacion;
+        return @poblacion;
     }
 
     /// <summary>
@@ -273,29 +273,29 @@ public class PoblacionManager(
     /// <returns>Instance of <see cref="Task{Poblacion}" /></returns>
     public async Task<Poblacion> CheckName(UpdatePoblacion viewModel)
     {
-        var poblacion = await Context.Poblacion
+        Poblacion @poblacion = await Context.Poblacion
             .AsNoTracking()
             .AsSplitQuery()
             .TagWith("CheckName")
             .FirstOrDefaultAsync(x => (x.Name == viewModel.Name.Trim()) & (x.Id != viewModel.Id));
 
-        if (poblacion != null)
+        if (@poblacion != null)
         {
             // Log
-            var logData = nameof(poblacion)
+            var logData = nameof(Poblacion)
                           + " with Name "
-                          + poblacion.Name
+                          + @poblacion.Name
                           + " was already found at "
                           + DateTime.Now.ToShortTimeString();
 
             logger.LogError(logData);
 
-            throw new ServiceException(nameof(poblacion)
+            throw new ServiceException(nameof(Poblacion)
                                        + " with Name "
                                        + viewModel.Name
                                        + " already exists");
         }
 
-        return poblacion;
+        return @poblacion;
     }
 }

@@ -29,7 +29,7 @@ public class VientoManager(
     {
         await CheckName(viewModel);
 
-        Viento Viento = new()
+        Viento @viento = new()
         {
             Name = viewModel.Name.Trim(),
             ImageUri = viewModel.ImageUri.Trim()
@@ -37,7 +37,7 @@ public class VientoManager(
 
         try
         {
-            await Context.Viento.AddAsync(Viento);
+            await Context.Viento.AddAsync(@viento);
 
             await Context.SaveChangesAsync();
         }
@@ -49,13 +49,13 @@ public class VientoManager(
         // Log
         var logData = nameof(Viento)
                       + " with Id "
-                      + Viento.Id
+                      + @viento.Id
                       + " was added at "
                       + DateTime.Now.ToShortTimeString();
 
         logger.LogInformation(logData);
 
-        return Viento;
+        return @viento;
     }
 
     /// <summary>
@@ -64,13 +64,13 @@ public class VientoManager(
     /// <returns>Instance of <see cref="Task{IList{Viento}}" /></returns>
     public async Task<IList<Viento>> FindAllViento()
     {
-        IList<Viento> Vientos = await Context.Viento
+        IList<Viento> @vientos = await Context.Viento
             .TagWith("FindAllViento")
             .AsNoTracking()
             .AsSplitQuery()
             .ToListAsync();
 
-        return Vientos;
+        return @vientos;
     }
 
     /// <summary>
@@ -80,7 +80,7 @@ public class VientoManager(
     /// <returns>Instance of <see cref="Task{Page{Viento}}" /></returns>
     public async Task<Page<Viento>> FindPaginatedViento(FilterPage viewModel)
     {
-        Page<Viento> page = new()
+        Page<Viento> @page = new()
         {
             Length = await Context.Viento
                 .TagWith("CountAllViento")
@@ -98,7 +98,7 @@ public class VientoManager(
                 .ToListAsync()
         };
 
-        return page;
+        return @page;
     }
 
     /// <summary>
@@ -108,7 +108,7 @@ public class VientoManager(
     /// <returns>Instance of <see cref="IList{Historico}" /></returns>
     public async Task<IList<Historico>> FindAllHistoricoByVientoId(int id)
     {
-        IList<Historico> historicos = await Context.Historico
+        IList<Historico> @historicos = await Context.Historico
             .TagWith("FindAllHistoricoByVientoId")
             .AsNoTracking()
             .AsSplitQuery()
@@ -117,7 +117,7 @@ public class VientoManager(
             .Where(x => x.Viento.Id == id)
             .ToListAsync();
 
-        return historicos;
+        return @historicos;
     }
 
     /// <summary>
@@ -127,11 +127,11 @@ public class VientoManager(
     /// <returns>Instance of <see cref="Task{Viento}" /></returns>
     public async Task<Viento> FindVientoById(int id)
     {
-        var Viento = await Context.Viento
+        Viento @viento = await Context.Viento
             .TagWith("FindVientoById")
             .FirstOrDefaultAsync(x => x.Id == id);
 
-        if (Viento == null)
+        if (@viento == null)
         {
             // Log
             var logData = nameof(Viento)
@@ -148,7 +148,7 @@ public class VientoManager(
                                        + " does not exist");
         }
 
-        return Viento;
+        return @viento;
     }
 
     /// <summary>
@@ -160,16 +160,16 @@ public class VientoManager(
     {
         try
         {
-            var Viento = await FindVientoById(id);
+            Viento @viento = await FindVientoById(id);
 
-            Context.Viento.Remove(Viento);
+            Context.Viento.Remove(@viento);
 
             await Context.SaveChangesAsync();
 
             // Log
             var logData = nameof(Viento)
                           + " with Id "
-                          + Viento.Id
+                          + @viento.Id
                           + " was removed at "
                           + DateTime.Now.ToShortTimeString();
 
@@ -190,13 +190,13 @@ public class VientoManager(
     {
         await CheckName(viewModel);
 
-        var Viento = await FindVientoById(viewModel.Id);
-        Viento.Name = viewModel.Name.Trim();
-        Viento.ImageUri = viewModel.ImageUri.Trim();
+        Viento @viento = await FindVientoById(viewModel.Id);
+        @viento.Name = viewModel.Name.Trim();
+        @viento.ImageUri = viewModel.ImageUri.Trim();
 
         try
         {
-            Context.Viento.Update(Viento);
+            Context.Viento.Update(viento);
 
             await Context.SaveChangesAsync();
         }
@@ -208,13 +208,13 @@ public class VientoManager(
         // Log
         var logData = nameof(Viento)
                       + " with Id "
-                      + Viento.Id
+                      + @viento.Id
                       + " was modified at "
                       + DateTime.Now.ToShortTimeString();
 
         logger.LogInformation(logData);
 
-        return Viento;
+        return @viento;
     }
 
     /// <summary>
@@ -224,18 +224,18 @@ public class VientoManager(
     /// <returns>Instance of <see cref="Task{Viento}" /></returns>
     public async Task<Viento> CheckName(AddViento viewModel)
     {
-        var Viento = await Context.Viento
+        Viento @viento = await Context.Viento
             .TagWith("CheckName")
             .AsNoTracking()
             .AsSplitQuery()
             .FirstOrDefaultAsync(x => x.Name == viewModel.Name.Trim());
 
-        if (Viento != null)
+        if (@viento != null)
         {
             // Log
             var logData = nameof(Viento)
                           + " with Name "
-                          + Viento.Name
+                          + @viento.Name
                           + " was already found at "
                           + DateTime.Now.ToShortTimeString();
 
@@ -247,7 +247,7 @@ public class VientoManager(
                                        + " already exists");
         }
 
-        return Viento;
+        return @viento;
     }
 
     /// <summary>
@@ -257,18 +257,18 @@ public class VientoManager(
     /// <returns>Instance of <see cref="Task{Viento}" /></returns>
     public async Task<Viento> CheckName(UpdateViento viewModel)
     {
-        var Viento = await Context.Viento
+        Viento @viento = await Context.Viento
             .TagWith("CheckName")
             .AsNoTracking()
             .AsSplitQuery()
             .FirstOrDefaultAsync(x => x.Name == viewModel.Name.Trim() && x.Id != viewModel.Id);
 
-        if (Viento != null)
+        if (@viento != null)
         {
             // Log
             var logData = nameof(Viento)
                           + " with Name "
-                          + Viento.Name
+                          + @viento.Name
                           + " was already found at "
                           + DateTime.Now.ToShortTimeString();
 
@@ -280,6 +280,6 @@ public class VientoManager(
                                        + " already exists");
         }
 
-        return Viento;
+        return @viento;
     }
 }

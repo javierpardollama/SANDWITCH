@@ -62,7 +62,6 @@ public class ArenalManager(
         logger.LogInformation(logData);
 
         return arenal;
-        ;
     }
 
     /// <summary>
@@ -115,7 +114,7 @@ public class ArenalManager(
     /// <returns>Instance of <see cref="Task{IList{Arenal}}" /></returns>
     public async Task<IList<Arenal>> FindAllArenal()
     {
-        IList<Arenal> arenales = await Context.Arenal
+        IList<Arenal> @arenales = await Context.Arenal
             .TagWith("FindAllArenal")
             .AsNoTracking()
             .AsSplitQuery()
@@ -124,7 +123,7 @@ public class ArenalManager(
             .Include(x => x.Historicos)
             .ToListAsync();
 
-        return arenales;
+        return @arenales;
     }
 
     /// <summary>
@@ -134,7 +133,7 @@ public class ArenalManager(
     /// <returns>Instance of <see cref="Task{Page{Arenal}}" /></returns>
     public async Task<Page<Arenal>> FindPaginatedArenal(FilterPage viewModel)
     {
-        Page<Arenal> page = new()
+        Page<Arenal> @page = new()
         {
             Length = await Context.Arenal
                 .TagWith("CountAllArenal")
@@ -155,7 +154,7 @@ public class ArenalManager(
                 .ToListAsync()
         };
 
-        return page;
+        return @page;
     }
 
     /// <summary>
@@ -165,7 +164,7 @@ public class ArenalManager(
     /// <returns>Instance of <see cref="Task{IList{ViewHistorico}}" /></returns>
     public async Task<IList<Historico>> FindAllHistoricoByArenalId(int id)
     {
-        IList<Historico> historicos = await Context.Historico
+        IList<Historico> @historicos = await Context.Historico
             .TagWith("FindAllHistoricoByArenalId")
             .AsNoTracking()
             .AsSplitQuery()
@@ -175,7 +174,7 @@ public class ArenalManager(
             .Where(x => x.Arenal.Id == id)
             .ToListAsync();
 
-        return historicos;
+        return @historicos;
     }
 
     /// <summary>
@@ -185,7 +184,7 @@ public class ArenalManager(
     /// <returns>Instance of <see cref="Task{Arenal}" /></returns>
     public async Task<Arenal> FindArenalById(int id)
     {
-        var arenal = await Context.Arenal
+        Arenal @arenal = await Context.Arenal
             .TagWith("FindArenalById")
             .AsQueryable()
             .AsSplitQuery()
@@ -193,10 +192,10 @@ public class ArenalManager(
             .ThenInclude(x => x.Poblacion)
             .FirstOrDefaultAsync(x => x.Id == id);
 
-        if (arenal == null)
+        if (@arenal == null)
         {
             // Log
-            var logData = nameof(arenal)
+            var logData = nameof(Arenal)
                           + " with Id "
                           + id
                           + " was not found at "
@@ -204,13 +203,13 @@ public class ArenalManager(
 
             logger.LogError(logData);
 
-            throw new ServiceException(nameof(arenal)
+            throw new ServiceException(nameof(Arenal)
                                        + " with Id "
                                        + id
                                        + " does not exist");
         }
 
-        return arenal;
+        return @arenal;
     }
 
     /// <summary>
@@ -220,14 +219,14 @@ public class ArenalManager(
     /// <returns>Instance of <see cref="Task{Poblacion}" /></returns>
     public async Task<Poblacion> FindPoblacionById(int id)
     {
-        var poblacion = await Context.Poblacion
+        Poblacion @poblacion = await Context.Poblacion
             .TagWith("FindPoblacionById")
             .FirstOrDefaultAsync(x => x.Id == id);
 
-        if (poblacion == null)
+        if (@poblacion == null)
         {
             // Log
-            var logData = nameof(poblacion)
+            var logData = nameof(Poblacion)
                           + " with Id "
                           + id
                           + " was not found at "
@@ -235,13 +234,13 @@ public class ArenalManager(
 
             logger.LogError(logData);
 
-            throw new ServiceException(nameof(poblacion)
+            throw new ServiceException(nameof(Poblacion)
                                        + " with Id "
                                        + id
                                        + " does not exist");
         }
 
-        return poblacion;
+        return @poblacion;
     }
 
     /// <summary>
@@ -251,14 +250,14 @@ public class ArenalManager(
     /// <returns>Instance of <see cref="Task{Bandera}" /></returns>
     public async Task<Bandera> FindBanderaById(int id)
     {
-        var bandera = await Context.Bandera
+        Bandera @bandera = await Context.Bandera
             .TagWith("FindBanderaById")
             .FirstOrDefaultAsync(x => x.Id == id);
 
-        if (bandera == null)
+        if (@bandera == null)
         {
             // Log
-            var logData = nameof(bandera)
+            var logData = nameof(Bandera)
                           + " with Id "
                           + id
                           + " was not found at "
@@ -266,13 +265,13 @@ public class ArenalManager(
 
             logger.LogError(logData);
 
-            throw new ServiceException(nameof(bandera)
+            throw new ServiceException(nameof(Bandera)
                                        + " with Id "
                                        + id
                                        + " does not exist");
         }
 
-        return bandera;
+        return @bandera;
     }
 
     /// <summary>
@@ -284,16 +283,16 @@ public class ArenalManager(
     {
         try
         {
-            var arenal = await FindArenalById(id);
+            Arenal @arenal = await FindArenalById(id);
 
-            Context.Arenal.Remove(arenal);
+            Context.Arenal.Remove(@arenal);
 
             await Context.SaveChangesAsync();
 
             // Log
-            var logData = nameof(arenal)
+            var logData = nameof(Arenal)
                           + " with Id"
-                          + arenal.Id
+                          + @arenal.Id
                           + " was removed at "
                           + DateTime.Now.ToShortTimeString();
 
@@ -314,18 +313,18 @@ public class ArenalManager(
     {
         await CheckName(viewModel);
 
-        var arenal = await FindArenalById(viewModel.Id);
-        arenal.Name = viewModel.Name.Trim();
-        arenal.ArenalPoblaciones = new List<ArenalPoblacion>();
-        arenal.Historicos = new List<Historico>();
+        Arenal @arenal = await FindArenalById(viewModel.Id);
+        @arenal.Name = viewModel.Name.Trim();
+        @arenal.ArenalPoblaciones = new List<ArenalPoblacion>();
+        @arenal.Historicos = new List<Historico>();
 
         try
         {
-            Context.Arenal.Update(arenal);
+            Context.Arenal.Update(@arenal);
 
-            UpdateArenalPoblacion(viewModel, arenal);
+            UpdateArenalPoblacion(viewModel, @arenal);
 
-            await UpdateHistorico(arenal);
+            await UpdateHistorico(@arenal);
 
             await Context.SaveChangesAsync();
         }
@@ -335,7 +334,7 @@ public class ArenalManager(
         }
 
         // Log
-        var logData = nameof(arenal)
+        var logData = nameof(Arenal)
                       + " with Id"
                       + arenal.Id
                       + " was modified at "
@@ -344,7 +343,6 @@ public class ArenalManager(
         logger.LogInformation(logData);
 
         return arenal;
-        ;
     }
 
     /// <summary>
@@ -356,12 +354,12 @@ public class ArenalManager(
     {
         viewModel.PoblacionesId.AsQueryable().ToList().ForEach(async x =>
         {
-            var poblacion = await FindPoblacionById(x);
+            Poblacion @poblacion = await FindPoblacionById(x);
 
             ArenalPoblacion arenalPoblacion = new()
             {
                 Arenal = entity,
-                Poblacion = poblacion
+                Poblacion = @poblacion
             };
 
             entity.ArenalPoblaciones.Add(arenalPoblacion);
@@ -375,7 +373,7 @@ public class ArenalManager(
     /// <returns>Instance of <see cref="Task" /></returns>
     public async Task UpdateHistorico(Arenal entity)
     {
-        Historico historico = new()
+        Historico @historico = new()
         {
             Arenal = entity,
             Bandera = await FindBanderaById((int)FlagIdentifiers.Amarilla),
@@ -387,7 +385,7 @@ public class ArenalManager(
             Temperatura = 20,
             Velocidad = 0
         };
-        entity.Historicos.Add(historico);
+        entity.Historicos.Add(@historico);
     }
 
     /// <summary>
@@ -397,30 +395,30 @@ public class ArenalManager(
     /// <returns>Instance of <see cref="Task{Arenal}" /></returns>
     public async Task<Arenal> CheckName(AddArenal viewModel)
     {
-        var arenal = await Context.Arenal
+        Arenal @arenal = await Context.Arenal
             .AsNoTracking()
             .AsSplitQuery()
             .TagWith("CheckName")
             .FirstOrDefaultAsync(x => x.Name == viewModel.Name.Trim());
 
-        if (arenal != null)
+        if (@arenal != null)
         {
             // Log
-            var logData = nameof(arenal)
+            var logData = nameof(Arenal)
                           + " with Name "
-                          + arenal.Name
+                          + @arenal.Name
                           + " was already found at "
                           + DateTime.Now.ToShortTimeString();
 
             logger.LogError(logData);
 
-            throw new ServiceException(nameof(arenal)
+            throw new ServiceException(nameof(Arenal)
                                        + " with Name "
                                        + viewModel.Name
                                        + " already exists");
         }
 
-        return arenal;
+        return @arenal;
     }
 
     /// <summary>
@@ -430,30 +428,30 @@ public class ArenalManager(
     /// <returns>Instance of <see cref="Task{Arenal}" /></returns>
     public async Task<Arenal> CheckName(UpdateArenal viewModel)
     {
-        var arenal = await Context.Arenal
+        Arenal @arenal = await Context.Arenal
             .AsNoTracking()
             .AsSplitQuery()
             .TagWith("CheckName")
             .FirstOrDefaultAsync(x => x.Name == viewModel.Name.Trim() && x.Id != viewModel.Id);
 
-        if (arenal != null)
+        if (@arenal != null)
         {
             // Log
-            var logData = nameof(arenal)
+            var logData = nameof(Arenal)
                           + " with Name "
-                          + arenal.Name
+                          + @arenal.Name
                           + " was already found at "
                           + DateTime.Now.ToShortTimeString();
 
             logger.LogError(logData);
 
-            throw new ServiceException(nameof(arenal)
+            throw new ServiceException(nameof(Arenal)
                                        + " with Name "
                                        + viewModel.Name
                                        + " already exists");
         }
 
-        return arenal;
+        return @arenal;
     }
 
     /// <summary>
@@ -463,14 +461,14 @@ public class ArenalManager(
     /// <returns>Instance of <see cref="Task{Viento}" /></returns>
     public async Task<Viento> FindVientoById(int id)
     {
-        var viento = await Context.Viento
+        Viento @viento = await Context.Viento
             .TagWith("FindVientoById")
             .FirstOrDefaultAsync(x => x.Id == id);
 
-        if (viento == null)
+        if (@viento == null)
         {
             // Log
-            var logData = nameof(viento)
+            var logData = nameof(Viento)
                           + " with Id "
                           + id
                           + " was not found at "
@@ -478,12 +476,12 @@ public class ArenalManager(
 
             logger.LogError(logData);
 
-            throw new ServiceException(nameof(viento)
+            throw new ServiceException(nameof(Viento)
                                        + " with Id "
                                        + id
                                        + " does not exist");
         }
 
-        return viento;
+        return @viento;
     }
 }

@@ -24,7 +24,7 @@ public class BuscadorManager(
     /// <returns>Instance of <see cref="Task{IList{ViewBuscador}}" /></returns>
     public async Task<IList<Buscador>> FindAllBuscador()
     {
-        IList<Buscador> buscadores = await Context.Provincia.Select(provincia => new Buscador
+        IList<Buscador> @buscadores = await Context.Provincia.Select(provincia => new Buscador
             {
                 Id = provincia.Id,
                 ImageUri = provincia.ImageUri,
@@ -39,7 +39,7 @@ public class BuscadorManager(
             Type = nameof(Poblacion)
         })).ToListAsync();
 
-        return buscadores;
+        return @buscadores;
     }
 
     /// <summary>
@@ -56,7 +56,7 @@ public class BuscadorManager(
             _ => x => false
         };
 
-        IList<Arenal> arenales = await Context.ArenalPoblacion
+        IList<Arenal> @arenales = await Context.ArenalPoblacion
             .TagWith("FindAllArenalByBuscadorId")
             .AsNoTracking()
             .AsSplitQuery()
@@ -71,6 +71,6 @@ public class BuscadorManager(
             .ToListAsync();
 
 
-        return arenales;
+        return @arenales;
     }
 }

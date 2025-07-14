@@ -21,19 +21,19 @@ public class BaseManager : IBaseManager
     protected readonly IApplicationContext Context;
 
     /// <summary>
-    ///     Initializes a new Instance of <see cref="BaseService" />
+    ///     Initializes a new Instance of <see cref="BaseManager" />
     /// </summary>
     /// <param name="context">Injected <see cref="IApplicationContext" /></param>
-    public BaseManager(IApplicationContext context)
+    protected BaseManager(IApplicationContext context)
     {
         Context = context;
     }
 
     /// <summary>
-    ///     Initializes a new Instance of <see cref="BaseService" />
+    ///     Initializes a new Instance of <see cref="BaseManager" />
     /// </summary>
     /// <param name="apiSettings">Injected <see cref="IOptions{ApiSettings}" /></param>
-    public BaseManager(IOptions<ApiSettings> apiSettings)
+    protected BaseManager(IOptions<ApiSettings> apiSettings)
     {
         ApiSettings = apiSettings;
     }

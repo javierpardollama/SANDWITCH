@@ -29,7 +29,7 @@ public class ProvinciaManager(
     {
         await CheckName(viewModel);
 
-        Provincia provincia = new()
+        Provincia @provincia = new()
         {
             Name = viewModel.Name.Trim(),
             ImageUri = viewModel.ImageUri.Trim()
@@ -37,7 +37,7 @@ public class ProvinciaManager(
 
         try
         {
-            await Context.Provincia.AddAsync(provincia);
+            await Context.Provincia.AddAsync(@provincia);
 
             await Context.SaveChangesAsync();
         }
@@ -47,15 +47,15 @@ public class ProvinciaManager(
         }
 
         // Log
-        var logData = nameof(provincia)
+        var logData = nameof(Provincia)
                       + " with Id "
-                      + provincia.Id
+                      + @provincia.Id
                       + " was added at "
                       + DateTime.Now.ToShortTimeString();
 
         logger.LogInformation(logData);
 
-        return provincia;
+        return @provincia;
     }
 
     /// <summary>
@@ -64,14 +64,14 @@ public class ProvinciaManager(
     /// <returns>Instance of <see cref="Task{IList{ViewProvincia}}" /></returns>
     public async Task<IList<Provincia>> FindAllProvincia()
     {
-        IList<Provincia> provincias = await Context.Provincia
+        IList<Provincia> @provincias = await Context.Provincia
             .TagWith("FindAllProvincia")
             .AsNoTracking()
             .AsSplitQuery()
             .Include(x => x.Poblaciones)
             .ToListAsync();
 
-        return provincias;
+        return @provincias;
     }
 
     /// <summary>
@@ -81,7 +81,7 @@ public class ProvinciaManager(
     /// <returns>Instance of <see cref="Task{Page{Provincia}}" /></returns>
     public async Task<Page<Provincia>> FindPaginatedProvincia(FilterPage viewModel)
     {
-        Page<Provincia> page = new()
+        Page<Provincia> @page = new()
         {
             Length = await Context.Provincia
                 .AsNoTracking()
@@ -100,7 +100,7 @@ public class ProvinciaManager(
                 .ToListAsync()
         };
 
-        return page;
+        return @page;
     }
 
     /// <summary>
@@ -110,14 +110,14 @@ public class ProvinciaManager(
     /// <returns>Instance of <see cref="Task{Provincia}" /></returns>
     public async Task<Provincia> FindProvinciaById(int id)
     {
-        var provincia = await Context.Provincia
+        var @provincia = await Context.Provincia
             .TagWith("FindProvinciaById")
             .FirstOrDefaultAsync(x => x.Id == id);
 
-        if (provincia == null)
+        if (@provincia == null)
         {
             // Log
-            var logData = nameof(provincia)
+            var logData = nameof(Provincia)
                           + " with Id "
                           + id
                           + " was not found at "
@@ -125,13 +125,13 @@ public class ProvinciaManager(
 
             logger.LogError(logData);
 
-            throw new ServiceException(nameof(provincia)
+            throw new ServiceException(nameof(Provincia)
                                        + " with Id "
                                        + id
                                        + " does not exist");
         }
 
-        return provincia;
+        return @provincia;
     }
 
     /// <summary>
@@ -143,16 +143,16 @@ public class ProvinciaManager(
     {
         try
         {
-            var provincia = await FindProvinciaById(id);
+            Provincia @provincia = await FindProvinciaById(id);
 
-            Context.Provincia.Remove(provincia);
+            Context.Provincia.Remove(@provincia);
 
             await Context.SaveChangesAsync();
 
             // Log
-            var logData = nameof(provincia)
+            var logData = nameof(Provincia)
                           + " with Id "
-                          + provincia.Id
+                          + @provincia.Id
                           + " was removed at "
                           + DateTime.Now.ToShortTimeString();
 
@@ -173,13 +173,13 @@ public class ProvinciaManager(
     {
         await CheckName(viewModel);
 
-        var provincia = await FindProvinciaById(viewModel.Id);
-        provincia.Name = viewModel.Name.Trim();
-        provincia.ImageUri = viewModel.ImageUri.Trim();
+        Provincia @provincia = await FindProvinciaById(viewModel.Id);
+        @provincia.Name = viewModel.Name.Trim();
+        @provincia.ImageUri = viewModel.ImageUri.Trim();
 
         try
         {
-            Context.Provincia.Update(provincia);
+            Context.Provincia.Update(@provincia);
 
             await Context.SaveChangesAsync();
         }
@@ -189,7 +189,7 @@ public class ProvinciaManager(
         }
 
         // Log
-        var logData = nameof(provincia)
+        var logData = nameof(Provincia)
                       + " with Id "
                       + provincia.Id
                       + " was modified at "
@@ -197,7 +197,7 @@ public class ProvinciaManager(
 
         logger.LogInformation(logData);
 
-        return provincia;
+        return @provincia;
     }
 
     /// <summary>
@@ -207,30 +207,30 @@ public class ProvinciaManager(
     /// <returns>Instance of <see cref="Task{Provincia}" /></returns>
     public async Task<Provincia> CheckName(AddProvincia viewModel)
     {
-        var provincia = await Context.Provincia
+        var @provincia = await Context.Provincia
             .AsNoTracking()
             .AsSplitQuery()
             .TagWith("CheckName")
             .FirstOrDefaultAsync(x => x.Name == viewModel.Name.Trim());
 
-        if (provincia != null)
+        if (@provincia != null)
         {
             // Log
-            var logData = nameof(provincia)
+            var logData = nameof(Provincia)
                           + " with Name "
-                          + provincia.Name
+                          + @provincia.Name
                           + " was already found at "
                           + DateTime.Now.ToShortTimeString();
 
             logger.LogError(logData);
 
-            throw new ServiceException(nameof(provincia)
+            throw new ServiceException(nameof(Provincia)
                                        + " with Name "
                                        + viewModel.Name
                                        + " already exists");
         }
 
-        return provincia;
+        return @provincia;
     }
 
     /// <summary>
@@ -240,16 +240,16 @@ public class ProvinciaManager(
     /// <returns>Instance of <see cref="Task{Provincia}" /></returns>
     public async Task<Provincia> CheckName(UpdateProvincia viewModel)
     {
-        var provincia = await Context.Provincia
+        Provincia @provincia = await Context.Provincia
             .AsNoTracking()
             .AsSplitQuery()
             .TagWith("CheckName")
             .FirstOrDefaultAsync(x => x.Name == viewModel.Name.Trim() && x.Id != viewModel.Id);
 
-        if (provincia != null)
+        if (@provincia != null)
         {
             // Log
-            var logData = nameof(provincia)
+            var logData = nameof(Provincia)
                           + " with Name "
                           + provincia.Name
                           + " was already found at "
@@ -257,12 +257,12 @@ public class ProvinciaManager(
 
             logger.LogError(logData);
 
-            throw new ServiceException(nameof(provincia)
+            throw new ServiceException(nameof(Provincia)
                                        + " with Name "
                                        + viewModel.Name
                                        + " already exists");
         }
 
-        return provincia;
+        return @provincia;
     }
 }

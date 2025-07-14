@@ -25,7 +25,7 @@ public class HistoricoManager(
     /// <returns>Instance of <see cref="Task{Arenal}" /></returns>
     public async Task<Arenal> FindArenalById(int id)
     {
-        var arenal = await Context.Arenal
+        Arenal @arenal = await Context.Arenal
             .TagWith("FindArenalById")
             .AsQueryable()
             .AsSplitQuery()
@@ -33,10 +33,10 @@ public class HistoricoManager(
             .ThenInclude(x => x.Poblacion)
             .FirstOrDefaultAsync(x => x.Id == id);
 
-        if (arenal == null)
+        if (@arenal == null)
         {
             // Log
-            var logData = nameof(arenal)
+            var logData = nameof(Arenal)
                           + " with Id "
                           + id
                           + " was not found at "
@@ -44,13 +44,13 @@ public class HistoricoManager(
 
             logger.LogError(logData);
 
-            throw new ServiceException(nameof(arenal)
+            throw new ServiceException(nameof(Arenal)
                                        + " with Id "
                                        + id
                                        + " does not exist");
         }
 
-        return arenal;
+        return @arenal;
     }
 
     /// <summary>
@@ -60,14 +60,14 @@ public class HistoricoManager(
     /// <returns>Instance of <see cref="Task{Bandera}" /></returns>
     public async Task<Bandera> FindBanderaById(int id)
     {
-        var bandera = await Context.Bandera
+        Bandera @bandera = await Context.Bandera
             .TagWith("FindBanderaById")
             .FirstOrDefaultAsync(x => x.Id == id);
 
-        if (bandera == null)
+        if (@bandera == null)
         {
             // Log
-            var logData = nameof(bandera)
+            var logData = nameof(Bandera)
                           + " with Id "
                           + id
                           + " was not found at "
@@ -75,13 +75,13 @@ public class HistoricoManager(
 
             logger.LogError(logData);
 
-            throw new ServiceException(nameof(bandera)
+            throw new ServiceException(nameof(Bandera)
                                        + " with Id "
                                        + id
                                        + " does not exist");
         }
 
-        return bandera;
+        return @bandera;
     }
 
     /// <summary>
@@ -91,7 +91,7 @@ public class HistoricoManager(
     /// <returns>Instance of <see cref="Task{Historico}" /></returns>
     public async Task<Historico> AddHistorico(AddHistorico viewModel)
     {
-        Historico historico = new()
+        Historico @historico = new()
         {
             Arenal = await FindArenalById(viewModel.ArenalId),
             Bandera = await FindBanderaById(viewModel.BanderaId),
@@ -104,20 +104,20 @@ public class HistoricoManager(
             Temperatura = viewModel.Temperatura
         };
 
-        Context.Historico.Add(historico);
+        Context.Historico.Add(@historico);
 
         await Context.SaveChangesAsync();
 
         // Log
-        var logData = nameof(historico)
+        var logData = nameof(Historico)
                       + " with Id "
-                      + historico.Id
+                      + @historico.Id
                       + " was added at "
                       + DateTime.Now.ToShortTimeString();
 
         logger.LogInformation(logData);
 
-        return historico;
+        return @historico;
     }
 
     /// <summary>
@@ -127,14 +127,14 @@ public class HistoricoManager(
     /// <returns>Instance of <see cref="Task{Viento}" /></returns>
     public async Task<Viento> FindVientoById(int id)
     {
-        var viento = await Context.Viento
+        Viento @viento = await Context.Viento
             .TagWith("FindVientoById")
             .FirstOrDefaultAsync(x => x.Id == id);
 
-        if (viento == null)
+        if (@viento == null)
         {
             // Log
-            var logData = nameof(viento)
+            var logData = nameof(Viento)
                           + " with Id "
                           + id
                           + " was not found at "
@@ -142,12 +142,12 @@ public class HistoricoManager(
 
             logger.LogError(logData);
 
-            throw new ServiceException(nameof(viento)
+            throw new ServiceException(nameof(Viento)
                                        + " with Id "
                                        + id
                                        + " does not exist");
         }
 
-        return viento;
+        return @viento;
     }
 }

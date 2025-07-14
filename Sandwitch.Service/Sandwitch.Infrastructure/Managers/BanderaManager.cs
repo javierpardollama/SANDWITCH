@@ -64,13 +64,13 @@ public class BanderaManager(
     /// <returns>Instance of <see cref="Task{IList{ViewBandera}}" /></returns>
     public async Task<IList<Bandera>> FindAllBandera()
     {
-        IList<Bandera> banderas = await Context.Bandera
+        IList<Bandera> @banderas = await Context.Bandera
             .TagWith("FindAllBandera")
             .AsNoTracking()
             .AsSplitQuery()
             .ToListAsync();
 
-        return banderas;
+        return @banderas;
     }
 
     /// <summary>
@@ -80,7 +80,7 @@ public class BanderaManager(
     /// <returns>Instance of <see cref="Task{Page{Bandera}}" /></returns>
     public async Task<Page<Bandera>> FindPaginatedBandera(FilterPage viewModel)
     {
-        Page<Bandera> page = new()
+        Page<Bandera> @page = new()
         {
             Length = await Context.Bandera
                 .TagWith("CountAllBandera")
@@ -98,7 +98,7 @@ public class BanderaManager(
                 .ToListAsync()
         };
 
-        return page;
+        return @page;
     }
 
     /// <summary>
@@ -108,7 +108,7 @@ public class BanderaManager(
     /// <returns>Instance of <see cref="IList{ViewHistorico}" /></returns>
     public async Task<IList<Historico>> FindAllHistoricoByBanderaId(int id)
     {
-        IList<Historico> historicos = await Context.Historico
+        IList<Historico> @historicos = await Context.Historico
             .TagWith("FindAllHistoricoByBanderaId")
             .AsNoTracking()
             .AsSplitQuery()
@@ -117,7 +117,7 @@ public class BanderaManager(
             .Where(x => x.Bandera.Id == id)
             .ToListAsync();
 
-        return historicos;
+        return @historicos;
     }
 
     /// <summary>
@@ -127,14 +127,14 @@ public class BanderaManager(
     /// <returns>Instance of <see cref="Task{Bandera}" /></returns>
     public async Task<Bandera> FindBanderaById(int id)
     {
-        var bandera = await Context.Bandera
+        Bandera @bandera = await Context.Bandera
             .TagWith("FindBanderaById")
             .FirstOrDefaultAsync(x => x.Id == id);
 
-        if (bandera == null)
+        if (@bandera == null)
         {
             // Log
-            var logData = nameof(bandera)
+            var logData = nameof(Bandera)
                           + " with Id "
                           + id
                           + " was not found at "
@@ -142,13 +142,13 @@ public class BanderaManager(
 
             logger.LogError(logData);
 
-            throw new ServiceException(nameof(bandera)
+            throw new ServiceException(nameof(Bandera)
                                        + " with Id "
                                        + id
                                        + " does not exist");
         }
 
-        return bandera;
+        return @bandera;
     }
 
     /// <summary>
@@ -160,16 +160,16 @@ public class BanderaManager(
     {
         try
         {
-            var bandera = await FindBanderaById(id);
+            Bandera @bandera = await FindBanderaById(id);
 
-            Context.Bandera.Remove(bandera);
+            Context.Bandera.Remove(@bandera);
 
             await Context.SaveChangesAsync();
 
             // Log
-            var logData = nameof(bandera)
+            var logData = nameof(Bandera)
                           + " with Id "
-                          + bandera.Id
+                          + @bandera.Id
                           + " was removed at "
                           + DateTime.Now.ToShortTimeString();
 
@@ -190,13 +190,13 @@ public class BanderaManager(
     {
         await CheckName(viewModel);
 
-        var bandera = await FindBanderaById(viewModel.Id);
-        bandera.Name = viewModel.Name.Trim();
-        bandera.ImageUri = viewModel.ImageUri.Trim();
+        Bandera @bandera = await FindBanderaById(viewModel.Id);
+        @bandera.Name = viewModel.Name.Trim();
+        @bandera.ImageUri = viewModel.ImageUri.Trim();
 
         try
         {
-            Context.Bandera.Update(bandera);
+            Context.Bandera.Update(@bandera);
 
             await Context.SaveChangesAsync();
         }
@@ -206,7 +206,7 @@ public class BanderaManager(
         }
 
         // Log
-        var logData = nameof(bandera)
+        var logData = nameof(Bandera)
                       + " with Id "
                       + bandera.Id
                       + " was modified at "
@@ -214,7 +214,7 @@ public class BanderaManager(
 
         logger.LogInformation(logData);
 
-        return bandera;
+        return @bandera;
     }
 
     /// <summary>
@@ -224,30 +224,30 @@ public class BanderaManager(
     /// <returns>Instance of <see cref="Task{Bandera}" /></returns>
     public async Task<Bandera> CheckName(AddBandera viewModel)
     {
-        var bandera = await Context.Bandera
+        Bandera @bandera = await Context.Bandera
             .TagWith("CheckName")
             .AsNoTracking()
             .AsSplitQuery()
             .FirstOrDefaultAsync(x => x.Name == viewModel.Name.Trim());
 
-        if (bandera != null)
+        if (@bandera != null)
         {
             // Log
-            var logData = nameof(bandera)
+            var logData = nameof(Bandera)
                           + " with Name "
-                          + bandera.Name
+                          + @bandera.Name
                           + " was already found at "
                           + DateTime.Now.ToShortTimeString();
 
             logger.LogError(logData);
 
-            throw new ServiceException(nameof(bandera)
+            throw new ServiceException(nameof(Bandera)
                                        + " with Name "
                                        + viewModel.Name
                                        + " already exists");
         }
 
-        return bandera;
+        return @bandera;
     }
 
     /// <summary>
@@ -257,29 +257,29 @@ public class BanderaManager(
     /// <returns>Instance of <see cref="Task{Bandera}" /></returns>
     public async Task<Bandera> CheckName(UpdateBandera viewModel)
     {
-        var bandera = await Context.Bandera
+        Bandera @bandera = await Context.Bandera
             .TagWith("CheckName")
             .AsNoTracking()
             .AsSplitQuery()
             .FirstOrDefaultAsync(x => x.Name == viewModel.Name.Trim() && x.Id != viewModel.Id);
 
-        if (bandera != null)
+        if (@bandera != null)
         {
             // Log
-            var logData = nameof(bandera)
+            var logData = nameof(Bandera)
                           + " with Name "
-                          + bandera.Name
+                          + @bandera.Name
                           + " was already found at "
                           + DateTime.Now.ToShortTimeString();
 
             logger.LogError(logData);
 
-            throw new ServiceException(nameof(bandera)
+            throw new ServiceException(nameof(Bandera)
                                        + " with Name "
                                        + viewModel.Name
                                        + " already exists");
         }
 
-        return bandera;
+        return @bandera;
     }
 }

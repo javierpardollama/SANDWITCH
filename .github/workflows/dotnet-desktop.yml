@@ -20,7 +20,7 @@ jobs:
         dotnet-version: '9.0.x'
 
     - name: Restore solution dependencies
-      run: dotnet restore ./Sandwitch.Service/Sandwitch.Service.csproj
+      run: dotnet restore ./Sandwitch.Service
 
     - name: Build solution     
       run: dotnet build  ./Sandwitch.Service --no-restore    

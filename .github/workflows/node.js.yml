@@ -1,11 +1,10 @@
-# .github/workflows/angular.yml
 name: Build Angular App
 
 on:
   push:
-    branches: [main]
+    branches: [ main ]
   pull_request:
-    branches: [main]
+    branches: [ main ]
 
 jobs:
   build:
@@ -23,8 +22,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '22'
-          cache: 'npm'
-          cache-dependency-path: Sandwitch.Client/package-lock.json
+          cache: 'npm'        
 
       - name: 📥 Install dependencies
         run: npm ci    

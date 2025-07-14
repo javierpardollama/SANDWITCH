@@ -26,4 +26,4 @@ jobs:
       run: dotnet build  ./Sandwitch.Service --configuration Release --no-restore
 
     - name: Run tests
-      run:  dotnet test ./Sandwitch.Service/Sandwitch.Test.Infrastructure/Sandwitch.Test.Infrastructure.csproj --no-build --verbosity normal
+      run:  dotnet test ./Sandwitch.Service/Sandwitch.Test.Infrastructure --no-build --verbosity normal

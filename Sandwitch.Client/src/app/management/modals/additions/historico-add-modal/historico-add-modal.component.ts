@@ -95,9 +95,9 @@ export class HistoricoAddModalComponent implements OnInit {
 
   // Life Cicle
   async ngOnInit(): Promise<void> {
-    await this.FindAllBandera();
-    await this.FindAllViento();
-    this.CreateForm();
+      this.CreateForm();
+      await this.FindAllBandera();
+      await this.FindAllViento();
   }
 
   // Form

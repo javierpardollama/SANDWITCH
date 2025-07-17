@@ -86,8 +86,8 @@ export class ArenalUpdateModalComponent implements OnInit {
 
   // Life Cicle
   async ngOnInit(): Promise<void> {
-    await this.FindAllProvincia();
-    this.CreateForm();
+      this.CreateForm();
+      await this.FindAllProvincia();
   }
 
   // Form

@@ -101,7 +101,7 @@ export class SearchComponent implements OnInit {
     this.filteredBuscadores = this.buscadorCtrl.valueChanges
       .pipe(
         startWith(''),
-        map(buscador => buscador ? this.FilterBuscadores(buscador) : this.buscadores.slice())
+        map(buscador => buscador ? this.FilterBuscadores(buscador.Name) : this.buscadores.slice())
       );
   }
 

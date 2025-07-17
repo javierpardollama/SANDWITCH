@@ -1,6 +1,5 @@
 using System.Linq.Expressions;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
 using Sandwitch.Domain.Entities;
 using Sandwitch.Domain.Managers;
 using Sandwitch.Domain.ViewModels.Finders;
@@ -13,10 +12,8 @@ namespace Sandwitch.Infrastructure.Managers;
 ///     <see cref="IBuscadorManager" />
 /// </summary>
 /// <param name="context">Injected <see cref="IApplicationContext" /></param>
-/// <param name="logger">Injected <see cref="ILogger" /></param>
 public class BuscadorManager(
-    IApplicationContext context,
-    ILogger<BuscadorManager> logger) : BaseManager(context), IBuscadorManager
+    IApplicationContext context) : BaseManager(context), IBuscadorManager
 {
     /// <summary>
     ///     Finds All Buscador

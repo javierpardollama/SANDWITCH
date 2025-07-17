@@ -15,15 +15,15 @@ public static class RateLimiterInstaller
     ///     Extends Customized Rate Limit
     /// </summary>
     /// <param name="this">Injected <see cref="IServiceCollection" /></param>
-    /// <param name="RateSettings">Injected <see cref="RateLimitSettings" /></param>
-    public static void InstallRateLimiter(this IServiceCollection @this, RateLimitSettings RateSettings)
+    /// <param name="settings">Injected <see cref="RateLimitSettings" /></param>
+    public static void InstallRateLimiter(this IServiceCollection @this, RateLimitSettings @settings)
     {
         @this.AddRateLimiter(_ => _
-            .AddConcurrencyLimiter(RateSettings.PolicyName, options =>
+            .AddConcurrencyLimiter(settings.PolicyName, options =>
             {
-                options.PermitLimit = RateSettings.PermitLimit;
-                options.QueueProcessingOrder = (QueueProcessingOrder)RateSettings.QueueProcessingOrder;
-                options.QueueLimit = RateSettings.QueueLimit;
+                options.PermitLimit = settings.PermitLimit;
+                options.QueueProcessingOrder = (QueueProcessingOrder)settings.QueueProcessingOrder;
+                options.QueueLimit = settings.QueueLimit;
             }));
     }
 }

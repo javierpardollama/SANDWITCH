@@ -1,7 +1,6 @@
 using System;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.Extensions.Logging;
 using NUnit.Framework;
 using Sandwitch.Domain.Entities;
 using Sandwitch.Domain.ViewModels.Finders;
@@ -23,11 +22,9 @@ public class BuscadorManagerTest : BaseManagerTest
     {
         SetUpContext();
 
-        SetUpLogger();
-
         SetUpData();
 
-        BuscadorManager = new BuscadorManager(Context, Logger);
+        BuscadorManager = new BuscadorManager(Context);
     }
 
     /// <summary>
@@ -44,11 +41,6 @@ public class BuscadorManagerTest : BaseManagerTest
     }
 
     /// <summary>
-    ///     Instance of <see cref="ILogger{BuscadorManager}" />
-    /// </summary>
-    private ILogger<BuscadorManager> Logger;
-
-    /// <summary>
     ///     Instance of <see cref="BuscadorManager" />
     /// </summary>
     private BuscadorManager BuscadorManager;
@@ -58,21 +50,6 @@ public class BuscadorManagerTest : BaseManagerTest
     /// </summary>
     public BuscadorManagerTest()
     {
-    }
-
-    /// <summary>
-    ///     Sets Up Logger
-    /// </summary>
-    private void SetUpLogger()
-    {
-        var loggerFactory = LoggerFactory.Create(builder =>
-        {
-            builder
-                .AddFilter("Microsoft", LogLevel.Warning)
-                .AddFilter("System", LogLevel.Warning);
-        });
-
-        Logger = loggerFactory.CreateLogger<BuscadorManager>();
     }
 
     /// <summary>

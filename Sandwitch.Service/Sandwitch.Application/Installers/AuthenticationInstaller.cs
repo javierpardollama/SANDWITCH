@@ -2,6 +2,7 @@ using System.Net;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.Extensions.DependencyInjection;
 using Sandwitch.Application.Handlers;
+using Sandwitch.Domain.Settings;
 
 namespace Sandwitch.Application.Installers;
 
@@ -14,11 +15,11 @@ public static class AuthenticationInstaller
     ///     Installs Authentication
     /// </summary>
     /// <param name="this">Injected <see cref="IServiceCollection" /></param>
-    /// <param name="ApiSettings">Injected <see cref="ApiSettings" /></param>
-    public static void InstallAuthentication(this IServiceCollection @this, Domain.Settings.ApiSettings ApiSettings)
+    /// <param name="settings">Injected <see cref="ApiSettings" /></param>
+    public static void InstallAuthentication(this IServiceCollection @this, ApiSettings @settings)
     {
         @this.AddAuthentication(nameof(AuthenticationSchemes.Basic))
             .AddScheme<AuthenticationSchemeOptions, BasicAuthenticationHandler>(nameof(AuthenticationSchemes.Basic),
-                options => options.ClaimsIssuer = ApiSettings.ApiIssuer);
+                options => options.ClaimsIssuer = @settings.ApiIssuer);
     }
 }

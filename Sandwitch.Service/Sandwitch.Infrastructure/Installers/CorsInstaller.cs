@@ -12,14 +12,14 @@ public static class CorsInstaller
     ///     Installs Cors
     /// </summary>
     /// <param name="this">Injected <see cref="IServiceCollection" /></param>
-    /// <param name="ApiSettings">Injected <see cref="ApiSettings" /></param>
-    public static void InstallCors(this IServiceCollection @this, ApiSettings ApiSettings)
+    /// <param name="settings">Injected <see cref="ApiSettings" /></param>
+    public static void InstallCors(this IServiceCollection @this, ApiSettings @settings)
     {
         @this.AddCors(options =>
         {
             options.AddDefaultPolicy(policy =>
             {
-                policy.WithOrigins([.. ApiSettings.ApiAudiences])
+                policy.WithOrigins([.. @settings.ApiAudiences])
                     .AllowCredentials()
                     .AllowAnyMethod()
                     .AllowAnyHeader()

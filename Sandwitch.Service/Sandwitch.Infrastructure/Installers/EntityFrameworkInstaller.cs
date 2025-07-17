@@ -18,12 +18,12 @@ public static class EntityFrameworkInstaller
     /// </summary>
     /// <param name="this">Injected <see cref="IServiceCollection" /></param>
     /// <param name="configuration">Injected <see cref="IConfiguration" />></param>
-    public static void InstallEntityFramework(this IServiceCollection @this, IConfiguration configuration)
+    public static void InstallEntityFramework(this IServiceCollection @this, IConfiguration @configuration)
     {
         @this.AddDbContext<ApplicationContext>(options =>
         {
             options.AddInterceptors(new SoftDeleteInterceptor());
-            options.UseSqlite(configuration.GetConnectionString("DefaultConnection"));
+            options.UseSqlite(@configuration.GetConnectionString("DefaultConnection"));
         });
 
         @this.AddScoped<IApplicationContext, ApplicationContext>();
@@ -36,9 +36,9 @@ public static class EntityFrameworkInstaller
     /// <param name="this">Injected <see cref="WebApplication" /></param>
     public static void InstallMigrations(this WebApplication @this)
     {
-        using var scope = @this.Services.CreateScope();
+        using var @scope = @this.Services.CreateScope();
 
-        scope.ServiceProvider.GetRequiredService<ApplicationContext>().Database.Migrate();
+        @scope.ServiceProvider.GetRequiredService<ApplicationContext>().Database.Migrate();
 
         // Add other services here
     }

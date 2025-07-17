@@ -6,7 +6,6 @@ using Sandwitch.Application.Handlers.Buscador;
 using Sandwitch.Application.Handlers.Poblacion;
 using Sandwitch.Application.Handlers.Provincia;
 using Sandwitch.Application.Handlers.Viento;
-using Sandwitch.Domain.Settings;
 
 namespace Sandwitch.Application.Installers;
 

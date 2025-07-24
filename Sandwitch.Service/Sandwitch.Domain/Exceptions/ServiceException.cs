@@ -8,7 +8,7 @@ public class ServiceException : Exception
     /// <summary>
     ///     Initializes a new Instance of <see cref="ServiceException" />
     /// </summary>
-    public ServiceException()
+    public ServiceException(): base()
     {
     }
 

@@ -22,6 +22,8 @@ public class HeaderMiddleware(RequestDelegate request)
         context.Response.Headers.XFrameOptions = new StringValues("deny");
         context.Response.Headers.XXSSProtection = new StringValues("0");
         context.Response.Headers.ContentSecurityPolicy = new StringValues("default-src 'self'");
+        
+        @context.Response.Headers.Append("X-Clacks-Overhead", "GNU Terry Pratchett");
 
         await request(context);
     }

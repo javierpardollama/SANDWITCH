@@ -4,7 +4,9 @@ import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi } from '@a
 import { provideAnimations } from '@angular/platform-browser/animations';
 
 import { routes } from './app.routes';
-import { AuthInterceptor } from 'src/interceptors/auth.interceptor';
+import { AuthInterceptor } from '../interceptors/auth.interceptor';
+import { provideServiceWorker } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 export const AppConfig: ApplicationConfig = {
   providers: [
@@ -13,5 +15,10 @@ export const AppConfig: ApplicationConfig = {
     provideRouter(routes),
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
     provideHttpClient(withInterceptorsFromDi()),
+    provideServiceWorker('ngsw-worker.js',
+        {
+            enabled: environment.serviceWorker,
+            registrationStrategy: 'registerWhenStable:30000'
+        }),
   ]
 };

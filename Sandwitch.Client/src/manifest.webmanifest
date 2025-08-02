@@ -1,0 +1,52 @@
+{
+  "name": "Sandwitch.Client",
+  "short_name": "Sandwitch.Client",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#fafafa",
+  "theme_color": "#673ab7",
+  "scope": "/",
+  "start_url": "/",
+  "icons": [
+    {
+      "src": "assets/img/pwa/Sandwitch_72px.png",
+      "sizes": "72x72",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/img/pwa/Sandwitch_96px.png",
+      "sizes": "96x96",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/img/pwa/Sandwitch_128px.png",
+      "sizes": "128x128",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/img/pwa/Sandwitch_144px.png",
+      "sizes": "144x144",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/img/pwa/Sandwitch_152px.png",
+      "sizes": "152x152",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/img/pwa/Sandwitch_192px.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/img/pwa/Sandwitch_384px.png",
+      "sizes": "384x384",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/img/pwa/Sandwitch_512px.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

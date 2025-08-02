@@ -15,6 +15,7 @@ export const environment =
     Exporter:"https://localhost:16175/v1/traces",
     Key:"04adc0ddb20983d0e82b171afdaf2fd8"
   },
+  serviceWorker: false,
   production: false
 };
 

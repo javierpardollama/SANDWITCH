@@ -1,6 +1,6 @@
-import { AddHistorico } from './../viewmodels/additions/addhistorico';
+import { AddHistorico } from '../viewmodels/additions/addhistorico';
 
-import { ViewHistorico } from './../viewmodels/views/viewhistorico';
+import { ViewHistorico } from '../viewmodels/views/viewhistorico';
 
 import { HttpClient } from '@angular/common/http';
 

@@ -17,8 +17,8 @@ export const AppConfig: ApplicationConfig = {
     provideHttpClient(withInterceptorsFromDi()),
     provideServiceWorker('ngsw-worker.js',
         {
-            enabled: environment.serviceWorker,
-            registrationStrategy: 'registerWhenStable:30000'
+            enabled: environment.ServiceWorker.Enabled,
+            registrationStrategy: `registerWhenStable:${environment.ServiceWorker.TimeOut}`
         }),
   ]
 };

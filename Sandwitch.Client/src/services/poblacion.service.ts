@@ -1,10 +1,10 @@
-import { AddPoblacion } from './../viewmodels/additions/addpoblacion';
+import { AddPoblacion } from '../viewmodels/additions/addpoblacion';
 
-import { UpdatePoblacion } from './../viewmodels/updates/updatepoblacion';
+import { UpdatePoblacion } from '../viewmodels/updates/updatepoblacion';
 
-import { ViewPage } from './../viewmodels/views/viewpage';
+import { ViewPage } from '../viewmodels/views/viewpage';
 
-import { ViewPoblacion } from './../viewmodels/views/viewpoblacion';
+import { ViewPoblacion } from '../viewmodels/views/viewpoblacion';
 
 import { HttpClient } from '@angular/common/http';
 

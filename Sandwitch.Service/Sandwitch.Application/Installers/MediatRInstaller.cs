@@ -1,5 +1,4 @@
 using Microsoft.Extensions.DependencyInjection;
-using Sandwitch.Application.Handlers;
 using Sandwitch.Application.Handlers.Arenal;
 using Sandwitch.Application.Handlers.Bandera;
 using Sandwitch.Application.Handlers.Buscador;
@@ -20,8 +19,6 @@ public static class MediatRInstaller
     /// <param name="this">Injected <see cref="IServiceCollection" /></param>
     public static void InstallMediatR(this IServiceCollection @this)
     {
-        @this.AddExceptionHandler<ProblemDetailsExceptionHandler>();
-
         @this.AddMediatR(cfg =>
         {
             cfg.RegisterServicesFromAssemblyContaining(typeof(AddArenalHandler));

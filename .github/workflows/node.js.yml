@@ -22,7 +22,7 @@ jobs:
       - name: 📦 Checkout repository
         uses: actions/checkout@v4
 
-      - name: 🛠 Setup Node.js
+      - name: 🛠️ Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}      
@@ -30,5 +30,5 @@ jobs:
       - name: 📥 Install dependencies
         run: npm ci    
 
-      - name: 🏗 Build project
+      - name: 🏗️ Build project
         run: npm run build --if-present

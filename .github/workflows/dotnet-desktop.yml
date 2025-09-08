@@ -26,7 +26,7 @@ jobs:
       - name: 📥 Restore dependencies
         run: dotnet restore
 
-      - name: 🧹 Clean project
+      - name: 🧼 Clean project
         run: dotnet clean  
 
       - name: 🏗 Build project

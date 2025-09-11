@@ -21,14 +21,18 @@ public class BuscadorManager(
     /// <returns>Instance of <see cref="Task{IList{ViewBuscador}}" /></returns>
     public async Task<IList<Buscador>> FindAllBuscador()
     {
-        IList<Buscador> @buscadores = await Context.Provincia.Select(provincia => new Buscador
+        IList<Buscador> @buscadores = await Context.Provincia
+            .AsNoTracking()
+            .Select(provincia => new Buscador
             {
                 Id = provincia.Id,
                 ImageUri = provincia.ImageUri,
                 Name = provincia.Name,
                 Type = nameof(Provincia)
             }
-        ).Union(Context.Poblacion.Select(poblacion => new Buscador
+        ).Union(Context.Poblacion
+                .AsNoTracking()
+                .Select(poblacion => new Buscador
         {
             Id = poblacion.Id,
             ImageUri = poblacion.ImageUri,

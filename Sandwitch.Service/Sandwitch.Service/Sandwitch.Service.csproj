@@ -9,10 +9,6 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="9.0.0"/>       
-    </ItemGroup>
-
-    <ItemGroup>
         <ProjectReference Include="..\Sandwitch.Application\Sandwitch.Application.csproj"/>
         <ProjectReference Include="..\Sandwitch.Infrastructure\Sandwitch.Infrastructure.csproj"/>
         <ProjectReference Include="..\Sandwitch.Host\Sandwitch.Host.csproj"/>

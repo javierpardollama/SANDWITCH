@@ -13,11 +13,16 @@ using OpenTelemetry.Trace;
 
 namespace Sandwitch.Host.Installers;
 
-// Adds common .NET Aspire services: service discovery, resilience, health checks, and OpenTelemetry.
-// This project should be referenced by each service project in your solution.
-// To learn more about using this project, see https://aka.ms/dotnet/aspire/service-defaults
+/// <summary>
+///     Represents a <see cref="ResilienceInstaller" /> class.
+/// </summary>
 public static class ResilienceInstaller
 {
+    /// <summary>
+    /// Installs Aspire Services
+    /// </summary>
+    /// <param name="builder">Injected <see cref="IHostApplicationBuilder"/></param>
+    /// <returns>Instance of <see cref="IHostApplicationBuilder"/></returns>
     public static IHostApplicationBuilder InstallAspireServices(this IHostApplicationBuilder builder)
     {
         builder.ConfigureOpenTelemetry();
@@ -40,6 +45,11 @@ public static class ResilienceInstaller
         return builder;
     }
 
+    /// <summary>
+    /// Configures Open Telemetry
+    /// </summary>
+    /// <param name="builder">Injected <see cref="IHostApplicationBuilder"/></param>
+    /// <returns>Instance of <see cref="IHostApplicationBuilder"/></returns>
     private static IHostApplicationBuilder ConfigureOpenTelemetry(this IHostApplicationBuilder builder)
     {
         builder.Logging.AddOpenTelemetry(logging =>
@@ -66,6 +76,11 @@ public static class ResilienceInstaller
         return builder;
     }
 
+    /// <summary>
+    /// Adds Open Telemetry Exporters
+    /// </summary>
+    /// <param name="builder">Injected <see cref="IHostApplicationBuilder"/></param>
+    /// <returns>Instance of <see cref="IHostApplicationBuilder"/></returns>
     private static IHostApplicationBuilder AddOpenTelemetryExporters(this IHostApplicationBuilder builder)
     {
         var useOtlpExporter = !string.IsNullOrWhiteSpace(builder.Configuration["OTEL_EXPORTER_OTLP_ENDPOINT"]);

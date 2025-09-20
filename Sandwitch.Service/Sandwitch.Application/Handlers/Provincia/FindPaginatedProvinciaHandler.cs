@@ -26,7 +26,7 @@ public class FindPaginatedProvinciaHandler : IRequestHandler<FindPaginatedProvin
     }
 
     /// <summary>
-    /// Handles
+    /// Handles Request
     /// </summary>
     /// <param name="request">Injected <see cref="FindPaginatedProvinciaQuery"/></param>
     /// <param name="cancellationToken">Injected <see cref="CancellationToken"/></param>

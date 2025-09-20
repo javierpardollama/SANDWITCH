@@ -26,7 +26,7 @@ public class AddProvinciaHandler : IRequestHandler<AddProvinciaCommand, ViewProv
     }
 
     /// <summary>
-    /// Handles
+    /// Handles Request
     /// </summary>
     /// <param name="request">Injected <see cref="AddProvinciaCommand"/></param>
     /// <param name="cancellationToken">Injected <see cref="CancellationToken"/></param>

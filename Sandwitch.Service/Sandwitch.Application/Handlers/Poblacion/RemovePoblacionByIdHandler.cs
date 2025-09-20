@@ -22,7 +22,7 @@ public class RemovePoblacionByIdHandler : IRequestHandler<RemovePoblacionByIdCom
     }
 
     /// <summary>
-    /// Handles
+    /// Handles Request
     /// </summary>
     /// <param name="request">Injected <see cref="RemovePoblacionByIdCommand"/></param>
     /// <param name="cancellationToken">Injected <see cref="CancellationToken"/></param>

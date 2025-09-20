@@ -26,7 +26,7 @@ public class FindPaginatedVientoHandler : IRequestHandler<FindPaginatedVientoQue
     }
 
     /// <summary>
-    /// Handles
+    /// Handles Request
     /// </summary>
     /// <param name="request">Injected <see cref="FindPaginatedVientoQuery"/></param>
     /// <param name="cancellationToken">Injected <see cref="CancellationToken"/></param>

@@ -26,7 +26,7 @@ public class FindPaginatedArenalHandler : IRequestHandler<FindPaginatedArenalQue
     }
 
     /// <summary>
-    /// Handles
+    /// Handles Request
     /// </summary>
     /// <param name="request">Injected <see cref="FindPaginatedArenalQuery"/></param>
     /// <param name="cancellationToken">Injected <see cref="CancellationToken"/></param>

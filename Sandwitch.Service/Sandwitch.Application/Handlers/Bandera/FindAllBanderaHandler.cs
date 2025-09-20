@@ -26,7 +26,7 @@ public class FindAllBanderaHandler : IRequestHandler<FindAllBanderaQuery, IList<
     }
 
     /// <summary>
-    /// Handles
+    /// Handles Request
     /// </summary>
     /// <param name="request">Injected <see cref="FindAllBanderaQuery"/></param>
     /// <param name="cancellationToken">Injected <see cref="CancellationToken"/></param>

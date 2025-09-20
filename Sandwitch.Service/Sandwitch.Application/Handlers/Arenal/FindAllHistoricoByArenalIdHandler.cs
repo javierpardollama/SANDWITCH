@@ -26,7 +26,7 @@ public class FindAllHistoricoByArenalIdHandler : IRequestHandler<FindAllHistoric
     }
 
     /// <summary>
-    /// Handles
+    /// Handles Request
     /// </summary>
     /// <param name="request">Injected <see cref="FindAllHistoricoByArenalIdQuery"/></param>
     /// <param name="cancellationToken">Injected <see cref="CancellationToken"/></param>

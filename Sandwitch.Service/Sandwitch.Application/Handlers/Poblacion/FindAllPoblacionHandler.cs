@@ -26,7 +26,7 @@ public class FindAllPoblacionHandler : IRequestHandler<FindAllPoblacionQuery, IL
     }
 
     /// <summary>
-    /// Handles
+    /// Handles Request
     /// </summary>
     /// <param name="request">Injected <see cref="FindAllPoblacionQuery"/></param>
     /// <param name="cancellationToken">Injected <see cref="CancellationToken"/></param>

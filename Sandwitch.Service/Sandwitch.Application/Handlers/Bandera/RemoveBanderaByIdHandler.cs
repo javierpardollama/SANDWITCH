@@ -21,7 +21,7 @@ public class RemoveBanderaByIdHandler : IRequestHandler<RemoveBanderaByIdCommand
     }
 
     /// <summary>
-    /// Handles
+    /// Handles Request
     /// </summary>
     /// <param name="request">Injected <see cref="RemoveBanderaByIdCommand"/></param>
     /// <param name="cancellationToken">Injected <see cref="CancellationToken"/></param>

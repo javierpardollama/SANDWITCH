@@ -21,7 +21,7 @@ public class RemoveProvinciaByIdHandler : IRequestHandler<RemoveProvinciaByIdCom
     }
 
     /// <summary>
-    /// Handles
+    /// Handles Request
     /// </summary>
     /// <param name="request">Injected <see cref="RemoveProvinciaByIdCommand"/></param>
     /// <param name="cancellationToken">Injected <see cref="CancellationToken"/></param>

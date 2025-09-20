@@ -26,7 +26,7 @@ public class FindAllProvinciaHandler : IRequestHandler<FindAllProvinciaQuery, IL
     }
 
     /// <summary>
-    /// Handles
+    /// Handles Request
     /// </summary>
     /// <param name="request">Injected <see cref="FindAllProvinciaQuery"/></param>
     /// <param name="cancellationToken">Injected <see cref="CancellationToken"/></param>

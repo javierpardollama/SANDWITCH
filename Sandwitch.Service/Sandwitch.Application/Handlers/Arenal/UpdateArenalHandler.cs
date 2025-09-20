@@ -26,7 +26,7 @@ public class UpdateArenalHandler : IRequestHandler<UpdateArenalCommand, ViewAren
     }
 
     /// <summary>
-    /// Handles
+    /// Handles Request
     /// </summary>
     /// <param name="request">Injected <see cref="UpdateArenalCommand"/></param>
     /// <param name="cancellationToken">Injected <see cref="CancellationToken"/></param>

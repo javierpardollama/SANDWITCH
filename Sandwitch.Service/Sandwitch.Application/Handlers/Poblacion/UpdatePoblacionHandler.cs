@@ -26,7 +26,7 @@ public class UpdatePoblacionHandler : IRequestHandler<UpdatePoblacionCommand, Vi
     }
 
     /// <summary>
-    /// Handles
+    /// Handles Request
     /// </summary>
     /// <param name="request">Injected <see cref="UpdatePoblacionCommand"/></param>
     /// <param name="cancellationToken">Injected <see cref="CancellationToken"/></param>

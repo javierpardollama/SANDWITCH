@@ -26,7 +26,7 @@ public class AddVientoHandler : IRequestHandler<AddVientoCommand, ViewViento>
     }
 
     /// <summary>
-    /// Handles
+    /// Handles Request
     /// </summary>
     /// <param name="request">Injected <see cref="AddVientoCommand"/></param>
     /// <param name="cancellationToken">Injected <see cref="CancellationToken"/></param>

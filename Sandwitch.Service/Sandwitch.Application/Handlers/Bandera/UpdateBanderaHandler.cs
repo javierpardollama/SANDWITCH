@@ -26,7 +26,7 @@ public class UpdateBanderaHandler : IRequestHandler<UpdateBanderaCommand, ViewBa
     }
 
     /// <summary>
-    /// Handles
+    /// Handles Request
     /// </summary>
     /// <param name="request">Injected <see cref="UpdateBanderaCommand"/></param>
     /// <param name="cancellationToken">Injected <see cref="CancellationToken"/></param>

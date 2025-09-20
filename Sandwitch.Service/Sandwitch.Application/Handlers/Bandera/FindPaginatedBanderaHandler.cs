@@ -26,7 +26,7 @@ public class FindPaginatedBanderaHandler : IRequestHandler<FindPaginatedBanderaQ
     }
 
     /// <summary>
-    /// Handles
+    /// Handles Request
     /// </summary>
     /// <param name="request">Injected <see cref="FindPaginatedBanderaQuery"/></param>
     /// <param name="cancellationToken">Injected <see cref="CancellationToken"/></param>

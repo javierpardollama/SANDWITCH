@@ -26,7 +26,7 @@ public class AddPoblacionHandler : IRequestHandler<AddPoblacionCommand, ViewPobl
     }
 
     /// <summary>
-    /// Handles
+    /// Handles Request
     /// </summary>
     /// <param name="request">Injected <see cref="AddPoblacionCommand"/></param>
     /// <param name="cancellationToken">Injected <see cref="CancellationToken"/></param>

@@ -25,7 +25,7 @@ public class RemoveVientoByIdHandler : IRequestHandler<RemoveVientoByIdCommand>
     }
 
     /// <summary>
-    /// Handles
+    /// Handles Request
     /// </summary>
     /// <param name="request">Injected <see cref="RemoveVientoByIdCommand"/></param>
     /// <param name="cancellationToken">Injected <see cref="CancellationToken"/></param>

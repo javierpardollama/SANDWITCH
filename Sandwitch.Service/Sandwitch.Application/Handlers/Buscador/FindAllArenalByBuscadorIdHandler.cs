@@ -26,7 +26,7 @@ public class FindAllArenalByBuscadorIdHandler : IRequestHandler<FindAllArenalByB
     }
 
     /// <summary>
-    /// Handles
+    /// Handles Request
     /// </summary>
     /// <param name="request">Injected <see cref="FindAllArenalByBuscadorIdQuery"/></param>
     /// <param name="cancellationToken">Injected <see cref="CancellationToken"/></param>

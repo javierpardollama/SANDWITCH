@@ -26,7 +26,7 @@ public class FindAllBuscadorHandler : IRequestHandler<FindAllBuscadorQuery, ILis
     }
 
     /// <summary>
-    /// Handles
+    /// Handles Request
     /// </summary>
     /// <param name="request">Injected <see cref="FindAllBuscadorQuery"/></param>
     /// <param name="cancellationToken">Injected <see cref="CancellationToken"/></param>

@@ -26,7 +26,7 @@ public class FindAllVientoHandler : IRequestHandler<FindAllVientoQuery, IList<Vi
     }
 
     /// <summary>
-    /// Handles
+    /// Handles Request
     /// </summary>
     /// <param name="request">Injected <see cref="FindAllVientoQuery"/></param>
     /// <param name="cancellationToken">Injected <see cref="CancellationToken"/></param>

@@ -21,7 +21,7 @@ public class RemoveArenalByIdHandler : IRequestHandler<RemoveArenalByIdCommand>
     }
 
     /// <summary>
-    /// Handles
+    /// Handles Request
     /// </summary>
     /// <param name="request">Injected <see cref="RemoveArenalByIdCommand"/></param>
     /// <param name="cancellationToken">Injected <see cref="CancellationToken"/></param>

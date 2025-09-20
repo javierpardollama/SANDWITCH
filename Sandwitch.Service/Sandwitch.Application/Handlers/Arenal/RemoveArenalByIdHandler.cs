@@ -20,6 +20,12 @@ public class RemoveArenalByIdHandler : IRequestHandler<RemoveArenalByIdCommand>
         Manager = manager;
     }
 
+    /// <summary>
+    /// Handles
+    /// </summary>
+    /// <param name="request">Injected <see cref="RemoveArenalByIdCommand"/></param>
+    /// <param name="cancellationToken">Injected <see cref="CancellationToken"/></param>
+    /// <returns>Instance of <see cref="Task"/></returns>
     public async Task Handle(RemoveArenalByIdCommand request, CancellationToken cancellationToken)
     {
         await Manager.RemoveArenalById(request.Id);

@@ -25,6 +25,12 @@ public class FindAllBuscadorHandler : IRequestHandler<FindAllBuscadorQuery, ILis
         Mapper = mapper;
     }
 
+    /// <summary>
+    /// Handles
+    /// </summary>
+    /// <param name="request">Injected <see cref="FindAllBuscadorQuery"/></param>
+    /// <param name="cancellationToken">Injected <see cref="CancellationToken"/></param>
+    /// <returns>Instance of <see cref="Task{IList{ViewBuscador}}"/></returns>
     public async Task<IList<ViewBuscador>> Handle(FindAllBuscadorQuery request, CancellationToken cancellationToken)
     {
         var result = await Manager.FindAllBuscador();

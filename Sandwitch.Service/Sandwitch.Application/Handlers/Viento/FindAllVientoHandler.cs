@@ -25,6 +25,12 @@ public class FindAllVientoHandler : IRequestHandler<FindAllVientoQuery, IList<Vi
         Mapper = mapper;
     }
 
+    /// <summary>
+    /// Handles
+    /// </summary>
+    /// <param name="request">Injected <see cref="FindAllVientoQuery"/></param>
+    /// <param name="cancellationToken">Injected <see cref="CancellationToken"/></param>
+    /// <returns>Instance of <see cref="Task{IList{ViewViento}}"/></returns>
     public async Task<IList<ViewViento>> Handle(FindAllVientoQuery request, CancellationToken cancellationToken)
     {
         var result = await Manager.FindAllViento();

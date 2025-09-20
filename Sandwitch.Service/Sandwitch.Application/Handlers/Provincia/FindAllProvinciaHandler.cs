@@ -25,6 +25,12 @@ public class FindAllProvinciaHandler : IRequestHandler<FindAllProvinciaQuery, IL
         Mapper = mapper;
     }
 
+    /// <summary>
+    /// Handles
+    /// </summary>
+    /// <param name="request">Injected <see cref="FindAllProvinciaQuery"/></param>
+    /// <param name="cancellationToken">Injected <see cref="CancellationToken"/></param>
+    /// <returns>Instance of <see cref="Task{List{ViewProvincia}}"/></returns>
     public async Task<IList<ViewProvincia>> Handle(FindAllProvinciaQuery request, CancellationToken cancellationToken)
     {
         var result = await Manager.FindAllProvincia();

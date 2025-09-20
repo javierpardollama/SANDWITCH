@@ -25,6 +25,12 @@ public class AddArenalHandler : IRequestHandler<AddArenalCommand, ViewArenal>
         Mapper = mapper;
     }
 
+    /// <summary>
+    /// Handles
+    /// </summary>
+    /// <param name="request">Injected <see cref="AddArenalCommand"/></param>
+    /// <param name="cancellationToken">Injected <see cref="CancellationToken"/></param>
+    /// <returns>Instance of <see cref="Task{ViewArenal}"/></returns>
     public async Task<ViewArenal> Handle(AddArenalCommand request, CancellationToken cancellationToken)
     {
         var result = await Manager.AddArenal(request.ViewModel);

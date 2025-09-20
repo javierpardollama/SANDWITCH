@@ -21,6 +21,12 @@ public class RemovePoblacionByIdHandler : IRequestHandler<RemovePoblacionByIdCom
         Manager = manager;
     }
 
+    /// <summary>
+    /// Handles
+    /// </summary>
+    /// <param name="request">Injected <see cref="RemovePoblacionByIdCommand"/></param>
+    /// <param name="cancellationToken">Injected <see cref="CancellationToken"/></param>
+    /// <returns>Instance of <see cref="Task"/></returns>
     public async Task Handle(RemovePoblacionByIdCommand request, CancellationToken cancellationToken)
     {
         await Manager.RemovePoblacionById(request.Id);

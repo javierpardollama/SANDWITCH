@@ -25,6 +25,12 @@ public class AddVientoHandler : IRequestHandler<AddVientoCommand, ViewViento>
         Mapper = mapper;
     }
 
+    /// <summary>
+    /// Handles
+    /// </summary>
+    /// <param name="request">Injected <see cref="AddVientoCommand"/></param>
+    /// <param name="cancellationToken">Injected <see cref="CancellationToken"/></param>
+    /// <returns>Instance of <see cref="Task{ViewViento}"/></returns>
     public async Task<ViewViento> Handle(AddVientoCommand request, CancellationToken cancellationToken)
     {
         var result = await Manager.AddViento(request.ViewModel);

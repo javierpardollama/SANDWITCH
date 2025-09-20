@@ -25,6 +25,12 @@ public class FindAllBanderaHandler : IRequestHandler<FindAllBanderaQuery, IList<
         Mapper = mapper;
     }
 
+    /// <summary>
+    /// Handles
+    /// </summary>
+    /// <param name="request">Injected <see cref="FindAllBanderaQuery"/></param>
+    /// <param name="cancellationToken">Injected <see cref="CancellationToken"/></param>
+    /// <returns>Instance of <see cref="Task{IList{ViewBandera}}"/></returns>
     public async Task<IList<ViewBandera>> Handle(FindAllBanderaQuery request, CancellationToken cancellationToken)
     {
         var result = await Manager.FindAllBandera();

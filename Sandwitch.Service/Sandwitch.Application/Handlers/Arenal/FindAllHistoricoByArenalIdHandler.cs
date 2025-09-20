@@ -25,6 +25,12 @@ public class FindAllHistoricoByArenalIdHandler : IRequestHandler<FindAllHistoric
         Mapper = mapper;
     }
 
+    /// <summary>
+    /// Handles
+    /// </summary>
+    /// <param name="request">Injected <see cref="FindAllHistoricoByArenalIdQuery"/></param>
+    /// <param name="cancellationToken">Injected <see cref="CancellationToken"/></param>
+    /// <returns>Instance of <see cref="Task{IList{ViewHistorico}}"/></returns>
     public async Task<IList<ViewHistorico>> Handle(FindAllHistoricoByArenalIdQuery request,
         CancellationToken cancellationToken)
     {

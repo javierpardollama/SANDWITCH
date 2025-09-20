@@ -25,6 +25,12 @@ public class AddPoblacionHandler : IRequestHandler<AddPoblacionCommand, ViewPobl
         Mapper = mapper;
     }
 
+    /// <summary>
+    /// Handles
+    /// </summary>
+    /// <param name="request">Injected <see cref="AddPoblacionCommand"/></param>
+    /// <param name="cancellationToken">Injected <see cref="CancellationToken"/></param>
+    /// <returns>Instance of <see cref="Task{ViewPoblacion}"/></returns>
     public async Task<ViewPoblacion> Handle(AddPoblacionCommand request, CancellationToken cancellationToken)
     {
         var result = await Manager.AddPoblacion(request.ViewModel);

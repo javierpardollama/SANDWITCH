@@ -25,6 +25,12 @@ public class FindPaginatedProvinciaHandler : IRequestHandler<FindPaginatedProvin
         Mapper = mapper;
     }
 
+    /// <summary>
+    /// Handles
+    /// </summary>
+    /// <param name="request">Injected <see cref="FindPaginatedProvinciaQuery"/></param>
+    /// <param name="cancellationToken">Injected <see cref="CancellationToken"/></param>
+    /// <returns>Instance of <see cref="Task{ViewPage{ViewProvincia}}"/></returns>
     public async Task<ViewPage<ViewProvincia>> Handle(FindPaginatedProvinciaQuery request,
         CancellationToken cancellationToken)
     {

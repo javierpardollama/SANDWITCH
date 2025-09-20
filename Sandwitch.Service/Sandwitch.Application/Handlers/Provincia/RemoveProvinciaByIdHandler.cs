@@ -20,6 +20,12 @@ public class RemoveProvinciaByIdHandler : IRequestHandler<RemoveProvinciaByIdCom
         Manager = manager;
     }
 
+    /// <summary>
+    /// Handles
+    /// </summary>
+    /// <param name="request">Injected <see cref="RemoveProvinciaByIdCommand"/></param>
+    /// <param name="cancellationToken">Injected <see cref="CancellationToken"/></param>
+    /// <returns>Instance of <see cref="Task"/></returns>
     public async Task Handle(RemoveProvinciaByIdCommand request, CancellationToken cancellationToken)
     {
         await Manager.RemoveProvinciaById(request.Id);

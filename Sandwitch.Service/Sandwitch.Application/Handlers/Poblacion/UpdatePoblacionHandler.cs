@@ -25,6 +25,12 @@ public class UpdatePoblacionHandler : IRequestHandler<UpdatePoblacionCommand, Vi
         Mapper = mapper;
     }
 
+    /// <summary>
+    /// Handles
+    /// </summary>
+    /// <param name="request">Injected <see cref="UpdatePoblacionCommand"/></param>
+    /// <param name="cancellationToken">Injected <see cref="CancellationToken"/></param>
+    /// <returns>Instance of <see cref="Task{ViewPoblacion}"/></returns>
     public async Task<ViewPoblacion> Handle(UpdatePoblacionCommand request, CancellationToken cancellationToken)
     {
         var result = await Manager.UpdatePoblacion(request.ViewModel);

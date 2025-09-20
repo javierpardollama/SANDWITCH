@@ -25,6 +25,12 @@ public class UpdateProvinciaHandler : IRequestHandler<UpdateProvinciaCommand, Vi
         Mapper = mapper;
     }
 
+    /// <summary>
+    /// Handles
+    /// </summary>
+    /// <param name="request">Injected <see cref="UpdateProvinciaCommand"/></param>
+    /// <param name="cancellationToken">Injected <see cref="CancellationToken"/></param>
+    /// <returns>Instance of <see cref="Task{ViewProvincia}"/></returns>
     public async Task<ViewProvincia> Handle(UpdateProvinciaCommand request, CancellationToken cancellationToken)
     {
         var result = await Manager.UpdateProvincia(request.ViewModel);

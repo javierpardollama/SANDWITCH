@@ -25,6 +25,12 @@ public class FindPaginatedVientoHandler : IRequestHandler<FindPaginatedVientoQue
         Mapper = mapper;
     }
 
+    /// <summary>
+    /// Handles
+    /// </summary>
+    /// <param name="request">Injected <see cref="FindPaginatedVientoQuery"/></param>
+    /// <param name="cancellationToken">Injected <see cref="CancellationToken"/></param>
+    /// <returns>Instance of <see cref="Task{ViewPage{ViewViento}}"/></returns>
     public async Task<ViewPage<ViewViento>> Handle(FindPaginatedVientoQuery request,
         CancellationToken cancellationToken)
     {

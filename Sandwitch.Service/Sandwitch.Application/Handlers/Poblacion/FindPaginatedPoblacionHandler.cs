@@ -25,6 +25,12 @@ public class FindPaginatedPoblacionHandler : IRequestHandler<FindPaginatedPoblac
         Mapper = mapper;
     }
 
+    /// <summary>
+    /// Handles
+    /// </summary>
+    /// <param name="request">Injected <see cref="FindPaginatedPoblacionQuery"/></param>
+    /// <param name="cancellationToken">Injected <see cref="CancellationToken"/></param>
+    /// <returns>Instance of <see cref="Task{ViewPage{ViewPoblacion}}"/></returns>
     public async Task<ViewPage<ViewPoblacion>> Handle(FindPaginatedPoblacionQuery request,
         CancellationToken cancellationToken)
     {

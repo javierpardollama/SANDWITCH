@@ -25,6 +25,12 @@ public class UpdateBanderaHandler : IRequestHandler<UpdateBanderaCommand, ViewBa
         Mapper = mapper;
     }
 
+    /// <summary>
+    /// Handles
+    /// </summary>
+    /// <param name="request">Injected <see cref="UpdateBanderaCommand"/></param>
+    /// <param name="cancellationToken">Injected <see cref="CancellationToken"/></param>
+    /// <returns>Instance of <see cref="Task{ViewBandera}"/></returns>
     public async Task<ViewBandera> Handle(UpdateBanderaCommand request, CancellationToken cancellationToken)
     {
         var result = await Manager.UpdateBandera(request.ViewModel);

@@ -25,6 +25,12 @@ public class FindAllPoblacionHandler : IRequestHandler<FindAllPoblacionQuery, IL
         Mapper = mapper;
     }
 
+    /// <summary>
+    /// Handles
+    /// </summary>
+    /// <param name="request">Injected <see cref="FindAllPoblacionQuery"/></param>
+    /// <param name="cancellationToken">Injected <see cref="CancellationToken"/></param>
+    /// <returns>Instance of <see cref="Task{IList{ViewPoblacion}}"/></returns>
     public async Task<IList<ViewPoblacion>> Handle(FindAllPoblacionQuery request, CancellationToken cancellationToken)
     {
         var result = await Manager.FindAllPoblacion();

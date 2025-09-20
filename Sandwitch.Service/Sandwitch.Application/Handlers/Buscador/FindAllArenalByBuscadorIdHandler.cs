@@ -25,6 +25,12 @@ public class FindAllArenalByBuscadorIdHandler : IRequestHandler<FindAllArenalByB
         Mapper = mapper;
     }
 
+    /// <summary>
+    /// Handles
+    /// </summary>
+    /// <param name="request">Injected <see cref="FindAllArenalByBuscadorIdQuery"/></param>
+    /// <param name="cancellationToken">Injected <see cref="CancellationToken"/></param>
+    /// <returns>Instance of <see cref="Task{IList{ViewArenal}}"/></returns>
     public async Task<IList<ViewArenal>> Handle(FindAllArenalByBuscadorIdQuery request,
         CancellationToken cancellationToken)
     {

@@ -25,6 +25,12 @@ public class FindAllArenalHandler : IRequestHandler<FindAllArenalQuery, IList<Vi
         Mapper = mapper;
     }
 
+    /// <summary>
+    /// Handles
+    /// </summary>
+    /// <param name="request">Injected <see cref="FindAllArenalQuery"/></param>
+    /// <param name="cancellationToken">Injected <see cref="CancellationToken"/></param>
+    /// <returns>Instance of <see cref="Task{IList{ViewArenal}}"/></returns>
     public async Task<IList<ViewArenal>> Handle(FindAllArenalQuery request, CancellationToken cancellationToken)
     {
         var result = await Manager.FindAllArenal();

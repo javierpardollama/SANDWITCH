@@ -25,6 +25,12 @@ public class FindPaginatedBanderaHandler : IRequestHandler<FindPaginatedBanderaQ
         Mapper = mapper;
     }
 
+    /// <summary>
+    /// Handles
+    /// </summary>
+    /// <param name="request">Injected <see cref="FindPaginatedBanderaQuery"/></param>
+    /// <param name="cancellationToken">Injected <see cref="CancellationToken"/></param>
+    /// <returns>Instance of <see cref="Task{ViewPage{ViewBandera}}"/></returns>
     public async Task<ViewPage<ViewBandera>> Handle(FindPaginatedBanderaQuery request,
         CancellationToken cancellationToken)
     {

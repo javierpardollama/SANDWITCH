@@ -25,6 +25,12 @@ public class FindPaginatedArenalHandler : IRequestHandler<FindPaginatedArenalQue
         Mapper = mapper;
     }
 
+    /// <summary>
+    /// Handles
+    /// </summary>
+    /// <param name="request">Injected <see cref="FindPaginatedArenalQuery"/></param>
+    /// <param name="cancellationToken">Injected <see cref="CancellationToken"/></param>
+    /// <returns>Instance of <see cref="Task{ViewPage{ViewArenal}}"/></returns>
     public async Task<ViewPage<ViewArenal>> Handle(FindPaginatedArenalQuery request,
         CancellationToken cancellationToken)
     {

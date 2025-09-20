@@ -6,12 +6,19 @@ using Sandwitch.Domain.ViewModels.Views;
 
 namespace Sandwitch.Application.Handlers.Bandera;
 
-public class
-    FindAllHistoricoByBanderaIdHandler : IRequestHandler<FindAllHistoricoByBanderaIdQuery, IList<ViewHistorico>>
+/// <summary>
+/// Represents a <see cref="FindAllHistoricoByBanderaIdHandler"/>. Implements <see cref="IRequestHandler{FindAllHistoricoByBanderaIdQuery, IList{ViewHistorico}}"/>
+/// </summary>
+public class FindAllHistoricoByBanderaIdHandler : IRequestHandler<FindAllHistoricoByBanderaIdQuery, IList<ViewHistorico>>
 {
     private readonly IBanderaManager Manager;
     private readonly IMapper Mapper;
 
+    /// <summary>
+    ///  Initializes a new Instance of <see cref="FindAllHistoricoByBanderaIdHandler" />
+    /// </summary>
+    /// <param name="manager">Injected <see cref="IBanderaManager"/></param>
+    /// <param name="mapper">Injected <see cref="IMapper"/></param>
     public FindAllHistoricoByBanderaIdHandler(IBanderaManager manager, IMapper mapper)
     {
         Manager = manager;

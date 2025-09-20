@@ -6,11 +6,19 @@ using Sandwitch.Domain.ViewModels.Views;
 
 namespace Sandwitch.Application.Handlers.Provincia;
 
+/// <summary>
+/// Represents a <see cref="FindAllProvinciaHandler"/>. Implements <see cref="IRequestHandler{FindAllProvinciaQuery, IList{ViewProvincia}}"/>
+/// </summary>
 public class FindAllProvinciaHandler : IRequestHandler<FindAllProvinciaQuery, IList<ViewProvincia>>
 {
     private readonly IProvinciaManager Manager;
     private readonly IMapper Mapper;
 
+    /// <summary>
+    ///  Initializes a new Instance of <see cref="FindAllProvinciaHandler" />
+    /// </summary>
+    /// <param name="manager">Injected <see cref="IProvinciaManager"/></param>
+    /// <param name="mapper">Injected <see cref="IMapper"/></param>
     public FindAllProvinciaHandler(IProvinciaManager manager, IMapper mapper)
     {
         Manager = manager;

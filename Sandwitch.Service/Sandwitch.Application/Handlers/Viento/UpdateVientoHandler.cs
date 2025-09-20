@@ -6,11 +6,19 @@ using Sandwitch.Domain.ViewModels.Views;
 
 namespace Sandwitch.Application.Handlers.Viento;
 
+/// <summary>
+/// Represents a <see cref="UpdateVientoHandler"/>. Implements <see cref="IRequestHandler{UpdateVientoCommand, ViewViento}"/>
+/// </summary>
 public class UpdateVientoHandler : IRequestHandler<UpdateVientoCommand, ViewViento>
 {
     private readonly IVientoManager Manager;
     private readonly IMapper Mapper;
 
+    /// <summary>
+    ///  Initializes a new Instance of <see cref="UpdateVientoHandler" />
+    /// </summary>
+    /// <param name="manager">Injected <see cref="IVientoManager"/></param>
+    /// <param name="mapper">Injected <see cref="IMapper"/></param>
     public UpdateVientoHandler(IVientoManager manager, IMapper mapper)
     {
         Manager = manager;

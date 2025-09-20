@@ -6,11 +6,19 @@ using Sandwitch.Domain.ViewModels.Views;
 
 namespace Sandwitch.Application.Handlers.Buscador;
 
+/// <summary>
+/// Represents a <see cref="FindAllBuscadorHandler"/>. Implements <see cref="IRequestHandler{FindAllBuscadorQuery, IList{ViewBuscador}}"/>
+/// </summary>
 public class FindAllBuscadorHandler : IRequestHandler<FindAllBuscadorQuery, IList<ViewBuscador>>
 {
     private readonly IBuscadorManager Manager;
     private readonly IMapper Mapper;
 
+    /// <summary>
+    ///  Initializes a new Instance of <see cref="FindAllBuscadorHandler" />
+    /// </summary>
+    /// <param name="manager">Injected <see cref="IBuscadorManager"/></param>
+    /// <param name="mapper">Injected <see cref="IMapper"/></param>
     public FindAllBuscadorHandler(IBuscadorManager manager, IMapper mapper)
     {
         Manager = manager;

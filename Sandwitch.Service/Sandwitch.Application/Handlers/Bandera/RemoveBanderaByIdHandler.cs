@@ -4,10 +4,17 @@ using Sandwitch.Domain.Managers;
 
 namespace Sandwitch.Application.Handlers.Bandera;
 
+/// <summary>
+/// Represents a <see cref="RemoveBanderaByIdHandler"/>. Implements <see cref="IRequestHandler{RemoveBanderaByIdCommand}"/>
+/// </summary>
 public class RemoveBanderaByIdHandler : IRequestHandler<RemoveBanderaByIdCommand>
 {
     private readonly IBanderaManager Manager;
 
+    /// <summary>
+    ///  Initializes a new Instance of <see cref="RemoveBanderaByIdHandler" />
+    /// </summary>
+    /// <param name="manager">Injected <see cref="IBanderaManager"/></param>
     public RemoveBanderaByIdHandler(IBanderaManager manager)
     {
         Manager = manager;

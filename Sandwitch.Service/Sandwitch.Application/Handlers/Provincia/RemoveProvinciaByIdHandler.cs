@@ -1,19 +1,23 @@
-using AutoMapper;
 using MediatR;
 using Sandwitch.Application.Commands.Provincia;
 using Sandwitch.Domain.Managers;
 
 namespace Sandwitch.Application.Handlers.Provincia;
 
+/// <summary>
+/// Represents a <see cref="RemoveProvinciaByIdHandler"/>. Implements <see cref="IRequestHandler{RemoveProvinciaByIdCommand}"/>
+/// </summary>
 public class RemoveProvinciaByIdHandler : IRequestHandler<RemoveProvinciaByIdCommand>
 {
     private readonly IProvinciaManager Manager;
-    private readonly IMapper Mapper;
 
-    public RemoveProvinciaByIdHandler(IProvinciaManager manager, IMapper mapper)
+    /// <summary>
+    ///  Initializes a new Instance of <see cref="RemoveProvinciaByIdHandler" />
+    /// </summary>
+    /// <param name="manager">Injected <see cref="IProvinciaManager"/></param>
+    public RemoveProvinciaByIdHandler(IProvinciaManager manager)
     {
         Manager = manager;
-        Mapper = mapper;
     }
 
     public async Task Handle(RemoveProvinciaByIdCommand request, CancellationToken cancellationToken)

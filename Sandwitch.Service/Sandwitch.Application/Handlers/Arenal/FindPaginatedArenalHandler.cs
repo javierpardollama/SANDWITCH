@@ -6,11 +6,19 @@ using Sandwitch.Domain.ViewModels.Views;
 
 namespace Sandwitch.Application.Handlers.Arenal;
 
+/// <summary>
+/// Represents a <see cref="FindPaginatedArenalHandler"/>. Implements <see cref="IRequestHandler{FindPaginatedArenalQuery, ViewPage{ViewArenal}}"/>
+/// </summary>
 public class FindPaginatedArenalHandler : IRequestHandler<FindPaginatedArenalQuery, ViewPage<ViewArenal>>
 {
     private readonly IArenalManager Manager;
     private readonly IMapper Mapper;
 
+    /// <summary>
+    ///  Initializes a new Instance of <see cref="FindPaginatedArenalHandler" />
+    /// </summary>
+    /// <param name="manager">Injected <see cref="IArenalManager"/></param>
+    /// <param name="mapper">Injected <see cref="IMapper"/></param>
     public FindPaginatedArenalHandler(IArenalManager manager, IMapper mapper)
     {
         Manager = manager;

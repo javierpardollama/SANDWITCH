@@ -6,11 +6,19 @@ using Sandwitch.Domain.ViewModels.Views;
 
 namespace Sandwitch.Application.Handlers.Arenal;
 
+/// <summary>
+/// Represents a <see cref="UpdateArenalHandler"/>. Implements <see cref="IRequestHandler{UpdateArenalCommand, ViewArenal}"/>
+/// </summary>
 public class UpdateArenalHandler : IRequestHandler<UpdateArenalCommand, ViewArenal>
 {
     private readonly IArenalManager Manager;
     private readonly IMapper Mapper;
 
+    /// <summary>
+    ///  Initializes a new Instance of <see cref="UpdateArenalHandler" />
+    /// </summary>
+    /// <param name="manager">Injected <see cref="IArenalManager"/></param>
+    /// <param name="mapper">Injected <see cref="IMapper"/></param>
     public UpdateArenalHandler(IArenalManager manager, IMapper mapper)
     {
         Manager = manager;

@@ -6,11 +6,19 @@ using Sandwitch.Domain.ViewModels.Views;
 
 namespace Sandwitch.Application.Handlers.Viento;
 
+/// <summary>
+/// Represents a <see cref="FindPaginatedVientoHandler"/>. Implements <see cref="IRequestHandler{FindPaginatedVientoQuery, ViewPage{ViewViento}}"/>
+/// </summary>
 public class FindPaginatedVientoHandler : IRequestHandler<FindPaginatedVientoQuery, ViewPage<ViewViento>>
 {
     private readonly IVientoManager Manager;
     private readonly IMapper Mapper;
 
+    /// <summary>
+    ///  Initializes a new Instance of <see cref="FindPaginatedVientoHandler" />
+    /// </summary>
+    /// <param name="manager">Injected <see cref="IVientoManager"/></param>
+    /// <param name="mapper">Injected <see cref="IMapper"/></param>
     public FindPaginatedVientoHandler(IVientoManager manager, IMapper mapper)
     {
         Manager = manager;

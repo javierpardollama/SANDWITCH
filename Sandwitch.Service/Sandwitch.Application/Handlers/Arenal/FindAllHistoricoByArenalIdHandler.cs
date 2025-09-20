@@ -6,11 +6,19 @@ using Sandwitch.Domain.ViewModels.Views;
 
 namespace Sandwitch.Application.Handlers.Arenal;
 
+/// <summary>
+/// Represents a <see cref="AddArenalHandler"/>. Implements <see cref="IRequestHandler{FindAllHistoricoByArenalIdQuery, IList{ViewHistorico}}"/>
+/// </summary>
 public class FindAllHistoricoByArenalIdHandler : IRequestHandler<FindAllHistoricoByArenalIdQuery, IList<ViewHistorico>>
 {
     private readonly IArenalManager Manager;
     private readonly IMapper Mapper;
 
+    /// <summary>
+    ///  Initializes a new Instance of <see cref="FindAllHistoricoByArenalIdHandler" />
+    /// </summary>
+    /// <param name="manager">Injected <see cref="IArenalManager"/></param>
+    /// <param name="mapper">Injected <see cref="IMapper"/></param>
     public FindAllHistoricoByArenalIdHandler(IArenalManager manager, IMapper mapper)
     {
         Manager = manager;

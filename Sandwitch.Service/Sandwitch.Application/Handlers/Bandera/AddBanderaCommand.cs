@@ -6,11 +6,19 @@ using Sandwitch.Domain.ViewModels.Views;
 
 namespace Sandwitch.Application.Handlers.Bandera;
 
+/// <summary>
+/// Represents a <see cref="AddBanderaHandler"/>. Implements <see cref="IRequestHandler{AddBanderaCommand, ViewBandera}"/>
+/// </summary>
 public class AddBanderaHandler : IRequestHandler<AddBanderaCommand, ViewBandera>
 {
     private readonly IBanderaManager Manager;
     private readonly IMapper Mapper;
 
+    /// <summary>
+    ///  Initializes a new Instance of <see cref="AddBanderaHandler" />
+    /// </summary>
+    /// <param name="manager">Injected <see cref="IBanderaManager"/></param>
+    /// <param name="mapper">Injected <see cref="IMapper"/></param>
     public AddBanderaHandler(IBanderaManager manager, IMapper mapper)
     {
         Manager = manager;

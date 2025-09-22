@@ -25,9 +25,9 @@ public static class ResilienceInstaller
     /// <returns>Instance of <see cref="IHostApplicationBuilder"/></returns>
     public static IHostApplicationBuilder InstallAspireServices(this IHostApplicationBuilder builder)
     {
-        builder.ConfigureOpenTelemetry();
+        builder.InstallOpenTelemetry();
 
-        builder.AddDefaultHealthChecks();
+        builder.InstallDefaultHealthChecks();
 
         builder.Services.AddServiceDiscovery();
 
@@ -46,11 +46,11 @@ public static class ResilienceInstaller
     }
 
     /// <summary>
-    /// Configures Open Telemetry
+    /// Installs Open Telemetry
     /// </summary>
     /// <param name="builder">Injected <see cref="IHostApplicationBuilder"/></param>
     /// <returns>Instance of <see cref="IHostApplicationBuilder"/></returns>
-    private static IHostApplicationBuilder ConfigureOpenTelemetry(this IHostApplicationBuilder builder)
+    private static IHostApplicationBuilder InstallOpenTelemetry(this IHostApplicationBuilder builder)
     {
         builder.Logging.AddOpenTelemetry(logging =>
         {
@@ -71,17 +71,17 @@ public static class ResilienceInstaller
                     .AddHttpClientInstrumentation();
             });
 
-        builder.AddOpenTelemetryExporters();
+        builder.InstallOpenTelemetryExporters();
 
         return builder;
     }
 
     /// <summary>
-    /// Adds Open Telemetry Exporters
+    /// Installs Open Telemetry Exporters
     /// </summary>
     /// <param name="builder">Injected <see cref="IHostApplicationBuilder"/></param>
     /// <returns>Instance of <see cref="IHostApplicationBuilder"/></returns>
-    private static IHostApplicationBuilder AddOpenTelemetryExporters(this IHostApplicationBuilder builder)
+    private static IHostApplicationBuilder InstallOpenTelemetryExporters(this IHostApplicationBuilder builder)
     {
         var useOtlpExporter = !string.IsNullOrWhiteSpace(builder.Configuration["OTEL_EXPORTER_OTLP_ENDPOINT"]);
 
@@ -94,7 +94,12 @@ public static class ResilienceInstaller
         return builder;
     }
 
-    private static IHostApplicationBuilder AddDefaultHealthChecks(this IHostApplicationBuilder builder)
+    /// <summary>
+    /// Installs Open Telemetry Exporters
+    /// </summary>
+    /// <param name="builder">Injected <see cref="IHostApplicationBuilder"/></param>
+    /// <returns>Instance of <see cref="IHostApplicationBuilder"/></returns>
+    private static IHostApplicationBuilder InstallDefaultHealthChecks(this IHostApplicationBuilder builder)
     {
         // Adding health checks endpoints to applications in non-development environments has security implications.
         // See https://aka.ms/dotnet/aspire/healthchecks for details before enabling these endpoints in non-development environments.
@@ -111,7 +116,12 @@ public static class ResilienceInstaller
         return builder;
     }
 
-    public static WebApplication MapDefaultHealthEndpoints(this WebApplication app)
+    /// <summary>
+    /// Installs Default Health Endpoints
+    /// </summary>
+    /// <param name="app">Injected <see cref="WebApplication"/></param>
+    /// <returns>Instance of <see cref="WebApplication"/></returns>
+    public static WebApplication InstallDefaultHealthEndpoints(this WebApplication app)
     {
         app.MapGroup("").CacheOutput("HealthChecks").WithRequestTimeout("HealthChecks");
 

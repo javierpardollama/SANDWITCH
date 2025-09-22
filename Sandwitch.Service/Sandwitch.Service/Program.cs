@@ -81,7 +81,7 @@ app.UseRateLimiter();
 
 app.MapControllers();
 
-app.MapDefaultHealthEndpoints();
+app.InstallDefaultHealthEndpoints();
 
 app.UseRequestTimeouts();
 app.UseOutputCache();

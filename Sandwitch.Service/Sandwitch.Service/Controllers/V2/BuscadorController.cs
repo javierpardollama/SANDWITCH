@@ -1,4 +1,5 @@
 using System.Threading.Tasks;
+using Asp.Versioning;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -7,13 +8,14 @@ using Sandwitch.Application.Queries.Buscador;
 using Sandwitch.Domain.ViewModels.Filters;
 using Sandwitch.Domain.ViewModels.Finders;
 
-namespace Sandwitch.Service.Controllers;
+namespace Sandwitch.Service.Controllers.V2;
 
 /// <summary>
 ///     Represents a <see cref="BuscadorController" /> class. Inherits <see cref="ControllerBase" />
 /// </summary>
 /// <param name="mediator">Injected <see cref="IMediator" /></param>
-[Route("api/buscador")]
+[ApiVersion(2)]
+[Route("api/v{v:apiVersion}/buscador")]
 [Produces("application/json")]
 [ApiController]
 [Authorize]
@@ -32,6 +34,7 @@ public class BuscadorController(IMediator mediator) : ControllerBase
     /// <response code="503">ServiceUnavailable</response>
     /// <response code="500">InternalServerError</response>
     /// <returns>Instance of <see cref="Task{OkObjectResult}" /></returns>
+    [MapToApiVersion(2)]
     [HttpGet]
     [ResponseCache(Duration = 10, Location = ResponseCacheLocation.Any, NoStore = false)]
     [Route("findallbuscador")]
@@ -53,6 +56,7 @@ public class BuscadorController(IMediator mediator) : ControllerBase
     /// <response code="500">InternalServerError</response>
     /// <param name="viewModel">Injected <see cref="FilterPage" /></param>
     /// <returns>Instance of <see cref="Task{OkObjectResult}" /></returns>
+    [MapToApiVersion(2)]
     [HttpPost]
     [Route("findallarenalbybuscadorid")]
     public async Task<IActionResult> FindAllArenalByBuscadorId([FromBody] FinderArenal viewModel)

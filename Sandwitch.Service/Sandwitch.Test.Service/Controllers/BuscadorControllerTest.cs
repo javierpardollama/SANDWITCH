@@ -31,7 +31,7 @@ public class BuscadorControllerTest
     {
     }
 
-    private static readonly HttpClient Client = new() { BaseAddress = new Uri("https://localhost:7297/api/buscador/") };
+    private static readonly HttpClient Client = new() { BaseAddress = new Uri("https://localhost:7297/api/v2/buscador/") };
 
     /// <summary>
     ///     Initializes a new Instance of <see cref="BuscadorControllerTest" />

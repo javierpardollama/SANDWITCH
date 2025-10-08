@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using Asp.Versioning;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -6,13 +7,15 @@ using Microsoft.AspNetCore.RateLimiting;
 using Sandwitch.Application.Commands.Historico;
 using Sandwitch.Domain.ViewModels.Additions;
 
-namespace Sandwitch.Service.Controllers;
+namespace Sandwitch.Service.Controllers.V2;
 
 /// <summary>
 ///     Represents a <see cref="HistoricoController" /> class. Inherits <see cref="ControllerBase" />
 /// </summary>
 /// <param name="mediator">Injected <see cref="IMediator" /></param>
-[Route("api/historico")]
+[ApiVersion(1, Deprecated = true)]
+[ApiVersion(2)]
+[Route("api/v{v:apiVersion}/historico")]
 [Produces("application/json")]
 [ApiController]
 [Authorize]
@@ -32,6 +35,8 @@ public class HistoricoController(IMediator mediator) : ControllerBase
     /// <response code="500">InternalServerError</response>
     /// <param name="viewModel">Injected <see cref="AddHistorico" /></param>
     /// <returns>Instance of <see cref="Task{OkObjectResult}" /></returns>
+    [MapToApiVersion(1)]
+    [MapToApiVersion(2)]
     [HttpPost]
     [Route("addhistorico")]
     public async Task<IActionResult> AddHistorico([FromBody] AddHistorico viewModel)

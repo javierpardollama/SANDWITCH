@@ -32,12 +32,12 @@ export class BuscadorService extends BaseService {
     }
 
     public FindAllBuscador(): Promise<ViewBuscador[]> {
-        return firstValueFrom(this.httpClient.get<ViewBuscador[]>(`${environment.Api.Service}api/buscador/findallbuscador`)
+        return firstValueFrom(this.httpClient.get<ViewBuscador[]>(`${environment.Api.Service}api/v2/buscador/findallbuscador`)
             .pipe(catchError(this.HandleError<ViewBuscador[]>('FindAllBuscador', []))));
     }
 
     public FindAllArenalByBuscadorId(viewModel: FinderArenal): Promise<ViewArenal[]> {
-        return firstValueFrom(this.httpClient.post<ViewArenal[]>(`${environment.Api.Service}api/buscador/findallarenalbybuscadorid`, viewModel)
+        return firstValueFrom(this.httpClient.post<ViewArenal[]>(`${environment.Api.Service}api/v2/buscador/findallarenalbybuscadorid`, viewModel)
             .pipe(catchError(this.HandleError<ViewArenal[]>('FindAllArenalByBuscadorId', []))));
     }
 }

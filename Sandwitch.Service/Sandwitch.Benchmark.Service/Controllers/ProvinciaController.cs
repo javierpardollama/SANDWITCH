@@ -14,7 +14,7 @@ namespace Sandwitch.Benchmark.Service.Controllers;
 public class ProvinciaController
 {
     private static readonly HttpClient Client = new()
-        { BaseAddress = new Uri("https://localhost:7297/api/provincia/") };
+        { BaseAddress = new Uri("https://localhost:7297/api/v1/provincia/") };
 
     [Benchmark]
     public async Task<IList<ViewProvincia>> FindAllProvincia()

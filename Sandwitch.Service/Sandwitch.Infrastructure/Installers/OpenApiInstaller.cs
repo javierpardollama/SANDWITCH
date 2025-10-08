@@ -15,8 +15,20 @@ public static class OpenApiInstaller
     /// <param name="this">Injected <see cref="IServiceCollection" /></param>
     public static void InstallOpenApi(this IServiceCollection @this)
     {
+        @this.AddEndpointsApiExplorer();
+        
         @this.AddSwaggerGen(options =>
         {
+            options.SwaggerDoc("v1", new OpenApiInfo
+            {
+                Version = "v1",
+                Title = "Sandwitch.Service"
+            });
+            options.SwaggerDoc("v2", new OpenApiInfo
+            {
+                Version = "v2",
+                Title = "Sandwitch.Service"
+            });
             var xmlFilename = "Sandwitch.Service.xml";
             options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename));
             options.AddSecurityDefinition(nameof(AuthenticationSchemes.Basic), new OpenApiSecurityScheme

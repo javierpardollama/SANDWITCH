@@ -13,7 +13,7 @@ namespace Sandwitch.Benchmark.Service.Controllers;
 
 public class VientoController
 {
-    private static readonly HttpClient Client = new() { BaseAddress = new Uri("https://localhost:7297/api/viento/") };
+    private static readonly HttpClient Client = new() { BaseAddress = new Uri("https://localhost:7297/api/v2/viento/") };
 
     [Benchmark]
     public async Task<IList<ViewViento>> FindAllViento()

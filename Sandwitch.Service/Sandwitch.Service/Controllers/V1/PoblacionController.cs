@@ -1,29 +1,31 @@
 ﻿using System.Threading.Tasks;
+using Asp.Versioning;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.RateLimiting;
-using Sandwitch.Application.Commands.Provincia;
-using Sandwitch.Application.Queries.Provincia;
+using Sandwitch.Application.Commands.Poblacion;
+using Sandwitch.Application.Queries.Poblacion;
 using Sandwitch.Domain.ViewModels.Additions;
 using Sandwitch.Domain.ViewModels.Filters;
 using Sandwitch.Domain.ViewModels.Updates;
 
-namespace Sandwitch.Service.Controllers;
+namespace Sandwitch.Service.Controllers.V1;
 
 /// <summary>
-///     Represents a <see cref="ProvinciaController" /> class. Inherits <see cref="ControllerBase" />
+///     Represents a <see cref="PoblacionController" /> class. Inherits <see cref="ControllerBase" />
 /// </summary>
 /// <param name="mediator">Injected <see cref="IMediator" /></param>
-[Route("api/provincia")]
+[ApiVersion(1)]
+[Route("api/v{v:apiVersion}/poblacion")]
 [Produces("application/json")]
 [ApiController]
 [Authorize]
 [EnableRateLimiting("Concurrency")]
-public class ProvinciaController(IMediator mediator) : ControllerBase
+public class PoblacionController(IMediator mediator) : ControllerBase
 {
     /// <summary>
-    ///     Updates Provincia
+    ///     Updates Poblacion
     /// </summary>
     /// <response code="200">Ok</response>
     /// <response code="400">BadRequest</response>
@@ -33,17 +35,18 @@ public class ProvinciaController(IMediator mediator) : ControllerBase
     /// <response code="409">Conflict</response>
     /// <response code="503">ServiceUnavailable</response>
     /// <response code="500">InternalServerError</response>
-    /// <param name="viewModel">Injected <see cref="UpdateProvincia" /></param>
+    /// <param name="viewModel">Injected <see cref="UpdatePoblacion" /></param>
     /// <returns>Instance of <see cref="Task{OkObjectResult}" /></returns>
+    [MapToApiVersion(1)]
     [HttpPut]
-    [Route("updateprovincia")]
-    public async Task<IActionResult> UpdateProvincia([FromBody] UpdateProvincia viewModel)
+    [Route("updatepoblacion")]
+    public async Task<IActionResult> UpdatePoblacion([FromBody] UpdatePoblacion viewModel)
     {
-        return Ok(await mediator.Send(new UpdateProvinciaCommand { ViewModel = viewModel }));
+        return Ok(await mediator.Send(new UpdatePoblacionCommand { ViewModel = viewModel }));
     }
 
     /// <summary>
-    ///     Finds All Provincia
+    ///     Finds All Poblacion
     /// </summary>
     /// <response code="200">Ok</response>
     /// <response code="400">BadRequest</response>
@@ -54,16 +57,17 @@ public class ProvinciaController(IMediator mediator) : ControllerBase
     /// <response code="503">ServiceUnavailable</response>
     /// <response code="500">InternalServerError</response>
     /// <returns>Instance of <see cref="Task{OkObjectResult}" /></returns>
+    [MapToApiVersion(1)]
     [HttpGet]
     [ResponseCache(Duration = 10, Location = ResponseCacheLocation.Any, NoStore = false)]
-    [Route("findallprovincia")]
-    public async Task<IActionResult> FindAllProvincia()
+    [Route("findallpoblacion")]
+    public async Task<IActionResult> FindAllPoblacion()
     {
-        return Ok(await mediator.Send(new FindAllProvinciaQuery()));
+        return Ok(await mediator.Send(new FindAllPoblacionQuery()));
     }
 
     /// <summary>
-    ///     Finds Paginated Provincia
+    ///     Finds Paginated Poblacion
     /// </summary>
     /// <response code="200">Ok</response>
     /// <response code="400">BadRequest</response>
@@ -75,15 +79,16 @@ public class ProvinciaController(IMediator mediator) : ControllerBase
     /// <response code="500">InternalServerError</response>
     /// <param name="viewModel">Injected <see cref="FilterPage" /></param>
     /// <returns>Instance of <see cref="Task{OkObjectResult}" /></returns>
+    [MapToApiVersion(1)]
     [HttpPost]
-    [Route("findpaginatedprovincia")]
-    public async Task<IActionResult> FindPaginatedProvincia([FromBody] FilterPage viewModel)
+    [Route("findpaginatedpoblacion")]
+    public async Task<IActionResult> FindPaginatedPoblacion([FromBody] FilterPage viewModel)
     {
-        return Ok(await mediator.Send(new FindPaginatedProvinciaQuery { ViewModel = viewModel }));
+        return Ok(await mediator.Send(new FindPaginatedPoblacionQuery { ViewModel = viewModel }));
     }
 
     /// <summary>
-    ///     Adds Provincia
+    ///     Adds Poblacion
     /// </summary>
     /// <response code="200">Ok</response>
     /// <response code="400">BadRequest</response>
@@ -93,17 +98,18 @@ public class ProvinciaController(IMediator mediator) : ControllerBase
     /// <response code="409">Conflict</response>
     /// <response code="503">ServiceUnavailable</response>
     /// <response code="500">InternalServerError</response>
-    /// <param name="viewModel">Injected <see cref="AddProvincia" /></param>
+    /// <param name="viewModel">Injected <see cref="AddPoblacion" /></param>
     /// <returns>Instance of <see cref="Task{OkObjectResult}" /></returns>
+    [MapToApiVersion(1)]
     [HttpPost]
-    [Route("addprovincia")]
-    public async Task<IActionResult> AddProvincia([FromBody] AddProvincia viewModel)
+    [Route("addpoblacion")]
+    public async Task<IActionResult> AddPoblacion([FromBody] AddPoblacion viewModel)
     {
-        return Ok(await mediator.Send(new AddProvinciaCommand { ViewModel = viewModel }));
+        return Ok(await mediator.Send(new AddPoblacionCommand { ViewModel = viewModel }));
     }
 
     /// <summary>
-    ///     Removes Provincia By Id
+    ///     Removes Poblacion By Id
     /// </summary>
     /// <response code="200">Ok</response>
     /// <response code="400">BadRequest</response>
@@ -115,11 +121,12 @@ public class ProvinciaController(IMediator mediator) : ControllerBase
     /// <response code="500">InternalServerError</response>
     /// <param name="id">Injected <see cref="int" /></param>
     /// <returns>Instance of <see cref="Task{OkObjectResult}" /></returns>
+    [MapToApiVersion(1)]
     [HttpDelete]
-    [Route("removeprovinciabyid/{id}")]
-    public async Task<IActionResult> RemoveProvinciaById(int id)
+    [Route("removepoblacionbyid/{id}")]
+    public async Task<IActionResult> RemovePoblacionById(int id)
     {
-        await mediator.Send(new RemoveProvinciaByIdCommand { Id = id });
+        await mediator.Send(new RemovePoblacionByIdCommand { Id = id });
 
         return Ok();
     }

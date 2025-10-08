@@ -22,8 +22,9 @@ builder.Services.AddControllers()
         options.JsonSerializerOptions.PropertyNamingPolicy = null;
     });
 
+builder.Services.InstallApiVersions();
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
 builder.Services.InstallOpenApi();
 
 // Register the Mapping Profiles
@@ -36,21 +37,21 @@ builder.Services.InstallMediatR();
 // Register the Mvc services to the services container
 builder.Services.AddResponseCaching();
 
-var ApiSettings = new ApiSettings();
-builder.Configuration.GetSection("Api").Bind(ApiSettings);
+var apiSettings = new ApiSettings();
+builder.Configuration.GetSection("Api").Bind(apiSettings);
 builder.Services.Configure<ApiSettings>(builder.Configuration.GetSection("Api"));
 
 // Add customized Authentication to the services container.
-builder.Services.InstallAuthentication(ApiSettings);
-builder.Services.InstallCors(ApiSettings);
+builder.Services.InstallAuthentication(apiSettings);
+builder.Services.InstallCors(apiSettings);
 
 // Register the Rate Limit Settings to the configuration container.
-var RateSettings = new RateLimitSettings();
-builder.Configuration.GetSection("RateLimit").Bind(RateSettings);
+var rateSettings = new RateLimitSettings();
+builder.Configuration.GetSection("RateLimit").Bind(rateSettings);
 builder.Services.Configure<RateLimitSettings>(builder.Configuration.GetSection("RateLimit"));
 
 builder.Services.InstallProblemDetails();
-builder.Services.InstallRateLimiter(RateSettings);
+builder.Services.InstallRateLimiter(rateSettings);
 
 builder.InstallAspireServices();
 

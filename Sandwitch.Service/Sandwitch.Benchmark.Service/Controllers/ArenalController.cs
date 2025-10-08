@@ -13,7 +13,7 @@ namespace Sandwitch.Benchmark.Service.Controllers;
 
 public class ArenalController
 {
-    private static readonly HttpClient Client = new() { BaseAddress = new Uri("https://localhost:7297/api/arenal/") };
+    private static readonly HttpClient Client = new() { BaseAddress = new Uri("https://localhost:7297/api/v1/arenal/") };
 
     [Benchmark]
     public async Task<IList<ViewArenal>> FindAllarenal()

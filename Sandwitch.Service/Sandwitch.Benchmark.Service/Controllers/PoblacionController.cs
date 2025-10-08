@@ -14,7 +14,7 @@ namespace Sandwitch.Benchmark.Service.Controllers;
 public class PoblacionController
 {
     private static readonly HttpClient Client = new()
-        { BaseAddress = new Uri("https://localhost:7297/api/poblacion/") };
+        { BaseAddress = new Uri("https://localhost:7297/api/v1/poblacion/") };
 
     [Benchmark]
     public async Task<IList<ViewPoblacion>> FindAllPoblacion()

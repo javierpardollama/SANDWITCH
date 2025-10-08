@@ -31,7 +31,7 @@ public class BanderaControllerTest
     {
     }
 
-    private static readonly HttpClient Client = new() { BaseAddress = new Uri("https://localhost:7297/api/bandera/") };
+    private static readonly HttpClient Client = new() { BaseAddress = new Uri("https://localhost:7297/api/v1/bandera/") };
 
     /// <summary>
     ///     Initializes a new Instance of <see cref="BanderaControllerTest" />

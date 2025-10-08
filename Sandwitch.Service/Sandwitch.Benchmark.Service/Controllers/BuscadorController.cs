@@ -13,7 +13,7 @@ namespace Sandwitch.Benchmark.Service.Controllers;
 
 public class BuscadorController
 {
-    private static readonly HttpClient Client = new() { BaseAddress = new Uri("https://localhost:7297/api/buscador/") };
+    private static readonly HttpClient Client = new() { BaseAddress = new Uri("https://localhost:7297/api/v2/buscador/") };
 
     [Benchmark]
     public async Task<IList<ViewBuscador>> FindAllBuscador()

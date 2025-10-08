@@ -31,7 +31,7 @@ public class ArenalControllerTest
     {
     }
 
-    private static readonly HttpClient Client = new() { BaseAddress = new Uri("https://localhost:7297/api/arenal/") };
+    private static readonly HttpClient Client = new() { BaseAddress = new Uri("https://localhost:7297/api/v1/arenal/") };
 
     /// <summary>
     ///     Initializes a new Instance of <see cref="ArenalControllerTest" />

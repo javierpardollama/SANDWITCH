@@ -1,29 +1,31 @@
 ﻿using System.Threading.Tasks;
+using Asp.Versioning;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.RateLimiting;
-using Sandwitch.Application.Commands.Viento;
-using Sandwitch.Application.Queries.Viento;
+using Sandwitch.Application.Commands.Arenal;
+using Sandwitch.Application.Queries.Arenal;
 using Sandwitch.Domain.ViewModels.Additions;
 using Sandwitch.Domain.ViewModels.Filters;
 using Sandwitch.Domain.ViewModels.Updates;
 
-namespace Sandwitch.Service.Controllers;
+namespace Sandwitch.Service.Controllers.V1;
 
 /// <summary>
-///     Represents a <see cref="VientoController" /> class. Inherits <see cref="ControllerBase" />
+///     Represents a <see cref="ArenalController" /> class. Inherits <see cref="ControllerBase" />
 /// </summary>
 /// <param name="mediator">Injected <see cref="IMediator" /></param>
-[Route("api/viento")]
+[ApiVersion(1)]
+[Route("api/v{v:apiVersion}/arenal")]
 [Produces("application/json")]
 [ApiController]
 [Authorize]
 [EnableRateLimiting("Concurrency")]
-public class VientoController(IMediator mediator) : ControllerBase
+public class ArenalController(IMediator mediator) : ControllerBase
 {
     /// <summary>
-    ///     Updates Viento
+    ///     Updates Arenal
     /// </summary>
     /// <response code="200">Ok</response>
     /// <response code="400">BadRequest</response>
@@ -33,17 +35,18 @@ public class VientoController(IMediator mediator) : ControllerBase
     /// <response code="409">Conflict</response>
     /// <response code="503">ServiceUnavailable</response>
     /// <response code="500">InternalServerError</response>
-    /// <param name="viewModel">Injected <see cref="AddHistorico" /></param>
+    /// <param name="viewModel">Injected <see cref="UpdateArenal" /></param>
     /// <returns>Instance of <see cref="Task{OkObjectResult}" /></returns>
+    [MapToApiVersion(1)]
     [HttpPut]
-    [Route("updateviento")]
-    public async Task<IActionResult> UpdateViento([FromBody] UpdateViento viewModel)
+    [Route("updatearenal")]
+    public async Task<IActionResult> UpdateArenal([FromBody] UpdateArenal viewModel)
     {
-        return Ok(await mediator.Send(new UpdateVientoCommand { ViewModel = viewModel }));
+        return Ok(await mediator.Send(new UpdateArenalCommand { ViewModel = viewModel }));
     }
 
     /// <summary>
-    ///     Finds All Viento
+    ///     Finds All Arenal
     /// </summary>
     /// <response code="200">Ok</response>
     /// <response code="400">BadRequest</response>
@@ -54,16 +57,17 @@ public class VientoController(IMediator mediator) : ControllerBase
     /// <response code="503">ServiceUnavailable</response>
     /// <response code="500">InternalServerError</response>
     /// <returns>Instance of <see cref="Task{OkObjectResult}" /></returns>
+    [MapToApiVersion(1)]
     [HttpGet]
     [ResponseCache(Duration = 10, Location = ResponseCacheLocation.Any, NoStore = false)]
-    [Route("findallviento")]
-    public async Task<IActionResult> FindAllViento()
+    [Route("findallarenal")]
+    public async Task<IActionResult> FindAllarenal()
     {
-        return Ok(await mediator.Send(new FindAllVientoQuery()));
+        return Ok(await mediator.Send(new FindAllArenalQuery()));
     }
 
     /// <summary>
-    ///     Finds Paginated Viento
+    ///     Finds Paginated Arenal
     /// </summary>
     /// <response code="200">Ok</response>
     /// <response code="400">BadRequest</response>
@@ -75,15 +79,16 @@ public class VientoController(IMediator mediator) : ControllerBase
     /// <response code="500">InternalServerError</response>
     /// <param name="viewModel">Injected <see cref="FilterPage" /></param>
     /// <returns>Instance of <see cref="Task{OkObjectResult}" /></returns>
+    [MapToApiVersion(1)]
     [HttpPost]
-    [Route("findpaginatedviento")]
-    public async Task<IActionResult> FindPaginatedViento([FromBody] FilterPage viewModel)
+    [Route("findpaginatedarenal")]
+    public async Task<IActionResult> FindPaginatedArenal([FromBody] FilterPage viewModel)
     {
-        return Ok(await mediator.Send(new FindPaginatedVientoQuery { ViewModel = viewModel }));
+        return Ok(await mediator.Send(new FindPaginatedArenalQuery { ViewModel = viewModel }));
     }
 
     /// <summary>
-    ///     Finds All Historico By Viento Id
+    ///     Finds All Historico By Arenal Id
     /// </summary>
     /// <response code="200">Ok</response>
     /// <response code="400">BadRequest</response>
@@ -95,35 +100,36 @@ public class VientoController(IMediator mediator) : ControllerBase
     /// <response code="500">InternalServerError</response>
     /// <param name="id">Injected <see cref="int" /></param>
     /// <returns>Instance of <see cref="Task{OkObjectResult}" /></returns>
+    [MapToApiVersion(1)]
     [HttpGet]
-    [Route("findallhistoricobyvientoid/{id}")]
-    public async Task<IActionResult> FindAllHistoricoByVientoId(int id)
+    [Route("findallhistoricobyarenalid/{id}")]
+    public async Task<IActionResult> FindAllHistoricoByArenalId(int id)
     {
-        return Ok(await mediator.Send(new FindAllHistoricoByVientoIdQuery { Id = id }));
+        return Ok(await mediator.Send(new FindAllHistoricoByArenalIdQuery { Id = id }));
     }
 
     /// <summary>
-    ///     Adds Viento
+    ///     Adds Arenal
     /// </summary>
     /// <response code="200">Ok</response>
     /// <response code="400">BadRequest</response>
     /// <response code="401">Unauthorized</response>
     /// <response code="408">RequestTimeout</response>
-    /// <response code="404">NotFound</response>
     /// <response code="409">Conflict</response>
     /// <response code="503">ServiceUnavailable</response>
     /// <response code="500">InternalServerError</response>
-    /// <param name="viewModel">Injected <see cref="AddViento" /></param>
+    /// <param name="viewModel">Injected <see cref="AddArenal" /></param>
     /// <returns>Instance of <see cref="Task{OkObjectResult}" /></returns>
+    [MapToApiVersion(1)]
     [HttpPost]
-    [Route("addviento")]
-    public async Task<IActionResult> AddViento([FromBody] AddViento viewModel)
+    [Route("addarenal")]
+    public async Task<IActionResult> AddArenal([FromBody] AddArenal viewModel)
     {
-        return Ok(await mediator.Send(new AddVientoCommand { ViewModel = viewModel }));
+        return Ok(await mediator.Send(new AddArenalCommand { ViewModel = viewModel }));
     }
 
     /// <summary>
-    ///     Removes Viento ById
+    ///     Removes Arenal By Id
     /// </summary>
     /// <response code="200">Ok</response>
     /// <response code="400">BadRequest</response>
@@ -135,11 +141,12 @@ public class VientoController(IMediator mediator) : ControllerBase
     /// <response code="500">InternalServerError</response>
     /// <param name="id">Injected <see cref="int" /></param>
     /// <returns>Instance of <see cref="Task{OkObjectResult}" /></returns>
+    [MapToApiVersion(1)]
     [HttpDelete]
-    [Route("removevientobyid/{id}")]
-    public async Task<IActionResult> RemoveVientoById(int id)
+    [Route("removearenalbyid/{id}")]
+    public async Task<IActionResult> RemoveArenalById(int id)
     {
-        await mediator.Send(new RemoveVientoByIdCommand { Id = id });
+        await mediator.Send(new RemoveArenalByIdCommand { Id = id });
 
         return Ok();
     }

@@ -37,22 +37,22 @@ export class PoblacionService extends BaseService {
     }
 
     public UpdatePoblacion(viewModel: UpdatePoblacion): Promise<ViewPoblacion> {
-        return firstValueFrom(this.httpClient.put<ViewPoblacion>(`${environment.Api.Service}api/poblacion/updatepoblacion`, viewModel)
+        return firstValueFrom(this.httpClient.put<ViewPoblacion>(`${environment.Api.Service}api/v1/poblacion/updatepoblacion`, viewModel)
             .pipe(catchError(this.HandleError<ViewPoblacion>('UpdatePoblacion', undefined))));
     }
 
     public FindPaginatedPoblacion(viewModel: FilterPage): Promise<ViewPage<ViewPoblacion>> {
-        return firstValueFrom(this.httpClient.post<ViewPage<ViewPoblacion>>(`${environment.Api.Service}api/poblacion/findpaginatedpoblacion`, viewModel)
+        return firstValueFrom(this.httpClient.post<ViewPage<ViewPoblacion>>(`${environment.Api.Service}api/v1/poblacion/findpaginatedpoblacion`, viewModel)
             .pipe(catchError(this.HandleError<ViewPage<ViewPoblacion>>('FindPaginatedPoblacion', undefined))));
     }
 
     public AddPoblacion(viewModel: AddPoblacion): Promise<ViewPoblacion> {
-        return firstValueFrom(this.httpClient.post<ViewPoblacion>(`${environment.Api.Service}api/poblacion/addpoblacion`, viewModel)
+        return firstValueFrom(this.httpClient.post<ViewPoblacion>(`${environment.Api.Service}api/v1/poblacion/addpoblacion`, viewModel)
             .pipe(catchError(this.HandleError<ViewPoblacion>('AddPoblacion', undefined))));
     }
 
     public RemovePoblacionById(id: number): Promise<any> {
-        return firstValueFrom(this.httpClient.delete<any>(`${environment.Api.Service}api/poblacion/removepoblacionbyid/${id}`)
+        return firstValueFrom(this.httpClient.delete<any>(`${environment.Api.Service}api/v1/poblacion/removepoblacionbyid/${id}`)
             .pipe(catchError(this.HandleError<any>('RemovePoblacionById', undefined))));
     }
 }

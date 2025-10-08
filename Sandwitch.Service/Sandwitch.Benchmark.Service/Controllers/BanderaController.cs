@@ -13,7 +13,7 @@ namespace Sandwitch.Benchmark.Service.Controllers;
 
 public class BanderaController
 {
-    private static readonly HttpClient Client = new() { BaseAddress = new Uri("https://localhost:7297/api/bandera/") };
+    private static readonly HttpClient Client = new() { BaseAddress = new Uri("https://localhost:7297/api/v1/bandera/") };
 
     [Benchmark]
     public async Task<IList<ViewBandera>> FindAllBandera()

@@ -31,7 +31,7 @@ public class VientoControllerTest
     {
     }
 
-    private static readonly HttpClient Client = new() { BaseAddress = new Uri("https://localhost:7297/api/viento/") };
+    private static readonly HttpClient Client = new() { BaseAddress = new Uri("https://localhost:7297/api/v2/viento/") };
 
     /// <summary>
     ///     Initializes a new Instance of <see cref="VientoControllerTest" />

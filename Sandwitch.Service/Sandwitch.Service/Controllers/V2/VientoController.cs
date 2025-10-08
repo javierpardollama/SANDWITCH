@@ -17,6 +17,7 @@ namespace Sandwitch.Service.Controllers.V2;
 /// </summary>
 /// <param name="mediator">Injected <see cref="IMediator" /></param>
 [ApiVersion(2)]
+[ApiExplorerSettings(GroupName = "v2")]
 [Route("api/v{v:apiVersion}/viento")]
 [Produces("application/json")]
 [ApiController]

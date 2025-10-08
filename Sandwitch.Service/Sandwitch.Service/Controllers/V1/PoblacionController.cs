@@ -16,7 +16,8 @@ namespace Sandwitch.Service.Controllers.V1;
 ///     Represents a <see cref="PoblacionController" /> class. Inherits <see cref="ControllerBase" />
 /// </summary>
 /// <param name="mediator">Injected <see cref="IMediator" /></param>
-[ApiVersion(1)]
+[ApiVersion(1.0)]
+[ApiExplorerSettings(GroupName = "v1")]
 [Route("api/v{v:apiVersion}/poblacion")]
 [Produces("application/json")]
 [ApiController]
@@ -37,7 +38,7 @@ public class PoblacionController(IMediator mediator) : ControllerBase
     /// <response code="500">InternalServerError</response>
     /// <param name="viewModel">Injected <see cref="UpdatePoblacion" /></param>
     /// <returns>Instance of <see cref="Task{OkObjectResult}" /></returns>
-    [MapToApiVersion(1)]
+    [MapToApiVersion(1.0)]
     [HttpPut]
     [Route("updatepoblacion")]
     public async Task<IActionResult> UpdatePoblacion([FromBody] UpdatePoblacion viewModel)
@@ -57,7 +58,7 @@ public class PoblacionController(IMediator mediator) : ControllerBase
     /// <response code="503">ServiceUnavailable</response>
     /// <response code="500">InternalServerError</response>
     /// <returns>Instance of <see cref="Task{OkObjectResult}" /></returns>
-    [MapToApiVersion(1)]
+    [MapToApiVersion(1.0)]
     [HttpGet]
     [ResponseCache(Duration = 10, Location = ResponseCacheLocation.Any, NoStore = false)]
     [Route("findallpoblacion")]
@@ -79,7 +80,7 @@ public class PoblacionController(IMediator mediator) : ControllerBase
     /// <response code="500">InternalServerError</response>
     /// <param name="viewModel">Injected <see cref="FilterPage" /></param>
     /// <returns>Instance of <see cref="Task{OkObjectResult}" /></returns>
-    [MapToApiVersion(1)]
+    [MapToApiVersion(1.0)]
     [HttpPost]
     [Route("findpaginatedpoblacion")]
     public async Task<IActionResult> FindPaginatedPoblacion([FromBody] FilterPage viewModel)
@@ -100,7 +101,7 @@ public class PoblacionController(IMediator mediator) : ControllerBase
     /// <response code="500">InternalServerError</response>
     /// <param name="viewModel">Injected <see cref="AddPoblacion" /></param>
     /// <returns>Instance of <see cref="Task{OkObjectResult}" /></returns>
-    [MapToApiVersion(1)]
+    [MapToApiVersion(1.0)]
     [HttpPost]
     [Route("addpoblacion")]
     public async Task<IActionResult> AddPoblacion([FromBody] AddPoblacion viewModel)
@@ -121,7 +122,7 @@ public class PoblacionController(IMediator mediator) : ControllerBase
     /// <response code="500">InternalServerError</response>
     /// <param name="id">Injected <see cref="int" /></param>
     /// <returns>Instance of <see cref="Task{OkObjectResult}" /></returns>
-    [MapToApiVersion(1)]
+    [MapToApiVersion(1.0)]
     [HttpDelete]
     [Route("removepoblacionbyid/{id}")]
     public async Task<IActionResult> RemovePoblacionById(int id)

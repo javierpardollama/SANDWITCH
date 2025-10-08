@@ -16,7 +16,8 @@ namespace Sandwitch.Service.Controllers.V1;
 ///     Represents a <see cref="BanderaController" /> class. Inherits <see cref="ControllerBase" />
 /// </summary>
 /// <param name="mediator">Injected <see cref="IMediator" /></param>
-[ApiVersion(1)]
+[ApiVersion(1.0)]
+[ApiExplorerSettings(GroupName = "v1")]
 [Route("api/v{v:apiVersion}/bandera")]
 [Produces("application/json")]
 [ApiController]
@@ -37,7 +38,7 @@ public class BanderaController(IMediator mediator) : ControllerBase
     /// <response code="500">InternalServerError</response>
     /// <param name="viewModel">Injected <see cref="AddHistorico" /></param>
     /// <returns>Instance of <see cref="Task{OkObjectResult}" /></returns>
-    [MapToApiVersion(1)]
+    [MapToApiVersion(1.0)]
     [HttpPut]
     [Route("updatebandera")]
     public async Task<IActionResult> UpdateBandera([FromBody] UpdateBandera viewModel)
@@ -57,7 +58,7 @@ public class BanderaController(IMediator mediator) : ControllerBase
     /// <response code="503">ServiceUnavailable</response>
     /// <response code="500">InternalServerError</response>
     /// <returns>Instance of <see cref="Task{OkObjectResult}" /></returns>
-    [MapToApiVersion(1)]
+    [MapToApiVersion(1.0)]
     [HttpGet]
     [ResponseCache(Duration = 10, Location = ResponseCacheLocation.Any, NoStore = false)]
     [Route("findallbandera")]
@@ -79,7 +80,7 @@ public class BanderaController(IMediator mediator) : ControllerBase
     /// <response code="500">InternalServerError</response>
     /// <param name="viewModel">Injected <see cref="FilterPage" /></param>
     /// <returns>Instance of <see cref="Task{OkObjectResult}" /></returns>
-    [MapToApiVersion(1)]
+    [MapToApiVersion(1.0)]
     [HttpPost]
     [Route("findpaginatedbandera")]
     public async Task<IActionResult> FindPaginatedBandera([FromBody] FilterPage viewModel)
@@ -100,7 +101,7 @@ public class BanderaController(IMediator mediator) : ControllerBase
     /// <response code="500">InternalServerError</response>
     /// <param name="id">Injected <see cref="int" /></param>
     /// <returns>Instance of <see cref="Task{OkObjectResult}" /></returns>
-    [MapToApiVersion(1)]
+    [MapToApiVersion(1.0)]
     [HttpGet]
     [Route("findallhistoricobybanderaid/{id}")]
     public async Task<IActionResult> FindAllHistoricoByBanderaId(int id)
@@ -121,7 +122,7 @@ public class BanderaController(IMediator mediator) : ControllerBase
     /// <response code="500">InternalServerError</response>
     /// <param name="viewModel">Injected <see cref="AddBandera" /></param>
     /// <returns>Instance of <see cref="Task{OkObjectResult}" /></returns>
-    [MapToApiVersion(1)]
+    [MapToApiVersion(1.0)]
     [HttpPost]
     [Route("addbandera")]
     public async Task<IActionResult> AddBandera([FromBody] AddBandera viewModel)
@@ -142,7 +143,7 @@ public class BanderaController(IMediator mediator) : ControllerBase
     /// <response code="500">InternalServerError</response>
     /// <param name="id">Injected <see cref="int" /></param>
     /// <returns>Instance of <see cref="Task{OkObjectResult}" /></returns>
-    [MapToApiVersion(1)]
+    [MapToApiVersion(1.0)]
     [HttpDelete]
     [Route("removebanderabyid/{id}")]
     public async Task<IActionResult> RemoveBanderaById(int id)

@@ -13,8 +13,8 @@ namespace Sandwitch.Service.Controllers.V2;
 ///     Represents a <see cref="HistoricoController" /> class. Inherits <see cref="ControllerBase" />
 /// </summary>
 /// <param name="mediator">Injected <see cref="IMediator" /></param>
-[ApiVersion(1, Deprecated = true)]
-[ApiVersion(2)]
+[ApiVersion(2.0)]
+[ApiExplorerSettings(GroupName = "v2")]
 [Route("api/v{v:apiVersion}/historico")]
 [Produces("application/json")]
 [ApiController]
@@ -35,8 +35,7 @@ public class HistoricoController(IMediator mediator) : ControllerBase
     /// <response code="500">InternalServerError</response>
     /// <param name="viewModel">Injected <see cref="AddHistorico" /></param>
     /// <returns>Instance of <see cref="Task{OkObjectResult}" /></returns>
-    [MapToApiVersion(1)]
-    [MapToApiVersion(2)]
+    [MapToApiVersion(2.0)]
     [HttpPost]
     [Route("addhistorico")]
     public async Task<IActionResult> AddHistorico([FromBody] AddHistorico viewModel)

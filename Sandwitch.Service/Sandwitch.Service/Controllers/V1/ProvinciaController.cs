@@ -16,7 +16,8 @@ namespace Sandwitch.Service.Controllers.V1;
 ///     Represents a <see cref="ProvinciaController" /> class. Inherits <see cref="ControllerBase" />
 /// </summary>
 /// <param name="mediator">Injected <see cref="IMediator" /></param>
-[ApiVersion(1)]
+[ApiVersion(1.0)]
+[ApiExplorerSettings(GroupName = "v1")]
 [Route("api/v{v:apiVersion}/provincia")]
 [Produces("application/json")]
 [ApiController]
@@ -37,7 +38,7 @@ public class ProvinciaController(IMediator mediator) : ControllerBase
     /// <response code="500">InternalServerError</response>
     /// <param name="viewModel">Injected <see cref="UpdateProvincia" /></param>
     /// <returns>Instance of <see cref="Task{OkObjectResult}" /></returns>
-    [MapToApiVersion(1)]
+    [MapToApiVersion(1.0)]
     [HttpPut]
     [Route("updateprovincia")]
     public async Task<IActionResult> UpdateProvincia([FromBody] UpdateProvincia viewModel)
@@ -57,7 +58,7 @@ public class ProvinciaController(IMediator mediator) : ControllerBase
     /// <response code="503">ServiceUnavailable</response>
     /// <response code="500">InternalServerError</response>
     /// <returns>Instance of <see cref="Task{OkObjectResult}" /></returns>
-    [MapToApiVersion(1)]
+    [MapToApiVersion(1.0)]
     [HttpGet]
     [ResponseCache(Duration = 10, Location = ResponseCacheLocation.Any, NoStore = false)]
     [Route("findallprovincia")]
@@ -79,7 +80,7 @@ public class ProvinciaController(IMediator mediator) : ControllerBase
     /// <response code="500">InternalServerError</response>
     /// <param name="viewModel">Injected <see cref="FilterPage" /></param>
     /// <returns>Instance of <see cref="Task{OkObjectResult}" /></returns>
-    [MapToApiVersion(1)]
+    [MapToApiVersion(1.0)]
     [HttpPost]
     [Route("findpaginatedprovincia")]
     public async Task<IActionResult> FindPaginatedProvincia([FromBody] FilterPage viewModel)
@@ -100,7 +101,7 @@ public class ProvinciaController(IMediator mediator) : ControllerBase
     /// <response code="500">InternalServerError</response>
     /// <param name="viewModel">Injected <see cref="AddProvincia" /></param>
     /// <returns>Instance of <see cref="Task{OkObjectResult}" /></returns>
-    [MapToApiVersion(1)]
+    [MapToApiVersion(1.0)]
     [HttpPost]
     [Route("addprovincia")]
     public async Task<IActionResult> AddProvincia([FromBody] AddProvincia viewModel)
@@ -121,7 +122,7 @@ public class ProvinciaController(IMediator mediator) : ControllerBase
     /// <response code="500">InternalServerError</response>
     /// <param name="id">Injected <see cref="int" /></param>
     /// <returns>Instance of <see cref="Task{OkObjectResult}" /></returns>
-    [MapToApiVersion(1)]
+    [MapToApiVersion(1.0)]
     [HttpDelete]
     [Route("removeprovinciabyid/{id}")]
     public async Task<IActionResult> RemoveProvinciaById(int id)

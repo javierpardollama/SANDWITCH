@@ -16,7 +16,8 @@ namespace Sandwitch.Service.Controllers.V1;
 ///     Represents a <see cref="ArenalController" /> class. Inherits <see cref="ControllerBase" />
 /// </summary>
 /// <param name="mediator">Injected <see cref="IMediator" /></param>
-[ApiVersion(1)]
+[ApiVersion(1.0)]
+[ApiExplorerSettings(GroupName = "v1")]
 [Route("api/v{v:apiVersion}/arenal")]
 [Produces("application/json")]
 [ApiController]
@@ -37,7 +38,7 @@ public class ArenalController(IMediator mediator) : ControllerBase
     /// <response code="500">InternalServerError</response>
     /// <param name="viewModel">Injected <see cref="UpdateArenal" /></param>
     /// <returns>Instance of <see cref="Task{OkObjectResult}" /></returns>
-    [MapToApiVersion(1)]
+    [MapToApiVersion(1.0)]
     [HttpPut]
     [Route("updatearenal")]
     public async Task<IActionResult> UpdateArenal([FromBody] UpdateArenal viewModel)
@@ -57,7 +58,7 @@ public class ArenalController(IMediator mediator) : ControllerBase
     /// <response code="503">ServiceUnavailable</response>
     /// <response code="500">InternalServerError</response>
     /// <returns>Instance of <see cref="Task{OkObjectResult}" /></returns>
-    [MapToApiVersion(1)]
+    [MapToApiVersion(1.0)]
     [HttpGet]
     [ResponseCache(Duration = 10, Location = ResponseCacheLocation.Any, NoStore = false)]
     [Route("findallarenal")]
@@ -79,7 +80,7 @@ public class ArenalController(IMediator mediator) : ControllerBase
     /// <response code="500">InternalServerError</response>
     /// <param name="viewModel">Injected <see cref="FilterPage" /></param>
     /// <returns>Instance of <see cref="Task{OkObjectResult}" /></returns>
-    [MapToApiVersion(1)]
+    [MapToApiVersion(1.0)]
     [HttpPost]
     [Route("findpaginatedarenal")]
     public async Task<IActionResult> FindPaginatedArenal([FromBody] FilterPage viewModel)
@@ -100,7 +101,7 @@ public class ArenalController(IMediator mediator) : ControllerBase
     /// <response code="500">InternalServerError</response>
     /// <param name="id">Injected <see cref="int" /></param>
     /// <returns>Instance of <see cref="Task{OkObjectResult}" /></returns>
-    [MapToApiVersion(1)]
+    [MapToApiVersion(1.0)]
     [HttpGet]
     [Route("findallhistoricobyarenalid/{id}")]
     public async Task<IActionResult> FindAllHistoricoByArenalId(int id)
@@ -120,7 +121,7 @@ public class ArenalController(IMediator mediator) : ControllerBase
     /// <response code="500">InternalServerError</response>
     /// <param name="viewModel">Injected <see cref="AddArenal" /></param>
     /// <returns>Instance of <see cref="Task{OkObjectResult}" /></returns>
-    [MapToApiVersion(1)]
+    [MapToApiVersion(1.0)]
     [HttpPost]
     [Route("addarenal")]
     public async Task<IActionResult> AddArenal([FromBody] AddArenal viewModel)
@@ -141,7 +142,7 @@ public class ArenalController(IMediator mediator) : ControllerBase
     /// <response code="500">InternalServerError</response>
     /// <param name="id">Injected <see cref="int" /></param>
     /// <returns>Instance of <see cref="Task{OkObjectResult}" /></returns>
-    [MapToApiVersion(1)]
+    [MapToApiVersion(1.0)]
     [HttpDelete]
     [Route("removearenalbyid/{id}")]
     public async Task<IActionResult> RemoveArenalById(int id)

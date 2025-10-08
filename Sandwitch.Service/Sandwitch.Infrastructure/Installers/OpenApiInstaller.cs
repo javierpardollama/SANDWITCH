@@ -1,4 +1,5 @@
 ﻿using System.Net;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
 
@@ -21,16 +22,18 @@ public static class OpenApiInstaller
         {
             options.SwaggerDoc("v1", new OpenApiInfo
             {
-                Version = "v1",
-                Title = "Sandwitch.Service"
+                Version = "1.0",
+                Title = "Sandwitch.Service 1.0",
             });
             options.SwaggerDoc("v2", new OpenApiInfo
             {
-                Version = "v2",
-                Title = "Sandwitch.Service"
+                Version = "2.0",
+                Title = "Sandwitch.Service 2.0",
             });
-            var xmlFilename = "Sandwitch.Service.xml";
-            options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename));
+            options.DocInclusionPredicate((name, description) => description.GroupName == name);
+            options.ResolveConflictingActions(descriptions => descriptions.First());
+            
+            options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, "Sandwitch.Service.xml"));
             options.AddSecurityDefinition(nameof(AuthenticationSchemes.Basic), new OpenApiSecurityScheme
             {
                 Name = "Authorization",
@@ -54,5 +57,22 @@ public static class OpenApiInstaller
                 }
             });
         });
+    }
+    
+    /// <summary>
+    ///     Uses Open Api
+    /// </summary>
+    /// <param name="this">Injected <see cref="WebApplication" /></param>
+    public static void UseOpenApi(this WebApplication @this)
+    {
+        @this.UseSwagger();
+        
+        @this.UseSwaggerUI(options =>
+        {
+            options.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
+            options.SwaggerEndpoint("/swagger/v2/swagger.json", "v2");
+        });
+
+        // Add other services here
     }
 }

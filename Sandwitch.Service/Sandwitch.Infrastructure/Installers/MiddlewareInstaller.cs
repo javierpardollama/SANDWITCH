@@ -9,10 +9,10 @@ namespace Sandwitch.Infrastructure.Installers;
 public static class MiddlewareInstaller
 {
     /// <summary>
-    ///     Installs Middlewares
+    ///     Uses Middlewares
     /// </summary>
     /// <param name="this">Injected <see cref="WebApplication" /></param>
-    public static void InstallMiddlewares(this WebApplication @this)
+    public static void UseMiddlewares(this WebApplication @this)
     {
         @this.UseMiddleware<HeaderMiddleware>();
 

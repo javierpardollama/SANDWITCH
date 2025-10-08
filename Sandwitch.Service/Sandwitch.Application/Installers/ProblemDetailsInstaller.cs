@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Sandwitch.Application.Handlers;
 
@@ -17,5 +18,15 @@ public static class ProblemDetailsInstaller
         // Return the Problem Details format for non-successful responses
         @this.AddProblemDetails();
         @this.AddExceptionHandler<ProblemDetailsExceptionHandler>();
+    }
+
+    /// <summary>
+    ///     Installs Problem Details
+    /// </summary>
+    /// <param name="this">Injected <see cref="WebApplication" /></param>
+    public static void UseProblemDetails(this IApplicationBuilder @this)
+    {
+        @this.UseExceptionHandler();
+        @this.UseStatusCodePages();
     }
 }

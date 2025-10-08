@@ -21,7 +21,7 @@ public static class ProblemDetailsInstaller
     }
 
     /// <summary>
-    ///     Installs Problem Details
+    ///     Uses Problem Details
     /// </summary>
     /// <param name="this">Injected <see cref="WebApplication" /></param>
     public static void UseProblemDetails(this IApplicationBuilder @this)

@@ -1,5 +1,7 @@
+using System;
 using System.Text.Json.Serialization;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -8,13 +10,13 @@ using Sandwitch.Domain.Settings;
 using Sandwitch.Host.Installers;
 using Sandwitch.Infrastructure.Installers;
 
-var builder = WebApplication.CreateBuilder(args);
+var @builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.InstallEntityFramework(builder.Configuration);
+@builder.Services.InstallEntityFramework(@builder.Configuration);
 
-builder.Services.AddControllers()
+@builder.Services.AddControllers()
     .AddJsonOptions(options =>
     {
         options.JsonSerializerOptions.WriteIndented = true;
@@ -22,69 +24,82 @@ builder.Services.AddControllers()
         options.JsonSerializerOptions.PropertyNamingPolicy = null;
     });
 
-builder.Services.InstallApiVersions();
+@builder.Services.InstallApiVersions();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.InstallOpenApi();
+@builder.Services.InstallOpenApi();
 
 // Register the Mapping Profiles
-builder.Services.InstallAutoMapper();
+@builder.Services.InstallAutoMapper();
 
 // Register the service and implementation for the database context
-builder.Services.InstallManagers();
-builder.Services.InstallMediatR();
+@builder.Services.InstallManagers();
+@builder.Services.InstallMediatR();
 
 // Register the Mvc services to the services container
-builder.Services.AddResponseCaching();
+@builder.Services.AddResponseCaching();
 
-var apiSettings = new ApiSettings();
-builder.Configuration.GetSection("Api").Bind(apiSettings);
-builder.Services.Configure<ApiSettings>(builder.Configuration.GetSection("Api"));
+var @apiSettings = new ApiSettings();
+@builder.Configuration.GetSection("Api").Bind(@apiSettings);
+@builder.Services.Configure<ApiSettings>(builder.Configuration.GetSection("Api"));
 
 // Add customized Authentication to the services container.
-builder.Services.InstallAuthentication(apiSettings);
-builder.Services.InstallCors(apiSettings);
+@builder.Services.InstallAuthentication(apiSettings);
+@builder.Services.InstallCors(apiSettings);
 
 // Register the Rate Limit Settings to the configuration container.
-var rateSettings = new RateLimitSettings();
-builder.Configuration.GetSection("RateLimit").Bind(rateSettings);
-builder.Services.Configure<RateLimitSettings>(builder.Configuration.GetSection("RateLimit"));
+var @rateSettings = new RateLimitSettings();
+@builder.Configuration.GetSection("RateLimit").Bind(@rateSettings);
+@builder.Services.Configure<RateLimitSettings>(@builder.Configuration.GetSection("RateLimit"));
 
-builder.Services.InstallProblemDetails();
-builder.Services.InstallRateLimiter(rateSettings);
+@builder.Services.InstallProblemDetails();
+@builder.Services.InstallRateLimiter(@rateSettings);
 
-builder.InstallAspireServices();
+@builder.InstallAspireServices();
 
-var app = builder.Build();
+@builder.Services.AddHsts(options =>
+{
+    options.Preload = true; // For browser HSTS preload lists
+    options.IncludeSubDomains = true;
+    options.MaxAge = TimeSpan.FromDays(365); // Recommended: at least 1 year
+});
+
+@builder.WebHost.ConfigureKestrel(serverOptions =>
+{
+    serverOptions.AddServerHeader = false; // Turn off Server header
+});
+
+var @app = @builder.Build();
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+if (@app.Environment.IsDevelopment())
 {
-    app.UseOpenApi();
+    @app.UseOpenApi();
 }
 
-app.UseMigrations();
+@app.UseMigrations();
 
-app.UseMiddlewares();
+@app.UseMiddlewares();
 
-app.UseHttpsRedirection();
+@app.UseHsts();
+@app.UseHttpsRedirection();
 
 // Learn more about configuring app pipeline at https://learn.microsoft.com/en-us/aspnet/core/fundamentals/middleware/?view=aspnetcore-8.0
-app.UseCors();
+@app.UseCors();
 
-app.UseAuthentication();
-app.UseAuthorization();
+@app.UseAuthentication();
+@app.UseAuthorization();
 
-app.UseResponseCaching();
+@app.UseResponseCaching();
 
-app.UseRateLimiter();
+@app.UseRateLimiter();
 
-app.MapControllers();
+@app.MapControllers();
 
-app.UseDefaultHealthEndpoints();
+@app.UseDefaultHealthEndpoints();
 
-app.UseRequestTimeouts();
-app.UseOutputCache();
+@app.UseRequestTimeouts();
+@app.UseOutputCache();
 
 // Return the body of the response when the status code is not successful (the default behavior is to return an empty body with a Status Code)
 app.UseProblemDetails();

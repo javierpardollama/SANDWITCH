@@ -3,6 +3,9 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Sandwitch.Infrastructure.Installers;
 
+/// <summary>
+///     Represents a <see cref="ApiVersionsInstaller" /> class.
+/// </summary>
 public static class ApiVersionsInstaller
 {
     /// <summary>

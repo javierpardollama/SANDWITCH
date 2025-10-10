@@ -1,7 +1,5 @@
-using System;
 using System.Text.Json.Serialization;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -57,17 +55,7 @@ var @rateSettings = new RateLimitSettings();
 
 @builder.InstallAspireServices();
 
-@builder.Services.AddHsts(options =>
-{
-    options.Preload = true; // For browser HSTS preload lists
-    options.IncludeSubDomains = true;
-    options.MaxAge = TimeSpan.FromDays(365); // Recommended: at least 1 year
-});
-
-@builder.WebHost.ConfigureKestrel(serverOptions =>
-{
-    serverOptions.AddServerHeader = false; // Turn off Server header
-});
+@builder.InstallSecureApi();
 
 var @app = @builder.Build();
 

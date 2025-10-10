@@ -35,8 +35,6 @@
     "@angular/cli": "~20.3.3",
     "@angular/compiler-cli": "^20.3.2",
     "@compodoc/compodoc": "1.1.26",
-    "@types/jasmine": "~4.0.0",
-    "jasmine-core": "~4.1.0",
     "typescript": "~5.8.3"
   }
 }

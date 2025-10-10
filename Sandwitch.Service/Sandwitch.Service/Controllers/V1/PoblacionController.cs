@@ -40,7 +40,7 @@ public class PoblacionController(IMediator mediator) : ControllerBase
     /// <returns>Instance of <see cref="Task{OkObjectResult}" /></returns>
     [MapToApiVersion(1.0)]
     [HttpPut]
-    [Route("updatepoblacion")]
+    [Route("update")]
     public async Task<IActionResult> UpdatePoblacion([FromBody] UpdatePoblacion viewModel)
     {
         return Ok(await mediator.Send(new UpdatePoblacionCommand { ViewModel = viewModel }));
@@ -61,7 +61,7 @@ public class PoblacionController(IMediator mediator) : ControllerBase
     [MapToApiVersion(1.0)]
     [HttpGet]
     [ResponseCache(Duration = 10, Location = ResponseCacheLocation.Any, NoStore = false)]
-    [Route("findallpoblacion")]
+    [Route("all")]
     public async Task<IActionResult> FindAllPoblacion()
     {
         return Ok(await mediator.Send(new FindAllPoblacionQuery()));
@@ -82,7 +82,7 @@ public class PoblacionController(IMediator mediator) : ControllerBase
     /// <returns>Instance of <see cref="Task{OkObjectResult}" /></returns>
     [MapToApiVersion(1.0)]
     [HttpPost]
-    [Route("findpaginatedpoblacion")]
+    [Route("page")]
     public async Task<IActionResult> FindPaginatedPoblacion([FromBody] FilterPage viewModel)
     {
         return Ok(await mediator.Send(new FindPaginatedPoblacionQuery { ViewModel = viewModel }));
@@ -103,7 +103,7 @@ public class PoblacionController(IMediator mediator) : ControllerBase
     /// <returns>Instance of <see cref="Task{OkObjectResult}" /></returns>
     [MapToApiVersion(1.0)]
     [HttpPost]
-    [Route("addpoblacion")]
+    [Route("create")]
     public async Task<IActionResult> AddPoblacion([FromBody] AddPoblacion viewModel)
     {
         return Ok(await mediator.Send(new AddPoblacionCommand { ViewModel = viewModel }));
@@ -124,7 +124,7 @@ public class PoblacionController(IMediator mediator) : ControllerBase
     /// <returns>Instance of <see cref="Task{OkObjectResult}" /></returns>
     [MapToApiVersion(1.0)]
     [HttpDelete]
-    [Route("removepoblacionbyid/{id}")]
+    [Route("remove/{id}")]
     public async Task<IActionResult> RemovePoblacionById(int id)
     {
         await mediator.Send(new RemovePoblacionByIdCommand { Id = id });

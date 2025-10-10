@@ -37,27 +37,27 @@ export class ProvinciaService extends BaseService {
     }
 
     public UpdateProvincia(viewModel: UpdateProvincia): Promise<ViewProvincia> {
-        return firstValueFrom(this.httpClient.put<ViewProvincia>(`${environment.Api.Service}api/v1/provincia/updateprovincia`, viewModel)
+        return firstValueFrom(this.httpClient.put<ViewProvincia>(`${environment.Api.Service}api/v1/provincia/update`, viewModel)
             .pipe(catchError(this.HandleError<ViewProvincia>('UpdateProvincia', undefined))));
     }
 
     public FindAllProvincia(): Promise<ViewProvincia[]> {
-        return firstValueFrom(this.httpClient.get<ViewProvincia[]>(`${environment.Api.Service}api/v1/provincia/findallprovincia`)
+        return firstValueFrom(this.httpClient.get<ViewProvincia[]>(`${environment.Api.Service}api/v1/provincia/all`)
             .pipe(catchError(this.HandleError<ViewProvincia[]>('FindAllProvincia', []))));
     }
 
     public FindPaginatedProvincia(viewModel: FilterPage): Promise<ViewPage<ViewProvincia>> {
-        return firstValueFrom(this.httpClient.post<ViewPage<ViewProvincia>>(`${environment.Api.Service}api/v1/provincia/findpaginatedprovincia`, viewModel)
+        return firstValueFrom(this.httpClient.post<ViewPage<ViewProvincia>>(`${environment.Api.Service}api/v1/provincia/page`, viewModel)
             .pipe(catchError(this.HandleError<ViewPage<ViewProvincia>>('FindPaginatedProvincia', undefined))));
     }
 
     public AddProvincia(viewModel: AddProvincia): Promise<ViewProvincia> {
-        return firstValueFrom(this.httpClient.post<ViewProvincia>(`${environment.Api.Service}api/v1/provincia/addprovincia`, viewModel)
+        return firstValueFrom(this.httpClient.post<ViewProvincia>(`${environment.Api.Service}api/v1/provincia/create`, viewModel)
             .pipe(catchError(this.HandleError<ViewProvincia>('AddProvincia', undefined))));
     }
 
     public RemoveProvinciaById(id: number): Promise<any> {
-        return firstValueFrom(this.httpClient.delete<void>(`${environment.Api.Service}api/v1/provincia/removeprovinciabyid/${id}`)
+        return firstValueFrom(this.httpClient.delete<void>(`${environment.Api.Service}api/v1/provincia/remove/${id}`)
             .pipe(catchError(this.HandleError<any>('RemoveProvinciaById', undefined))));
     }
 }

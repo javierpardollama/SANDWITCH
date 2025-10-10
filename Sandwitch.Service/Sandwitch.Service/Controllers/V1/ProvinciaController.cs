@@ -40,7 +40,7 @@ public class ProvinciaController(IMediator mediator) : ControllerBase
     /// <returns>Instance of <see cref="Task{OkObjectResult}" /></returns>
     [MapToApiVersion(1.0)]
     [HttpPut]
-    [Route("updateprovincia")]
+    [Route("update")]
     public async Task<IActionResult> UpdateProvincia([FromBody] UpdateProvincia viewModel)
     {
         return Ok(await mediator.Send(new UpdateProvinciaCommand { ViewModel = viewModel }));
@@ -61,7 +61,7 @@ public class ProvinciaController(IMediator mediator) : ControllerBase
     [MapToApiVersion(1.0)]
     [HttpGet]
     [ResponseCache(Duration = 10, Location = ResponseCacheLocation.Any, NoStore = false)]
-    [Route("findallprovincia")]
+    [Route("all")]
     public async Task<IActionResult> FindAllProvincia()
     {
         return Ok(await mediator.Send(new FindAllProvinciaQuery()));
@@ -82,7 +82,7 @@ public class ProvinciaController(IMediator mediator) : ControllerBase
     /// <returns>Instance of <see cref="Task{OkObjectResult}" /></returns>
     [MapToApiVersion(1.0)]
     [HttpPost]
-    [Route("findpaginatedprovincia")]
+    [Route("page")]
     public async Task<IActionResult> FindPaginatedProvincia([FromBody] FilterPage viewModel)
     {
         return Ok(await mediator.Send(new FindPaginatedProvinciaQuery { ViewModel = viewModel }));
@@ -103,7 +103,7 @@ public class ProvinciaController(IMediator mediator) : ControllerBase
     /// <returns>Instance of <see cref="Task{OkObjectResult}" /></returns>
     [MapToApiVersion(1.0)]
     [HttpPost]
-    [Route("addprovincia")]
+    [Route("create")]
     public async Task<IActionResult> AddProvincia([FromBody] AddProvincia viewModel)
     {
         return Ok(await mediator.Send(new AddProvinciaCommand { ViewModel = viewModel }));
@@ -124,7 +124,7 @@ public class ProvinciaController(IMediator mediator) : ControllerBase
     /// <returns>Instance of <see cref="Task{OkObjectResult}" /></returns>
     [MapToApiVersion(1.0)]
     [HttpDelete]
-    [Route("removeprovinciabyid/{id}")]
+    [Route("remove/{id}")]
     public async Task<IActionResult> RemoveProvinciaById(int id)
     {
         await mediator.Send(new RemoveProvinciaByIdCommand { Id = id });

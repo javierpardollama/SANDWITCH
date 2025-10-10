@@ -37,27 +37,27 @@ export class VientoService extends BaseService {
     }
 
     public UpdateViento(viewModel: UpdateViento): Promise<ViewViento> {
-        return firstValueFrom(this.httpClient.put<ViewViento>(`${environment.Api.Service}api/v2/viento/updateviento`, viewModel)
+        return firstValueFrom(this.httpClient.put<ViewViento>(`${environment.Api.Service}api/v2/viento/update`, viewModel)
             .pipe(catchError(this.HandleError<ViewViento>('UpdateViento', undefined))));
     }
 
     public FindAllViento(): Promise<ViewViento[]> {
-        return firstValueFrom(this.httpClient.get<ViewViento[]>(`${environment.Api.Service}api/v2/viento/findallviento`)
+        return firstValueFrom(this.httpClient.get<ViewViento[]>(`${environment.Api.Service}api/v2/viento/all`)
             .pipe(catchError(this.HandleError<ViewViento[]>('FindAllViento', []))));
     }
 
     public FindPaginatedViento(viewModel: FilterPage): Promise<ViewPage<ViewViento>> {
-        return firstValueFrom(this.httpClient.post<ViewPage<ViewViento>>(`${environment.Api.Service}api/v2/viento/findpaginatedviento`, viewModel)
+        return firstValueFrom(this.httpClient.post<ViewPage<ViewViento>>(`${environment.Api.Service}api/v2/viento/page`, viewModel)
             .pipe(catchError(this.HandleError<ViewPage<ViewViento>>('FindPaginatedViento', undefined))));
     }
 
     public AddViento(viewModel: AddViento): Promise<ViewViento> {
-        return firstValueFrom(this.httpClient.post<ViewViento>(`${environment.Api.Service}api/v2/viento/addviento`, viewModel)
+        return firstValueFrom(this.httpClient.post<ViewViento>(`${environment.Api.Service}api/v2/viento/create`, viewModel)
             .pipe(catchError(this.HandleError<ViewViento>('AddViento', undefined))));
     }
 
     public RemoveVientoById(id: number): Promise<any> {
-        return firstValueFrom(this.httpClient.delete<any>(`${environment.Api.Service}api/v2/viento/removevientobyid/${id}`)
+        return firstValueFrom(this.httpClient.delete<any>(`${environment.Api.Service}api/v2/viento/remove/${id}`)
             .pipe(catchError(this.HandleError<any>('RemoveVientoById', undefined))));
     }
 }

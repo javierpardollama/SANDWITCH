@@ -40,7 +40,7 @@ public class VientoController(IMediator mediator) : ControllerBase
     /// <returns>Instance of <see cref="Task{OkObjectResult}" /></returns>
     [MapToApiVersion(2)]
     [HttpPut]
-    [Route("updateviento")]
+    [Route("update")]
     public async Task<IActionResult> UpdateViento([FromBody] UpdateViento viewModel)
     {
         return Ok(await mediator.Send(new UpdateVientoCommand { ViewModel = viewModel }));
@@ -61,7 +61,7 @@ public class VientoController(IMediator mediator) : ControllerBase
     [MapToApiVersion(2)]
     [HttpGet]
     [ResponseCache(Duration = 10, Location = ResponseCacheLocation.Any, NoStore = false)]
-    [Route("findallviento")]
+    [Route("all")]
     public async Task<IActionResult> FindAllViento()
     {
         return Ok(await mediator.Send(new FindAllVientoQuery()));
@@ -82,7 +82,7 @@ public class VientoController(IMediator mediator) : ControllerBase
     /// <returns>Instance of <see cref="Task{OkObjectResult}" /></returns>
     [MapToApiVersion(2)]
     [HttpPost]
-    [Route("findpaginatedviento")]
+    [Route("page")]
     public async Task<IActionResult> FindPaginatedViento([FromBody] FilterPage viewModel)
     {
         return Ok(await mediator.Send(new FindPaginatedVientoQuery { ViewModel = viewModel }));
@@ -103,7 +103,7 @@ public class VientoController(IMediator mediator) : ControllerBase
     /// <returns>Instance of <see cref="Task{OkObjectResult}" /></returns>
     [MapToApiVersion(2)]
     [HttpGet]
-    [Route("findallhistoricobyvientoid/{id}")]
+    [Route("all/historico/{id}")]
     public async Task<IActionResult> FindAllHistoricoByVientoId(int id)
     {
         return Ok(await mediator.Send(new FindAllHistoricoByVientoIdQuery { Id = id }));
@@ -124,7 +124,7 @@ public class VientoController(IMediator mediator) : ControllerBase
     /// <returns>Instance of <see cref="Task{OkObjectResult}" /></returns>
     [MapToApiVersion(2)]
     [HttpPost]
-    [Route("addviento")]
+    [Route("create")]
     public async Task<IActionResult> AddViento([FromBody] AddViento viewModel)
     {
         return Ok(await mediator.Send(new AddVientoCommand { ViewModel = viewModel }));
@@ -145,7 +145,7 @@ public class VientoController(IMediator mediator) : ControllerBase
     /// <returns>Instance of <see cref="Task{OkObjectResult}" /></returns>
     [MapToApiVersion(2)]
     [HttpDelete]
-    [Route("removevientobyid/{id}")]
+    [Route("remove/{id}")]
     public async Task<IActionResult> RemoveVientoById(int id)
     {
         await mediator.Send(new RemoveVientoByIdCommand { Id = id });

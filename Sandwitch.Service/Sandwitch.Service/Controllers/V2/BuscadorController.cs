@@ -38,7 +38,7 @@ public class BuscadorController(IMediator mediator) : ControllerBase
     [MapToApiVersion(2.0)]
     [HttpGet]
     [ResponseCache(Duration = 10, Location = ResponseCacheLocation.Any, NoStore = false)]
-    [Route("findallbuscador")]
+    [Route("all")]
     public async Task<IActionResult> FindAllBuscador()
     {
         return Ok(await mediator.Send(new FindAllBuscadorQuery()));
@@ -59,7 +59,7 @@ public class BuscadorController(IMediator mediator) : ControllerBase
     /// <returns>Instance of <see cref="Task{OkObjectResult}" /></returns>
     [MapToApiVersion(2.0)]
     [HttpPost]
-    [Route("findallarenalbybuscadorid")]
+    [Route("all/arenal")]
     public async Task<IActionResult> FindAllArenalByBuscadorId([FromBody] FinderArenal viewModel)
     {
         return Ok(await mediator.Send(new FindAllArenalByBuscadorIdQuery { ViewModel = viewModel }));

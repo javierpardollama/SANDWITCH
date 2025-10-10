@@ -40,7 +40,7 @@ public class BanderaController(IMediator mediator) : ControllerBase
     /// <returns>Instance of <see cref="Task{OkObjectResult}" /></returns>
     [MapToApiVersion(1.0)]
     [HttpPut]
-    [Route("updatebandera")]
+    [Route("update")]
     public async Task<IActionResult> UpdateBandera([FromBody] UpdateBandera viewModel)
     {
         return Ok(await mediator.Send(new UpdateBanderaCommand { ViewModel = viewModel }));
@@ -61,7 +61,7 @@ public class BanderaController(IMediator mediator) : ControllerBase
     [MapToApiVersion(1.0)]
     [HttpGet]
     [ResponseCache(Duration = 10, Location = ResponseCacheLocation.Any, NoStore = false)]
-    [Route("findallbandera")]
+    [Route("all")]
     public async Task<IActionResult> FindAllBandera()
     {
         return Ok(await mediator.Send(new FindAllBanderaQuery()));
@@ -82,7 +82,7 @@ public class BanderaController(IMediator mediator) : ControllerBase
     /// <returns>Instance of <see cref="Task{OkObjectResult}" /></returns>
     [MapToApiVersion(1.0)]
     [HttpPost]
-    [Route("findpaginatedbandera")]
+    [Route("page")]
     public async Task<IActionResult> FindPaginatedBandera([FromBody] FilterPage viewModel)
     {
         return Ok(await mediator.Send(new FindPaginatedBanderaQuery { ViewModel = viewModel }));
@@ -103,7 +103,7 @@ public class BanderaController(IMediator mediator) : ControllerBase
     /// <returns>Instance of <see cref="Task{OkObjectResult}" /></returns>
     [MapToApiVersion(1.0)]
     [HttpGet]
-    [Route("findallhistoricobybanderaid/{id}")]
+    [Route("all/historico/{id}")]
     public async Task<IActionResult> FindAllHistoricoByBanderaId(int id)
     {
         return Ok(await mediator.Send(new FindAllHistoricoByBanderaIdQuery { Id = id }));
@@ -124,7 +124,7 @@ public class BanderaController(IMediator mediator) : ControllerBase
     /// <returns>Instance of <see cref="Task{OkObjectResult}" /></returns>
     [MapToApiVersion(1.0)]
     [HttpPost]
-    [Route("addbandera")]
+    [Route("add")]
     public async Task<IActionResult> AddBandera([FromBody] AddBandera viewModel)
     {
         return Ok(await mediator.Send(new AddBanderaCommand { ViewModel = viewModel }));
@@ -145,7 +145,7 @@ public class BanderaController(IMediator mediator) : ControllerBase
     /// <returns>Instance of <see cref="Task{OkObjectResult}" /></returns>
     [MapToApiVersion(1.0)]
     [HttpDelete]
-    [Route("removebanderabyid/{id}")]
+    [Route("remove/{id}")]
     public async Task<IActionResult> RemoveBanderaById(int id)
     {
         await mediator.Send(new RemoveBanderaByIdCommand { Id = id });

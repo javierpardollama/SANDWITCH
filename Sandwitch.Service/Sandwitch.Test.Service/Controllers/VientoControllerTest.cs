@@ -45,7 +45,7 @@ public class VientoControllerTest
     [Test]
     public async Task FindAllViento()
     {
-        var response = await Client.GetAsync("findallviento");
+        var response = await Client.GetAsync("all");
         response.EnsureSuccessStatusCode();
         var vientos = await response.Content.ReadFromJsonAsync<List<ViewViento>>();
 
@@ -57,7 +57,7 @@ public class VientoControllerTest
     {
         var content = JsonContent.Create(new FilterPage { Index = 0, Size = 20 });
 
-        var response = await Client.PostAsync("findpaginatedviento", content);
+        var response = await Client.PostAsync("page", content);
         response.EnsureSuccessStatusCode();
         var vientos = await response.Content.ReadFromJsonAsync<ViewPage<ViewViento>>();
 

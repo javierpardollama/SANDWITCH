@@ -46,7 +46,7 @@ public class PoblacionControllerTest
     [Test]
     public async Task FindAllPoblacion()
     {
-        var response = await Client.GetAsync("findallpoblacion");
+        var response = await Client.GetAsync("all");
         response.EnsureSuccessStatusCode();
         var poblaciones = await response.Content.ReadFromJsonAsync<List<ViewPoblacion>>();
 
@@ -58,7 +58,7 @@ public class PoblacionControllerTest
     {
         var content = JsonContent.Create(new FilterPage { Index = 0, Size = 20 });
 
-        var response = await Client.PostAsync("findpaginatedpoblacion", content);
+        var response = await Client.PostAsync("page", content);
         response.EnsureSuccessStatusCode();
         var poblaciones = await response.Content.ReadFromJsonAsync<ViewPage<ViewPoblacion>>();
 

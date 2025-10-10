@@ -46,7 +46,7 @@ public class ProvinciaControllerTest
     [Test]
     public async Task FindAllProvincia()
     {
-        var response = await Client.GetAsync("findallprovincia");
+        var response = await Client.GetAsync("all");
         response.EnsureSuccessStatusCode();
         var provincias = await response.Content.ReadFromJsonAsync<List<ViewProvincia>>();
 
@@ -58,7 +58,7 @@ public class ProvinciaControllerTest
     {
         var content = JsonContent.Create(new FilterPage { Index = 0, Size = 20 });
 
-        var response = await Client.PostAsync("findpaginatedprovincia", content);
+        var response = await Client.PostAsync("page", content);
         response.EnsureSuccessStatusCode();
         var provincias = await response.Content.ReadFromJsonAsync<ViewPage<ViewProvincia>>();
 

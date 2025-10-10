@@ -22,7 +22,7 @@ public class VientoController
             new AuthenticationHeaderValue("Basic",
                 Convert.ToBase64String(Encoding.UTF8.GetBytes("Peach" + ":" + "T/R4J6eyvNG<6ne!")));
 
-        var response = await Client.GetAsync("findallviento");
+        var response = await Client.GetAsync("all");
         response.EnsureSuccessStatusCode();
         var vientos = await response.Content.ReadFromJsonAsync<List<ViewViento>>();
 
@@ -38,7 +38,7 @@ public class VientoController
 
         var content = JsonContent.Create(new FilterPage { Index = 0, Size = 20 });
 
-        var response = await Client.PostAsync("findpaginatedviento", content);
+        var response = await Client.PostAsync("page", content);
         response.EnsureSuccessStatusCode();
         var vientos = await response.Content.ReadFromJsonAsync<ViewPage<ViewViento>>();
 

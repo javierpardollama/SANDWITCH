@@ -22,7 +22,7 @@ public class BanderaController
             new AuthenticationHeaderValue("Basic",
                 Convert.ToBase64String(Encoding.UTF8.GetBytes("Peach" + ":" + "T/R4J6eyvNG<6ne!")));
 
-        var response = await Client.GetAsync("findallbandera");
+        var response = await Client.GetAsync("all");
         response.EnsureSuccessStatusCode();
         var banderas = await response.Content.ReadFromJsonAsync<List<ViewBandera>>();
 
@@ -38,7 +38,7 @@ public class BanderaController
 
         var content = JsonContent.Create(new FilterPage { Index = 0, Size = 20 });
 
-        var response = await Client.PostAsync("findpaginatedbandera", content);
+        var response = await Client.PostAsync("page", content);
         response.EnsureSuccessStatusCode();
         var banderas = await response.Content.ReadFromJsonAsync<ViewPage<ViewBandera>>();
 

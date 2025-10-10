@@ -37,7 +37,7 @@ public class HistoricoController(IMediator mediator) : ControllerBase
     /// <returns>Instance of <see cref="Task{OkObjectResult}" /></returns>
     [MapToApiVersion(2.0)]
     [HttpPost]
-    [Route("addhistorico")]
+    [Route("create")]
     public async Task<IActionResult> AddHistorico([FromBody] AddHistorico viewModel)
     {
         return Ok(await mediator.Send(new AddHistoricoCommand { ViewModel = viewModel }));

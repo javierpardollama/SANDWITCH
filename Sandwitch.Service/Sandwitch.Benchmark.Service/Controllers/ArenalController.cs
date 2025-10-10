@@ -22,7 +22,7 @@ public class ArenalController
             new AuthenticationHeaderValue("Basic",
                 Convert.ToBase64String(Encoding.UTF8.GetBytes("Peach" + ":" + "T/R4J6eyvNG<6ne!")));
 
-        var response = await Client.GetAsync("findallarenal");
+        var response = await Client.GetAsync("all");
         response.EnsureSuccessStatusCode();
         var arenales = await response.Content.ReadFromJsonAsync<List<ViewArenal>>();
 
@@ -36,7 +36,7 @@ public class ArenalController
             new AuthenticationHeaderValue("Basic",
                 Convert.ToBase64String(Encoding.UTF8.GetBytes("Peach" + ":" + "T/R4J6eyvNG<6ne!")));
 
-        var response = await Client.GetAsync(string.Concat("findallhistoricobyarenalid/", 1));
+        var response = await Client.GetAsync(string.Concat("all/historico/", 1));
         response.EnsureSuccessStatusCode();
         var historicos = await response.Content.ReadFromJsonAsync<List<ViewHistorico>>();
 
@@ -52,7 +52,7 @@ public class ArenalController
 
         var content = JsonContent.Create(new FilterPage { Index = 0, Size = 20 });
 
-        var response = await Client.PostAsync("findpaginatedarenal", content);
+        var response = await Client.PostAsync("page", content);
         response.EnsureSuccessStatusCode();
         var arenales = await response.Content.ReadFromJsonAsync<ViewPage<ViewArenal>>();
 

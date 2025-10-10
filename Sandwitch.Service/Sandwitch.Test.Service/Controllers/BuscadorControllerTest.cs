@@ -45,7 +45,7 @@ public class BuscadorControllerTest
     [Test]
     public async Task FindAllBuscador()
     {
-        var response = await Client.GetAsync("findallbuscador");
+        var response = await Client.GetAsync("all");
         response.EnsureSuccessStatusCode();
         var buscadores = await response.Content.ReadFromJsonAsync<List<ViewBuscador>>();
 
@@ -57,7 +57,7 @@ public class BuscadorControllerTest
     {
         var content = JsonContent.Create(new FinderArenal { Id = 1, Type = "Poblacion" });
 
-        var response = await Client.PostAsync("findallarenalbybuscadorid", content);
+        var response = await Client.PostAsync("all/arenal/", content);
         response.EnsureSuccessStatusCode();
         var arenales = await response.Content.ReadFromJsonAsync<List<ViewArenal>>();
 

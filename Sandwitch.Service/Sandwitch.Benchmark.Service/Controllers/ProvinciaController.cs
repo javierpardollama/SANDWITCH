@@ -23,7 +23,7 @@ public class ProvinciaController
             new AuthenticationHeaderValue("Basic",
                 Convert.ToBase64String(Encoding.UTF8.GetBytes("Peach" + ":" + "T/R4J6eyvNG<6ne!")));
 
-        var response = await Client.GetAsync("findallprovincia");
+        var response = await Client.GetAsync("all");
         response.EnsureSuccessStatusCode();
         var provincias = await response.Content.ReadFromJsonAsync<List<ViewProvincia>>();
 
@@ -39,7 +39,7 @@ public class ProvinciaController
 
         var content = JsonContent.Create(new FilterPage { Index = 0, Size = 20 });
 
-        var response = await Client.PostAsync("findpaginatedprovincia", content);
+        var response = await Client.PostAsync("page", content);
         response.EnsureSuccessStatusCode();
         var provincias = await response.Content.ReadFromJsonAsync<ViewPage<ViewProvincia>>();
 

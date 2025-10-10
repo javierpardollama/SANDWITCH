@@ -22,7 +22,7 @@ public class BuscadorController
             new AuthenticationHeaderValue("Basic",
                 Convert.ToBase64String(Encoding.UTF8.GetBytes("Peach" + ":" + "T/R4J6eyvNG<6ne!")));
 
-        var response = await Client.GetAsync("findallbuscador");
+        var response = await Client.GetAsync("all");
         response.EnsureSuccessStatusCode();
         var buscadores = await response.Content.ReadFromJsonAsync<List<ViewBuscador>>();
         return buscadores;
@@ -38,7 +38,7 @@ public class BuscadorController
         var content = JsonContent.Create(new FinderArenal { Id = 1, Type = "Poblacion" });
 
 
-        var response = await Client.PostAsync("findallarenalbybuscadorid", content);
+        var response = await Client.PostAsync("all/arenal", content);
         response.EnsureSuccessStatusCode();
         var arenales = await response.Content.ReadFromJsonAsync<List<ViewArenal>>();
 

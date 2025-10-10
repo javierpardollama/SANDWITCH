@@ -23,7 +23,7 @@ public class PoblacionController
             new AuthenticationHeaderValue("Basic",
                 Convert.ToBase64String(Encoding.UTF8.GetBytes("Peach" + ":" + "T/R4J6eyvNG<6ne!")));
 
-        var response = await Client.GetAsync("findallpoblacion");
+        var response = await Client.GetAsync("all");
         response.EnsureSuccessStatusCode();
         var poblaciones = await response.Content.ReadFromJsonAsync<List<ViewPoblacion>>();
 
@@ -39,7 +39,7 @@ public class PoblacionController
 
         var content = JsonContent.Create(new FilterPage { Index = 0, Size = 20 });
 
-        var response = await Client.PostAsync("findpaginatedpoblacion", content);
+        var response = await Client.PostAsync("page", content);
         response.EnsureSuccessStatusCode();
         var poblaciones = await response.Content.ReadFromJsonAsync<ViewPage<ViewPoblacion>>();
 

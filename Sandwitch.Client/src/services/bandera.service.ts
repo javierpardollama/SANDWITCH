@@ -37,27 +37,27 @@ export class BanderaService extends BaseService {
     }
 
     public UpdateBandera(viewModel: UpdateBandera): Promise<ViewBandera> {
-        return firstValueFrom(this.httpClient.put<ViewBandera>(`${environment.Api.Service}api/v1/bandera/updatebandera`, viewModel)
+        return firstValueFrom(this.httpClient.put<ViewBandera>(`${environment.Api.Service}api/v1/bandera/update`, viewModel)
             .pipe(catchError(this.HandleError<ViewBandera>('UpdateBandera', undefined))));
     }
 
     public FindAllBandera(): Promise<ViewBandera[]> {
-        return firstValueFrom(this.httpClient.get<ViewBandera[]>(`${environment.Api.Service}api/v1/bandera/findallbandera`)
+        return firstValueFrom(this.httpClient.get<ViewBandera[]>(`${environment.Api.Service}api/v1/bandera/all`)
             .pipe(catchError(this.HandleError<ViewBandera[]>('FindAllBandera', []))));
     }
 
     public FindPaginatedBandera(viewModel: FilterPage): Promise<ViewPage<ViewBandera>> {
-        return firstValueFrom(this.httpClient.post<ViewPage<ViewBandera>>(`${environment.Api.Service}api/v1/bandera/findpaginatedbandera`, viewModel)
+        return firstValueFrom(this.httpClient.post<ViewPage<ViewBandera>>(`${environment.Api.Service}api/v1/bandera/page`, viewModel)
             .pipe(catchError(this.HandleError<ViewPage<ViewBandera>>('FindPaginatedBandera', undefined))));
     }
 
     public AddBandera(viewModel: AddBandera): Promise<ViewBandera> {
-        return firstValueFrom(this.httpClient.post<ViewBandera>(`${environment.Api.Service}api/v1/bandera/addbandera`, viewModel)
+        return firstValueFrom(this.httpClient.post<ViewBandera>(`${environment.Api.Service}api/v1/bandera/create`, viewModel)
             .pipe(catchError(this.HandleError<ViewBandera>('AddBandera', undefined))));
     }
 
     public RemoveBanderaById(id: number): Promise<any> {
-        return firstValueFrom(this.httpClient.delete<any>(`${environment.Api.Service}api/v1/bandera/removebanderabyid/${id}`)
+        return firstValueFrom(this.httpClient.delete<any>(`${environment.Api.Service}api/v1/bandera/remove/${id}`)
             .pipe(catchError(this.HandleError<any>('RemoveBanderaById', undefined))));
     }
 }

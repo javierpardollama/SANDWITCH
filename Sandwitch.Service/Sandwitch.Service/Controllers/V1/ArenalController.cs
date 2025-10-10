@@ -40,7 +40,7 @@ public class ArenalController(IMediator mediator) : ControllerBase
     /// <returns>Instance of <see cref="Task{OkObjectResult}" /></returns>
     [MapToApiVersion(1.0)]
     [HttpPut]
-    [Route("updatearenal")]
+    [Route("update")]
     public async Task<IActionResult> UpdateArenal([FromBody] UpdateArenal viewModel)
     {
         return Ok(await mediator.Send(new UpdateArenalCommand { ViewModel = viewModel }));
@@ -61,7 +61,7 @@ public class ArenalController(IMediator mediator) : ControllerBase
     [MapToApiVersion(1.0)]
     [HttpGet]
     [ResponseCache(Duration = 10, Location = ResponseCacheLocation.Any, NoStore = false)]
-    [Route("findallarenal")]
+    [Route("all")]
     public async Task<IActionResult> FindAllarenal()
     {
         return Ok(await mediator.Send(new FindAllArenalQuery()));
@@ -82,7 +82,7 @@ public class ArenalController(IMediator mediator) : ControllerBase
     /// <returns>Instance of <see cref="Task{OkObjectResult}" /></returns>
     [MapToApiVersion(1.0)]
     [HttpPost]
-    [Route("findpaginatedarenal")]
+    [Route("page")]
     public async Task<IActionResult> FindPaginatedArenal([FromBody] FilterPage viewModel)
     {
         return Ok(await mediator.Send(new FindPaginatedArenalQuery { ViewModel = viewModel }));
@@ -103,7 +103,7 @@ public class ArenalController(IMediator mediator) : ControllerBase
     /// <returns>Instance of <see cref="Task{OkObjectResult}" /></returns>
     [MapToApiVersion(1.0)]
     [HttpGet]
-    [Route("findallhistoricobyarenalid/{id}")]
+    [Route("all/historico/{id}")]
     public async Task<IActionResult> FindAllHistoricoByArenalId(int id)
     {
         return Ok(await mediator.Send(new FindAllHistoricoByArenalIdQuery { Id = id }));
@@ -123,7 +123,7 @@ public class ArenalController(IMediator mediator) : ControllerBase
     /// <returns>Instance of <see cref="Task{OkObjectResult}" /></returns>
     [MapToApiVersion(1.0)]
     [HttpPost]
-    [Route("addarenal")]
+    [Route("create")]
     public async Task<IActionResult> AddArenal([FromBody] AddArenal viewModel)
     {
         return Ok(await mediator.Send(new AddArenalCommand { ViewModel = viewModel }));
@@ -144,7 +144,7 @@ public class ArenalController(IMediator mediator) : ControllerBase
     /// <returns>Instance of <see cref="Task{OkObjectResult}" /></returns>
     [MapToApiVersion(1.0)]
     [HttpDelete]
-    [Route("removearenalbyid/{id}")]
+    [Route("remove/{id}")]
     public async Task<IActionResult> RemoveArenalById(int id)
     {
         await mediator.Send(new RemoveArenalByIdCommand { Id = id });

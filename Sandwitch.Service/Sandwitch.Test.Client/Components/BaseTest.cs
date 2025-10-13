@@ -17,9 +17,9 @@ public class BaseTest
     private readonly string Path =
         $"{AppDomain.CurrentDomain.BaseDirectory}/{DateTime.Now:yyyy-MM-dd}/{TestContext.CurrentContext.Test.ClassName}";
 
-    protected ChromeDriver Driver;
+    protected IWebDriver Driver;
 
-    protected INetwork Network;
+    private INetwork Network;
 
     private List<HttpRequestData> Requests = [];
 

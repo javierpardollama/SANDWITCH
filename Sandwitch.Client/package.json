@@ -1,12 +1,22 @@
 {
   "name": "sandwitch.client",
+  "description": "This is a Test",
+  "author": {
+    "name": "Javier Pardo",
+    "email": ""
+  },
   "version": "0.0.0",
+  "main": "main.js",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --ssl",
-    "build": "ng build",
-    "watch": "ng build --watch --configuration development",
-    "compodoc": "npx compodoc -p tsconfig.doc.json"
+    "angular:start": "ng serve --ssl",
+    "electron:start": "electron .",
+    "angular:build": "ng build",
+    "angular:watch": "ng build --watch --configuration development",
+    "compodoc": "npx compodoc -p tsconfig.doc.json",
+    "forge:start": "electron-forge start",
+    "forge:package": "electron-forge package",
+    "forge:make": "electron-forge make"
   },
   "private": true,
   "dependencies": {
@@ -26,6 +36,7 @@
     "@opentelemetry/exporter-trace-otlp-http": "^0.203.0",
     "@opentelemetry/instrumentation": "^0.203.0",
     "@opentelemetry/sdk-trace-web": "^2.1.0",
+    "electron-squirrel-startup": "^1.0.1",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.15.0"
@@ -35,6 +46,15 @@
     "@angular/cli": "~20.3.5",
     "@angular/compiler-cli": "^20.3.4",
     "@compodoc/compodoc": "1.1.31",
+    "@electron-forge/cli": "^7.10.2",
+    "@electron-forge/maker-deb": "^7.10.2",
+    "@electron-forge/maker-rpm": "^7.10.2",
+    "@electron-forge/maker-squirrel": "^7.10.2",
+    "@electron-forge/maker-zip": "^7.10.2",
+    "@electron-forge/plugin-auto-unpack-natives": "^7.10.2",
+    "@electron-forge/plugin-fuses": "^7.10.2",
+    "@electron/fuses": "^1.8.0",
+    "electron": "^38.2.2",
     "typescript": "~5.8.3"
   }
 }

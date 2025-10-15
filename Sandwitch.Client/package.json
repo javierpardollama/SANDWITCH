@@ -9,14 +9,14 @@
   "main": "main.js",
   "scripts": {
     "ng": "ng",
-    "angular:start": "ng serve --ssl",
-    "electron:start": "electron .",
-    "angular:build": "ng build",
-    "angular:watch": "ng build --watch --configuration development",
-    "compodoc": "npx compodoc -p tsconfig.doc.json",
-    "forge:start": "electron-forge start",
-    "forge:package": "electron-forge package",
-    "forge:make": "electron-forge make"
+    "web": "ng serve --ssl",
+    "desktop": "electron .",
+    "build": "ng build",
+    "watch": "ng build --watch --configuration development",
+    "doc": "npx compodoc -p tsconfig.doc.json",
+    "forge": "electron-forge start",
+    "package": "electron-forge package",
+    "make": "electron-forge make"
   },
   "private": true,
   "dependencies": {

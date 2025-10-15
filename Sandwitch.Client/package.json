@@ -6,13 +6,13 @@
     "email": ""
   },
   "version": "0.0.0",
-  "main": "main.js",
+  "main": "electron.main.js",
   "scripts": {
     "ng": "ng",
     "web": "ng serve --ssl",
     "desktop": "electron .",
-    "build": "ng build",
-    "watch": "ng build --watch --configuration development",
+    "dev": "ng build --base-href ./  --configuration development",
+    "prod": "ng build --base-href ./ --configuration production",
     "doc": "npx compodoc -p tsconfig.doc.json",
     "forge": "electron-forge start",
     "package": "electron-forge package",

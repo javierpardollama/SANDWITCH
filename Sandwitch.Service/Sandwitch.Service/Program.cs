@@ -40,7 +40,7 @@ var @apiSettings = new ApiSettings();
 @builder.Services.Configure<ApiSettings>(builder.Configuration.GetSection("Api"));
 
 // Add customized Authentication to the services container.
-@builder.Services.InstallAuthentication(apiSettings);
+@builder.Services.InstallIdentification(apiSettings);
 @builder.Services.InstallCors(apiSettings);
 
 // Register the Rate Limit Settings to the configuration container.
@@ -69,8 +69,7 @@ var @app = @builder.Build();
 // Learn more about configuring app pipeline at https://learn.microsoft.com/en-us/aspnet/core/fundamentals/middleware/?view=aspnetcore-8.0
 @app.UseCors();
 
-@app.UseAuthentication();
-@app.UseAuthorization();
+@app.UseIdentification();
 
 @app.UseResponseCaching();
 

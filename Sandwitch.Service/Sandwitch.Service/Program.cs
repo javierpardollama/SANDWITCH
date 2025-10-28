@@ -1,10 +1,10 @@
-using System.Text.Json.Serialization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Sandwitch.Application.Installers;
 using Sandwitch.Domain.Settings;
 using Sandwitch.Infrastructure.Installers;
+using System.Text.Json.Serialization;
 
 var @builder = WebApplication.CreateBuilder(args);
 
@@ -57,7 +57,7 @@ var @rateSettings = new RateLimitSettings();
 
 var @app = @builder.Build();
 
-// Configure the HTTP request pipeline.
+// Learn more about configuring app pipeline at https://learn.microsoft.com/en-us/aspnet/core/fundamentals/middleware/?view=aspnetcore-8.0
 @app.UseOpenApi();
 
 @app.UseMigrations();
@@ -66,7 +66,6 @@ var @app = @builder.Build();
 
 @app.UseSecureApi();
 
-// Learn more about configuring app pipeline at https://learn.microsoft.com/en-us/aspnet/core/fundamentals/middleware/?view=aspnetcore-8.0
 @app.UseCors();
 
 @app.UseIdentification();

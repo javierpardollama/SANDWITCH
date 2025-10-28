@@ -5,7 +5,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Sandwitch.Application.Installers;
 using Sandwitch.Domain.Settings;
-using Sandwitch.Host.Installers;
 using Sandwitch.Infrastructure.Installers;
 
 var @builder = WebApplication.CreateBuilder(args);

@@ -9,9 +9,8 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\Sandwitch.Application\Sandwitch.Application.csproj"/>
-        <ProjectReference Include="..\Sandwitch.Infrastructure\Sandwitch.Infrastructure.csproj"/>
-        <ProjectReference Include="..\Sandwitch.Host\Sandwitch.Host.csproj"/>
+        <ProjectReference Include="..\Sandwitch.Application\Sandwitch.Application.csproj" />
+        <ProjectReference Include="..\Sandwitch.Infrastructure\Sandwitch.Infrastructure.csproj" />
     </ItemGroup>
 
 </Project>

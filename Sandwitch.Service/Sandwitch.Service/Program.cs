@@ -2,7 +2,6 @@ using System.Text.Json.Serialization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using Sandwitch.Application.Installers;
 using Sandwitch.Domain.Settings;
 using Sandwitch.Infrastructure.Installers;

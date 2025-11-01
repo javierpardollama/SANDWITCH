@@ -1,12 +1,10 @@
-using System.Text.Json.Serialization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using Sandwitch.Application.Installers;
 using Sandwitch.Domain.Settings;
-using Sandwitch.Host.Installers;
 using Sandwitch.Infrastructure.Installers;
+using System.Text.Json.Serialization;
 
 var @builder = WebApplication.CreateBuilder(args);
 
@@ -42,7 +40,7 @@ var @apiSettings = new ApiSettings();
 @builder.Services.Configure<ApiSettings>(builder.Configuration.GetSection("Api"));
 
 // Add customized Authentication to the services container.
-@builder.Services.InstallAuthentication(apiSettings);
+@builder.Services.InstallIdentification(apiSettings);
 @builder.Services.InstallCors(apiSettings);
 
 // Register the Rate Limit Settings to the configuration container.
@@ -59,24 +57,18 @@ var @rateSettings = new RateLimitSettings();
 
 var @app = @builder.Build();
 
-// Configure the HTTP request pipeline.
-if (@app.Environment.IsDevelopment())
-{
-    @app.UseOpenApi();
-}
+// Learn more about configuring app pipeline at https://learn.microsoft.com/en-us/aspnet/core/fundamentals/middleware/?view=aspnetcore-8.0
+@app.UseOpenApi();
 
 @app.UseMigrations();
 
 @app.UseMiddlewares();
 
-@app.UseHsts();
-@app.UseHttpsRedirection();
+@app.UseSecureApi();
 
-// Learn more about configuring app pipeline at https://learn.microsoft.com/en-us/aspnet/core/fundamentals/middleware/?view=aspnetcore-8.0
 @app.UseCors();
 
-@app.UseAuthentication();
-@app.UseAuthorization();
+@app.UseIdentification();
 
 @app.UseResponseCaching();
 

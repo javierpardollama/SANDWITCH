@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Hosting;
 
 namespace Sandwitch.Infrastructure.Installers;
 
@@ -25,5 +26,19 @@ public static class SecureApiInstaller
         {
             serverOptions.AddServerHeader = false; // Turn off Server header
         });
+    }
+
+    /// <summary>
+    ///     Uses Secure Api
+    /// </summary>
+    /// <param name="this">Injected <see cref="WebApplication" /></param>
+    public static void UseSecureApi(this WebApplication @this)
+    {
+        if (!@this.Environment.IsDevelopment())
+        {
+            @this.UseHsts();
+        }
+
+        @this.UseHttpsRedirection();
     }
 }

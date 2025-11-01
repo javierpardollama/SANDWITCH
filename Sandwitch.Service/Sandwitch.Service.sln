@@ -13,8 +13,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sandwitch.Test.Service", "S
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sandwitch.Test.Client", "Sandwitch.Test.Client\Sandwitch.Test.Client.csproj", "{65247CB8-A1D5-42E0-91AB-326AFC96BF65}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sandwitch.Host", "Sandwitch.Host\Sandwitch.Host.csproj", "{C915A8E4-FB40-42EE-837E-0292D9DA2B81}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sandwitch.Domain", "Sandwitch.Domain\Sandwitch.Domain.csproj", "{2F3E0E6F-06F5-47B7-9535-45F5A4FCEB01}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sandwitch.Infrastructure", "Sandwitch.Infrastructure\Sandwitch.Infrastructure.csproj", "{88418E91-398E-4C15-990C-C45131203EFE}"
@@ -47,10 +45,6 @@ Global
 		{65247CB8-A1D5-42E0-91AB-326AFC96BF65}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{65247CB8-A1D5-42E0-91AB-326AFC96BF65}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{65247CB8-A1D5-42E0-91AB-326AFC96BF65}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C915A8E4-FB40-42EE-837E-0292D9DA2B81}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C915A8E4-FB40-42EE-837E-0292D9DA2B81}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C915A8E4-FB40-42EE-837E-0292D9DA2B81}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C915A8E4-FB40-42EE-837E-0292D9DA2B81}.Release|Any CPU.Build.0 = Release|Any CPU
 		{2F3E0E6F-06F5-47B7-9535-45F5A4FCEB01}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{2F3E0E6F-06F5-47B7-9535-45F5A4FCEB01}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2F3E0E6F-06F5-47B7-9535-45F5A4FCEB01}.Release|Any CPU.ActiveCfg = Release|Any CPU

@@ -1,8 +1,6 @@
 using Microsoft.AspNetCore.Builder;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Sandwitch.Application.Installers;
-using Sandwitch.Domain.Settings;
 using Sandwitch.Infrastructure.Installers;
 using System.Text.Json.Serialization;
 
@@ -35,18 +33,12 @@ var @builder = WebApplication.CreateBuilder(args);
 // Register the Mvc services to the services container
 @builder.Services.AddResponseCaching();
 
-var @apiSettings = new ApiSettings();
-@builder.Configuration.GetSection("Api").Bind(@apiSettings);
-@builder.Services.Configure<ApiSettings>(builder.Configuration.GetSection("Api"));
+var @apiSettings = @builder.InstallApiSetttings();
+var @rateSettings = @builder.InstallRateLimitSettings();
 
 // Add customized Authentication to the services container.
 @builder.Services.InstallIdentification(apiSettings);
 @builder.Services.InstallCors(apiSettings);
-
-// Register the Rate Limit Settings to the configuration container.
-var @rateSettings = new RateLimitSettings();
-@builder.Configuration.GetSection("RateLimit").Bind(@rateSettings);
-@builder.Services.Configure<RateLimitSettings>(@builder.Configuration.GetSection("RateLimit"));
 
 @builder.Services.InstallProblemDetails();
 @builder.Services.InstallRateLimiter(@rateSettings);

@@ -8,11 +8,11 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="BenchmarkDotNet" Version="0.15.5" />
+        <PackageReference Include="BenchmarkDotNet" Version="0.15.6" />
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\Sandwitch.Domain\Sandwitch.Domain.csproj"/>
+        <ProjectReference Include="..\Sandwitch.Domain\Sandwitch.Domain.csproj" />
     </ItemGroup>
 
 </Project>

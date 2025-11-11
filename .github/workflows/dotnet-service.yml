@@ -1,4 +1,4 @@
-name: Build & Test .NET API
+name: Build .NET Service
 
 on:
   push:
@@ -30,13 +30,13 @@ jobs:
           dotnet-version: '9.0.x'
 
       - name: 📥 Restore dependencies
-        run: dotnet restore
+        run: dotnet restore Sandwitch.Service/Sandwitch.Service.csproj 
 
       - name: ♻️ Clean project
-        run: dotnet clean  
+        run: dotnet clean  Sandwitch.Service/Sandwitch.Service.csproj 
 
       - name: 🏗️ Build project
-        run: dotnet build --no-restore    
+        run: dotnet build --no-restore Sandwitch.Service/Sandwitch.Service.csproj     
 
       - name: ✅ Run tests      
         run:  dotnet test Sandwitch.Test.Infrastructure --no-build

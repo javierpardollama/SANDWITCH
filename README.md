@@ -1,6 +1,6 @@
 # SANDWITCH
 
-[![Build & Test .NET API](https://github.com/javierpardollama/SANDWITCH/actions/workflows/dotnet-desktop.yml/badge.svg)](https://github.com/javierpardollama/SANDWITCH/actions/workflows/dotnet-desktop.yml) [![Build Angular App](https://github.com/javierpardollama/SANDWITCH/actions/workflows/node.js.yml/badge.svg)](https://github.com/javierpardollama/SANDWITCH/actions/workflows/node.js.yml)
+[![Test .NET Infrastructure](https://github.com/javierpardollama/SANDWITCH/actions/workflows/dotnet-infrastructure.yml/badge.svg)](https://github.com/javierpardollama/SANDWITCH/actions/workflows/dotnet-infrastructure.yml) [![Build .NET Service](https://github.com/javierpardollama/SANDWITCH/actions/workflows/dotnet-service.yml/badge.svg)](https://github.com/javierpardollama/SANDWITCH/actions/workflows/dotnet-service.yml) [![Build Angular App](https://github.com/javierpardollama/SANDWITCH/actions/workflows/node.js.yml/badge.svg)](https://github.com/javierpardollama/SANDWITCH/actions/workflows/node.js.yml)
 
 Este proyecto surge como una solución para gestionar el estado actual de las playas españolas, administrando datos como la temperatura del agua y el horario de las mareas, así como el color de la bandera instalada por los socorristas. 
 

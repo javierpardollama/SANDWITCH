@@ -1,8 +1,8 @@
-﻿using System.Net;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.OpenApi.Models;
+using Microsoft.OpenApi;
+using System.Net;
 
 namespace Sandwitch.Infrastructure.Installers;
 
@@ -43,20 +43,16 @@ public static class OpenApiInstaller
                 In = ParameterLocation.Header,
                 Description = "Basic Authorization header using the Basic scheme."
             });
-            options.AddSecurityRequirement(new OpenApiSecurityRequirement
+
+
+            options.AddSecurityRequirement((document) => new OpenApiSecurityRequirement
             {
                 {
-                    new OpenApiSecurityScheme
-                    {
-                        Reference = new OpenApiReference
-                        {
-                            Type = ReferenceType.SecurityScheme,
-                            Id = nameof(AuthenticationSchemes.Basic)
-                        }
-                    },
-                    Array.Empty<string>()
+                    new OpenApiSecuritySchemeReference(nameof(AuthenticationSchemes.Basic),
+                                                       document),
+                    ["readAccess", "writeAccess"]
                 }
-            });
+            });           
         });
     }
 
@@ -68,7 +64,10 @@ public static class OpenApiInstaller
     {
         if (@this.Environment.IsDevelopment())
         {
-            @this.UseSwagger();
+            @this.UseSwagger(options =>
+            {
+                options.OpenApiVersion = OpenApiSpecVersion.OpenApi3_1;
+            });
 
             @this.UseSwaggerUI(options =>
             {

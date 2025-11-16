@@ -50,7 +50,7 @@ public static class OpenApiInstaller
                 {
                     new OpenApiSecuritySchemeReference(nameof(AuthenticationSchemes.Basic),
                                                        document),
-                    ["readAccess", "writeAccess"]
+                    ["read", "write"]
                 }
             });           
         });

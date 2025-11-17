@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Sandwitch.Application.Installers;
 using Sandwitch.Infrastructure.Installers;
@@ -6,7 +7,10 @@ using System.Text.Json.Serialization;
 
 var @builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+@builder.Configuration.AddEnvironmentVariables();
+
+var @apiSettings = @builder.InstallApiSetttings();
+var @rateSettings = @builder.InstallRateLimitSettings();
 
 @builder.Services.InstallEntityFramework(@builder.Configuration);
 
@@ -32,9 +36,6 @@ var @builder = WebApplication.CreateBuilder(args);
 
 // Register the Mvc services to the services container
 @builder.Services.AddResponseCaching();
-
-var @apiSettings = @builder.InstallApiSetttings();
-var @rateSettings = @builder.InstallRateLimitSettings();
 
 // Add customized Authentication to the services container.
 @builder.Services.InstallIdentification(apiSettings);

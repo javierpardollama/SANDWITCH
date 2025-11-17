@@ -10,8 +10,9 @@
   "scripts": {
     "ng": "ng",
     "web": "ng serve --ssl",
-    "desktop": "electron .",
+    "desktop": "ng serve --ssl | electron .",
     "dev": "ng build --base-href ./  --configuration development",
+    "stg": "ng build --base-href ./  --configuration staging",
     "prod": "ng build --base-href ./ --configuration production",
     "doc": "npx compodoc -p tsconfig.doc.json",
     "forge": "electron-forge start",

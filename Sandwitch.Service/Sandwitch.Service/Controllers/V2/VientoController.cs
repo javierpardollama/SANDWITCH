@@ -6,9 +6,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.RateLimiting;
 using Sandwitch.Application.Commands.Viento;
 using Sandwitch.Application.Queries.Viento;
-using Sandwitch.Domain.ViewModels.Additions;
-using Sandwitch.Domain.ViewModels.Filters;
-using Sandwitch.Domain.ViewModels.Updates;
+using Sandwitch.Application.ViewModels.Additions;
+using Sandwitch.Application.ViewModels.Filters;
+using Sandwitch.Application.ViewModels.Updates;
 
 namespace Sandwitch.Service.Controllers.V2;
 

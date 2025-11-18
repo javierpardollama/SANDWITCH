@@ -1,4 +1,4 @@
-namespace Sandwitch.Domain.ViewModels.Finders;
+namespace Sandwitch.Application.ViewModels.Finders;
 
 /// <summary>
 ///     Represents a <see cref="FinderArenal" /> class.

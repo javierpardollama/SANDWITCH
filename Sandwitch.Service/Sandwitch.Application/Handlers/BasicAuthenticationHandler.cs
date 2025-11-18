@@ -5,8 +5,8 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Sandwitch.Application.Helpers;
+using Sandwitch.Application.ViewModels.Auth;
 using Sandwitch.Domain.Managers;
-using Sandwitch.Domain.ViewModels.Auth;
 
 namespace Sandwitch.Application.Handlers;
 

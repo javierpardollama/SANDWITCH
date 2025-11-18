@@ -1,7 +1,7 @@
 ﻿using System.Net.Http.Headers;
 using System.Text;
 using Microsoft.AspNetCore.Http;
-using Sandwitch.Domain.ViewModels.Auth;
+using Sandwitch.Application.ViewModels.Auth;
 
 namespace Sandwitch.Application.Helpers;
 

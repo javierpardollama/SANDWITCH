@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.RateLimiting;
 using Sandwitch.Application.Commands.Historico;
-using Sandwitch.Domain.ViewModels.Additions;
+using Sandwitch.Application.ViewModels.Additions;
 
 namespace Sandwitch.Service.Controllers.V2;
 

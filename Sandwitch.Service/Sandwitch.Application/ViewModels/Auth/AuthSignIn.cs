@@ -1,4 +1,4 @@
-﻿namespace Sandwitch.Domain.ViewModels.Auth;
+﻿namespace Sandwitch.Application.ViewModels.Auth;
 
 /// <summary>
 ///     Represents a <see cref="AuthSignIn" /> class.

@@ -5,8 +5,8 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.RateLimiting;
 using Sandwitch.Application.Queries.Buscador;
-using Sandwitch.Domain.ViewModels.Filters;
-using Sandwitch.Domain.ViewModels.Finders;
+using Sandwitch.Application.ViewModels.Filters;
+using Sandwitch.Application.ViewModels.Finders;
 
 namespace Sandwitch.Service.Controllers.V2;
 

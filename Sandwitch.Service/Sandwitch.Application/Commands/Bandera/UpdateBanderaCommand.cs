@@ -1,6 +1,6 @@
 using MediatR;
+using Sandwitch.Application.ViewModels.Updates;
 using Sandwitch.Application.ViewModels.Views;
-using Sandwitch.Domain.ViewModels.Updates;
 
 namespace Sandwitch.Application.Commands.Bandera;
 

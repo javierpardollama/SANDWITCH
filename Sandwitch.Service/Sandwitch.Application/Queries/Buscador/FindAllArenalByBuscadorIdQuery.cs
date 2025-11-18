@@ -1,6 +1,6 @@
 using MediatR;
+using Sandwitch.Application.ViewModels.Finders;
 using Sandwitch.Application.ViewModels.Views;
-using Sandwitch.Domain.ViewModels.Finders;
 
 namespace Sandwitch.Application.Queries.Buscador;
 

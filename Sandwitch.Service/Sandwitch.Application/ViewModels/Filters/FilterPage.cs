@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Sandwitch.Domain.ViewModels.Filters;
+namespace Sandwitch.Application.ViewModels.Filters;
 
 /// <summary>
 ///     Represents a <see cref="FilterPage" /> class.

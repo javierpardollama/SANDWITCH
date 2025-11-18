@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Sandwitch.Domain.ViewModels.Updates;
+namespace Sandwitch.Application.ViewModels.Updates;
 
 /// <summary>
 ///     Represents a <see cref="UpdateViento" /> class. Inherits <see cref="UpdateBase" />

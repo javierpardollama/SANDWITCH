@@ -1,6 +1,6 @@
 using MediatR;
+using Sandwitch.Application.ViewModels.Filters;
 using Sandwitch.Application.ViewModels.Views;
-using Sandwitch.Domain.ViewModels.Filters;
 
 namespace Sandwitch.Application.Queries.Arenal;
 

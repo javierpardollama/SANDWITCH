@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Sandwitch.Domain.ViewModels.Additions;
+namespace Sandwitch.Application.ViewModels.Additions;
 
 /// <summary>
 ///     Represents a <see cref="AddProvincia" /> class.

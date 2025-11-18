@@ -1,6 +1,6 @@
 using MediatR;
+using Sandwitch.Application.ViewModels.Additions;
 using Sandwitch.Application.ViewModels.Views;
-using Sandwitch.Domain.ViewModels.Additions;
 
 namespace Sandwitch.Application.Commands.Arenal;
 

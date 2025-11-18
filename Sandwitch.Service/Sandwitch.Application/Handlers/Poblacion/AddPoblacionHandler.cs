@@ -1,8 +1,9 @@
-using AutoMapper;
 using MediatR;
 using Sandwitch.Application.Commands.Poblacion;
+using Sandwitch.Application.Profiles;
 using Sandwitch.Application.ViewModels.Views;
 using Sandwitch.Domain.Managers;
+using Entities = Sandwitch.Domain.Entities;
 
 namespace Sandwitch.Application.Handlers.Poblacion;
 
@@ -12,17 +13,14 @@ namespace Sandwitch.Application.Handlers.Poblacion;
 public class AddPoblacionHandler : IRequestHandler<AddPoblacionCommand, ViewPoblacion>
 {
     private readonly IPoblacionManager Manager;
-    private readonly IMapper Mapper;
 
     /// <summary>
     ///  Initializes a new Instance of <see cref="AddPoblacionHandler" />
     /// </summary>
     /// <param name="manager">Injected <see cref="IPoblacionManager"/></param>
-    /// <param name="mapper">Injected <see cref="IMapper"/></param>
-    public AddPoblacionHandler(IPoblacionManager manager, IMapper mapper)
+    public AddPoblacionHandler(IPoblacionManager manager)
     {
         Manager = manager;
-        Mapper = mapper;
     }
 
     /// <summary>
@@ -33,8 +31,16 @@ public class AddPoblacionHandler : IRequestHandler<AddPoblacionCommand, ViewPobl
     /// <returns>Instance of <see cref="Task{ViewPoblacion}"/></returns>
     public async Task<ViewPoblacion> Handle(AddPoblacionCommand request, CancellationToken cancellationToken)
     {
-        var result = await Manager.AddPoblacion(request.ViewModel);
+        var @poblacion = new Entities.Poblacion
+        {
+            Name = request.ViewModel.Name,
+            ImageUri = request.ViewModel.ImageUri,            
+        };
 
-        return Mapper.Map<ViewPoblacion>(result);
+        var @entity = await Manager.AddPoblacion(@poblacion);
+
+        var @dto = await Manager.ReloadPoblacionById(@entity.Id);
+
+        return @dto.ToViewModel();
     }
 }

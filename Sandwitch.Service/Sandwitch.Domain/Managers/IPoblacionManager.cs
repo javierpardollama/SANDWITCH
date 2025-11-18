@@ -27,47 +27,56 @@ public interface IPoblacionManager : IBaseManager
     /// </summary>
     /// <param name="id">Injected <see cref="int" /></param>
     /// <returns>Instance of <see cref="Task{Poblacion}" /></returns>
-    public Task<Poblacion> FindPoblacionById(int id);
+    public Task<Poblacion> FindPoblacionById(int @id);
 
     /// <summary>
     ///     Finds Provincia By Id
     /// </summary>
     /// <param name="id">Injected <see cref="int" /></param>
     /// <returns>Instance of <see cref="Task{Provincia}" /></returns>
-    public Task<Provincia> FindProvinciaById(int id);
+    public Task<Provincia> FindProvinciaById(int @id);
 
     /// <summary>
     ///     Removes Poblacion By Id
     /// </summary>
     /// <param name="id">Injected <see cref="int" /></param>
     /// <returns>Instance of <see cref="Task" /></returns>
-    public Task RemovePoblacionById(int id);
+    public Task RemovePoblacionById(int @id);
 
     /// <summary>
     ///     Updates Poblacion
     /// </summary>
-    /// <param name="viewModel">Injected <see cref="UpdatePoblacion" /></param>
+    /// <param name="entity">Injected <see cref="Poblacion" /></param>
     /// <returns>Instance of <see cref="Task{Poblacion}" /></returns>
-    public Task<Poblacion> UpdatePoblacion(UpdatePoblacion viewModel);
+    public Task<Poblacion> UpdatePoblacion(Poblacion @entity);
 
     /// <summary>
     ///     Adds Poblacion
     /// </summary>
-    /// <param name="viewModel">Injected <see cref="AddPoblacion" /></param>
+    /// <param name="entity">Injected <see cref="Poblacion" /></param>
     /// <returns>Instance of <see cref="Task{Poblacion}" /></returns>
-    public Task<Poblacion> AddPoblacion(AddPoblacion viewModel);
+    public Task<Poblacion> AddPoblacion(Poblacion entity);
 
     /// <summary>
     ///     Checks Name
     /// </summary>
-    /// <param name="viewModel">Injected <see cref="AddPoblacion" /></param>
+    /// <param name="name">Injected <see cref="string" /></param>
     /// <returns>Instance of <see cref="Task{Poblacion}" /></returns>
-    Task<Poblacion> CheckName(AddPoblacion viewModel);
+    Task<Poblacion> CheckName(string @name);
 
     /// <summary>
     ///     Checks Name
     /// </summary>
-    /// <param name="viewModel">Injected <see cref="AddPoblacion" /></param>
+    /// <param name="id">Injected <see cref="int" /></param>
+    /// <param name="name">Injected <see cref="string" /></param>
     /// <returns>Instance of <see cref="Task{Poblacion}" /></returns>
-    Task<Poblacion> CheckName(UpdatePoblacion viewModel);
+    Task<Poblacion> CheckName(int @id, string @name);
+
+
+    /// <summary>
+    ///     Reloads Poblacion By Id
+    /// </summary>
+    /// <param name="id">Injected <see cref="int" /></param>
+    /// <returns>Instance of <see cref="Task{ArenalDto}" /></returns>
+    public Task<PoblacionDto> ReloadPoblacionById(int @id);
 }

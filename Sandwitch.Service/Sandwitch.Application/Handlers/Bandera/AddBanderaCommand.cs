@@ -1,8 +1,9 @@
-using AutoMapper;
 using MediatR;
 using Sandwitch.Application.Commands.Bandera;
+using Sandwitch.Application.Profiles;
 using Sandwitch.Application.ViewModels.Views;
 using Sandwitch.Domain.Managers;
+using Entities = Sandwitch.Domain.Entities;
 
 namespace Sandwitch.Application.Handlers.Bandera;
 
@@ -12,17 +13,14 @@ namespace Sandwitch.Application.Handlers.Bandera;
 public class AddBanderaHandler : IRequestHandler<AddBanderaCommand, ViewBandera>
 {
     private readonly IBanderaManager Manager;
-    private readonly IMapper Mapper;
 
     /// <summary>
     ///  Initializes a new Instance of <see cref="AddBanderaHandler" />
     /// </summary>
     /// <param name="manager">Injected <see cref="IBanderaManager"/></param>
-    /// <param name="mapper">Injected <see cref="IMapper"/></param>
-    public AddBanderaHandler(IBanderaManager manager, IMapper mapper)
+    public AddBanderaHandler(IBanderaManager manager)
     {
         Manager = manager;
-        Mapper = mapper;
     }
 
     /// <summary>
@@ -33,8 +31,16 @@ public class AddBanderaHandler : IRequestHandler<AddBanderaCommand, ViewBandera>
     /// <returns>Instance of <see cref="Task{ViewBandera}"/></returns>
     public async Task<ViewBandera> Handle(AddBanderaCommand request, CancellationToken cancellationToken)
     {
-        var result = await Manager.AddBandera(request.ViewModel);
+        var @bandera = new Entities.Bandera
+        {
+            Name = request.ViewModel.Name,
+            ImageUri = request.ViewModel.ImageUri,
+        };
 
-        return Mapper.Map<ViewBandera>(result);
+        var @entity = await Manager.AddBandera(@bandera);
+
+        var @dto = await Manager.ReloadBanderaById(@entity.Id);
+
+        return @dto.ToViewModel();
     }
 }

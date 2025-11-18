@@ -12,17 +12,14 @@ namespace Sandwitch.Application.Handlers.Viento;
 public class UpdateVientoHandler : IRequestHandler<UpdateVientoCommand, ViewViento>
 {
     private readonly IVientoManager Manager;
-    private readonly IMapper Mapper;
 
     /// <summary>
     ///  Initializes a new Instance of <see cref="UpdateVientoHandler" />
     /// </summary>
     /// <param name="manager">Injected <see cref="IVientoManager"/></param>
-    /// <param name="mapper">Injected <see cref="IMapper"/></param>
-    public UpdateVientoHandler(IVientoManager manager, IMapper mapper)
+    public UpdateVientoHandler(IVientoManager manager)
     {
         Manager = manager;
-        Mapper = mapper;
     }
 
     /// <summary>

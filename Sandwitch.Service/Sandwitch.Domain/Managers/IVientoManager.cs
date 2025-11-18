@@ -27,47 +27,55 @@ public interface IVientoManager : IBaseManager
     /// </summary>
     /// <param name="id">Injected <see cref="int" /></param>
     /// <returns>Instance of <see cref="Task{IList{HistoricoDto}}" /></returns>
-    public Task<IList<HistoricoDto>> FindAllHistoricoByVientoId(int id);
+    public Task<IList<HistoricoDto>> FindAllHistoricoByVientoId(int @id);
 
     /// <summary>
     ///     Finds Viento By Id
     /// </summary>
     /// <param name="id">Injected <see cref="int" /></param>
     /// <returns>Instance of <see cref="Task{Viento}" /></returns>
-    public Task<Viento> FindVientoById(int id);
+    public Task<Viento> FindVientoById(int @id);
 
     /// <summary>
     ///     Removes Viento By Id
     /// </summary>
     /// <param name="id">Injected <see cref="int" /></param>
     /// <returns>Instance of <see cref="Task" /></returns>
-    public Task RemoveVientoById(int id);
+    public Task RemoveVientoById(int @id);
 
     /// <summary>
     ///     Updates Viento
     /// </summary>
-    /// <param name="viewModel">Injected <see cref="UpdateViento" /></param>
+    /// <param name="entity">Injected <see cref="UpdateViento" /></param>
     /// <returns>Instance of <see cref="Task{Viento}" /></returns>
-    public Task<Viento> UpdateViento(UpdateViento viewModel);
+    public Task<Viento> UpdateViento(Viento @entity);
 
     /// <summary>
     ///     Adds Viento
     /// </summary>
-    /// <param name="viewModel">Injected <see cref="AddViento" /></param>
-    /// <returns>Instance of <see cref="Task{ViewViento}" /></returns>
-    public Task<Viento> AddViento(AddViento viewModel);
+    /// <param name="entity">Injected <see cref="AddViento" /></param>
+    /// <returns>Instance of <see cref="Task{Viento}" /></returns>
+    public Task<Viento> AddViento(Viento @entity);
 
     /// <summary>
     ///     Checks Name
     /// </summary>
-    /// <param name="viewModel">Injected <see cref="AddViento" /></param>
+    /// <param name="name">Injected <see cref="string" /></param>
     /// <returns>Instance of <see cref="Task{Viento}" /></returns>
-    public Task<Viento> CheckName(AddViento viewModel);
+    public Task<Viento> CheckName(string @name);
 
     /// <summary>
     ///     Checks Name
     /// </summary>
-    /// <param name="viewModel">Injected <see cref="UpdateViento" /></param>
+    /// <param name="id">Injected <see cref="int" /></param>
+    /// <param name="name">Injected <see cref="string" /></param>
     /// <returns>Instance of <see cref="Task{Viento}" /></returns>
-    public Task<Viento> CheckName(UpdateViento viewModel);
+    public Task<Viento> CheckName(int @id, string @name);
+
+    /// <summary>
+    ///     Reloads Viento By Id
+    /// </summary>
+    /// <param name="id">Injected <see cref="int" /></param>
+    /// <returns>Instance of <see cref="Task{VientoDto}" /></returns>
+    public Task<VientoDto> ReloadVientoById(int @id);
 }

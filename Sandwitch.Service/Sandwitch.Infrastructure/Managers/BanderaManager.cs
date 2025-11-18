@@ -223,15 +223,15 @@ public class BanderaManager(
     /// <summary>
     ///     Checks Name
     /// </summary>
-    /// <param name="viewModel">Injected <see cref="AddBandera" /></param>
+    /// <param name="name">Injected <see cref="string" /></param>
     /// <returns>Instance of <see cref="Task{Bandera}" /></returns>
-    public async Task<Bandera> CheckName(AddBandera viewModel)
+    public async Task<Bandera> CheckName(string @name)
     {
         Bandera @bandera = await Context.Bandera
             .TagWith("CheckName")
             .AsNoTracking()
             .AsSplitQuery()
-            .FirstOrDefaultAsync(x => x.Name == viewModel.Name.Trim());
+            .FirstOrDefaultAsync(x => x.Name == @name.Trim());
 
         if (@bandera != null)
         {
@@ -258,13 +258,13 @@ public class BanderaManager(
     /// </summary>
     /// <param name="viewModel">Injected <see cref="UpdateBandera" /></param>
     /// <returns>Instance of <see cref="Task{Bandera}" /></returns>
-    public async Task<Bandera> CheckName(UpdateBandera viewModel)
+    public async Task<Bandera> CheckName(int @id, string @name)
     {
         Bandera @bandera = await Context.Bandera
             .TagWith("CheckName")
             .AsNoTracking()
             .AsSplitQuery()
-            .FirstOrDefaultAsync(x => x.Name == viewModel.Name.Trim() && x.Id != viewModel.Id);
+            .FirstOrDefaultAsync(x => x.Name == @name.Trim() && x.Id != @id);
 
         if (@bandera != null)
         {
@@ -279,7 +279,7 @@ public class BanderaManager(
 
             throw new ServiceException(nameof(Bandera)
                                        + " with Name "
-                                       + viewModel.Name
+                                       + @name
                                        + " already exists");
         }
 

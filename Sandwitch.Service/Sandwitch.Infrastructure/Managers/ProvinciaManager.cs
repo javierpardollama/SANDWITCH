@@ -22,39 +22,33 @@ public class ProvinciaManager(
     /// <summary>
     ///     Adds Provincia
     /// </summary>
-    /// <param name="viewModel">Injected <see cref="AddProvincia" /></param>
+    /// <param name="entity">Injected <see cref="AddProvincia" /></param>
     /// <returns>Instance of <see cref="Task{Provincia}" /></returns>
-    public async Task<Provincia> AddProvincia(AddProvincia viewModel)
+    public async Task<Provincia> AddProvincia(Provincia @entity)
     {
-        await CheckName(viewModel);
-
-        Provincia @provincia = new()
-        {
-            Name = viewModel.Name.Trim(),
-            ImageUri = viewModel.ImageUri.Trim()
-        };
+        await CheckName(@entity.Name);      
 
         try
         {
-            await Context.Provincia.AddAsync(@provincia);
+            await Context.Provincia.AddAsync(@entity);
 
             await Context.SaveChangesAsync();
         }
         catch (DbUpdateConcurrencyException)
         {
-            await CheckName(viewModel);
+            await CheckName(@entity.Name);
         }
 
         // Log
         var logData = nameof(Provincia)
                       + " with Id "
-                      + @provincia.Id
+                      + @entity.Id
                       + " was added at "
                       + DateTime.Now.ToShortTimeString();
 
         logger.LogInformation(logData);
 
-        return @provincia;
+        return @entity;
     }
 
     /// <summary>
@@ -168,15 +162,15 @@ public class ProvinciaManager(
     /// <summary>
     ///     Updates Provincia
     /// </summary>
-    /// <param name="viewModel">Injected <see cref="UpdateProvincia" /></param>
+    /// <param name="entity">Injected <see cref="Provincia" /></param>
     /// <returns>Instance of <see cref="Task{ViewProvincia}" /></returns>
-    public async Task<Provincia> UpdateProvincia(UpdateProvincia viewModel)
+    public async Task<Provincia> UpdateProvincia(Provincia @entity)
     {
-        await CheckName(viewModel);
+        await CheckName(entity.Id, entity.Name);
 
-        Provincia @provincia = await FindProvinciaById(viewModel.Id);
-        @provincia.Name = viewModel.Name.Trim();
-        @provincia.ImageUri = viewModel.ImageUri.Trim();
+        Provincia @provincia = await FindProvinciaById(entity.Id);
+        @provincia.Name = entity.Name.Trim();
+        @provincia.ImageUri = entity.ImageUri.Trim();
 
         try
         {
@@ -186,13 +180,13 @@ public class ProvinciaManager(
         }
         catch (DbUpdateConcurrencyException)
         {
-            await CheckName(viewModel);
+            await CheckName(@entity.Id, @entity.Name);
         }
 
         // Log
         var logData = nameof(Provincia)
                       + " with Id "
-                      + provincia.Id
+                      + @entity.Id
                       + " was modified at "
                       + DateTime.Now.ToShortTimeString();
 
@@ -204,15 +198,15 @@ public class ProvinciaManager(
     /// <summary>
     ///     Checks Name
     /// </summary>
-    /// <param name="viewModel">Injected <see cref="AddProvincia" /></param>
+    /// <param name="name">Injected <see cref="string" /></param>
     /// <returns>Instance of <see cref="Task{Provincia}" /></returns>
-    public async Task<Provincia> CheckName(AddProvincia viewModel)
+    public async Task<Provincia> CheckName(string @name)
     {
         var @provincia = await Context.Provincia
             .AsNoTracking()
             .AsSplitQuery()
             .TagWith("CheckName")
-            .FirstOrDefaultAsync(x => x.Name == viewModel.Name.Trim());
+            .FirstOrDefaultAsync(x => x.Name == @name.Trim());
 
         if (@provincia != null)
         {
@@ -227,7 +221,7 @@ public class ProvinciaManager(
 
             throw new ServiceException(nameof(Provincia)
                                        + " with Name "
-                                       + viewModel.Name
+                                       + @name
                                        + " already exists");
         }
 
@@ -239,13 +233,13 @@ public class ProvinciaManager(
     /// </summary>
     /// <param name="viewModel">Injected <see cref="AddProvincia" /></param>
     /// <returns>Instance of <see cref="Task{Provincia}" /></returns>
-    public async Task<Provincia> CheckName(UpdateProvincia viewModel)
+    public async Task<Provincia> CheckName(int @id, string @name)
     {
         Provincia @provincia = await Context.Provincia
             .AsNoTracking()
             .AsSplitQuery()
             .TagWith("CheckName")
-            .FirstOrDefaultAsync(x => x.Name == viewModel.Name.Trim() && x.Id != viewModel.Id);
+            .FirstOrDefaultAsync(x => x.Name == @name.Trim() && x.Id != @id);
 
         if (@provincia != null)
         {
@@ -260,7 +254,7 @@ public class ProvinciaManager(
 
             throw new ServiceException(nameof(Provincia)
                                        + " with Name "
-                                       + viewModel.Name
+                                        + @name
                                        + " already exists");
         }
 

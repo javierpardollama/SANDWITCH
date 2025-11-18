@@ -46,28 +46,36 @@ public interface IBanderaManager : IBaseManager
     /// <summary>
     ///     Updates Bandera
     /// </summary>
-    /// <param name="viewModel">Injected <see cref="UpdateBandera" /></param>
+    /// <param name="entity">Injected <see cref="Bandera" /></param>
     /// <returns>Instance of <see cref="Task{ViewBandera}" /></returns>
-    public Task<Bandera> UpdateBandera(UpdateBandera viewModel);
+    public Task<Bandera> UpdateBandera(Bandera @entity);
 
     /// <summary>
     ///     Adds Bandera
     /// </summary>
-    /// <param name="viewModel">Injected <see cref="AddBandera" /></param>
+    /// <param name="entity">Injected <see cref="Bandera" /></param>
     /// <returns>Instance of <see cref="Task{Bandera}" /></returns>
-    public Task<Bandera> AddBandera(AddBandera viewModel);
+    public Task<Bandera> AddBandera(Bandera @entity);
 
     /// <summary>
     ///     Checks Name
     /// </summary>
-    /// <param name="viewModel">Injected <see cref="AddBandera" /></param>
+    /// <param name="name">Injected <see cref="string" /></param>
     /// <returns>Instance of <see cref="Task{Bandera}" /></returns>
-    public Task<Bandera> CheckName(AddBandera viewModel);
+    public Task<Bandera> CheckName(string @name);
 
     /// <summary>
     ///     Checks Name
     /// </summary>
-    /// <param name="viewModel">Injected <see cref="UpdateBandera" /></param>
+    /// <param name="id">Injected <see cref="int" /></param>
+    /// <param name="name">Injected <see cref="string" /></param>
     /// <returns>Instance of <see cref="Task{Bandera}" /></returns>
-    public Task<Bandera> CheckName(UpdateBandera viewModel);
+    public Task<Bandera> CheckName(int @id, string @name);
+
+    /// <summary>
+    ///     Reloads Bandera By Id
+    /// </summary>
+    /// <param name="id">Injected <see cref="int" /></param>
+    /// <returns>Instance of <see cref="Task{BanderaDto}" /></returns>
+    public Task<BanderaDto> ReloadBanderaById(int @id);
 }

@@ -391,15 +391,15 @@ public class ArenalManager(
     /// <summary>
     ///     Checks Name
     /// </summary>
-    /// <param name="viewModel">Injected <see cref="AddArenal" /></param>
+    /// <param name="name">Injected <see cref="string" /></param>
     /// <returns>Instance of <see cref="Task{Arenal}" /></returns>
-    public async Task<Arenal> CheckName(AddArenal viewModel)
+    public async Task<Arenal> CheckName(string @name)
     {
         Arenal @arenal = await Context.Arenal
             .AsNoTracking()
             .AsSplitQuery()
             .TagWith("CheckName")
-            .FirstOrDefaultAsync(x => x.Name == viewModel.Name.Trim());
+            .FirstOrDefaultAsync(x => x.Name == @name.Trim());
 
         if (@arenal != null)
         {
@@ -414,7 +414,7 @@ public class ArenalManager(
 
             throw new ServiceException(nameof(Arenal)
                                        + " with Name "
-                                       + viewModel.Name
+                                       + @name
                                        + " already exists");
         }
 
@@ -424,15 +424,16 @@ public class ArenalManager(
     /// <summary>
     ///     Checks Name
     /// </summary>
-    /// <param name="viewModel">Injected <see cref="UpdateArenal" /></param>
+    /// <param name="id">Injected <see cref="int" /></param>
+    /// <param name="name">Injected <see cref="string" /></param>
     /// <returns>Instance of <see cref="Task{Arenal}" /></returns>
-    public async Task<Arenal> CheckName(UpdateArenal viewModel)
+    public async Task<Arenal> CheckName(int @id, string @name)
     {
         Arenal @arenal = await Context.Arenal
             .AsNoTracking()
             .AsSplitQuery()
             .TagWith("CheckName")
-            .FirstOrDefaultAsync(x => x.Name == viewModel.Name.Trim() && x.Id != viewModel.Id);
+            .FirstOrDefaultAsync(x => x.Name == @name.Trim() && x.Id != @id);
 
         if (@arenal != null)
         {
@@ -447,7 +448,7 @@ public class ArenalManager(
 
             throw new ServiceException(nameof(Arenal)
                                        + " with Name "
-                                       + viewModel.Name
+                                       + @name
                                        + " already exists");
         }
 

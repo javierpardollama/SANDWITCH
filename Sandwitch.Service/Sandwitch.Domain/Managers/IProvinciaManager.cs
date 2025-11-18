@@ -27,40 +27,48 @@ public interface IProvinciaManager : IBaseManager
     /// </summary>
     /// <param name="id">Injected <see cref="int" /></param>
     /// <returns>Instance of <see cref="Task{Provincia}" /></returns>
-    public Task<Provincia> FindProvinciaById(int id);
+    public Task<Provincia> FindProvinciaById(int @id);
 
     /// <summary>
     ///     Removes Provincia By Id
     /// </summary>
     /// <param name="id">Injected <see cref="int" /></param>
     /// <returns>Instance of <see cref="Task" /></returns>
-    public Task RemoveProvinciaById(int id);
+    public Task RemoveProvinciaById(int @id);
 
     /// <summary>
     ///     Updates Provincia
     /// </summary>
-    /// <param name="viewModel">Injected <see cref="UpdateProvincia" /></param>
+    /// <param name="entity">Injected <see cref="Provincia" /></param>
     /// <returns>Instance of <see cref="Task{Provincia}" /></returns>
-    public Task<Provincia> UpdateProvincia(UpdateProvincia viewModel);
+    public Task<Provincia> UpdateProvincia(Provincia @entity);
 
     /// <summary>
     ///     Adds Provincia
     /// </summary>
-    /// <param name="viewModel">Injected <see cref="AddProvincia" /></param>
+    /// <param name="entity">Injected <see cref="Provincia" /></param>
     /// <returns>Instance of <see cref="Task{Provincia}" /></returns>
-    public Task<Provincia> AddProvincia(AddProvincia viewModel);
+    public Task<Provincia> AddProvincia(Provincia @entity);
 
     /// <summary>
     ///     Checks Name
     /// </summary>
-    /// <param name="viewModel">Injected <see cref="AddProvincia" /></param>
+    /// <param name="name">Injected <see cref="string" /></param>
     /// <returns>Instance of <see cref="Task{Provincia}" /></returns>
-    public Task<Provincia> CheckName(AddProvincia viewModel);
+    public Task<Provincia> CheckName(string @name);
 
     /// <summary>
     ///     Checks Name
     /// </summary>
-    /// <param name="viewModel">Injected <see cref="AddProvincia" /></param>
+    /// <param name="id">Injected <see cref="int" /></param>
+    /// <param name="name">Injected <see cref="string" /></param>
     /// <returns>Instance of <see cref="Task{Provincia}" /></returns>
-    public Task<Provincia> CheckName(UpdateProvincia viewModel);
+    public Task<Provincia> CheckName(int @id, string @name);
+
+    /// <summary>
+    ///     Reloads Provincia By Id
+    /// </summary>
+    /// <param name="id">Injected <see cref="int" /></param>
+    /// <returns>Instance of <see cref="Task{ProvinciaDto}" /></returns>
+    public Task<ProvinciaDto> ReloadProvinciaById(int @id);
 }

@@ -22,40 +22,33 @@ public class PoblacionManager(
     /// <summary>
     ///     Adds Poblacion
     /// </summary>
-    /// <param name="viewModel">Injected <see cref="AddPoblacion" /></param>
+    /// <param name="entity">Injected <see cref="Poblacion" /></param>
     /// <returns>Instance of <see cref="Task{Poblacion}" /></returns>
-    public async Task<Poblacion> AddPoblacion(AddPoblacion viewModel)
+    public async Task<Poblacion> AddPoblacion(Poblacion @entity)
     {
-        await CheckName(viewModel);
-
-        Poblacion @poblacion = new()
-        {
-            Name = viewModel.Name.Trim(),
-            Provincia = await FindProvinciaById(viewModel.ProvinciaId),
-            ImageUri = viewModel.ImageUri.Trim()
-        };
+        await CheckName(@entity.Name);     
 
         try
         {
-            await Context.Poblacion.AddAsync(@poblacion);
+            await Context.Poblacion.AddAsync(@entity);
 
             await Context.SaveChangesAsync();
         }
         catch (DbUpdateConcurrencyException)
         {
-            await CheckName(viewModel);
+            await CheckName(@entity.Name);
         }
 
         // Log
         var logData = nameof(Poblacion)
                       + " with Id "
-                      + @poblacion.Id
+                      + @entity.Id
                       + " was added at "
                       + DateTime.Now.ToShortTimeString();
 
         logger.LogInformation(logData);
 
-        return @poblacion;
+        return @entity;
     }
 
     /// <summary>
@@ -110,11 +103,11 @@ public class PoblacionManager(
     /// </summary>
     /// <param name="id">Injected <see cref="int" /></param>
     /// <returns>Instance of <see cref="Task{Poblacion}" /></returns>
-    public async Task<Poblacion> FindPoblacionById(int id)
+    public async Task<Poblacion> FindPoblacionById(int @id)
     {
         Poblacion @poblacion = await Context.Poblacion
             .TagWith("FindPoblacionById")
-            .FirstOrDefaultAsync(x => x.Id == id);
+            .FirstOrDefaultAsync(x => x.Id == @id);
 
         if (@poblacion == null)
         {
@@ -141,18 +134,18 @@ public class PoblacionManager(
     /// </summary>
     /// <param name="id">Injected <see cref="int" /></param>
     /// <returns>Instance of <see cref="Task{Provincia}" /></returns>
-    public async Task<Provincia> FindProvinciaById(int id)
+    public async Task<Provincia> FindProvinciaById(int @id)
     {
         Provincia @provincia = await Context.Provincia
             .TagWith("FindProvinciaById")
-            .FirstOrDefaultAsync(x => x.Id == id);
+            .FirstOrDefaultAsync(x => x.Id == @id);
 
         if (@provincia == null)
         {
             // Log
             var logData = nameof(Provincia)
                           + " with Id "
-                          + id
+                          + @id
                           + " was not found at "
                           + DateTime.Now.ToShortTimeString();
 
@@ -160,7 +153,7 @@ public class PoblacionManager(
 
             throw new ServiceException(nameof(Provincia)
                                        + " with Id "
-                                       + id
+                                       + @id
                                        + " does not exist");
         }
 
@@ -172,11 +165,11 @@ public class PoblacionManager(
     /// </summary>
     /// <param name="id">Injected <see cref="int" /></param>
     /// <returns>Instance of <see cref="Task" /></returns>
-    public async Task RemovePoblacionById(int id)
+    public async Task RemovePoblacionById(int @id)
     {
         try
         {
-            Poblacion @poblacion = await FindPoblacionById(id);
+            Poblacion @poblacion = await FindPoblacionById(@id);
 
             Context.Poblacion.Remove(@poblacion);
 
@@ -193,23 +186,23 @@ public class PoblacionManager(
         }
         catch (DbUpdateConcurrencyException)
         {
-            await FindPoblacionById(id);
+            await FindPoblacionById(@id);
         }
     }
 
     /// <summary>
     ///     Updates Poblacion
     /// </summary>
-    /// <param name="viewModel">Injected <see cref="UpdatePoblacion" /></param>
+    /// <param name="entity">Injected <see cref="Poblacion" /></param>
     /// <returns>Instance of <see cref="Task{Poblacion}" /></returns>
-    public async Task<Poblacion> UpdatePoblacion(UpdatePoblacion viewModel)
+    public async Task<Poblacion> UpdatePoblacion(Poblacion @entity)
     {
-        await CheckName(viewModel);
+        await CheckName(@entity.Id, @entity.Name);
 
-        Poblacion @poblacion = await FindPoblacionById(viewModel.Id);
-        @poblacion.Name = viewModel.Name.Trim();
-        @poblacion.Provincia = await FindProvinciaById(viewModel.ProvinciaId);
-        @poblacion.ImageUri = viewModel.ImageUri.Trim();
+        Poblacion @poblacion = await FindPoblacionById(@entity.Id);
+        @poblacion.Name = @entity.Name.Trim();
+        @poblacion.Provincia = await FindProvinciaById(@entity.Provincia.Id);
+        @poblacion.ImageUri = @entity.ImageUri.Trim();
 
         try
         {
@@ -219,13 +212,13 @@ public class PoblacionManager(
         }
         catch (DbUpdateConcurrencyException)
         {
-            await CheckName(viewModel);
+            await CheckName(@entity.Id, @entity.Name);
         }
 
         // Log
         var logData = nameof(Poblacion)
                       + " with Id "
-                      + @poblacion.Id
+                      + @entity.Id
                       + " was modified at "
                       + DateTime.Now.ToShortTimeString();
 
@@ -237,15 +230,15 @@ public class PoblacionManager(
     /// <summary>
     ///     Checks Name
     /// </summary>
-    /// <param name="viewModel">Injected <see cref="AddPoblacion" /></param>
+    /// <param name="name">Injected <see cref="string" /></param>
     /// <returns>Instance of <see cref="Task{Poblacion}" /></returns>
-    public async Task<Poblacion> CheckName(AddPoblacion viewModel)
+    public async Task<Poblacion> CheckName(string @name)
     {
         Poblacion @poblacion = await Context.Poblacion
             .AsNoTracking()
             .AsSplitQuery()
             .TagWith("CheckName")
-            .FirstOrDefaultAsync(x => x.Name == viewModel.Name.Trim());
+            .FirstOrDefaultAsync(x => x.Name == @name.Trim());
 
         if (@poblacion != null)
         {
@@ -260,7 +253,7 @@ public class PoblacionManager(
 
             throw new ServiceException(nameof(Poblacion)
                                        + " with Name "
-                                       + viewModel.Name
+                                       + @name
                                        + " already exists");
         }
 
@@ -272,13 +265,13 @@ public class PoblacionManager(
     /// </summary>
     /// <param name="viewModel">Injected <see cref="AddPoblacion" /></param>
     /// <returns>Instance of <see cref="Task{Poblacion}" /></returns>
-    public async Task<Poblacion> CheckName(UpdatePoblacion viewModel)
+    public async Task<Poblacion> CheckName(int @id, string @name)
     {
         Poblacion @poblacion = await Context.Poblacion
             .AsNoTracking()
             .AsSplitQuery()
             .TagWith("CheckName")
-            .FirstOrDefaultAsync(x => (x.Name == viewModel.Name.Trim()) & (x.Id != viewModel.Id));
+            .FirstOrDefaultAsync(x => x.Name == @name.Trim() && x.Id != @id);
 
         if (@poblacion != null)
         {
@@ -293,7 +286,7 @@ public class PoblacionManager(
 
             throw new ServiceException(nameof(Poblacion)
                                        + " with Name "
-                                       + viewModel.Name
+                                       + @name
                                        + " already exists");
         }
 

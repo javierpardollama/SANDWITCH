@@ -27,49 +27,49 @@ public interface IArenalManager : IBaseManager
     /// </summary>
     /// <param name="id">Injected <see cref="int" /></param>
     /// <returns>Instance of <see cref="Task{IList{HistoricoDto}}" /></returns>
-    public Task<IList<HistoricoDto>> FindAllHistoricoByArenalId(int id);
+    public Task<IList<HistoricoDto>> FindAllHistoricoByArenalId(int @id);
 
     /// <summary>
     ///     Finds Arenal By Id
     /// </summary>
     /// <param name="id">Injected <see cref="int" /></param>
     /// <returns>Instance of <see cref="Task{Arenal}" /></returns>
-    public Task<Arenal> FindArenalById(int id);
+    public Task<Arenal> FindArenalById(int @id);
 
     /// <summary>
     ///     Finds Poblacion By Id
     /// </summary>
     /// <param name="id">Injected <see cref="int" /></param>
     /// <returns>Instance of <see cref="Task{Poblacion}" /></returns>
-    public Task<Poblacion> FindPoblacionById(int id);
+    public Task<Poblacion> FindPoblacionById(int @id);
 
     /// <summary>
     ///     Finds Bandera By Id
     /// </summary>
     /// <param name="id">Injected <see cref="int" /></param>
     /// <returns>Instance of <see cref="Task{Bandera}" /></returns>
-    public Task<Bandera> FindBanderaById(int id);
+    public Task<Bandera> FindBanderaById(int @id);
 
     /// <summary>
     ///     Removes Arenal By Id
     /// </summary>
     /// <param name="id">Injected <see cref="int" /></param>
     /// <returns>Instance of <see cref="Task" /></returns>
-    public Task RemoveArenalById(int id);
+    public Task RemoveArenalById(int @id);
 
     /// <summary>
     ///     Updates Arenal
     /// </summary>
-    /// <param name="viewModel">Injected <see cref="UpdateArenal" /></param>
+    /// <param name="entity">Injected <see cref="Arenal" /></param>
     /// <returns>Instance of <see cref="Task{Arenal}" /></returns>
-    public Task<Arenal> UpdateArenal(UpdateArenal viewModel);
+    public Task<Arenal> UpdateArenal(Arenal @entity);
 
     /// <summary>
     ///     Adds Arenal
     /// </summary>
-    /// <param name="viewModel">Injected <see cref="AddArenal" /></param>
+    /// <param name="entity">Injected <see cref="Arenal" /></param>
     /// <returns>Instance of <see cref="Task{Arenal}" /></returns>
-    public Task<Arenal> AddArenal(AddArenal viewModel);
+    public Task<Arenal> AddArenal(Arenal @entity);
 
     /// <summary>
     ///     Adds Arenal Poblacion
@@ -102,14 +102,22 @@ public interface IArenalManager : IBaseManager
     /// <summary>
     ///     Checks Name
     /// </summary>
-    /// <param name="viewModel">Injected <see cref="AddArenal" /></param>
+    /// <param name="name">Injected <see cref="string" /></param>
     /// <returns>Instance of <see cref="Task{Arenal}" /></returns>
-    public Task<Arenal> CheckName(AddArenal viewModel);
+    public Task<Arenal> CheckName(string @name);
 
     /// <summary>
     ///     Checks Name
     /// </summary>
-    /// <param name="viewModel">Injected <see cref="UpdateArenal" /></param>
+    /// <param name="id">Injected <see cref="int" /></param>
+    /// <param name="name">Injected <see cref="string" /></param>
     /// <returns>Instance of <see cref="Task{Arenal}" /></returns>
-    public Task<Arenal> CheckName(UpdateArenal viewModel);
+    public Task<Arenal> CheckName(int @id, string @name);
+
+    /// <summary>
+    ///     Reloads Arenal By Id
+    /// </summary>
+    /// <param name="id">Injected <see cref="int" /></param>
+    /// <returns>Instance of <see cref="Task{ArenalDto}" /></returns>
+    public Task<ArenalDto> ReloadArenalById(int @id);
 }

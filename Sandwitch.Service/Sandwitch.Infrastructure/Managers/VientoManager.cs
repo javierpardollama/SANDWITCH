@@ -22,39 +22,33 @@ public class VientoManager(
     /// <summary>
     ///     Adds Viento
     /// </summary>
-    /// <param name="viewModel">Injected <see cref="AddViento" /></param>
+    /// <param name="entity">Injected <see cref="Viento" /></param>
     /// <returns>Instance of <see cref="Task{Viento}" /></returns>
-    public async Task<Viento> AddViento(AddViento viewModel)
+    public async Task<Viento> AddViento(Viento @entity)
     {
-        await CheckName(viewModel);
-
-        Viento @viento = new()
-        {
-            Name = viewModel.Name.Trim(),
-            ImageUri = viewModel.ImageUri.Trim()
-        };
+        await CheckName(entity.Name);       
 
         try
         {
-            await Context.Viento.AddAsync(@viento);
+            await Context.Viento.AddAsync(@entity);
 
             await Context.SaveChangesAsync();
         }
         catch (DbUpdateConcurrencyException)
         {
-            await CheckName(viewModel);
+            await CheckName(@entity.Name);
         }
 
         // Log
         var logData = nameof(Viento)
                       + " with Id "
-                      + @viento.Id
+                      + @entity.Id
                       + " was added at "
                       + DateTime.Now.ToShortTimeString();
 
         logger.LogInformation(logData);
 
-        return @viento;
+        return @entity;
     }
 
     /// <summary>
@@ -187,15 +181,15 @@ public class VientoManager(
     /// <summary>
     ///     Updates Viento
     /// </summary>
-    /// <param name="viewModel">Injected <see cref="UpdateViento" /></param>
+    /// <param name="@entity">Injected <see cref="Viento" /></param>
     /// <returns>Instance of <see cref="Task{Viento}" /></returns>
-    public async Task<Viento> UpdateViento(UpdateViento viewModel)
+    public async Task<Viento> UpdateViento(Viento @entity)
     {
-        await CheckName(viewModel);
+        await CheckName(@entity.Id, @entity.Name);
 
-        Viento @viento = await FindVientoById(viewModel.Id);
-        @viento.Name = viewModel.Name.Trim();
-        @viento.ImageUri = viewModel.ImageUri.Trim();
+        Viento @viento = await FindVientoById(@entity.Id);
+        @viento.Name = @entity.Name.Trim();
+        @viento.ImageUri = @entity.ImageUri.Trim();
 
         try
         {
@@ -205,7 +199,7 @@ public class VientoManager(
         }
         catch (DbUpdateConcurrencyException)
         {
-            await CheckName(viewModel);
+            await CheckName(@entity.Id, @entity.Name);
         }
 
         // Log
@@ -223,15 +217,15 @@ public class VientoManager(
     /// <summary>
     ///     Checks Name
     /// </summary>
-    /// <param name="viewModel">Injected <see cref="AddViento" /></param>
+    /// <param name="name">Injected <see cref="string" /></param>
     /// <returns>Instance of <see cref="Task{Viento}" /></returns>
-    public async Task<Viento> CheckName(AddViento viewModel)
+    public async Task<Viento> CheckName(string @name)
     {
         Viento @viento = await Context.Viento
             .TagWith("CheckName")
             .AsNoTracking()
             .AsSplitQuery()
-            .FirstOrDefaultAsync(x => x.Name == viewModel.Name.Trim());
+            .FirstOrDefaultAsync(x => x.Name == @name.Trim());
 
         if (@viento != null)
         {
@@ -246,7 +240,7 @@ public class VientoManager(
 
             throw new ServiceException(nameof(Viento)
                                        + " with Name "
-                                       + viewModel.Name
+                                       + @name
                                        + " already exists");
         }
 
@@ -258,13 +252,13 @@ public class VientoManager(
     /// </summary>
     /// <param name="viewModel">Injected <see cref="UpdateViento" /></param>
     /// <returns>Instance of <see cref="Task{Viento}" /></returns>
-    public async Task<Viento> CheckName(UpdateViento viewModel)
+    public async Task<Viento> CheckName(int @id, string @name)
     {
         Viento @viento = await Context.Viento
             .TagWith("CheckName")
             .AsNoTracking()
             .AsSplitQuery()
-            .FirstOrDefaultAsync(x => x.Name == viewModel.Name.Trim() && x.Id != viewModel.Id);
+            .FirstOrDefaultAsync(x => x.Name == @name.Trim() && x.Id != @id);
 
         if (@viento != null)
         {
@@ -279,7 +273,7 @@ public class VientoManager(
 
             throw new ServiceException(nameof(Viento)
                                        + " with Name "
-                                       + viewModel.Name
+                                        + @name
                                        + " already exists");
         }
 

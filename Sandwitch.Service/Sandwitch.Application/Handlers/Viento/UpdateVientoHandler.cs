@@ -1,8 +1,9 @@
-using AutoMapper;
 using MediatR;
 using Sandwitch.Application.Commands.Viento;
+using Sandwitch.Application.Profiles;
 using Sandwitch.Application.ViewModels.Views;
 using Sandwitch.Domain.Managers;
+using Entities = Sandwitch.Domain.Entities;
 
 namespace Sandwitch.Application.Handlers.Viento;
 
@@ -30,8 +31,17 @@ public class UpdateVientoHandler : IRequestHandler<UpdateVientoCommand, ViewVien
     /// <returns>Instance of <see cref="Task{ViewViento}"/></returns>
     public async Task<ViewViento> Handle(UpdateVientoCommand request, CancellationToken cancellationToken)
     {
-        var result = await Manager.UpdateViento(request.ViewModel);
+        var @viento = new Entities.Viento
+        {
+            Name = request.ViewModel.Name,
+            ImageUri = request.ViewModel.ImageUri,
+            Id = request.ViewModel.Id,
+        };
 
-        return Mapper.Map<ViewViento>(result);
+        var @entity = await Manager.UpdateViento(viento);
+
+        var @dto = await Manager.ReloadVientoById(@entity.Id);
+
+        return @dto.ToViewModel();
     }
 }

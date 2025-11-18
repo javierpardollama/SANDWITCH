@@ -1,8 +1,9 @@
-using AutoMapper;
 using MediatR;
 using Sandwitch.Application.Commands.Provincia;
+using Sandwitch.Application.Profiles;
 using Sandwitch.Application.ViewModels.Views;
 using Sandwitch.Domain.Managers;
+using Entities = Sandwitch.Domain.Entities;
 
 namespace Sandwitch.Application.Handlers.Provincia;
 
@@ -12,17 +13,15 @@ namespace Sandwitch.Application.Handlers.Provincia;
 public class UpdateProvinciaHandler : IRequestHandler<UpdateProvinciaCommand, ViewProvincia>
 {
     private readonly IProvinciaManager Manager;
-    private readonly IMapper Mapper;
 
     /// <summary>
     ///  Initializes a new Instance of <see cref="UpdateProvinciaHandler" />
     /// </summary>
     /// <param name="manager">Injected <see cref="IProvinciaManager"/></param>
     /// <param name="mapper">Injected <see cref="IMapper"/></param>
-    public UpdateProvinciaHandler(IProvinciaManager manager, IMapper mapper)
+    public UpdateProvinciaHandler(IProvinciaManager manager)
     {
         Manager = manager;
-        Mapper = mapper;
     }
 
     /// <summary>
@@ -33,8 +32,17 @@ public class UpdateProvinciaHandler : IRequestHandler<UpdateProvinciaCommand, Vi
     /// <returns>Instance of <see cref="Task{ViewProvincia}"/></returns>
     public async Task<ViewProvincia> Handle(UpdateProvinciaCommand request, CancellationToken cancellationToken)
     {
-        var result = await Manager.UpdateProvincia(request.ViewModel);
+        var @provincia = new Entities.Provincia
+        {
+            Id = request.ViewModel.Id,
+            Name = request.ViewModel.Name,
+            ImageUri = request.ViewModel.ImageUri,
+        };
 
-        return Mapper.Map<ViewProvincia>(result);
+        var @entity = await Manager.UpdateProvincia(@provincia);
+
+        var @dto = await Manager.ReloadProvinciaById(@entity.Id);
+
+        return @dto.ToViewModel();
     }
 }

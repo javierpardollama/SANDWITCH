@@ -16,11 +16,9 @@ public class AddArenalHandler : IRequestHandler<AddArenalCommand, ViewArenal>
     ///  Initializes a new Instance of <see cref="AddArenalHandler" />
     /// </summary>
     /// <param name="manager">Injected <see cref="IArenalManager"/></param>
-    /// <param name="mapper">Injected <see cref="IMapper"/></param>
    public AddArenalHandler(IArenalManager manager)
     {
         Manager = manager;
-        Mapper = mapper;
     }
 
     /// <summary>

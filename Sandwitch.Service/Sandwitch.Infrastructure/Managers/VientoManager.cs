@@ -1,11 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using Sandwitch.Domain.Dtos;
 using Sandwitch.Domain.Entities;
 using Sandwitch.Domain.Exceptions;
 using Sandwitch.Domain.Managers;
-using Sandwitch.Domain.ViewModels.Additions;
-using Sandwitch.Domain.ViewModels.Filters;
-using Sandwitch.Domain.ViewModels.Updates;
+using Sandwitch.Domain.Profiles;
 using Sandwitch.Infrastructure.Contexts.Interfaces;
 
 namespace Sandwitch.Infrastructure.Managers;
@@ -61,13 +60,14 @@ public class VientoManager(
     /// <summary>
     ///     Finds All Viento
     /// </summary>
-    /// <returns>Instance of <see cref="Task{IList{Viento}}" /></returns>
-    public async Task<IList<Viento>> FindAllViento()
+    /// <returns>Instance of <see cref="Task{IList{CatalogDto}}" /></returns>
+    public async Task<IList<CatalogDto>> FindAllViento()
     {
-        IList<Viento> @vientos = await Context.Viento
+        IList<CatalogDto> @vientos = await Context.Viento
             .TagWith("FindAllViento")
             .AsNoTracking()
             .AsSplitQuery()
+            .Select(x=> x.ToCatalog())
             .ToListAsync();
 
         return @vientos;
@@ -76,25 +76,27 @@ public class VientoManager(
     /// <summary>
     ///     Finds Paginated Viento
     /// </summary>
-    /// <param name="viewModel">Injected <see cref="FilterPage" /></param>
-    /// <returns>Instance of <see cref="Task{Page{Viento}}" /></returns>
-    public async Task<Page<Viento>> FindPaginatedViento(FilterPage viewModel)
+    /// <param name="index">Injected <see cref="int" /></param>
+    /// <param name="size">Injected <see cref="int" /></param>
+    /// <returns>Instance of <see cref="Task{PageDto{VientoDto}}" /></returns>
+    public async Task<PageDto<VientoDto>> FindPaginatedViento(int @index, int @size)
     {
-        Page<Viento> @page = new()
+        PageDto<VientoDto> @page = new()
         {
             Length = await Context.Viento
                 .TagWith("CountAllViento")
                 .AsNoTracking()
                 .AsSplitQuery()
                 .CountAsync(),
-            Index = viewModel.Index,
-            Size = viewModel.Size,
+            Index = @index,
+            Size = @size,
             Items = await Context.Viento
                 .TagWith("FindPaginatedViento")
                 .AsNoTracking()
                 .AsSplitQuery()
-                .Skip(viewModel.Index * viewModel.Size)
-                .Take(viewModel.Size)
+                .Skip(@index * @size)
+                .Take(@size)
+                .Select(x=> x.ToDto())
                 .ToListAsync()
         };
 
@@ -105,16 +107,17 @@ public class VientoManager(
     ///     Finds All Historico By Poblacion Id
     /// </summary>
     /// <param name="id">Injected <see cref="int" /></param>
-    /// <returns>Instance of <see cref="IList{Historico}" /></returns>
-    public async Task<IList<Historico>> FindAllHistoricoByVientoId(int id)
+    /// <returns>Instance of <see cref="IList{HistoricoDto}" /></returns>
+    public async Task<IList<HistoricoDto>> FindAllHistoricoByVientoId(int id)
     {
-        IList<Historico> @historicos = await Context.Historico
+        IList<HistoricoDto> @historicos = await Context.Historico
             .TagWith("FindAllHistoricoByVientoId")
             .AsNoTracking()
             .AsSplitQuery()
             .Include(x => x.Arenal)
             .Include(x => x.Viento)
             .Where(x => x.Viento.Id == id)
+            .Select(x=> x.ToDto())
             .ToListAsync();
 
         return @historicos;

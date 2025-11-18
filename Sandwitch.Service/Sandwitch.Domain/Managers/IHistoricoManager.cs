@@ -1,5 +1,4 @@
 ﻿using Sandwitch.Domain.Entities;
-using Sandwitch.Domain.ViewModels.Additions;
 
 namespace Sandwitch.Domain.Managers;
 

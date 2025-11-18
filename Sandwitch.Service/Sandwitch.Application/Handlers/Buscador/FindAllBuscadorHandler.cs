@@ -1,8 +1,8 @@
-using AutoMapper;
 using MediatR;
+using Sandwitch.Application.Profiles;
 using Sandwitch.Application.Queries.Buscador;
+using Sandwitch.Application.ViewModels.Views;
 using Sandwitch.Domain.Managers;
-using Sandwitch.Domain.ViewModels.Views;
 
 namespace Sandwitch.Application.Handlers.Buscador;
 
@@ -12,17 +12,15 @@ namespace Sandwitch.Application.Handlers.Buscador;
 public class FindAllBuscadorHandler : IRequestHandler<FindAllBuscadorQuery, IList<ViewBuscador>>
 {
     private readonly IBuscadorManager Manager;
-    private readonly IMapper Mapper;
 
     /// <summary>
     ///  Initializes a new Instance of <see cref="FindAllBuscadorHandler" />
     /// </summary>
     /// <param name="manager">Injected <see cref="IBuscadorManager"/></param>
     /// <param name="mapper">Injected <see cref="IMapper"/></param>
-    public FindAllBuscadorHandler(IBuscadorManager manager, IMapper mapper)
+    public FindAllBuscadorHandler(IBuscadorManager manager)
     {
         Manager = manager;
-        Mapper = mapper;
     }
 
     /// <summary>
@@ -33,8 +31,8 @@ public class FindAllBuscadorHandler : IRequestHandler<FindAllBuscadorQuery, ILis
     /// <returns>Instance of <see cref="Task{IList{ViewBuscador}}"/></returns>
     public async Task<IList<ViewBuscador>> Handle(FindAllBuscadorQuery request, CancellationToken cancellationToken)
     {
-        var result = await Manager.FindAllBuscador();
+        var dtos = await Manager.FindAllBuscador();
 
-        return Mapper.Map<IList<ViewBuscador>>(result);
+        return [.. dtos.Select(x => x.ToViewModel())];
     }
 }

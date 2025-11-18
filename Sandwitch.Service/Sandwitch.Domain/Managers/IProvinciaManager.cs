@@ -1,7 +1,5 @@
-﻿using Sandwitch.Domain.Entities;
-using Sandwitch.Domain.ViewModels.Additions;
-using Sandwitch.Domain.ViewModels.Filters;
-using Sandwitch.Domain.ViewModels.Updates;
+﻿using Sandwitch.Domain.Dtos;
+using Sandwitch.Domain.Entities;
 
 namespace Sandwitch.Domain.Managers;
 
@@ -13,15 +11,16 @@ public interface IProvinciaManager : IBaseManager
     /// <summary>
     ///     Finds All Provincia
     /// </summary>
-    /// <returns>Instance of <see cref="Task{IList{Provincia}}" /></returns>
-    public Task<IList<Provincia>> FindAllProvincia();
+    /// <returns>Instance of <see cref="Task{IList{CatalogDto}}" /></returns>
+    public Task<IList<CatalogDto>> FindAllProvincia();
 
     /// <summary>
     ///     Finds Paginated Provincia
     /// </summary>
-    /// <param name="viewModel">Injected <see cref="FilterPage" /></param>
-    /// <returns>Instance of <see cref="Task{Page{Provincia}}" /></returns>
-    public Task<Page<Provincia>> FindPaginatedProvincia(FilterPage viewModel);
+    /// <param name="index">Injected <see cref="int" /></param>
+    /// <param name="size">Injected <see cref="int" /></param>
+    /// <returns>Instance of <see cref="Task{PageDto{ProvinciaDto}}" /></returns>
+    public Task<PageDto<ProvinciaDto>> FindPaginatedProvincia(int @index, int @size);
 
     /// <summary>
     ///     Finds Provincia By Id

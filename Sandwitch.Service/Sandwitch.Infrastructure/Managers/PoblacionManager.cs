@@ -1,11 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using Sandwitch.Domain.Dtos;
 using Sandwitch.Domain.Entities;
 using Sandwitch.Domain.Exceptions;
 using Sandwitch.Domain.Managers;
-using Sandwitch.Domain.ViewModels.Additions;
-using Sandwitch.Domain.ViewModels.Filters;
-using Sandwitch.Domain.ViewModels.Updates;
+using Sandwitch.Domain.Profiles;
 using Sandwitch.Infrastructure.Contexts.Interfaces;
 
 namespace Sandwitch.Infrastructure.Managers;
@@ -62,14 +61,14 @@ public class PoblacionManager(
     /// <summary>
     ///     Finds All Poblacion
     /// </summary>
-    /// <returns>Instance of <see cref="Task{IList{Poblacion}}" /></returns>
-    public async Task<IList<Poblacion>> FindAllPoblacion()
+    /// <returns>Instance of <see cref="Task{IList{CatalogDto}}" /></returns>
+    public async Task<IList<CatalogDto>> FindAllPoblacion()
     {
-        IList<Poblacion> @poblaciones = await Context.Poblacion
+        IList<CatalogDto> @poblaciones = await Context.Poblacion
             .TagWith("FindAllPoblacion")
             .AsNoTracking()
             .AsSplitQuery()
-            .Include(x => x.Provincia)
+            .Select(x => x.ToCatalog())
             .ToListAsync();
 
         return @poblaciones;
@@ -78,26 +77,28 @@ public class PoblacionManager(
     /// <summary>
     ///     Finds Paginated Poblacion
     /// </summary>
-    /// <param name="viewModel">Injected <see cref="FilterPage" /></param>
-    /// <returns>Instance of <see cref="Task{Page{Poblacion}}" /></returns>
-    public async Task<Page<Poblacion>> FindPaginatedPoblacion(FilterPage viewModel)
+    /// <param name="index">Injected <see cref="int" /></param>
+    /// <param name="size">Injected <see cref="int" /></param>
+    /// <returns>Instance of <see cref="Task{PageDto{ProvinciaDto}}" /></returns>
+    public async Task<PageDto<PoblacionDto>> FindPaginatedPoblacion(int @index, int @size)
     {
-        Page<Poblacion> @page = new()
+        PageDto<PoblacionDto> @page = new()
         {
             Length = await Context.Poblacion
                 .TagWith("CountAllPoblacion")
                 .AsNoTracking()
                 .AsSplitQuery()
                 .CountAsync(),
-            Index = viewModel.Index,
-            Size = viewModel.Size,
+            Index = @index,
+            Size = @size,
             Items = await Context.Poblacion
                 .TagWith("FindPaginatedPoblacion")
                 .AsNoTracking()
                 .AsSplitQuery()
                 .Include(x => x.Provincia)
-                .Skip(viewModel.Index * viewModel.Size)
-                .Take(viewModel.Size)
+                .Skip(@index * @size)
+                .Take(@size)
+                .Select(x=> x.ToDto())
                 .ToListAsync()
         };
 

@@ -1,8 +1,8 @@
 using AutoMapper;
 using MediatR;
 using Sandwitch.Application.Queries.Bandera;
+using Sandwitch.Application.ViewModels.Views;
 using Sandwitch.Domain.Managers;
-using Sandwitch.Domain.ViewModels.Views;
 
 namespace Sandwitch.Application.Handlers.Bandera;
 

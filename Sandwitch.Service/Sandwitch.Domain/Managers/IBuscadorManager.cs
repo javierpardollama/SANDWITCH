@@ -1,5 +1,4 @@
-using Sandwitch.Domain.Entities;
-using Sandwitch.Domain.ViewModels.Finders;
+using Sandwitch.Domain.Dtos;
 
 namespace Sandwitch.Domain.Managers;
 
@@ -11,13 +10,14 @@ public interface IBuscadorManager : IBaseManager
     /// <summary>
     ///     Finds All Buscador
     /// </summary>
-    /// <returns>Instance of <see cref="Task{IList{Buscador}}" /></returns>
-    public Task<IList<Buscador>> FindAllBuscador();
+    /// <returns>Instance of <see cref="Task{IList{BuscadorDto}}" /></returns>
+    public Task<IList<BuscadorDto>> FindAllBuscador();
 
     /// <summary>
     ///     Finds All Arenal By Buscador Id
     /// </summary>
-    /// <param name="viewModel">Injected <see cref="FinderArenal" /></param>
-    /// <returns>Instance of <see cref="Task{IList{Arenal}}" /></returns>
-    public Task<IList<Arenal>> FindAllArenalByBuscadorId(FinderArenal viewModel);
+    /// <param name="id">Injected <see cref="int" /></param>
+    /// <param name="type">Injected <see cref="string" /></param>
+    /// <returns>Instance of <see cref="Task{IList{ArenalDto}}" /></returns>
+    public Task<IList<ArenalDto>> FindAllArenalByBuscadorId(int id, string type);
 }

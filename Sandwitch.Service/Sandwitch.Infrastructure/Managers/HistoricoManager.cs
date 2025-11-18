@@ -3,7 +3,6 @@ using Microsoft.Extensions.Logging;
 using Sandwitch.Domain.Entities;
 using Sandwitch.Domain.Exceptions;
 using Sandwitch.Domain.Managers;
-using Sandwitch.Domain.ViewModels.Additions;
 using Sandwitch.Infrastructure.Contexts.Interfaces;
 
 namespace Sandwitch.Infrastructure.Managers;

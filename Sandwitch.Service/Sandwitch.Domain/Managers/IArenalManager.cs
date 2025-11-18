@@ -1,7 +1,5 @@
-﻿using Sandwitch.Domain.Entities;
-using Sandwitch.Domain.ViewModels.Additions;
-using Sandwitch.Domain.ViewModels.Filters;
-using Sandwitch.Domain.ViewModels.Updates;
+﻿using Sandwitch.Domain.Dtos;
+using Sandwitch.Domain.Entities;
 
 namespace Sandwitch.Domain.Managers;
 
@@ -13,22 +11,23 @@ public interface IArenalManager : IBaseManager
     /// <summary>
     ///     Finds All Arenal
     /// </summary>
-    /// <returns>Instance of <see cref="IList{Arenal}" /></returns>
-    public Task<IList<Arenal>> FindAllArenal();
+    /// <returns>Instance of <see cref="Task{IList{CatalogDto}}" /></returns>
+    public Task<IList<CatalogDto>> FindAllArenal();
 
     /// <summary>
     ///     Finds Paginated Arenal
     /// </summary>
-    /// <param name="viewModel">Injected <see cref="FilterPage" /></param>
-    /// <returns>Instance of <see cref="Task{Page{Arenal}}" /></returns>
-    public Task<Page<Arenal>> FindPaginatedArenal(FilterPage viewModel);
+    /// <param name="index">Injected <see cref="int" /></param>
+    /// <param name="size">Injected <see cref="int" /></param>
+    /// <returns>Instance of <see cref="Task{PageDto{ArenalDto}}" /></returns>
+    public Task<PageDto<ArenalDto>> FindPaginatedArenal(int @index, int @size);
 
     /// <summary>
     ///     Finds All Historico By Arenal Id
     /// </summary>
     /// <param name="id">Injected <see cref="int" /></param>
-    /// <returns>Instance of <see cref="Task{IList{Historico}}" /></returns>
-    public Task<IList<Historico>> FindAllHistoricoByArenalId(int id);
+    /// <returns>Instance of <see cref="Task{IList{HistoricoDto}}" /></returns>
+    public Task<IList<HistoricoDto>> FindAllHistoricoByArenalId(int id);
 
     /// <summary>
     ///     Finds Arenal By Id

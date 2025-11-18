@@ -1,11 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using Sandwitch.Domain.Dtos;
 using Sandwitch.Domain.Entities;
 using Sandwitch.Domain.Exceptions;
 using Sandwitch.Domain.Managers;
-using Sandwitch.Domain.ViewModels.Additions;
-using Sandwitch.Domain.ViewModels.Filters;
-using Sandwitch.Domain.ViewModels.Updates;
+using Sandwitch.Domain.Profiles;
 using Sandwitch.Infrastructure.Contexts.Interfaces;
 
 namespace Sandwitch.Infrastructure.Managers;
@@ -61,14 +60,14 @@ public class ProvinciaManager(
     /// <summary>
     ///     Finds All Provincia
     /// </summary>
-    /// <returns>Instance of <see cref="Task{IList{ViewProvincia}}" /></returns>
-    public async Task<IList<Provincia>> FindAllProvincia()
+    /// <returns>Instance of <see cref="Task{IList{CatalogDto}}" /></returns>
+    public async Task<IList<CatalogDto>> FindAllProvincia()
     {
-        IList<Provincia> @provincias = await Context.Provincia
+        IList<CatalogDto> @provincias = await Context.Provincia
             .TagWith("FindAllProvincia")
             .AsNoTracking()
             .AsSplitQuery()
-            .Include(x => x.Poblaciones)
+            .Select(x=> x.ToCatalog())
             .ToListAsync();
 
         return @provincias;
@@ -77,26 +76,28 @@ public class ProvinciaManager(
     /// <summary>
     ///     Finds Paginated Provincia
     /// </summary>
-    /// <param name="viewModel">Injected <see cref="FilterPage" /></param>
-    /// <returns>Instance of <see cref="Task{Page{Provincia}}" /></returns>
-    public async Task<Page<Provincia>> FindPaginatedProvincia(FilterPage viewModel)
+    /// <param name="index">Injected <see cref="int" /></param>
+    /// <param name="size">Injected <see cref="int" /></param>
+    /// <returns>Instance of <see cref="Task{PageDto{ProvinciaDto}}" /></returns>
+    public async Task<PageDto<ProvinciaDto>> FindPaginatedProvincia(int @index, int @size)
     {
-        Page<Provincia> @page = new()
+        PageDto<ProvinciaDto> @page = new()
         {
             Length = await Context.Provincia
                 .AsNoTracking()
                 .AsSplitQuery()
                 .TagWith("CountAllProvincia")
                 .CountAsync(),
-            Index = viewModel.Index,
-            Size = viewModel.Size,
+            Index = @index,
+            Size = @size,
             Items = await Context.Provincia
                 .TagWith("FindPaginatedProvincia")
                 .AsNoTracking()
                 .AsSplitQuery()
                 .Include(x => x.Poblaciones)
-                .Skip(viewModel.Index * viewModel.Size)
-                .Take(viewModel.Size)
+                .Skip(@index * @size)
+                .Take(@size)
+                .Select(x => x.ToDto())
                 .ToListAsync()
         };
 

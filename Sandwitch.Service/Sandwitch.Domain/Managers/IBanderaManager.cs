@@ -1,7 +1,5 @@
-﻿using Sandwitch.Domain.Entities;
-using Sandwitch.Domain.ViewModels.Additions;
-using Sandwitch.Domain.ViewModels.Filters;
-using Sandwitch.Domain.ViewModels.Updates;
+﻿using Sandwitch.Domain.Dtos;
+using Sandwitch.Domain.Entities;
 
 namespace Sandwitch.Domain.Managers;
 
@@ -13,22 +11,23 @@ public interface IBanderaManager : IBaseManager
     /// <summary>
     ///     Finds All Bandera
     /// </summary>
-    /// <returns>Instance of <see cref="Task{IList{ViewBandera}}" /></returns>
-    public Task<IList<Bandera>> FindAllBandera();
+    /// <returns>Instance of <see cref="Task{IList{CatalogDto}}" /></returns>
+    public Task<IList<CatalogDto>> FindAllBandera();
 
     /// <summary>
     ///     Finds Paginated Bandera
     /// </summary>
-    /// <param name="viewModel">Injected <see cref="FilterPage" /></param>
-    /// <returns>Instance of <see cref="Task{Page{Bandera}}" /></returns>
-    public Task<Page<Bandera>> FindPaginatedBandera(FilterPage viewModel);
+    /// <param name="index">Injected <see cref="int" /></param>
+    /// <param name="size">Injected <see cref="int" /></param>
+    /// <returns>Instance of <see cref="Task{PageDto{BanderaDto}}" /></returns>
+    public Task<PageDto<BanderaDto>> FindPaginatedBandera(int @index, int @size);
 
     /// <summary>
     ///     Finds All Historico By Poblacion Id
     /// </summary>
     /// <param name="id">Injected <see cref="int" /></param>
-    /// <returns>Instance of <see cref="Task{IList{Historico}}" /></returns>
-    public Task<IList<Historico>> FindAllHistoricoByBanderaId(int id);
+    /// <returns>Instance of <see cref="Task{IList{HistoricoDto}}" /></returns>
+    public Task<IList<HistoricoDto>> FindAllHistoricoByBanderaId(int id);
 
     /// <summary>
     ///     Finds Bandera By Id

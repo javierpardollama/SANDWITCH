@@ -1,7 +1,5 @@
-﻿using Sandwitch.Domain.Entities;
-using Sandwitch.Domain.ViewModels.Additions;
-using Sandwitch.Domain.ViewModels.Filters;
-using Sandwitch.Domain.ViewModels.Updates;
+﻿using Sandwitch.Domain.Dtos;
+using Sandwitch.Domain.Entities;
 
 namespace Sandwitch.Domain.Managers;
 
@@ -13,15 +11,16 @@ public interface IPoblacionManager : IBaseManager
     /// <summary>
     ///     Finds All Poblacion
     /// </summary>
-    /// <returns>Instance of <see cref="Task{IList{Poblacion}}" /></returns>
-    public Task<IList<Poblacion>> FindAllPoblacion();
+    /// <returns>Instance of <see cref="Task{IList{CatalogDto}}" /></returns>
+    public Task<IList<CatalogDto>> FindAllPoblacion();
 
     /// <summary>
     ///     Finds Paginated Poblacion
     /// </summary>
-    /// <param name="viewModel">Injected <see cref="FilterPage" /></param>
-    /// <returns>Instance of <see cref="Task{Page{Poblacion}}" /></returns>
-    public Task<Page<Poblacion>> FindPaginatedPoblacion(FilterPage viewModel);
+    /// <param name="index">Injected <see cref="int" /></param>
+    /// <param name="size">Injected <see cref="int" /></param>
+    /// <returns>Instance of <see cref="Task{PageDto{PoblacionDto}}" /></returns>
+    public Task<PageDto<PoblacionDto>> FindPaginatedPoblacion(int @index, int @size);
 
     /// <summary>
     ///     Finds Poblacion By Id

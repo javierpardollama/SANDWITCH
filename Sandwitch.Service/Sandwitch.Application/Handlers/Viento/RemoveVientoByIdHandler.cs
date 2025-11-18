@@ -1,4 +1,3 @@
-using AutoMapper;
 using MediatR;
 using Sandwitch.Application.Commands.Viento;
 using Sandwitch.Domain.Managers;
@@ -11,17 +10,14 @@ namespace Sandwitch.Application.Handlers.Viento;
 public class RemoveVientoByIdHandler : IRequestHandler<RemoveVientoByIdCommand>
 {
     private readonly IVientoManager Manager;
-    private readonly IMapper Mapper;
 
     /// <summary>
     ///  Initializes a new Instance of <see cref="RemoveVientoByIdHandler" />
     /// </summary>
     /// <param name="manager">Injected <see cref="IVientoManager"/></param>
-    /// <param name="mapper">Injected <see cref="IMapper"/></param>
-    public RemoveVientoByIdHandler(IVientoManager manager, IMapper mapper)
+    public RemoveVientoByIdHandler(IVientoManager manager)
     {
         Manager = manager;
-        Mapper = mapper;
     }
 
     /// <summary>

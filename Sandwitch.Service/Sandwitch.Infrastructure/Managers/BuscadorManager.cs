@@ -1,9 +1,10 @@
-using System.Linq.Expressions;
 using Microsoft.EntityFrameworkCore;
+using Sandwitch.Domain.Dtos;
 using Sandwitch.Domain.Entities;
 using Sandwitch.Domain.Managers;
-using Sandwitch.Domain.ViewModels.Finders;
+using Sandwitch.Domain.Profiles;
 using Sandwitch.Infrastructure.Contexts.Interfaces;
+using System.Linq.Expressions;
 
 namespace Sandwitch.Infrastructure.Managers;
 
@@ -18,27 +19,16 @@ public class BuscadorManager(
     /// <summary>
     ///     Finds All Buscador
     /// </summary>
-    /// <returns>Instance of <see cref="Task{IList{ViewBuscador}}" /></returns>
-    public async Task<IList<Buscador>> FindAllBuscador()
+    /// <returns>Instance of <see cref="Task{IList{BuscadorDto}}" /></returns>
+    public async Task<IList<BuscadorDto>> FindAllBuscador()
     {
-        IList<Buscador> @buscadores = await Context.Provincia
+        IList<BuscadorDto> @buscadores = await Context.Provincia
             .AsNoTracking()
-            .Select(provincia => new Buscador
-            {
-                Id = provincia.Id,
-                ImageUri = provincia.ImageUri,
-                Name = provincia.Name,
-                Type = nameof(Provincia)
-            }
+            .Select(provincia=> provincia.ToQuery()
         ).Union(Context.Poblacion
                 .AsNoTracking()
-                .Select(poblacion => new Buscador
-        {
-            Id = poblacion.Id,
-            ImageUri = poblacion.ImageUri,
-            Name = poblacion.Name,
-            Type = nameof(Poblacion)
-        })).ToListAsync();
+                .Select(poblacion => poblacion.ToQuery()))
+        .ToListAsync();
 
         return @buscadores;
     }
@@ -48,16 +38,16 @@ public class BuscadorManager(
     /// </summary>
     /// <param name="viewModel">Injected <see cref="FinderArenal" /></param>
     /// <returns>Instance of <see cref="Task{IList{Arenal}}" /></returns>
-    public async Task<IList<Arenal>> FindAllArenalByBuscadorId(FinderArenal viewModel)
+    public async Task<IList<ArenalDto>> FindAllArenalByBuscadorId(int id, string type)
     {
-        Expression<Func<ArenalPoblacion, bool>> expression = viewModel.Type switch
+        Expression<Func<ArenalPoblacion, bool>> expression = type switch
         {
-            nameof(Poblacion) => x => x.Poblacion.Id == viewModel.Id,
-            nameof(Provincia) => x => x.Poblacion.Provincia.Id == viewModel.Id,
+            nameof(Poblacion) => x => x.Poblacion.Id == id,
+            nameof(Provincia) => x => x.Poblacion.Provincia.Id == id,
             _ => x => false
         };
 
-        IList<Arenal> @arenales = await Context.ArenalPoblacion
+        IList<ArenalDto> @arenales = await Context.ArenalPoblacion
             .TagWith("FindAllArenalByBuscadorId")
             .AsNoTracking()
             .AsSplitQuery()
@@ -67,7 +57,7 @@ public class BuscadorManager(
             .Include(x => x.Arenal.Historicos)
             .ThenInclude(x => x.Bandera)
             .Where(expression)
-            .Select(x => x.Arenal)
+            .Select(x => x.Arenal.ToDto())
             .Distinct()
             .ToListAsync();
 

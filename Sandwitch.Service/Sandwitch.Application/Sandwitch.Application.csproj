@@ -8,16 +8,15 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="AutoMapper" Version="14.0.0"/>
-		<PackageReference Include="MediatR" Version="12.5.0"/>
+		<PackageReference Include="MediatR" Version="12.5.0" />
 	</ItemGroup>
 
 	<ItemGroup>
-		<FrameworkReference Include="Microsoft.AspNetCore.App"/>
+		<FrameworkReference Include="Microsoft.AspNetCore.App" />
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\Sandwitch.Domain\Sandwitch.Domain.csproj"/>
+		<ProjectReference Include="..\Sandwitch.Domain\Sandwitch.Domain.csproj" />
 	</ItemGroup>
 
 </Project>

@@ -27,9 +27,6 @@ var @rateSettings = @builder.InstallRateLimitSettings();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 @builder.Services.InstallOpenApi();
 
-// Register the Mapping Profiles
-@builder.Services.InstallAutoMapper();
-
 // Register the service and implementation for the database context
 @builder.Services.InstallManagers();
 @builder.Services.InstallMediatR();

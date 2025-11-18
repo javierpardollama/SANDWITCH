@@ -1,8 +1,8 @@
-using AutoMapper;
 using MediatR;
+using Sandwitch.Application.Profiles;
 using Sandwitch.Application.Queries.Buscador;
+using Sandwitch.Application.ViewModels.Views;
 using Sandwitch.Domain.Managers;
-using Sandwitch.Domain.ViewModels.Views;
 
 namespace Sandwitch.Application.Handlers.Buscador;
 
@@ -12,17 +12,14 @@ namespace Sandwitch.Application.Handlers.Buscador;
 public class FindAllArenalByBuscadorIdHandler : IRequestHandler<FindAllArenalByBuscadorIdQuery, IList<ViewArenal>>
 {
     private readonly IBuscadorManager Manager;
-    private readonly IMapper Mapper;
 
     /// <summary>
     ///  Initializes a new Instance of <see cref="FindAllArenalByBuscadorIdHandler" />
     /// </summary>
     /// <param name="manager">Injected <see cref="IBuscadorManager"/></param>
-    /// <param name="mapper">Injected <see cref="IMapper"/></param>
-    public FindAllArenalByBuscadorIdHandler(IBuscadorManager manager, IMapper mapper)
+    public FindAllArenalByBuscadorIdHandler(IBuscadorManager manager)
     {
         Manager = manager;
-        Mapper = mapper;
     }
 
     /// <summary>
@@ -34,8 +31,8 @@ public class FindAllArenalByBuscadorIdHandler : IRequestHandler<FindAllArenalByB
     public async Task<IList<ViewArenal>> Handle(FindAllArenalByBuscadorIdQuery request,
         CancellationToken cancellationToken)
     {
-        var result = await Manager.FindAllArenalByBuscadorId(request.ViewModel);
+        var dtos = await Manager.FindAllArenalByBuscadorId(request.ViewModel.Id, request.ViewModel.Type);
 
-        return Mapper.Map<IList<ViewArenal>>(result);
+        return [.. dtos.Select(x => x.ToViewModel())];
     }
 }

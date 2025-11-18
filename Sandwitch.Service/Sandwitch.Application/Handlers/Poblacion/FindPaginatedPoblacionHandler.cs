@@ -1,8 +1,8 @@
-using AutoMapper;
 using MediatR;
+using Sandwitch.Application.Profiles;
 using Sandwitch.Application.Queries.Poblacion;
+using Sandwitch.Application.ViewModels.Views;
 using Sandwitch.Domain.Managers;
-using Sandwitch.Domain.ViewModels.Views;
 
 namespace Sandwitch.Application.Handlers.Poblacion;
 
@@ -12,17 +12,14 @@ namespace Sandwitch.Application.Handlers.Poblacion;
 public class FindPaginatedPoblacionHandler : IRequestHandler<FindPaginatedPoblacionQuery, ViewPage<ViewPoblacion>>
 {
     private readonly IPoblacionManager Manager;
-    private readonly IMapper Mapper;
 
     /// <summary>
     ///  Initializes a new Instance of <see cref="FindPaginatedPoblacionHandler" />
     /// </summary>
     /// <param name="manager">Injected <see cref="IPoblacionManager"/></param>
-    /// <param name="mapper">Injected <see cref="IMapper"/></param>
-    public FindPaginatedPoblacionHandler(IPoblacionManager manager, IMapper mapper)
+    public FindPaginatedPoblacionHandler(IPoblacionManager manager)
     {
         Manager = manager;
-        Mapper = mapper;
     }
 
     /// <summary>
@@ -34,8 +31,8 @@ public class FindPaginatedPoblacionHandler : IRequestHandler<FindPaginatedPoblac
     public async Task<ViewPage<ViewPoblacion>> Handle(FindPaginatedPoblacionQuery request,
         CancellationToken cancellationToken)
     {
-        var result = await Manager.FindPaginatedPoblacion(request.ViewModel);
+        var @page = await Manager.FindPaginatedPoblacion(request.ViewModel.Index, request.ViewModel.Size);
 
-        return Mapper.Map<ViewPage<ViewPoblacion>>(result);
+        return @page.ToPageViewModel();
     }
 }

@@ -1,8 +1,8 @@
 using MediatR;
-using Sandwitch.Domain.ViewModels.Views;
+using Sandwitch.Application.ViewModels.Views;
 
 namespace Sandwitch.Application.Queries.Arenal;
 
-public class FindAllArenalQuery : IRequest<IList<ViewArenal>>
+public class FindAllArenalQuery : IRequest<IList<ViewCatalog>>
 {
 }

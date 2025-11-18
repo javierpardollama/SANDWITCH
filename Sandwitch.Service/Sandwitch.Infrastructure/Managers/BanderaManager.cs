@@ -1,11 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using Sandwitch.Domain.Dtos;
 using Sandwitch.Domain.Entities;
 using Sandwitch.Domain.Exceptions;
 using Sandwitch.Domain.Managers;
-using Sandwitch.Domain.ViewModels.Additions;
-using Sandwitch.Domain.ViewModels.Filters;
-using Sandwitch.Domain.ViewModels.Updates;
+using Sandwitch.Domain.Profiles;
 using Sandwitch.Infrastructure.Contexts.Interfaces;
 
 namespace Sandwitch.Infrastructure.Managers;
@@ -61,13 +60,14 @@ public class BanderaManager(
     /// <summary>
     ///     Finds All Bandera
     /// </summary>
-    /// <returns>Instance of <see cref="Task{IList{ViewBandera}}" /></returns>
-    public async Task<IList<Bandera>> FindAllBandera()
+    /// <returns>Instance of <see cref="Task{IList{CatalogDto}}" /></returns>
+    public async Task<IList<CatalogDto>> FindAllBandera()
     {
-        IList<Bandera> @banderas = await Context.Bandera
+        IList<CatalogDto> @banderas = await Context.Bandera
             .TagWith("FindAllBandera")
             .AsNoTracking()
             .AsSplitQuery()
+            .Select(x => x.ToCatalog())
             .ToListAsync();
 
         return @banderas;
@@ -76,25 +76,27 @@ public class BanderaManager(
     /// <summary>
     ///     Finds Paginated Bandera
     /// </summary>
-    /// <param name="viewModel">Injected <see cref="FilterPage" /></param>
-    /// <returns>Instance of <see cref="Task{Page{Bandera}}" /></returns>
-    public async Task<Page<Bandera>> FindPaginatedBandera(FilterPage viewModel)
+    /// <param name="index">Injected <see cref="int" /></param>
+    /// <param name="size">Injected <see cref="int" /></param>
+    /// <returns>Instance of <see cref="Task{PageDto{BanderaDto}}" /></returns>
+    public async Task<PageDto<BanderaDto>> FindPaginatedBandera(int @index, int @size)
     {
-        Page<Bandera> @page = new()
+        PageDto<BanderaDto> @page = new()
         {
             Length = await Context.Bandera
                 .TagWith("CountAllBandera")
                 .AsNoTracking()
                 .AsSplitQuery()
                 .CountAsync(),
-            Index = viewModel.Index,
-            Size = viewModel.Size,
+            Index = @index,
+            Size = @size,
             Items = await Context.Bandera
                 .TagWith("FindPaginatedBandera")
                 .AsNoTracking()
                 .AsSplitQuery()
-                .Skip(viewModel.Index * viewModel.Size)
-                .Take(viewModel.Size)
+                .Skip(@index * @size)
+                .Take(@size)
+                .Select(x => x.ToDto())
                 .ToListAsync()
         };
 
@@ -105,16 +107,17 @@ public class BanderaManager(
     ///     Finds All Historico By Poblacion Id
     /// </summary>
     /// <param name="id">Injected <see cref="int" /></param>
-    /// <returns>Instance of <see cref="IList{ViewHistorico}" /></returns>
-    public async Task<IList<Historico>> FindAllHistoricoByBanderaId(int id)
+    /// <returns>Instance of <see cref="Task{IList{HistoricoDto}}" /></returns>
+    public async Task<IList<HistoricoDto>> FindAllHistoricoByBanderaId(int id)
     {
-        IList<Historico> @historicos = await Context.Historico
+        IList<HistoricoDto> @historicos = await Context.Historico
             .TagWith("FindAllHistoricoByBanderaId")
             .AsNoTracking()
             .AsSplitQuery()
             .Include(x => x.Arenal)
             .Include(x => x.Bandera)
             .Where(x => x.Bandera.Id == id)
+            .Select(x=> x.ToDto())
             .ToListAsync();
 
         return @historicos;

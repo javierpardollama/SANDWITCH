@@ -1,8 +1,8 @@
 using MediatR;
-using Sandwitch.Domain.ViewModels.Views;
+using Sandwitch.Application.ViewModels.Views;
 
 namespace Sandwitch.Application.Queries.Viento;
 
-public class FindAllVientoQuery : IRequest<IList<ViewViento>>
+public class FindAllVientoQuery : IRequest<IList<ViewCatalog>>
 {
 }

@@ -1,8 +1,8 @@
-using AutoMapper;
 using MediatR;
+using Sandwitch.Application.Profiles;
 using Sandwitch.Application.Queries.Bandera;
+using Sandwitch.Application.ViewModels.Views;
 using Sandwitch.Domain.Managers;
-using Sandwitch.Domain.ViewModels.Views;
 
 namespace Sandwitch.Application.Handlers.Bandera;
 
@@ -12,17 +12,14 @@ namespace Sandwitch.Application.Handlers.Bandera;
 public class FindPaginatedBanderaHandler : IRequestHandler<FindPaginatedBanderaQuery, ViewPage<ViewBandera>>
 {
     private readonly IBanderaManager Manager;
-    private readonly IMapper Mapper;
 
     /// <summary>
     ///  Initializes a new Instance of <see cref="FindPaginatedBanderaHandler" />
     /// </summary>
     /// <param name="manager">Injected <see cref="IBanderaManager"/></param>
-    /// <param name="mapper">Injected <see cref="IMapper"/></param>
-    public FindPaginatedBanderaHandler(IBanderaManager manager, IMapper mapper)
+    public FindPaginatedBanderaHandler(IBanderaManager manager,)
     {
         Manager = manager;
-        Mapper = mapper;
     }
 
     /// <summary>
@@ -34,8 +31,8 @@ public class FindPaginatedBanderaHandler : IRequestHandler<FindPaginatedBanderaQ
     public async Task<ViewPage<ViewBandera>> Handle(FindPaginatedBanderaQuery request,
         CancellationToken cancellationToken)
     {
-        var result = await Manager.FindPaginatedBandera(request.ViewModel);
+        var @page = await Manager.FindPaginatedBandera(request.ViewModel.Index, request.ViewModel.Size);
 
-        return Mapper.Map<ViewPage<ViewBandera>>(result);
+        return @page.ToPageViewModel();       
     }
 }

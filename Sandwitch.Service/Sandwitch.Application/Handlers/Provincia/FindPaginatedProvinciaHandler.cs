@@ -1,8 +1,8 @@
-using AutoMapper;
 using MediatR;
+using Sandwitch.Application.Profiles;
 using Sandwitch.Application.Queries.Provincia;
+using Sandwitch.Application.ViewModels.Views;
 using Sandwitch.Domain.Managers;
-using Sandwitch.Domain.ViewModels.Views;
 
 namespace Sandwitch.Application.Handlers.Provincia;
 
@@ -12,17 +12,14 @@ namespace Sandwitch.Application.Handlers.Provincia;
 public class FindPaginatedProvinciaHandler : IRequestHandler<FindPaginatedProvinciaQuery, ViewPage<ViewProvincia>>
 {
     private readonly IProvinciaManager Manager;
-    private readonly IMapper Mapper;
 
     /// <summary>
     ///  Initializes a new Instance of <see cref="FindPaginatedProvinciaHandler" />
     /// </summary>
     /// <param name="manager">Injected <see cref="IProvinciaManager"/></param>
-    /// <param name="mapper">Injected <see cref="IMapper"/></param>
-    public FindPaginatedProvinciaHandler(IProvinciaManager manager, IMapper mapper)
+    public FindPaginatedProvinciaHandler(IProvinciaManager manager)
     {
         Manager = manager;
-        Mapper = mapper;
     }
 
     /// <summary>
@@ -34,8 +31,8 @@ public class FindPaginatedProvinciaHandler : IRequestHandler<FindPaginatedProvin
     public async Task<ViewPage<ViewProvincia>> Handle(FindPaginatedProvinciaQuery request,
         CancellationToken cancellationToken)
     {
-        var result = await Manager.FindPaginatedProvincia(request.ViewModel);
+        var @page = await Manager.FindPaginatedProvincia(request.ViewModel.Index, request.ViewModel.Size);
 
-        return Mapper.Map<ViewPage<ViewProvincia>>(result);
+        return @page.ToPageViewModel();
     }
 }

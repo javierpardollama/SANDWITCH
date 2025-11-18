@@ -1,4 +1,4 @@
-﻿namespace Sandwitch.Domain.ViewModels.Views;
+﻿namespace Sandwitch.Application.ViewModels.Views;
 
 /// <summary>
 ///     Represents a <see cref="ViewPage{T}" /> class.

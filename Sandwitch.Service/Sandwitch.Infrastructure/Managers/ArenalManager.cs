@@ -1,12 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using Sandwitch.Domain.Dtos;
 using Sandwitch.Domain.Entities;
 using Sandwitch.Domain.Enums;
 using Sandwitch.Domain.Exceptions;
 using Sandwitch.Domain.Managers;
-using Sandwitch.Domain.ViewModels.Additions;
-using Sandwitch.Domain.ViewModels.Filters;
-using Sandwitch.Domain.ViewModels.Updates;
+using Sandwitch.Domain.Profiles;
 using Sandwitch.Infrastructure.Contexts.Interfaces;
 
 namespace Sandwitch.Infrastructure.Managers;
@@ -111,16 +110,14 @@ public class ArenalManager(
     /// <summary>
     ///     Finds All Arenal
     /// </summary>
-    /// <returns>Instance of <see cref="Task{IList{Arenal}}" /></returns>
-    public async Task<IList<Arenal>> FindAllArenal()
+    /// <returns>Instance of <see cref="Task{IList{CatalogDto}}" /></returns>
+    public async Task<IList<CatalogDto>> FindAllArenal()
     {
-        IList<Arenal> @arenales = await Context.Arenal
+        IList<CatalogDto> @arenales = await Context.Arenal
             .TagWith("FindAllArenal")
             .AsNoTracking()
             .AsSplitQuery()
-            .Include(x => x.ArenalPoblaciones)
-            .ThenInclude(x => x.Poblacion)
-            .Include(x => x.Historicos)
+            .Select(x => x.ToCatalog())
             .ToListAsync();
 
         return @arenales;
@@ -129,19 +126,20 @@ public class ArenalManager(
     /// <summary>
     ///     Finds Paginated Arenal
     /// </summary>
-    /// <param name="viewModel">Injected <see cref="FilterPage" /></param>
-    /// <returns>Instance of <see cref="Task{Page{Arenal}}" /></returns>
-    public async Task<Page<Arenal>> FindPaginatedArenal(FilterPage viewModel)
+    /// <param name="index">Injected <see cref="int" /></param>
+    /// <param name="size">Injected <see cref="int" /></param>
+    /// <returns>Instance of <see cref="Task{PageDto{ArenalDto}}" /></returns>
+    public async Task<PageDto<ArenalDto>> FindPaginatedArenal(int @index, int @size)
     {
-        Page<Arenal> @page = new()
+        PageDto<ArenalDto> @page = new()
         {
             Length = await Context.Arenal
                 .TagWith("CountAllArenal")
                 .AsSplitQuery()
                 .AsNoTracking()
                 .CountAsync(),
-            Index = viewModel.Index,
-            Size = viewModel.Size,
+            Index = @index,
+            Size = @size,
             Items = await Context.Arenal
                 .TagWith("FindPaginatedArenal")
                 .AsNoTracking()
@@ -149,8 +147,9 @@ public class ArenalManager(
                 .Include(x => x.ArenalPoblaciones)
                 .ThenInclude(x => x.Poblacion)
                 .Include(x => x.Historicos)
-                .Skip(viewModel.Index * viewModel.Size)
-                .Take(viewModel.Size)
+                .Skip(@index * @size)
+                .Take(@size)
+                .Select(x => x.ToDto())
                 .ToListAsync()
         };
 
@@ -161,10 +160,10 @@ public class ArenalManager(
     ///     Finds All Historico By Arenal Id
     /// </summary>
     /// <param name="id">Injected <see cref="int" /></param>
-    /// <returns>Instance of <see cref="Task{IList{ViewHistorico}}" /></returns>
-    public async Task<IList<Historico>> FindAllHistoricoByArenalId(int id)
+    /// <returns>Instance of <see cref="Task{IList{HistoricoDto}}" /></returns>
+    public async Task<IList<HistoricoDto>> FindAllHistoricoByArenalId(int id)
     {
-        IList<Historico> @historicos = await Context.Historico
+        IList<HistoricoDto> @historicos = await Context.Historico
             .TagWith("FindAllHistoricoByArenalId")
             .AsNoTracking()
             .AsSplitQuery()
@@ -172,6 +171,7 @@ public class ArenalManager(
             .Include(x => x.Bandera)
             .Include(x => x.Viento)
             .Where(x => x.Arenal.Id == id)
+            .Select(x => x.ToDto())
             .ToListAsync();
 
         return @historicos;

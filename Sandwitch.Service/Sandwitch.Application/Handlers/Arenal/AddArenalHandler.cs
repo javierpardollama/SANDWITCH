@@ -1,8 +1,7 @@
-using AutoMapper;
 using MediatR;
 using Sandwitch.Application.Commands.Arenal;
+using Sandwitch.Application.ViewModels.Views;
 using Sandwitch.Domain.Managers;
-using Sandwitch.Domain.ViewModels.Views;
 
 namespace Sandwitch.Application.Handlers.Arenal;
 
@@ -12,14 +11,13 @@ namespace Sandwitch.Application.Handlers.Arenal;
 public class AddArenalHandler : IRequestHandler<AddArenalCommand, ViewArenal>
 {
     private readonly IArenalManager Manager;
-    private readonly IMapper Mapper;
 
     /// <summary>
     ///  Initializes a new Instance of <see cref="AddArenalHandler" />
     /// </summary>
     /// <param name="manager">Injected <see cref="IArenalManager"/></param>
     /// <param name="mapper">Injected <see cref="IMapper"/></param>
-   public AddArenalHandler(IArenalManager manager, IMapper mapper)
+   public AddArenalHandler(IArenalManager manager)
     {
         Manager = manager;
         Mapper = mapper;

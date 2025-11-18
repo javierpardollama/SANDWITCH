@@ -1,6 +1,6 @@
 using MediatR;
+using Sandwitch.Application.ViewModels.Views;
 using Sandwitch.Domain.ViewModels.Filters;
-using Sandwitch.Domain.ViewModels.Views;
 
 namespace Sandwitch.Application.Queries.Bandera;
 

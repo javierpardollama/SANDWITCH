@@ -1,28 +1,25 @@
-using AutoMapper;
 using MediatR;
+using Sandwitch.Application.Profiles;
 using Sandwitch.Application.Queries.Arenal;
+using Sandwitch.Application.ViewModels.Views;
 using Sandwitch.Domain.Managers;
-using Sandwitch.Domain.ViewModels.Views;
 
 namespace Sandwitch.Application.Handlers.Arenal;
 
 /// <summary>
-/// Represents a <see cref="AddArenalHandler"/>. Implements <see cref="IRequestHandler{FindAllArenalQuery, IList{ViewArenal}}"/>
+/// Represents a <see cref="AddArenalHandler"/>. Implements <see cref="IRequestHandler{FindAllArenalQuery, IList{ViewCatalog}}"/>
 /// </summary>
-public class FindAllArenalHandler : IRequestHandler<FindAllArenalQuery, IList<ViewArenal>>
+public class FindAllArenalHandler : IRequestHandler<FindAllArenalQuery, IList<ViewCatalog>>
 {
-    private readonly IArenalManager Manager;
-    private readonly IMapper Mapper;
+    private readonly IArenalManager Manager;   
 
     /// <summary>
     ///  Initializes a new Instance of <see cref="FindAllArenalHandler" />
     /// </summary>
-    /// <param name="manager">Injected <see cref="IArenalManager"/></param>
-    /// <param name="mapper">Injected <see cref="IMapper"/></param>
-    public FindAllArenalHandler(IArenalManager manager, IMapper mapper)
+    /// <param name="manager">Injected <see cref="IArenalManager"/></param>    
+    public FindAllArenalHandler(IArenalManager manager)
     {
-        Manager = manager;
-        Mapper = mapper;
+        Manager = manager;       
     }
 
     /// <summary>
@@ -30,11 +27,11 @@ public class FindAllArenalHandler : IRequestHandler<FindAllArenalQuery, IList<Vi
     /// </summary>
     /// <param name="request">Injected <see cref="FindAllArenalQuery"/></param>
     /// <param name="cancellationToken">Injected <see cref="CancellationToken"/></param>
-    /// <returns>Instance of <see cref="Task{IList{ViewArenal}}"/></returns>
-    public async Task<IList<ViewArenal>> Handle(FindAllArenalQuery request, CancellationToken cancellationToken)
+    /// <returns>Instance of <see cref="Task{IList{ViewCatalog}}"/></returns>
+    public async Task<IList<ViewCatalog>> Handle(FindAllArenalQuery request, CancellationToken cancellationToken)
     {
-        var result = await Manager.FindAllArenal();
+        var dtos = await Manager.FindAllArenal();       
 
-        return Mapper.Map<IList<ViewArenal>>(result);
+        return [.. dtos.Select(x => x.ToViewModel())];
     }
 }

@@ -34,7 +34,8 @@ public class AddPoblacionHandler : IRequestHandler<AddPoblacionCommand, ViewPobl
         var @poblacion = new Entities.Poblacion
         {
             Name = request.ViewModel.Name,
-            ImageUri = request.ViewModel.ImageUri,            
+            ImageUri = request.ViewModel.ImageUri,    
+            ProvinciaId = request.ViewModel.ProvinciaId,
         };
 
         var @entity = await Manager.AddPoblacion(@poblacion);

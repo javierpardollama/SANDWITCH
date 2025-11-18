@@ -27,9 +27,14 @@ public class Poblacion : Base
     public string ImageUri { get; set; }
 
     /// <summary>
-    ///     Gets or Sets <see cref="Provincia" />
+    ///     Gets or Sets <see cref="ProvinciaId" />
     /// </summary>
     [Required]
+    public int ProvinciaId { get; set; }
+
+    /// <summary>
+    ///     Gets or Sets <see cref="Provincia" />
+    /// </summary> 
     public Provincia Provincia { get; set; }
 
     /// <summary>

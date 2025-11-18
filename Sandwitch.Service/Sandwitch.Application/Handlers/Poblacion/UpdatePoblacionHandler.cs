@@ -37,6 +37,7 @@ public class UpdatePoblacionHandler : IRequestHandler<UpdatePoblacionCommand, Vi
             Id = request.ViewModel.Id,
             Name = request.ViewModel.Name,
             ImageUri = request.ViewModel.ImageUri,
+            ProvinciaId = request.ViewModel.Id,
         };
 
         var @entity = await Manager.UpdatePoblacion(@poblacion);

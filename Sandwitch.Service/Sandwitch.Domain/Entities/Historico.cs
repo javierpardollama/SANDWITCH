@@ -15,21 +15,36 @@ public class Historico : Base
     }
 
     /// <summary>
-    ///     Gets or Sets <see cref="Bandera" />
+    ///     Gets or Sets <see cref="BanderaId" />
     /// </summary>
     [Required]
+    public int BanderaId { get; set; }
+
+    /// <summary>
+    ///     Gets or Sets <see cref="Bandera" />
+    /// </summary>
     public virtual Bandera Bandera { get; set; }
 
     /// <summary>
-    ///     Gets or Sets <see cref="Viento" />
+    ///     Gets or Sets <see cref="BanderaId" />
     /// </summary>
     [Required]
+    public int VientoId { get; set; }
+
+    /// <summary>
+    ///     Gets or Sets <see cref="Viento" />
+    /// </summary>   
     public virtual Viento Viento { get; set; }
 
     /// <summary>
-    ///     Gets or Sets <see cref="Arenal" />
+    ///     Gets or Sets <see cref="BanderaId" />
     /// </summary>
     [Required]
+    public int ArenalId { get; set; }
+
+    /// <summary>
+    ///     Gets or Sets <see cref="Arenal" />
+    /// </summary>  
     public virtual Arenal Arenal { get; set; }
 
     /// <summary>

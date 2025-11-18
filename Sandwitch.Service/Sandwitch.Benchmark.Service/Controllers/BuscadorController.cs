@@ -1,3 +1,6 @@
+using BenchmarkDotNet.Attributes;
+using Sandwitch.Application.ViewModels.Views;
+using Sandwitch.Domain.ViewModels.Finders;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
@@ -5,9 +8,6 @@ using System.Net.Http.Headers;
 using System.Net.Http.Json;
 using System.Text;
 using System.Threading.Tasks;
-using BenchmarkDotNet.Attributes;
-using Sandwitch.Domain.ViewModels.Finders;
-using Sandwitch.Domain.ViewModels.Views;
 
 namespace Sandwitch.Benchmark.Service.Controllers;
 

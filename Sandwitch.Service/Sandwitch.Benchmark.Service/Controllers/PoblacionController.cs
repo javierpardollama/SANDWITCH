@@ -1,13 +1,13 @@
-﻿using System;
+﻿using BenchmarkDotNet.Attributes;
+using Sandwitch.Application.ViewModels.Views;
+using Sandwitch.Domain.ViewModels.Filters;
+using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Net.Http.Json;
 using System.Text;
 using System.Threading.Tasks;
-using BenchmarkDotNet.Attributes;
-using Sandwitch.Domain.ViewModels.Filters;
-using Sandwitch.Domain.ViewModels.Views;
 
 namespace Sandwitch.Benchmark.Service.Controllers;
 
@@ -17,7 +17,7 @@ public class PoblacionController
         { BaseAddress = new Uri("https://localhost:7297/api/v1/poblacion/") };
 
     [Benchmark]
-    public async Task<IList<ViewPoblacion>> FindAllPoblacion()
+    public async Task<IList<ViewCatalog>> FindAllPoblacion()
     {
         Client.DefaultRequestHeaders.Authorization = Client.DefaultRequestHeaders.Authorization =
             new AuthenticationHeaderValue("Basic",
@@ -25,7 +25,7 @@ public class PoblacionController
 
         var response = await Client.GetAsync("all");
         response.EnsureSuccessStatusCode();
-        var poblaciones = await response.Content.ReadFromJsonAsync<List<ViewPoblacion>>();
+        var poblaciones = await response.Content.ReadFromJsonAsync<List<ViewCatalog>>();
 
         return poblaciones;
     }

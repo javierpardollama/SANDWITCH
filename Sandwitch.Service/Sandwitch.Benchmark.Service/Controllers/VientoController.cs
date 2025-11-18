@@ -1,13 +1,13 @@
-﻿using System;
+﻿using BenchmarkDotNet.Attributes;
+using Sandwitch.Application.ViewModels.Views;
+using Sandwitch.Domain.ViewModels.Filters;
+using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Net.Http.Json;
 using System.Text;
 using System.Threading.Tasks;
-using BenchmarkDotNet.Attributes;
-using Sandwitch.Domain.ViewModels.Filters;
-using Sandwitch.Domain.ViewModels.Views;
 
 namespace Sandwitch.Benchmark.Service.Controllers;
 
@@ -16,7 +16,7 @@ public class VientoController
     private static readonly HttpClient Client = new() { BaseAddress = new Uri("https://localhost:7297/api/v2/viento/") };
 
     [Benchmark]
-    public async Task<IList<ViewViento>> FindAllViento()
+    public async Task<IList<ViewCatalog>> FindAllViento()
     {
         Client.DefaultRequestHeaders.Authorization = Client.DefaultRequestHeaders.Authorization =
             new AuthenticationHeaderValue("Basic",
@@ -24,7 +24,7 @@ public class VientoController
 
         var response = await Client.GetAsync("all");
         response.EnsureSuccessStatusCode();
-        var vientos = await response.Content.ReadFromJsonAsync<List<ViewViento>>();
+        var vientos = await response.Content.ReadFromJsonAsync<List<ViewCatalog>>();
 
         return vientos;
     }

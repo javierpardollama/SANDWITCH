@@ -13,7 +13,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\Sandwitch.Domain\Sandwitch.Domain.csproj" />
+	  <ProjectReference Include="..\Sandwitch.Application\Sandwitch.Application.csproj" />
 	</ItemGroup>
 
 </Project>

@@ -1,13 +1,13 @@
-﻿using System;
+﻿using NUnit.Framework;
+using Sandwitch.Application.ViewModels.Views;
+using Sandwitch.Domain.ViewModels.Filters;
+using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Net.Http.Json;
 using System.Text;
 using System.Threading.Tasks;
-using NUnit.Framework;
-using Sandwitch.Domain.ViewModels.Filters;
-using Sandwitch.Domain.ViewModels.Views;
 
 namespace Sandwitch.Test.Service.Controllers;
 
@@ -47,7 +47,7 @@ public class VientoControllerTest
     {
         var response = await Client.GetAsync("all");
         response.EnsureSuccessStatusCode();
-        var vientos = await response.Content.ReadFromJsonAsync<List<ViewViento>>();
+        var vientos = await response.Content.ReadFromJsonAsync<List<ViewCatalog>>();
 
         Assert.Pass();
     }

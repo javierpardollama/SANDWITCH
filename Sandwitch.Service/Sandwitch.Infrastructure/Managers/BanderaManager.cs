@@ -296,9 +296,10 @@ public class BanderaManager(
         BanderaDto @dto = await Context.Bandera
             .TagWith("ReloadBanderaById")
             .AsQueryable()
-            .AsSplitQuery()           
+            .AsSplitQuery()
+            .Where(x => x.Id == id)
             .Select(x => x.ToDto())
-            .FirstOrDefaultAsync(x => x.Id == id);
+            .FirstOrDefaultAsync();
 
 
         if (@dto is null)

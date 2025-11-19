@@ -271,9 +271,10 @@ public class ProvinciaManager(
         ProvinciaDto @dto = await Context.Provincia
             .TagWith("ReloadProvinciaById")
             .AsQueryable()
-            .AsSplitQuery()           
+            .AsSplitQuery() 
+            .Where(x => x.Id == id)
             .Select(x => x.ToDto())
-            .FirstOrDefaultAsync(x => x.Id == id);
+            .FirstOrDefaultAsync();
 
 
         if (@dto is null)

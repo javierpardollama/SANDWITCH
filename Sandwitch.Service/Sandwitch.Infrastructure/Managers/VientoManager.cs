@@ -291,8 +291,9 @@ public class VientoManager(
             .TagWith("ReloadVientoById")
             .AsQueryable()
             .AsSplitQuery()
+            .Where(x => x.Id == id)
             .Select(x => x.ToDto())
-            .FirstOrDefaultAsync(x => x.Id == id);
+            .FirstOrDefaultAsync();
 
 
         if (@dto is null)

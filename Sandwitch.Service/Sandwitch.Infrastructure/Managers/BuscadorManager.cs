@@ -22,15 +22,26 @@ public class BuscadorManager(
     /// <returns>Instance of <see cref="Task{IList{BuscadorDto}}" /></returns>
     public async Task<IList<BuscadorDto>> FindAllBuscador()
     {
-        IList<BuscadorDto> @buscadores = await Context.Provincia
-            .AsNoTracking()
-            .Select(provincia=> provincia.ToFinder()
-        ).Union(Context.Poblacion
+        var provinciasTask = new ValueTask<List<BuscadorDto>>(
+            Context.Provincia
                 .AsNoTracking()
-                .Select(poblacion => poblacion.ToFinder()))
-        .ToListAsync();
+                .Select(p => p.ToFinder())
+                .ToListAsync());
 
-        return @buscadores;
+        var poblacionesTask = new ValueTask<List<BuscadorDto>>(
+            Context.Poblacion
+                .AsNoTracking()
+                .Select(p => p.ToFinder())
+                .ToListAsync());
+
+        await Task.WhenAll(provinciasTask.AsTask(), poblacionesTask.AsTask());
+
+        var buscadores = (await provinciasTask)
+            .Union(await poblacionesTask)
+            .ToList();
+
+        return buscadores;
+
     }
 
     /// <summary>

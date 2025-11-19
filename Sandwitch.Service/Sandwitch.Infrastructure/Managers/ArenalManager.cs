@@ -478,8 +478,9 @@ public class ArenalManager(
             .AsSplitQuery()
             .Include(x=> x.ArenalPoblaciones)
             .ThenInclude(x=> x.Poblacion)
+            .Where(x => x.Id == id)
             .Select(x => x.ToDto())
-            .FirstOrDefaultAsync(x => x.Id == id);
+            .FirstOrDefaultAsync();
 
 
         if (@dto is null)

@@ -3,8 +3,6 @@ using NUnit.Framework;
 using Sandwitch.Domain.Entities;
 using Sandwitch.Domain.Exceptions;
 using Sandwitch.Infrastructure.Managers;
-using System;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace Sandwitch.Test.Infrastructure.Managers;
@@ -25,21 +23,11 @@ public class BanderaManagerTest : BaseManagerTest
 
         SetUpLogger();
 
-        Seed();
+        Context.Seed();
 
         BanderaManager = new BanderaManager(Context, Logger);
     }
-
-    /// <summary>
-    ///     Tears Down
-    /// </summary>
-    [OneTimeTearDown]
-    public void OneTimeTearDown()
-    {
-        Context.Bandera.RemoveRange(Context.Bandera.ToList());
-
-        Context.SaveChanges();
-    }
+   
 
     /// <summary>
     ///     Instance of <see cref="ILogger{BanderaManager}" />
@@ -71,43 +59,7 @@ public class BanderaManagerTest : BaseManagerTest
         });
 
         Logger = loggerFactory.CreateLogger<BanderaManager>();
-    }
-
-    /// <summary>
-    ///    Seeds
-    /// </summary>
-    private void Seed()
-    {
-        if (!Context.Bandera.Any())
-        {
-            Context.Bandera.Add(new Bandera
-            {
-                Id = 1,
-                Name = "Amarilla ",
-                ImageUri = "URL/Amarilla_500.png",
-                LastModified = DateTime.Now,
-                Deleted = false
-            });
-            Context.Bandera.Add(new Bandera
-            {
-                Id = 2,
-                Name = "Negra",
-                ImageUri = "URL/Negra_500.png",
-                LastModified = DateTime.Now,
-                Deleted = false
-            });
-            Context.Bandera.Add(new Bandera
-            {
-                Id = 3,
-                Name = "Roja",
-                ImageUri = "URL/Roja_500.png",
-                LastModified = DateTime.Now,
-                Deleted = false
-            });
-        }
-
-        Context.SaveChanges();
-    }
+    }    
 
     /// <summary>
     ///     Finds All Bandera

@@ -3,8 +3,6 @@ using NUnit.Framework;
 using Sandwitch.Domain.Entities;
 using Sandwitch.Domain.Exceptions;
 using Sandwitch.Infrastructure.Managers;
-using System;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace Sandwitch.Test.Infrastructure.Managers;
@@ -25,7 +23,7 @@ public class VientoManagerTest : BaseManagerTest
 
         SetUpLogger();
 
-        Seed();
+        Context.Seed();
 
         VientoManager = new VientoManager(Context, Logger);
     }
@@ -60,42 +58,7 @@ public class VientoManagerTest : BaseManagerTest
         });
 
         Logger = loggerFactory.CreateLogger<VientoManager>();
-    }
-
-    /// <summary>
-    ///     Seeds
-    /// </summary>
-    private void Seed()
-    {
-        if (!Context.Viento.Any())
-        {
-            Context.Viento.Add(new Viento
-            {
-                Id = 1,
-                Name = "Norte",
-                ImageUri = "URL/Norte_500.png",
-                LastModified = DateTime.Now,
-                Deleted = false
-            });
-            Context.Viento.Add(new Viento
-            {
-                Id = 2,
-                Name = "Noroeste",
-                ImageUri = "URL/Noroeste_500.png",
-                LastModified = DateTime.Now,
-                Deleted = false
-            });
-            Context.Viento.Add(new Viento
-            {
-                Id = 3,
-                Name = "Oeste",
-                ImageUri = "URL/Oeste_500.png",
-                LastModified = DateTime.Now,
-                Deleted = false
-            });
-        }
-        Context.SaveChanges();
-    }
+    }    
 
     /// <summary>
     ///     Finds All Viento

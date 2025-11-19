@@ -3,8 +3,6 @@ using NUnit.Framework;
 using Sandwitch.Domain.Entities;
 using Sandwitch.Domain.Exceptions;
 using Sandwitch.Infrastructure.Managers;
-using System;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace Sandwitch.Test.Infrastructure.Managers;
@@ -25,7 +23,7 @@ public class PoblacionManagerTest : BaseManagerTest
 
         SetUpLogger();
 
-        Seed();
+        Context.Seed();
 
         PoblacionManager = new PoblacionManager(Context, Logger);
     }   
@@ -61,58 +59,7 @@ public class PoblacionManagerTest : BaseManagerTest
         });
 
         Logger = loggerFactory.CreateLogger<PoblacionManager>();
-    }
-
-    /// <summary>
-    ///     Seeds
-    /// </summary>
-    private void Seed()
-    {
-        if (!Context.Provincia.Any())
-        {
-            Context.Provincia.Add(new Provincia
-            {
-                Id = 1,
-                Name = "Bizkaia",
-                ImageUri = "URL/Bizkaia_500px.png",
-                LastModified = DateTime.Now,
-                Deleted = false
-            });
-        }
-
-        if (!Context.Poblacion.Any())
-        {
-            Context.Poblacion.Add(new Poblacion
-            {
-                Id = 1,
-                Name = "Zierbena",
-                ImageUri = "URL/Zierbena_500px.png",
-                ProvinciaId = 1,
-                LastModified = DateTime.Now,
-                Deleted = false
-            });
-            Context.Poblacion.Add(new Poblacion
-            {
-                Id = 2,
-                Name = "Muskiz",
-                ImageUri = "URL/Muskiz_500px.png",
-                ProvinciaId = 1,
-                LastModified = DateTime.Now,
-                Deleted = false
-            });
-
-            Context.Poblacion.Add(new Poblacion
-            {
-                Id = 3,
-                Name = "Getxo",
-                ImageUri = "URL/Getxo_500px.png",
-                ProvinciaId = 1,
-                LastModified = DateTime.Now,
-                Deleted = false
-            });
-        }
-        Context.SaveChanges();
-    }
+    }   
 
     /// <summary>
     ///     Finds All Poblacion

@@ -203,7 +203,7 @@ public class PoblacionManager(
 
         Poblacion @poblacion = await FindPoblacionById(@entity.Id);
         @poblacion.Name = @entity.Name.Trim();
-        @poblacion.Provincia = await FindProvinciaById(@entity.Provincia.Id);
+        @poblacion.Provincia = await FindProvinciaById(@entity.ProvinciaId);
         @poblacion.ImageUri = @entity.ImageUri.Trim();
 
         try

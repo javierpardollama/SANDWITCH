@@ -3,8 +3,6 @@ using NUnit.Framework;
 using Sandwitch.Domain.Entities;
 using Sandwitch.Domain.Exceptions;
 using Sandwitch.Infrastructure.Managers;
-using System;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace Sandwitch.Test.Infrastructure.Managers;
@@ -25,7 +23,7 @@ public class ProvinciaManagerTest : BaseManagerTest
 
         SetUpLogger();
 
-        Seed();
+        Context.Seed();
 
         ProvinciaManager = new ProvinciaManager(Context, Logger);
     }  
@@ -62,43 +60,7 @@ public class ProvinciaManagerTest : BaseManagerTest
         });
 
         Logger = loggerFactory.CreateLogger<ProvinciaManager>();
-    }
-
-    /// <summary>
-    ///     Seeds
-    /// </summary>
-    private void Seed()
-    {
-        if (!Context.Provincia.Any())
-        {
-            Context.Provincia.Add(new Provincia
-            {
-                Id = 1,
-                Name = "Bizkaia",
-                ImageUri = "URL/Bizkaia_500px.png",
-                LastModified = DateTime.Now,
-                Deleted = false
-            });
-            Context.Provincia.Add(new Provincia
-            {
-                Id = 2,
-                Name = "Gipuzkoa",
-                ImageUri = "URL/Gipuzkoa_500px.png",
-                LastModified = DateTime.Now,
-                Deleted = false
-            });
-            Context.Provincia.Add(new Provincia
-            {
-                Id = 3,
-                Name = "Cantabria",
-                ImageUri = "URL/Cantabria_500px.png",
-                LastModified = DateTime.Now,
-                Deleted = false
-            });
-        }
-
-        Context.SaveChanges();
-    }
+    }   
 
     /// <summary>
     ///     Finds All Provincia

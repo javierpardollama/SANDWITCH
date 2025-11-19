@@ -32,7 +32,8 @@ public class HistoricoManager(
             .AsSplitQuery()
             .Include(x => x.ArenalPoblaciones)
             .ThenInclude(x => x.Poblacion)
-            .FirstOrDefaultAsync(x => x.Id == id);
+            .Where(x => x.Id == id)
+            .FirstOrDefaultAsync();
 
         if (@arenal == null)
         {
@@ -63,7 +64,8 @@ public class HistoricoManager(
     {
         Bandera @bandera = await Context.Bandera
             .TagWith("FindBanderaById")
-            .FirstOrDefaultAsync(x => x.Id == id);
+            .Where(x => x.Id == id)
+            .FirstOrDefaultAsync();
 
         if (@bandera == null)
         {
@@ -130,7 +132,8 @@ public class HistoricoManager(
     {
         Viento @viento = await Context.Viento
             .TagWith("FindVientoById")
-            .FirstOrDefaultAsync(x => x.Id == id);
+            .Where(x => x.Id == id)
+            .FirstOrDefaultAsync();
 
         if (@viento == null)
         {
@@ -166,8 +169,9 @@ public class HistoricoManager(
             .Include(x => x.Arenal)
             .Include(x => x.Viento)
             .Include(x => x.Bandera)
+            .Where(x => x.Id == id)
             .Select(x => x.ToDto())
-            .FirstOrDefaultAsync(x => x.Id == id);
+            .FirstOrDefaultAsync();
             
 
         if (@dto is null)

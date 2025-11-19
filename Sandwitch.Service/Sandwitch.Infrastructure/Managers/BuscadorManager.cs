@@ -53,8 +53,8 @@ public class BuscadorManager(
     {
         Expression<Func<ArenalPoblacion, bool>> expression = type switch
         {
-            nameof(Poblacion) => x => x.Poblacion.Id == id,
-            nameof(Provincia) => x => x.Poblacion.Provincia.Id == id,
+            nameof(Poblacion) => x => x.PoblacionId == id,
+            nameof(Provincia) => x => x.Poblacion.ProvinciaId == id,
             _ => x => false
         };
 
@@ -62,7 +62,7 @@ public class BuscadorManager(
             .TagWith("FindAllArenalByBuscadorId")
             .AsNoTracking()
             .AsSplitQuery()
-            .Include(x => x.Poblacion.Provincia)
+            .Include(x => x.Poblacion)
             .Include(x => x.Arenal.Historicos)
             .ThenInclude(x => x.Viento)
             .Include(x => x.Arenal.Historicos)

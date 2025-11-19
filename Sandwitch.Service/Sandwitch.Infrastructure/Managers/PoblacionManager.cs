@@ -107,7 +107,8 @@ public class PoblacionManager(
     {
         Poblacion @poblacion = await Context.Poblacion
             .TagWith("FindPoblacionById")
-            .FirstOrDefaultAsync(x => x.Id == @id);
+            .Where(x => x.Id == @id)
+            .FirstOrDefaultAsync();
 
         if (@poblacion == null)
         {
@@ -138,7 +139,8 @@ public class PoblacionManager(
     {
         Provincia @provincia = await Context.Provincia
             .TagWith("FindProvinciaById")
-            .FirstOrDefaultAsync(x => x.Id == @id);
+            .Where(x => x.Id == @id)
+            .FirstOrDefaultAsync();
 
         if (@provincia == null)
         {
@@ -238,7 +240,8 @@ public class PoblacionManager(
             .AsNoTracking()
             .AsSplitQuery()
             .TagWith("CheckName")
-            .FirstOrDefaultAsync(x => x.Name == @name.Trim());
+            .Where(x => x.Name == @name.Trim())
+            .FirstOrDefaultAsync();
 
         if (@poblacion != null)
         {
@@ -271,7 +274,8 @@ public class PoblacionManager(
             .AsNoTracking()
             .AsSplitQuery()
             .TagWith("CheckName")
-            .FirstOrDefaultAsync(x => x.Name == @name.Trim() && x.Id != @id);
+            .Where(x => x.Name == @name.Trim() && x.Id != @id)
+            .FirstOrDefaultAsync();
 
         if (@poblacion != null)
         {

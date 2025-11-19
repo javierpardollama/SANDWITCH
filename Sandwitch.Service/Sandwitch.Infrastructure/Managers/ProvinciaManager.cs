@@ -107,7 +107,8 @@ public class ProvinciaManager(
     {
         var @provincia = await Context.Provincia
             .TagWith("FindProvinciaById")
-            .FirstOrDefaultAsync(x => x.Id == id);
+            .Where(x => x.Id == id)
+            .FirstOrDefaultAsync();
 
         if (@provincia == null)
         {
@@ -206,7 +207,8 @@ public class ProvinciaManager(
             .AsNoTracking()
             .AsSplitQuery()
             .TagWith("CheckName")
-            .FirstOrDefaultAsync(x => x.Name == @name.Trim());
+            .Where(x => x.Name == @name.Trim())
+            .FirstOrDefaultAsync();
 
         if (@provincia != null)
         {
@@ -239,7 +241,8 @@ public class ProvinciaManager(
             .AsNoTracking()
             .AsSplitQuery()
             .TagWith("CheckName")
-            .FirstOrDefaultAsync(x => x.Name == @name.Trim() && x.Id != @id);
+            .Where(x => x.Name == @name.Trim() && x.Id != @id)
+            .FirstOrDefaultAsync();
 
         if (@provincia != null)
         {

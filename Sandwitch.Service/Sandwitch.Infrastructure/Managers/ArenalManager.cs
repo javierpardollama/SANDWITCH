@@ -196,7 +196,7 @@ public class ArenalManager(
             .Include(x => x.Arenal)
             .Include(x => x.Bandera)
             .Include(x => x.Viento)
-            .Where(x => x.Arenal.Id == id)
+            .Where(x => x.ArenalId == id)
             .Select(x => x.ToDto())
             .ToListAsync();
 
@@ -216,7 +216,8 @@ public class ArenalManager(
             .AsSplitQuery()
             .Include(x => x.ArenalPoblaciones)
             .ThenInclude(x => x.Poblacion)
-            .FirstOrDefaultAsync(x => x.Id == id);
+            .Where(x => x.Id == id)
+            .FirstOrDefaultAsync();
 
         if (@arenal == null)
         {
@@ -247,7 +248,8 @@ public class ArenalManager(
     {
         Poblacion @poblacion = await Context.Poblacion
             .TagWith("FindPoblacionById")
-            .FirstOrDefaultAsync(x => x.Id == id);
+            .Where(x => x.Id == id)
+            .FirstOrDefaultAsync();
 
         if (@poblacion == null)
         {
@@ -278,7 +280,8 @@ public class ArenalManager(
     {
         Bandera @bandera = await Context.Bandera
             .TagWith("FindBanderaById")
-            .FirstOrDefaultAsync(x => x.Id == id);
+            .Where(x => x.Id == id)
+            .FirstOrDefaultAsync();
 
         if (@bandera == null)
         {
@@ -378,7 +381,8 @@ public class ArenalManager(
             .AsNoTracking()
             .AsSplitQuery()
             .TagWith("CheckName")
-            .FirstOrDefaultAsync(x => x.Name == @name.Trim());
+            .Where(x => x.Name == @name.Trim())
+            .FirstOrDefaultAsync();
 
         if (@arenal != null)
         {
@@ -412,7 +416,8 @@ public class ArenalManager(
             .AsNoTracking()
             .AsSplitQuery()
             .TagWith("CheckName")
-            .FirstOrDefaultAsync(x => x.Name == @name.Trim() && x.Id != @id);
+            .Where(x => x.Name == @name.Trim() && x.Id != @id)
+            .FirstOrDefaultAsync();
 
         if (@arenal != null)
         {
@@ -443,7 +448,8 @@ public class ArenalManager(
     {
         Viento @viento = await Context.Viento
             .TagWith("FindVientoById")
-            .FirstOrDefaultAsync(x => x.Id == id);
+            .Where(x => x.Id == id)
+            .FirstOrDefaultAsync();
 
         if (@viento == null)
         {
@@ -473,7 +479,7 @@ public class ArenalManager(
     public async Task<ArenalDto> ReloadArenalById(int id)
     {
         ArenalDto @dto = await Context.Arenal
-            .TagWith("ReloadBanderaById")
+            .TagWith("ReloadArenalById")
             .AsQueryable()
             .AsSplitQuery()
             .Include(x=> x.ArenalPoblaciones)

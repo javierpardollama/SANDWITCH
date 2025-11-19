@@ -116,7 +116,7 @@ public class BanderaManager(
             .AsSplitQuery()
             .Include(x => x.Arenal)
             .Include(x => x.Bandera)
-            .Where(x => x.Bandera.Id == id)
+            .Where(x => x.BanderaId == id)
             .Select(x=> x.ToDto())
             .ToListAsync();
 
@@ -132,7 +132,8 @@ public class BanderaManager(
     {
         Bandera @bandera = await Context.Bandera
             .TagWith("FindBanderaById")
-            .FirstOrDefaultAsync(x => x.Id == id);
+            .Where(x => x.Id == id)
+            .FirstOrDefaultAsync();
 
         if (@bandera == null)
         {
@@ -231,7 +232,8 @@ public class BanderaManager(
             .TagWith("CheckName")
             .AsNoTracking()
             .AsSplitQuery()
-            .FirstOrDefaultAsync(x => x.Name == @name.Trim());
+            .Where(x => x.Name == @name.Trim())
+            .FirstOrDefaultAsync();
 
         if (@bandera != null)
         {
@@ -264,7 +266,8 @@ public class BanderaManager(
             .TagWith("CheckName")
             .AsNoTracking()
             .AsSplitQuery()
-            .FirstOrDefaultAsync(x => x.Name == @name.Trim() && x.Id != @id);
+            .Where(x => x.Name == @name.Trim() && x.Id != @id)
+            .FirstOrDefaultAsync();
 
         if (@bandera != null)
         {

@@ -110,7 +110,7 @@ public class VientoManager(
             .AsSplitQuery()
             .Include(x => x.Arenal)
             .Include(x => x.Viento)
-            .Where(x => x.Viento.Id == id)
+            .Where(x => x.VientoId == id)
             .Select(x => x.ToDto())
             .ToListAsync();
 
@@ -126,7 +126,8 @@ public class VientoManager(
     {
         Viento @viento = await Context.Viento
             .TagWith("FindVientoById")
-            .FirstOrDefaultAsync(x => x.Id == id);
+            .Where(x => x.Id == id)
+            .FirstOrDefaultAsync();
 
         if (@viento == null)
         {
@@ -225,7 +226,8 @@ public class VientoManager(
             .TagWith("CheckName")
             .AsNoTracking()
             .AsSplitQuery()
-            .FirstOrDefaultAsync(x => x.Name == @name.Trim());
+            .Where(x => x.Name == @name.Trim())
+            .FirstOrDefaultAsync();
 
         if (@viento != null)
         {
@@ -258,7 +260,8 @@ public class VientoManager(
             .TagWith("CheckName")
             .AsNoTracking()
             .AsSplitQuery()
-            .FirstOrDefaultAsync(x => x.Name == @name.Trim() && x.Id != @id);
+            .Where(x => x.Name == @name.Trim() && x.Id != @id)
+            .FirstOrDefaultAsync();
 
         if (@viento != null)
         {

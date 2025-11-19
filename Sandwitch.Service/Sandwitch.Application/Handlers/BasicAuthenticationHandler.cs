@@ -1,12 +1,12 @@
-﻿using System.Globalization;
-using System.Security.Claims;
-using System.Text.Encodings.Web;
-using Microsoft.AspNetCore.Authentication;
+﻿using Microsoft.AspNetCore.Authentication;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Sandwitch.Application.Helpers;
 using Sandwitch.Application.ViewModels.Auth;
 using Sandwitch.Domain.Managers;
+using System.Globalization;
+using System.Security.Claims;
+using System.Text.Encodings.Web;
 
 namespace Sandwitch.Application.Handlers;
 
@@ -55,9 +55,11 @@ public class BasicAuthenticationHandler(
         if (Request.Headers.Authorization.Count == 0)
             return Task.FromResult(AuthenticateResult.Fail("Authorization Error. Header Not Found"));
 
-        return authManager.CanAuthenticate(CredentialHelper.GetRequestCredentials(Request))
+        var @credentials = CredentialHelper.GetRequestCredentials(Request);
+
+        return authManager.CanAuthenticate(@credentials.Name, @credentials.Password)
             ? Task.FromResult(
-                AuthenticateResult.Success(GetAuthenticationTicket(CredentialHelper.GetRequestCredentials(Request))))
+                AuthenticateResult.Success(GetAuthenticationTicket(@credentials)))
             : Task.FromResult(AuthenticateResult.Fail("Authorization Error. Authentication Error"));
     }
 }

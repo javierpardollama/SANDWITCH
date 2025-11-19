@@ -1,14 +1,10 @@
-﻿using System;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Logging;
 using NUnit.Framework;
 using Sandwitch.Domain.Entities;
 using Sandwitch.Domain.Exceptions;
-using Sandwitch.Domain.ViewModels.Additions;
-using Sandwitch.Domain.ViewModels.Filters;
-using Sandwitch.Domain.ViewModels.Updates;
+using Sandwitch.Infrastructure.Contexts;
 using Sandwitch.Infrastructure.Managers;
+using System.Threading.Tasks;
 
 namespace Sandwitch.Test.Infrastructure.Managers;
 
@@ -24,22 +20,22 @@ public class VientoManagerTest : BaseManagerTest
     [OneTimeSetUp]
     public void OneTimeSetUp()
     {
-        SetUpContext();
+        Context = new ApplicationContext(ContextOptionsBuilder.Options);
 
         SetUpLogger();
 
-        SetUpData();
+        Context.Seed();
 
         VientoManager = new VientoManager(Context, Logger);
     }
 
     /// <summary>
-    ///     Tears Down
+    ///     Tears Downs
     /// </summary>
     [OneTimeTearDown]
     public void OneTimeTearDown()
     {
-        Context.SaveChanges();
+        Context.Dispose();
     }
 
     /// <summary>
@@ -72,31 +68,7 @@ public class VientoManagerTest : BaseManagerTest
         });
 
         Logger = loggerFactory.CreateLogger<VientoManager>();
-    }
-
-    /// <summary>
-    ///     Sets Up Context
-    /// </summary>
-    private void SetUpData()
-    {
-        Context.Viento.Add(new Viento
-        {
-            Name = "Viento " + Guid.NewGuid(), ImageUri = "Vientos/Viento_1_500.png", LastModified = DateTime.Now,
-            Deleted = false
-        });
-        Context.Viento.Add(new Viento
-        {
-            Name = "Viento " + Guid.NewGuid(), ImageUri = "Vientos/Viento_2_500.png", LastModified = DateTime.Now,
-            Deleted = false
-        });
-        Context.Viento.Add(new Viento
-        {
-            Name = "Viento " + Guid.NewGuid(), ImageUri = "Vientos/Viento_3_500.png", LastModified = DateTime.Now,
-            Deleted = false
-        });
-
-        Context.SaveChanges();
-    }
+    }    
 
     /// <summary>
     ///     Finds All Viento
@@ -117,7 +89,7 @@ public class VientoManagerTest : BaseManagerTest
     [Test]
     public async Task FindPaginatedViento()
     {
-        await VientoManager.FindPaginatedViento(new FilterPage { Index = 1, Size = 5 });
+        await VientoManager.FindPaginatedViento(1, 5);
 
         Assert.Pass();
     }
@@ -129,7 +101,7 @@ public class VientoManagerTest : BaseManagerTest
     [Test]
     public async Task FindAllHistoricoByVientoId()
     {
-        await VientoManager.FindAllHistoricoByVientoId(Context.Viento.FirstOrDefault().Id);
+        await VientoManager.FindAllHistoricoByVientoId(1);
 
         Assert.Pass();
     }
@@ -141,7 +113,7 @@ public class VientoManagerTest : BaseManagerTest
     [Test]
     public async Task FindVientoById()
     {
-        await VientoManager.FindVientoById(Context.Viento.FirstOrDefault().Id);
+        await VientoManager.FindVientoById(1);
 
         Assert.Pass();
     }
@@ -153,7 +125,7 @@ public class VientoManagerTest : BaseManagerTest
     [Test]
     public async Task RemoveVientoById()
     {
-        await VientoManager.RemoveVientoById(Context.Viento.FirstOrDefault().Id);
+        await VientoManager.RemoveVientoById(1);
 
         Assert.Pass();
     }
@@ -165,14 +137,14 @@ public class VientoManagerTest : BaseManagerTest
     [Test]
     public async Task UpdateViento()
     {
-        UpdateViento Viento = new()
+        Viento entity = new()
         {
-            Id = Context.Viento.FirstOrDefault().Id,
-            ImageUri = "URL/Viento_21_500px.png",
-            Name = "Viento 21"
+            Id = 2,
+            ImageUri = "URL/North_West_500px.png",
+            Name = "North West"
         };
 
-        await VientoManager.UpdateViento(Viento);
+        await VientoManager.UpdateViento(entity);
 
         Assert.Pass();
     }
@@ -184,13 +156,13 @@ public class VientoManagerTest : BaseManagerTest
     [Test]
     public async Task AddViento()
     {
-        AddViento Viento = new()
+        Viento entity = new()
         {
-            ImageUri = "URL/Viento_4_500px.png",
-            Name = "Viento 4"
+            ImageUri = "URL/Sudoeste_500px.png",
+            Name = "Sudoeste"
         };
 
-        await VientoManager.AddViento(Viento);
+        await VientoManager.AddViento(entity);
 
         Assert.Pass();
     }
@@ -200,14 +172,27 @@ public class VientoManagerTest : BaseManagerTest
     /// </summary>
     /// <returns>Instance of <see cref="Task" /></returns>
     [Test]
-    public void CheckName()
+    public void CheckNameAsync()
     {
-        AddViento Viento = new()
+        Bandera @entity = new()
         {
-            ImageUri = "URL/Viento_3_500px.png",
-            Name = Context.Viento.FirstOrDefault().Name
+            Id = 3,
+            ImageUri = "URL/Oeste_500px.png",
+            Name = "Oeste"
         };
-        var exception = Assert.ThrowsAsync<ServiceException>(async () => await VientoManager.CheckName(Viento));
+        var exception = Assert.ThrowsAsync<ServiceException>(async () => await VientoManager.CheckName(@entity.Name));
+
+        Assert.Pass();
+    }
+
+    /// <summary>
+    ///     Reloads Bandera By Id
+    /// </summary>
+    /// <returns>Instance of <see cref="Task" /></returns>
+    [Test]
+    public async Task ReloadBanderaById()
+    {
+        await VientoManager.ReloadVientoById(2);
 
         Assert.Pass();
     }

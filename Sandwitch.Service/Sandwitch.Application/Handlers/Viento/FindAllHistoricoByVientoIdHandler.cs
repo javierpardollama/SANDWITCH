@@ -1,5 +1,5 @@
-using AutoMapper;
 using MediatR;
+using Sandwitch.Application.Profiles;
 using Sandwitch.Application.Queries.Bandera;
 using Sandwitch.Application.ViewModels.Views;
 using Sandwitch.Domain.Managers;
@@ -12,17 +12,14 @@ namespace Sandwitch.Application.Handlers.Viento;
 public class FindAllHistoricoByVientoIdHandler : IRequestHandler<FindAllHistoricoByBanderaIdQuery, IList<ViewHistorico>>
 {
     private readonly IVientoManager Manager;
-    private readonly IMapper Mapper;
 
     /// <summary>
     ///  Initializes a new Instance of <see cref="FindAllHistoricoByVientoIdHandler" />
     /// </summary>
     /// <param name="manager">Injected <see cref="IVientoManager"/></param>
-    /// <param name="mapper">Injected <see cref="IMapper"/></param>
-    public FindAllHistoricoByVientoIdHandler(IVientoManager manager, IMapper mapper)
+    public FindAllHistoricoByVientoIdHandler(IVientoManager manager)
     {
         Manager = manager;
-        Mapper = mapper;
     }
 
     /// <summary>
@@ -34,8 +31,8 @@ public class FindAllHistoricoByVientoIdHandler : IRequestHandler<FindAllHistoric
     public async Task<IList<ViewHistorico>> Handle(FindAllHistoricoByBanderaIdQuery request,
         CancellationToken cancellationToken)
     {
-        var result = await Manager.FindAllHistoricoByVientoId(request.Id);
+        var dtos = await Manager.FindAllHistoricoByVientoId(request.Id);
 
-        return Mapper.Map<IList<ViewHistorico>>(result);
+        return [.. dtos.Select(x => x.ToViewModel())];
     }
 }

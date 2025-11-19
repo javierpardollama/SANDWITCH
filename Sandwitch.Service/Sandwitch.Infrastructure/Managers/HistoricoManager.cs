@@ -1,8 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using Sandwitch.Domain.Dtos;
 using Sandwitch.Domain.Entities;
 using Sandwitch.Domain.Exceptions;
 using Sandwitch.Domain.Managers;
+using Sandwitch.Domain.Profiles;
 using Sandwitch.Infrastructure.Contexts.Interfaces;
 
 namespace Sandwitch.Infrastructure.Managers;
@@ -30,7 +32,8 @@ public class HistoricoManager(
             .AsSplitQuery()
             .Include(x => x.ArenalPoblaciones)
             .ThenInclude(x => x.Poblacion)
-            .FirstOrDefaultAsync(x => x.Id == id);
+            .Where(x => x.Id == id)
+            .FirstOrDefaultAsync();
 
         if (@arenal == null)
         {
@@ -61,7 +64,8 @@ public class HistoricoManager(
     {
         Bandera @bandera = await Context.Bandera
             .TagWith("FindBanderaById")
-            .FirstOrDefaultAsync(x => x.Id == id);
+            .Where(x => x.Id == id)
+            .FirstOrDefaultAsync();
 
         if (@bandera == null)
         {
@@ -86,21 +90,21 @@ public class HistoricoManager(
     /// <summary>
     ///     Adds Historico
     /// </summary>
-    /// <param name="viewModel">Injected <see cref="AddHistorico" /></param>
+    /// <param name="entity">Injected <see cref="Historico" /></param>
     /// <returns>Instance of <see cref="Task{Historico}" /></returns>
-    public async Task<Historico> AddHistorico(AddHistorico viewModel)
+    public async Task<Historico> AddHistorico(Historico @entity)
     {
         Historico @historico = new()
         {
-            Arenal = await FindArenalById(viewModel.ArenalId),
-            Bandera = await FindBanderaById(viewModel.BanderaId),
-            Viento = await FindVientoById(viewModel.VientoId),
-            Velocidad = viewModel.Velocidad,
-            BajaMarAlba = viewModel.BajaMarAlba,
-            BajaMarOcaso = viewModel.BajaMarOcaso,
-            AltaMarAlba = viewModel.AltaMarAlba,
-            AltaMarOcaso = viewModel.AltaMarOcaso,
-            Temperatura = viewModel.Temperatura
+            Arenal = await FindArenalById(@entity.ArenalId),
+            Bandera = await FindBanderaById(@entity.BanderaId),
+            Viento = await FindVientoById(@entity.VientoId),
+            Velocidad = @entity.Velocidad,
+            BajaMarAlba = @entity.BajaMarAlba,
+            BajaMarOcaso = @entity.BajaMarOcaso,
+            AltaMarAlba = @entity.AltaMarAlba,
+            AltaMarOcaso = @entity.AltaMarOcaso,
+            Temperatura = @entity.Temperatura
         };
 
         Context.Historico.Add(@historico);
@@ -128,7 +132,8 @@ public class HistoricoManager(
     {
         Viento @viento = await Context.Viento
             .TagWith("FindVientoById")
-            .FirstOrDefaultAsync(x => x.Id == id);
+            .Where(x => x.Id == id)
+            .FirstOrDefaultAsync();
 
         if (@viento == null)
         {
@@ -148,5 +153,44 @@ public class HistoricoManager(
         }
 
         return @viento;
+    }
+
+    /// <summary>
+    ///     Reloads Historico By Id
+    /// </summary>
+    /// <param name="id">Injected <see cref="int" /></param>
+    /// <returns>Instance of <see cref="Task{HistoricoDto}" /></returns>
+    public async Task<HistoricoDto> ReloadHistoricoById(int id)
+    {
+        HistoricoDto @dto = await Context.Historico
+            .TagWith("ReloadHistoricoById")
+            .AsQueryable()
+            .AsSplitQuery()
+            .Include(x => x.Arenal)
+            .Include(x => x.Viento)
+            .Include(x => x.Bandera)
+            .Where(x => x.Id == id)
+            .Select(x => x.ToDto())
+            .FirstOrDefaultAsync();
+            
+
+        if (@dto is null)
+        {
+            // Log
+            var logData = nameof(Historico)
+                          + " with Id "
+                          + id
+                          + " was not found at "
+                          + DateTime.Now.ToShortTimeString();
+
+            logger.LogError(logData);
+
+            throw new ServiceException(nameof(Historico)
+                                       + " with Id "
+                                       + id
+                                       + " does not exist");
+        }
+
+        return @dto;
     }
 }

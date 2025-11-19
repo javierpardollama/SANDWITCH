@@ -26,7 +26,7 @@ public class VientoManager(
     /// <returns>Instance of <see cref="Task{Viento}" /></returns>
     public async Task<Viento> AddViento(Viento @entity)
     {
-        await CheckName(entity.Name);       
+        await CheckName(entity.Name);
 
         try
         {
@@ -61,7 +61,7 @@ public class VientoManager(
             .TagWith("FindAllViento")
             .AsNoTracking()
             .AsSplitQuery()
-            .Select(x=> x.ToCatalog())
+            .Select(x => x.ToCatalog())
             .ToListAsync();
 
         return @vientos;
@@ -90,7 +90,7 @@ public class VientoManager(
                 .AsSplitQuery()
                 .Skip(@index * @size)
                 .Take(@size)
-                .Select(x=> x.ToDto())
+                .Select(x => x.ToDto())
                 .ToListAsync()
         };
 
@@ -110,8 +110,8 @@ public class VientoManager(
             .AsSplitQuery()
             .Include(x => x.Arenal)
             .Include(x => x.Viento)
-            .Where(x => x.Viento.Id == id)
-            .Select(x=> x.ToDto())
+            .Where(x => x.VientoId == id)
+            .Select(x => x.ToDto())
             .ToListAsync();
 
         return @historicos;
@@ -126,7 +126,8 @@ public class VientoManager(
     {
         Viento @viento = await Context.Viento
             .TagWith("FindVientoById")
-            .FirstOrDefaultAsync(x => x.Id == id);
+            .Where(x => x.Id == id)
+            .FirstOrDefaultAsync();
 
         if (@viento == null)
         {
@@ -225,7 +226,8 @@ public class VientoManager(
             .TagWith("CheckName")
             .AsNoTracking()
             .AsSplitQuery()
-            .FirstOrDefaultAsync(x => x.Name == @name.Trim());
+            .Where(x => x.Name == @name.Trim())
+            .FirstOrDefaultAsync();
 
         if (@viento != null)
         {
@@ -258,7 +260,8 @@ public class VientoManager(
             .TagWith("CheckName")
             .AsNoTracking()
             .AsSplitQuery()
-            .FirstOrDefaultAsync(x => x.Name == @name.Trim() && x.Id != @id);
+            .Where(x => x.Name == @name.Trim() && x.Id != @id)
+            .FirstOrDefaultAsync();
 
         if (@viento != null)
         {
@@ -278,5 +281,41 @@ public class VientoManager(
         }
 
         return @viento;
+    }
+
+    /// <summary>
+    ///     Reloads Viento By Id
+    /// </summary>
+    /// <param name="id">Injected <see cref="int" /></param>
+    /// <returns>Instance of <see cref="Task{VientoDto}" /></returns>
+    public async Task<VientoDto> ReloadVientoById(int id)
+    {
+        VientoDto @dto = await Context.Viento
+            .TagWith("ReloadVientoById")
+            .AsQueryable()
+            .AsSplitQuery()
+            .Where(x => x.Id == id)
+            .Select(x => x.ToDto())
+            .FirstOrDefaultAsync();
+
+
+        if (@dto is null)
+        {
+            // Log
+            var logData = nameof(Viento)
+                          + " with Id "
+                          + id
+                          + " was not found at "
+                          + DateTime.Now.ToShortTimeString();
+
+            logger.LogError(logData);
+
+            throw new ServiceException(nameof(Viento)
+                                       + " with Id "
+                                       + id
+                                       + " does not exist");
+        }
+
+        return @dto;
     }
 }

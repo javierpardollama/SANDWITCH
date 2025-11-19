@@ -107,7 +107,8 @@ public class ProvinciaManager(
     {
         var @provincia = await Context.Provincia
             .TagWith("FindProvinciaById")
-            .FirstOrDefaultAsync(x => x.Id == id);
+            .Where(x => x.Id == id)
+            .FirstOrDefaultAsync();
 
         if (@provincia == null)
         {
@@ -206,7 +207,8 @@ public class ProvinciaManager(
             .AsNoTracking()
             .AsSplitQuery()
             .TagWith("CheckName")
-            .FirstOrDefaultAsync(x => x.Name == @name.Trim());
+            .Where(x => x.Name == @name.Trim())
+            .FirstOrDefaultAsync();
 
         if (@provincia != null)
         {
@@ -239,7 +241,8 @@ public class ProvinciaManager(
             .AsNoTracking()
             .AsSplitQuery()
             .TagWith("CheckName")
-            .FirstOrDefaultAsync(x => x.Name == @name.Trim() && x.Id != @id);
+            .Where(x => x.Name == @name.Trim() && x.Id != @id)
+            .FirstOrDefaultAsync();
 
         if (@provincia != null)
         {
@@ -259,5 +262,41 @@ public class ProvinciaManager(
         }
 
         return @provincia;
+    }
+
+    /// <summary>
+    ///     Reloads Provincia By Id
+    /// </summary>
+    /// <param name="id">Injected <see cref="int" /></param>
+    /// <returns>Instance of <see cref="Task{ProvinciaDto}" /></returns>
+    public async Task<ProvinciaDto> ReloadProvinciaById(int id)
+    {
+        ProvinciaDto @dto = await Context.Provincia
+            .TagWith("ReloadProvinciaById")
+            .AsQueryable()
+            .AsSplitQuery() 
+            .Where(x => x.Id == id)
+            .Select(x => x.ToDto())
+            .FirstOrDefaultAsync();
+
+
+        if (@dto is null)
+        {
+            // Log
+            var logData = nameof(Provincia)
+                          + " with Id "
+                          + id
+                          + " was not found at "
+                          + DateTime.Now.ToShortTimeString();
+
+            logger.LogError(logData);
+
+            throw new ServiceException(nameof(Provincia)
+                                       + " with Id "
+                                       + id
+                                       + " does not exist");
+        }
+
+        return @dto;
     }
 }

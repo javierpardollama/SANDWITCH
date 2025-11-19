@@ -22,39 +22,39 @@ public class BanderaManager(
     /// <summary>
     ///     Adds Bandera
     /// </summary>
-    /// <param name="viewModel">Injected <see cref="AddBandera" /></param>
+    /// <param name="entity">Injected <see cref="Bandera" /></param>
     /// <returns>Instance of <see cref="Task{Bandera}" /></returns>
-    public async Task<Bandera> AddBandera(AddBandera viewModel)
+    public async Task<Bandera> AddBandera(Bandera @entity)
     {
-        await CheckName(viewModel);
+        await CheckName(@entity.Name);
 
-        Bandera bandera = new()
+        Bandera @bandera = new()
         {
-            Name = viewModel.Name.Trim(),
-            ImageUri = viewModel.ImageUri.Trim()
+            Name = entity.Name.Trim(),
+            ImageUri = entity.ImageUri.Trim()
         };
 
         try
         {
-            await Context.Bandera.AddAsync(bandera);
+            await Context.Bandera.AddAsync(@bandera);
 
             await Context.SaveChangesAsync();
         }
         catch (DbUpdateConcurrencyException)
         {
-            await CheckName(viewModel);
+            await CheckName(@entity.Name);
         }
 
         // Log
-        var logData = nameof(bandera)
+        var logData = nameof(@bandera)
                       + " with Id "
-                      + bandera.Id
+                      + @bandera.Id
                       + " was added at "
                       + DateTime.Now.ToShortTimeString();
 
         logger.LogInformation(logData);
 
-        return bandera;
+        return @bandera;
     }
 
     /// <summary>
@@ -104,7 +104,7 @@ public class BanderaManager(
     }
 
     /// <summary>
-    ///     Finds All Historico By Poblacion Id
+    ///     Finds All Historico By Bandera Id
     /// </summary>
     /// <param name="id">Injected <see cref="int" /></param>
     /// <returns>Instance of <see cref="Task{IList{HistoricoDto}}" /></returns>
@@ -116,7 +116,7 @@ public class BanderaManager(
             .AsSplitQuery()
             .Include(x => x.Arenal)
             .Include(x => x.Bandera)
-            .Where(x => x.Bandera.Id == id)
+            .Where(x => x.BanderaId == id)
             .Select(x=> x.ToDto())
             .ToListAsync();
 
@@ -132,7 +132,8 @@ public class BanderaManager(
     {
         Bandera @bandera = await Context.Bandera
             .TagWith("FindBanderaById")
-            .FirstOrDefaultAsync(x => x.Id == id);
+            .Where(x => x.Id == id)
+            .FirstOrDefaultAsync();
 
         if (@bandera == null)
         {
@@ -187,15 +188,15 @@ public class BanderaManager(
     /// <summary>
     ///     Updates Bandera
     /// </summary>
-    /// <param name="viewModel">Injected <see cref="UpdateBandera" /></param>
+    /// <param name="entity">Injected <see cref="Bandera" /></param>
     /// <returns>Instance of <see cref="Task{Bandera}" /></returns>
-    public async Task<Bandera> UpdateBandera(UpdateBandera viewModel)
+    public async Task<Bandera> UpdateBandera(Bandera @entity)
     {
-        await CheckName(viewModel);
+        await CheckName(@entity.Id, @entity.Name);
 
-        Bandera @bandera = await FindBanderaById(viewModel.Id);
-        @bandera.Name = viewModel.Name.Trim();
-        @bandera.ImageUri = viewModel.ImageUri.Trim();
+        Bandera @bandera = await FindBanderaById(@entity.Id);
+        @bandera.Name = @entity.Name.Trim();
+        @bandera.ImageUri = @entity.ImageUri.Trim();
 
         try
         {
@@ -205,7 +206,7 @@ public class BanderaManager(
         }
         catch (DbUpdateConcurrencyException)
         {
-            await CheckName(viewModel);
+            await CheckName(@entity.Id, @entity.Name);
         }
 
         // Log
@@ -231,40 +232,8 @@ public class BanderaManager(
             .TagWith("CheckName")
             .AsNoTracking()
             .AsSplitQuery()
-            .FirstOrDefaultAsync(x => x.Name == @name.Trim());
-
-        if (@bandera != null)
-        {
-            // Log
-            var logData = nameof(Bandera)
-                          + " with Name "
-                          + @bandera.Name
-                          + " was already found at "
-                          + DateTime.Now.ToShortTimeString();
-
-            logger.LogError(logData);
-
-            throw new ServiceException(nameof(Bandera)
-                                       + " with Name "
-                                       + viewModel.Name
-                                       + " already exists");
-        }
-
-        return @bandera;
-    }
-
-    /// <summary>
-    ///     Checks Name
-    /// </summary>
-    /// <param name="viewModel">Injected <see cref="UpdateBandera" /></param>
-    /// <returns>Instance of <see cref="Task{Bandera}" /></returns>
-    public async Task<Bandera> CheckName(int @id, string @name)
-    {
-        Bandera @bandera = await Context.Bandera
-            .TagWith("CheckName")
-            .AsNoTracking()
-            .AsSplitQuery()
-            .FirstOrDefaultAsync(x => x.Name == @name.Trim() && x.Id != @id);
+            .Where(x => x.Name == @name.Trim())
+            .FirstOrDefaultAsync();
 
         if (@bandera != null)
         {
@@ -284,5 +253,75 @@ public class BanderaManager(
         }
 
         return @bandera;
+    }
+
+    /// <summary>
+    ///     Checks Name
+    /// </summary>
+    /// <param name="viewModel">Injected <see cref="UpdateBandera" /></param>
+    /// <returns>Instance of <see cref="Task{Bandera}" /></returns>
+    public async Task<Bandera> CheckName(int @id, string @name)
+    {
+        Bandera @bandera = await Context.Bandera
+            .TagWith("CheckName")
+            .AsNoTracking()
+            .AsSplitQuery()
+            .Where(x => x.Name == @name.Trim() && x.Id != @id)
+            .FirstOrDefaultAsync();
+
+        if (@bandera != null)
+        {
+            // Log
+            var logData = nameof(Bandera)
+                          + " with Name "
+                          + @bandera.Name
+                          + " was already found at "
+                          + DateTime.Now.ToShortTimeString();
+
+            logger.LogError(logData);
+
+            throw new ServiceException(nameof(Bandera)
+                                       + " with Name "
+                                       + @name
+                                       + " already exists");
+        }
+
+        return @bandera;
+    }
+
+    /// <summary>
+    ///     Reloads Bandera By Id
+    /// </summary>
+    /// <param name="id">Injected <see cref="int" /></param>
+    /// <returns>Instance of <see cref="Task{BanderaDto}" /></returns>
+    public async Task<BanderaDto> ReloadBanderaById(int id)
+    {
+        BanderaDto @dto = await Context.Bandera
+            .TagWith("ReloadBanderaById")
+            .AsQueryable()
+            .AsSplitQuery()
+            .Where(x => x.Id == id)
+            .Select(x => x.ToDto())
+            .FirstOrDefaultAsync();
+
+
+        if (@dto is null)
+        {
+            // Log
+            var logData = nameof(Bandera)
+                          + " with Id "
+                          + id
+                          + " was not found at "
+                          + DateTime.Now.ToShortTimeString();
+
+            logger.LogError(logData);
+
+            throw new ServiceException(nameof(Bandera)
+                                       + " with Id "
+                                       + id
+                                       + " does not exist");
+        }
+
+        return @dto;
     }
 }

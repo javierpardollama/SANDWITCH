@@ -23,32 +23,28 @@ public class ArenalManager(
     /// <summary>
     ///     Adds Arenal
     /// </summary>
-    /// <param name="viewModel">Injected <see cref="AddArenal" /></param>
+    /// <param name="@entity">Injected <see cref="Arenal" /></param>
     /// <returns>Instance of <see cref="Task{ViewArenal}" /></returns>
-    public async Task<Arenal> AddArenal(AddArenal viewModel)
+    public async Task<Arenal> AddArenal(Arenal @entity)
     {
-        await CheckName(viewModel);
+        await CheckName(@entity.Name);
 
         Arenal arenal = new()
         {
-            Name = viewModel.Name.Trim(),
-            ArenalPoblaciones = new List<ArenalPoblacion>(),
-            Historicos = new List<Historico>()
+            Name = @entity.Name.Trim(),
+            ArenalPoblaciones = [],
+            Historicos = []
         };
 
         try
         {
-            await Context.Arenal.AddAsync(arenal);
-
-            AddArenalPoblacion(viewModel, arenal);
-
-            await AddHistorico(arenal);
+            await Context.Arenal.AddAsync(arenal);            
 
             await Context.SaveChangesAsync();
         }
         catch (DbUpdateConcurrencyException)
         {
-            await CheckName(viewModel);
+            await CheckName(@entity.Name);
         }
 
         // Log
@@ -68,21 +64,27 @@ public class ArenalManager(
     /// </summary>
     /// <param name="viewModel">Injected <see cref="AddArenal" /></param>
     /// <param name="entity">Injected <see cref="Arenal" /></param>
-    public void AddArenalPoblacion(AddArenal viewModel,
-        Arenal entity)
+    /// <returns>Instance of <see cref="Task" /></returns>
+    public async Task AddArenalPoblacion(List<Poblacion> @poblaciones, Arenal @entity)
     {
-        viewModel.PoblacionesId.AsQueryable().ToList().ForEach(async x =>
+        var @arenalPoblaciones = @poblaciones.Select(@poblacion => new ArenalPoblacion()
         {
-            var poblacion = await FindPoblacionById(x);
+            Arenal = @entity,
+            Poblacion = @poblacion           
+        }).ToList();
 
-            ArenalPoblacion arenalPoblacion = new()
-            {
-                Arenal = entity,
-                Poblacion = poblacion
-            };
+        await Context.ArenalPoblacion.AddRangeAsync(@arenalPoblaciones);
 
-            entity.ArenalPoblaciones.Add(arenalPoblacion);
-        });
+        await Context.SaveChangesAsync();
+
+        // Log
+        string @logData = nameof(ArenalPoblacion)
+                          + "s with Ids "
+                          + string.Join(",", @arenalPoblaciones.Select(x => x.Id))
+                          + " were added at "
+                          + DateTime.UtcNow.ToShortTimeString();
+
+        @logger.LogInformation(@logData);
     }
 
     /// <summary>
@@ -90,11 +92,11 @@ public class ArenalManager(
     /// </summary>
     /// <param name="entity">Injected <see cref="Arenal" /></param>
     /// <returns>Instance of <see cref="Task" /></returns>
-    public async Task AddHistorico(Arenal entity)
+    public async Task AddHistorico(Arenal @entity)
     {
-        Historico historico = new()
+        Historico @historico = new()
         {
-            Arenal = entity,
+            Arenal = @entity,
             Bandera = await FindBanderaById((int)FlagIdentifiers.Amarilla),
             Viento = await FindVientoById((int)WindIdentifiers.Norte),
             BajaMarAlba = DateTime.Now.TimeOfDay,
@@ -104,7 +106,31 @@ public class ArenalManager(
             Temperatura = 20,
             Velocidad = 0
         };
-        entity.Historicos.Add(historico);
+
+        await Context.Historico.AddAsync(@historico);
+
+        await Context.SaveChangesAsync();
+
+        // Log
+        string @logData = nameof(Historico)
+                          + "s with Id "
+                          + @historico.Id
+                          + " were added at "
+                          + DateTime.UtcNow.ToShortTimeString();
+
+        @logger.LogInformation(@logData);
+    }
+
+    /// <summary>
+    /// Finds All Poblacion By Ids
+    /// </summary>
+    /// <param name="ids">Injected <see cref="ICollection{int}"/></param>
+    /// <returns>Instance of <see cref="Task{List{Poblacion}}"/></returns>
+    public async Task<List<Poblacion>> FindAllPoblacionByIds(ICollection<int> @ids)
+    {
+        var @tasks = @ids.Select(@id => FindPoblacionById(@id));
+        var @poblaciones = await Task.WhenAll(tasks);
+        return [.. @poblaciones];
     }
 
     /// <summary>
@@ -170,7 +196,7 @@ public class ArenalManager(
             .Include(x => x.Arenal)
             .Include(x => x.Bandera)
             .Include(x => x.Viento)
-            .Where(x => x.Arenal.Id == id)
+            .Where(x => x.ArenalId == id)
             .Select(x => x.ToDto())
             .ToListAsync();
 
@@ -190,7 +216,8 @@ public class ArenalManager(
             .AsSplitQuery()
             .Include(x => x.ArenalPoblaciones)
             .ThenInclude(x => x.Poblacion)
-            .FirstOrDefaultAsync(x => x.Id == id);
+            .Where(x => x.Id == id)
+            .FirstOrDefaultAsync();
 
         if (@arenal == null)
         {
@@ -221,7 +248,8 @@ public class ArenalManager(
     {
         Poblacion @poblacion = await Context.Poblacion
             .TagWith("FindPoblacionById")
-            .FirstOrDefaultAsync(x => x.Id == id);
+            .Where(x => x.Id == id)
+            .FirstOrDefaultAsync();
 
         if (@poblacion == null)
         {
@@ -252,7 +280,8 @@ public class ArenalManager(
     {
         Bandera @bandera = await Context.Bandera
             .TagWith("FindBanderaById")
-            .FirstOrDefaultAsync(x => x.Id == id);
+            .Where(x => x.Id == id)
+            .FirstOrDefaultAsync();
 
         if (@bandera == null)
         {
@@ -307,86 +336,39 @@ public class ArenalManager(
     /// <summary>
     ///     Updates Arenal
     /// </summary>
-    /// <param name="viewModel">Injected <see cref="UpdateArenal" /></param>
+    /// <param name="viewModel">Injected <see cref="Arenal" /></param>
     /// <returns>Instance of <see cref="Task{Arenal}" /></returns>
-    public async Task<Arenal> UpdateArenal(UpdateArenal viewModel)
+    public async Task<Arenal> UpdateArenal(Arenal @entity)
     {
-        await CheckName(viewModel);
+        await CheckName(@entity.Id, @entity.Name);
 
-        Arenal @arenal = await FindArenalById(viewModel.Id);
-        @arenal.Name = viewModel.Name.Trim();
-        @arenal.ArenalPoblaciones = new List<ArenalPoblacion>();
-        @arenal.Historicos = new List<Historico>();
+        Arenal @arenal = await FindArenalById(@entity.Id);
+        @arenal.Name = @entity.Name.Trim();
+        @arenal.ArenalPoblaciones = [];
+        @arenal.Historicos = [];
 
         try
         {
-            Context.Arenal.Update(@arenal);
-
-            UpdateArenalPoblacion(viewModel, @arenal);
-
-            await UpdateHistorico(@arenal);
+            Context.Arenal.Update(@arenal);           
 
             await Context.SaveChangesAsync();
         }
         catch (DbUpdateConcurrencyException)
         {
-            await CheckName(viewModel);
+            await CheckName(@entity.Id, @entity.Name);
         }
 
         // Log
         var logData = nameof(Arenal)
                       + " with Id"
-                      + arenal.Id
+                      + @entity.Id
                       + " was modified at "
                       + DateTime.Now.ToShortTimeString();
 
         logger.LogInformation(logData);
 
-        return arenal;
-    }
-
-    /// <summary>
-    ///     Updates Arenal Poblacion
-    /// </summary>
-    /// <param name="viewModel">Injected <see cref="UpdateArenal" /></param>
-    /// <param name="entity">Injected <see cref="Arenal" /></param>
-    public void UpdateArenalPoblacion(UpdateArenal viewModel, Arenal entity)
-    {
-        viewModel.PoblacionesId.AsQueryable().ToList().ForEach(async x =>
-        {
-            Poblacion @poblacion = await FindPoblacionById(x);
-
-            ArenalPoblacion arenalPoblacion = new()
-            {
-                Arenal = entity,
-                Poblacion = @poblacion
-            };
-
-            entity.ArenalPoblaciones.Add(arenalPoblacion);
-        });
-    }
-
-    /// <summary>
-    ///     Updates Historico
-    /// </summary>
-    /// <param name="entity">Injected <see cref="Arenal" /></param>
-    /// <returns>Instance of <see cref="Task" /></returns>
-    public async Task UpdateHistorico(Arenal entity)
-    {
-        Historico @historico = new()
-        {
-            Arenal = entity,
-            Bandera = await FindBanderaById((int)FlagIdentifiers.Amarilla),
-            Viento = await FindVientoById((int)WindIdentifiers.Norte),
-            BajaMarAlba = DateTime.Now.TimeOfDay,
-            BajaMarOcaso = DateTime.Now.TimeOfDay,
-            AltaMarAlba = DateTime.Now.TimeOfDay,
-            AltaMarOcaso = DateTime.Now.TimeOfDay,
-            Temperatura = 20,
-            Velocidad = 0
-        };
-        entity.Historicos.Add(@historico);
-    }
+        return @arenal;
+    }   
 
     /// <summary>
     ///     Checks Name
@@ -399,7 +381,8 @@ public class ArenalManager(
             .AsNoTracking()
             .AsSplitQuery()
             .TagWith("CheckName")
-            .FirstOrDefaultAsync(x => x.Name == @name.Trim());
+            .Where(x => x.Name == @name.Trim())
+            .FirstOrDefaultAsync();
 
         if (@arenal != null)
         {
@@ -433,7 +416,8 @@ public class ArenalManager(
             .AsNoTracking()
             .AsSplitQuery()
             .TagWith("CheckName")
-            .FirstOrDefaultAsync(x => x.Name == @name.Trim() && x.Id != @id);
+            .Where(x => x.Name == @name.Trim() && x.Id != @id)
+            .FirstOrDefaultAsync();
 
         if (@arenal != null)
         {
@@ -464,7 +448,8 @@ public class ArenalManager(
     {
         Viento @viento = await Context.Viento
             .TagWith("FindVientoById")
-            .FirstOrDefaultAsync(x => x.Id == id);
+            .Where(x => x.Id == id)
+            .FirstOrDefaultAsync();
 
         if (@viento == null)
         {
@@ -484,5 +469,43 @@ public class ArenalManager(
         }
 
         return @viento;
+    }
+
+    /// <summary>
+    ///     Reloads Arenal By Id
+    /// </summary>
+    /// <param name="id">Injected <see cref="int" /></param>
+    /// <returns>Instance of <see cref="Task{ArenalDto}" /></returns>
+    public async Task<ArenalDto> ReloadArenalById(int id)
+    {
+        ArenalDto @dto = await Context.Arenal
+            .TagWith("ReloadArenalById")
+            .AsQueryable()
+            .AsSplitQuery()
+            .Include(x=> x.ArenalPoblaciones)
+            .ThenInclude(x=> x.Poblacion)
+            .Where(x => x.Id == id)
+            .Select(x => x.ToDto())
+            .FirstOrDefaultAsync();
+
+
+        if (@dto is null)
+        {
+            // Log
+            var logData = nameof(Arenal)
+                          + " with Id "
+                          + id
+                          + " was not found at "
+                          + DateTime.Now.ToShortTimeString();
+
+            logger.LogError(logData);
+
+            throw new ServiceException(nameof(Arenal)
+                                       + " with Id "
+                                       + id
+                                       + " does not exist");
+        }
+
+        return @dto;
     }
 }

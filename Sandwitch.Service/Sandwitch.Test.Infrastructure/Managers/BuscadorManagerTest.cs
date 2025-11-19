@@ -1,10 +1,8 @@
-using System;
-using System.Linq;
-using System.Threading.Tasks;
 using NUnit.Framework;
 using Sandwitch.Domain.Entities;
-using Sandwitch.Domain.ViewModels.Finders;
+using Sandwitch.Infrastructure.Contexts;
 using Sandwitch.Infrastructure.Managers;
+using System.Threading.Tasks;
 
 namespace Sandwitch.Test.Infrastructure.Managers;
 
@@ -20,24 +18,20 @@ public class BuscadorManagerTest : BaseManagerTest
     [OneTimeSetUp]
     public void OneTimeSetUp()
     {
-        SetUpContext();
+        Context = new ApplicationContext(ContextOptionsBuilder.Options);
 
-        SetUpData();
+        Context.Seed();
 
         BuscadorManager = new BuscadorManager(Context);
     }
 
     /// <summary>
-    ///     Tears Down
+    ///     Tears Downs
     /// </summary>
     [OneTimeTearDown]
     public void OneTimeTearDown()
     {
-        Context.Arenal.RemoveRange(Context.Arenal.ToList());
-
-        Context.Poblacion.RemoveRange(Context.Poblacion.ToList());
-
-        Context.SaveChanges();
+        Context.Dispose();
     }
 
     /// <summary>
@@ -51,31 +45,6 @@ public class BuscadorManagerTest : BaseManagerTest
     public BuscadorManagerTest()
     {
     }
-
-    /// <summary>
-    ///     Sets Up Data
-    /// </summary>
-    private void SetUpData()
-    {
-        Context.Poblacion.Add(new Poblacion
-        {
-            Name = "Poblacion " + Guid.NewGuid(), ImageUri = "Poblaciones/Poblacion_1_500.png",
-            LastModified = DateTime.Now, Deleted = false
-        });
-        Context.Poblacion.Add(new Poblacion
-        {
-            Name = "Poblacion " + Guid.NewGuid(), ImageUri = "Poblaciones/Poblacion_2_500.png",
-            LastModified = DateTime.Now, Deleted = false
-        });
-
-        Context.Arenal.Add(new Arenal
-            { Name = "Arenal " + Guid.NewGuid(), LastModified = DateTime.Now, Deleted = false });
-        Context.Arenal.Add(new Arenal
-            { Name = "Arenal " + Guid.NewGuid(), LastModified = DateTime.Now, Deleted = false });
-
-        Context.SaveChanges();
-    }
-
 
     /// <summary>
     ///     Finds All Buscador
@@ -96,8 +65,7 @@ public class BuscadorManagerTest : BaseManagerTest
     [Test]
     public async Task FindAllArenalByBuscadorId()
     {
-        await BuscadorManager.FindAllArenalByBuscadorId(new FinderArenal
-            { Id = Context.Poblacion.FirstOrDefault().Id, Type = nameof(Poblacion) });
+        await BuscadorManager.FindAllArenalByBuscadorId(1, nameof(Poblacion));
 
         Assert.Pass();
     }

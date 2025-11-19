@@ -1,11 +1,13 @@
-﻿using System.Threading.Tasks;
-using Asp.Versioning;
+﻿using Asp.Versioning;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.RateLimiting;
 using Sandwitch.Application.Commands.Historico;
 using Sandwitch.Application.ViewModels.Additions;
+using Sandwitch.Application.ViewModels.Views;
+using System.Threading.Tasks;
 
 namespace Sandwitch.Service.Controllers.V2;
 
@@ -38,6 +40,14 @@ public class HistoricoController(IMediator mediator) : ControllerBase
     [MapToApiVersion(2.0)]
     [HttpPost]
     [Route("create")]
+    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ViewHistorico))]
+    [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(ProblemDetails))]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(ProblemDetails))]
+    [ProducesResponseType(StatusCodes.Status408RequestTimeout, Type = typeof(ProblemDetails))]
+    [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(ProblemDetails))]
+    [ProducesResponseType(StatusCodes.Status409Conflict, Type = typeof(ProblemDetails))]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ProblemDetails))]
+    [ProducesResponseType(StatusCodes.Status503ServiceUnavailable, Type = typeof(ProblemDetails))]
     public async Task<IActionResult> AddHistorico([FromBody] AddHistorico viewModel)
     {
         return Ok(await mediator.Send(new AddHistoricoCommand { ViewModel = viewModel }));

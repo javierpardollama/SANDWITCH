@@ -107,7 +107,8 @@ public class PoblacionManager(
     {
         Poblacion @poblacion = await Context.Poblacion
             .TagWith("FindPoblacionById")
-            .FirstOrDefaultAsync(x => x.Id == @id);
+            .Where(x => x.Id == @id)
+            .FirstOrDefaultAsync();
 
         if (@poblacion == null)
         {
@@ -138,7 +139,8 @@ public class PoblacionManager(
     {
         Provincia @provincia = await Context.Provincia
             .TagWith("FindProvinciaById")
-            .FirstOrDefaultAsync(x => x.Id == @id);
+            .Where(x => x.Id == @id)
+            .FirstOrDefaultAsync();
 
         if (@provincia == null)
         {
@@ -201,7 +203,7 @@ public class PoblacionManager(
 
         Poblacion @poblacion = await FindPoblacionById(@entity.Id);
         @poblacion.Name = @entity.Name.Trim();
-        @poblacion.Provincia = await FindProvinciaById(@entity.Provincia.Id);
+        @poblacion.Provincia = await FindProvinciaById(@entity.ProvinciaId);
         @poblacion.ImageUri = @entity.ImageUri.Trim();
 
         try
@@ -238,7 +240,8 @@ public class PoblacionManager(
             .AsNoTracking()
             .AsSplitQuery()
             .TagWith("CheckName")
-            .FirstOrDefaultAsync(x => x.Name == @name.Trim());
+            .Where(x => x.Name == @name.Trim())
+            .FirstOrDefaultAsync();
 
         if (@poblacion != null)
         {
@@ -271,7 +274,8 @@ public class PoblacionManager(
             .AsNoTracking()
             .AsSplitQuery()
             .TagWith("CheckName")
-            .FirstOrDefaultAsync(x => x.Name == @name.Trim() && x.Id != @id);
+            .Where(x => x.Name == @name.Trim() && x.Id != @id)
+            .FirstOrDefaultAsync();
 
         if (@poblacion != null)
         {
@@ -291,5 +295,42 @@ public class PoblacionManager(
         }
 
         return @poblacion;
+    }
+
+    /// <summary>
+    ///     Reloads Poblacion By Id
+    /// </summary>
+    /// <param name="id">Injected <see cref="int" /></param>
+    /// <returns>Instance of <see cref="Task{PoblacionDto}" /></returns>
+    public async Task<PoblacionDto> ReloadPoblacionById(int id)
+    {
+        PoblacionDto @dto = await Context.Poblacion
+            .TagWith("ReloadPoblacionById")
+            .AsQueryable()
+            .AsSplitQuery()
+            .Include(x=> x.Provincia)
+            .Where(x => x.Id == id)
+            .Select(x => x.ToDto())
+            .FirstOrDefaultAsync();
+
+
+        if (@dto is null)
+        {
+            // Log
+            var logData = nameof(Poblacion)
+                          + " with Id "
+                          + id
+                          + " was not found at "
+                          + DateTime.Now.ToShortTimeString();
+
+            logger.LogError(logData);
+
+            throw new ServiceException(nameof(Poblacion)
+                                       + " with Id "
+                                       + id
+                                       + " does not exist");
+        }
+
+        return @dto;
     }
 }

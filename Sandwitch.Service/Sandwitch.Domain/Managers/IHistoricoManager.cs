@@ -1,4 +1,5 @@
-﻿using Sandwitch.Domain.Entities;
+﻿using Sandwitch.Domain.Dtos;
+using Sandwitch.Domain.Entities;
 
 namespace Sandwitch.Domain.Managers;
 
@@ -12,19 +13,26 @@ public interface IHistoricoManager : IBaseManager
     /// </summary>
     /// <param name="id">Injected <see cref="int" /></param>
     /// <returns>Instance of <see cref="Task{Arenal}" /></returns>
-    public Task<Arenal> FindArenalById(int id);
+    public Task<Arenal> FindArenalById(int @id);
 
     /// <summary>
     ///     Finds Bandera By Id
     /// </summary>
     /// <param name="id">Injected <see cref="int" /></param>
     /// <returns>Instance of <see cref="Task{Bandera}" /></returns>
-    public Task<Bandera> FindBanderaById(int id);
+    public Task<Bandera> FindBanderaById(int @id);
 
     /// <summary>
     ///     Adds Historico
     /// </summary>
-    /// <param name="viewModel">Injected <see cref="AddHistorico" /></param>
+    /// <param name="entity">Injected <see cref="Historico" /></param>
     /// <returns>Instance of <see cref="Task{Historico}" /></returns>
-    public Task<Historico> AddHistorico(AddHistorico viewModel);
+    public Task<Historico> AddHistorico(Historico @entity);
+
+    /// <summary>
+    ///     Reloads Historico By Id
+    /// </summary>
+    /// <param name="id">Injected <see cref="int" /></param>
+    /// <returns>Instance of <see cref="Task{HistoricoDto}" /></returns>
+    public Task<HistoricoDto> ReloadHistoricoById(int @id);
 }

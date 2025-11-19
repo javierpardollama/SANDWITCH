@@ -1,14 +1,10 @@
-﻿using System;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Logging;
 using NUnit.Framework;
 using Sandwitch.Domain.Entities;
 using Sandwitch.Domain.Exceptions;
-using Sandwitch.Domain.ViewModels.Additions;
-using Sandwitch.Domain.ViewModels.Filters;
-using Sandwitch.Domain.ViewModels.Updates;
+using Sandwitch.Infrastructure.Contexts;
 using Sandwitch.Infrastructure.Managers;
+using System.Threading.Tasks;
 
 namespace Sandwitch.Test.Infrastructure.Managers;
 
@@ -24,24 +20,22 @@ public class BanderaManagerTest : BaseManagerTest
     [OneTimeSetUp]
     public void OneTimeSetUp()
     {
-        SetUpContext();
+        Context = new ApplicationContext(ContextOptionsBuilder.Options);
 
         SetUpLogger();
 
-        SetUpData();
+        Context.Seed();
 
         BanderaManager = new BanderaManager(Context, Logger);
     }
 
     /// <summary>
-    ///     Tears Down
+    ///     Tears Downs
     /// </summary>
     [OneTimeTearDown]
     public void OneTimeTearDown()
     {
-        Context.Bandera.RemoveRange(Context.Bandera.ToList());
-
-        Context.SaveChanges();
+        Context.Dispose();
     }
 
     /// <summary>
@@ -74,31 +68,7 @@ public class BanderaManagerTest : BaseManagerTest
         });
 
         Logger = loggerFactory.CreateLogger<BanderaManager>();
-    }
-
-    /// <summary>
-    ///     Sets Up Data
-    /// </summary>
-    private void SetUpData()
-    {
-        Context.Bandera.Add(new Bandera
-        {
-            Name = "Bandera " + Guid.NewGuid(), ImageUri = "Banderas/Bandera_1_500.png", LastModified = DateTime.Now,
-            Deleted = false
-        });
-        Context.Bandera.Add(new Bandera
-        {
-            Name = "Bandera " + Guid.NewGuid(), ImageUri = "Banderas/Bandera_2_500.png", LastModified = DateTime.Now,
-            Deleted = false
-        });
-        Context.Bandera.Add(new Bandera
-        {
-            Name = "Bandera " + Guid.NewGuid(), ImageUri = "Banderas/Bandera_3_500.png", LastModified = DateTime.Now,
-            Deleted = false
-        });
-
-        Context.SaveChanges();
-    }
+    }    
 
     /// <summary>
     ///     Finds All Bandera
@@ -119,7 +89,7 @@ public class BanderaManagerTest : BaseManagerTest
     [Test]
     public async Task FindPaginatedBandera()
     {
-        await BanderaManager.FindPaginatedBandera(new FilterPage { Index = 1, Size = 5 });
+        await BanderaManager.FindPaginatedBandera(1, 5);
 
         Assert.Pass();
     }
@@ -131,7 +101,7 @@ public class BanderaManagerTest : BaseManagerTest
     [Test]
     public async Task FindAllHistoricoByBanderaId()
     {
-        await BanderaManager.FindAllHistoricoByBanderaId(Context.Bandera.FirstOrDefault().Id);
+        await BanderaManager.FindAllHistoricoByBanderaId(1);
 
         Assert.Pass();
     }
@@ -143,7 +113,7 @@ public class BanderaManagerTest : BaseManagerTest
     [Test]
     public async Task FindBanderaById()
     {
-        await BanderaManager.FindBanderaById(Context.Bandera.FirstOrDefault().Id);
+        await BanderaManager.FindBanderaById(1);
 
         Assert.Pass();
     }
@@ -155,7 +125,7 @@ public class BanderaManagerTest : BaseManagerTest
     [Test]
     public async Task RemoveBanderaById()
     {
-        await BanderaManager.RemoveBanderaById(Context.Bandera.FirstOrDefault().Id);
+        await BanderaManager.RemoveBanderaById(1);
 
         Assert.Pass();
     }
@@ -167,14 +137,14 @@ public class BanderaManagerTest : BaseManagerTest
     [Test]
     public async Task UpdateBandera()
     {
-        UpdateBandera Bandera = new()
+        Bandera entity = new()
         {
-            Id = Context.Bandera.FirstOrDefault().Id,
-            ImageUri = "URL/Bandera_21_500px.png",
-            Name = "Bandera 21"
+            Id = 2,
+            ImageUri = "URL/Black_500px.png",
+            Name = "Black"
         };
 
-        await BanderaManager.UpdateBandera(Bandera);
+        await BanderaManager.UpdateBandera(entity);
 
         Assert.Pass();
     }
@@ -186,10 +156,10 @@ public class BanderaManagerTest : BaseManagerTest
     [Test]
     public async Task AddBandera()
     {
-        AddBandera Bandera = new()
-        {
-            ImageUri = "URL/Bandera_4_500px.png",
-            Name = "Bandera 4"
+        Bandera Bandera = new()
+        {            
+            ImageUri = "URL/Verde_500px.png",
+            Name = "Verde"
         };
 
         await BanderaManager.AddBandera(Bandera);
@@ -202,14 +172,27 @@ public class BanderaManagerTest : BaseManagerTest
     /// </summary>
     /// <returns>Instance of <see cref="Task" /></returns>
     [Test]
-    public void CheckName()
+    public void CheckNameAsync()
     {
-        AddBandera Bandera = new()
-        {
-            ImageUri = "URL/Bandera_3_500px.png",
-            Name = Context.Bandera.FirstOrDefault().Name
+        Bandera @entity = new()
+        {           
+            Id = 3,
+            ImageUri = "URL/Roja_500px.png",
+            Name = "Roja"
         };
-        var exception = Assert.ThrowsAsync<ServiceException>(async () => await BanderaManager.CheckName(Bandera));
+        var exception = Assert.ThrowsAsync<ServiceException>(async () => await BanderaManager.CheckName(@entity.Name));
+
+        Assert.Pass();
+    }
+
+    /// <summary>
+    ///     Reloads Bandera By Id
+    /// </summary>
+    /// <returns>Instance of <see cref="Task" /></returns>
+    [Test]
+    public async Task ReloadBanderaById()
+    {      
+        await BanderaManager.ReloadBanderaById(2);
 
         Assert.Pass();
     }

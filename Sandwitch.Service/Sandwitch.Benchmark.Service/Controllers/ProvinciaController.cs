@@ -1,6 +1,6 @@
 ﻿using BenchmarkDotNet.Attributes;
+using Sandwitch.Application.ViewModels.Filters;
 using Sandwitch.Application.ViewModels.Views;
-using Sandwitch.Domain.ViewModels.Filters;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;

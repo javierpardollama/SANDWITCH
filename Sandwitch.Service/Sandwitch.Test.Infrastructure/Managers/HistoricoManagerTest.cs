@@ -1,11 +1,10 @@
-﻿using System;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Logging;
 using NUnit.Framework;
 using Sandwitch.Domain.Entities;
-using Sandwitch.Domain.ViewModels.Additions;
+using Sandwitch.Infrastructure.Contexts;
 using Sandwitch.Infrastructure.Managers;
+using System;
+using System.Threading.Tasks;
 
 namespace Sandwitch.Test.Infrastructure.Managers;
 
@@ -21,30 +20,22 @@ public class HistoricoManagerTest : BaseManagerTest
     [OneTimeSetUp]
     public void OneTimeSetUp()
     {
-        SetUpContext();
+        Context = new ApplicationContext(ContextOptionsBuilder.Options);
 
         SetUpLogger();
 
-        SetUpData();
+        Context.Seed();
 
         HistoricoManager = new HistoricoManager(Context, Logger);
     }
 
     /// <summary>
-    ///     Tears Down
+    ///     Tears Downs
     /// </summary>
     [OneTimeTearDown]
     public void OneTimeTearDown()
     {
-        Context.Arenal.RemoveRange(Context.Arenal.ToList());
-
-        Context.Bandera.RemoveRange(Context.Bandera.ToList());
-
-        Context.Poblacion.RemoveRange(Context.Poblacion.ToList());
-
-        Context.Viento.RemoveRange(Context.Viento.ToList());
-
-        Context.SaveChanges();
+        Context.Dispose();
     }
 
     /// <summary>
@@ -80,33 +71,13 @@ public class HistoricoManagerTest : BaseManagerTest
     }
 
     /// <summary>
-    ///     Sets Up Data
-    /// </summary>
-    private void SetUpData()
-    {
-        Context.Arenal.Add(new Arenal { Name = "Arenal 1", LastModified = DateTime.Now, Deleted = false });
-        Context.Poblacion.Add(new Poblacion
-        {
-            Name = "Poblacion 1", ImageUri = "URL/Poblacion_01_500px.png", LastModified = DateTime.Now, Deleted = false
-        });
-        Context.Bandera.Add(new Bandera
-        {
-            Name = "Bandera 1", ImageUri = "URL/Bandera_01_500px.png", LastModified = DateTime.Now, Deleted = false
-        });
-        Context.Viento.Add(new Viento
-            { Name = "Viento 1", ImageUri = "URL/Viento_01_500px.png", LastModified = DateTime.Now, Deleted = false });
-
-        Context.SaveChanges();
-    }
-
-    /// <summary>
     ///     Finds Arenal By Id
     /// </summary>
     /// <returns>Instance of <see cref="Task" /></returns>
     [Test]
     public async Task FindArenalById()
     {
-        await HistoricoManager.FindArenalById(Context.Arenal.FirstOrDefault().Id);
+        await HistoricoManager.FindArenalById(1);
 
         Assert.Pass();
     }
@@ -118,7 +89,7 @@ public class HistoricoManagerTest : BaseManagerTest
     [Test]
     public async Task FindBanderaById()
     {
-        await HistoricoManager.FindBanderaById(Context.Bandera.FirstOrDefault().Id);
+        await HistoricoManager.FindBanderaById(1);
 
         Assert.Pass();
     }
@@ -130,7 +101,7 @@ public class HistoricoManagerTest : BaseManagerTest
     [Test]
     public async Task FindVientoById()
     {
-        await HistoricoManager.FindVientoById(Context.Viento.FirstOrDefault().Id);
+        await HistoricoManager.FindVientoById(1);
 
         Assert.Pass();
     }
@@ -142,20 +113,20 @@ public class HistoricoManagerTest : BaseManagerTest
     [Test]
     public async Task AddHistorico()
     {
-        AddHistorico Historico = new()
+        Historico entity = new()
         {
-            BanderaId = Context.Bandera.FirstOrDefault().Id,
-            VientoId = Context.Viento.FirstOrDefault().Id,
+            BanderaId = 1,
+            VientoId = 1,
             AltaMarAlba = DateTime.Now.TimeOfDay,
             AltaMarOcaso = DateTime.Now.TimeOfDay,
-            ArenalId = Context.Arenal.FirstOrDefault().Id,
+            ArenalId = 1,
             BajaMarAlba = DateTime.Now.TimeOfDay,
             BajaMarOcaso = DateTime.Now.TimeOfDay,
             Temperatura = 20,
             Velocidad = 10
         };
 
-        await HistoricoManager.AddHistorico(Historico);
+        await HistoricoManager.AddHistorico(entity);
 
         Assert.Pass();
     }

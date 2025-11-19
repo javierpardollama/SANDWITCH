@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
 using NUnit.Framework;
-using Sandwitch.Domain.ViewModels.Auth;
+using Sandwitch.Infrastructure.Contexts;
 using Sandwitch.Infrastructure.Managers;
 
 namespace Sandwitch.Test.Infrastructure.Managers;
@@ -17,9 +17,22 @@ public class AuthManagerTest : BaseManagerTest
     [OneTimeSetUp]
     public void OneTimeSetUp()
     {
+        Context = new ApplicationContext(ContextOptionsBuilder.Options);
+
         SetUpLogger();
 
+        Context.Seed();
+
         AuthManager = new AuthManager(ApiOptions);
+    }
+
+    /// <summary>
+    ///     Tears Downs
+    /// </summary>
+    [OneTimeTearDown]
+    public void OneTimeTearDown()
+    {
+        Context.Dispose();
     }
 
     /// <summary>
@@ -60,11 +73,7 @@ public class AuthManagerTest : BaseManagerTest
     [Test]
     public void CanAuthenticate()
     {
-        AuthManager.CanAuthenticate(new AuthSignIn
-        {
-            PassWord = "Pauline",
-            Name = "T/R4J6eyvNG<6ne!"
-        });
+        AuthManager.CanAuthenticate("Pauline", "T/R4J6eyvNG<6ne!");
 
         Assert.Pass();
     }

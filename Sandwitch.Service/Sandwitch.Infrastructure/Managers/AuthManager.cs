@@ -1,7 +1,6 @@
 ﻿using Microsoft.Extensions.Options;
 using Sandwitch.Domain.Managers;
 using Sandwitch.Domain.Settings;
-using Sandwitch.Domain.ViewModels.Auth;
 
 namespace Sandwitch.Infrastructure.Managers;
 
@@ -15,12 +14,13 @@ public class AuthManager(IOptions<ApiSettings> apiSettings) : BaseManager(apiSet
     /// <summary>
     ///     Checks wether Credentials are valid or not
     /// </summary>
-    /// <param name="authSignIn">Injected <see cref="AuthSignIn" /></param>
+    /// <param name="name">Injected <see cref="string" /></param>
+    /// <param name="password">Injected <see cref="string" /></param>
     /// <returns>Instance of <see cref="bool" /></returns>
-    public bool CanAuthenticate(AuthSignIn authSignIn)
+    public bool CanAuthenticate(string name, string password)
     {
-        bool @result = ApiSettings.Value.ApiLock == authSignIn.Name &&
-                 ApiSettings.Value.ApiKey == authSignIn.PassWord;
+        bool @result = ApiSettings.Value.ApiLock == name &&
+                 ApiSettings.Value.ApiKey == password;
         
         return @result;
     }

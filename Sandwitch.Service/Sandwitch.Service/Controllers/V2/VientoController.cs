@@ -1,7 +1,7 @@
-﻿using System.Threading.Tasks;
-using Asp.Versioning;
+﻿using Asp.Versioning;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.RateLimiting;
 using Sandwitch.Application.Commands.Viento;
@@ -9,6 +9,9 @@ using Sandwitch.Application.Queries.Viento;
 using Sandwitch.Application.ViewModels.Additions;
 using Sandwitch.Application.ViewModels.Filters;
 using Sandwitch.Application.ViewModels.Updates;
+using Sandwitch.Application.ViewModels.Views;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Sandwitch.Service.Controllers.V2;
 
@@ -41,6 +44,14 @@ public class VientoController(IMediator mediator) : ControllerBase
     [MapToApiVersion(2)]
     [HttpPut]
     [Route("update")]
+    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ViewViento))]
+    [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(ProblemDetails))]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(ProblemDetails))]
+    [ProducesResponseType(StatusCodes.Status408RequestTimeout, Type = typeof(ProblemDetails))]
+    [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(ProblemDetails))]
+    [ProducesResponseType(StatusCodes.Status409Conflict, Type = typeof(ProblemDetails))]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ProblemDetails))]
+    [ProducesResponseType(StatusCodes.Status503ServiceUnavailable, Type = typeof(ProblemDetails))]
     public async Task<IActionResult> UpdateViento([FromBody] UpdateViento viewModel)
     {
         return Ok(await mediator.Send(new UpdateVientoCommand { ViewModel = viewModel }));
@@ -62,6 +73,14 @@ public class VientoController(IMediator mediator) : ControllerBase
     [HttpGet]
     [ResponseCache(Duration = 10, Location = ResponseCacheLocation.Any, NoStore = false)]
     [Route("all")]
+    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IList<ViewCatalog>))]
+    [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(ProblemDetails))]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(ProblemDetails))]
+    [ProducesResponseType(StatusCodes.Status408RequestTimeout, Type = typeof(ProblemDetails))]
+    [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(ProblemDetails))]
+    [ProducesResponseType(StatusCodes.Status409Conflict, Type = typeof(ProblemDetails))]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ProblemDetails))]
+    [ProducesResponseType(StatusCodes.Status503ServiceUnavailable, Type = typeof(ProblemDetails))]
     public async Task<IActionResult> FindAllViento()
     {
         return Ok(await mediator.Send(new FindAllVientoQuery()));
@@ -83,6 +102,14 @@ public class VientoController(IMediator mediator) : ControllerBase
     [MapToApiVersion(2)]
     [HttpPost]
     [Route("page")]
+    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ViewPage<ViewViento>))]
+    [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(ProblemDetails))]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(ProblemDetails))]
+    [ProducesResponseType(StatusCodes.Status408RequestTimeout, Type = typeof(ProblemDetails))]
+    [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(ProblemDetails))]
+    [ProducesResponseType(StatusCodes.Status409Conflict, Type = typeof(ProblemDetails))]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ProblemDetails))]
+    [ProducesResponseType(StatusCodes.Status503ServiceUnavailable, Type = typeof(ProblemDetails))]
     public async Task<IActionResult> FindPaginatedViento([FromBody] FilterPage viewModel)
     {
         return Ok(await mediator.Send(new FindPaginatedVientoQuery { ViewModel = viewModel }));
@@ -104,6 +131,14 @@ public class VientoController(IMediator mediator) : ControllerBase
     [MapToApiVersion(2)]
     [HttpGet]
     [Route("all/historico/{id}")]
+    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IList<ViewHistorico>))]
+    [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(ProblemDetails))]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(ProblemDetails))]
+    [ProducesResponseType(StatusCodes.Status408RequestTimeout, Type = typeof(ProblemDetails))]
+    [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(ProblemDetails))]
+    [ProducesResponseType(StatusCodes.Status409Conflict, Type = typeof(ProblemDetails))]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ProblemDetails))]
+    [ProducesResponseType(StatusCodes.Status503ServiceUnavailable, Type = typeof(ProblemDetails))]
     public async Task<IActionResult> FindAllHistoricoByVientoId(int id)
     {
         return Ok(await mediator.Send(new FindAllHistoricoByVientoIdQuery { Id = id }));
@@ -125,6 +160,14 @@ public class VientoController(IMediator mediator) : ControllerBase
     [MapToApiVersion(2)]
     [HttpPost]
     [Route("create")]
+    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ViewViento))]
+    [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(ProblemDetails))]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(ProblemDetails))]
+    [ProducesResponseType(StatusCodes.Status408RequestTimeout, Type = typeof(ProblemDetails))]
+    [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(ProblemDetails))]
+    [ProducesResponseType(StatusCodes.Status409Conflict, Type = typeof(ProblemDetails))]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ProblemDetails))]
+    [ProducesResponseType(StatusCodes.Status503ServiceUnavailable, Type = typeof(ProblemDetails))]
     public async Task<IActionResult> AddViento([FromBody] AddViento viewModel)
     {
         return Ok(await mediator.Send(new AddVientoCommand { ViewModel = viewModel }));
@@ -146,6 +189,14 @@ public class VientoController(IMediator mediator) : ControllerBase
     [MapToApiVersion(2)]
     [HttpDelete]
     [Route("remove/{id}")]
+    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(int))]
+    [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(ProblemDetails))]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(ProblemDetails))]
+    [ProducesResponseType(StatusCodes.Status408RequestTimeout, Type = typeof(ProblemDetails))]
+    [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(ProblemDetails))]
+    [ProducesResponseType(StatusCodes.Status409Conflict, Type = typeof(ProblemDetails))]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ProblemDetails))]
+    [ProducesResponseType(StatusCodes.Status503ServiceUnavailable, Type = typeof(ProblemDetails))]
     public async Task<IActionResult> RemoveVientoById(int id)
     {
         await mediator.Send(new RemoveVientoByIdCommand { Id = id });

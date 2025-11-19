@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Logging;
 using NUnit.Framework;
 using Sandwitch.Domain.Entities;
 using Sandwitch.Domain.Exceptions;
-using Sandwitch.Domain.ViewModels.Additions;
-using Sandwitch.Domain.ViewModels.Filters;
-using Sandwitch.Domain.ViewModels.Updates;
+using Sandwitch.Infrastructure.Contexts;
 using Sandwitch.Infrastructure.Managers;
+using System.Threading.Tasks;
 
 namespace Sandwitch.Test.Infrastructure.Managers;
 
@@ -25,28 +20,22 @@ public class ArenalManagerTest : BaseManagerTest
     [OneTimeSetUp]
     public void OneTimeSetUp()
     {
-        SetUpContext();
+        Context = new ApplicationContext(ContextOptionsBuilder.Options);
 
         SetUpLogger();
 
-        SetUpData();
+        Context.Seed();
 
         ArenalManager = new ArenalManager(Context, Logger);
     }
 
     /// <summary>
-    ///     Tears Down
+    ///     Tears Downs
     /// </summary>
     [OneTimeTearDown]
     public void OneTimeTearDown()
     {
-        Context.Arenal.RemoveRange(Context.Arenal.ToList());
-
-        Context.Bandera.RemoveRange(Context.Bandera.ToList());
-
-        Context.Poblacion.RemoveRange(Context.Poblacion.ToList());
-
-        Context.SaveChanges();
+        Context.Dispose();
     }
 
     /// <summary>
@@ -82,44 +71,6 @@ public class ArenalManagerTest : BaseManagerTest
     }
 
     /// <summary>
-    ///     Sets Up Data
-    /// </summary>
-    private void SetUpData()
-    {
-        Context.Poblacion.Add(new Poblacion
-        {
-            Name = "Poblacion " + Guid.NewGuid(), ImageUri = "Poblaciones/Poblacion_1_500.png",
-            LastModified = DateTime.Now, Deleted = false
-        });
-        Context.Poblacion.Add(new Poblacion
-        {
-            Name = "Poblacion " + Guid.NewGuid(), ImageUri = "Poblaciones/Poblacion_2_500.png",
-            LastModified = DateTime.Now, Deleted = false
-        });
-
-        Context.Bandera.Add(new Bandera
-        {
-            Name = "Bandera " + Guid.NewGuid(), ImageUri = "Banderas/Bandera_1_500.png", LastModified = DateTime.Now,
-            Deleted = false
-        });
-
-        Context.Viento.Add(new Viento
-        {
-            Name = "Viento " + Guid.NewGuid(), ImageUri = "Vientos/Viento.png", LastModified = DateTime.Now,
-            Deleted = false
-        });
-
-        Context.Arenal.Add(new Arenal
-            { Name = "Arenal " + Guid.NewGuid(), LastModified = DateTime.Now, Deleted = false });
-        Context.Arenal.Add(new Arenal
-            { Name = "Arenal " + Guid.NewGuid(), LastModified = DateTime.Now, Deleted = false });
-        Context.Arenal.Add(new Arenal
-            { Name = "Arenal " + Guid.NewGuid(), LastModified = DateTime.Now, Deleted = false });
-
-        Context.SaveChanges();
-    }
-
-    /// <summary>
     ///     Finds All Arenal
     /// </summary>
     /// <returns>Instance of <see cref="Task" /></returns>
@@ -138,7 +89,7 @@ public class ArenalManagerTest : BaseManagerTest
     [Test]
     public async Task FindPaginatedArenal()
     {
-        await ArenalManager.FindPaginatedArenal(new FilterPage { Index = 1, Size = 5 });
+        await ArenalManager.FindPaginatedArenal(1, 5);
 
         Assert.Pass();
     }
@@ -150,7 +101,7 @@ public class ArenalManagerTest : BaseManagerTest
     [Test]
     public async Task FindAllHistoricoByArenalId()
     {
-        await ArenalManager.FindAllHistoricoByArenalId(Context.Arenal.FirstOrDefault().Id);
+        await ArenalManager.FindAllHistoricoByArenalId(1);
 
         Assert.Pass();
     }
@@ -162,7 +113,7 @@ public class ArenalManagerTest : BaseManagerTest
     [Test]
     public async Task FindArenalById()
     {
-        await ArenalManager.FindArenalById(Context.Arenal.FirstOrDefault().Id);
+        await ArenalManager.FindArenalById(1);
 
         Assert.Pass();
     }
@@ -174,7 +125,7 @@ public class ArenalManagerTest : BaseManagerTest
     [Test]
     public async Task FindPoblacionById()
     {
-        await ArenalManager.FindPoblacionById(Context.Poblacion.FirstOrDefault().Id);
+        await ArenalManager.FindPoblacionById(1);
 
         Assert.Pass();
     }
@@ -186,7 +137,7 @@ public class ArenalManagerTest : BaseManagerTest
     [Test]
     public async Task FindBanderaById()
     {
-        await ArenalManager.FindBanderaById(Context.Bandera.FirstOrDefault().Id);
+        await ArenalManager.FindBanderaById(1);
 
         Assert.Pass();
     }
@@ -198,7 +149,7 @@ public class ArenalManagerTest : BaseManagerTest
     [Test]
     public async Task RemoveArenalById()
     {
-        await ArenalManager.RemoveArenalById(Context.Arenal.FirstOrDefault().Id);
+        await ArenalManager.RemoveArenalById(1);
 
         Assert.Pass();
     }
@@ -210,14 +161,13 @@ public class ArenalManagerTest : BaseManagerTest
     [Test]
     public async Task UpdateArenal()
     {
-        UpdateArenal Provincia = new()
+        Arenal @entity = new()
         {
-            Id = Context.Arenal.FirstOrDefault().Id,
-            Name = "Arenal 21",
-            PoblacionesId = new List<int> { Context.Poblacion.FirstOrDefault().Id }
+            Id = 2,
+            Name = "Las Arenas",
         };
 
-        await ArenalManager.UpdateArenal(Provincia);
+        await ArenalManager.UpdateArenal(@entity);
 
         Assert.Pass();
     }
@@ -229,13 +179,12 @@ public class ArenalManagerTest : BaseManagerTest
     [Test]
     public async Task AddArenal()
     {
-        AddArenal Provincia = new()
+        Arenal @entity = new()
         {
-            Name = "Arenal 4",
-            PoblacionesId = new List<int> { 1, 2 }
+            Name = "Ereaga"
         };
 
-        await ArenalManager.AddArenal(Provincia);
+        await ArenalManager.AddArenal(entity);
 
         Assert.Pass();
     }
@@ -247,13 +196,25 @@ public class ArenalManagerTest : BaseManagerTest
     [Test]
     public void CheckName()
     {
-        AddArenal Provincia = new()
+        Arenal @entity = new()
         {
-            PoblacionesId = new List<int> { 1, 2 },
-            Name = Context.Arenal.FirstOrDefault().Name
+            Id = 2,
+            Name = "La Arena",
         };
 
-        var exception = Assert.ThrowsAsync<ServiceException>(async () => await ArenalManager.CheckName(Provincia));
+        var exception = Assert.ThrowsAsync<ServiceException>(async () => await ArenalManager.CheckName(@entity.Name));
+
+        Assert.Pass();
+    }
+
+    /// <summary>
+    ///     Reloads Arenal By Id
+    /// </summary>
+    /// <returns>Instance of <see cref="Task" /></returns>
+    [Test]
+    public async Task ReloadArenalById()
+    {
+        await ArenalManager.ReloadArenalById(2);
 
         Assert.Pass();
     }

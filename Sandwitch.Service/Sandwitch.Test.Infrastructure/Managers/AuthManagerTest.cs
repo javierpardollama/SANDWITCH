@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
 using NUnit.Framework;
+using Sandwitch.Infrastructure.Contexts;
 using Sandwitch.Infrastructure.Managers;
 
 namespace Sandwitch.Test.Infrastructure.Managers;
@@ -16,7 +17,11 @@ public class AuthManagerTest : BaseManagerTest
     [OneTimeSetUp]
     public void OneTimeSetUp()
     {
+        Context = new ApplicationContext(ContextOptionsBuilder.Options);
+
         SetUpLogger();
+
+        Context.Seed();
 
         AuthManager = new AuthManager(ApiOptions);
     }

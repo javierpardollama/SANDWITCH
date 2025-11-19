@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.Logging;
 using NUnit.Framework;
 using Sandwitch.Domain.Entities;
+using Sandwitch.Infrastructure.Contexts;
 using Sandwitch.Infrastructure.Managers;
 using System;
 using System.Threading.Tasks;
@@ -19,13 +20,22 @@ public class HistoricoManagerTest : BaseManagerTest
     [OneTimeSetUp]
     public void OneTimeSetUp()
     {
-        SetUpContext();
+        Context = new ApplicationContext(ContextOptionsBuilder.Options);
 
         SetUpLogger();
 
         Context.Seed();
 
         HistoricoManager = new HistoricoManager(Context, Logger);
+    }
+
+    /// <summary>
+    ///     Tears Downs
+    /// </summary>
+    [OneTimeTearDown]
+    public void OneTimeTearDown()
+    {
+        Context.Dispose();
     }
 
     /// <summary>

@@ -22,6 +22,15 @@ public class AuthManagerTest : BaseManagerTest
     }
 
     /// <summary>
+    ///     Tears Downs
+    /// </summary>
+    [OneTimeTearDown]
+    public void OneTimeTearDown()
+    {
+        Context.Dispose();
+    }
+
+    /// <summary>
     ///     Instance of <see cref="ILogger{BanderaService}" />
     /// </summary>
     private ILogger<AuthManager> Logger;

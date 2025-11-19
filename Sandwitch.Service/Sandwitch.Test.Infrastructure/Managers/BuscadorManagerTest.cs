@@ -1,5 +1,6 @@
 using NUnit.Framework;
 using Sandwitch.Domain.Entities;
+using Sandwitch.Infrastructure.Contexts;
 using Sandwitch.Infrastructure.Managers;
 using System.Threading.Tasks;
 
@@ -17,12 +18,21 @@ public class BuscadorManagerTest : BaseManagerTest
     [OneTimeSetUp]
     public void OneTimeSetUp()
     {
-        SetUpContext();
+        Context = new ApplicationContext(ContextOptionsBuilder.Options);
 
         Context.Seed();
 
         BuscadorManager = new BuscadorManager(Context);
-    }   
+    }
+
+    /// <summary>
+    ///     Tears Downs
+    /// </summary>
+    [OneTimeTearDown]
+    public void OneTimeTearDown()
+    {
+        Context.Dispose();
+    }
 
     /// <summary>
     ///     Instance of <see cref="BuscadorManager" />

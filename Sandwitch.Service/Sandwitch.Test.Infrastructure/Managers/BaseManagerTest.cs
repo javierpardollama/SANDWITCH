@@ -31,13 +31,5 @@ public abstract class BaseManagerTest
     protected DbContextOptionsBuilder<ApplicationContext> ContextOptionsBuilder { get; set; } =
         new DbContextOptionsBuilder<ApplicationContext>()
             .UseInMemoryDatabase("sandwitch.db")
-            .AddInterceptors(new SoftDeleteInterceptor());
-
-    /// <summary>
-    ///     Sets Up Context
-    /// </summary>
-    protected void SetUpContext()
-    {
-        Context = new ApplicationContext(ContextOptionsBuilder.Options);
-    }
+            .AddInterceptors(new SoftDeleteInterceptor());  
 }

@@ -10,6 +10,9 @@ namespace Sandwitch.Test.Infrastructure.Managers
     {
         public static void Seed(this ApplicationContext @this) 
         {
+            @this.Database.EnsureDeleted();
+            @this.Database.EnsureCreated();
+
             if (!@this.Viento.Any())
             {
                 @this.Viento.Add(new Viento
@@ -152,7 +155,6 @@ namespace Sandwitch.Test.Infrastructure.Managers
                 }
                     ]
                 });
-
 
                 @this.Arenal.Add(new Arenal
                 {

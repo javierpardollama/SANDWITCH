@@ -2,6 +2,7 @@
 using NUnit.Framework;
 using Sandwitch.Domain.Entities;
 using Sandwitch.Domain.Exceptions;
+using Sandwitch.Infrastructure.Contexts;
 using Sandwitch.Infrastructure.Managers;
 using System.Threading.Tasks;
 
@@ -19,13 +20,22 @@ public class VientoManagerTest : BaseManagerTest
     [OneTimeSetUp]
     public void OneTimeSetUp()
     {
-        SetUpContext();
+        Context = new ApplicationContext(ContextOptionsBuilder.Options);
 
         SetUpLogger();
 
         Context.Seed();
 
         VientoManager = new VientoManager(Context, Logger);
+    }
+
+    /// <summary>
+    ///     Tears Downs
+    /// </summary>
+    [OneTimeTearDown]
+    public void OneTimeTearDown()
+    {
+        Context.Dispose();
     }
 
     /// <summary>

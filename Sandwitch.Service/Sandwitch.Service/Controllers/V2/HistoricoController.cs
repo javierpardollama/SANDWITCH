@@ -41,7 +41,7 @@ public class HistoricoController(IMediator mediator) : ControllerBase
     [HttpPost]
     [Route("create")]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ViewHistorico))]
-    [ProducesResponseType(StatusCodes.Status204NoContent, Type = typeof(ProblemDetails))]
+    [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(ProblemDetails))]
     [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(ProblemDetails))]
     [ProducesResponseType(StatusCodes.Status408RequestTimeout, Type = typeof(ProblemDetails))]
     [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(ProblemDetails))]

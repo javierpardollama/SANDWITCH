@@ -6,6 +6,11 @@
     public class HistoricoDto
     {
         /// <summary>
+        ///     Gets or Sets <see cref="Id" />
+        /// </summary>      
+        public int Id { get; set; }
+
+        /// <summary>
         ///     Gets or Sets <see cref="Viento" />
         /// </summary>      
         public virtual CatalogDto Viento { get; set; }

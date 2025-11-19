@@ -260,4 +260,39 @@ public class ProvinciaManager(
 
         return @provincia;
     }
+
+    /// <summary>
+    ///     Reloads Provincia By Id
+    /// </summary>
+    /// <param name="id">Injected <see cref="int" /></param>
+    /// <returns>Instance of <see cref="Task{ProvinciaDto}" /></returns>
+    public async Task<ProvinciaDto> ReloadProvinciaById(int id)
+    {
+        ProvinciaDto @dto = await Context.Provincia
+            .TagWith("ReloadProvinciaById")
+            .AsQueryable()
+            .AsSplitQuery()           
+            .Select(x => x.ToDto())
+            .FirstOrDefaultAsync(x => x.Id == id);
+
+
+        if (@dto is null)
+        {
+            // Log
+            var logData = nameof(Provincia)
+                          + " with Id "
+                          + id
+                          + " was not found at "
+                          + DateTime.Now.ToShortTimeString();
+
+            logger.LogError(logData);
+
+            throw new ServiceException(nameof(Provincia)
+                                       + " with Id "
+                                       + id
+                                       + " does not exist");
+        }
+
+        return @dto;
+    }
 }

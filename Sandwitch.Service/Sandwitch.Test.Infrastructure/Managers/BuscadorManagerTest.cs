@@ -1,10 +1,9 @@
+using NUnit.Framework;
+using Sandwitch.Domain.Entities;
+using Sandwitch.Infrastructure.Managers;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
-using NUnit.Framework;
-using Sandwitch.Domain.Entities;
-using Sandwitch.Domain.ViewModels.Finders;
-using Sandwitch.Infrastructure.Managers;
 
 namespace Sandwitch.Test.Infrastructure.Managers;
 

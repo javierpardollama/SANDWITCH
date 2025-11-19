@@ -292,4 +292,40 @@ public class PoblacionManager(
 
         return @poblacion;
     }
+
+    /// <summary>
+    ///     Reloads Poblacion By Id
+    /// </summary>
+    /// <param name="id">Injected <see cref="int" /></param>
+    /// <returns>Instance of <see cref="Task{PoblacionDto}" /></returns>
+    public async Task<PoblacionDto> ReloadPoblacionById(int id)
+    {
+        PoblacionDto @dto = await Context.Poblacion
+            .TagWith("ReloadPoblacionById")
+            .AsQueryable()
+            .AsSplitQuery()
+            .Include(x=> x.Provincia)
+            .Select(x => x.ToDto())
+            .FirstOrDefaultAsync(x => x.Id == id);
+
+
+        if (@dto is null)
+        {
+            // Log
+            var logData = nameof(Poblacion)
+                          + " with Id "
+                          + id
+                          + " was not found at "
+                          + DateTime.Now.ToShortTimeString();
+
+            logger.LogError(logData);
+
+            throw new ServiceException(nameof(Poblacion)
+                                       + " with Id "
+                                       + id
+                                       + " does not exist");
+        }
+
+        return @dto;
+    }
 }

@@ -26,7 +26,7 @@ public static class CredentialHelper
         return new AuthSignIn
         {
             Name = decoded[0],
-            PassWord = decoded[1]
+            Password = decoded[1]
         };
     }
 }

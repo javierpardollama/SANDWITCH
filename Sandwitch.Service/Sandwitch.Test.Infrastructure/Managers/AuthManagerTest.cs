@@ -1,6 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
 using NUnit.Framework;
-using Sandwitch.Domain.ViewModels.Auth;
 using Sandwitch.Infrastructure.Managers;
 
 namespace Sandwitch.Test.Infrastructure.Managers;
@@ -60,11 +59,7 @@ public class AuthManagerTest : BaseManagerTest
     [Test]
     public void CanAuthenticate()
     {
-        AuthManager.CanAuthenticate(new AuthSignIn
-        {
-            PassWord = "Pauline",
-            Name = "T/R4J6eyvNG<6ne!"
-        });
+        AuthManager.CanAuthenticate("Pauline", "T/R4J6eyvNG<6ne!");
 
         Assert.Pass();
     }

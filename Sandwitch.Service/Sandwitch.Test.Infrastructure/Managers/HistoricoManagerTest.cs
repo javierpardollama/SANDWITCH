@@ -1,11 +1,10 @@
-﻿using System;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Logging;
 using NUnit.Framework;
 using Sandwitch.Domain.Entities;
-using Sandwitch.Domain.ViewModels.Additions;
 using Sandwitch.Infrastructure.Managers;
+using System;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Sandwitch.Test.Infrastructure.Managers;
 

@@ -1,7 +1,9 @@
 using MediatR;
 using Sandwitch.Application.Commands.Arenal;
+using Sandwitch.Application.Profiles;
 using Sandwitch.Application.ViewModels.Views;
 using Sandwitch.Domain.Managers;
+using Entities = Sandwitch.Domain.Entities;
 
 namespace Sandwitch.Application.Handlers.Arenal;
 
@@ -29,8 +31,23 @@ public class AddArenalHandler : IRequestHandler<AddArenalCommand, ViewArenal>
     /// <returns>Instance of <see cref="Task{ViewArenal}"/></returns>
     public async Task<ViewArenal> Handle(AddArenalCommand request, CancellationToken cancellationToken)
     {
-        var result = await Manager.AddArenal(request.ViewModel);
+        Entities.Arenal @entity = new()
+        {
+            Name = request.ViewModel.Name.Trim(),
+            ArenalPoblaciones = [],
+            Historicos = []
+        };
 
-        return Mapper.Map<ViewArenal>(result);
+        var @arenal = await Manager.AddArenal(@entity);
+
+        var poblaciones = await Manager.FindAllPoblacionByIds(request.ViewModel.PoblacionesId);
+
+        await Manager.AddArenalPoblacion(poblaciones, @arenal);
+
+        await Manager.AddHistorico(@arenal);
+
+        var @dto = await Manager.ReloadArenalById(@arenal.Id);
+
+        return @dto.ToViewModel();       
     }
 }

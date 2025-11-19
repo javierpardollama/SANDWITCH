@@ -1,6 +1,6 @@
 using NUnit.Framework;
+using Sandwitch.Application.ViewModels.Finders;
 using Sandwitch.Application.ViewModels.Views;
-using Sandwitch.Domain.ViewModels.Finders;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;

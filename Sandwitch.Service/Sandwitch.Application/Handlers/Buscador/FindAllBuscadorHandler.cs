@@ -16,8 +16,7 @@ public class FindAllBuscadorHandler : IRequestHandler<FindAllBuscadorQuery, ILis
     /// <summary>
     ///  Initializes a new Instance of <see cref="FindAllBuscadorHandler" />
     /// </summary>
-    /// <param name="manager">Injected <see cref="IBuscadorManager"/></param>
-    /// <param name="mapper">Injected <see cref="IMapper"/></param>
+    /// <param name="manager">Injected <see cref="IBuscadorManager"/></param>    
     public FindAllBuscadorHandler(IBuscadorManager manager)
     {
         Manager = manager;

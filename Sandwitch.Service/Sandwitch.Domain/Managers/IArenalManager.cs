@@ -74,9 +74,10 @@ public interface IArenalManager : IBaseManager
     /// <summary>
     ///     Adds Arenal Poblacion
     /// </summary>
-    /// <param name="viewModel">Injected <see cref="AddArenal" /></param>
+    /// <param name="poblaciones">Injected <see cref="IList{Poblacion}" /></param>
     /// <param name="entity">Injected <see cref="Arenal" /></param>
-    public void AddArenalPoblacion(AddArenal viewModel, Arenal entity);
+    /// <returns>Instance of <see cref="Task" /></returns>
+    public Task AddArenalPoblacion(List<Poblacion> @poblaciones, Arenal @entity);
 
     /// <summary>
     ///     Adds Historico
@@ -86,18 +87,11 @@ public interface IArenalManager : IBaseManager
     public Task AddHistorico(Arenal entity);
 
     /// <summary>
-    ///     Updates Arenal Poblacion
+    /// Finds All Poblacion By Ids
     /// </summary>
-    /// <param name="viewModel">Injected <see cref="UpdateArenal" /></param>
-    /// <param name="entity">Injected <see cref="Arenal" /></param>
-    public void UpdateArenalPoblacion(UpdateArenal viewModel, Arenal entity);
-
-    /// <summary>
-    ///     Updates Historico
-    /// </summary>
-    /// <param name="entity">Injected <see cref="Arenal" /></param>
-    /// <returns>Instance of <see cref="Task" /></returns>
-    public Task UpdateHistorico(Arenal entity);
+    /// <param name="ids">Injected <see cref="ICollection{int}"/></param>
+    /// <returns>Instance of <see cref="Task{List{Poblacion}}"/></returns>
+    Task<List<Poblacion>> FindAllPoblacionByIds(ICollection<int> @ids);    
 
     /// <summary>
     ///     Checks Name

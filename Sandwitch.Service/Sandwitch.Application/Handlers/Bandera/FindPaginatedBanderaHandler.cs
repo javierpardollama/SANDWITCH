@@ -17,7 +17,7 @@ public class FindPaginatedBanderaHandler : IRequestHandler<FindPaginatedBanderaQ
     ///  Initializes a new Instance of <see cref="FindPaginatedBanderaHandler" />
     /// </summary>
     /// <param name="manager">Injected <see cref="IBanderaManager"/></param>
-    public FindPaginatedBanderaHandler(IBanderaManager manager,)
+    public FindPaginatedBanderaHandler(IBanderaManager manager)
     {
         Manager = manager;
     }

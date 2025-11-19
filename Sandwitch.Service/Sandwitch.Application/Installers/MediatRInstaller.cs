@@ -2,6 +2,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Sandwitch.Application.Handlers.Arenal;
 using Sandwitch.Application.Handlers.Bandera;
 using Sandwitch.Application.Handlers.Buscador;
+using Sandwitch.Application.Handlers.Historico;
 using Sandwitch.Application.Handlers.Poblacion;
 using Sandwitch.Application.Handlers.Provincia;
 using Sandwitch.Application.Handlers.Viento;
@@ -56,6 +57,8 @@ public static class MediatRInstaller
             cfg.RegisterServicesFromAssemblyContaining(typeof(FindPaginatedVientoHandler));
             cfg.RegisterServicesFromAssemblyContaining(typeof(RemoveVientoByIdHandler));
             cfg.RegisterServicesFromAssemblyContaining(typeof(UpdateVientoHandler));
+
+            cfg.RegisterServicesFromAssemblyContaining(typeof(AddHistoricoHandler));
         });
     }
 }

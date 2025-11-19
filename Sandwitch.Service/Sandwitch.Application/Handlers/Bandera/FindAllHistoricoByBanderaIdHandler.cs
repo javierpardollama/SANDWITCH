@@ -1,5 +1,5 @@
-using AutoMapper;
 using MediatR;
+using Sandwitch.Application.Profiles;
 using Sandwitch.Application.Queries.Bandera;
 using Sandwitch.Application.ViewModels.Views;
 using Sandwitch.Domain.Managers;
@@ -12,17 +12,13 @@ namespace Sandwitch.Application.Handlers.Bandera;
 public class FindAllHistoricoByBanderaIdHandler : IRequestHandler<FindAllHistoricoByBanderaIdQuery, IList<ViewHistorico>>
 {
     private readonly IBanderaManager Manager;
-    private readonly IMapper Mapper;
-
     /// <summary>
     ///  Initializes a new Instance of <see cref="FindAllHistoricoByBanderaIdHandler" />
     /// </summary>
     /// <param name="manager">Injected <see cref="IBanderaManager"/></param>
-    /// <param name="mapper">Injected <see cref="IMapper"/></param>
-    public FindAllHistoricoByBanderaIdHandler(IBanderaManager manager, IMapper mapper)
+    public FindAllHistoricoByBanderaIdHandler(IBanderaManager manager)
     {
         Manager = manager;
-        Mapper = mapper;
     }
 
     /// <summary>
@@ -34,8 +30,8 @@ public class FindAllHistoricoByBanderaIdHandler : IRequestHandler<FindAllHistori
     public async Task<IList<ViewHistorico>> Handle(FindAllHistoricoByBanderaIdQuery request,
         CancellationToken cancellationToken)
     {
-        var result = await Manager.FindAllHistoricoByBanderaId(request.Id);
+        var dtos = await Manager.FindAllHistoricoByBanderaId(request.Id);
 
-        return Mapper.Map<IList<ViewHistorico>>(result);
+        return [.. dtos.Select(x => x.ToViewModel())];
     }
 }

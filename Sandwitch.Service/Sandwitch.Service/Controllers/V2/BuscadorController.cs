@@ -1,12 +1,15 @@
-using System.Threading.Tasks;
 using Asp.Versioning;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.RateLimiting;
 using Sandwitch.Application.Queries.Buscador;
 using Sandwitch.Application.ViewModels.Filters;
 using Sandwitch.Application.ViewModels.Finders;
+using Sandwitch.Application.ViewModels.Views;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Sandwitch.Service.Controllers.V2;
 
@@ -39,6 +42,14 @@ public class BuscadorController(IMediator mediator) : ControllerBase
     [HttpGet]
     [ResponseCache(Duration = 10, Location = ResponseCacheLocation.Any, NoStore = false)]
     [Route("all")]
+    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IList<ViewBuscador>))]
+    [ProducesResponseType(StatusCodes.Status204NoContent, Type = typeof(ProblemDetails))]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(ProblemDetails))]
+    [ProducesResponseType(StatusCodes.Status408RequestTimeout, Type = typeof(ProblemDetails))]
+    [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(ProblemDetails))]
+    [ProducesResponseType(StatusCodes.Status409Conflict, Type = typeof(ProblemDetails))]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ProblemDetails))]
+    [ProducesResponseType(StatusCodes.Status503ServiceUnavailable, Type = typeof(ProblemDetails))]
     public async Task<IActionResult> FindAllBuscador()
     {
         return Ok(await mediator.Send(new FindAllBuscadorQuery()));
@@ -60,6 +71,14 @@ public class BuscadorController(IMediator mediator) : ControllerBase
     [MapToApiVersion(2.0)]
     [HttpPost]
     [Route("all/arenal")]
+    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IList<ViewArenal>))]
+    [ProducesResponseType(StatusCodes.Status204NoContent, Type = typeof(ProblemDetails))]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(ProblemDetails))]
+    [ProducesResponseType(StatusCodes.Status408RequestTimeout, Type = typeof(ProblemDetails))]
+    [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(ProblemDetails))]
+    [ProducesResponseType(StatusCodes.Status409Conflict, Type = typeof(ProblemDetails))]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ProblemDetails))]
+    [ProducesResponseType(StatusCodes.Status503ServiceUnavailable, Type = typeof(ProblemDetails))]
     public async Task<IActionResult> FindAllArenalByBuscadorId([FromBody] FinderArenal viewModel)
     {
         return Ok(await mediator.Send(new FindAllArenalByBuscadorIdQuery { ViewModel = viewModel }));

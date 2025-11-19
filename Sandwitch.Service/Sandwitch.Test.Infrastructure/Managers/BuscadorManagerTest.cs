@@ -21,23 +21,10 @@ public class BuscadorManagerTest : BaseManagerTest
     {
         SetUpContext();
 
-        SetUpData();
+        Seed();
 
         BuscadorManager = new BuscadorManager(Context);
-    }
-
-    /// <summary>
-    ///     Tears Down
-    /// </summary>
-    [OneTimeTearDown]
-    public void OneTimeTearDown()
-    {
-        Context.Arenal.RemoveRange(Context.Arenal.ToList());
-
-        Context.Poblacion.RemoveRange(Context.Poblacion.ToList());
-
-        Context.SaveChanges();
-    }
+    }   
 
     /// <summary>
     ///     Instance of <see cref="BuscadorManager" />
@@ -52,27 +39,76 @@ public class BuscadorManagerTest : BaseManagerTest
     }
 
     /// <summary>
-    ///     Sets Up Data
+    ///     Seeds
     /// </summary>
-    private void SetUpData()
+    private void Seed()
     {
-        Context.Poblacion.Add(new Poblacion
+        Context.Viento.Add(new Viento
         {
-            Name = "Poblacion " + Guid.NewGuid(), ImageUri = "Poblaciones/Poblacion_1_500.png",
-            LastModified = DateTime.Now, Deleted = false
+            Id = 1,
+            Name = "Norte",
+            ImageUri = "URL/Norte_500.png",
+            LastModified = DateTime.Now,
+            Deleted = false
         });
+
+        Context.Bandera.Add(new Bandera
+        {
+            Id = 1,
+            Name = "Amarilla ",
+            ImageUri = "URL/Amarilla_500.png",
+            LastModified = DateTime.Now,
+            Deleted = false
+        });
+
+        Context.Provincia.Add(new Provincia
+        {
+            Id = 1,
+            Name = "Bizkaia",
+            ImageUri = "URL/Bizkaia_500px.png",
+            LastModified = DateTime.Now,
+            Deleted = false
+        });
+
         Context.Poblacion.Add(new Poblacion
         {
-            Name = "Poblacion " + Guid.NewGuid(), ImageUri = "Poblaciones/Poblacion_2_500.png",
-            LastModified = DateTime.Now, Deleted = false
+            Id = 1,
+            Name = "Muskiz",
+            ImageUri = "URL/Muskiz_500px.png",
+            LastModified = DateTime.Now,
+            Deleted = false
         });
 
         Context.Arenal.Add(new Arenal
-            { Name = "Arenal " + Guid.NewGuid(), LastModified = DateTime.Now, Deleted = false });
-        Context.Arenal.Add(new Arenal
-            { Name = "Arenal " + Guid.NewGuid(), LastModified = DateTime.Now, Deleted = false });
+        {
+            Id = 1,
+            Name = "La Arena",
+            LastModified = DateTime.Now,
+            Deleted = false,
+            ArenalPoblaciones = [
+                new()
+                {
+                    ArenalId = 1,
+                    PoblacionId = 1,
+                }
+                ]
+        });
 
-        Context.SaveChanges();
+        Context.Historico.Add(new Historico()
+        {
+            Id = 1,
+            LastModified = DateTime.Now,
+            Deleted = false,
+            BajaMarAlba = DateTime.Now.TimeOfDay,
+            BajaMarOcaso = DateTime.Now.TimeOfDay,
+            AltaMarAlba = DateTime.Now.TimeOfDay,
+            AltaMarOcaso = DateTime.Now.TimeOfDay,
+            Temperatura = 20,
+            Velocidad = 0,
+            ArenalId = 1,
+            VientoId = 1,
+            BanderaId = 1,
+        });
     }
 
 
@@ -95,8 +131,7 @@ public class BuscadorManagerTest : BaseManagerTest
     [Test]
     public async Task FindAllArenalByBuscadorId()
     {
-        await BuscadorManager.FindAllArenalByBuscadorId(new FinderArenal
-            { Id = Context.Poblacion.FirstOrDefault().Id, Type = nameof(Poblacion) });
+        await BuscadorManager.FindAllArenalByBuscadorId(1, nameof(Poblacion));
 
         Assert.Pass();
     }

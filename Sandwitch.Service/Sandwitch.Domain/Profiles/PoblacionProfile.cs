@@ -45,7 +45,7 @@ namespace Sandwitch.Domain.Profiles
         /// </summary>
         /// <param name="entity">Injected <see cref="Poblacion"/></param>
         /// <returns>Instance of <see cref="CatalogDto"/></returns>
-        public static BuscadorDto ToQuery(this Poblacion @entity)
+        public static BuscadorDto ToFinder(this Poblacion @entity)
         {
             return new BuscadorDto
             {

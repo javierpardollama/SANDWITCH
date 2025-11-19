@@ -1,7 +1,7 @@
-﻿using System.Threading.Tasks;
-using Asp.Versioning;
+﻿using Asp.Versioning;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.RateLimiting;
 using Sandwitch.Application.Commands.Provincia;
@@ -9,6 +9,9 @@ using Sandwitch.Application.Queries.Provincia;
 using Sandwitch.Application.ViewModels.Additions;
 using Sandwitch.Application.ViewModels.Filters;
 using Sandwitch.Application.ViewModels.Updates;
+using Sandwitch.Application.ViewModels.Views;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Sandwitch.Service.Controllers.V1;
 
@@ -41,6 +44,14 @@ public class ProvinciaController(IMediator mediator) : ControllerBase
     [MapToApiVersion(1.0)]
     [HttpPut]
     [Route("update")]
+    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ViewProvincia))]
+    [ProducesResponseType(StatusCodes.Status204NoContent, Type = typeof(ProblemDetails))]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(ProblemDetails))]
+    [ProducesResponseType(StatusCodes.Status408RequestTimeout, Type = typeof(ProblemDetails))]
+    [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(ProblemDetails))]
+    [ProducesResponseType(StatusCodes.Status409Conflict, Type = typeof(ProblemDetails))]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ProblemDetails))]
+    [ProducesResponseType(StatusCodes.Status503ServiceUnavailable, Type = typeof(ProblemDetails))]
     public async Task<IActionResult> UpdateProvincia([FromBody] UpdateProvincia viewModel)
     {
         return Ok(await mediator.Send(new UpdateProvinciaCommand { ViewModel = viewModel }));
@@ -62,6 +73,14 @@ public class ProvinciaController(IMediator mediator) : ControllerBase
     [HttpGet]
     [ResponseCache(Duration = 10, Location = ResponseCacheLocation.Any, NoStore = false)]
     [Route("all")]
+    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IList<ViewCatalog>))]
+    [ProducesResponseType(StatusCodes.Status204NoContent, Type = typeof(ProblemDetails))]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(ProblemDetails))]
+    [ProducesResponseType(StatusCodes.Status408RequestTimeout, Type = typeof(ProblemDetails))]
+    [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(ProblemDetails))]
+    [ProducesResponseType(StatusCodes.Status409Conflict, Type = typeof(ProblemDetails))]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ProblemDetails))]
+    [ProducesResponseType(StatusCodes.Status503ServiceUnavailable, Type = typeof(ProblemDetails))]
     public async Task<IActionResult> FindAllProvincia()
     {
         return Ok(await mediator.Send(new FindAllProvinciaQuery()));
@@ -83,6 +102,14 @@ public class ProvinciaController(IMediator mediator) : ControllerBase
     [MapToApiVersion(1.0)]
     [HttpPost]
     [Route("page")]
+    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ViewPage<ViewProvincia>))]
+    [ProducesResponseType(StatusCodes.Status204NoContent, Type = typeof(ProblemDetails))]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(ProblemDetails))]
+    [ProducesResponseType(StatusCodes.Status408RequestTimeout, Type = typeof(ProblemDetails))]
+    [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(ProblemDetails))]
+    [ProducesResponseType(StatusCodes.Status409Conflict, Type = typeof(ProblemDetails))]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ProblemDetails))]
+    [ProducesResponseType(StatusCodes.Status503ServiceUnavailable, Type = typeof(ProblemDetails))]
     public async Task<IActionResult> FindPaginatedProvincia([FromBody] FilterPage viewModel)
     {
         return Ok(await mediator.Send(new FindPaginatedProvinciaQuery { ViewModel = viewModel }));
@@ -104,6 +131,14 @@ public class ProvinciaController(IMediator mediator) : ControllerBase
     [MapToApiVersion(1.0)]
     [HttpPost]
     [Route("create")]
+    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ViewProvincia))]
+    [ProducesResponseType(StatusCodes.Status204NoContent, Type = typeof(ProblemDetails))]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(ProblemDetails))]
+    [ProducesResponseType(StatusCodes.Status408RequestTimeout, Type = typeof(ProblemDetails))]
+    [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(ProblemDetails))]
+    [ProducesResponseType(StatusCodes.Status409Conflict, Type = typeof(ProblemDetails))]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ProblemDetails))]
+    [ProducesResponseType(StatusCodes.Status503ServiceUnavailable, Type = typeof(ProblemDetails))]
     public async Task<IActionResult> AddProvincia([FromBody] AddProvincia viewModel)
     {
         return Ok(await mediator.Send(new AddProvinciaCommand { ViewModel = viewModel }));
@@ -125,6 +160,14 @@ public class ProvinciaController(IMediator mediator) : ControllerBase
     [MapToApiVersion(1.0)]
     [HttpDelete]
     [Route("remove/{id}")]
+    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(int))]
+    [ProducesResponseType(StatusCodes.Status204NoContent, Type = typeof(ProblemDetails))]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(ProblemDetails))]
+    [ProducesResponseType(StatusCodes.Status408RequestTimeout, Type = typeof(ProblemDetails))]
+    [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(ProblemDetails))]
+    [ProducesResponseType(StatusCodes.Status409Conflict, Type = typeof(ProblemDetails))]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ProblemDetails))]
+    [ProducesResponseType(StatusCodes.Status503ServiceUnavailable, Type = typeof(ProblemDetails))]
     public async Task<IActionResult> RemoveProvinciaById(int id)
     {
         await mediator.Send(new RemoveProvinciaByIdCommand { Id = id });

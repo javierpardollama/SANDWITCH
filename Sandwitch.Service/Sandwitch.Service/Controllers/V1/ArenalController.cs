@@ -1,7 +1,7 @@
-﻿using System.Threading.Tasks;
-using Asp.Versioning;
+﻿using Asp.Versioning;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.RateLimiting;
 using Sandwitch.Application.Commands.Arenal;
@@ -9,6 +9,9 @@ using Sandwitch.Application.Queries.Arenal;
 using Sandwitch.Application.ViewModels.Additions;
 using Sandwitch.Application.ViewModels.Filters;
 using Sandwitch.Application.ViewModels.Updates;
+using Sandwitch.Application.ViewModels.Views;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Sandwitch.Service.Controllers.V1;
 
@@ -41,6 +44,14 @@ public class ArenalController(IMediator mediator) : ControllerBase
     [MapToApiVersion(1.0)]
     [HttpPut]
     [Route("update")]
+    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ViewArenal))]
+    [ProducesResponseType(StatusCodes.Status204NoContent, Type = typeof(ProblemDetails))]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(ProblemDetails))]
+    [ProducesResponseType(StatusCodes.Status408RequestTimeout, Type = typeof(ProblemDetails))]
+    [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(ProblemDetails))]
+    [ProducesResponseType(StatusCodes.Status409Conflict, Type = typeof(ProblemDetails))]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ProblemDetails))]
+    [ProducesResponseType(StatusCodes.Status503ServiceUnavailable, Type = typeof(ProblemDetails))]
     public async Task<IActionResult> UpdateArenal([FromBody] UpdateArenal viewModel)
     {
         return Ok(await mediator.Send(new UpdateArenalCommand { ViewModel = viewModel }));
@@ -62,7 +73,15 @@ public class ArenalController(IMediator mediator) : ControllerBase
     [HttpGet]
     [ResponseCache(Duration = 10, Location = ResponseCacheLocation.Any, NoStore = false)]
     [Route("all")]
-    public async Task<IActionResult> FindAllarenal()
+    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IList<ViewCatalog>))]
+    [ProducesResponseType(StatusCodes.Status204NoContent, Type = typeof(ProblemDetails))]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(ProblemDetails))]
+    [ProducesResponseType(StatusCodes.Status408RequestTimeout, Type = typeof(ProblemDetails))]
+    [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(ProblemDetails))]
+    [ProducesResponseType(StatusCodes.Status409Conflict, Type = typeof(ProblemDetails))]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ProblemDetails))]
+    [ProducesResponseType(StatusCodes.Status503ServiceUnavailable, Type = typeof(ProblemDetails))]
+    public async Task<IActionResult> FindAllArenal()
     {
         return Ok(await mediator.Send(new FindAllArenalQuery()));
     }
@@ -83,6 +102,14 @@ public class ArenalController(IMediator mediator) : ControllerBase
     [MapToApiVersion(1.0)]
     [HttpPost]
     [Route("page")]
+    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ViewPage<ViewArenal>))]
+    [ProducesResponseType(StatusCodes.Status204NoContent, Type = typeof(ProblemDetails))]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(ProblemDetails))]
+    [ProducesResponseType(StatusCodes.Status408RequestTimeout, Type = typeof(ProblemDetails))]
+    [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(ProblemDetails))]
+    [ProducesResponseType(StatusCodes.Status409Conflict, Type = typeof(ProblemDetails))]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ProblemDetails))]
+    [ProducesResponseType(StatusCodes.Status503ServiceUnavailable, Type = typeof(ProblemDetails))]
     public async Task<IActionResult> FindPaginatedArenal([FromBody] FilterPage viewModel)
     {
         return Ok(await mediator.Send(new FindPaginatedArenalQuery { ViewModel = viewModel }));
@@ -104,6 +131,14 @@ public class ArenalController(IMediator mediator) : ControllerBase
     [MapToApiVersion(1.0)]
     [HttpGet]
     [Route("all/historico/{id}")]
+    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IList<ViewHistorico>))]
+    [ProducesResponseType(StatusCodes.Status204NoContent, Type = typeof(ProblemDetails))]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(ProblemDetails))]
+    [ProducesResponseType(StatusCodes.Status408RequestTimeout, Type = typeof(ProblemDetails))]
+    [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(ProblemDetails))]
+    [ProducesResponseType(StatusCodes.Status409Conflict, Type = typeof(ProblemDetails))]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ProblemDetails))]
+    [ProducesResponseType(StatusCodes.Status503ServiceUnavailable, Type = typeof(ProblemDetails))]
     public async Task<IActionResult> FindAllHistoricoByArenalId(int id)
     {
         return Ok(await mediator.Send(new FindAllHistoricoByArenalIdQuery { Id = id }));
@@ -124,6 +159,14 @@ public class ArenalController(IMediator mediator) : ControllerBase
     [MapToApiVersion(1.0)]
     [HttpPost]
     [Route("create")]
+    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ViewArenal))]
+    [ProducesResponseType(StatusCodes.Status204NoContent, Type = typeof(ProblemDetails))]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(ProblemDetails))]
+    [ProducesResponseType(StatusCodes.Status408RequestTimeout, Type = typeof(ProblemDetails))]
+    [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(ProblemDetails))]
+    [ProducesResponseType(StatusCodes.Status409Conflict, Type = typeof(ProblemDetails))]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ProblemDetails))]
+    [ProducesResponseType(StatusCodes.Status503ServiceUnavailable, Type = typeof(ProblemDetails))]
     public async Task<IActionResult> AddArenal([FromBody] AddArenal viewModel)
     {
         return Ok(await mediator.Send(new AddArenalCommand { ViewModel = viewModel }));
@@ -145,6 +188,14 @@ public class ArenalController(IMediator mediator) : ControllerBase
     [MapToApiVersion(1.0)]
     [HttpDelete]
     [Route("remove/{id}")]
+    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(int))]
+    [ProducesResponseType(StatusCodes.Status204NoContent, Type = typeof(ProblemDetails))]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(ProblemDetails))]
+    [ProducesResponseType(StatusCodes.Status408RequestTimeout, Type = typeof(ProblemDetails))]
+    [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(ProblemDetails))]
+    [ProducesResponseType(StatusCodes.Status409Conflict, Type = typeof(ProblemDetails))]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ProblemDetails))]
+    [ProducesResponseType(StatusCodes.Status503ServiceUnavailable, Type = typeof(ProblemDetails))]
     public async Task<IActionResult> RemoveArenalById(int id)
     {
         await mediator.Send(new RemoveArenalByIdCommand { Id = id });

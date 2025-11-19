@@ -25,21 +25,10 @@ public class ProvinciaManagerTest : BaseManagerTest
 
         SetUpLogger();
 
-        SetUpData();
+        Seed();
 
         ProvinciaManager = new ProvinciaManager(Context, Logger);
-    }
-
-    /// <summary>
-    ///     Tears Down
-    /// </summary>
-    [OneTimeTearDown]
-    public void OneTimeTearDown()
-    {
-        Context.Provincia.RemoveRange(Context.Provincia.ToList());
-
-        Context.SaveChanges();
-    }
+    }  
 
     /// <summary>
     ///     Instance of <see cref="ILogger{ProvinciaManager}" />
@@ -76,23 +65,32 @@ public class ProvinciaManagerTest : BaseManagerTest
     }
 
     /// <summary>
-    ///     Sets Up Data
+    ///     Seeds
     /// </summary>
-    private void SetUpData()
+    private void Seed()
     {
         Context.Provincia.Add(new Provincia
         {
-            Name = "Provincia " + Guid.NewGuid(), ImageUri = "URL/Provincia_01_500px.png", LastModified = DateTime.Now,
+            Id = 1,
+            Name = "Bizkaia", 
+            ImageUri = "URL/Bizkaia_500px.png",
+            LastModified = DateTime.Now,
             Deleted = false
         });
         Context.Provincia.Add(new Provincia
         {
-            Name = "Provincia " + Guid.NewGuid(), ImageUri = "URL/Provincia_02_500px.png", LastModified = DateTime.Now,
+            Id = 2,
+            Name = "Gipuzkoa", 
+            ImageUri = "URL/Gipuzkoa_500px.png", 
+            LastModified = DateTime.Now,
             Deleted = false
         });
         Context.Provincia.Add(new Provincia
         {
-            Name = "Provincia " + Guid.NewGuid(), ImageUri = "URL/Provincia_03_500px.png", LastModified = DateTime.Now,
+            Id = 3,
+            Name = "Cantabria", 
+            ImageUri = "URL/Cantabria_500px.png", 
+            LastModified = DateTime.Now,
             Deleted = false
         });
 
@@ -118,7 +116,7 @@ public class ProvinciaManagerTest : BaseManagerTest
     [Test]
     public async Task FindPaginatedProvincia()
     {
-        await ProvinciaManager.FindPaginatedProvincia(new FilterPage { Index = 1, Size = 5 });
+        await ProvinciaManager.FindPaginatedProvincia(1,  5);
 
         Assert.Pass();
     }
@@ -130,7 +128,7 @@ public class ProvinciaManagerTest : BaseManagerTest
     [Test]
     public async Task FindProvinciaById()
     {
-        await ProvinciaManager.FindProvinciaById(Context.Provincia.FirstOrDefault().Id);
+        await ProvinciaManager.FindProvinciaById(1);
 
         Assert.Pass();
     }
@@ -142,7 +140,7 @@ public class ProvinciaManagerTest : BaseManagerTest
     [Test]
     public async Task RemoveProvinciaById()
     {
-        await ProvinciaManager.RemoveProvinciaById(Context.Provincia.FirstOrDefault().Id);
+        await ProvinciaManager.RemoveProvinciaById(1);
 
         Assert.Pass();
     }
@@ -154,14 +152,14 @@ public class ProvinciaManagerTest : BaseManagerTest
     [Test]
     public async Task UpdateProvincia()
     {
-        UpdateProvincia Provincia = new()
+        Provincia entity = new()
         {
-            Id = Context.Provincia.FirstOrDefault().Id,
-            ImageUri = "URL/Provincia_21_500px.png",
-            Name = "Provincia 21"
+            Id = 2,
+            ImageUri = "URL/Guipuzcoa_500px.png",
+            Name = "Guipuzcoa"
         };
 
-        await ProvinciaManager.UpdateProvincia(Provincia);
+        await ProvinciaManager.UpdateProvincia(entity);
 
         Assert.Pass();
     }
@@ -173,13 +171,13 @@ public class ProvinciaManagerTest : BaseManagerTest
     [Test]
     public async Task AddProvincia()
     {
-        AddProvincia Provincia = new()
-        {
-            ImageUri = "URL/Provincia_4_500px.png",
-            Name = "Provincia 4"
+        Provincia entity = new()
+        {          
+            ImageUri = "URL/Asturias_500px.png",
+            Name = "Asturias"
         };
 
-        await ProvinciaManager.AddProvincia(Provincia);
+        await ProvinciaManager.AddProvincia(entity);
 
         Assert.Pass();
     }
@@ -191,13 +189,26 @@ public class ProvinciaManagerTest : BaseManagerTest
     [Test]
     public void CheckName()
     {
-        AddProvincia provincia = new()
+        Provincia entity = new()
         {
-            ImageUri = "URL/Provincia_4_500px.png",
-            Name = Context.Provincia.FirstOrDefault().Name
+            Id = 3,
+            Name = "Cantabria",
+            ImageUri = "URL/Cantabria_500px.png",           
         };
 
-        var exception = Assert.ThrowsAsync<ServiceException>(async () => await ProvinciaManager.CheckName(provincia));
+        var exception = Assert.ThrowsAsync<ServiceException>(async () => await ProvinciaManager.CheckName(entity.Name));
+
+        Assert.Pass();
+    }
+
+    /// <summary>
+    ///     Reloads Provincia By Id
+    /// </summary>
+    /// <returns>Instance of <see cref="Task" /></returns>
+    [Test]
+    public async Task ReloadProvinciaById()
+    {
+        await ProvinciaManager.ReloadProvinciaById(2);
 
         Assert.Pass();
     }

@@ -25,7 +25,7 @@ public class BanderaManagerTest : BaseManagerTest
 
         SetUpLogger();
 
-        SetUpData();
+        Seed();
 
         BanderaManager = new BanderaManager(Context, Logger);
     }
@@ -74,23 +74,26 @@ public class BanderaManagerTest : BaseManagerTest
     }
 
     /// <summary>
-    ///     Sets Up Data
+    ///    Seeds
     /// </summary>
-    private void SetUpData()
+    private void Seed()
     {
         Context.Bandera.Add(new Bandera
         {
-            Name = "Bandera " + Guid.NewGuid(), ImageUri = "Banderas/Bandera_1_500.png", LastModified = DateTime.Now,
+            Id = 1,
+            Name = "Amarilla ", ImageUri = "URL/Amarilla_500.png", LastModified = DateTime.Now,
             Deleted = false
         });
         Context.Bandera.Add(new Bandera
         {
-            Name = "Bandera " + Guid.NewGuid(), ImageUri = "Banderas/Bandera_2_500.png", LastModified = DateTime.Now,
+            Id= 2,
+            Name = "Negra", ImageUri = "URL/Negra_500.png", LastModified = DateTime.Now,
             Deleted = false
         });
         Context.Bandera.Add(new Bandera
         {
-            Name = "Bandera " + Guid.NewGuid(), ImageUri = "Banderas/Bandera_3_500.png", LastModified = DateTime.Now,
+            Id = 3,
+            Name = "Roja" , ImageUri = "URL/Roja_500.png", LastModified = DateTime.Now,
             Deleted = false
         });
 
@@ -116,7 +119,7 @@ public class BanderaManagerTest : BaseManagerTest
     [Test]
     public async Task FindPaginatedBandera()
     {
-        await BanderaManager.FindPaginatedBandera(new FilterPage { Index = 1, Size = 5 });
+        await BanderaManager.FindPaginatedBandera(1, 5);
 
         Assert.Pass();
     }
@@ -128,7 +131,7 @@ public class BanderaManagerTest : BaseManagerTest
     [Test]
     public async Task FindAllHistoricoByBanderaId()
     {
-        await BanderaManager.FindAllHistoricoByBanderaId(Context.Bandera.FirstOrDefault().Id);
+        await BanderaManager.FindAllHistoricoByBanderaId(1);
 
         Assert.Pass();
     }
@@ -140,7 +143,7 @@ public class BanderaManagerTest : BaseManagerTest
     [Test]
     public async Task FindBanderaById()
     {
-        await BanderaManager.FindBanderaById(Context.Bandera.FirstOrDefault().Id);
+        await BanderaManager.FindBanderaById(1);
 
         Assert.Pass();
     }
@@ -152,7 +155,7 @@ public class BanderaManagerTest : BaseManagerTest
     [Test]
     public async Task RemoveBanderaById()
     {
-        await BanderaManager.RemoveBanderaById(Context.Bandera.FirstOrDefault().Id);
+        await BanderaManager.RemoveBanderaById(1);
 
         Assert.Pass();
     }
@@ -164,14 +167,14 @@ public class BanderaManagerTest : BaseManagerTest
     [Test]
     public async Task UpdateBandera()
     {
-        UpdateBandera Bandera = new()
+        Bandera entity = new()
         {
-            Id = Context.Bandera.FirstOrDefault().Id,
-            ImageUri = "URL/Bandera_21_500px.png",
-            Name = "Bandera 21"
+            Id = 2,
+            ImageUri = "URL/Black_500px.png",
+            Name = "Black"
         };
 
-        await BanderaManager.UpdateBandera(Bandera);
+        await BanderaManager.UpdateBandera(entity);
 
         Assert.Pass();
     }
@@ -183,10 +186,10 @@ public class BanderaManagerTest : BaseManagerTest
     [Test]
     public async Task AddBandera()
     {
-        AddBandera Bandera = new()
-        {
-            ImageUri = "URL/Bandera_4_500px.png",
-            Name = "Bandera 4"
+        Bandera Bandera = new()
+        {            
+            ImageUri = "URL/Verde_500px.png",
+            Name = "Verde"
         };
 
         await BanderaManager.AddBandera(Bandera);
@@ -199,14 +202,27 @@ public class BanderaManagerTest : BaseManagerTest
     /// </summary>
     /// <returns>Instance of <see cref="Task" /></returns>
     [Test]
-    public void CheckName()
+    public void CheckNameAsync()
     {
-        AddBandera Bandera = new()
-        {
-            ImageUri = "URL/Bandera_3_500px.png",
-            Name = Context.Bandera.FirstOrDefault().Name
+        Bandera @entity = new()
+        {           
+            Id = 3,
+            ImageUri = "URL/Roja_500px.png",
+            Name = "Roja"
         };
-        var exception = Assert.ThrowsAsync<ServiceException>(async () => await BanderaManager.CheckName(Bandera));
+        var exception = Assert.ThrowsAsync<ServiceException>(async () => await BanderaManager.CheckName(@entity.Name));
+
+        Assert.Pass();
+    }
+
+    /// <summary>
+    ///     Reloads Bandera By Id
+    /// </summary>
+    /// <returns>Instance of <see cref="Task" /></returns>
+    [Test]
+    public async Task ReloadBanderaById()
+    {      
+        await BanderaManager.ReloadBanderaById(2);
 
         Assert.Pass();
     }

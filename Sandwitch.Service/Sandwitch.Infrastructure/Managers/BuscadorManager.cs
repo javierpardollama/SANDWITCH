@@ -24,10 +24,10 @@ public class BuscadorManager(
     {
         IList<BuscadorDto> @buscadores = await Context.Provincia
             .AsNoTracking()
-            .Select(provincia=> provincia.ToQuery()
+            .Select(provincia=> provincia.ToFinder()
         ).Union(Context.Poblacion
                 .AsNoTracking()
-                .Select(poblacion => poblacion.ToQuery()))
+                .Select(poblacion => poblacion.ToFinder()))
         .ToListAsync();
 
         return @buscadores;

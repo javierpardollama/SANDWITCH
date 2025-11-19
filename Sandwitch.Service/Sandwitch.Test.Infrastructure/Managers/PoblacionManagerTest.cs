@@ -25,23 +25,10 @@ public class PoblacionManagerTest : BaseManagerTest
 
         SetUpLogger();
 
-        SetUpData();
+        Seed();
 
         PoblacionManager = new PoblacionManager(Context, Logger);
-    }
-
-    /// <summary>
-    ///     Tears Down
-    /// </summary>
-    [OneTimeTearDown]
-    public void OneTimeTearDown()
-    {
-        Context.Poblacion.RemoveRange(Context.Poblacion.ToList());
-
-        Context.Provincia.RemoveRange(Context.Provincia.ToList());
-
-        Context.SaveChanges();
-    }
+    }   
 
     /// <summary>
     ///     Instance of <see cref="ILogger{PoblacionManager}" />
@@ -77,29 +64,45 @@ public class PoblacionManagerTest : BaseManagerTest
     }
 
     /// <summary>
-    ///     Sets Up Data
+    ///     Seeds
     /// </summary>
-    private void SetUpData()
+    private void Seed()
     {
         Context.Provincia.Add(new Provincia
         {
-            Name = "Provincia " + Guid.NewGuid(), ImageUri = "URL/Provincia_04_500px.png", LastModified = DateTime.Now,
+            Id = 1,
+            Name = "Bizkaia",
+            ImageUri = "URL/Bizkaia_500px.png",
+            LastModified = DateTime.Now,
             Deleted = false
         });
 
         Context.Poblacion.Add(new Poblacion
         {
-            Name = "Poblacion " + Guid.NewGuid(), ImageUri = "URL/Poblacion_01_500px.png", LastModified = DateTime.Now,
+            Id = 1,
+            Name = "Zierbena",
+            ImageUri = "URL/Zierbena_500px.png",
+            ProvinciaId = 1,
+            LastModified = DateTime.Now,
             Deleted = false
         });
         Context.Poblacion.Add(new Poblacion
         {
-            Name = "Poblacion " + Guid.NewGuid(), ImageUri = "URL/Poblacion_02_500px.png", LastModified = DateTime.Now,
+            Id = 2,
+            Name = "Muskiz", 
+            ImageUri = "URL/Muskiz_500px.png",
+            ProvinciaId = 1,
+            LastModified = DateTime.Now,
             Deleted = false
         });
+     
         Context.Poblacion.Add(new Poblacion
         {
-            Name = "Poblacion " + Guid.NewGuid(), ImageUri = "URL/Poblacion_03_500px.png", LastModified = DateTime.Now,
+            Id = 3,
+            Name = "Getxo", 
+            ImageUri = "URL/Getxo_500px.png",
+            ProvinciaId = 1,
+            LastModified = DateTime.Now,
             Deleted = false
         });
 
@@ -125,7 +128,7 @@ public class PoblacionManagerTest : BaseManagerTest
     [Test]
     public async Task FindPaginatedPoblacion()
     {
-        await PoblacionManager.FindPaginatedPoblacion(new FilterPage { Index = 1, Size = 5 });
+        await PoblacionManager.FindPaginatedPoblacion(1, 5);
 
         Assert.Pass();
     }
@@ -137,7 +140,7 @@ public class PoblacionManagerTest : BaseManagerTest
     [Test]
     public async Task FindPoblacionById()
     {
-        await PoblacionManager.FindPoblacionById(Context.Poblacion.FirstOrDefault().Id);
+        await PoblacionManager.FindPoblacionById(1);
 
         Assert.Pass();
     }
@@ -149,7 +152,7 @@ public class PoblacionManagerTest : BaseManagerTest
     [Test]
     public async Task FindProvinciaById()
     {
-        await PoblacionManager.FindProvinciaById(Context.Provincia.FirstOrDefault().Id);
+        await PoblacionManager.FindProvinciaById(1);
 
         Assert.Pass();
     }
@@ -161,7 +164,7 @@ public class PoblacionManagerTest : BaseManagerTest
     [Test]
     public async Task RemovePoblacionById()
     {
-        await PoblacionManager.RemovePoblacionById(Context.Poblacion.FirstOrDefault().Id);
+        await PoblacionManager.RemovePoblacionById(1);
 
         Assert.Pass();
     }
@@ -173,15 +176,15 @@ public class PoblacionManagerTest : BaseManagerTest
     [Test]
     public async Task UpdatePoblacion()
     {
-        UpdatePoblacion Poblacion = new()
+        Poblacion entity = new()
         {
-            Id = Context.Poblacion.FirstOrDefault().Id,
-            ImageUri = "URL/Poblacion_21_500px.png",
-            Name = "Poblacion 21",
-            ProvinciaId = Context.Provincia.FirstOrDefault().Id
+            Id = 2,
+            ImageUri = "URL/Musques_500px.png",
+            Name = "Musques",
+            ProvinciaId = 1
         };
 
-        await PoblacionManager.UpdatePoblacion(Poblacion);
+        await PoblacionManager.UpdatePoblacion(entity);
 
         Assert.Pass();
     }
@@ -193,14 +196,14 @@ public class PoblacionManagerTest : BaseManagerTest
     [Test]
     public async Task AddPoblacion()
     {
-        AddPoblacion Poblacion = new()
+        Poblacion entity = new()
         {
-            ImageUri = "URL/Poblacion_4_500px.png",
-            Name = "Poblacion 4",
-            ProvinciaId = Context.Provincia.FirstOrDefault().Id
+            ImageUri = "URL/Sopela_500px.png",
+            Name = "Sopela 4",
+            ProvinciaId = 1
         };
 
-        await PoblacionManager.AddPoblacion(Poblacion);
+        await PoblacionManager.AddPoblacion(entity);
 
         Assert.Pass();
     }
@@ -212,14 +215,26 @@ public class PoblacionManagerTest : BaseManagerTest
     [Test]
     public void CheckName()
     {
-        AddPoblacion Poblacion = new()
-        {
-            ImageUri = "URL/Poblacion_3_500px.png",
-            Name = Context.Poblacion.FirstOrDefault().Name,
-            ProvinciaId = Context.Provincia.FirstOrDefault().Id
+        Poblacion entity = new()
+        {           
+            Id = 3,
+            Name = "Getxo",
+            ImageUri = "URL/Getxo_500px.png",        
         };
 
-        var exception = Assert.ThrowsAsync<ServiceException>(async () => await PoblacionManager.CheckName(Poblacion));
+        var exception = Assert.ThrowsAsync<ServiceException>(async () => await PoblacionManager.CheckName(entity.Name));
+
+        Assert.Pass();
+    }
+
+    /// <summary>
+    ///     Reloads Poblacion By Id
+    /// </summary>
+    /// <returns>Instance of <see cref="Task" /></returns>
+    [Test]
+    public async Task ReloadPoblacionById()
+    {
+        await PoblacionManager.ReloadPoblacionById(2);
 
         Assert.Pass();
     }

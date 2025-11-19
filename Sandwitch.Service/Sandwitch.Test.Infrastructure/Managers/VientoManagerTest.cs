@@ -28,7 +28,7 @@ public class VientoManagerTest : BaseManagerTest
         Seed();
 
         VientoManager = new VientoManager(Context, Logger);
-    }   
+    }
 
     /// <summary>
     ///     Instance of <see cref="ILogger{VientoManager}" />
@@ -67,31 +67,33 @@ public class VientoManagerTest : BaseManagerTest
     /// </summary>
     private void Seed()
     {
-        Context.Viento.Add(new Viento
+        if (!Context.Viento.Any())
         {
-            Id = 1,
-            Name = "Norte", 
-            ImageUri = "URL/Norte_500.png",
-            LastModified = DateTime.Now,
-            Deleted = false
-        });
-        Context.Viento.Add(new Viento
-        {
-            Id = 2,
-            Name = "Noroeste",
-            ImageUri = "URL/Noroeste_500.png",
-            LastModified = DateTime.Now,
-            Deleted = false
-        });
-        Context.Viento.Add(new Viento
-        {
-            Id = 3,
-            Name = "Oeste",
-            ImageUri = "URL/Oeste_500.png",
-            LastModified = DateTime.Now,
-            Deleted = false
-        });
-
+            Context.Viento.Add(new Viento
+            {
+                Id = 1,
+                Name = "Norte",
+                ImageUri = "URL/Norte_500.png",
+                LastModified = DateTime.Now,
+                Deleted = false
+            });
+            Context.Viento.Add(new Viento
+            {
+                Id = 2,
+                Name = "Noroeste",
+                ImageUri = "URL/Noroeste_500.png",
+                LastModified = DateTime.Now,
+                Deleted = false
+            });
+            Context.Viento.Add(new Viento
+            {
+                Id = 3,
+                Name = "Oeste",
+                ImageUri = "URL/Oeste_500.png",
+                LastModified = DateTime.Now,
+                Deleted = false
+            });
+        }
         Context.SaveChanges();
     }
 
@@ -182,7 +184,7 @@ public class VientoManagerTest : BaseManagerTest
     public async Task AddViento()
     {
         Viento entity = new()
-        {           
+        {
             ImageUri = "URL/Sudoeste_500px.png",
             Name = "Sudoeste"
         };

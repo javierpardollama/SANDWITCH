@@ -66,72 +66,90 @@ public class HistoricoManagerTest : BaseManagerTest
     /// </summary>
     private void Seed()
     {
-        Context.Viento.Add(new Viento
+        if (!Context.Viento.Any())
         {
-            Id = 1,
-            Name = "Norte",
-            ImageUri = "URL/Norte_500.png",
-            LastModified = DateTime.Now,
-            Deleted = false
-        });
+            Context.Viento.Add(new Viento
+            {
+                Id = 1,
+                Name = "Norte",
+                ImageUri = "URL/Norte_500.png",
+                LastModified = DateTime.Now,
+                Deleted = false
+            });
+        }
 
-        Context.Bandera.Add(new Bandera
+        if (!Context.Bandera.Any())
         {
-            Id = 1,
-            Name = "Amarilla ",
-            ImageUri = "URL/Amarilla_500.png",
-            LastModified = DateTime.Now,
-            Deleted = false
-        });
+            Context.Bandera.Add(new Bandera
+            {
+                Id = 1,
+                Name = "Amarilla ",
+                ImageUri = "URL/Amarilla_500.png",
+                LastModified = DateTime.Now,
+                Deleted = false
+            });
+        }
 
-        Context.Provincia.Add(new Provincia
+        if (!Context.Provincia.Any())
         {
-            Id = 1,
-            Name = "Bizkaia",
-            ImageUri = "URL/Bizkaia_500px.png",
-            LastModified = DateTime.Now,
-            Deleted = false
-        });
+            Context.Provincia.Add(new Provincia
+            {
+                Id = 1,
+                Name = "Bizkaia",
+                ImageUri = "URL/Bizkaia_500px.png",
+                LastModified = DateTime.Now,
+                Deleted = false
+            });
+        }
 
-        Context.Poblacion.Add(new Poblacion
+        if (!Context.Poblacion.Any())
         {
-            Id = 1,
-            Name = "Muskiz",
-            ImageUri = "URL/Muskiz_500px.png",
-            LastModified = DateTime.Now,
-            Deleted = false
-        });
+            Context.Poblacion.Add(new Poblacion
+            {
+                Id = 1,
+                Name = "Muskiz",
+                ImageUri = "URL/Muskiz_500px.png",
+                LastModified = DateTime.Now,
+                Deleted = false
+            });
+        }
 
-        Context.Arenal.Add(new Arenal
+        if (!Context.Arenal.Any())
         {
-            Id = 1,
-            Name = "La Arena",
-            LastModified = DateTime.Now,
-            Deleted = false,
-            ArenalPoblaciones = [ 
+            Context.Arenal.Add(new Arenal
+            {
+                Id = 1,
+                Name = "La Arena",
+                LastModified = DateTime.Now,
+                Deleted = false,
+                ArenalPoblaciones = [
                 new()
                 {
                     ArenalId = 1,
                     PoblacionId = 1,
-                } 
+                }
                 ]
-        });      
+            });
+        }
 
-        Context.Historico.Add(new Historico()
+        if (!Context.Historico.Any())
         {
-            Id = 1,
-            LastModified = DateTime.Now,
-            Deleted = false,
-            BajaMarAlba = DateTime.Now.TimeOfDay,
-            BajaMarOcaso = DateTime.Now.TimeOfDay,
-            AltaMarAlba = DateTime.Now.TimeOfDay,
-            AltaMarOcaso = DateTime.Now.TimeOfDay,
-            Temperatura = 20,
-            Velocidad = 0,
-            ArenalId= 1,
-            VientoId = 1,
-            BanderaId = 1,
-        });      
+            Context.Historico.Add(new Historico()
+            {
+                Id = 1,
+                LastModified = DateTime.Now,
+                Deleted = false,
+                BajaMarAlba = DateTime.Now.TimeOfDay,
+                BajaMarOcaso = DateTime.Now.TimeOfDay,
+                AltaMarAlba = DateTime.Now.TimeOfDay,
+                AltaMarOcaso = DateTime.Now.TimeOfDay,
+                Temperatura = 20,
+                Velocidad = 0,
+                ArenalId = 1,
+                VientoId = 1,
+                BanderaId = 1,
+            });
+        }
 
         Context.SaveChanges();
     }

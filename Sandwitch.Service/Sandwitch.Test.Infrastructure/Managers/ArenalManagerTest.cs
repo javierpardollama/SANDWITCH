@@ -4,6 +4,7 @@ using Sandwitch.Domain.Entities;
 using Sandwitch.Domain.Exceptions;
 using Sandwitch.Infrastructure.Managers;
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Sandwitch.Test.Infrastructure.Managers;
@@ -27,7 +28,7 @@ public class ArenalManagerTest : BaseManagerTest
         Seed();
 
         ArenalManager = new ArenalManager(Context, Logger);
-    }   
+    }
 
     /// <summary>
     ///     Instance of <see cref="ILogger{ArenalManager}" />
@@ -66,98 +67,114 @@ public class ArenalManagerTest : BaseManagerTest
     /// </summary>
     private void Seed()
     {
-        Context.Viento.Add(new Viento
+        if (!Context.Viento.Any())
         {
-            Id = 1,
-            Name = "Norte",
-            ImageUri = "URL/Norte_500.png",
-            LastModified = DateTime.Now,
-            Deleted = false
-        });
+            Context.Viento.Add(new Viento
+            {
+                Id = 1,
+                Name = "Norte",
+                ImageUri = "URL/Norte_500.png",
+                LastModified = DateTime.Now,
+                Deleted = false
+            });
+        }
 
-        Context.Bandera.Add(new Bandera
+        if (!Context.Bandera.Any())
         {
-            Id = 1,
-            Name = "Amarilla ",
-            ImageUri = "URL/Amarilla_500.png",
-            LastModified = DateTime.Now,
-            Deleted = false
-        });
+            Context.Bandera.Add(new Bandera
+            {
+                Id = 1,
+                Name = "Amarilla ",
+                ImageUri = "URL/Amarilla_500.png",
+                LastModified = DateTime.Now,
+                Deleted = false
+            });
+        }
 
-        Context.Provincia.Add(new Provincia
+        if (!Context.Provincia.Any())
         {
-            Id = 1,
-            Name = "Bizkaia",
-            ImageUri = "URL/Bizkaia_500px.png",
-            LastModified = DateTime.Now,
-            Deleted = false
-        });
+            Context.Provincia.Add(new Provincia
+            {
+                Id = 1,
+                Name = "Bizkaia",
+                ImageUri = "URL/Bizkaia_500px.png",
+                LastModified = DateTime.Now,
+                Deleted = false
+            });
+        }
 
-        Context.Poblacion.Add(new Poblacion
+        if (!Context.Poblacion.Any())
         {
-            Id = 1,
-            Name = "Getxo",
-            ImageUri = "URL/Getxo_500px.png",
-            LastModified = DateTime.Now,
-            Deleted = false
-        });
+            Context.Poblacion.Add(new Poblacion
+            {
+                Id = 1,
+                Name = "Getxo",
+                ImageUri = "URL/Getxo_500px.png",
+                LastModified = DateTime.Now,
+                Deleted = false
+            });
 
-        Context.Poblacion.Add(new Poblacion
-        {
-            Id = 2,
-            Name = "Muskiz",
-            ImageUri = "URL/Muskiz_500px.png",
-            LastModified = DateTime.Now,
-            Deleted = false
-        });       
+            Context.Poblacion.Add(new Poblacion
+            {
+                Id = 2,
+                Name = "Muskiz",
+                ImageUri = "URL/Muskiz_500px.png",
+                LastModified = DateTime.Now,
+                Deleted = false
+            });
+        }
 
-        Context.Arenal.Add(new Arenal
+        if (!Context.Arenal.Any())
         {
-            Id = 1,
-            Name = "Las Arenas",
-            LastModified = DateTime.Now,
-            Deleted = false,
-            ArenalPoblaciones = [
+            Context.Arenal.Add(new Arenal
+            {
+                Id = 1,
+                Name = "Las Arenas",
+                LastModified = DateTime.Now,
+                Deleted = false,
+                ArenalPoblaciones = [
                 new()
                 {
                     ArenalId = 1,
                     PoblacionId = 1,
                 }
                 ]
-        });
+            });
 
 
-        Context.Arenal.Add(new Arenal
-        {
-            Id = 2,
-            Name = "La Arena",
-            LastModified = DateTime.Now,
-            Deleted = false,
-            ArenalPoblaciones = [
-              new()
+            Context.Arenal.Add(new Arenal
+            {
+                Id = 2,
+                Name = "La Arena",
+                LastModified = DateTime.Now,
+                Deleted = false,
+                ArenalPoblaciones = [
+                  new()
                 {
                     ArenalId = 2,
                     PoblacionId = 2,
                 }
-              ]
-        });
-
-        Context.Historico.Add(new Historico()
+                  ]
+            });
+        }
+        if (!Context.Historico.Any())
         {
-            Id = 1,
-            LastModified = DateTime.Now,
-            Deleted = false,
-            BajaMarAlba = DateTime.Now.TimeOfDay,
-            BajaMarOcaso = DateTime.Now.TimeOfDay,
-            AltaMarAlba = DateTime.Now.TimeOfDay,
-            AltaMarOcaso = DateTime.Now.TimeOfDay,
-            Temperatura = 20,
-            Velocidad = 0,
-            ArenalId = 1,
-            VientoId = 1,
-            BanderaId = 1,
-        });
-
+            Context.Historico.Add(new Historico()
+            {
+                Id = 1,
+                LastModified = DateTime.Now,
+                Deleted = false,
+                BajaMarAlba = DateTime.Now.TimeOfDay,
+                BajaMarOcaso = DateTime.Now.TimeOfDay,
+                AltaMarAlba = DateTime.Now.TimeOfDay,
+                AltaMarOcaso = DateTime.Now.TimeOfDay,
+                Temperatura = 20,
+                Velocidad = 0,
+                ArenalId = 1,
+                VientoId = 1,
+                BanderaId = 1,
+            });
+        }
         Context.SaveChanges();
     }
 
@@ -180,7 +197,7 @@ public class ArenalManagerTest : BaseManagerTest
     [Test]
     public async Task FindPaginatedArenal()
     {
-        await ArenalManager.FindPaginatedArenal( 1, 5 );
+        await ArenalManager.FindPaginatedArenal(1, 5);
 
         Assert.Pass();
     }
@@ -255,7 +272,7 @@ public class ArenalManagerTest : BaseManagerTest
         Arenal @entity = new()
         {
             Id = 2,
-            Name = "Las Arenas",            
+            Name = "Las Arenas",
         };
 
         await ArenalManager.UpdateArenal(@entity);
@@ -271,8 +288,8 @@ public class ArenalManagerTest : BaseManagerTest
     public async Task AddArenal()
     {
         Arenal @entity = new()
-        {           
-            Name = "Ereaga"            
+        {
+            Name = "Ereaga"
         };
 
         await ArenalManager.AddArenal(entity);

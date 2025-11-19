@@ -69,30 +69,33 @@ public class ProvinciaManagerTest : BaseManagerTest
     /// </summary>
     private void Seed()
     {
-        Context.Provincia.Add(new Provincia
+        if (!Context.Provincia.Any())
         {
-            Id = 1,
-            Name = "Bizkaia", 
-            ImageUri = "URL/Bizkaia_500px.png",
-            LastModified = DateTime.Now,
-            Deleted = false
-        });
-        Context.Provincia.Add(new Provincia
-        {
-            Id = 2,
-            Name = "Gipuzkoa", 
-            ImageUri = "URL/Gipuzkoa_500px.png", 
-            LastModified = DateTime.Now,
-            Deleted = false
-        });
-        Context.Provincia.Add(new Provincia
-        {
-            Id = 3,
-            Name = "Cantabria", 
-            ImageUri = "URL/Cantabria_500px.png", 
-            LastModified = DateTime.Now,
-            Deleted = false
-        });
+            Context.Provincia.Add(new Provincia
+            {
+                Id = 1,
+                Name = "Bizkaia",
+                ImageUri = "URL/Bizkaia_500px.png",
+                LastModified = DateTime.Now,
+                Deleted = false
+            });
+            Context.Provincia.Add(new Provincia
+            {
+                Id = 2,
+                Name = "Gipuzkoa",
+                ImageUri = "URL/Gipuzkoa_500px.png",
+                LastModified = DateTime.Now,
+                Deleted = false
+            });
+            Context.Provincia.Add(new Provincia
+            {
+                Id = 3,
+                Name = "Cantabria",
+                ImageUri = "URL/Cantabria_500px.png",
+                LastModified = DateTime.Now,
+                Deleted = false
+            });
+        }
 
         Context.SaveChanges();
     }

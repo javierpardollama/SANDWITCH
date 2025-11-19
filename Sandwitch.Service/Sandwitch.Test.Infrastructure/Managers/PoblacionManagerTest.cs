@@ -68,44 +68,49 @@ public class PoblacionManagerTest : BaseManagerTest
     /// </summary>
     private void Seed()
     {
-        Context.Provincia.Add(new Provincia
+        if (!Context.Provincia.Any())
         {
-            Id = 1,
-            Name = "Bizkaia",
-            ImageUri = "URL/Bizkaia_500px.png",
-            LastModified = DateTime.Now,
-            Deleted = false
-        });
+            Context.Provincia.Add(new Provincia
+            {
+                Id = 1,
+                Name = "Bizkaia",
+                ImageUri = "URL/Bizkaia_500px.png",
+                LastModified = DateTime.Now,
+                Deleted = false
+            });
+        }
 
-        Context.Poblacion.Add(new Poblacion
+        if (!Context.Poblacion.Any())
         {
-            Id = 1,
-            Name = "Zierbena",
-            ImageUri = "URL/Zierbena_500px.png",
-            ProvinciaId = 1,
-            LastModified = DateTime.Now,
-            Deleted = false
-        });
-        Context.Poblacion.Add(new Poblacion
-        {
-            Id = 2,
-            Name = "Muskiz", 
-            ImageUri = "URL/Muskiz_500px.png",
-            ProvinciaId = 1,
-            LastModified = DateTime.Now,
-            Deleted = false
-        });
-     
-        Context.Poblacion.Add(new Poblacion
-        {
-            Id = 3,
-            Name = "Getxo", 
-            ImageUri = "URL/Getxo_500px.png",
-            ProvinciaId = 1,
-            LastModified = DateTime.Now,
-            Deleted = false
-        });
+            Context.Poblacion.Add(new Poblacion
+            {
+                Id = 1,
+                Name = "Zierbena",
+                ImageUri = "URL/Zierbena_500px.png",
+                ProvinciaId = 1,
+                LastModified = DateTime.Now,
+                Deleted = false
+            });
+            Context.Poblacion.Add(new Poblacion
+            {
+                Id = 2,
+                Name = "Muskiz",
+                ImageUri = "URL/Muskiz_500px.png",
+                ProvinciaId = 1,
+                LastModified = DateTime.Now,
+                Deleted = false
+            });
 
+            Context.Poblacion.Add(new Poblacion
+            {
+                Id = 3,
+                Name = "Getxo",
+                ImageUri = "URL/Getxo_500px.png",
+                ProvinciaId = 1,
+                LastModified = DateTime.Now,
+                Deleted = false
+            });
+        }
         Context.SaveChanges();
     }
 

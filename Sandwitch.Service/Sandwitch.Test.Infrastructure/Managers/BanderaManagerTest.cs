@@ -78,24 +78,33 @@ public class BanderaManagerTest : BaseManagerTest
     /// </summary>
     private void Seed()
     {
-        Context.Bandera.Add(new Bandera
+        if (!Context.Bandera.Any())
         {
-            Id = 1,
-            Name = "Amarilla ", ImageUri = "URL/Amarilla_500.png", LastModified = DateTime.Now,
-            Deleted = false
-        });
-        Context.Bandera.Add(new Bandera
-        {
-            Id= 2,
-            Name = "Negra", ImageUri = "URL/Negra_500.png", LastModified = DateTime.Now,
-            Deleted = false
-        });
-        Context.Bandera.Add(new Bandera
-        {
-            Id = 3,
-            Name = "Roja" , ImageUri = "URL/Roja_500.png", LastModified = DateTime.Now,
-            Deleted = false
-        });
+            Context.Bandera.Add(new Bandera
+            {
+                Id = 1,
+                Name = "Amarilla ",
+                ImageUri = "URL/Amarilla_500.png",
+                LastModified = DateTime.Now,
+                Deleted = false
+            });
+            Context.Bandera.Add(new Bandera
+            {
+                Id = 2,
+                Name = "Negra",
+                ImageUri = "URL/Negra_500.png",
+                LastModified = DateTime.Now,
+                Deleted = false
+            });
+            Context.Bandera.Add(new Bandera
+            {
+                Id = 3,
+                Name = "Roja",
+                ImageUri = "URL/Roja_500.png",
+                LastModified = DateTime.Now,
+                Deleted = false
+            });
+        }
 
         Context.SaveChanges();
     }

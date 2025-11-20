@@ -1,15 +1,13 @@
 import { Time } from "@angular/common";
 
 import { ViewBase } from './viewbase';
-import { ViewBandera } from './viewbandera';
-import { ViewViento } from './viewviento';
-import { ViewArenal } from './viewarenal';
+import { ViewCatalog } from "./viewcatalog";
 
 export interface ViewHistorico extends ViewBase {
-    Viento: ViewViento;
+    Viento: ViewCatalog;
     Velocidad: number;
-    Bandera: ViewBandera;
-    Arenal: ViewArenal;
+    Bandera: ViewCatalog;
+    Arenal: ViewCatalog;
     Temperatura: number;
     BajaMarAlba: Time;
     BajaMarOcaso: Time;

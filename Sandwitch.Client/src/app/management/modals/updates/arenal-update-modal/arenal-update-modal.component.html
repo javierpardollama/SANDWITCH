@@ -32,15 +32,11 @@
       <mat-form-field class="search-half-width">
         <mat-label>PoblacionesId</mat-label>
         <mat-select formControlName="PoblacionesId" multiple>
-          @for (provincia of provincias; track provincia) {
-            <mat-optgroup [label]="provincia.Name">
-              @for (poblacion of provincia.Poblaciones; track poblacion) {
-                <mat-option [value]="poblacion.Id">
+          @for (poblacion of poblaciones; track poblacion) {
+             <mat-option [value]="poblacion.Id">
                   <img class="select-option-img" aria-hidden ngSrc="{{poblacion.ImageUri}}" height="25" width="25">
                   <span>{{poblacion.Name}}</span>
                 </mat-option>
-              }
-            </mat-optgroup>
           }
           @if (!formGroup.controls['PoblacionesId'].valid && formGroup.controls['PoblacionesId'].touched) {
             <mat-error>

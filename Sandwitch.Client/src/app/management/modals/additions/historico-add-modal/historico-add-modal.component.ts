@@ -50,12 +50,13 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
+import { ViewCatalog } from 'src/viewmodels/views/viewcatalog';
 
 @Component({
-    selector: 'app-historico-add-modal',
-    templateUrl: './historico-add-modal.component.html',
-    styleUrls: ['./historico-add-modal.component.scss'],
-    imports: [
+  selector: 'app-historico-add-modal',
+  templateUrl: './historico-add-modal.component.html',
+  styleUrls: ['./historico-add-modal.component.scss'],
+  imports: [
     MatDividerModule,
     MatSelectModule,
     MatInputModule,
@@ -72,15 +73,15 @@ import { MatTableModule } from '@angular/material/table';
     FormsModule,
     ReactiveFormsModule,
     NgOptimizedImage
-]
+  ]
 })
 export class HistoricoAddModalComponent implements OnInit {
 
   public formGroup!: FormGroup;
 
-  public banderas: ViewBandera[] = [];
+  public banderas: ViewCatalog[] = [];
 
-  public vientos: ViewViento[] = [];
+  public vientos: ViewCatalog[] = [];
 
   // Constructor
   constructor(
@@ -95,9 +96,9 @@ export class HistoricoAddModalComponent implements OnInit {
 
   // Life Cicle
   async ngOnInit(): Promise<void> {
-      this.CreateForm();
-      await this.FindAllBandera();
-      await this.FindAllViento();
+    this.CreateForm();
+    await this.FindAllBandera();
+    await this.FindAllViento();
   }
 
   // Form

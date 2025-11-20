@@ -1,12 +1,8 @@
 import { ViewBase } from './viewbase';
-import { ViewProvincia } from './viewprovincia';
-import { ViewArenalPoblacion } from './viewarenalpoblacion';
-import { ViewArenal } from './viewarenal';
+import { ViewCatalog } from './viewcatalog';
 
 export interface ViewPoblacion extends ViewBase {
   ImageUri: string;
   Name: string;
-  Provincia: ViewProvincia;
-  ArenalPoblaciones: ViewArenalPoblacion[];
-  Arenales: ViewArenal[];
+  Provincia: ViewCatalog;
 }

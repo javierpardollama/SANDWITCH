@@ -18,13 +18,9 @@ import {
 
 import { ViewArenal } from '../../../../../viewmodels/views/viewarenal';
 
-import { ViewProvincia } from '../../../../../viewmodels/views/viewprovincia';
-
 import { UpdateArenal } from '../../../../../viewmodels/updates/updatearenal';
 
 import { ArenalService } from '../../../../../services/arenal.service';
-
-import { ProvinciaService } from '../../../../../services/provincia.service';
 
 import { TextAppVariants } from '../../../../../variants/text.app.variants';
 
@@ -43,6 +39,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { NgOptimizedImage } from '@angular/common';
+import { ViewCatalog } from 'src/viewmodels/views/viewcatalog';
+import { PoblacionService } from 'src/services/poblacion.service';
 
 @Component({
     selector: 'app-arenal-update-modal',
@@ -71,13 +69,12 @@ export class ArenalUpdateModalComponent implements OnInit {
 
   public formGroup!: FormGroup;
 
-  public provincias: ViewProvincia[] = [];
-
+  public poblaciones: ViewCatalog[] = [];
 
   // Constructor
   constructor(
     private arenalService: ArenalService,
-    private provinciaService: ProvinciaService,
+    private poblacionService: PoblacionService,
     private formBuilder: FormBuilder,
     public dialogRef: MatDialogRef<ArenalUpdateModalComponent>,
     private matSnackBar: MatSnackBar,
@@ -87,7 +84,7 @@ export class ArenalUpdateModalComponent implements OnInit {
   // Life Cicle
   async ngOnInit(): Promise<void> {
       this.CreateForm();
-      await this.FindAllProvincia();
+      await this.FindAllPoblacion();
   }
 
   // Form
@@ -130,7 +127,7 @@ export class ArenalUpdateModalComponent implements OnInit {
   }
 
   // Get Data from Service
-  public async FindAllProvincia(): Promise<void> {
-    this.provincias = await this.provinciaService.FindAllProvincia();
+  public async FindAllPoblacion(): Promise<void> {
+    this.poblaciones = await this.poblacionService.FindAllPoblacion();
   }
 }

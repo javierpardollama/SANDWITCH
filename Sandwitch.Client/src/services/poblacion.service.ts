@@ -22,6 +22,7 @@ import { firstValueFrom } from 'rxjs';
 
 import { environment } from 'src/environments/environment';
 import { Router } from '@angular/router';
+import { ViewCatalog } from 'src/viewmodels/views/viewcatalog';
 
 @Injectable({
     providedIn: 'root',
@@ -39,6 +40,11 @@ export class PoblacionService extends BaseService {
     public UpdatePoblacion(viewModel: UpdatePoblacion): Promise<ViewPoblacion> {
         return firstValueFrom(this.httpClient.put<ViewPoblacion>(`${environment.Api.Service}api/v1/poblacion/update`, viewModel)
             .pipe(catchError(this.HandleError<ViewPoblacion>('UpdatePoblacion', undefined))));
+    }
+
+    public FindAllPoblacion(): Promise<ViewCatalog[]> {
+        return firstValueFrom(this.httpClient.get<ViewCatalog[]>(`${environment.Api.Service}api/v1/poblacion/all`)
+            .pipe(catchError(this.HandleError<ViewCatalog[]>('FindAllPoblacion', []))));
     }
 
     public FindPaginatedPoblacion(viewModel: FilterPage): Promise<ViewPage<ViewPoblacion>> {

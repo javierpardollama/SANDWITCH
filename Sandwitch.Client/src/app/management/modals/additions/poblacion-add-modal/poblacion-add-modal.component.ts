@@ -40,6 +40,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { NgOptimizedImage } from '@angular/common';
+import { ViewCatalog } from 'src/viewmodels/views/viewcatalog';
 
 @Component({
     selector: 'app-poblacion-add-modal',
@@ -68,7 +69,7 @@ export class PoblacionAddModalComponent implements OnInit {
 
   public formGroup!: FormGroup;
 
-  public provincias: ViewProvincia[] = [];
+  public provincias: ViewCatalog[] = [];
 
   // Constructor
   constructor(

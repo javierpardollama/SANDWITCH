@@ -22,6 +22,7 @@ import { firstValueFrom } from 'rxjs';
 
 import { environment } from 'src/environments/environment';
 import { Router } from '@angular/router';
+import { ViewCatalog } from 'src/viewmodels/views/viewcatalog';
 
 @Injectable({
     providedIn: 'root',
@@ -41,9 +42,9 @@ export class VientoService extends BaseService {
             .pipe(catchError(this.HandleError<ViewViento>('UpdateViento', undefined))));
     }
 
-    public FindAllViento(): Promise<ViewViento[]> {
-        return firstValueFrom(this.httpClient.get<ViewViento[]>(`${environment.Api.Service}api/v2/viento/all`)
-            .pipe(catchError(this.HandleError<ViewViento[]>('FindAllViento', []))));
+    public FindAllViento(): Promise<ViewCatalog[]> {
+        return firstValueFrom(this.httpClient.get<ViewCatalog[]>(`${environment.Api.Service}api/v2/viento/all`)
+            .pipe(catchError(this.HandleError<ViewCatalog[]>('FindAllViento', []))));
     }
 
     public FindPaginatedViento(viewModel: FilterPage): Promise<ViewPage<ViewViento>> {

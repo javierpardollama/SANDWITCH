@@ -22,6 +22,7 @@ import { firstValueFrom } from 'rxjs';
 
 import { environment } from 'src/environments/environment';
 import { Router } from '@angular/router';
+import { ViewCatalog } from 'src/viewmodels/views/viewcatalog';
 
 @Injectable({
     providedIn: 'root',
@@ -41,9 +42,9 @@ export class ProvinciaService extends BaseService {
             .pipe(catchError(this.HandleError<ViewProvincia>('UpdateProvincia', undefined))));
     }
 
-    public FindAllProvincia(): Promise<ViewProvincia[]> {
-        return firstValueFrom(this.httpClient.get<ViewProvincia[]>(`${environment.Api.Service}api/v1/provincia/all`)
-            .pipe(catchError(this.HandleError<ViewProvincia[]>('FindAllProvincia', []))));
+    public FindAllProvincia(): Promise<ViewCatalog[]> {
+        return firstValueFrom(this.httpClient.get<ViewCatalog[]>(`${environment.Api.Service}api/v1/provincia/all`)
+            .pipe(catchError(this.HandleError<ViewCatalog[]>('FindAllProvincia', []))));
     }
 
     public FindPaginatedProvincia(viewModel: FilterPage): Promise<ViewPage<ViewProvincia>> {

@@ -15,13 +15,11 @@ import {
   Validators
 } from '@angular/forms';
 
-import { ViewProvincia } from '../../../../../viewmodels/views/viewprovincia';
 
 import { AddArenal } from '../../../../../viewmodels/additions/addarenal';
 
 import { ArenalService } from '../../../../../services/arenal.service';
 
-import { ProvinciaService } from '../../../../../services/provincia.service';
 
 import { TextAppVariants } from '../../../../../variants/text.app.variants';
 
@@ -40,12 +38,14 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { NgOptimizedImage } from '@angular/common';
+import { PoblacionService } from 'src/services/poblacion.service';
+import { ViewCatalog } from 'src/viewmodels/views/viewcatalog';
 
 @Component({
-    selector: 'app-arenal-add-modal',
-    templateUrl: './arenal-add-modal.component.html',
-    styleUrls: ['./arenal-add-modal.component.scss'],
-    imports: [
+  selector: 'app-arenal-add-modal',
+  templateUrl: './arenal-add-modal.component.html',
+  styleUrls: ['./arenal-add-modal.component.scss'],
+  imports: [
     MatDividerModule,
     MatSelectModule,
     MatInputModule,
@@ -62,18 +62,18 @@ import { NgOptimizedImage } from '@angular/common';
     FormsModule,
     ReactiveFormsModule,
     NgOptimizedImage
-]
+  ]
 })
 export class ArenalAddModalComponent implements OnInit {
 
   public formGroup!: FormGroup;
 
-  public provincias: ViewProvincia[] = [];
+  public poblaciones: ViewCatalog[] = [];
 
   // Constructor
   constructor(
     private arenalService: ArenalService,
-    private provinciaService: ProvinciaService,
+    private poblacionService: PoblacionService,
     private formBuilder: FormBuilder,
     public dialogRef: MatDialogRef<ArenalAddModalComponent>,
     private matSnackBar: MatSnackBar) { }
@@ -81,8 +81,8 @@ export class ArenalAddModalComponent implements OnInit {
 
   // Life Cicle
   async ngOnInit(): Promise<void> {
-      this.CreateForm();
-      await this.FindAllProvincia();
+    this.CreateForm();
+    await this.FindAllPoblacion();
   }
 
   // Form
@@ -113,7 +113,7 @@ export class ArenalAddModalComponent implements OnInit {
   }
 
   // Get Data from Service
-  public async FindAllProvincia(): Promise<void> {
-    this.provincias = await this.provinciaService.FindAllProvincia();
+  public async FindAllPoblacion(): Promise<void> {
+    this.poblaciones = await this.poblacionService.FindAllPoblacion();
   }
 }

@@ -22,6 +22,7 @@ import { firstValueFrom } from 'rxjs';
 
 import { environment } from 'src/environments/environment';
 import { Router } from '@angular/router';
+import { ViewCatalog } from 'src/viewmodels/views/viewcatalog';
 
 @Injectable({
     providedIn: 'root',
@@ -41,9 +42,9 @@ export class BanderaService extends BaseService {
             .pipe(catchError(this.HandleError<ViewBandera>('UpdateBandera', undefined))));
     }
 
-    public FindAllBandera(): Promise<ViewBandera[]> {
-        return firstValueFrom(this.httpClient.get<ViewBandera[]>(`${environment.Api.Service}api/v1/bandera/all`)
-            .pipe(catchError(this.HandleError<ViewBandera[]>('FindAllBandera', []))));
+    public FindAllBandera(): Promise<ViewCatalog[]> {
+        return firstValueFrom(this.httpClient.get<ViewCatalog[]>(`${environment.Api.Service}api/v1/bandera/all`)
+            .pipe(catchError(this.HandleError<ViewCatalog[]>('FindAllBandera', []))));
     }
 
     public FindPaginatedBandera(viewModel: FilterPage): Promise<ViewPage<ViewBandera>> {

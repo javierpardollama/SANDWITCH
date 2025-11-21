@@ -51,27 +51,26 @@ public class BuscadorManager(
     /// <returns>Instance of <see cref="Task{IList{Arenal}}" /></returns>
     public async Task<IList<ArenalDto>> FindAllArenalByBuscadorId(int id, string type)
     {
-        Expression<Func<ArenalPoblacion, bool>> expression = type switch
+        Expression<Func<Arenal, bool>> expression = type switch
         {
-            nameof(Poblacion) => x => x.PoblacionId == id,
-            nameof(Provincia) => x => x.Poblacion.ProvinciaId == id,
+            nameof(Poblacion) => x => x.ArenalPoblaciones.Any(x=> x.PoblacionId == id),
+            nameof(Provincia) => x => x.ArenalPoblaciones.Any(x => x.Poblacion.ProvinciaId == id),
             _ => x => false
         };
 
-        IList<ArenalDto> @arenales = await Context.ArenalPoblacion
+        IList<ArenalDto> @arenales = await Context.Arenal
             .TagWith("FindAllArenalByBuscadorId")
             .AsNoTracking()
             .AsSplitQuery()
-            .Include(x => x.Poblacion)
-            .Include(x => x.Arenal.Historicos)
+            .Include(x=> x.ArenalPoblaciones)
+            .ThenInclude(x => x.Poblacion)
+            .Include(x => x.Historicos)
             .ThenInclude(x => x.Viento)
-            .Include(x => x.Arenal.Historicos)
+            .Include(x => x.Historicos)           
             .ThenInclude(x => x.Bandera)
             .Where(expression)
-            .Select(x => x.Arenal.ToDto())
-            .Distinct()
-            .ToListAsync();
-
+            .Select(x =>x.ToDto())
+            .ToListAsync();      
 
         return @arenales;
     }

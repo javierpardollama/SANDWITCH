@@ -17,6 +17,8 @@ namespace Sandwitch.Domain.Profiles
         {
             return new HistoricoDto
             {
+              Id = @entity.Id,
+              LastModified = @entity.LastModified,
               AltaMarAlba = @entity.AltaMarAlba,
               AltaMarOcaso = @entity.AltaMarOcaso,
               Arenal = entity.Arenal?.ToCatalog(),

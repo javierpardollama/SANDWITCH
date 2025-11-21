@@ -18,6 +18,7 @@ namespace Sandwitch.Application.Profiles
             return new ViewHistorico
             {
               Id = @dto.Id,
+              LastModified = @dto.LastModified,
               AltaMarAlba = @dto.AltaMarAlba,
               AltaMarOcaso = @dto.AltaMarOcaso,
               Arenal = @dto.Arenal?.ToViewModel(),

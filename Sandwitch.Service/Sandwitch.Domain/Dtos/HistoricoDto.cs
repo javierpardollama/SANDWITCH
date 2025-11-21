@@ -11,6 +11,11 @@
         public int Id { get; set; }
 
         /// <summary>
+        ///     Gets or Sets <see cref="LastModified" />
+        /// </summary>    
+        public DateTime? LastModified { get; set; }
+
+        /// <summary>
         ///     Gets or Sets <see cref="Viento" />
         /// </summary>      
         public virtual CatalogDto Viento { get; set; }

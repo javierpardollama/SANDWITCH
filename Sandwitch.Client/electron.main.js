@@ -15,7 +15,7 @@ const CreateWindow = () => {
 
     const mainUrl = isDev
         ? 'https://localhost:4200'
-        : path.join(__dirname, 'dist', 'hyperdrive.client', 'browser', 'index.html');
+        : path.join(__dirname, 'dist', 'sandwitch.client', 'browser', 'index.html');
 
     const LoadContent = () => {
         isDev ? win.loadURL(mainUrl) : win.loadFile(mainUrl);

@@ -6,7 +6,7 @@ Este proyecto surge como una solución para gestionar el estado actual de las pl
 
 ## ARQUITECTURA
 
-Este Proyecto está construido en n capas, siguiendo una estructura hexagonal (puertos - adaptAdores), bajo un diseño guiado por dominio:
+Este Proyecto está construido en n capas, siguiendo una estructura hexagonal (puertos - adaptadores), bajo un diseño guiado por dominio:
 
 1. [Domain](https://github.com/javierpardollama/SANDWITCH/tree/main/Sandwitch.Service/Sandwitch.Domain)
 

@@ -16,7 +16,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { CommonModule } from '@angular/common';
+
 import { RouterModule } from '@angular/router';
 import { MatSidenavModule }from "@angular/material/sidenav";
 
@@ -25,26 +25,25 @@ import { MatSidenavModule }from "@angular/material/sidenav";
     templateUrl: './nav-menu.component.html',
     styleUrls: ['./nav-menu.component.scss'],
     imports: [
-        MatToolbarModule,
-        MatDividerModule,
-        MatSelectModule,
-        MatInputModule,
-        MatDialogModule,
-        MatPaginatorModule,
-        MatButtonModule,
-        MatSnackBarModule,
-        MatChipsModule,
-        MatAutocompleteModule,
-        MatCardModule,
-        MatTableModule,
-        MatSortModule,
-        MatFormFieldModule,
-        CommonModule,
-        FormsModule,
-        ReactiveFormsModule,
-        RouterModule,
-        MatSidenavModule,
-    ]
+    MatToolbarModule,
+    MatDividerModule,
+    MatSelectModule,
+    MatInputModule,
+    MatDialogModule,
+    MatPaginatorModule,
+    MatButtonModule,
+    MatSnackBarModule,
+    MatChipsModule,
+    MatAutocompleteModule,
+    MatCardModule,
+    MatTableModule,
+    MatSortModule,
+    MatFormFieldModule,
+    FormsModule,
+    ReactiveFormsModule,
+    RouterModule,
+    MatSidenavModule
+]
 })
 export class NavMenuComponent {
 

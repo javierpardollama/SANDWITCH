@@ -47,7 +47,8 @@ public class BuscadorManager(
     /// <summary>
     ///     Finds All Arenal By Buscador Id
     /// </summary>
-    /// <param name="viewModel">Injected <see cref="FinderArenal" /></param>
+    /// <param name="id">Injected <see cref="int" /></param>
+    /// <param name="type">Injected <see cref="string" /></param>
     /// <returns>Instance of <see cref="Task{IList{Arenal}}" /></returns>
     public async Task<IList<ArenalDto>> FindAllArenalByBuscadorId(int id, string type)
     {

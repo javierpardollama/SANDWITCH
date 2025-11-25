@@ -20,7 +20,7 @@ namespace Sandwitch.Application.Profiles
                 Id = @dto.Id,
                 ImageUri = @dto.ImageUri,
                 Name = @dto.Name,
-                Type = @dto.Type,
+                Group = @dto.Group,
             };
         }
     }

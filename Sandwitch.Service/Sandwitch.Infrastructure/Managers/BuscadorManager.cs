@@ -45,14 +45,14 @@ public class BuscadorManager(
     ///     Finds All Arenal By Buscador Id
     /// </summary>
     /// <param name="id">Injected <see cref="int" /></param>
-    /// <param name="type">Injected <see cref="string" /></param>
+    /// <param name="group">Injected <see cref="string" /></param>
     /// <returns>Instance of <see cref="Task{IList{Arenal}}" /></returns>
-    public async Task<IList<ArenalDto>> FindAllArenalByBuscadorId(int id, string type)
+    public async Task<IList<ArenalDto>> FindAllArenalByBuscadorId(int @id, string @group)
     {
-        Expression<Func<Arenal, bool>> expression = type switch
+        Expression<Func<Arenal, bool>> expression = group switch
         {
-            nameof(Poblacion) => x => x.ArenalPoblaciones.Any(x=> x.PoblacionId == id),
-            nameof(Provincia) => x => x.ArenalPoblaciones.Any(x => x.Poblacion.ProvinciaId == id),
+            nameof(Poblacion) => x => x.ArenalPoblaciones.Any(x=> x.PoblacionId == @id),
+            nameof(Provincia) => x => x.ArenalPoblaciones.Any(x => x.Poblacion.ProvinciaId == @id),
             _ => x => false
         };
 

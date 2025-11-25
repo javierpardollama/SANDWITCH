@@ -31,7 +31,7 @@ public class FindAllArenalByBuscadorIdHandler : IRequestHandler<FindAllArenalByB
     public async Task<IList<ViewArenal>> Handle(FindAllArenalByBuscadorIdQuery request,
         CancellationToken cancellationToken)
     {
-        var dtos = await Manager.FindAllArenalByBuscadorId(request.ViewModel.Id, request.ViewModel.Type);
+        var dtos = await Manager.FindAllArenalByBuscadorId(request.ViewModel.Id, request.ViewModel.Group);
 
         return [.. dtos.Select(x => x.ToViewModel())];
     }

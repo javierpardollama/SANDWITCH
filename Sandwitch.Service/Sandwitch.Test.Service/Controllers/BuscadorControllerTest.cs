@@ -55,7 +55,7 @@ public class BuscadorControllerTest
     [Test]
     public async Task FindAllArenalByBuscadorId()
     {
-        var content = JsonContent.Create(new FinderArenal { Id = 1, Type = "Poblacion" });
+        var content = JsonContent.Create(new FinderArenal { Id = 1, Group = "Poblacion" });
 
         var response = await Client.PostAsync("all/arenal/", content);
         response.EnsureSuccessStatusCode();

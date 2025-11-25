@@ -11,7 +11,7 @@ public class FinderArenal
     public int Id { get; set; }
 
     /// <summary>
-    ///     Gets or Sets <see cref="Type" />
+    ///     Gets or Sets <see cref="Group" />
     /// </summary>
-    public string Type { get; set; }
+    public string Group { get; set; }
 }

@@ -51,7 +51,7 @@ namespace Sandwitch.Domain.Profiles
                 Id = @entity.Id,
                 ImageUri = @entity.ImageUri,
                 Name = @entity.Name,
-                Type = nameof(Provincia),
+                Group = nameof(Provincia),
             };
         }
     }

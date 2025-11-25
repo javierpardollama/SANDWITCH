@@ -35,7 +35,7 @@ public class BuscadorController
             new AuthenticationHeaderValue("Basic",
                 Convert.ToBase64String(Encoding.UTF8.GetBytes("Peach" + ":" + "T/R4J6eyvNG<6ne!")));
 
-        var content = JsonContent.Create(new FinderArenal { Id = 1, Type = "Poblacion" });
+        var content = JsonContent.Create(new FinderArenal { Id = 1, Group = "Poblacion" });
 
 
         var response = await Client.PostAsync("all/arenal", content);

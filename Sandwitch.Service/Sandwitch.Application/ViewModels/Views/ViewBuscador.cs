@@ -16,7 +16,7 @@ public class ViewBuscador : ViewBase
     public string ImageUri { get; set; }
 
     /// <summary>
-    ///     Gets or Sets <see cref="Type" />
+    ///     Gets or Sets <see cref="Group" />
     /// </summary>   
-    public string Type { get; set; }
+    public string Group { get; set; }
 }

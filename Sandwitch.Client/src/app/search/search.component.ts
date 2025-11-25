@@ -88,7 +88,7 @@ export class SearchComponent implements OnInit {
       const finder: FinderArenal =
           {
               Id: option.value.Id,
-              Type: option.value.Type
+              Group: option.value.Group
           };
 
       this.arenales = await this.buscadorService.FindAllArenalByBuscadorId(finder);

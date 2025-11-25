@@ -1,0 +1,10 @@
+<Solution>
+  <Project Path="Sandwitch.Application/Sandwitch.Application.csproj" />
+  <Project Path="Sandwitch.Benchmark.Service/Sandwitch.Benchmark.Service.csproj" />
+  <Project Path="Sandwitch.Domain/Sandwitch.Domain.csproj" />
+  <Project Path="Sandwitch.Infrastructure/Sandwitch.Infrastructure.csproj" />
+  <Project Path="Sandwitch.Service/Sandwitch.Service.csproj" />
+  <Project Path="Sandwitch.Test.Client/Sandwitch.Test.Client.csproj" />
+  <Project Path="Sandwitch.Test.Infrastructure/Sandwitch.Test.Infrastructure.csproj" />
+  <Project Path="Sandwitch.Test.Service/Sandwitch.Test.Service.csproj" />
+</Solution>

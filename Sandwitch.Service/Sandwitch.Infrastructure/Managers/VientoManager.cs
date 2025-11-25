@@ -102,7 +102,7 @@ public class VientoManager(
     /// </summary>
     /// <param name="id">Injected <see cref="int" /></param>
     /// <returns>Instance of <see cref="IList{HistoricoDto}" /></returns>
-    public async Task<IList<HistoricoDto>> FindAllHistoricoByVientoId(int id)
+    public async Task<IList<HistoricoDto>> FindAllHistoricoByVientoId(int @id)
     {
         IList<HistoricoDto> @historicos = await Context.Historico
             .TagWith("FindAllHistoricoByVientoId")
@@ -110,7 +110,7 @@ public class VientoManager(
             .AsSplitQuery()
             .Include(x => x.Arenal)
             .Include(x => x.Viento)
-            .Where(x => x.VientoId == id)
+            .Where(x => x.VientoId == @id)
             .Select(x => x.ToDto())
             .ToListAsync();
 
@@ -122,11 +122,11 @@ public class VientoManager(
     /// </summary>
     /// <param name="id">Injected <see cref="int" /></param>
     /// <returns>Instance of <see cref="Task{Viento}" /></returns>
-    public async Task<Viento> FindVientoById(int id)
+    public async Task<Viento> FindVientoById(int @id)
     {
         Viento @viento = await Context.Viento
             .TagWith("FindVientoById")
-            .Where(x => x.Id == id)
+            .Where(x => x.Id == @id)
             .FirstOrDefaultAsync();
 
         if (@viento == null)
@@ -134,7 +134,7 @@ public class VientoManager(
             // Log
             var logData = nameof(Viento)
                           + " with Id "
-                          + id
+                          + @id
                           + " was not found at "
                           + DateTime.Now.ToShortTimeString();
 
@@ -142,7 +142,7 @@ public class VientoManager(
 
             throw new ServiceException(nameof(Viento)
                                        + " with Id "
-                                       + id
+                                       + @id
                                        + " does not exist");
         }
 
@@ -154,11 +154,11 @@ public class VientoManager(
     /// </summary>
     /// <param name="id">Injected <see cref="int" /></param>
     /// <returns>Instance of <see cref="Task" /></returns>
-    public async Task RemoveVientoById(int id)
+    public async Task RemoveVientoById(int @id)
     {
         try
         {
-            Viento @viento = await FindVientoById(id);
+            Viento @viento = await FindVientoById(@id);
 
             Context.Viento.Remove(@viento);
 
@@ -175,7 +175,7 @@ public class VientoManager(
         }
         catch (DbUpdateConcurrencyException)
         {
-            await FindVientoById(id);
+            await FindVientoById(@id);
         }
     }
 
@@ -219,22 +219,22 @@ public class VientoManager(
     ///     Checks Name
     /// </summary>
     /// <param name="name">Injected <see cref="string" /></param>
-    /// <returns>Instance of <see cref="Task{Viento}" /></returns>
-    public async Task<Viento> CheckName(string @name)
+    /// <returns>Instance of <see cref="Task{bool}" /></returns>
+    public async Task<bool> CheckName(string @name)
     {
-        Viento @viento = await Context.Viento
+        var @found = await Context.Viento
             .TagWith("CheckName")
             .AsNoTracking()
             .AsSplitQuery()
             .Where(x => x.Name == @name.Trim())
-            .FirstOrDefaultAsync();
+            .AnyAsync();
 
-        if (@viento != null)
+        if (@found)
         {
             // Log
             var logData = nameof(Viento)
                           + " with Name "
-                          + @viento.Name
+                          + @name
                           + " was already found at "
                           + DateTime.Now.ToShortTimeString();
 
@@ -246,29 +246,30 @@ public class VientoManager(
                                        + " already exists");
         }
 
-        return @viento;
+        return @found;
     }
 
     /// <summary>
     ///     Checks Name
     /// </summary>
-    /// <param name="viewModel">Injected <see cref="UpdateViento" /></param>
-    /// <returns>Instance of <see cref="Task{Viento}" /></returns>
-    public async Task<Viento> CheckName(int @id, string @name)
+    /// <param name="id">Injected <see cref="int" /></param>
+    /// <param name="name">Injected <see cref="string" /></param>
+    /// <returns>Instance of <see cref="Task{bool}" /></returns>
+    public async Task<bool> CheckName(int @id, string @name)
     {
-        Viento @viento = await Context.Viento
+        var @found = await Context.Viento
             .TagWith("CheckName")
             .AsNoTracking()
             .AsSplitQuery()
             .Where(x => x.Name == @name.Trim() && x.Id != @id)
-            .FirstOrDefaultAsync();
+            .AnyAsync();
 
-        if (@viento != null)
+        if (@found)
         {
             // Log
             var logData = nameof(Viento)
                           + " with Name "
-                          + @viento.Name
+                          + @name
                           + " was already found at "
                           + DateTime.Now.ToShortTimeString();
 
@@ -280,7 +281,7 @@ public class VientoManager(
                                        + " already exists");
         }
 
-        return @viento;
+        return @found;
     }
 
     /// <summary>

@@ -233,22 +233,22 @@ public class PoblacionManager(
     ///     Checks Name
     /// </summary>
     /// <param name="name">Injected <see cref="string" /></param>
-    /// <returns>Instance of <see cref="Task{Poblacion}" /></returns>
-    public async Task<Poblacion> CheckName(string @name)
+    /// <returns>Instance of <see cref="Task{bool}" /></returns>
+    public async Task<bool> CheckName(string @name)
     {
-        Poblacion @poblacion = await Context.Poblacion
+        var @found = await Context.Poblacion
             .AsNoTracking()
             .AsSplitQuery()
             .TagWith("CheckName")
             .Where(x => x.Name == @name.Trim())
-            .FirstOrDefaultAsync();
+            .AnyAsync();
 
-        if (@poblacion != null)
+        if (@found)
         {
             // Log
             var logData = nameof(Poblacion)
                           + " with Name "
-                          + @poblacion.Name
+                          + @name
                           + " was already found at "
                           + DateTime.Now.ToShortTimeString();
 
@@ -260,29 +260,30 @@ public class PoblacionManager(
                                        + " already exists");
         }
 
-        return @poblacion;
+        return @found;
     }
 
     /// <summary>
     ///     Checks Name
     /// </summary>
-    /// <param name="viewModel">Injected <see cref="AddPoblacion" /></param>
-    /// <returns>Instance of <see cref="Task{Poblacion}" /></returns>
-    public async Task<Poblacion> CheckName(int @id, string @name)
+    /// <param name="id">Injected <see cref="int" /></param>
+    /// <param name="name">Injected <see cref="string" /></param>
+    /// <returns>Instance of <see cref="Task{bool}" /></returns>
+    public async Task<bool> CheckName(int @id, string @name)
     {
-        Poblacion @poblacion = await Context.Poblacion
+        var @found = await Context.Poblacion
             .AsNoTracking()
             .AsSplitQuery()
             .TagWith("CheckName")
             .Where(x => x.Name == @name.Trim() && x.Id != @id)
-            .FirstOrDefaultAsync();
+            .AnyAsync();
 
-        if (@poblacion != null)
+        if (@found)
         {
             // Log
             var logData = nameof(Poblacion)
                           + " with Name "
-                          + @poblacion.Name
+                          + @name
                           + " was already found at "
                           + DateTime.Now.ToShortTimeString();
 
@@ -294,7 +295,7 @@ public class PoblacionManager(
                                        + " already exists");
         }
 
-        return @poblacion;
+        return @found;
     }
 
     /// <summary>

@@ -74,7 +74,7 @@ public interface IArenalManager : IBaseManager
     /// <summary>
     ///     Adds Arenal Poblacion
     /// </summary>
-    /// <param name="poblaciones">Injected <see cref="IList{Poblacion}" /></param>
+    /// <param name="poblaciones">Injected <see cref="List{Poblacion}" /></param>
     /// <param name="entity">Injected <see cref="Arenal" /></param>
     /// <returns>Instance of <see cref="Task" /></returns>
     public Task AddArenalPoblacion(List<Poblacion> @poblaciones, Arenal @entity);
@@ -91,22 +91,22 @@ public interface IArenalManager : IBaseManager
     /// </summary>
     /// <param name="ids">Injected <see cref="ICollection{int}"/></param>
     /// <returns>Instance of <see cref="Task{List{Poblacion}}"/></returns>
-    Task<List<Poblacion>> FindAllPoblacionByIds(ICollection<int> @ids);    
+    Task<List<Poblacion>> FindAllPoblacionByIds(ICollection<int> @ids);
 
     /// <summary>
     ///     Checks Name
     /// </summary>
     /// <param name="name">Injected <see cref="string" /></param>
-    /// <returns>Instance of <see cref="Task{Arenal}" /></returns>
-    public Task<Arenal> CheckName(string @name);
+    /// <returns>Instance of <see cref="Task{bool}" /></returns>
+    public Task<bool> CheckName(string @name);
 
     /// <summary>
     ///     Checks Name
     /// </summary>
     /// <param name="id">Injected <see cref="int" /></param>
     /// <param name="name">Injected <see cref="string" /></param>
-    /// <returns>Instance of <see cref="Task{Arenal}" /></returns>
-    public Task<Arenal> CheckName(int @id, string @name);
+    /// <returns>Instance of <see cref="Task{bool}" /></returns>
+    public Task<bool> CheckName(int @id, string @name);
 
     /// <summary>
     ///     Reloads Arenal By Id

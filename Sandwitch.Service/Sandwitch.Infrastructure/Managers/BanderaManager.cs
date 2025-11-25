@@ -225,22 +225,22 @@ public class BanderaManager(
     ///     Checks Name
     /// </summary>
     /// <param name="name">Injected <see cref="string" /></param>
-    /// <returns>Instance of <see cref="Task{Bandera}" /></returns>
-    public async Task<Bandera> CheckName(string @name)
+    /// <returns>Instance of <see cref="Task{bool}" /></returns>
+    public async Task<bool> CheckName(string @name)
     {
-        Bandera @bandera = await Context.Bandera
+        var @found = await Context.Bandera
             .TagWith("CheckName")
             .AsNoTracking()
             .AsSplitQuery()
             .Where(x => x.Name == @name.Trim())
-            .FirstOrDefaultAsync();
+            .AnyAsync();
 
-        if (@bandera != null)
+        if (@found)
         {
             // Log
             var logData = nameof(Bandera)
                           + " with Name "
-                          + @bandera.Name
+                          + @name
                           + " was already found at "
                           + DateTime.Now.ToShortTimeString();
 
@@ -252,29 +252,30 @@ public class BanderaManager(
                                        + " already exists");
         }
 
-        return @bandera;
+        return @found;
     }
 
     /// <summary>
     ///     Checks Name
     /// </summary>
-    /// <param name="viewModel">Injected <see cref="UpdateBandera" /></param>
-    /// <returns>Instance of <see cref="Task{Bandera}" /></returns>
-    public async Task<Bandera> CheckName(int @id, string @name)
+    /// <param name="id">Injected <see cref="int" /></param>
+    /// <param name="name">Injected <see cref="string" /></param>
+    /// <returns>Instance of <see cref="Task{bool}" /></returns>
+    public async Task<bool> CheckName(int @id, string @name)
     {
-        Bandera @bandera = await Context.Bandera
+        var @found = await Context.Bandera
             .TagWith("CheckName")
             .AsNoTracking()
             .AsSplitQuery()
             .Where(x => x.Name == @name.Trim() && x.Id != @id)
-            .FirstOrDefaultAsync();
+            .AnyAsync();
 
-        if (@bandera != null)
+        if (@found)
         {
             // Log
             var logData = nameof(Bandera)
                           + " with Name "
-                          + @bandera.Name
+                          + @name
                           + " was already found at "
                           + DateTime.Now.ToShortTimeString();
 
@@ -286,7 +287,7 @@ public class BanderaManager(
                                        + " already exists");
         }
 
-        return @bandera;
+        return @found;
     }
 
     /// <summary>

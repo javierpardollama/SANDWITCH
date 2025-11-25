@@ -61,16 +61,16 @@ public interface IBanderaManager : IBaseManager
     ///     Checks Name
     /// </summary>
     /// <param name="name">Injected <see cref="string" /></param>
-    /// <returns>Instance of <see cref="Task{Bandera}" /></returns>
-    public Task<Bandera> CheckName(string @name);
+    /// <returns>Instance of <see cref="Task{Banbooldera}" /></returns>
+    public Task<bool> CheckName(string @name);
 
     /// <summary>
     ///     Checks Name
     /// </summary>
     /// <param name="id">Injected <see cref="int" /></param>
     /// <param name="name">Injected <see cref="string" /></param>
-    /// <returns>Instance of <see cref="Task{Bandera}" /></returns>
-    public Task<Bandera> CheckName(int @id, string @name);
+    /// <returns>Instance of <see cref="Task{bool}" /></returns>
+    public Task<bool> CheckName(int @id, string @name);
 
     /// <summary>
     ///     Reloads Bandera By Id

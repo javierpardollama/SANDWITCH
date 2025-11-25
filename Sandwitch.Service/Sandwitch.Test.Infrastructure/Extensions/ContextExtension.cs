@@ -4,9 +4,9 @@ using Sandwitch.Infrastructure.Contexts;
 using System;
 using System.Linq;
 
-namespace Sandwitch.Test.Infrastructure.Managers
+namespace Sandwitch.Test.Infrastructure.Extensions
 {
-    public static class DbSeeder
+    public static class ContextExtension
     {
         public static void Seed(this ApplicationContext @this) 
         {

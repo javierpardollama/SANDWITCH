@@ -164,7 +164,7 @@ public class ProvinciaManager(
     ///     Updates Provincia
     /// </summary>
     /// <param name="entity">Injected <see cref="Provincia" /></param>
-    /// <returns>Instance of <see cref="Task{ViewProvincia}" /></returns>
+    /// <returns>Instance of <see cref="Task{Provincia}" /></returns>
     public async Task<Provincia> UpdateProvincia(Provincia @entity)
     {
         await CheckName(entity.Id, entity.Name);
@@ -200,22 +200,22 @@ public class ProvinciaManager(
     ///     Checks Name
     /// </summary>
     /// <param name="name">Injected <see cref="string" /></param>
-    /// <returns>Instance of <see cref="Task{Provincia}" /></returns>
-    public async Task<Provincia> CheckName(string @name)
+    /// <returns>Instance of <see cref="Task{bool}" /></returns>
+    public async Task<bool> CheckName(string @name)
     {
-        var @provincia = await Context.Provincia
+        var @found = await Context.Provincia
             .AsNoTracking()
             .AsSplitQuery()
             .TagWith("CheckName")
             .Where(x => x.Name == @name.Trim())
-            .FirstOrDefaultAsync();
+            .AnyAsync();
 
-        if (@provincia != null)
+        if (@found)
         {
             // Log
             var logData = nameof(Provincia)
                           + " with Name "
-                          + @provincia.Name
+                          + @name
                           + " was already found at "
                           + DateTime.Now.ToShortTimeString();
 
@@ -227,29 +227,30 @@ public class ProvinciaManager(
                                        + " already exists");
         }
 
-        return @provincia;
+        return @found;
     }
 
     /// <summary>
     ///     Checks Name
     /// </summary>
-    /// <param name="viewModel">Injected <see cref="AddProvincia" /></param>
-    /// <returns>Instance of <see cref="Task{Provincia}" /></returns>
-    public async Task<Provincia> CheckName(int @id, string @name)
+    /// <param name="id">Injected <see cref="int" /></param>
+    /// <param name="name">Injected <see cref="string" /></param>
+    /// <returns>Instance of <see cref="Task{bool}" /></returns>
+    public async Task<bool> CheckName(int @id, string @name)
     {
-        Provincia @provincia = await Context.Provincia
+        var @found = await Context.Provincia
             .AsNoTracking()
             .AsSplitQuery()
             .TagWith("CheckName")
             .Where(x => x.Name == @name.Trim() && x.Id != @id)
-            .FirstOrDefaultAsync();
+            .AnyAsync();
 
-        if (@provincia != null)
+        if (@found)
         {
             // Log
             var logData = nameof(Provincia)
                           + " with Name "
-                          + provincia.Name
+                          + @name
                           + " was already found at "
                           + DateTime.Now.ToShortTimeString();
 
@@ -261,7 +262,7 @@ public class ProvinciaManager(
                                        + " already exists");
         }
 
-        return @provincia;
+        return @found;
     }
 
     /// <summary>

@@ -61,16 +61,16 @@ public interface IVientoManager : IBaseManager
     ///     Checks Name
     /// </summary>
     /// <param name="name">Injected <see cref="string" /></param>
-    /// <returns>Instance of <see cref="Task{Viento}" /></returns>
-    public Task<Viento> CheckName(string @name);
+    /// <returns>Instance of <see cref="Task{bool}" /></returns>
+    public Task<bool> CheckName(string @name);
 
     /// <summary>
     ///     Checks Name
     /// </summary>
     /// <param name="id">Injected <see cref="int" /></param>
     /// <param name="name">Injected <see cref="string" /></param>
-    /// <returns>Instance of <see cref="Task{Viento}" /></returns>
-    public Task<Viento> CheckName(int @id, string @name);
+    /// <returns>Instance of <see cref="Task{bool}" /></returns>
+    public Task<bool> CheckName(int @id, string @name);
 
     /// <summary>
     ///     Reloads Viento By Id

@@ -62,7 +62,7 @@ public class ArenalManager(
     /// <summary>
     ///     Adds Arenal Poblacion
     /// </summary>
-    /// <param name="viewModel">Injected <see cref="AddArenal" /></param>
+    /// <param name="poblaciones">Injected <see cref="List{Poblacion}" /></param>
     /// <param name="entity">Injected <see cref="Arenal" /></param>
     /// <returns>Instance of <see cref="Task" /></returns>
     public async Task AddArenalPoblacion(List<Poblacion> @poblaciones, Arenal @entity)
@@ -368,28 +368,28 @@ public class ArenalManager(
         logger.LogInformation(logData);
 
         return @arenal;
-    }   
+    }
 
     /// <summary>
     ///     Checks Name
     /// </summary>
     /// <param name="name">Injected <see cref="string" /></param>
-    /// <returns>Instance of <see cref="Task{Arenal}" /></returns>
-    public async Task<Arenal> CheckName(string @name)
+    /// <returns>Instance of <see cref="Task{bool}" /></returns>
+    public async Task<bool> CheckName(string @name)
     {
-        Arenal @arenal = await Context.Arenal
+        var @found = await Context.Arenal
             .AsNoTracking()
             .AsSplitQuery()
             .TagWith("CheckName")
             .Where(x => x.Name == @name.Trim())
-            .FirstOrDefaultAsync();
+            .AnyAsync();
 
-        if (@arenal != null)
+        if (@found)
         {
             // Log
             var logData = nameof(Arenal)
                           + " with Name "
-                          + @arenal.Name
+                          + name
                           + " was already found at "
                           + DateTime.Now.ToShortTimeString();
 
@@ -401,7 +401,7 @@ public class ArenalManager(
                                        + " already exists");
         }
 
-        return @arenal;
+        return @found;
     }
 
     /// <summary>
@@ -409,22 +409,22 @@ public class ArenalManager(
     /// </summary>
     /// <param name="id">Injected <see cref="int" /></param>
     /// <param name="name">Injected <see cref="string" /></param>
-    /// <returns>Instance of <see cref="Task{Arenal}" /></returns>
-    public async Task<Arenal> CheckName(int @id, string @name)
+    /// <returns>Instance of <see cref="Task{bool}" /></returns>
+    public async Task<bool> CheckName(int @id, string @name)
     {
-        Arenal @arenal = await Context.Arenal
+        var @found = await Context.Arenal
             .AsNoTracking()
             .AsSplitQuery()
             .TagWith("CheckName")
             .Where(x => x.Name == @name.Trim() && x.Id != @id)
-            .FirstOrDefaultAsync();
+            .AnyAsync();
 
-        if (@arenal != null)
+        if (found)
         {
             // Log
             var logData = nameof(Arenal)
                           + " with Name "
-                          + @arenal.Name
+                          + @name
                           + " was already found at "
                           + DateTime.Now.ToShortTimeString();
 
@@ -436,7 +436,7 @@ public class ArenalManager(
                                        + " already exists");
         }
 
-        return @arenal;
+        return @found;
     }
 
     /// <summary>

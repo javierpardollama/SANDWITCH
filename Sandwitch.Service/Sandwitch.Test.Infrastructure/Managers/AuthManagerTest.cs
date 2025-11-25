@@ -2,6 +2,7 @@
 using NUnit.Framework;
 using Sandwitch.Infrastructure.Contexts;
 using Sandwitch.Infrastructure.Managers;
+using Sandwitch.Test.Infrastructure.Extensions;
 
 namespace Sandwitch.Test.Infrastructure.Managers;
 

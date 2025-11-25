@@ -34,14 +34,11 @@ public class BuscadorManager(
                 .Select(p => p.ToFinder())
                 .ToListAsync());
 
-        await Task.WhenAll(provinciasTask.AsTask(), poblacionesTask.AsTask());
+        var resultsTasks = await Task.WhenAll(provinciasTask.AsTask(), poblacionesTask.AsTask());
 
-        var buscadores = (await provinciasTask)
-            .Union(await poblacionesTask)
-            .ToList();
+        var buscadores = resultsTasks[0].Union(resultsTasks[1]).ToList();
 
         return buscadores;
-
     }
 
     /// <summary>

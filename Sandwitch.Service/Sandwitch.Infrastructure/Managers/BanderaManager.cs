@@ -108,7 +108,7 @@ public class BanderaManager(
     /// </summary>
     /// <param name="id">Injected <see cref="int" /></param>
     /// <returns>Instance of <see cref="Task{IList{HistoricoDto}}" /></returns>
-    public async Task<IList<HistoricoDto>> FindAllHistoricoByBanderaId(int id)
+    public async Task<IList<HistoricoDto>> FindAllHistoricoByBanderaId(int @id)
     {
         IList<HistoricoDto> @historicos = await Context.Historico
             .TagWith("FindAllHistoricoByBanderaId")
@@ -116,7 +116,7 @@ public class BanderaManager(
             .AsSplitQuery()
             .Include(x => x.Arenal)
             .Include(x => x.Bandera)
-            .Where(x => x.BanderaId == id)
+            .Where(x => x.BanderaId == @id)
             .Select(x=> x.ToDto())
             .ToListAsync();
 
@@ -128,7 +128,7 @@ public class BanderaManager(
     /// </summary>
     /// <param name="id">Injected <see cref="int" /></param>
     /// <returns>Instance of <see cref="Task{Bandera}" /></returns>
-    public async Task<Bandera> FindBanderaById(int id)
+    public async Task<Bandera> FindBanderaById(int @id)
     {
         Bandera @bandera = await Context.Bandera
             .TagWith("FindBanderaById")
@@ -148,7 +148,7 @@ public class BanderaManager(
 
             throw new ServiceException(nameof(Bandera)
                                        + " with Id "
-                                       + id
+                                       + @id
                                        + " does not exist");
         }
 
@@ -160,11 +160,11 @@ public class BanderaManager(
     /// </summary>
     /// <param name="id">Injected <see cref="int" /></param>
     /// <returns>Instance of <see cref="Task" /></returns>
-    public async Task RemoveBanderaById(int id)
+    public async Task RemoveBanderaById(int @id)
     {
         try
         {
-            Bandera @bandera = await FindBanderaById(id);
+            Bandera @bandera = await FindBanderaById(@id);
 
             Context.Bandera.Remove(@bandera);
 
@@ -181,7 +181,7 @@ public class BanderaManager(
         }
         catch (DbUpdateConcurrencyException)
         {
-            await FindBanderaById(id);
+            await FindBanderaById(@id);
         }
     }
 
@@ -295,13 +295,14 @@ public class BanderaManager(
     /// </summary>
     /// <param name="id">Injected <see cref="int" /></param>
     /// <returns>Instance of <see cref="Task{BanderaDto}" /></returns>
-    public async Task<BanderaDto> ReloadBanderaById(int id)
+    public async Task<BanderaDto> ReloadBanderaById(int @id)
     {
         BanderaDto @dto = await Context.Bandera
             .TagWith("ReloadBanderaById")
             .AsQueryable()
             .AsSplitQuery()
-            .Where(x => x.Id == id)
+            .AsNoTracking()
+            .Where(x => x.Id == @id)
             .Select(x => x.ToDto())
             .FirstOrDefaultAsync();
 
@@ -311,7 +312,7 @@ public class BanderaManager(
             // Log
             var logData = nameof(Bandera)
                           + " with Id "
-                          + id
+                          + @id
                           + " was not found at "
                           + DateTime.Now.ToShortTimeString();
 
@@ -319,7 +320,7 @@ public class BanderaManager(
 
             throw new ServiceException(nameof(Bandera)
                                        + " with Id "
-                                       + id
+                                       + @id
                                        + " does not exist");
         }
 

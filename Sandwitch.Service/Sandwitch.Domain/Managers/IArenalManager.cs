@@ -91,7 +91,7 @@ public interface IArenalManager : IBaseManager
     /// </summary>
     /// <param name="ids">Injected <see cref="ICollection{int}"/></param>
     /// <returns>Instance of <see cref="Task{List{Poblacion}}"/></returns>
-    Task<List<Poblacion>> FindAllPoblacionByIds(ICollection<int> @ids);
+    public Task<List<Poblacion>> FindAllPoblacionByIds(ICollection<int> @ids);
 
     /// <summary>
     ///     Checks Name

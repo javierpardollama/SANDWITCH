@@ -19,5 +19,5 @@ public interface IBuscadorManager : IBaseManager
     /// <param name="id">Injected <see cref="int" /></param>
     /// <param name="type">Injected <see cref="string" /></param>
     /// <returns>Instance of <see cref="Task{IList{ArenalDto}}" /></returns>
-    public Task<IList<ArenalDto>> FindAllArenalByBuscadorId(int id, string type);
+    public Task<IList<ArenalDto>> FindAllArenalByBuscadorId(int @id, string @type);
 }

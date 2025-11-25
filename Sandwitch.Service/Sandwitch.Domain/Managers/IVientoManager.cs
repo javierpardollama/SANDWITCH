@@ -46,14 +46,14 @@ public interface IVientoManager : IBaseManager
     /// <summary>
     ///     Updates Viento
     /// </summary>
-    /// <param name="entity">Injected <see cref="UpdateViento" /></param>
+    /// <param name="entity">Injected <see cref="Viento" /></param>
     /// <returns>Instance of <see cref="Task{Viento}" /></returns>
     public Task<Viento> UpdateViento(Viento @entity);
 
     /// <summary>
     ///     Adds Viento
     /// </summary>
-    /// <param name="entity">Injected <see cref="AddViento" /></param>
+    /// <param name="entity">Injected <see cref="Viento" /></param>
     /// <returns>Instance of <see cref="Task{Viento}" /></returns>
     public Task<Viento> AddViento(Viento @entity);
 

@@ -303,14 +303,15 @@ public class PoblacionManager(
     /// </summary>
     /// <param name="id">Injected <see cref="int" /></param>
     /// <returns>Instance of <see cref="Task{PoblacionDto}" /></returns>
-    public async Task<PoblacionDto> ReloadPoblacionById(int id)
+    public async Task<PoblacionDto> ReloadPoblacionById(int @id)
     {
         PoblacionDto @dto = await Context.Poblacion
             .TagWith("ReloadPoblacionById")
             .AsQueryable()
             .AsSplitQuery()
+            .AsNoTracking()
             .Include(x=> x.Provincia)
-            .Where(x => x.Id == id)
+            .Where(x => x.Id == @id)
             .Select(x => x.ToDto())
             .FirstOrDefaultAsync();
 
@@ -328,7 +329,7 @@ public class PoblacionManager(
 
             throw new ServiceException(nameof(Poblacion)
                                        + " with Id "
-                                       + id
+                                       + @id
                                        + " does not exist");
         }
 

@@ -27,21 +27,21 @@ public interface IBanderaManager : IBaseManager
     /// </summary>
     /// <param name="id">Injected <see cref="int" /></param>
     /// <returns>Instance of <see cref="Task{IList{HistoricoDto}}" /></returns>
-    public Task<IList<HistoricoDto>> FindAllHistoricoByBanderaId(int id);
+    public Task<IList<HistoricoDto>> FindAllHistoricoByBanderaId(int @id);
 
     /// <summary>
     ///     Finds Bandera By Id
     /// </summary>
     /// <param name="id">Injected <see cref="int" /></param>
     /// <returns>Instance of <see cref="Task{Bandera}" /></returns>
-    public Task<Bandera> FindBanderaById(int id);
+    public Task<Bandera> FindBanderaById(int @id);
 
     /// <summary>
     ///     Removes Bandera By Id
     /// </summary>
     /// <param name="id">Injected <see cref="int" /></param>
     /// <returns>Instance of <see cref="Task" /></returns>
-    public Task RemoveBanderaById(int id);
+    public Task RemoveBanderaById(int @id);
 
     /// <summary>
     ///     Updates Bandera

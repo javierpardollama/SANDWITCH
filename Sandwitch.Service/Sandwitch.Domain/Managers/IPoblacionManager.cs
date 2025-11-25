@@ -62,7 +62,7 @@ public interface IPoblacionManager : IBaseManager
     /// </summary>
     /// <param name="name">Injected <see cref="string" /></param>
     /// <returns>Instance of <see cref="Task{bool}" /></returns>
-    Task<bool> CheckName(string @name);
+    public Task<bool> CheckName(string @name);
 
     /// <summary>
     ///     Checks Name
@@ -70,7 +70,7 @@ public interface IPoblacionManager : IBaseManager
     /// <param name="id">Injected <see cref="int" /></param>
     /// <param name="name">Injected <see cref="string" /></param>
     /// <returns>Instance of <see cref="Task{bool}" /></returns>
-    Task<bool> CheckName(int @id, string @name);
+    public Task<bool> CheckName(int @id, string @name);
 
 
     /// <summary>

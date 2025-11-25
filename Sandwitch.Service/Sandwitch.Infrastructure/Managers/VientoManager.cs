@@ -182,7 +182,7 @@ public class VientoManager(
     /// <summary>
     ///     Updates Viento
     /// </summary>
-    /// <param name="@entity">Injected <see cref="Viento" /></param>
+    /// <param name="entity">Injected <see cref="Viento" /></param>
     /// <returns>Instance of <see cref="Task{Viento}" /></returns>
     public async Task<Viento> UpdateViento(Viento @entity)
     {
@@ -289,13 +289,14 @@ public class VientoManager(
     /// </summary>
     /// <param name="id">Injected <see cref="int" /></param>
     /// <returns>Instance of <see cref="Task{VientoDto}" /></returns>
-    public async Task<VientoDto> ReloadVientoById(int id)
+    public async Task<VientoDto> ReloadVientoById(int @id)
     {
         VientoDto @dto = await Context.Viento
             .TagWith("ReloadVientoById")
             .AsQueryable()
             .AsSplitQuery()
-            .Where(x => x.Id == id)
+            .AsNoTracking()
+            .Where(x => x.Id == @id)
             .Select(x => x.ToDto())
             .FirstOrDefaultAsync();
 
@@ -305,7 +306,7 @@ public class VientoManager(
             // Log
             var logData = nameof(Viento)
                           + " with Id "
-                          + id
+                          + @id
                           + " was not found at "
                           + DateTime.Now.ToShortTimeString();
 
@@ -313,7 +314,7 @@ public class VientoManager(
 
             throw new ServiceException(nameof(Viento)
                                        + " with Id "
-                                       + id
+                                       + @id
                                        + " does not exist");
         }
 

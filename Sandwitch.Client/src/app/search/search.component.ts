@@ -37,33 +37,35 @@ import { CommonModule, NgOptimizedImage } from '@angular/common';
 
 
 @Component({
-    selector: 'app-search',
-    templateUrl: './search.component.html',
-    styleUrls: ['./search.component.scss'],
-    imports: [
-        MatDividerModule,
-        MatSelectModule,
-        MatInputModule,
-        MatDialogModule,
-        MatPaginatorModule,
-        MatButtonModule,
-        MatSnackBarModule,
-        MatChipsModule,
-        MatAutocompleteModule,
-        MatCardModule,
-        MatTableModule,
-        MatSortModule,
-        MatFormFieldModule,
-        CommonModule,
-        FormsModule,
-        ReactiveFormsModule,
-        NgOptimizedImage
-    ]
+  selector: 'app-search',
+  templateUrl: './search.component.html',
+  styleUrls: ['./search.component.scss'],
+  imports: [
+    MatDividerModule,
+    MatSelectModule,
+    MatInputModule,
+    MatDialogModule,
+    MatPaginatorModule,
+    MatButtonModule,
+    MatSnackBarModule,
+    MatChipsModule,
+    MatAutocompleteModule,
+    MatCardModule,
+    MatTableModule,
+    MatSortModule,
+    MatFormFieldModule,
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    NgOptimizedImage
+  ]
 })
 export class SearchComponent implements OnInit {
 
+  public loading: boolean = false;
+
   // Data
-  public buscadores : ViewBuscador[] = [];
+  public buscadores: ViewBuscador[] = [];
   public filteredBuscadores: Observable<ViewBuscador[]> = of([]);
   public arenales: ViewArenal[] = [];
 
@@ -74,7 +76,7 @@ export class SearchComponent implements OnInit {
   constructor(
     public matDialog: MatDialog,
     private buscadorService: BuscadorService
-    ) {
+  ) {
 
   }
 
@@ -85,18 +87,22 @@ export class SearchComponent implements OnInit {
 
   // Get Data from Service
   public async FindAllArenalByBuscadorId(option: MatOption<ViewBuscador>): Promise<void> {
-      const finder: FinderArenal =
-          {
-              Id: option.value.Id,
-              Group: option.value.Group
-          };
+    const finder: FinderArenal =
+    {
+      Id: option.value.Id,
+      Group: option.value.Group
+    };
 
-      this.arenales = await this.buscadorService.FindAllArenalByBuscadorId(finder);
+    this.loading = true;
+    this.arenales = await this.buscadorService.FindAllArenalByBuscadorId(finder);
+    this.loading = false;
   }
 
   // Get Data from Service
   public async FindAllBuscador(): Promise<void> {
+    this.loading = true;
     this.buscadores = await this.buscadorService.FindAllBuscador();
+    this.loading = false;
 
     this.filteredBuscadores = this.buscadorCtrl.valueChanges
       .pipe(
@@ -115,7 +121,7 @@ export class SearchComponent implements OnInit {
 
   // Display Option Name
   public displayFn(buscador: ViewBuscador): string {
-        return buscador ? buscador.Name : '';
+    return buscador ? buscador.Name : '';
   }
 
   // Get Record from Card

@@ -37,31 +37,33 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { CommonModule } from '@angular/common';
 
 @Component({
-    selector: 'app-poblacion-grid',
-    templateUrl: './poblacion-grid.component.html',
-    styleUrls: ['./poblacion-grid.component.scss'],
-    imports: [
-        MatDividerModule,
-        MatSelectModule,
-        MatInputModule,
-        MatDialogModule,
-        MatPaginatorModule,
-        MatButtonModule,
-        MatSnackBarModule,
-        MatChipsModule,
-        MatAutocompleteModule,
-        MatCardModule,
-        MatTableModule,
-        MatSortModule,
-        MatFormFieldModule,
-        CommonModule,
-        FormsModule,
-        ReactiveFormsModule,
-    ]
+  selector: 'app-poblacion-grid',
+  templateUrl: './poblacion-grid.component.html',
+  styleUrls: ['./poblacion-grid.component.scss'],
+  imports: [
+    MatDividerModule,
+    MatSelectModule,
+    MatInputModule,
+    MatDialogModule,
+    MatPaginatorModule,
+    MatButtonModule,
+    MatSnackBarModule,
+    MatChipsModule,
+    MatAutocompleteModule,
+    MatCardModule,
+    MatTableModule,
+    MatSortModule,
+    MatFormFieldModule,
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+  ]
 })
 export class PoblacionGridComponent implements OnInit, AfterViewInit, OnDestroy {
 
   @ViewChild(MatSort, { static: true }) sort!: MatSort;
+
+  public loading: boolean = false;
 
   public ELEMENT_DATA: ViewPoblacion[] = [];
 
@@ -97,7 +99,9 @@ export class PoblacionGridComponent implements OnInit, AfterViewInit, OnDestroy 
 
   // Get Data from Service
   public async FindPaginatedPoblacion(): Promise<void> {
+    this.loading = true;
     const view = await this.poblacionService.FindPaginatedPoblacion(this.page);
+    this.loading = false;
 
     if (view) {
       this.page.Length = view?.Length;

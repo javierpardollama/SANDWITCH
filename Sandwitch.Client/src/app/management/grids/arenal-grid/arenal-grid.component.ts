@@ -62,6 +62,8 @@ import { MatSortModule } from '@angular/material/sort';
 })
 export class ArenalGridComponent implements OnInit, AfterViewInit, OnDestroy {
 
+    public loading: boolean = false;
+
     public ELEMENT_DATA: ViewArenal[] = [];
 
     public displayedColumns: string[] = ['Id', 'Name', 'Poblaciones', 'LastModified'];
@@ -96,7 +98,9 @@ export class ArenalGridComponent implements OnInit, AfterViewInit, OnDestroy {
 
     // Get Data from Service
     public async FindPaginatedArenal(): Promise<void> {
+        this.loading = true;
         const view = await this.arenalService.FindPaginatedArenal(this.page);
+        this.loading = false;
 
         if (view) {
             this.page.Length = view.Length;

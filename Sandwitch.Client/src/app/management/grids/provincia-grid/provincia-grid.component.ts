@@ -37,29 +37,31 @@ import { MatSortModule } from '@angular/material/sort';
 import { CommonModule } from '@angular/common';
 
 @Component({
-    selector: 'app-provincia-grid',
-    templateUrl: './provincia-grid.component.html',
-    styleUrls: ['./provincia-grid.component.scss'],
-    imports: [
-        MatDividerModule,
-        MatSelectModule,
-        MatInputModule,
-        MatDialogModule,
-        MatPaginatorModule,
-        MatButtonModule,
-        MatSnackBarModule,
-        MatChipsModule,
-        MatAutocompleteModule,
-        MatCardModule,
-        MatTableModule,
-        MatSortModule,
-        MatFormFieldModule,
-        CommonModule,
-        FormsModule,
-        ReactiveFormsModule,
-    ]
+  selector: 'app-provincia-grid',
+  templateUrl: './provincia-grid.component.html',
+  styleUrls: ['./provincia-grid.component.scss'],
+  imports: [
+    MatDividerModule,
+    MatSelectModule,
+    MatInputModule,
+    MatDialogModule,
+    MatPaginatorModule,
+    MatButtonModule,
+    MatSnackBarModule,
+    MatChipsModule,
+    MatAutocompleteModule,
+    MatCardModule,
+    MatTableModule,
+    MatSortModule,
+    MatFormFieldModule,
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+  ]
 })
 export class ProvinciaGridComponent implements OnInit, AfterViewInit, OnDestroy {
+
+  public loading: boolean = false;
 
   public ELEMENT_DATA: ViewProvincia[] = [];
 
@@ -96,8 +98,10 @@ export class ProvinciaGridComponent implements OnInit, AfterViewInit, OnDestroy 
 
   // Get Data from Service
   public async FindPaginatedProvincia(): Promise<void> {
+    this.loading = true;
     const view = await this.provinciaService.FindPaginatedProvincia(this.page);
-
+    this.loading = false;
+    
     if (view) {
       this.page.Length = view?.Length;
       this.ELEMENT_DATA = Array.from(this.ELEMENT_DATA.concat(view?.Items).reduce((m, t): Map<ViewProvincia, ViewProvincia> => m.set(t?.Id, t), new Map()).values());

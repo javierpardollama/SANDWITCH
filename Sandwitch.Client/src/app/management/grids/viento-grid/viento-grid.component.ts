@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, OnDestroy, OnInit} from '@angular/core';
+import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { VientoService } from '../../../../services/viento.service';
@@ -22,29 +22,32 @@ import { MatSortModule } from '@angular/material/sort';
 import { CommonModule } from '@angular/common';
 
 @Component({
-    selector: 'app-viento-grid',
-    templateUrl: './viento-grid.component.html',
-    styleUrl: './viento-grid.component.scss',
-    imports: [
-        MatDividerModule,
-        MatSelectModule,
-        MatInputModule,
-        MatDialogModule,
-        MatPaginatorModule,
-        MatButtonModule,
-        MatSnackBarModule,
-        MatChipsModule,
-        MatAutocompleteModule,
-        MatCardModule,
-        MatTableModule,
-        MatSortModule,
-        MatFormFieldModule,
-        CommonModule,
-        FormsModule,
-        ReactiveFormsModule,
-    ]
+  selector: 'app-viento-grid',
+  templateUrl: './viento-grid.component.html',
+  styleUrl: './viento-grid.component.scss',
+  imports: [
+    MatDividerModule,
+    MatSelectModule,
+    MatInputModule,
+    MatDialogModule,
+    MatPaginatorModule,
+    MatButtonModule,
+    MatSnackBarModule,
+    MatChipsModule,
+    MatAutocompleteModule,
+    MatCardModule,
+    MatTableModule,
+    MatSortModule,
+    MatFormFieldModule,
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+  ]
 })
 export class VientoGridComponent implements OnInit, AfterViewInit, OnDestroy {
+
+  public loading: boolean = false;
+
   public ELEMENT_DATA: ViewViento[] = [];
 
   public displayedColumns: string[] = ['Id', 'Name', 'ImageUri', 'LastModified'];
@@ -80,7 +83,9 @@ export class VientoGridComponent implements OnInit, AfterViewInit, OnDestroy {
 
   // Get Data from Service
   public async FindPaginatedViento(): Promise<void> {
+    this.loading = true;
     const view = await this.vientoService.FindPaginatedViento(this.page);
+    this.loading = false;
 
     if (view) {
       this.page.Length = view?.Length;

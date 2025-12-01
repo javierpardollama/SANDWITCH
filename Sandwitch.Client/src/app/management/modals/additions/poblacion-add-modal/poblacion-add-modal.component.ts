@@ -41,29 +41,24 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { NgOptimizedImage } from '@angular/common';
 import { ViewCatalog } from 'src/viewmodels/views/viewcatalog';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @Component({
-    selector: 'app-poblacion-add-modal',
-    templateUrl: './poblacion-add-modal.component.html',
-    styleUrls: ['./poblacion-add-modal.component.scss'],
-    imports: [
-    MatDividerModule,
+  selector: 'app-poblacion-add-modal',
+  templateUrl: './poblacion-add-modal.component.html',
+  styleUrls: ['./poblacion-add-modal.component.scss'],
+  imports: [
+    MatDialogModule,
+    MatButtonModule,
+    FormsModule,
+    MatTooltipModule,
+    MatSnackBarModule,
     MatSelectModule,
     MatInputModule,
-    MatDialogModule,
-    MatPaginatorModule,
-    MatButtonModule,
-    MatSnackBarModule,
-    MatChipsModule,
-    MatAutocompleteModule,
-    MatCardModule,
-    MatTableModule,
-    MatSortModule,
     MatFormFieldModule,
-    FormsModule,
     ReactiveFormsModule,
     NgOptimizedImage
-]
+  ]
 })
 export class PoblacionAddModalComponent implements OnInit {
 
@@ -82,8 +77,8 @@ export class PoblacionAddModalComponent implements OnInit {
 
   // Life Cicle
   async ngOnInit(): Promise<void> {
-      this.CreateForm();
-      await this.FindAllProvincia();
+    this.CreateForm();
+    await this.FindAllProvincia();
   }
 
   // Form

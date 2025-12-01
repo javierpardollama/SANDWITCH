@@ -16,7 +16,6 @@ import {
   Validators
 } from '@angular/forms';
 
-import { ViewProvincia } from '../../../../../viewmodels/views/viewprovincia';
 
 import { ViewPoblacion } from '../../../../../viewmodels/views/viewpoblacion';
 
@@ -31,42 +30,30 @@ import { TextAppVariants } from '../../../../../variants/text.app.variants';
 import { TimeAppVariants } from '../../../../../variants/time.app.variants';
 
 import { ExpressionAppVariants } from '../../../../../variants/expression.app.variants';
-import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatButtonModule } from '@angular/material/button';
-import { MatCardModule } from '@angular/material/card';
-import { MatChipsModule } from '@angular/material/chips';
-import { MatDividerModule } from '@angular/material/divider';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSelectModule } from '@angular/material/select';
-import { MatSortModule } from '@angular/material/sort';
-import { MatTableModule } from '@angular/material/table';
 import { NgOptimizedImage } from '@angular/common';
 import { ViewCatalog } from 'src/viewmodels/views/viewcatalog';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @Component({
-    selector: 'app-poblacion-update-modal',
-    templateUrl: './poblacion-update-modal.component.html',
-    styleUrls: ['./poblacion-update-modal.component.scss'],
-    imports: [
-    MatDividerModule,
+  selector: 'app-poblacion-update-modal',
+  templateUrl: './poblacion-update-modal.component.html',
+  styleUrls: ['./poblacion-update-modal.component.scss'],
+  imports: [
+    MatDialogModule,
+    MatButtonModule,
+    FormsModule,
+    MatTooltipModule,
+    MatSnackBarModule,
     MatSelectModule,
     MatInputModule,
-    MatDialogModule,
-    MatPaginatorModule,
-    MatButtonModule,
-    MatSnackBarModule,
-    MatChipsModule,
-    MatAutocompleteModule,
-    MatCardModule,
-    MatTableModule,
-    MatSortModule,
     MatFormFieldModule,
-    FormsModule,
     ReactiveFormsModule,
     NgOptimizedImage
-]
+  ]
 })
 export class PoblacionUpdateModalComponent implements OnInit {
 
@@ -86,8 +73,8 @@ export class PoblacionUpdateModalComponent implements OnInit {
 
   // Life Cicle
   async ngOnInit(): Promise<void> {
-      this.CreateForm();
-      await this.FindAllProvincia();
+    this.CreateForm();
+    await this.FindAllProvincia();
   }
 
   // Form

@@ -23,18 +23,14 @@ import {
 import { FilterPage } from 'src/viewmodels/filters/filterpage';
 import { ViewScroll } from 'src/viewmodels/views/viewscroll';
 import { CommonModule } from '@angular/common';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
-import { MatCardModule } from '@angular/material/card';
 import { MatChipsModule } from '@angular/material/chips';
-import { MatDividerModule } from '@angular/material/divider';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatPaginatorModule } from '@angular/material/paginator';
-import { MatSelectModule } from '@angular/material/select';
-import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatSortModule } from '@angular/material/sort';
+import { MatInputModule } from '@angular/material/input';
 
 
 @Component({
@@ -42,22 +38,17 @@ import { MatSortModule } from '@angular/material/sort';
     templateUrl: './arenal-grid.component.html',
     styleUrls: ['./arenal-grid.component.scss'],
     imports: [
-        MatDividerModule,
-        MatSelectModule,
-        MatInputModule,
-        MatDialogModule,
-        MatPaginatorModule,
-        MatButtonModule,
-        MatSnackBarModule,
-        MatChipsModule,
-        MatAutocompleteModule,
-        MatCardModule,
         MatTableModule,
-        MatSortModule,
+        MatDialogModule,
+        FormsModule,
+        MatButtonModule,
+        MatTooltipModule,
+        MatChipsModule,
         MatFormFieldModule,
         CommonModule,
-        FormsModule,
-        ReactiveFormsModule,
+        MatPaginatorModule,
+        MatSortModule,
+        MatInputModule
     ]
 })
 export class ArenalGridComponent implements OnInit, AfterViewInit, OnDestroy {

@@ -38,6 +38,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 
 @Component({
@@ -45,22 +46,16 @@ import { MatTableModule } from '@angular/material/table';
     templateUrl: './provincia-update-modal.component.html',
     styleUrls: ['./provincia-update-modal.component.scss'],
     imports: [
-    MatDividerModule,
-    MatSelectModule,
-    MatInputModule,
-    MatDialogModule,
-    MatPaginatorModule,
-    MatButtonModule,
-    MatSnackBarModule,
-    MatChipsModule,
-    MatAutocompleteModule,
-    MatCardModule,
-    MatTableModule,
-    MatSortModule,
-    MatFormFieldModule,
-    FormsModule,
-    ReactiveFormsModule
-]
+        MatDialogModule,
+        MatButtonModule,
+        FormsModule,
+        MatTooltipModule,
+        MatSnackBarModule,
+        MatSelectModule,
+        MatInputModule,
+        MatFormFieldModule,
+        ReactiveFormsModule
+    ]
 })
 export class ProvinciaUpdateModalComponent implements OnInit {
 

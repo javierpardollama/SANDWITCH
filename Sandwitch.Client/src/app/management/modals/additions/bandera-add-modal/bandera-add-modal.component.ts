@@ -35,29 +35,24 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 
 @Component({
-    selector: 'app-bandera-add-modal',
-    templateUrl: './bandera-add-modal.component.html',
-    styleUrls: ['./bandera-add-modal.component.scss'],
-    imports: [
-    MatDividerModule,
+  selector: 'app-bandera-add-modal',
+  templateUrl: './bandera-add-modal.component.html',
+  styleUrls: ['./bandera-add-modal.component.scss'],
+  imports: [
+    MatDialogModule,
+    MatButtonModule,
+    FormsModule,
+    MatTooltipModule,
+    MatSnackBarModule,
     MatSelectModule,
     MatInputModule,
-    MatDialogModule,
-    MatPaginatorModule,
-    MatButtonModule,
-    MatSnackBarModule,
-    MatChipsModule,
-    MatAutocompleteModule,
-    MatCardModule,
-    MatTableModule,
-    MatSortModule,
     MatFormFieldModule,
-    FormsModule,
     ReactiveFormsModule
-]
+  ]
 })
 export class BanderaAddModalComponent implements OnInit {
 

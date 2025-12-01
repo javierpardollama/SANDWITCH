@@ -22,17 +22,11 @@ import {
   HistoricoAddModalComponent
 } from '../management/modals/additions/historico-add-modal/historico-add-modal.component';
 import { MatAutocompleteModule, MatOption } from '@angular/material/autocomplete';
-import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
-import { MatChipsModule } from '@angular/material/chips';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSelectModule } from '@angular/material/select';
-import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { MatSortModule } from '@angular/material/sort';
-import { MatTableModule } from '@angular/material/table';
 import { CommonModule, NgOptimizedImage } from '@angular/common';
 
 
@@ -45,14 +39,8 @@ import { CommonModule, NgOptimizedImage } from '@angular/common';
     MatSelectModule,
     MatInputModule,
     MatDialogModule,
-    MatPaginatorModule,
-    MatButtonModule,
-    MatSnackBarModule,
-    MatChipsModule,
     MatAutocompleteModule,
     MatCardModule,
-    MatTableModule,
-    MatSortModule,
     MatFormFieldModule,
     CommonModule,
     FormsModule,

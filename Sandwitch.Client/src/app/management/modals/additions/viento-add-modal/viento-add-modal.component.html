@@ -7,9 +7,9 @@
         <mat-label>Name</mat-label>
         <input type="text" matInput placeholder="Name" formControlName="Name">
         @if (!formGroup.controls['Name'].valid && formGroup.controls['Name'].touched) {
-          <mat-error>
-            Required field.
-          </mat-error>
+        <mat-error>
+          Required field.
+        </mat-error>
         }
       </mat-form-field>
     </div>
@@ -20,16 +20,16 @@
         <mat-label>ImageUri</mat-label>
         <input type="url" matInput placeholder="ImageUri" formControlName="ImageUri">
         @if (!formGroup.controls['ImageUri'].valid && formGroup.controls['ImageUri'].touched) {
-          <mat-error>
-            Required field.
-          </mat-error>
+        <mat-error>
+          Required field.
+        </mat-error>
         }
       </mat-form-field>
     </div>
 
     <div class="form-element">
       <button mat-raised-button color="primary" type="submit" class="button" (click)="onSubmit(formGroup.value)"
-        [disabled]="!formGroup.valid">Save
+        [disabled]="!formGroup.valid" matTooltip="Save">Save
       </button>
     </div>
 

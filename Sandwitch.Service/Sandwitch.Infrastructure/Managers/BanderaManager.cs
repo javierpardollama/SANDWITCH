@@ -94,6 +94,7 @@ public class BanderaManager(
                 .TagWith("FindPaginatedBandera")
                 .AsNoTracking()
                 .AsSplitQuery()
+                .OrderByDescending(x => x.LastModified)
                 .Skip(@index * @size)
                 .Take(@size)
                 .Select(x => x.ToDto())

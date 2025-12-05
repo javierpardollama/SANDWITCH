@@ -88,6 +88,7 @@ public class VientoManager(
                 .TagWith("FindPaginatedViento")
                 .AsNoTracking()
                 .AsSplitQuery()
+                .OrderByDescending(x => x.LastModified)
                 .Skip(@index * @size)
                 .Take(@size)
                 .Select(x => x.ToDto())

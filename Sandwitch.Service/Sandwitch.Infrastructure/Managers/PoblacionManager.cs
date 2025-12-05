@@ -89,6 +89,7 @@ public class PoblacionManager(
                 .AsNoTracking()
                 .AsSplitQuery()
                 .Include(x => x.Provincia)
+                .OrderByDescending(x => x.LastModified)
                 .Skip(@index * @size)
                 .Take(@size)
                 .Select(x=> x.ToDto())

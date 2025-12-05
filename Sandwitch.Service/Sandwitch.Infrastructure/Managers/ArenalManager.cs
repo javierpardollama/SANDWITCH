@@ -171,8 +171,8 @@ public class ArenalManager(
                 .AsNoTracking()
                 .AsSplitQuery()
                 .Include(x => x.ArenalPoblaciones)
-                .ThenInclude(x => x.Poblacion)
-                .Include(x => x.Historicos)
+                .ThenInclude(x => x.Poblacion)               
+                .OrderByDescending(x => x.LastModified)
                 .Skip(@index * @size)
                 .Take(@size)
                 .Select(x => x.ToDto())
@@ -196,7 +196,7 @@ public class ArenalManager(
             .Include(x => x.Arenal)
             .Include(x => x.Bandera)
             .Include(x => x.Viento)
-            .Where(x => x.ArenalId == @id)
+            .Where(x => x.ArenalId == @id)            
             .Select(x => x.ToDto())
             .ToListAsync();
 

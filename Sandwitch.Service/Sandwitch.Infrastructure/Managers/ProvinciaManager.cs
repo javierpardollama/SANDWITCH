@@ -89,6 +89,7 @@ public class ProvinciaManager(
                 .AsNoTracking()
                 .AsSplitQuery()
                 .Include(x => x.Poblaciones)
+                .OrderByDescending(x => x.LastModified)
                 .Skip(@index * @size)
                 .Take(@size)
                 .Select(x => x.ToDto())

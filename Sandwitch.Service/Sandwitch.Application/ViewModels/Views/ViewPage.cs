@@ -24,5 +24,5 @@ public class ViewPage<T>
     /// <summary>
     ///     Gets or Sets <see cref="Items" />
     /// </summary>
-    public ICollection<T> Items { get; set; }
+    public ICollection<T> Items { get; set; } = [];
 }

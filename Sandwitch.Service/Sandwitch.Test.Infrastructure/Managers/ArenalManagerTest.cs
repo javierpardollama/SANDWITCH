@@ -144,6 +144,18 @@ public class ArenalManagerTest : BaseManagerTest
     }
 
     /// <summary>
+    ///     Finds Viento By Id
+    /// </summary>
+    /// <returns>Instance of <see cref="Task" /></returns>
+    [Test]
+    public async Task FindVientoById()
+    {
+        await ArenalManager.FindVientoById(1);
+
+        Assert.Pass();
+    }
+
+    /// <summary>
     ///     Removes Arenal By Id
     /// </summary>
     /// <returns>Instance of <see cref="Task" /></returns>
@@ -182,10 +194,41 @@ public class ArenalManagerTest : BaseManagerTest
     {
         Arenal @entity = new()
         {
+            Id = 3,
             Name = "Ereaga"
         };
 
         await ArenalManager.AddArenal(entity);
+
+        Assert.Pass();
+    }
+
+    /// <summary>
+    ///    Adds Historico
+    /// </summary>
+    /// <returns>Instance of <see cref="Task" /></returns>
+    [Test]
+    public async Task AddHistorico() 
+    {
+        Arenal @entity = new()
+        {
+            Id = 4,
+            Name = "Gorrondatxe",
+        };
+
+        await ArenalManager.AddHistorico(entity);
+
+        Assert.Pass();
+    }
+
+    /// <summary>
+    ///    Finds All Poblacion By Ids
+    /// </summary>
+    /// <returns>Instance of <see cref="Task" /></returns>
+    [Test]
+    public async Task FindAllPoblacionByIds() 
+    {
+        await ArenalManager.FindAllPoblacionByIds([1,2]);
 
         Assert.Pass();
     }

@@ -1,42 +1,41 @@
 ﻿using Sandwitch.Domain.Dtos;
 using Sandwitch.Domain.Entities;
 
-namespace Sandwitch.Domain.Profiles
+namespace Sandwitch.Domain.Profiles;
+
+/// <summary>
+/// Represents a <see cref="VientoProfile"/> class.
+/// </summary>
+public static class VientoProfile
 {
     /// <summary>
-    /// Represents a <see cref="VientoProfile"/> class.
+    /// Transforms to Dto
     /// </summary>
-    public static class VientoProfile
+    /// <param name="entity">Injected <see cref="Viento"/></param>
+    /// <returns>Instance of <see cref="BanderaDto"/></returns>
+    public static VientoDto ToDto(this Viento @entity)
     {
-        /// <summary>
-        /// Transforms to Dto
-        /// </summary>
-        /// <param name="entity">Injected <see cref="Viento"/></param>
-        /// <returns>Instance of <see cref="BanderaDto"/></returns>
-        public static VientoDto ToDto(this Viento @entity)
+        return new VientoDto
         {
-            return new VientoDto
-            {
-                Id = @entity.Id,
-                Name = @entity.Name,
-                ImageUri = @entity.ImageUri,
-                LastModified = @entity.LastModified
-            };
-        }
+            Id = @entity.Id,
+            Name = @entity.Name,
+            ImageUri = @entity.ImageUri,
+            LastModified = @entity.LastModified
+        };
+    }
 
-        /// <summary>
-        /// Transforms to Catalog Dto
-        /// </summary>
-        /// <param name="entity">Injected <see cref="Viento"/></param>
-        /// <returns>Instance of <see cref="CatalogDto"/></returns>
-        public static CatalogDto ToCatalog(this Viento @entity)
+    /// <summary>
+    /// Transforms to Catalog Dto
+    /// </summary>
+    /// <param name="entity">Injected <see cref="Viento"/></param>
+    /// <returns>Instance of <see cref="CatalogDto"/></returns>
+    public static CatalogDto ToCatalog(this Viento @entity)
+    {
+        return new CatalogDto
         {
-            return new CatalogDto
-            {
-                Id = @entity.Id,
-                Name = @entity.Name,
-                ImageUri = @entity.ImageUri,
-            };
-        }
+            Id = @entity.Id,
+            Name = @entity.Name,
+            ImageUri = @entity.ImageUri,
+        };
     }
 }

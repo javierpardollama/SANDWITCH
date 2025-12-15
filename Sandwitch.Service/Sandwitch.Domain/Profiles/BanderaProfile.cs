@@ -1,42 +1,41 @@
 ﻿using Sandwitch.Domain.Dtos;
 using Sandwitch.Domain.Entities;
 
-namespace Sandwitch.Domain.Profiles
+namespace Sandwitch.Domain.Profiles;
+
+/// <summary>
+/// Represents a <see cref="BanderaProfile"/> class.
+/// </summary>
+public static class BanderaProfile
 {
     /// <summary>
-    /// Represents a <see cref="BanderaProfile"/> class.
+    /// Transforms to Dto
     /// </summary>
-    public static class BanderaProfile
+    /// <param name="entity">Injected <see cref="Bandera"/></param>
+    /// <returns>Instance of <see cref="BanderaDto"/></returns>
+    public static BanderaDto ToDto(this Bandera @entity)
     {
-        /// <summary>
-        /// Transforms to Dto
-        /// </summary>
-        /// <param name="entity">Injected <see cref="Bandera"/></param>
-        /// <returns>Instance of <see cref="BanderaDto"/></returns>
-        public static BanderaDto ToDto(this Bandera @entity)
+        return new BanderaDto
         {
-            return new BanderaDto
-            {
-                Id = @entity.Id,
-                Name = @entity.Name,
-                ImageUri = @entity.ImageUri,
-                LastModified = @entity.LastModified
-            };
-        }
+            Id = @entity.Id,
+            Name = @entity.Name,
+            ImageUri = @entity.ImageUri,
+            LastModified = @entity.LastModified
+        };
+    }
 
-        /// <summary>
-        /// Transforms to Catalog Dto
-        /// </summary>
-        /// <param name="entity">Injected <see cref="ApplicationRole"/></param>
-        /// <returns>Instance of <see cref="CatalogDto"/></returns>
-        public static CatalogDto ToCatalog(this Bandera @entity)
+    /// <summary>
+    /// Transforms to Catalog Dto
+    /// </summary>
+    /// <param name="entity">Injected <see cref="ApplicationRole"/></param>
+    /// <returns>Instance of <see cref="CatalogDto"/></returns>
+    public static CatalogDto ToCatalog(this Bandera @entity)
+    {
+        return new CatalogDto
         {
-            return new CatalogDto
-            {
-                Id = @entity.Id,
-                Name = @entity.Name,
-                ImageUri = @entity.ImageUri
-            };
-        }
+            Id = @entity.Id,
+            Name = @entity.Name,
+            ImageUri = @entity.ImageUri
+        };
     }
 }

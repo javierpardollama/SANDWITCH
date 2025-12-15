@@ -22,43 +22,43 @@ public static class MediatRInstaller
     {
         @this.AddMediatR(cfg =>
         {
-            cfg.RegisterServicesFromAssemblyContaining(typeof(AddArenalHandler));
-            cfg.RegisterServicesFromAssemblyContaining(typeof(FindAllArenalHandler));
-            cfg.RegisterServicesFromAssemblyContaining(typeof(FindAllHistoricoByArenalIdHandler));
-            cfg.RegisterServicesFromAssemblyContaining(typeof(FindPaginatedArenalHandler));
-            cfg.RegisterServicesFromAssemblyContaining(typeof(RemoveArenalByIdHandler));
-            cfg.RegisterServicesFromAssemblyContaining(typeof(UpdateArenalHandler));
+            cfg.RegisterServicesFromAssemblyContaining<AddArenalHandler>();
+            cfg.RegisterServicesFromAssemblyContaining<FindAllArenalHandler>();
+            cfg.RegisterServicesFromAssemblyContaining<FindAllHistoricoByArenalIdHandler>();
+            cfg.RegisterServicesFromAssemblyContaining<FindPaginatedArenalHandler>();
+            cfg.RegisterServicesFromAssemblyContaining<RemoveArenalByIdHandler>();
+            cfg.RegisterServicesFromAssemblyContaining<UpdateArenalHandler>();
 
-            cfg.RegisterServicesFromAssemblyContaining(typeof(AddBanderaHandler));
-            cfg.RegisterServicesFromAssemblyContaining(typeof(FindAllBanderaHandler));
-            cfg.RegisterServicesFromAssemblyContaining(typeof(FindAllHistoricoByBanderaIdHandler));
-            cfg.RegisterServicesFromAssemblyContaining(typeof(FindPaginatedBanderaHandler));
-            cfg.RegisterServicesFromAssemblyContaining(typeof(RemoveBanderaByIdHandler));
-            cfg.RegisterServicesFromAssemblyContaining(typeof(UpdateBanderaHandler));
+            cfg.RegisterServicesFromAssemblyContaining<AddBanderaHandler>();
+            cfg.RegisterServicesFromAssemblyContaining<FindAllBanderaHandler>();
+            cfg.RegisterServicesFromAssemblyContaining<FindAllHistoricoByBanderaIdHandler>();
+            cfg.RegisterServicesFromAssemblyContaining<FindPaginatedBanderaHandler>();
+            cfg.RegisterServicesFromAssemblyContaining<RemoveBanderaByIdHandler>();
+            cfg.RegisterServicesFromAssemblyContaining<UpdateBanderaHandler>();
 
-            cfg.RegisterServicesFromAssemblyContaining(typeof(FindAllArenalByBuscadorIdHandler));
-            cfg.RegisterServicesFromAssemblyContaining(typeof(FindAllBuscadorHandler));
+            cfg.RegisterServicesFromAssemblyContaining<FindAllArenalByBuscadorIdHandler>();
+            cfg.RegisterServicesFromAssemblyContaining<FindAllBuscadorHandler>();
 
-            cfg.RegisterServicesFromAssemblyContaining(typeof(AddPoblacionHandler));
-            cfg.RegisterServicesFromAssemblyContaining(typeof(FindAllPoblacionHandler));
-            cfg.RegisterServicesFromAssemblyContaining(typeof(FindPaginatedPoblacionHandler));
-            cfg.RegisterServicesFromAssemblyContaining(typeof(RemovePoblacionByIdHandler));
-            cfg.RegisterServicesFromAssemblyContaining(typeof(UpdatePoblacionHandler));
+            cfg.RegisterServicesFromAssemblyContaining<AddPoblacionHandler>();
+            cfg.RegisterServicesFromAssemblyContaining<FindAllPoblacionHandler>();
+            cfg.RegisterServicesFromAssemblyContaining<FindPaginatedPoblacionHandler>();
+            cfg.RegisterServicesFromAssemblyContaining<RemovePoblacionByIdHandler>();
+            cfg.RegisterServicesFromAssemblyContaining<UpdatePoblacionHandler>();
 
-            cfg.RegisterServicesFromAssemblyContaining(typeof(AddProvinciaHandler));
-            cfg.RegisterServicesFromAssemblyContaining(typeof(FindAllProvinciaHandler));
-            cfg.RegisterServicesFromAssemblyContaining(typeof(FindPaginatedProvinciaHandler));
-            cfg.RegisterServicesFromAssemblyContaining(typeof(RemoveProvinciaByIdHandler));
-            cfg.RegisterServicesFromAssemblyContaining(typeof(UpdateProvinciaHandler));
+            cfg.RegisterServicesFromAssemblyContaining<AddProvinciaHandler>();
+            cfg.RegisterServicesFromAssemblyContaining<FindAllProvinciaHandler>();
+            cfg.RegisterServicesFromAssemblyContaining<FindPaginatedProvinciaHandler>();
+            cfg.RegisterServicesFromAssemblyContaining<RemoveProvinciaByIdHandler>();
+            cfg.RegisterServicesFromAssemblyContaining<UpdateProvinciaHandler>();
 
-            cfg.RegisterServicesFromAssemblyContaining(typeof(AddVientoHandler));
-            cfg.RegisterServicesFromAssemblyContaining(typeof(FindAllVientoHandler));
-            cfg.RegisterServicesFromAssemblyContaining(typeof(FindAllHistoricoByVientoIdHandler));
-            cfg.RegisterServicesFromAssemblyContaining(typeof(FindPaginatedVientoHandler));
-            cfg.RegisterServicesFromAssemblyContaining(typeof(RemoveVientoByIdHandler));
-            cfg.RegisterServicesFromAssemblyContaining(typeof(UpdateVientoHandler));
+            cfg.RegisterServicesFromAssemblyContaining<AddVientoHandler>();
+            cfg.RegisterServicesFromAssemblyContaining<FindAllVientoHandler>();
+            cfg.RegisterServicesFromAssemblyContaining<FindAllHistoricoByVientoIdHandler>();
+            cfg.RegisterServicesFromAssemblyContaining<FindPaginatedVientoHandler>();
+            cfg.RegisterServicesFromAssemblyContaining<RemoveVientoByIdHandler>();
+            cfg.RegisterServicesFromAssemblyContaining<UpdateVientoHandler>();
 
-            cfg.RegisterServicesFromAssemblyContaining(typeof(AddHistoricoHandler));
+            cfg.RegisterServicesFromAssemblyContaining<AddHistoricoHandler>();
         });
     }
 }

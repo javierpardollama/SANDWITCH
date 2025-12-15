@@ -1,44 +1,43 @@
 ﻿using Sandwitch.Application.ViewModels.Views;
 using Sandwitch.Domain.Dtos;
 
-namespace Sandwitch.Application.Profiles
+namespace Sandwitch.Application.Profiles;
+
+/// <summary>
+/// Represents a <see cref="PoblacionProfile"/> class.
+/// </summary>
+public static class PoblacionProfile
 {
     /// <summary>
-    /// Represents a <see cref="PoblacionProfile"/> class.
+    /// Transforms to ViewModel
     /// </summary>
-    public static class PoblacionProfile
+    /// <param name="dto">Injected <see cref="PoblacionDto"/></param>
+    /// <returns>Instance of <see cref="ViewPoblacion"/></returns>
+    public static ViewPoblacion ToViewModel(this PoblacionDto @dto)
     {
-        /// <summary>
-        /// Transforms to ViewModel
-        /// </summary>
-        /// <param name="dto">Injected <see cref="PoblacionDto"/></param>
-        /// <returns>Instance of <see cref="ViewPoblacion"/></returns>
-        public static ViewPoblacion ToViewModel(this PoblacionDto @dto)
+        return new ViewPoblacion
         {
-            return new ViewPoblacion
-            {
-                Id = @dto.Id,
-                Name = @dto.Name,
-                ImageUri = @dto.ImageUri,
-                LastModified = @dto.LastModified,
-                Provincia = @dto.Provincia?.ToViewModel()
-            };
-        }
+            Id = @dto.Id,
+            Name = @dto.Name,
+            ImageUri = @dto.ImageUri,
+            LastModified = @dto.LastModified,
+            Provincia = @dto.Provincia?.ToViewModel()
+        };
+    }
 
-        /// <summary>
-        /// Transforms to ViewModel
-        /// </summary>
-        /// <param name="dto">Injected <see cref="PageDto{PoblacionDto}"/></param>
-        /// <returns>Instance of <see cref="ViewPage{ViewPoblacion}"/></returns>
-        public static ViewPage<ViewPoblacion> ToPageViewModel(this PageDto<PoblacionDto> @dto)
+    /// <summary>
+    /// Transforms to ViewModel
+    /// </summary>
+    /// <param name="dto">Injected <see cref="PageDto{PoblacionDto}"/></param>
+    /// <returns>Instance of <see cref="ViewPage{ViewPoblacion}"/></returns>
+    public static ViewPage<ViewPoblacion> ToPageViewModel(this PageDto<PoblacionDto> @dto)
+    {
+        return new ViewPage<ViewPoblacion>
         {
-            return new ViewPage<ViewPoblacion>
-            {
-                Index = @dto.Index,
-                Length = @dto.Length,
-                Size = @dto.Size,
-                Items = [.. dto.Items.Select(x => x.ToViewModel())]
-            };
-        }
+            Index = @dto.Index,
+            Length = @dto.Length,
+            Size = @dto.Size,
+            Items = [.. dto.Items.Select(x => x.ToViewModel())]
+        };
     }
 }

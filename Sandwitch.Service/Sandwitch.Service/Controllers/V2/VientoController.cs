@@ -19,7 +19,7 @@ namespace Sandwitch.Service.Controllers.V2;
 ///     Represents a <see cref="VientoController" /> class. Inherits <see cref="ControllerBase" />
 /// </summary>
 /// <param name="mediator">Injected <see cref="IMediator" /></param>
-[ApiVersion(2)]
+[ApiVersion(2.0)]
 [ApiExplorerSettings(GroupName = "v2")]
 [Route("api/v{v:apiVersion}/viento")]
 [Produces("application/json")]

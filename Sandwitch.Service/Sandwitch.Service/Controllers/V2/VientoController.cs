@@ -41,7 +41,7 @@ public class VientoController(IMediator mediator) : ControllerBase
     /// <response code="500">InternalServerError</response>
     /// <param name="viewModel">Injected <see cref="AddHistorico" /></param>
     /// <returns>Instance of <see cref="Task{OkObjectResult}" /></returns>
-    [MapToApiVersion(2)]
+    [MapToApiVersion(2.0)]
     [HttpPut]
     [Route("update")]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ViewViento))]
@@ -69,7 +69,7 @@ public class VientoController(IMediator mediator) : ControllerBase
     /// <response code="503">ServiceUnavailable</response>
     /// <response code="500">InternalServerError</response>
     /// <returns>Instance of <see cref="Task{OkObjectResult}" /></returns>
-    [MapToApiVersion(2)]
+    [MapToApiVersion(2.0)]
     [HttpGet]
     [ResponseCache(Duration = 10, Location = ResponseCacheLocation.Any, NoStore = false)]
     [Route("all")]
@@ -99,7 +99,7 @@ public class VientoController(IMediator mediator) : ControllerBase
     /// <response code="500">InternalServerError</response>
     /// <param name="viewModel">Injected <see cref="FilterPage" /></param>
     /// <returns>Instance of <see cref="Task{OkObjectResult}" /></returns>
-    [MapToApiVersion(2)]
+    [MapToApiVersion(2.0)]
     [HttpPost]
     [Route("page")]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ViewPage<ViewViento>))]
@@ -128,7 +128,7 @@ public class VientoController(IMediator mediator) : ControllerBase
     /// <response code="500">InternalServerError</response>
     /// <param name="id">Injected <see cref="int" /></param>
     /// <returns>Instance of <see cref="Task{OkObjectResult}" /></returns>
-    [MapToApiVersion(2)]
+    [MapToApiVersion(2.0)]
     [HttpGet]
     [Route("all/historico/{id}")]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IList<ViewHistorico>))]
@@ -157,7 +157,7 @@ public class VientoController(IMediator mediator) : ControllerBase
     /// <response code="500">InternalServerError</response>
     /// <param name="viewModel">Injected <see cref="AddViento" /></param>
     /// <returns>Instance of <see cref="Task{OkObjectResult}" /></returns>
-    [MapToApiVersion(2)]
+    [MapToApiVersion(2.0)]
     [HttpPost]
     [Route("create")]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ViewViento))]
@@ -186,7 +186,7 @@ public class VientoController(IMediator mediator) : ControllerBase
     /// <response code="500">InternalServerError</response>
     /// <param name="id">Injected <see cref="int" /></param>
     /// <returns>Instance of <see cref="Task{OkObjectResult}" /></returns>
-    [MapToApiVersion(2)]
+    [MapToApiVersion(2.0)]
     [HttpDelete]
     [Route("remove/{id}")]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(int))]

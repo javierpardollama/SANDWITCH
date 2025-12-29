@@ -1,7 +1,4 @@
-import {
-  Component,
-  OnInit
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, inject } from '@angular/core';
 
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
@@ -24,46 +21,41 @@ import { TextAppVariants } from '../../../../../variants/text.app.variants';
 import { TimeAppVariants } from '../../../../../variants/time.app.variants';
 
 import { ExpressionAppVariants } from '../../../../../variants/expression.app.variants';
-import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatButtonModule } from '@angular/material/button';
-import { MatCardModule } from '@angular/material/card';
-import { MatChipsModule } from '@angular/material/chips';
-import { MatDividerModule } from '@angular/material/divider';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSelectModule } from '@angular/material/select';
-import { MatSortModule } from '@angular/material/sort';
-import { MatTableModule } from '@angular/material/table';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
 
 @Component({
-    selector: 'app-viento-add-modal',
-    templateUrl: './viento-add-modal.component.html',
-    styleUrls: ['./viento-add-modal.component.scss'],
-    imports: [
-        MatDialogModule,
-        MatButtonModule,
-        FormsModule,
-        MatTooltipModule,
-        MatSnackBarModule,
-        MatSelectModule,
-        MatInputModule,
-        MatFormFieldModule,
-        ReactiveFormsModule
-    ]
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  selector: 'app-viento-add-modal',
+  templateUrl: './viento-add-modal.component.html',
+  styleUrls: ['./viento-add-modal.component.scss'],
+  imports: [
+    MatDialogModule,
+    MatButtonModule,
+    FormsModule,
+    MatTooltipModule,
+    MatSnackBarModule,
+    MatSelectModule,
+    MatInputModule,
+    MatFormFieldModule,
+    ReactiveFormsModule
+  ]
 })
 export class VientoAddModalComponent implements OnInit {
+  // DI
+  private vientoService = inject(VientoService);
+  private formBuilder = inject(FormBuilder);
+  dialogRef = inject<MatDialogRef<VientoAddModalComponent>>(MatDialogRef);
+  private matSnackBar = inject(MatSnackBar);
 
   public formGroup!: FormGroup;
 
   // Constructor
-  constructor(
-    private vientoService: VientoService,
-    private formBuilder: FormBuilder,
-    public dialogRef: MatDialogRef<VientoAddModalComponent>,
-    private matSnackBar: MatSnackBar) { }
+  constructor() { }
 
 
   // Life Cicle

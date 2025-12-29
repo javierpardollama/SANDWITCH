@@ -1,7 +1,4 @@
-import {
-  Component,
-  OnInit
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, inject } from '@angular/core';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -31,6 +28,7 @@ import { CommonModule, NgOptimizedImage } from '@angular/common';
 
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-search',
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.scss'],
@@ -49,6 +47,9 @@ import { CommonModule, NgOptimizedImage } from '@angular/common';
   ]
 })
 export class SearchComponent implements OnInit {
+  // DI
+  matDialog = inject(MatDialog);
+  private buscadorService = inject(BuscadorService);
 
   public loading: boolean = false;
 
@@ -61,10 +62,7 @@ export class SearchComponent implements OnInit {
   public buscadorCtrl = new FormControl();
 
   // Constructor
-  constructor(
-    public matDialog: MatDialog,
-    private buscadorService: BuscadorService
-  ) {
+  constructor() {
 
   }
 

@@ -1,9 +1,4 @@
-import {
-  AfterViewInit,
-  Component,
-  OnDestroy,
-  OnInit
-} from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, Component, OnDestroy, OnInit, inject } from '@angular/core';
 
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
@@ -33,6 +28,7 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatInputModule } from '@angular/material/input';
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-provincia-grid',
   templateUrl: './provincia-grid.component.html',
   styleUrls: ['./provincia-grid.component.scss'],
@@ -51,6 +47,9 @@ import { MatInputModule } from '@angular/material/input';
   ]
 })
 export class ProvinciaGridComponent implements OnInit, AfterViewInit, OnDestroy {
+  // DI
+  private provinciaService = inject(ProvinciaService);
+  matDialog = inject(MatDialog);
 
   public loading: boolean = false;
 
@@ -68,9 +67,7 @@ export class ProvinciaGridComponent implements OnInit, AfterViewInit, OnDestroy 
     };
 
   // Constructor
-  constructor(
-    private provinciaService: ProvinciaService,
-    public matDialog: MatDialog) {
+  constructor() {
 
   }
 

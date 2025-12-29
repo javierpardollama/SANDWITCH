@@ -159,7 +159,7 @@ public class BanderaController(IMediator mediator) : ControllerBase
     /// <returns>Instance of <see cref="Task{OkObjectResult}" /></returns>
     [MapToApiVersion(1.0)]
     [HttpPost]
-    [Route("add")]
+    [Route("create")]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ViewBandera))]
     [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(ProblemDetails))]
     [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(ProblemDetails))]

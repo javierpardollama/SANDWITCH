@@ -1,8 +1,4 @@
-import {
-  Component,
-  OnInit,
-  Inject
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, inject } from '@angular/core';
 
 import { MatDialogRef, MAT_DIALOG_DATA, MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
@@ -39,6 +35,7 @@ import { ViewCatalog } from 'src/viewmodels/views/viewcatalog';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-poblacion-update-modal',
   templateUrl: './poblacion-update-modal.component.html',
   styleUrls: ['./poblacion-update-modal.component.scss'],
@@ -56,19 +53,20 @@ import { MatTooltipModule } from '@angular/material/tooltip';
   ]
 })
 export class PoblacionUpdateModalComponent implements OnInit {
+  // DI
+  private provinciaService = inject(ProvinciaService);
+  private poblacionService = inject(PoblacionService);
+  private formBuilder = inject(FormBuilder);
+  dialogRef = inject<MatDialogRef<PoblacionUpdateModalComponent>>(MatDialogRef);
+  private matSnackBar = inject(MatSnackBar);
+  data = inject<ViewPoblacion>(MAT_DIALOG_DATA);
 
   public formGroup!: FormGroup;
 
   public provincias: ViewCatalog[] = [];
 
   // Constructor
-  constructor(
-    private provinciaService: ProvinciaService,
-    private poblacionService: PoblacionService,
-    private formBuilder: FormBuilder,
-    public dialogRef: MatDialogRef<PoblacionUpdateModalComponent>,
-    private matSnackBar: MatSnackBar,
-    @Inject(MAT_DIALOG_DATA) public data: ViewPoblacion) { }
+  constructor() { }
 
 
   // Life Cicle

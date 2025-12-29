@@ -1,8 +1,4 @@
-import {
-  Component,
-  OnInit,
-  Inject
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, inject } from '@angular/core';
 
 import { MatDialogRef, MAT_DIALOG_DATA, MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
@@ -35,32 +31,34 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 
 
 @Component({
-    selector: 'app-viento-update-modal',
-    templateUrl: './viento-update-modal.component.html',
-    styleUrls: ['./viento-update-modal.component.scss'],
-    imports: [
-        MatDialogModule,
-        MatButtonModule,
-        FormsModule,
-        MatTooltipModule,
-        MatSnackBarModule,
-        MatSelectModule,
-        MatInputModule,
-        MatFormFieldModule,
-        ReactiveFormsModule
-    ]
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  selector: 'app-viento-update-modal',
+  templateUrl: './viento-update-modal.component.html',
+  styleUrls: ['./viento-update-modal.component.scss'],
+  imports: [
+    MatDialogModule,
+    MatButtonModule,
+    FormsModule,
+    MatTooltipModule,
+    MatSnackBarModule,
+    MatSelectModule,
+    MatInputModule,
+    MatFormFieldModule,
+    ReactiveFormsModule
+  ]
 })
 export class VientoUpdateModalComponent implements OnInit {
+  // DI
+  private vientoService = inject(VientoService);
+  private formBuilder = inject(FormBuilder);
+  dialogRef = inject<MatDialogRef<VientoUpdateModalComponent>>(MatDialogRef);
+  private matSnackBar = inject(MatSnackBar);
+  data = inject<ViewViento>(MAT_DIALOG_DATA);
 
   public formGroup!: FormGroup;
 
   // Constructor
-  constructor(
-    private vientoService: VientoService,
-    private formBuilder: FormBuilder,
-    public dialogRef: MatDialogRef<VientoUpdateModalComponent>,
-    private matSnackBar: MatSnackBar,
-    @Inject(MAT_DIALOG_DATA) public data: ViewViento) { }
+  constructor() { }
 
 
   // Life Cicle

@@ -6,7 +6,7 @@ import { HttpClient } from '@angular/common/http';
 
 import { MatSnackBar } from '@angular/material/snack-bar';
 
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 
 import { catchError } from 'rxjs/operators';
 
@@ -22,12 +22,20 @@ import { Router } from '@angular/router';
 })
 
 export class HistoricoService extends BaseService {
+    protected override httpClient: HttpClient;
+    protected override matSnackBar: MatSnackBar;
+    protected override router: Router;
 
-    public constructor(
-        protected override httpClient: HttpClient,
-        protected override matSnackBar: MatSnackBar,
-        protected override router: Router) {
+    public constructor() {
+        const httpClient = inject(HttpClient);
+        const matSnackBar = inject(MatSnackBar);
+        const router = inject(Router);
+
         super(httpClient, matSnackBar, router);
+    
+        this.httpClient = httpClient;
+        this.matSnackBar = matSnackBar;
+        this.router = router;
     }
 
     public AddHistorico(viewModel: AddHistorico): Promise<ViewHistorico> {

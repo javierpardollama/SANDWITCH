@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { Meta } from '@angular/platform-browser';
 import { environment } from 'src/environments/environment';
 
@@ -6,6 +6,7 @@ import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { RouterModule } from '@angular/router';
 
 @Component({
+    changeDetection: ChangeDetectionStrategy.OnPush,
     selector: 'app-root',
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.scss'],
@@ -16,8 +17,10 @@ import { RouterModule } from '@angular/router';
 })
 
 export class AppComponent {
+    // DI
+    private meta = inject(Meta);
 
-    constructor(private meta: Meta) {
+    constructor() {
         this.ApplyContenSecurityPolicy();
     }
 

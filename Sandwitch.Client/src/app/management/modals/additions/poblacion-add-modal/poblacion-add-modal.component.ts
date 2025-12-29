@@ -1,7 +1,4 @@
-import {
-  Component,
-  OnInit
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, inject } from '@angular/core';
 
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
@@ -15,7 +12,6 @@ import {
   Validators
 } from '@angular/forms';
 
-import { ViewProvincia } from '../../../../../viewmodels/views/viewprovincia';
 
 import { AddPoblacion } from '../../../../../viewmodels/additions/addpoblacion';
 
@@ -28,22 +24,16 @@ import { TextAppVariants } from '../../../../../variants/text.app.variants';
 import { TimeAppVariants } from '../../../../../variants/time.app.variants';
 
 import { ExpressionAppVariants } from '../../../../../variants/expression.app.variants';
-import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatButtonModule } from '@angular/material/button';
-import { MatCardModule } from '@angular/material/card';
-import { MatChipsModule } from '@angular/material/chips';
-import { MatDividerModule } from '@angular/material/divider';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSelectModule } from '@angular/material/select';
-import { MatSortModule } from '@angular/material/sort';
-import { MatTableModule } from '@angular/material/table';
 import { NgOptimizedImage } from '@angular/common';
 import { ViewCatalog } from 'src/viewmodels/views/viewcatalog';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-poblacion-add-modal',
   templateUrl: './poblacion-add-modal.component.html',
   styleUrls: ['./poblacion-add-modal.component.scss'],
@@ -61,18 +51,19 @@ import { MatTooltipModule } from '@angular/material/tooltip';
   ]
 })
 export class PoblacionAddModalComponent implements OnInit {
+  // DI
+  private provinciaService = inject(ProvinciaService);
+  private poblacionService = inject(PoblacionService);
+  private formBuilder = inject(FormBuilder);
+  dialogRef = inject<MatDialogRef<PoblacionAddModalComponent>>(MatDialogRef);
+  private matSnackBar = inject(MatSnackBar);
 
   public formGroup!: FormGroup;
 
   public provincias: ViewCatalog[] = [];
 
   // Constructor
-  constructor(
-    private provinciaService: ProvinciaService,
-    private poblacionService: PoblacionService,
-    private formBuilder: FormBuilder,
-    public dialogRef: MatDialogRef<PoblacionAddModalComponent>,
-    private matSnackBar: MatSnackBar) { }
+  constructor() { }
 
 
   // Life Cicle

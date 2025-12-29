@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { VientoService } from '../../../../services/viento.service';
@@ -18,6 +18,7 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatInputModule } from '@angular/material/input';
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-viento-grid',
   templateUrl: './viento-grid.component.html',
   styleUrl: './viento-grid.component.scss',
@@ -36,6 +37,9 @@ import { MatInputModule } from '@angular/material/input';
   ]
 })
 export class VientoGridComponent implements OnInit, AfterViewInit, OnDestroy {
+  // DI
+  private vientoService = inject(VientoService);
+  matDialog = inject(MatDialog);
 
   public loading: boolean = false;
 
@@ -53,9 +57,7 @@ export class VientoGridComponent implements OnInit, AfterViewInit, OnDestroy {
     };
 
   // Constructor
-  constructor(
-    private vientoService: VientoService,
-    public matDialog: MatDialog) {
+  constructor() {
 
   }
 

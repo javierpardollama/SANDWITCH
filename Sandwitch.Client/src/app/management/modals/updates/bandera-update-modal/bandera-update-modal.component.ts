@@ -1,8 +1,4 @@
-import {
-  Component,
-  OnInit,
-  Inject
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, inject } from '@angular/core';
 
 import { MatDialogRef, MAT_DIALOG_DATA, MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
@@ -27,47 +23,42 @@ import { TextAppVariants } from '../../../../../variants/text.app.variants';
 import { TimeAppVariants } from '../../../../../variants/time.app.variants';
 
 import { ExpressionAppVariants } from '../../../../../variants/expression.app.variants';
-import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatButtonModule } from '@angular/material/button';
-import { MatCardModule } from '@angular/material/card';
-import { MatChipsModule } from '@angular/material/chips';
-import { MatDividerModule } from '@angular/material/divider';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSelectModule } from '@angular/material/select';
-import { MatSortModule } from '@angular/material/sort';
-import { MatTableModule } from '@angular/material/table';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
 
 @Component({
-    selector: 'app-bandera-update-modal',
-    templateUrl: './bandera-update-modal.component.html',
-    styleUrls: ['./bandera-update-modal.component.scss'],
-    imports: [
-        MatDialogModule,
-        MatButtonModule,
-        FormsModule,
-        MatTooltipModule,
-        MatSnackBarModule,
-        MatSelectModule,
-        MatInputModule,
-        MatFormFieldModule,
-        ReactiveFormsModule
-    ]
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  selector: 'app-bandera-update-modal',
+  templateUrl: './bandera-update-modal.component.html',
+  styleUrls: ['./bandera-update-modal.component.scss'],
+  imports: [
+    MatDialogModule,
+    MatButtonModule,
+    FormsModule,
+    MatTooltipModule,
+    MatSnackBarModule,
+    MatSelectModule,
+    MatInputModule,
+    MatFormFieldModule,
+    ReactiveFormsModule
+  ]
 })
 export class BanderaUpdateModalComponent implements OnInit {
+  // DI
+  private banderaService = inject(BanderaService);
+  private formBuilder = inject(FormBuilder);
+  dialogRef = inject<MatDialogRef<BanderaUpdateModalComponent>>(MatDialogRef);
+  private matSnackBar = inject(MatSnackBar);
+  data = inject<ViewBandera>(MAT_DIALOG_DATA);
 
   public formGroup!: FormGroup;
 
   // Constructor
-  constructor(
-    private banderaService: BanderaService,
-    private formBuilder: FormBuilder,
-    public dialogRef: MatDialogRef<BanderaUpdateModalComponent>,
-    private matSnackBar: MatSnackBar,
-    @Inject(MAT_DIALOG_DATA) public data: ViewBandera) { }
+  constructor() { }
 
 
   // Life Cicle

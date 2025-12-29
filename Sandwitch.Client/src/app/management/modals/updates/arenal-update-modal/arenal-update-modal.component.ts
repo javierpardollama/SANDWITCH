@@ -1,8 +1,4 @@
-import {
-  Component,
-  OnInit,
-  Inject
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, inject } from '@angular/core';
 
 import { MatDialogRef, MAT_DIALOG_DATA, MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
@@ -37,6 +33,7 @@ import { PoblacionService } from 'src/services/poblacion.service';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-arenal-update-modal',
   templateUrl: './arenal-update-modal.component.html',
   styleUrls: ['./arenal-update-modal.component.scss'],
@@ -54,19 +51,20 @@ import { MatTooltipModule } from '@angular/material/tooltip';
   ]
 })
 export class ArenalUpdateModalComponent implements OnInit {
+  // DI
+  private arenalService = inject(ArenalService);
+  private poblacionService = inject(PoblacionService);
+  private formBuilder = inject(FormBuilder);
+  dialogRef = inject<MatDialogRef<ArenalUpdateModalComponent>>(MatDialogRef);
+  private matSnackBar = inject(MatSnackBar);
+  data = inject<ViewArenal>(MAT_DIALOG_DATA);
 
   public formGroup!: FormGroup;
 
   public poblaciones: ViewCatalog[] = [];
 
   // Constructor
-  constructor(
-    private arenalService: ArenalService,
-    private poblacionService: PoblacionService,
-    private formBuilder: FormBuilder,
-    public dialogRef: MatDialogRef<ArenalUpdateModalComponent>,
-    private matSnackBar: MatSnackBar,
-    @Inject(MAT_DIALOG_DATA) public data: ViewArenal) { }
+  constructor() { }
 
 
   // Life Cicle

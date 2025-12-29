@@ -1,8 +1,4 @@
-import {
-  Component,
-  OnInit,
-  Inject
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, inject } from '@angular/core';
 
 import { NgOptimizedImage, Time } from '@angular/common';
 
@@ -45,6 +41,7 @@ import { ViewCatalog } from 'src/viewmodels/views/viewcatalog';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-historico-add-modal',
   templateUrl: './historico-add-modal.component.html',
   styleUrls: ['./historico-add-modal.component.scss'],
@@ -62,6 +59,15 @@ import { MatTooltipModule } from '@angular/material/tooltip';
   ]
 })
 export class HistoricoAddModalComponent implements OnInit {
+  // DI
+  private historicoService = inject(HistoricoService);
+  private banderaService = inject(BanderaService);
+  private vientoService = inject(VientoService);
+  private formBuilder = inject(FormBuilder);
+  dialogRef = inject<MatDialogRef<HistoricoAddModalComponent>>(MatDialogRef);
+  private matSnackBar = inject(MatSnackBar);
+  data = inject<ViewArenal>(MAT_DIALOG_DATA);
+
 
   public formGroup!: FormGroup;
 
@@ -70,14 +76,7 @@ export class HistoricoAddModalComponent implements OnInit {
   public vientos: ViewCatalog[] = [];
 
   // Constructor
-  constructor(
-    private historicoService: HistoricoService,
-    private banderaService: BanderaService,
-    private vientoService: VientoService,
-    private formBuilder: FormBuilder,
-    public dialogRef: MatDialogRef<HistoricoAddModalComponent>,
-    private matSnackBar: MatSnackBar,
-    @Inject(MAT_DIALOG_DATA) public data: ViewArenal) { }
+  constructor() { }
 
 
   // Life Cicle

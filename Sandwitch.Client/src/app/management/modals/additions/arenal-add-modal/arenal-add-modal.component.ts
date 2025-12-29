@@ -1,7 +1,4 @@
-import {
-  Component,
-  OnInit
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, inject } from '@angular/core';
 
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
@@ -36,6 +33,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { NgOptimizedImage } from '@angular/common';
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-arenal-add-modal',
   templateUrl: './arenal-add-modal.component.html',
   styleUrls: ['./arenal-add-modal.component.scss'],
@@ -53,18 +51,19 @@ import { NgOptimizedImage } from '@angular/common';
   ]
 })
 export class ArenalAddModalComponent implements OnInit {
+  // DI
+  private arenalService = inject(ArenalService);
+  private poblacionService = inject(PoblacionService);
+  private formBuilder = inject(FormBuilder);
+  dialogRef = inject<MatDialogRef<ArenalAddModalComponent>>(MatDialogRef);
+  private matSnackBar = inject(MatSnackBar);
 
   public formGroup!: FormGroup;
 
   public poblaciones: ViewCatalog[] = [];
 
   // Constructor
-  constructor(
-    private arenalService: ArenalService,
-    private poblacionService: PoblacionService,
-    private formBuilder: FormBuilder,
-    public dialogRef: MatDialogRef<ArenalAddModalComponent>,
-    private matSnackBar: MatSnackBar) { }
+  constructor() { }
 
 
   // Life Cicle

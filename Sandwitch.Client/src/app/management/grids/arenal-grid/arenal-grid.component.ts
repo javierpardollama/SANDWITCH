@@ -1,9 +1,4 @@
-import {
-    AfterViewInit,
-    Component,
-    OnDestroy,
-    OnInit
-} from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, Component, OnDestroy, OnInit, inject } from '@angular/core';
 
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
@@ -34,6 +29,7 @@ import { MatInputModule } from '@angular/material/input';
 
 
 @Component({
+    changeDetection: ChangeDetectionStrategy.OnPush,
     selector: 'app-arenal-grid',
     templateUrl: './arenal-grid.component.html',
     styleUrls: ['./arenal-grid.component.scss'],
@@ -52,6 +48,9 @@ import { MatInputModule } from '@angular/material/input';
     ]
 })
 export class ArenalGridComponent implements OnInit, AfterViewInit, OnDestroy {
+    // DI
+    private arenalService = inject(ArenalService);
+    matDialog = inject(MatDialog);
 
     public loading: boolean = false;
 
@@ -69,9 +68,7 @@ export class ArenalGridComponent implements OnInit, AfterViewInit, OnDestroy {
         };
 
     // Constructor
-    constructor(
-        private arenalService: ArenalService,
-        public matDialog: MatDialog) {
+    constructor() {
     }
 
     // Life Cicle

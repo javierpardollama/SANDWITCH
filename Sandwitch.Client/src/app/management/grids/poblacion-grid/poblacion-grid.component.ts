@@ -1,10 +1,4 @@
-import {
-  AfterViewInit,
-  Component,
-  OnDestroy,
-  OnInit,
-  ViewChild
-} from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, Component, OnDestroy, OnInit, ViewChild, inject } from '@angular/core';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatSort, MatSortModule } from '@angular/material/sort';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
@@ -33,6 +27,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatInputModule } from '@angular/material/input';
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-poblacion-grid',
   templateUrl: './poblacion-grid.component.html',
   styleUrls: ['./poblacion-grid.component.scss'],
@@ -51,6 +46,9 @@ import { MatInputModule } from '@angular/material/input';
   ]
 })
 export class PoblacionGridComponent implements OnInit, AfterViewInit, OnDestroy {
+  // DI
+  private poblacionService = inject(PoblacionService);
+  matDialog = inject(MatDialog);
 
   @ViewChild(MatSort, { static: true }) sort!: MatSort;
 
@@ -70,9 +68,7 @@ export class PoblacionGridComponent implements OnInit, AfterViewInit, OnDestroy 
     };
 
   // Constructor
-  constructor(
-    private poblacionService: PoblacionService,
-    public matDialog: MatDialog) {
+  constructor() {
   }
 
   // Life Cicle

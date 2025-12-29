@@ -12,42 +12,42 @@ export class NavigationService {
         return [
             {
                 Id:'nav-search',
-                Label: 'Buscar',
+                Label: 'Search',
                 Link: './',
                 Index: 0,
                 Class:'nav-menu-option-image search-image'
             },
             {
-                Id:'nav-provincias',
-                Label: 'Provincias',
-                Link: './management/provincias',
+                Id:'nav-states',
+                Label: 'States',
+                Link: './management/states',
                 Index: 1,
                 Class:'nav-menu-option-image land-image'
             }, {
-                Id:'nav-poblaciones',
-                Label: 'Poblaciones',
-                Link: './management/poblaciones',
+                Id:'nav-towns',
+                Label: 'Towns',
+                Link: './management/towns',
                 Index: 2,
                 Class:'nav-menu-option-image town-image'
             },
             {
-                Id:'nav-arenales',
-                Label: 'Arenales',
-                Link: './management/arenales',
+                Id:'nav-beaches',
+                Label: 'Beaches',
+                Link: './management/beaches',
                 Index: 3,
                 Class:'nav-menu-option-image sand-image'
             },
             {
-                Id:'nav-banderas',
-                Label: 'Banderas',
-                Link: './management/banderas',
+                Id:'nav-flags',
+                Label: 'Flags',
+                Link: './management/flags',
                 Index: 4,
                 Class:'nav-menu-option-image flag-image'
             },
             {
-                Id:'nav-vientos',
-                Label: 'Vientos',
-                Link: './management/vientos',
+                Id:'nav-winds',
+                Label: 'Winds',
+                Link: './management/winds',
                 Index: 5,
                 Class:'nav-menu-option-image compass-image'
             }

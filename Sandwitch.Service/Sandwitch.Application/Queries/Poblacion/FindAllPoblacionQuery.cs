@@ -1,8 +1,8 @@
 using MediatR;
 using Sandwitch.Application.ViewModels.Views;
 
-namespace Sandwitch.Application.Queries.Poblacion;
+namespace Sandwitch.Application.Queries.Town;
 
-public class FindAllPoblacionQuery : IRequest<IList<ViewCatalog>>
+public class FindAllTownQuery : IRequest<IList<ViewCatalog>>
 {
 }

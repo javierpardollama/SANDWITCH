@@ -17,62 +17,62 @@ public class NavigationTest : BaseTest
     }
 
     [Test]
-    public void Provincias()
+    public void States()
     {
         Wait.Until(d => d.FindElement(By.Id("nav-toggle"))).Click();
 
-        Wait.Until(d => d.FindElement(By.Id("nav-provincias"))).Click();
+        Wait.Until(d => d.FindElement(By.Id("nav-states"))).Click();
 
-        Wait.Until(d => d.Url.Contains("provincias"));
+        Wait.Until(d => d.Url.Contains("States"));
 
-        Assert.That(Driver.Url.Contains("provincias"), Is.True);
+        Assert.That(Driver.Url.Contains("States"), Is.True);
     }
 
     [Test]
-    public void Poblaciones()
+    public void Townes()
     {
         Wait.Until(d => d.FindElement(By.Id("nav-toggle"))).Click();
 
-        Wait.Until(d => d.FindElement(By.Id("nav-poblaciones"))).Click();
+        Wait.Until(d => d.FindElement(By.Id("nav-towns"))).Click();
 
-        Wait.Until(d => d.Url.Contains("poblaciones"));
+        Wait.Until(d => d.Url.Contains("Towns"));
 
-        Assert.That(Driver.Url.Contains("poblaciones"), Is.True);
+        Assert.That(Driver.Url.Contains("Towns"), Is.True);
     }
 
     [Test]
-    public void Arenales()
+    public void Beaches()
     {
         Wait.Until(d => d.FindElement(By.Id("nav-toggle"))).Click();
 
-        Wait.Until(d => d.FindElement(By.Id("nav-arenales"))).Click();
+        Wait.Until(d => d.FindElement(By.Id("nav-Beaches"))).Click();
 
-        Wait.Until(d => d.Url.Contains("arenales"));
+        Wait.Until(d => d.Url.Contains("Beaches"));
 
-        Assert.That(Driver.Url.Contains("arenales"), Is.True);
+        Assert.That(Driver.Url.Contains("Beaches"), Is.True);
     }
 
     [Test]
-    public void Banderas()
+    public void Flags()
     {
         Wait.Until(d => d.FindElement(By.Id("nav-toggle"))).Click();
 
-        Wait.Until(d => d.FindElement(By.Id("nav-banderas"))).Click();
+        Wait.Until(d => d.FindElement(By.Id("nav-flags"))).Click();
 
-        Wait.Until(d => d.Url.Contains("banderas"));
+        Wait.Until(d => d.Url.Contains("Flags"));
 
-        Assert.That(Driver.Url.Contains("banderas"), Is.True);
+        Assert.That(Driver.Url.Contains("Flags"), Is.True);
     }
 
     [Test]
-    public void Vientos()
+    public void Winds()
     {
         Wait.Until(d => d.FindElement(By.Id("nav-toggle"))).Click();
 
-        Wait.Until(d => d.FindElement(By.Id("nav-vientos"))).Click();
+        Wait.Until(d => d.FindElement(By.Id("nav-winds"))).Click();
 
-        Wait.Until(d => d.Url.Contains("vientos"));
+        Wait.Until(d => d.Url.Contains("Winds"));
 
-        Assert.That(Driver.Url.Contains("vientos"), Is.True);
+        Assert.That(Driver.Url.Contains("Winds"), Is.True);
     }
 }

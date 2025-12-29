@@ -1,11 +1,11 @@
 using Microsoft.Extensions.DependencyInjection;
-using Sandwitch.Application.Handlers.Arenal;
-using Sandwitch.Application.Handlers.Bandera;
-using Sandwitch.Application.Handlers.Buscador;
-using Sandwitch.Application.Handlers.Historico;
-using Sandwitch.Application.Handlers.Poblacion;
-using Sandwitch.Application.Handlers.Provincia;
-using Sandwitch.Application.Handlers.Viento;
+using Sandwitch.Application.Handlers.Beach;
+using Sandwitch.Application.Handlers.Flag;
+using Sandwitch.Application.Handlers.Finder;
+using Sandwitch.Application.Handlers.Historic;
+using Sandwitch.Application.Handlers.Town;
+using Sandwitch.Application.Handlers.State;
+using Sandwitch.Application.Handlers.Wind;
 
 namespace Sandwitch.Application.Installers;
 
@@ -22,43 +22,43 @@ public static class MediatRInstaller
     {
         @this.AddMediatR(cfg =>
         {
-            cfg.RegisterServicesFromAssemblyContaining<AddArenalHandler>();
-            cfg.RegisterServicesFromAssemblyContaining<FindAllArenalHandler>();
-            cfg.RegisterServicesFromAssemblyContaining<FindAllHistoricoByArenalIdHandler>();
-            cfg.RegisterServicesFromAssemblyContaining<FindPaginatedArenalHandler>();
-            cfg.RegisterServicesFromAssemblyContaining<RemoveArenalByIdHandler>();
-            cfg.RegisterServicesFromAssemblyContaining<UpdateArenalHandler>();
+            cfg.RegisterServicesFromAssemblyContaining<AddBeachHandler>();
+            cfg.RegisterServicesFromAssemblyContaining<FindAllBeachHandler>();
+            cfg.RegisterServicesFromAssemblyContaining<FindAllHistoricByBeachIdHandler>();
+            cfg.RegisterServicesFromAssemblyContaining<FindPaginatedBeachHandler>();
+            cfg.RegisterServicesFromAssemblyContaining<RemoveBeachByIdHandler>();
+            cfg.RegisterServicesFromAssemblyContaining<UpdateBeachHandler>();
 
-            cfg.RegisterServicesFromAssemblyContaining<AddBanderaHandler>();
-            cfg.RegisterServicesFromAssemblyContaining<FindAllBanderaHandler>();
-            cfg.RegisterServicesFromAssemblyContaining<FindAllHistoricoByBanderaIdHandler>();
-            cfg.RegisterServicesFromAssemblyContaining<FindPaginatedBanderaHandler>();
-            cfg.RegisterServicesFromAssemblyContaining<RemoveBanderaByIdHandler>();
-            cfg.RegisterServicesFromAssemblyContaining<UpdateBanderaHandler>();
+            cfg.RegisterServicesFromAssemblyContaining<AddFlagHandler>();
+            cfg.RegisterServicesFromAssemblyContaining<FindAllFlagHandler>();
+            cfg.RegisterServicesFromAssemblyContaining<FindAllHistoricByFlagIdHandler>();
+            cfg.RegisterServicesFromAssemblyContaining<FindPaginatedFlagHandler>();
+            cfg.RegisterServicesFromAssemblyContaining<RemoveFlagByIdHandler>();
+            cfg.RegisterServicesFromAssemblyContaining<UpdateFlagHandler>();
 
-            cfg.RegisterServicesFromAssemblyContaining<FindAllArenalByBuscadorIdHandler>();
-            cfg.RegisterServicesFromAssemblyContaining<FindAllBuscadorHandler>();
+            cfg.RegisterServicesFromAssemblyContaining<FindAllBeachByFinderIdHandler>();
+            cfg.RegisterServicesFromAssemblyContaining<FindAllFinderHandler>();
 
-            cfg.RegisterServicesFromAssemblyContaining<AddPoblacionHandler>();
-            cfg.RegisterServicesFromAssemblyContaining<FindAllPoblacionHandler>();
-            cfg.RegisterServicesFromAssemblyContaining<FindPaginatedPoblacionHandler>();
-            cfg.RegisterServicesFromAssemblyContaining<RemovePoblacionByIdHandler>();
-            cfg.RegisterServicesFromAssemblyContaining<UpdatePoblacionHandler>();
+            cfg.RegisterServicesFromAssemblyContaining<AddTownHandler>();
+            cfg.RegisterServicesFromAssemblyContaining<FindAllTownHandler>();
+            cfg.RegisterServicesFromAssemblyContaining<FindPaginatedTownHandler>();
+            cfg.RegisterServicesFromAssemblyContaining<RemoveTownByIdHandler>();
+            cfg.RegisterServicesFromAssemblyContaining<UpdateTownHandler>();
 
-            cfg.RegisterServicesFromAssemblyContaining<AddProvinciaHandler>();
-            cfg.RegisterServicesFromAssemblyContaining<FindAllProvinciaHandler>();
-            cfg.RegisterServicesFromAssemblyContaining<FindPaginatedProvinciaHandler>();
-            cfg.RegisterServicesFromAssemblyContaining<RemoveProvinciaByIdHandler>();
-            cfg.RegisterServicesFromAssemblyContaining<UpdateProvinciaHandler>();
+            cfg.RegisterServicesFromAssemblyContaining<AddStateHandler>();
+            cfg.RegisterServicesFromAssemblyContaining<FindAllStateHandler>();
+            cfg.RegisterServicesFromAssemblyContaining<FindPaginatedStateHandler>();
+            cfg.RegisterServicesFromAssemblyContaining<RemoveStateByIdHandler>();
+            cfg.RegisterServicesFromAssemblyContaining<UpdateStateHandler>();
 
-            cfg.RegisterServicesFromAssemblyContaining<AddVientoHandler>();
-            cfg.RegisterServicesFromAssemblyContaining<FindAllVientoHandler>();
-            cfg.RegisterServicesFromAssemblyContaining<FindAllHistoricoByVientoIdHandler>();
-            cfg.RegisterServicesFromAssemblyContaining<FindPaginatedVientoHandler>();
-            cfg.RegisterServicesFromAssemblyContaining<RemoveVientoByIdHandler>();
-            cfg.RegisterServicesFromAssemblyContaining<UpdateVientoHandler>();
+            cfg.RegisterServicesFromAssemblyContaining<AddWindHandler>();
+            cfg.RegisterServicesFromAssemblyContaining<FindAllWindHandler>();
+            cfg.RegisterServicesFromAssemblyContaining<FindAllHistoricByWindIdHandler>();
+            cfg.RegisterServicesFromAssemblyContaining<FindPaginatedWindHandler>();
+            cfg.RegisterServicesFromAssemblyContaining<RemoveWindByIdHandler>();
+            cfg.RegisterServicesFromAssemblyContaining<UpdateWindHandler>();
 
-            cfg.RegisterServicesFromAssemblyContaining<AddHistoricoHandler>();
+            cfg.RegisterServicesFromAssemblyContaining<AddHistoricHandler>();
         });
     }
 }

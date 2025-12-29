@@ -1,9 +1,9 @@
 ﻿using BenchmarkDotNet.Running;
 using Sandwitch.Benchmark.Service.Controllers;
 
-BenchmarkRunner.Run<ProvinciaController>();
-BenchmarkRunner.Run<BanderaController>();
-BenchmarkRunner.Run<VientoController>();
-BenchmarkRunner.Run<ArenalController>();
-BenchmarkRunner.Run<BuscadorController>();
-BenchmarkRunner.Run<PoblacionController>();
+BenchmarkRunner.Run<StateController>();
+BenchmarkRunner.Run<FlagController>();
+BenchmarkRunner.Run<WindController>();
+BenchmarkRunner.Run<BeachController>();
+BenchmarkRunner.Run<FinderController>();
+BenchmarkRunner.Run<TownController>();

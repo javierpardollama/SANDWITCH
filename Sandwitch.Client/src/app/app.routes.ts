@@ -7,28 +7,28 @@ export const routes: Routes = [
     pathMatch: 'full'
   },
   {
-    path: 'management/vientos',
-    loadComponent: () => import('./management/grids/viento-grid/viento-grid.component').then((m) => m.VientoGridComponent),
+    path: 'management/winds',
+    loadComponent: () => import('./management/grids/wind-grid/wind-grid.component').then((m) => m.WindGridComponent),
     pathMatch: 'full'
   },
   {
-    path: 'management/banderas',
-    loadComponent: () => import('./management/grids/bandera-grid/bandera-grid.component').then((m) => m.BanderaGridComponent),
+    path: 'management/flags',
+    loadComponent: () => import('./management/grids/flag-grid/flag-grid.component').then((m) => m.FlagGridComponent),
     pathMatch: 'full'
   },
   {
-    path: 'management/poblaciones',
-    loadComponent: () => import('./management/grids/poblacion-grid/poblacion-grid.component').then((m) => m.PoblacionGridComponent),
+    path: 'management/towns',
+    loadComponent: () => import('./management/grids/town-grid/town-grid.component').then((m) => m.TownGridComponent),
     pathMatch: 'full'
   },
   {
-    path: 'management/provincias',
-    loadComponent: () => import('./management/grids/provincia-grid/provincia-grid.component').then((m) => m.ProvinciaGridComponent),
+    path: 'management/states',
+    loadComponent: () => import('./management/grids/state-grid/state-grid.component').then((m) => m.StateGridComponent),
     pathMatch: 'full'
   },
   {
-    path: 'management/arenales',
-    loadComponent: () => import('./management/grids/arenal-grid/arenal-grid.component').then((m) => m.ArenalGridComponent),
+    path: 'management/beaches',
+    loadComponent: () => import('./management/grids/beach-grid/beach-grid.component').then((m) => m.BeachGridComponent),
     pathMatch: 'full'
   },
   {

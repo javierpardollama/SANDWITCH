@@ -37,7 +37,7 @@ public class AuthManagerTest : BaseManagerTest
     }
 
     /// <summary>
-    ///     Instance of <see cref="ILogger{BanderaService}" />
+    ///     Instance of <see cref="ILogger{FlagService}" />
     /// </summary>
     private ILogger<AuthManager> Logger;
 

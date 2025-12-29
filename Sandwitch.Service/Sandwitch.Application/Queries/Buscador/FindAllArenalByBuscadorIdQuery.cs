@@ -2,9 +2,9 @@ using MediatR;
 using Sandwitch.Application.ViewModels.Finders;
 using Sandwitch.Application.ViewModels.Views;
 
-namespace Sandwitch.Application.Queries.Buscador;
+namespace Sandwitch.Application.Queries.Finder;
 
-public class FindAllArenalByBuscadorIdQuery : IRequest<IList<ViewArenal>>
+public class FindAllBeachByFinderIdQuery : IRequest<IList<ViewBeach>>
 {
-    public FinderArenal ViewModel { get; set; }
+    public FinderBeach ViewModel { get; set; }
 }

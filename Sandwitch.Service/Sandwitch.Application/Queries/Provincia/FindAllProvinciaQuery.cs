@@ -1,8 +1,8 @@
 using MediatR;
 using Sandwitch.Application.ViewModels.Views;
 
-namespace Sandwitch.Application.Queries.Provincia;
+namespace Sandwitch.Application.Queries.State;
 
-public class FindAllProvinciaQuery : IRequest<IList<ViewCatalog>>
+public class FindAllStateQuery : IRequest<IList<ViewCatalog>>
 {
 }

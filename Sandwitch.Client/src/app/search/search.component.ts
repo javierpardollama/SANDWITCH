@@ -10,14 +10,14 @@ import {
   startWith
 } from 'rxjs/operators';
 
-import { ViewBuscador } from "../../viewmodels/views/viewbuscador";
-import { BuscadorService } from "../../services/buscador.service";
-import { FinderArenal } from "../../viewmodels/finders/finderarenal";
-import { ViewArenal } from '../../viewmodels/views/viewarenal';
+import { ViewFinder } from "../../viewmodels/views/viewfinder";
+import { FinderService } from "../../services/finder.service";
+import { FinderBeach } from "../../viewmodels/finders/finderbeach";
+import { ViewBeach } from '../../viewmodels/views/viewbeach';
 
 import {
-  HistoricoAddModalComponent
-} from '../management/modals/additions/historico-add-modal/historico-add-modal.component';
+  HistoricAddModalComponent
+} from '../management/modals/additions/historico-add-modal/historic-add-modal.component';
 import { MatAutocompleteModule, MatOption } from '@angular/material/autocomplete';
 import { MatCardModule } from '@angular/material/card';
 import { MatDividerModule } from '@angular/material/divider';
@@ -49,14 +49,14 @@ import { CommonModule, NgOptimizedImage } from '@angular/common';
 export class SearchComponent implements OnInit {
   // DI
   matDialog = inject(MatDialog);
-  private buscadorService = inject(BuscadorService);
+  private finderService = inject(FinderService);
 
   public loading: boolean = false;
 
   // Data
-  public buscadores: ViewBuscador[] = [];
-  public filteredBuscadores: Observable<ViewBuscador[]> = of([]);
-  public arenales: ViewArenal[] = [];
+  public finders: ViewFinder[] = [];
+  public filteredFinders: Observable<ViewFinder[]> = of([]);
+  public beaches: ViewBeach[] = [];
 
   // Control
   public buscadorCtrl = new FormControl();
@@ -72,47 +72,47 @@ export class SearchComponent implements OnInit {
   }
 
   // Get Data from Service
-  public async FindAllArenalByBuscadorId(option: MatOption<ViewBuscador>): Promise<void> {
-    const finder: FinderArenal =
+  public async FindAllBeachByFinderId(option: MatOption<ViewFinder>): Promise<void> {
+    const finder: FinderBeach =
     {
       Id: option.value.Id,
       Group: option.value.Group
     };
 
     this.loading = true;
-    this.arenales = await this.buscadorService.FindAllArenalByBuscadorId(finder);
+    this.beaches = await this.finderService.FindAllBeachByFinderId(finder);
     this.loading = false;
   }
 
   // Get Data from Service
   public async FindAllBuscador(): Promise<void> {
     this.loading = true;
-    this.buscadores = await this.buscadorService.FindAllBuscador();
+    this.finders = await this.finderService.FindAllFinder();
     this.loading = false;
 
-    this.filteredBuscadores = this.buscadorCtrl.valueChanges
+    this.filteredFinders = this.buscadorCtrl.valueChanges
       .pipe(
         startWith(''),
-        map(buscador => buscador ? this.FilterBuscadores(buscador.Name) : this.buscadores.slice())
+        map(buscador => buscador ? this.FilterFinders(buscador.Name) : this.finders.slice())
       );
   }
 
 
   // Filter Data
-  public FilterBuscadores(value: string): ViewBuscador[] {
+  public FilterFinders(value: string): ViewFinder[] {
     const filterValue = value.toLowerCase();
 
-    return this.buscadores.filter(buscador => buscador.Name.toLowerCase().indexOf(filterValue) === 0);
+    return this.finders.filter(finder => finder.Name.toLowerCase().indexOf(filterValue) === 0);
   }
 
   // Display Option Name
-  public displayFn(buscador: ViewBuscador): string {
+  public displayFn(buscador: ViewFinder): string {
     return buscador ? buscador.Name : '';
   }
 
   // Get Record from Card
-  public GetRecord(row: ViewArenal): void {
-    const dialogRef = this.matDialog.open(HistoricoAddModalComponent, {
+  public GetRecord(row: ViewBeach): void {
+    const dialogRef = this.matDialog.open(HistoricAddModalComponent, {
       width: '600px',
       data: row
     });

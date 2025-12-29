@@ -13,39 +13,39 @@ namespace Sandwitch.Infrastructure.Contexts;
 public class ApplicationContext(DbContextOptions<ApplicationContext> options) : DbContext(options), IApplicationContext
 {
     /// <summary>
-    ///     Gets or Sets <see cref="DbSet{Provincia}" />
+    ///     Gets or Sets <see cref="DbSet{State}" />
     /// </summary>
-    public virtual DbSet<Provincia> Provincia { get; set; }
+    public virtual DbSet<State> State { get; set; }
 
     /// <summary>
-    ///     Gets or Sets <see cref="DbSet{Poblacion}" />
+    ///     Gets or Sets <see cref="DbSet{Town}" />
     /// </summary>
-    public virtual DbSet<Poblacion> Poblacion { get; set; }
+    public virtual DbSet<Town> Town { get; set; }
 
     /// <summary>
-    ///     Gets or Sets <see cref="DbSet{Bandera}" />
+    ///     Gets or Sets <see cref="DbSet{Flag}" />
     /// </summary>
-    public virtual DbSet<Bandera> Bandera { get; set; }
+    public virtual DbSet<Flag> Flag { get; set; }
 
     /// <summary>
-    ///     Gets or Sets <see cref="DbSet{Viento}" />
+    ///     Gets or Sets <see cref="DbSet{Wind}" />
     /// </summary>
-    public virtual DbSet<Viento> Viento { get; set; }
+    public virtual DbSet<Wind> Wind { get; set; }
 
     /// <summary>
-    ///     Gets or Sets <see cref="DbSet{Arenal}" />
+    ///     Gets or Sets <see cref="DbSet{Beach}" />
     /// </summary>
-    public virtual DbSet<Arenal> Arenal { get; set; }
+    public virtual DbSet<Beach> Beach { get; set; }
 
     /// <summary>
-    ///     Gets or Sets <see cref="DbSet{ArenalPoblacion}" />
+    ///     Gets or Sets <see cref="DbSet{BeachTown}" />
     /// </summary>
-    public virtual DbSet<ArenalPoblacion> ArenalPoblacion { get; set; }
+    public virtual DbSet<BeachTown> BeachTown { get; set; }
 
     /// <summary>
-    ///     Gets or Sets <see cref="DbSet{Historico}" />
+    ///     Gets or Sets <see cref="DbSet{Historic}" />
     /// </summary>
-    public virtual DbSet<Historico> Historico { get; set; }
+    public virtual DbSet<Historic> Historic { get; set; }
 
     /// <summary>
     ///     Overrides Model Creation

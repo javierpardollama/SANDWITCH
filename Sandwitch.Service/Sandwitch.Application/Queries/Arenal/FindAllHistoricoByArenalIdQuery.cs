@@ -1,9 +1,9 @@
 using MediatR;
 using Sandwitch.Application.ViewModels.Views;
 
-namespace Sandwitch.Application.Queries.Arenal;
+namespace Sandwitch.Application.Queries.Beach;
 
-public class FindAllHistoricoByArenalIdQuery : IRequest<IList<ViewHistorico>>
+public class FindAllHistoricByBeachIdQuery : IRequest<IList<ViewHistoric>>
 {
     public int Id { get; set; }
 }

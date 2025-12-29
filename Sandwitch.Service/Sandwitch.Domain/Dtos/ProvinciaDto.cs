@@ -1,9 +1,9 @@
 ﻿namespace Sandwitch.Domain.Dtos;
 
 /// <summary>
-/// Represents a <see cref="ApplicationUserDto"/> class.
+/// Represents a <see cref="StateDto"/> class.
 /// </summary>
-public class ProvinciaDto
+public class StateDto
 {
     /// <summary>
     /// Gets or Sets <see cref="Id"/>

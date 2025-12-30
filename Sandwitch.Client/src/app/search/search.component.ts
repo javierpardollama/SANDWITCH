@@ -68,7 +68,7 @@ export class SearchComponent implements OnInit {
 
   // Life Cicle
   async ngOnInit(): Promise<void> {
-    await this.FindAllBuscador();
+    await this.FindAllFinder();
   }
 
   // Get Data from Service
@@ -85,7 +85,7 @@ export class SearchComponent implements OnInit {
   }
 
   // Get Data from Service
-  public async FindAllBuscador(): Promise<void> {
+  public async FindAllFinder(): Promise<void> {
     this.loading = true;
     this.finders = await this.finderService.FindAllFinder();
     this.loading = false;

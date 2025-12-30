@@ -91,7 +91,7 @@ export class HistoricAddModalComponent implements OnInit {
         [Validators.required]),
       FlagId: new FormControl<number>(this.data.LastHistoric.Flag.Id,
         [Validators.required]),
-      Temperatura: new FormControl<number>(this.data.LastHistoric.Temperature,
+      Temperature: new FormControl<number>(this.data.LastHistoric.Temperature,
         [Validators.required,
         Validators.pattern(ExpressionAppVariants.AppNumberExpression)]),
       WindId: new FormControl<number>(this.data.LastHistoric.Wind.Id,

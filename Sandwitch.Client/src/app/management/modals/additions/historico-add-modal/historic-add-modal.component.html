@@ -1,0 +1,130 @@
+<div id="historic-add-modal" class="container">
+  <form [formGroup]="formGroup" class="form" novalidate>
+
+    <div class="modal-header">
+      <div class="modal-option-image modal-sand-image"></div>
+      <div mat-dialog-title>{{data.Name}}</div>
+    </div>
+
+    <div class="modal-content-line">
+      <div class="modal-option-image modal-flag-image" aria-label="FlagId"></div>
+      <mat-form-field class="form-element">
+        <mat-label>FlagId</mat-label>
+        <mat-select formControlName="FlagId">
+          @for (flag of flags; track flag) {
+            <mat-option [value]="flag.Id">
+              <img class="select-option-img" aria-hidden ngSrc="{{flag.ImageUri}}" height="25" width="25">
+              <span>{{flag.Name}}</span>
+            </mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="modal-content-line">
+      <div class="modal-option-image modal-warm-image" aria-label="Temperature"></div>
+      <mat-form-field class="form-element">
+        <mat-label>Temperature</mat-label>
+        <input type="number" matInput placeholder="Temperature" formControlName="Temperature">
+        @if (!formGroup.controls['Temperature'].valid && formGroup.controls['Temperature'].touched) {
+          <mat-error>
+            Required field.
+          </mat-error>
+        }
+      </mat-form-field>
+    </div>
+
+
+    <div class="modal-content-line">
+
+      <div class="modal-content-cell">
+        <div class="modal-option-image modal-compass-image" aria-label="WindId"></div>
+        <mat-form-field class="form-element">
+          <mat-label>WindId</mat-label>
+          <mat-select formControlName="WindId">
+            @for (wind of winds; track wind) {
+              <mat-option [value]="wind.Id">
+                <img class="select-option-img" aria-hidden ngSrc="{{wind.ImageUri}}" height="25" width="25">
+                <span>{{wind.Name}}</span>
+              </mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div class="modal-content-cell">
+        <div class="modal-option-image modal-wind-image" aria-label="Speed"></div>
+        <mat-form-field class="form-element">
+          <mat-label>Speed</mat-label>
+          <input type="number" matInput placeholder="Speed" formControlName="Speed">
+          @if (!formGroup.controls['Speed'].valid && formGroup.controls['Speed'].touched) {
+            <mat-error>
+              Required field.
+            </mat-error>
+          }
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="modal-content-line">
+      <div class="modal-content-cell">
+        <div class="modal-option-image modal-low-sun-tide-image" aria-label="LowSeaDawn"></div>
+        <mat-form-field class="form-element">
+          <mat-label>LowSeaDawn</mat-label>
+          <input type="time" matInput placeholder="LowSeaDawn" formControlName="LowSeaDawn" step="1">
+          @if (!formGroup.controls['LowSeaDawn'].valid && formGroup.controls['LowSeaDawn'].touched) {
+            <mat-error>
+              Required field.
+            </mat-error>
+          }
+        </mat-form-field>
+      </div>
+      <div class="modal-content-cell">
+        <div class="modal-option-image modal-high-sun-tide-image" aria-label="HighSeaDawn"></div>
+        <mat-form-field class="form-element">
+          <mat-label>HighSeaDawn</mat-label>
+          <input type="time" matInput placeholder="HighSeaDawn" formControlName="HighSeaDawn" step="1">
+          @if (!formGroup.controls['HighSeaDawn'].valid && formGroup.controls['HighSeaDawn'].touched) {
+            <mat-error>
+              Required field.
+            </mat-error>
+          }
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="modal-content-line">
+      <div class="modal-content-cell">
+        <div class="modal-option-image modal-low-night_tide-image" aria-label="LowSeaSunset"></div>
+        <mat-form-field class="form-element">
+          <mat-label>LowSeaSunset</mat-label>
+          <input type="time" matInput placeholder="LowSeaSunset" formControlName="LowSeaSunset" step="1">
+          @if (!formGroup.controls['LowSeaSunset'].valid && formGroup.controls['LowSeaSunset'].touched) {
+            <mat-error>
+              Required field.
+            </mat-error>
+          }
+        </mat-form-field>
+      </div>
+      <div class="modal-content-cell">
+        <div class="modal-option-image modal-high-night_tide-image" aria-label="HighSeaSunset"></div>
+        <mat-form-field class="form-element">
+          <mat-label>HighSeaSunset</mat-label>
+          <input type="time" matInput placeholder="HighSeaSunset" formControlName="HighSeaSunset" step="1">
+          @if (!formGroup.controls['HighSeaSunset'].valid && formGroup.controls['HighSeaSunset'].touched) {
+            <mat-error>
+              Required field.
+            </mat-error>
+          }
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="modal-content-line">
+      <div class="form-element">
+        <button mat-raised-button color="primary" type="submit" class="button form-button"
+          (click)="onSubmit(formGroup.value)" [disabled]="!formGroup.valid" matTooltip="Save">Save
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

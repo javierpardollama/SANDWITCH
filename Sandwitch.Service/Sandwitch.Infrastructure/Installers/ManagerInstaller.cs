@@ -15,13 +15,13 @@ public static class ManagerInstaller
     /// <param name="this">Injected <see cref="IServiceCollection" /></param>
     public static void InstallManagers(this IServiceCollection @this)
     {
-        @this.AddTransient<IProvinciaManager, ProvinciaManager>();
-        @this.AddTransient<IPoblacionManager, PoblacionManager>();
-        @this.AddTransient<IVientoManager, VientoManager>();
-        @this.AddTransient<IBanderaManager, BanderaManager>();
-        @this.AddTransient<IArenalManager, ArenalManager>();
-        @this.AddTransient<IHistoricoManager, HistoricoManager>();
-        @this.AddTransient<IBuscadorManager, BuscadorManager>();
+        @this.AddTransient<IStateManager, StateManager>();
+        @this.AddTransient<ITownManager, TownManager>();
+        @this.AddTransient<IWindManager, WindManager>();
+        @this.AddTransient<IFlagManager, FlagManager>();
+        @this.AddTransient<IBeachManager, BeachManager>();
+        @this.AddTransient<IHistoricManager, HistoricManager>();
+        @this.AddTransient<IFinderManager, FinderManager>();
 
         @this.AddTransient<IAuthManager, AuthManager>();
         // Add other services here

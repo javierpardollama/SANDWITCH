@@ -1,8 +1,8 @@
 using MediatR;
 using Sandwitch.Application.ViewModels.Views;
 
-namespace Sandwitch.Application.Queries.Buscador;
+namespace Sandwitch.Application.Queries.Finder;
 
-public class FindAllBuscadorQuery : IRequest<IList<ViewBuscador>>
+public class FindAllFinderQuery : IRequest<IList<ViewFinder>>
 {
 }

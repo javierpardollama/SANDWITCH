@@ -13,9 +13,9 @@ public static class ContextExtension
         @this.Database.EnsureDeleted();
         @this.Database.EnsureCreated();
 
-        if (!@this.Viento.Any())
+        if (!@this.Wind.Any())
         {
-            @this.Viento.Add(new Viento
+            @this.Wind.Add(new Wind
             {
                 Id = 1,
                 Name = "Norte",
@@ -23,7 +23,7 @@ public static class ContextExtension
                 LastModified = DateTime.Now,
                 Deleted = false
             });
-            @this.Viento.Add(new Viento
+            @this.Wind.Add(new Wind
             {
                 Id = 2,
                 Name = "Noroeste",
@@ -31,7 +31,7 @@ public static class ContextExtension
                 LastModified = DateTime.Now,
                 Deleted = false
             });
-            @this.Viento.Add(new Viento
+            @this.Wind.Add(new Wind
             {
                 Id = 3,
                 Name = "Oeste",
@@ -43,9 +43,9 @@ public static class ContextExtension
             @this.SaveChanges();
         }
 
-        if (!@this.Bandera.Any())
+        if (!@this.Flag.Any())
         {
-            @this.Bandera.Add(new Bandera
+            @this.Flag.Add(new Flag
             {
                 Id = 1,
                 Name = "Amarilla ",
@@ -53,7 +53,7 @@ public static class ContextExtension
                 LastModified = DateTime.Now,
                 Deleted = false
             });
-            @this.Bandera.Add(new Bandera
+            @this.Flag.Add(new Flag
             {
                 Id = 2,
                 Name = "Negra",
@@ -61,7 +61,7 @@ public static class ContextExtension
                 LastModified = DateTime.Now,
                 Deleted = false
             });
-            @this.Bandera.Add(new Bandera
+            @this.Flag.Add(new Flag
             {
                 Id = 3,
                 Name = "Roja",
@@ -73,9 +73,9 @@ public static class ContextExtension
             @this.SaveChanges();
         }
 
-        if (!@this.Provincia.Any())
+        if (!@this.State.Any())
         {
-            @this.Provincia.Add(new Provincia
+            @this.State.Add(new State
             {
                 Id = 1,
                 Name = "Bizkaia",
@@ -83,7 +83,7 @@ public static class ContextExtension
                 LastModified = DateTime.Now,
                 Deleted = false
             });
-            @this.Provincia.Add(new Provincia
+            @this.State.Add(new State
             {
                 Id = 2,
                 Name = "Gipuzkoa",
@@ -91,7 +91,7 @@ public static class ContextExtension
                 LastModified = DateTime.Now,
                 Deleted = false
             });
-            @this.Provincia.Add(new Provincia
+            @this.State.Add(new State
             {
                 Id = 3,
                 Name = "Cantabria",
@@ -103,34 +103,34 @@ public static class ContextExtension
             @this.SaveChanges();
         }
 
-        if (!@this.Poblacion.Any())
+        if (!@this.Town.Any())
         {
-            @this.Poblacion.Add(new Poblacion
+            @this.Town.Add(new Town
             {
                 Id = 1,
                 Name = "Zierbena",
                 ImageUri = "URL/Zierbena_500px.png",
-                ProvinciaId = 1,
+                StateId = 1,
                 LastModified = DateTime.Now,
                 Deleted = false
             });
 
-            @this.Poblacion.Add(new Poblacion
+            @this.Town.Add(new Town
             {
                 Id = 2,
                 Name = "Muskiz",
                 ImageUri = "URL/Muskiz_500px.png",
-                ProvinciaId = 1,
+                StateId = 1,
                 LastModified = DateTime.Now,
                 Deleted = false
             });
 
-            @this.Poblacion.Add(new Poblacion
+            @this.Town.Add(new Town
             {
                 Id = 3,
                 Name = "Getxo",
                 ImageUri = "URL/Getxo_500px.png",
-                ProvinciaId = 1,
+                StateId = 1,
                 LastModified = DateTime.Now,
                 Deleted = false
             });
@@ -139,56 +139,56 @@ public static class ContextExtension
 
         }
 
-        if (!@this.Arenal.Any())
+        if (!@this.Beach.Any())
         {
-            @this.Arenal.Add(new Arenal
+            @this.Beach.Add(new Beach
             {
                 Id = 1,
                 Name = "Las Arenas",
                 LastModified = DateTime.Now,
                 Deleted = false,
-                ArenalPoblaciones = [
+                BeachTowns = [
                 new()
             {
-                ArenalId = 1,
-                PoblacionId = 3,
+                BeachId = 1,
+                TownId = 3,
             }
                 ]
             });
 
-            @this.Arenal.Add(new Arenal
+            @this.Beach.Add(new Beach
             {
                 Id = 2,
                 Name = "La Arena",
                 LastModified = DateTime.Now,
                 Deleted = false,
-                ArenalPoblaciones = [
+                BeachTowns = [
                   new()
             {
-                ArenalId = 2,
-                PoblacionId = 2,
+                BeachId = 2,
+                TownId = 2,
             }
                   ]
             });
 
             @this.SaveChanges();
         }
-        if (!@this.Historico.Any())
+        if (!@this.Historic.Any())
         {
-            @this.Historico.Add(new Historico()
+            @this.Historic.Add(new Historic()
             {
                 Id = 1,
                 LastModified = DateTime.Now,
                 Deleted = false,
-                BajaMarAlba = DateTime.Now.TimeOfDay,
-                BajaMarOcaso = DateTime.Now.TimeOfDay,
-                AltaMarAlba = DateTime.Now.TimeOfDay,
-                AltaMarOcaso = DateTime.Now.TimeOfDay,
-                Temperatura = 20,
-                Velocidad = 0,
-                ArenalId = 1,
-                VientoId = 1,
-                BanderaId = 1,
+                LowSeaDawn = DateTime.Now.TimeOfDay,
+                LowSeaSunset = DateTime.Now.TimeOfDay,
+                HighSeaDawn = DateTime.Now.TimeOfDay,
+                HighSeaSunset = DateTime.Now.TimeOfDay,
+                Temperature = 20,
+                Speed = 0,
+                BeachId = 1,
+                WindId = 1,
+                FlagId = 1,
             });
 
             @this.SaveChanges();

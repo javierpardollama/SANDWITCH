@@ -15,12 +15,12 @@ public static class FiltersExtension
     public static void AddCustomizedFilters(this ModelBuilder @this)
     {
         // Configure entity filters           
-        @this.Entity<Provincia>().HasQueryFilter(p => !p.Deleted);
-        @this.Entity<Poblacion>().HasQueryFilter(p => !p.Deleted);
-        @this.Entity<Bandera>().HasQueryFilter(p => !p.Deleted);
-        @this.Entity<Viento>().HasQueryFilter(p => !p.Deleted);
-        @this.Entity<Arenal>().HasQueryFilter(p => !p.Deleted);
-        @this.Entity<ArenalPoblacion>().HasQueryFilter(p => !p.Deleted);
-        @this.Entity<Historico>().HasQueryFilter(p => !p.Deleted);
+        @this.Entity<State>().HasQueryFilter(p => !p.Deleted);
+        @this.Entity<Town>().HasQueryFilter(p => !p.Deleted);
+        @this.Entity<Flag>().HasQueryFilter(p => !p.Deleted);
+        @this.Entity<Wind>().HasQueryFilter(p => !p.Deleted);
+        @this.Entity<Beach>().HasQueryFilter(p => !p.Deleted);
+        @this.Entity<BeachTown>().HasQueryFilter(p => !p.Deleted);
+        @this.Entity<Historic>().HasQueryFilter(p => !p.Deleted);
     }
 }

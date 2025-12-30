@@ -1,8 +1,8 @@
 using MediatR;
 using Sandwitch.Application.ViewModels.Views;
 
-namespace Sandwitch.Application.Queries.Bandera;
+namespace Sandwitch.Application.Queries.Flag;
 
-public class FindAllBanderaQuery : IRequest<IList<ViewCatalog>>
+public class FindAllFlagQuery : IRequest<IList<ViewCatalog>>
 {
 }

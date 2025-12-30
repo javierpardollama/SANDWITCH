@@ -38,6 +38,7 @@ public static class EntityFrameworkInstaller
     {
         using var @scope = @this.Services.CreateScope();
 
+        @scope.ServiceProvider.GetRequiredService<ApplicationContext>().Database.EnsureCreated();
         @scope.ServiceProvider.GetRequiredService<ApplicationContext>().Database.Migrate();
 
         // Add other services here

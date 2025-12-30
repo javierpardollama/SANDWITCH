@@ -1,9 +1,9 @@
 using MediatR;
 using Sandwitch.Application.ViewModels.Views;
 
-namespace Sandwitch.Application.Queries.Viento;
+namespace Sandwitch.Application.Queries.Wind;
 
-public class FindAllHistoricoByVientoIdQuery : IRequest<IList<ViewHistorico>>
+public class FindAllHistoricByWindIdQuery : IRequest<IList<ViewHistoric>>
 {
     public int Id { get; set; }
 }

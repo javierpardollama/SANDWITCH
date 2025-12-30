@@ -9,39 +9,39 @@ namespace Sandwitch.Infrastructure.Contexts.Interfaces;
 public interface IApplicationContext : IDisposable
 {
     /// <summary>
-    ///     Gets or Sets <see cref="DbSet{Provincia}" />
+    ///     Gets or Sets <see cref="DbSet{State}" />
     /// </summary>
-    public DbSet<Provincia> Provincia { get; set; }
+    public DbSet<State> State { get; set; }
 
     /// <summary>
-    ///     Gets or Sets <see cref="DbSet{Poblacion}" />
+    ///     Gets or Sets <see cref="DbSet{Town}" />
     /// </summary>
-    public DbSet<Poblacion> Poblacion { get; set; }
+    public DbSet<Town> Town { get; set; }
 
     /// <summary>
-    ///     Gets or Sets <see cref="DbSet{Bandera}" />
+    ///     Gets or Sets <see cref="DbSet{Flag}" />
     /// </summary>
-    public DbSet<Bandera> Bandera { get; set; }
+    public DbSet<Flag> Flag { get; set; }
 
     /// <summary>
-    ///     Gets or Sets <see cref="DbSet{Viento}" />
+    ///     Gets or Sets <see cref="DbSet{Wind}" />
     /// </summary>
-    public DbSet<Viento> Viento { get; set; }
+    public DbSet<Wind> Wind { get; set; }
 
     /// <summary>
-    ///     Gets or Sets <see cref="DbSet{Arenal}" />
+    ///     Gets or Sets <see cref="DbSet{Beach}" />
     /// </summary>
-    public DbSet<Arenal> Arenal { get; set; }
+    public DbSet<Beach> Beach { get; set; }
 
     /// <summary>
-    ///     Gets or Sets <see cref="DbSet{ArenalPoblacion}" />
+    ///     Gets or Sets <see cref="DbSet{BeachTown}" />
     /// </summary>
-    public DbSet<ArenalPoblacion> ArenalPoblacion { get; set; }
+    public DbSet<BeachTown> BeachTown { get; set; }
 
     /// <summary>
-    ///     Gets or Sets <see cref="DbSet{Historico}" />
+    ///     Gets or Sets <see cref="DbSet{Historic}" />
     /// </summary>
-    public DbSet<Historico> Historico { get; set; }
+    public DbSet<Historic> Historic { get; set; }
 
     /// <summary>
     ///     Saves Changes Syncronously

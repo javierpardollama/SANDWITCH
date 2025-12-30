@@ -6,14 +6,14 @@
 
 <form class="search-form">
   <mat-form-field class="search-half-width">
-    <mat-label>Buscador</mat-label>
-    <input type="search" matInput placeholder="Buscador" aria-label="Buscador" [matAutocomplete]="auto"
+    <mat-label>Search</mat-label>
+    <input type="search" matInput placeholder="Search" aria-label="Search" [matAutocomplete]="auto"
       [formControl]="buscadorCtrl">
-      <mat-autocomplete #auto="matAutocomplete" (optionSelected)='FindAllArenalByBuscadorId($event.option)' [displayWith]="displayFn" >
-        @for (buscador of filteredBuscadores | async; track buscador) {
-          <mat-option [value]="buscador">
-            <img class="search-option-img" aria-label="buscador.Name" aria-hidden ngSrc="{{buscador.ImageUri}}" height="25" width="25">
-            <span>{{buscador.Name}}</span>
+      <mat-autocomplete #auto="matAutocomplete" (optionSelected)='FindAllBeachByFinderId($event.option)' [displayWith]="displayFn" >
+        @for (finder of filteredFinders | async; track finder) {
+          <mat-option [value]="finder">
+            <img class="search-option-img" aria-label="buscador.Name" aria-hidden ngSrc="{{finder.ImageUri}}" height="25" width="25">
+            <span>{{finder.Name}}</span>
           </mat-option>
         }
       </mat-autocomplete>
@@ -21,66 +21,66 @@
     </form>
 
     <div class="search-result">
-      @for (arenal of arenales; track arenal) {
-        <mat-card class="search-card" (click)="GetRecord(arenal)">
+      @for (beach of beaches; track beach) {
+        <mat-card class="search-card" (click)="GetRecord(beach)">
           <mat-card-header>
             <div mat-card-avatar class="search-card-sand-image"></div>
-            <mat-card-title>{{arenal.Name}}</mat-card-title>
+            <mat-card-title>{{beach.Name}}</mat-card-title>
           </mat-card-header>
           <mat-card-content>
-            <img class="search-card-flag-image" mat-card-image ngSrc="{{arenal.LastHistorico.Bandera.ImageUri}}" fill
-              alt="{{arenal.LastHistorico.Bandera.Name}}">
+            <img class="search-card-flag-image" mat-card-image ngSrc="{{beach.LastHistoric.Flag.ImageUri}}" fill
+              alt="{{beach.LastHistoric.Flag.Name}}">
               <mat-divider></mat-divider>
               <div class="search-card-content-line search-card-content-line-update">
                 <div mat-card-avatar class="search-card-content search-card-update-image" aria-label="LastModified"></div>
-                <span>{{arenal.LastHistorico.LastModified | date: 'MMM d, y h:mm a'}}</span>
+                <span>{{beach.LastHistoric.LastModified | date: 'MMM d, y h:mm a'}}</span>
               </div>
               <mat-divider></mat-divider>
               <div class="search-card-content-line">
-                <div mat-card-avatar class="search-card-content search-card-warm-image" aria-label="Temperatura"></div>
+                <div mat-card-avatar class="search-card-content search-card-warm-image" aria-label="Temperature"></div>
                 <div class="search-card-content">
-                  <span>{{arenal.LastHistorico.Temperatura}} ºC</span>
+                  <span>{{beach.LastHistoric.Temperature}} ºC</span>
                 </div>
               </div>
               <div class="search-card-content-line">
                 <div class="search-card-content-cell">
-                  <div mat-card-avatar class="search-card-content search-card-compass-image" aria-label="Viento"></div>
+                  <div mat-card-avatar class="search-card-content search-card-compass-image" aria-label="Wind"></div>
                   <div class="search-card-content">
-                    <span>{{arenal.LastHistorico.Viento.Name}}</span>
+                    <span>{{beach.LastHistoric.Wind.Name}}</span>
                   </div>
                 </div>
                 <div class="search-card-content-cell">
-                  <div mat-card-avatar class="search-card-content search-card-wind-image" aria-label="Velocidad"></div>
+                  <div mat-card-avatar class="search-card-content search-card-wind-image" aria-label="Speed"></div>
                   <div class="search-card-content">
-                    <span>{{arenal.LastHistorico.Velocidad}} m/s</span>
-                  </div>
-                </div>
-              </div>
-              <div class="search-card-content-line">
-                <div class="search-card-content-cell">
-                  <div mat-card-avatar class="search-card-content search-card-low-sun-tide-image" aria-label="BajaMarAlba"></div>
-                  <div class="search-card-content">
-                    <span>{{arenal.LastHistorico.BajaMarAlba}} </span>
-                  </div>
-                </div>
-                <div class="search-card-content-cell">
-                  <div mat-card-avatar class="search-card-content search-card-high-sun-tide-image" aria-label="AltaMarAlba"></div>
-                  <div class="search-card-content">
-                    <span>{{arenal.LastHistorico.AltaMarAlba}}</span>
+                    <span>{{beach.LastHistoric.Speed}} m/s</span>
                   </div>
                 </div>
               </div>
               <div class="search-card-content-line">
                 <div class="search-card-content-cell">
-                  <div mat-card-avatar class="search-card-content search-card-low-night_tide-image" aria-label="BajaMarOcaso"></div>
+                  <div mat-card-avatar class="search-card-content search-card-low-sun-tide-image" aria-label="LowSeaDawn"></div>
                   <div class="search-card-content">
-                    <span>{{arenal.LastHistorico.BajaMarOcaso}}</span>
+                    <span>{{beach.LastHistoric.LowSeaDawn}} </span>
                   </div>
                 </div>
                 <div class="search-card-content-cell">
-                  <div mat-card-avatar class="search-card-content search-card-high-night_tide-image" aria-label="AltaMarOcaso"></div>
+                  <div mat-card-avatar class="search-card-content search-card-high-sun-tide-image" aria-label="HighSeaDawn"></div>
                   <div class="search-card-content">
-                    <span>{{arenal.LastHistorico.AltaMarOcaso}}</span>
+                    <span>{{beach.LastHistoric.HighSeaDawn}}</span>
+                  </div>
+                </div>
+              </div>
+              <div class="search-card-content-line">
+                <div class="search-card-content-cell">
+                  <div mat-card-avatar class="search-card-content search-card-low-night_tide-image" aria-label="LowSeaSunset"></div>
+                  <div class="search-card-content">
+                    <span>{{beach.LastHistoric.LowSeaSunset}}</span>
+                  </div>
+                </div>
+                <div class="search-card-content-cell">
+                  <div mat-card-avatar class="search-card-content search-card-high-night_tide-image" aria-label="HighSeaSunset"></div>
+                  <div class="search-card-content">
+                    <span>{{beach.LastHistoric.HighSeaSunset}}</span>
                   </div>
                 </div>
               </div>

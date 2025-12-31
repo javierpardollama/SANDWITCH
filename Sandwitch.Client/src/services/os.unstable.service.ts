@@ -7,11 +7,16 @@ import { OsUpdateUnstableModalComponent } from 'src/app/os/modals/os-update-unst
 @Injectable({ providedIn: 'root' })
 export class OsUnstableService {
 
-  private updates = inject(SwUpdate);
+  private swUpdate = inject(SwUpdate);
   private matDialog = inject(MatDialog);
 
   constructor() {
-    this.updates.unrecoverable.subscribe(() => {
+    if (!this.swUpdate.isEnabled) {
+      console.info('[Update] Service worker updates are disabled.');
+      return;
+    }
+
+    this.swUpdate.unrecoverable.subscribe(() => {
 
       const dialogRef = this.matDialog.open(OsUpdateUnstableModalComponent, {
         width: '450px'

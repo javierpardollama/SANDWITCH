@@ -13,6 +13,11 @@ export class OsPromptService {
 
     constructor() {
 
+        if (!this.swUpdate.isEnabled) {
+            console.info('[Update] Service worker updates are disabled.');
+            return;
+        }
+
         this.swUpdate.versionUpdates
             .pipe(filter((evt): evt is VersionReadyEvent => evt.type === 'VERSION_READY'))
             .subscribe(() => {

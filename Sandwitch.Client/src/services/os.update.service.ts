@@ -9,7 +9,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 export class OsUpdateService {
 
     private appRef = inject(ApplicationRef);
-    private updates = inject(SwUpdate);
+    private swUpdate = inject(SwUpdate);
     private destroyRef = inject(DestroyRef);
 
     constructor() {
@@ -22,10 +22,15 @@ export class OsUpdateService {
 
         const StartPolling = concat(IsStable, DayInterval);
 
+        if (!this.swUpdate.isEnabled) {
+            console.info('[Update] Service worker updates are disabled.');
+            return;
+        }
+
         StartPolling
             .pipe(
                 takeUntilDestroyed(this.destroyRef),
-                switchMap(() => this.updates.checkForUpdate()),
+                switchMap(() => this.swUpdate.checkForUpdate()),
                 tap((updateFound) => {
                     if (updateFound) {
                         console.info('[Update] A new version is available.');

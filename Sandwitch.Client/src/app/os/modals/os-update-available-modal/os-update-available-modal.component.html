@@ -1,0 +1,13 @@
+<div id="os-update-available-modal" class="container">
+    <h2 mat-dialog-title>Important Update for Your System</h2>
+
+    <mat-dialog-content>
+        <p>There is a new version available</p>
+        <p>Would you like to install it now?</p>
+    </mat-dialog-content>
+
+    <mat-dialog-actions>
+        <button type="button" matButton (click)="Delay()" [mat-dialog-close]="Delay()">Remind Me Later</button>
+        <button type="button" matButton (click)="Proceed()">Proceed</button>
+    </mat-dialog-actions>
+</div>

@@ -1,0 +1,13 @@
+<div id="os-update-unstable-modal" class="container">
+    <h2 mat-dialog-title>Something went wrong</h2>
+
+    <mat-dialog-content>
+        <p>An error occurred that we cannot recover from</p>
+        <p>Would you like to reload the page?</p>
+    </mat-dialog-content>
+
+    <mat-dialog-actions>
+        <button type="button" matButton (click)="Delay()" [mat-dialog-close]="Delay()">Remind Me Later</button>
+        <button type="button" matButton (click)="Proceed()">Proceed</button>
+    </mat-dialog-actions>
+</div>

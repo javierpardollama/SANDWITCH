@@ -6,11 +6,7 @@ import { ViewPage } from '../viewmodels/views/viewpage';
 
 import { ViewTown } from '../viewmodels/views/viewtown';
 
-import { HttpClient } from '@angular/common/http';
-
-import { MatSnackBar } from '@angular/material/snack-bar';
-
-import { Injectable, inject } from '@angular/core';
+import { Injectable } from '@angular/core';
 
 import { catchError } from 'rxjs/operators';
 
@@ -21,7 +17,6 @@ import { FilterPage } from 'src/viewmodels/filters/filterpage';
 import { firstValueFrom } from 'rxjs';
 
 import { environment } from 'src/environments/environment';
-import { Router } from '@angular/router';
 import { ViewCatalog } from 'src/viewmodels/views/viewcatalog';
 
 @Injectable({
@@ -29,22 +24,10 @@ import { ViewCatalog } from 'src/viewmodels/views/viewcatalog';
 })
 
 export class TownService extends BaseService {
-    protected override httpClient: HttpClient;
-    protected override matSnackBar: MatSnackBar;
-    protected override router: Router;
 
     public constructor() {
-        const httpClient = inject(HttpClient);
-        const matSnackBar = inject(MatSnackBar);
-        const router = inject(Router);
-
-        super(httpClient, matSnackBar, router);
-    
-        this.httpClient = httpClient;
-        this.matSnackBar = matSnackBar;
-        this.router = router;
+        super();
     }
-
     public UpdateTown(viewModel: UpdateTown): Promise<ViewTown> {
         return firstValueFrom(this.httpClient.put<ViewTown>(`${environment.Api.Service}api/v1/town/update`, viewModel)
             .pipe(catchError(this.HandleError<ViewTown>('UpdateTown', undefined))));

@@ -16,14 +16,17 @@ import { TimeAppVariants } from '../variants/time.app.variants';
 import { CodeAppVariants } from '../variants/codes.app.variants';
 
 import { Router } from '@angular/router';
+import { inject } from '@angular/core';
 
 
 export class BaseService {
 
-    public constructor(
-        protected httpClient: HttpClient,
-        protected matSnackBar: MatSnackBar,
-        protected router: Router) {
+    protected httpClient = inject(HttpClient);;
+    protected matSnackBar = inject(MatSnackBar);
+    protected router = inject(Router);
+
+    public constructor() {
+
     }
 
     public HandleError<T>(operation = 'Operation', result?: T) {
@@ -34,7 +37,7 @@ export class BaseService {
                     const exception: ExceptionProblemDetails = {
                         Detail: response.error.detail,
                         Title: response.error.title,
-                        Type : response.error.type
+                        Type: response.error.type
                     };
 
                     this.matSnackBar.open(

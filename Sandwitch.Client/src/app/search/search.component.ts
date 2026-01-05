@@ -1,9 +1,7 @@
-import { ChangeDetectionStrategy, Component, OnInit, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, computed, inject, signal } from '@angular/core';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
-
-import { Observable, of } from 'rxjs';
 
 import {
   map,
@@ -25,6 +23,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { CommonModule, NgOptimizedImage } from '@angular/common';
+import { toSignal } from '@angular/core/rxjs-interop';
 
 
 @Component({
@@ -51,15 +50,30 @@ export class SearchComponent implements OnInit {
   matDialog = inject(MatDialog);
   private finderService = inject(FinderService);
 
-  public loading: boolean = false;
 
-  // Data
-  public finders: ViewFinder[] = [];
-  public filteredFinders: Observable<ViewFinder[]> = of([]);
-  public beaches: ViewBeach[] = [];
+  // Signals for state
+  loading = signal(false);
+  finders = signal<ViewFinder[]>([]);
+  beaches = signal<ViewBeach[]>([]);
 
-  // Control
-  public buscadorCtrl = new FormControl();
+  buscadorCtrl = new FormControl<string | ViewFinder>('', { nonNullable: true });
+
+
+  // Convert the control stream to a signal
+  query = toSignal(
+    this.buscadorCtrl.valueChanges.pipe(
+      startWith<string | ViewFinder>(''),
+      map(v => (typeof v === 'string' ? v : v?.Name ?? ''))
+    ),
+    { initialValue: '' }
+  );
+
+  // Derived signal for filtered list
+  filteredFinders = computed(() => {
+    const list = this.finders();
+    const term = this.query().toLowerCase().trim();
+    return term ? list.filter(f => f.Name?.toLowerCase().includes(term)) : list;
+  });
 
   // Constructor
   constructor() {
@@ -73,36 +87,19 @@ export class SearchComponent implements OnInit {
 
   // Get Data from Service
   public async FindAllBeachByFinderId(option: MatOption<ViewFinder>): Promise<void> {
-    const finder: FinderBeach =
-    {
-      Id: option.value.Id,
-      Group: option.value.Group
-    };
-
-    this.loading = true;
-    this.beaches = await this.finderService.FindAllBeachByFinderId(finder);
-    this.loading = false;
+    this.loading.set(true);
+    const finder: FinderBeach = { Id: option.value.Id, Group: option.value.Group };
+    const beaches = await this.finderService.FindAllBeachByFinderId(finder);
+    this.beaches.set(beaches);
+    this.loading.set(false);
   }
 
   // Get Data from Service
   public async FindAllFinder(): Promise<void> {
-    this.loading = true;
-    this.finders = await this.finderService.FindAllFinder();
-    this.loading = false;
-
-    this.filteredFinders = this.buscadorCtrl.valueChanges
-      .pipe(
-        startWith(''),
-        map(buscador => buscador ? this.FilterFinders(buscador.Name) : this.finders.slice())
-      );
-  }
-
-
-  // Filter Data
-  public FilterFinders(value: string): ViewFinder[] {
-    const filterValue = value.toLowerCase();
-
-    return this.finders.filter(finder => finder.Name.toLowerCase().indexOf(filterValue) === 0);
+    this.loading.set(true);
+    const finders = await this.finderService.FindAllFinder();
+    this.finders.set(finders);
+    this.loading.set(false);
   }
 
   // Display Option Name

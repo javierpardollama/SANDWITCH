@@ -1,4 +1,4 @@
-@if (loading) {
+@if (loading()) {
   <div class="spinner-container">
     <div class="spinner"></div>
   </div>
@@ -10,9 +10,9 @@
     <input type="search" matInput placeholder="Search" aria-label="Search" [matAutocomplete]="auto"
       [formControl]="buscadorCtrl">
       <mat-autocomplete #auto="matAutocomplete" (optionSelected)='FindAllBeachByFinderId($event.option)' [displayWith]="displayFn" >
-        @for (finder of filteredFinders | async; track finder) {
+        @for (finder of filteredFinders(); track finder) {
           <mat-option [value]="finder">
-            <img class="search-option-img" aria-label="buscador.Name" aria-hidden ngSrc="{{finder.ImageUri}}" height="25" width="25">
+            <img class="search-option-img" aria-label="finder.Name" aria-hidden ngSrc="{{finder.ImageUri}}" height="25" width="25">
             <span>{{finder.Name}}</span>
           </mat-option>
         }
@@ -21,7 +21,7 @@
     </form>
 
     <div class="search-result">
-      @for (beach of beaches; track beach) {
+      @for (beach of beaches(); track beach) {
         <mat-card class="search-card" (click)="GetRecord(beach)">
           <mat-card-header>
             <div mat-card-avatar class="search-card-sand-image"></div>

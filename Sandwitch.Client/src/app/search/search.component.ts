@@ -50,14 +50,12 @@ export class SearchComponent implements OnInit {
   matDialog = inject(MatDialog);
   private finderService = inject(FinderService);
 
-
   // Signals for state
   loading = signal(false);
   finders = signal<ViewFinder[]>([]);
   beaches = signal<ViewBeach[]>([]);
 
   buscadorCtrl = new FormControl<string | ViewFinder>('', { nonNullable: true });
-
 
   // Convert the control stream to a signal
   query = toSignal(
@@ -94,7 +92,6 @@ export class SearchComponent implements OnInit {
     this.loading.set(false);
   }
 
-  // Get Data from Service
   public async FindAllFinder(): Promise<void> {
     this.loading.set(true);
     const finders = await this.finderService.FindAllFinder();

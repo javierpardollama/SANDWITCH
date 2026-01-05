@@ -8,7 +8,7 @@ import { ViewTown } from '../viewmodels/views/viewtown';
 
 import { Injectable } from '@angular/core';
 
-import { catchError } from 'rxjs/operators';
+import { catchError, shareReplay } from 'rxjs/operators';
 
 import { BaseService } from './base.service';
 
@@ -35,7 +35,10 @@ export class TownService extends BaseService {
 
     public FindAllTown(): Promise<ViewCatalog[]> {
         return firstValueFrom(this.httpClient.get<ViewCatalog[]>(`${environment.Api.Service}api/v1/town/all`)
-            .pipe(catchError(this.HandleError<ViewCatalog[]>('FindAllTown', []))));
+            .pipe(
+                // Cache the latest emission
+                shareReplay({ bufferSize: 1, refCount: true }),
+                catchError(this.HandleError<ViewCatalog[]>('FindAllTown', []))));
     }
 
     public FindPaginatedTown(viewModel: FilterPage): Promise<ViewPage<ViewTown>> {

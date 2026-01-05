@@ -8,7 +8,7 @@ import { ViewState } from '../viewmodels/views/viewstate';
 
 import { Injectable } from '@angular/core';
 
-import { catchError } from 'rxjs/operators';
+import { catchError, shareReplay } from 'rxjs/operators';
 
 import { BaseService } from './base.service';
 
@@ -36,7 +36,10 @@ export class StateService extends BaseService {
 
     public FindAllState(): Promise<ViewCatalog[]> {
         return firstValueFrom(this.httpClient.get<ViewCatalog[]>(`${environment.Api.Service}api/v1/state/all`)
-            .pipe(catchError(this.HandleError<ViewCatalog[]>('FindAllState', []))));
+            .pipe(
+                // Cache the latest emission
+                shareReplay({ bufferSize: 1, refCount: true }),
+                catchError(this.HandleError<ViewCatalog[]>('FindAllState', []))));
     }
 
     public FindPaginatedState(viewModel: FilterPage): Promise<ViewPage<ViewState>> {

@@ -8,7 +8,7 @@ import { ViewWind } from '../viewmodels/views/viewwind';
 
 import { Injectable } from '@angular/core';
 
-import { catchError } from 'rxjs/operators';
+import { catchError, shareReplay } from 'rxjs/operators';
 
 import { BaseService } from './base.service';
 
@@ -36,7 +36,10 @@ export class WindService extends BaseService {
 
     public FindAllWind(): Promise<ViewCatalog[]> {
         return firstValueFrom(this.httpClient.get<ViewCatalog[]>(`${environment.Api.Service}api/v2/wind/all`)
-            .pipe(catchError(this.HandleError<ViewCatalog[]>('FindAllWind', []))));
+            .pipe(
+                  // Cache the latest emission
+                shareReplay({ bufferSize: 1, refCount: true }),
+                catchError(this.HandleError<ViewCatalog[]>('FindAllWind', []))));
     }
 
     public FindPaginatedWind(viewModel: FilterPage): Promise<ViewPage<ViewWind>> {

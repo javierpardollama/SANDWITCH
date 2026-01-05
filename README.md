@@ -1,41 +1,40 @@
 # SANDWITCH
 
-[![Test .NET Infrastructure](https://github.com/javierpardollama/SANDWITCH/actions/workflows/dotnet-infrastructure.yml/badge.svg)](https://github.com/javierpardollama/SANDWITCH/actions/workflows/dotnet-infrastructure.yml) [![Build .NET Service](https://github.com/javierpardollama/SANDWITCH/actions/workflows/dotnet-service.yml/badge.svg)](https://github.com/javierpardollama/SANDWITCH/actions/workflows/dotnet-service.yml) [![Build Angular App](https://github.com/javierpardollama/SANDWITCH/actions/workflows/node.js.yml/badge.svg)](https://github.com/javierpardollama/SANDWITCH/actions/workflows/node.js.yml) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)]([https://github.com/coverlet-coverage/coverlet/blob/master/LICENSE]([https://github.com/javierpardollama/HYPERDRIVE/blob/main/LICENSE)](https://github.com/javierpardollama/SANDWITCH/blob/main/LICENSE))
+[![Test .NET Infrastructure](https://github.com/javierpardollama/SANDWITCH/actions/workflows/dotnet-infrastructure.yml/badge.svg)](https://github.com/javierpardollama/SANDWITCH/actions/workflows/dotnet-infrastructure.yml) [![Build .NET Service](https://github.com/javierpardollama/SANDWITCH/actions/workflows/dotnet-service.yml/badge.svg)](https://github.com/javierpardollama/SANDWITCH/actions/workflows/dotnet-service.yml) [![Build Angular [App](https://github.com/javierpardollama/SANDWITCH/actions/workflows/node.js.yml/badge.svg)](https://github.com/javierpardollama/SANDWITCH/actions/workflows/node.js.yml) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)]([https://github.com/coverlet-coverage/coverlet/blob/master/LICENSE]([https://github.com/javierpardollama/HYPERDRIVE/blob/main/LICENSE)](https://github.com/javierpardollama/SANDWITCH/blob/main/LICENSE))
 
-Este proyecto surge como una solución para gestionar el estado actual de las playas españolas, administrando datos como la temperatura del agua y el horario de las mareas, así como el color de la bandera instalada por los socorristas. 
+This project arose as a solution to manage the current state of Spanish beaches, administering data such as water temperature and opening hours, tides, as well as the color of the flag set up by the lifeguards.
 
-## ARQUITECTURA
+## ARCHITECTURE
 
-Este Proyecto está construido en n capas, siguiendo una estructura hexagonal (puertos - adaptadores), bajo un diseño guiado por dominio:
+This project is built in n layers, following a hexagonal structure (ports - adapters), under a domain-driven design:
 
 1. [Domain](https://github.com/javierpardollama/SANDWITCH/tree/main/Sandwitch.Service/Sandwitch.Domain)
 
-En esta capa se modelan las reglas de negocio y se definen las entidades, objetos de valor, etc.
+In this layer, the business rules are modeled and the entities, value objects, etc., are defined.
 
 2. [Infrastructure](https://github.com/javierpardollama/SANDWITCH/tree/main/Sandwitch.Service/Sandwitch.Infrastructure)
 
-En esta capa la información es almacenada y redistribuida al sistema de almacenamiento de datos.
+In this layer, information is stored and redistributed to the data storage system.
 
 3. [Application](https://github.com/javierpardollama/SANDWITCH/tree/main/Sandwitch.Service/Sandwitch.Application)
 
-En esta capa se coordina el envío y/o recepción entre la capa de dominio (Domain) y la capa de infrastructura (Infrastrucure).
-
+This layer coordinates the sending and/or receiving of data between the Domain layer and the Infrastructure layer.
 
 ## BUILD
 
-Para compilar y hacer funcionar este proyecto se recomienda utilizar una serie de herramientas con las cuales este proyecto ha sido construido y probado:
+To compile and run this project, it is recommended to use the following tools, which were used to build and test this project:
 
 1. [.NET](https://dotnet.microsoft.com/)
 
-Este framework es utilizado para construir todo lo referente a las capas Data Tier y Logic Tier.
+This framework is used to build everything related to the Data Tier and Logic Tier layers.
 
 2. [Node.js](https://nodejs.org/es/)
 
-Este framework es utilizado para construir el entorno necesario para la capa Presentation Tier.
+This framework is used to build the necessary environment for the Presentation Tier.
 
 3. [Angular Cli](https://cli.angular.io/)
 
-Este framework es utilizado para construir todo lo referente a la capa Presentation Tier.
+This framework is used to build everything related to the Presentation Tier.
 
 ## LICENSE
 

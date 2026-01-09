@@ -8,6 +8,9 @@ namespace Sandwitch.Infrastructure.Contexts.Extensions;
 /// </summary>
 public static class FiltersExtension
 {
+
+    public const string SoftDeleteFilter = nameof(SoftDeleteFilter);
+
     /// <summary>
     ///     Extends Customized Filters
     /// </summary>
@@ -15,12 +18,12 @@ public static class FiltersExtension
     public static void AddCustomizedFilters(this ModelBuilder @this)
     {
         // Configure entity filters           
-        @this.Entity<State>().HasQueryFilter(p => !p.Deleted);
-        @this.Entity<Town>().HasQueryFilter(p => !p.Deleted);
-        @this.Entity<Flag>().HasQueryFilter(p => !p.Deleted);
-        @this.Entity<Wind>().HasQueryFilter(p => !p.Deleted);
-        @this.Entity<Beach>().HasQueryFilter(p => !p.Deleted);
-        @this.Entity<BeachTown>().HasQueryFilter(p => !p.Deleted);
-        @this.Entity<Historic>().HasQueryFilter(p => !p.Deleted);
+        @this.Entity<State>().HasQueryFilter(SoftDeleteFilter, p => !p.Deleted);
+        @this.Entity<Town>().HasQueryFilter(SoftDeleteFilter, p => !p.Deleted);
+        @this.Entity<Flag>().HasQueryFilter(SoftDeleteFilter, p => !p.Deleted);
+        @this.Entity<Wind>().HasQueryFilter(SoftDeleteFilter, p => !p.Deleted);
+        @this.Entity<Beach>().HasQueryFilter(SoftDeleteFilter, p => !p.Deleted);
+        @this.Entity<BeachTown>().HasQueryFilter(SoftDeleteFilter, p => !p.Deleted);
+        @this.Entity<Historic>().HasQueryFilter(SoftDeleteFilter, p => !p.Deleted);
     }
 }

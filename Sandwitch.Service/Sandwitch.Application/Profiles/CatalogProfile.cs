@@ -4,7 +4,7 @@ using Sandwitch.Domain.Dtos;
 namespace Sandwitch.Application.Profiles;
 
 /// <summary>
-///     Represents a <see cref="ExceptionProfile" /> class
+///     Represents a <see cref="CatalogProfile" /> class
 /// </summary>
 public static class CatalogProfile
 {

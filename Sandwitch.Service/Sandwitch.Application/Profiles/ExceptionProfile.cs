@@ -9,11 +9,11 @@ namespace Sandwitch.Application.Profiles;
 public static class ExceptionProfile
 {
     /// <summary>
-    ///     Maps
+    ///      Transforms to Code
     /// </summary>
     /// <param name="exception">Injected <see cref="Exception" /></param>
     /// <returns>Instance of <see cref="int" /></returns>
-    public static int Map(Exception exception)
+    public static int ToCode(Exception exception)
     {
         return exception.GetType().Name switch
         {

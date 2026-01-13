@@ -5,7 +5,8 @@
 		<ImplicitUsings>disable</ImplicitUsings>
 		<Nullable>disable</Nullable>
 		<NuGetAuditMode>direct</NuGetAuditMode>
-		<OutputType>Exe</OutputType>
+		<RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
+		<OutputType>Exe</OutputType>		
 	</PropertyGroup>
 
 	<ItemGroup>

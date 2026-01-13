@@ -30,7 +30,7 @@ jobs:
           dotnet-version: '10.0.x'
 
       - name: 📥 Restore dependencies
-        run: dotnet restore Sandwitch.Service/Sandwitch.Service.csproj 
+        run: dotnet restore --locked-mode Sandwitch.Service/Sandwitch.Service.csproj 
 
       - name: ♻️ Clean project
         run: dotnet clean  Sandwitch.Service/Sandwitch.Service.csproj 

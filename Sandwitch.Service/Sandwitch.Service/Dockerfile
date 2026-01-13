@@ -24,7 +24,7 @@ COPY ["Sandwitch.Application/Sandwitch.Application.csproj", "Sandwitch.Applicati
 COPY ["Sandwitch.Domain/Sandwitch.Domain.csproj", "Sandwitch.Domain/"]
 COPY ["Sandwitch.Infrastructure/Sandwitch.Infrastructure.csproj", "Sandwitch.Infrastructure/"]
 
-RUN dotnet restore "./Sandwitch.Service/Sandwitch.Service.csproj"
+RUN dotnet restore --locked-mode "./Sandwitch.Service/Sandwitch.Service.csproj"
 
 # Ahora copia el resto del código (esto invalida el caché sólo si cambian fuentes)
 COPY . .

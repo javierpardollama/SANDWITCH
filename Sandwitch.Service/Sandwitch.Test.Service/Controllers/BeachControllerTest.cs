@@ -55,7 +55,7 @@ public class BeachControllerTest
     [Test]
     public async Task FindAllHistoricByBeachId()
     {
-        var response = await Client.GetAsync(string.Concat("all/Historic/", 1));
+        var response = await Client.GetAsync(string.Concat("all/historic/", 1));
         response.EnsureSuccessStatusCode();
         var Historics = await response.Content.ReadFromJsonAsync<List<ViewHistoric>>();
 

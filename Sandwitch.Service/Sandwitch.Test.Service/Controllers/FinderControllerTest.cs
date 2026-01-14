@@ -57,7 +57,7 @@ public class FinderControllerTest
     {
         var content = JsonContent.Create(new FinderBeach { Id = 1, Group = "Town" });
 
-        var response = await Client.PostAsync("all/Beach/", content);
+        var response = await Client.PostAsync("all/beach/", content);
         response.EnsureSuccessStatusCode();
         var Beaches = await response.Content.ReadFromJsonAsync<List<ViewBeach>>();
 

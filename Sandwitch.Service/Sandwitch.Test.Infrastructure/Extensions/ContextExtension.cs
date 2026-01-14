@@ -6,8 +6,15 @@ using System.Linq;
 
 namespace Sandwitch.Test.Infrastructure.Extensions;
 
+/// <summary>
+/// Represents a <see cref="ContextExtension"/> class.
+/// </summary>
 public static class ContextExtension
 {
+    /// <summary>
+    /// Seeds
+    /// </summary>
+    /// <param name="this">Injected <see cref="ApplicationContext"/></param>
     public static void Seed(this ApplicationContext @this) 
     {
         @this.Database.EnsureDeleted();

@@ -99,6 +99,9 @@
             "production": {
               "buildTarget": "Sandwitch.Client:build:production"
             },
+            "staging": {
+              "buildTarget": "Sandwitch.Client:build:staging"
+            },
             "development": {
               "buildTarget": "Sandwitch.Client:build:development"
             }

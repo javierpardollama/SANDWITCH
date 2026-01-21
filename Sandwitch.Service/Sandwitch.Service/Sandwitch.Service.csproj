@@ -6,6 +6,7 @@
 		<ImplicitUsings>disable</ImplicitUsings>
 		<NuGetAuditMode>direct</NuGetAuditMode>
 		<RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
+		<UseAppHost>false</UseAppHost>
 		<GenerateDocumentationFile>true</GenerateDocumentationFile>
 		<DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
 		<UserSecretsId>8ad4a67f-6f2a-4e87-bcbd-cb85926a001d</UserSecretsId>

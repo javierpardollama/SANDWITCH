@@ -7,10 +7,10 @@ using Sandwitch.Test.Infrastructure.Extensions;
 namespace Sandwitch.Test.Infrastructure.Managers;
 
 /// <summary>
-///     Represents a <see cref="AuthManagerTest" /> class. Inherits <see cref="BaseManagerTest" />
+///     Represents a <see cref="CredentialManagerTest" /> class. Inherits <see cref="BaseManagerTest" />
 /// </summary>
 [TestFixture]
-public class AuthManagerTest : BaseManagerTest
+public class CredentialManagerTest : BaseManagerTest
 {
     /// <summary>
     ///     Sets Up
@@ -24,7 +24,7 @@ public class AuthManagerTest : BaseManagerTest
 
         Context.Seed();
 
-        AuthManager = new AuthManager(ApiOptions);
+        AuthManager = new CredentialManager(ApiOptions);
     }
 
     /// <summary>
@@ -39,17 +39,17 @@ public class AuthManagerTest : BaseManagerTest
     /// <summary>
     ///     Instance of <see cref="ILogger{FlagService}" />
     /// </summary>
-    private ILogger<AuthManager> Logger;
+    private ILogger<CredentialManager> Logger;
 
     /// <summary>
     ///     Instance of <see cref="AuthManager" />
     /// </summary>
-    private AuthManager AuthManager;
+    private CredentialManager AuthManager;
 
     /// <summary>
-    ///     Initializes a new Instance of <see cref="AuthManagerTest" />
+    ///     Initializes a new Instance of <see cref="CredentialManagerTest" />
     /// </summary>
-    public AuthManagerTest()
+    public CredentialManagerTest()
     {
     }
 
@@ -65,7 +65,7 @@ public class AuthManagerTest : BaseManagerTest
                 .AddFilter("System", LogLevel.Warning);
         });
 
-        Logger = loggerFactory.CreateLogger<AuthManager>();
+        Logger = loggerFactory.CreateLogger<CredentialManager>();
     }
 
     /// <summary>

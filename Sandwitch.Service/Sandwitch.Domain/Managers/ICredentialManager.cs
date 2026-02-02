@@ -1,9 +1,9 @@
 ﻿namespace Sandwitch.Domain.Managers;
 
 /// <summary>
-///     Represents a <see cref="IAuthManager" /> interface. Inherits <see cref="IBaseManager" />
+///     Represents a <see cref="ICredentialManager" /> interface. Inherits <see cref="IBaseManager" />
 /// </summary>
-public interface IAuthManager : IBaseManager
+public interface ICredentialManager : IBaseManager
 {
     /// <summary>
     ///     Checks wether Credentials are valid or not

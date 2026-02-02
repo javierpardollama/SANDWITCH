@@ -23,7 +23,7 @@ public static class ManagerInstaller
         @this.AddTransient<IHistoricManager, HistoricManager>();
         @this.AddTransient<IFinderManager, FinderManager>();
 
-        @this.AddTransient<IAuthManager, AuthManager>();
+        @this.AddTransient<ICredentialManager, CredentialManager>();
         // Add other services here
     }
 }

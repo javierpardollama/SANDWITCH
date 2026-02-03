@@ -16,6 +16,7 @@ EXPOSE 8081
 # Esta fase se usa para compilar el proyecto de servicio
 FROM mcr.microsoft.com/dotnet/sdk:10.0 AS build
 ARG BUILD_CONFIGURATION=Release
+ARG TARGET_ARCH=linux-x64
 
 WORKDIR /src
 
@@ -36,6 +37,7 @@ RUN dotnet build "./Sandwitch.Service.csproj" -c $BUILD_CONFIGURATION --no-resto
 # Esta fase se usa para publicar el proyecto de servicio que se copiará en la fase final.
 FROM build AS publish
 ARG BUILD_CONFIGURATION=Release
+ARG TARGET_ARCH=linux-x64
 
 # Publica sin restaurar, reduciendo tamaño final
 RUN dotnet publish "./Sandwitch.Service.csproj" -c $BUILD_CONFIGURATION -o /app/publish --no-restore

@@ -32,7 +32,7 @@ public class BasicAuthenticationHandler(
         List<Claim> @claims =
         [
             new(ClaimTypes.Name, @credentials.Name),
-            new(ClaimTypes.AuthenticationInstant, DateTime.Now.ToString()),
+            new(ClaimTypes.AuthenticationInstant, new DateTimeOffset(DateTime.Now).ToUnixTimeSeconds().ToString()),
             new(ClaimTypes.Locality, CultureInfo.CurrentCulture.TwoLetterISOLanguageName),
             new(ClaimTypes.Version, Environment.OSVersion.VersionString),
             new(ClaimTypes.System, Environment.MachineName)

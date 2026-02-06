@@ -65,12 +65,13 @@ public class TownManagerTest : BaseManagerTest
         var loggerFactory = LoggerFactory.Create(builder =>
         {
             builder
+                .AddFilter("Default", LogLevel.Information)
                 .AddFilter("Microsoft", LogLevel.Warning)
                 .AddFilter("System", LogLevel.Warning);
         });
 
         Logger = loggerFactory.CreateLogger<TownManager>();
-    }   
+    }
 
     /// <summary>
     ///     Finds All Town
@@ -179,10 +180,10 @@ public class TownManagerTest : BaseManagerTest
     public void CheckName()
     {
         Town entity = new()
-        {           
+        {
             Id = 3,
             Name = "Getxo",
-            ImageUri = "URL/Getxo_500px.png",        
+            ImageUri = "URL/Getxo_500px.png",
         };
 
         var exception = Assert.ThrowsAsync<ServiceException>(async () => await TownManager.CheckName(entity.Name));

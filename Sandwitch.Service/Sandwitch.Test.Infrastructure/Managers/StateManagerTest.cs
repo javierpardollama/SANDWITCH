@@ -66,12 +66,13 @@ public class StateManagerTest : BaseManagerTest
         var loggerFactory = LoggerFactory.Create(builder =>
         {
             builder
+                .AddFilter("Default", LogLevel.Information)
                 .AddFilter("Microsoft", LogLevel.Warning)
                 .AddFilter("System", LogLevel.Warning);
         });
 
         Logger = loggerFactory.CreateLogger<StateManager>();
-    }   
+    }
 
     /// <summary>
     ///     Finds All State
@@ -92,7 +93,7 @@ public class StateManagerTest : BaseManagerTest
     [Test]
     public async Task FindPaginatedState()
     {
-        await StateManager.FindPaginatedState(1,  5);
+        await StateManager.FindPaginatedState(1, 5);
 
         Assert.Pass();
     }
@@ -148,7 +149,7 @@ public class StateManagerTest : BaseManagerTest
     public async Task AddState()
     {
         State entity = new()
-        {          
+        {
             ImageUri = "URL/Asturias_500px.png",
             Name = "Asturias"
         };
@@ -169,7 +170,7 @@ public class StateManagerTest : BaseManagerTest
         {
             Id = 3,
             Name = "Cantabria",
-            ImageUri = "URL/Cantabria_500px.png",           
+            ImageUri = "URL/Cantabria_500px.png",
         };
 
         var exception = Assert.ThrowsAsync<ServiceException>(async () => await StateManager.CheckName(entity.Name));

@@ -8,12 +8,12 @@ public class ApiSettings
     /// <summary>
     ///     Gets or Sets <see cref="ApiLock" />
     /// </summary>
-    public string ApiLock { get; set; }
+    public string ApiUser { get; set; }
 
     /// <summary>
-    ///     Gets or Sets <see cref="ApiKey" />
+    ///     Gets or Sets <see cref="ApiPassword" />
     /// </summary>
-    public string ApiKey { get; set; }
+    public string ApiPassword { get; set; }
 
     /// <summary>
     ///     Gets or Sets <see cref="ApiAudiences" />

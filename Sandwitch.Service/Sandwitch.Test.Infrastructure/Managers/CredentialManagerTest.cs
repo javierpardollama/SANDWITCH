@@ -61,6 +61,7 @@ public class CredentialManagerTest : BaseManagerTest
         var loggerFactory = LoggerFactory.Create(builder =>
         {
             builder
+                .AddFilter("Default", LogLevel.Information)
                 .AddFilter("Microsoft", LogLevel.Warning)
                 .AddFilter("System", LogLevel.Warning);
         });

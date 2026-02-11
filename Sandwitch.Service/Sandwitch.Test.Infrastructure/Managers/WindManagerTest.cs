@@ -64,12 +64,13 @@ public class WindManagerTest : BaseManagerTest
         var loggerFactory = LoggerFactory.Create(builder =>
         {
             builder
+                .AddFilter("Default", LogLevel.Information)
                 .AddFilter("Microsoft", LogLevel.Warning)
                 .AddFilter("System", LogLevel.Warning);
         });
 
         Logger = loggerFactory.CreateLogger<WindManager>();
-    }    
+    }
 
     /// <summary>
     ///     Finds All Wind

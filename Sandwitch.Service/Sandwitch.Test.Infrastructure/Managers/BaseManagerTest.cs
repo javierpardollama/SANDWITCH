@@ -16,8 +16,8 @@ public abstract class BaseManagerTest
     /// </summary>
     protected IOptions<ApiSettings> ApiOptions { get; set; } = Options.Create(new ApiSettings
     {
-        ApiLock = "Pauline",
-        ApiKey = "T/R4J6eyvNG<6ne!"
+        ApiUser = "Pauline",
+        ApiPassword = "T/R4J6eyvNG<6ne!"
     });
 
     /// <summary>
@@ -32,5 +32,5 @@ public abstract class BaseManagerTest
         new DbContextOptionsBuilder<ApplicationContext>()
             .UseInMemoryDatabase("sandwitch.db")
             .AddInterceptors(new SoftDeleteInterceptor())
-            .EnableSensitiveDataLogging();  
+            .EnableSensitiveDataLogging();
 }

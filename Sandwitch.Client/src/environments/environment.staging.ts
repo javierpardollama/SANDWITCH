@@ -1,7 +1,7 @@
 export const environment = {
   Api:
   {
-    Lock: "Rosalina",
+    User: "Rosalina",
     Key: "uPu}S}*8q(S{sCgc",
     Service: "https://localhost:7297/",
   },

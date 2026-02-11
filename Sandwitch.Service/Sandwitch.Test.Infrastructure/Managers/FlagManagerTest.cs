@@ -64,12 +64,13 @@ public class FlagManagerTest : BaseManagerTest
         var loggerFactory = LoggerFactory.Create(builder =>
         {
             builder
+                .AddFilter("Default", LogLevel.Information)
                 .AddFilter("Microsoft", LogLevel.Warning)
                 .AddFilter("System", LogLevel.Warning);
         });
 
         Logger = loggerFactory.CreateLogger<FlagManager>();
-    }    
+    }
 
     /// <summary>
     ///     Finds All Flag
@@ -158,7 +159,7 @@ public class FlagManagerTest : BaseManagerTest
     public async Task AddFlag()
     {
         Flag Flag = new()
-        {            
+        {
             ImageUri = "URL/Verde_500px.png",
             Name = "Verde"
         };
@@ -176,7 +177,7 @@ public class FlagManagerTest : BaseManagerTest
     public void CheckNameAsync()
     {
         Flag @entity = new()
-        {           
+        {
             Id = 3,
             ImageUri = "URL/Roja_500px.png",
             Name = "Roja"
@@ -192,7 +193,7 @@ public class FlagManagerTest : BaseManagerTest
     /// <returns>Instance of <see cref="Task" /></returns>
     [Test]
     public async Task ReloadFlagById()
-    {      
+    {
         await FlagManager.ReloadFlagById(2);
 
         Assert.Pass();

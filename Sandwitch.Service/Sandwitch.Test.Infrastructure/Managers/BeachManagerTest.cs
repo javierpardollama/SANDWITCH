@@ -64,6 +64,7 @@ public class BeachManagerTest : BaseManagerTest
         var loggerFactory = LoggerFactory.Create(builder =>
         {
             builder
+                .AddFilter("Default", LogLevel.Information)
                 .AddFilter("Microsoft", LogLevel.Warning)
                 .AddFilter("System", LogLevel.Warning);
         });
@@ -208,7 +209,7 @@ public class BeachManagerTest : BaseManagerTest
     /// </summary>
     /// <returns>Instance of <see cref="Task" /></returns>
     [Test]
-    public async Task AddHistoric() 
+    public async Task AddHistoric()
     {
         Beach @entity = new()
         {
@@ -226,9 +227,9 @@ public class BeachManagerTest : BaseManagerTest
     /// </summary>
     /// <returns>Instance of <see cref="Task" /></returns>
     [Test]
-    public async Task FindAllTownByIds() 
+    public async Task FindAllTownByIds()
     {
-        await BeachManager.FindAllTownByIds([1,2]);
+        await BeachManager.FindAllTownByIds([1, 2]);
 
         Assert.Pass();
     }

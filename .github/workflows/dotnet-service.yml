@@ -2,9 +2,14 @@ name: Build .NET Service
 
 on:
   push:
-    branches: [ main ]
+    branches: [ main ]    
+    paths:
+        - 'Sandwitch.Service/**'
+
   pull_request:
     branches: [ main ]
+    paths:
+        - 'Sandwitch.Service/**'
 
 permissions:
   contents: read  

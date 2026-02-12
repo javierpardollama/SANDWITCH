@@ -2,9 +2,14 @@ name: Build Angular App
 
 on:
   push:
-    branches: [ main ]
+    branches: [ main ]    
+    paths:
+        - 'Sandwitch.Client/**'
+
   pull_request:
     branches: [ main ]
+    paths:
+        - 'Sandwitch.Client/**'
 
 permissions:
   contents: read  

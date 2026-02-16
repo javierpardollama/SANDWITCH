@@ -43,20 +43,20 @@ public class HistoricDto
     /// <summary>
     ///     Gets or Sets <see cref="LowSeaDawn" />
     /// </summary>       
-    public TimeSpan LowSeaDawn { get; set; }
+    public DateTime LowSeaDawn { get; set; }
 
     /// <summary>
     ///     Gets or Sets <see cref="LowSeaSunset" />
     /// </summary>       
-    public TimeSpan LowSeaSunset { get; set; }
+    public DateTime LowSeaSunset { get; set; }
 
     /// <summary>
     ///     Gets or Sets <see cref="HighSeaDawn" />
     /// </summary>      
-    public TimeSpan HighSeaDawn { get; set; }
+    public DateTime HighSeaDawn { get; set; }
 
     /// <summary>
     ///     Gets or Sets <see cref="HighSeaSunset" />
     /// </summary>      
-    public TimeSpan HighSeaSunset { get; set; }
+    public DateTime HighSeaSunset { get; set; }
 }

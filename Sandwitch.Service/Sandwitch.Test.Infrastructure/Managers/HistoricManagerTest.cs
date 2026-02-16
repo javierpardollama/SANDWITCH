@@ -119,11 +119,11 @@ public class HistoricManagerTest : BaseManagerTest
         {
             FlagId = 1,
             WindId = 1,
-            HighSeaDawn = DateTime.Now.TimeOfDay,
-            HighSeaSunset = DateTime.Now.TimeOfDay,
+            HighSeaDawn = DateTime.Now,
+            HighSeaSunset = DateTime.Now,
             BeachId = 1,
-            LowSeaDawn = DateTime.Now.TimeOfDay,
-            LowSeaSunset = DateTime.Now.TimeOfDay,
+            LowSeaDawn = DateTime.Now,
+            LowSeaSunset = DateTime.Now,
             Temperature = 20,
             Speed = 10
         };

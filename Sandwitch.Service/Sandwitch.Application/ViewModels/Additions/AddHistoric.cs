@@ -48,23 +48,23 @@ public class AddHistoric
     ///     Gets or Sets <see cref="LowSeaDawn" />
     /// </summary>
     [Required]
-    public TimeSpan LowSeaDawn { get; set; }
+    public DateTime LowSeaDawn { get; set; }
 
     /// <summary>
     ///     Gets or Sets <see cref="LowSeaSunset" />
     /// </summary>
     [Required]
-    public TimeSpan LowSeaSunset { get; set; }
+    public DateTime LowSeaSunset { get; set; }
 
     /// <summary>
     ///     Gets or Sets <see cref="HighSeaDawn" />
     /// </summary>
     [Required]
-    public TimeSpan HighSeaDawn { get; set; }
+    public DateTime HighSeaDawn { get; set; }
 
     /// <summary>
     ///     Gets or Sets <see cref="HighSeaSunset" />
     /// </summary>
     [Required]
-    public TimeSpan HighSeaSunset { get; set; }
+    public DateTime HighSeaSunset { get; set; }
 }

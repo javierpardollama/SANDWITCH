@@ -4,6 +4,7 @@ import { NgOptimizedImage, Time } from '@angular/common';
 
 import { MatDialogRef, MAT_DIALOG_DATA, MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatTimepickerModule } from '@angular/material/timepicker';
 
 import {
   FormBuilder,
@@ -30,19 +31,20 @@ import { TimeAppVariants } from '../../../../../variants/time.app.variants';
 
 import { ExpressionAppVariants } from '../../../../../variants/expression.app.variants';
 
-import { TimeService } from 'src/services/time.service';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { ViewCatalog } from 'src/viewmodels/views/viewcatalog';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { provideNativeDateAdapter } from '@angular/material/core';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-historic-add-modal',
   templateUrl: './historic-add-modal.component.html',
   styleUrls: ['./historic-add-modal.component.scss'],
+  providers: [provideNativeDateAdapter()],
   imports: [
     MatDialogModule,
     MatButtonModule,
@@ -51,6 +53,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MatSnackBarModule,
     MatSelectModule,
     MatInputModule,
+    MatTimepickerModule,
     MatFormFieldModule,
     ReactiveFormsModule,
     NgOptimizedImage
@@ -99,13 +102,13 @@ export class HistoricAddModalComponent implements OnInit {
       Speed: new FormControl<number>(this.data.LastHistoric.Speed,
         [Validators.required,
         Validators.pattern(ExpressionAppVariants.AppNumberExpression)]),
-      LowSeaDawn: new FormControl<Time>(TimeService.Now(),
+      LowSeaDawn: new FormControl<Date>(this.data.LastHistoric.LowSeaDawn,
         [Validators.required]),
-      HighSeaDawn: new FormControl<Time>(TimeService.Now(),
+      HighSeaDawn: new FormControl<Date>(this.data.LastHistoric.HighSeaDawn,
         [Validators.required]),
-      LowSeaSunset: new FormControl<Time>(TimeService.Now(),
+      LowSeaSunset: new FormControl<Date>(this.data.LastHistoric.LowSeaSunset,
         [Validators.required]),
-      HighSeaSunset: new FormControl<Time>(TimeService.Now(),
+      HighSeaSunset: new FormControl<Date>(this.data.LastHistoric.HighSeaSunset,
         [Validators.required]),
     });
   }

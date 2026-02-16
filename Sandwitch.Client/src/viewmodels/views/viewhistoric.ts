@@ -1,5 +1,3 @@
-import { Time } from "@angular/common";
-
 import { ViewBase } from './viewbase';
 import { ViewCatalog } from "./viewcatalog";
 
@@ -9,8 +7,8 @@ export interface ViewHistoric extends ViewBase {
     Flag: ViewCatalog;
     Beach: ViewCatalog;
     Temperature: number;
-    LowSeaDawn: Time;
-    LowSeaSunset: Time;
-    HighSeaDawn: Time;
-    HighSeaSunset: Time;
+    LowSeaDawn: Date;
+    LowSeaSunset: Date;
+    HighSeaDawn: Date;
+    HighSeaSunset: Date;
 }

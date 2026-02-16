@@ -1,5 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Sandwitch.Domain.Entities;
+﻿using Sandwitch.Domain.Entities;
 using Sandwitch.Infrastructure.Contexts;
 using System;
 using System.Linq;
@@ -15,7 +14,7 @@ public static class ContextExtension
     /// Seeds
     /// </summary>
     /// <param name="this">Injected <see cref="ApplicationContext"/></param>
-    public static void Seed(this ApplicationContext @this) 
+    public static void Seed(this ApplicationContext @this)
     {
         @this.Database.EnsureDeleted();
         @this.Database.EnsureCreated();
@@ -187,10 +186,10 @@ public static class ContextExtension
                 Id = 1,
                 LastModified = DateTime.Now,
                 Deleted = false,
-                LowSeaDawn = DateTime.Now.TimeOfDay,
-                LowSeaSunset = DateTime.Now.TimeOfDay,
-                HighSeaDawn = DateTime.Now.TimeOfDay,
-                HighSeaSunset = DateTime.Now.TimeOfDay,
+                LowSeaDawn = DateTime.Now,
+                LowSeaSunset = DateTime.Now,
+                HighSeaDawn = DateTime.Now,
+                HighSeaSunset = DateTime.Now,
                 Temperature = 20,
                 Speed = 0,
                 BeachId = 1,
@@ -199,6 +198,6 @@ public static class ContextExtension
             });
 
             @this.SaveChanges();
-        }            
+        }
     }
 }

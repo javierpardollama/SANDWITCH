@@ -12,10 +12,10 @@
         <mat-label>FlagId</mat-label>
         <mat-select formControlName="FlagId">
           @for (flag of flags; track flag) {
-            <mat-option [value]="flag.Id">
-              <img class="select-option-img" aria-hidden ngSrc="{{flag.ImageUri}}" height="25" width="25">
-              <span>{{flag.Name}}</span>
-            </mat-option>
+          <mat-option [value]="flag.Id">
+            <img class="select-option-img" aria-hidden ngSrc="{{flag.ImageUri}}" height="25" width="25">
+            <span>{{flag.Name}}</span>
+          </mat-option>
           }
         </mat-select>
       </mat-form-field>
@@ -27,9 +27,9 @@
         <mat-label>Temperature</mat-label>
         <input type="number" matInput placeholder="Temperature" formControlName="Temperature">
         @if (!formGroup.controls['Temperature'].valid && formGroup.controls['Temperature'].touched) {
-          <mat-error>
-            Required field.
-          </mat-error>
+        <mat-error>
+          Required field.
+        </mat-error>
         }
       </mat-form-field>
     </div>
@@ -43,10 +43,10 @@
           <mat-label>WindId</mat-label>
           <mat-select formControlName="WindId">
             @for (wind of winds; track wind) {
-              <mat-option [value]="wind.Id">
-                <img class="select-option-img" aria-hidden ngSrc="{{wind.ImageUri}}" height="25" width="25">
-                <span>{{wind.Name}}</span>
-              </mat-option>
+            <mat-option [value]="wind.Id">
+              <img class="select-option-img" aria-hidden ngSrc="{{wind.ImageUri}}" height="25" width="25">
+              <span>{{wind.Name}}</span>
+            </mat-option>
             }
           </mat-select>
         </mat-form-field>
@@ -58,9 +58,9 @@
           <mat-label>Speed</mat-label>
           <input type="number" matInput placeholder="Speed" formControlName="Speed">
           @if (!formGroup.controls['Speed'].valid && formGroup.controls['Speed'].touched) {
-            <mat-error>
-              Required field.
-            </mat-error>
+          <mat-error>
+            Required field.
+          </mat-error>
           }
         </mat-form-field>
       </div>
@@ -71,11 +71,13 @@
         <div class="modal-option-image modal-low-sun-tide-image" aria-label="LowSeaDawn"></div>
         <mat-form-field class="form-element">
           <mat-label>LowSeaDawn</mat-label>
-          <input type="time" matInput placeholder="LowSeaDawn" formControlName="LowSeaDawn" step="1">
+          <input matInput placeholder="LowSeaDawn" formControlName="LowSeaDawn" step="1" [matTimepicker]="LowSeaDawn">
+          <mat-timepicker-toggle matIconSuffix [for]="LowSeaDawn" />
+          <mat-timepicker #LowSeaDawn />
           @if (!formGroup.controls['LowSeaDawn'].valid && formGroup.controls['LowSeaDawn'].touched) {
-            <mat-error>
-              Required field.
-            </mat-error>
+          <mat-error>
+            Required field.
+          </mat-error>
           }
         </mat-form-field>
       </div>
@@ -83,11 +85,14 @@
         <div class="modal-option-image modal-high-sun-tide-image" aria-label="HighSeaDawn"></div>
         <mat-form-field class="form-element">
           <mat-label>HighSeaDawn</mat-label>
-          <input type="time" matInput placeholder="HighSeaDawn" formControlName="HighSeaDawn" step="1">
+          <input matInput placeholder="HighSeaDawn" formControlName="HighSeaDawn" step="1"
+            [matTimepicker]="HighSeaDawn">
+          <mat-timepicker-toggle matIconSuffix [for]="HighSeaDawn" />
+          <mat-timepicker #HighSeaDawn />
           @if (!formGroup.controls['HighSeaDawn'].valid && formGroup.controls['HighSeaDawn'].touched) {
-            <mat-error>
-              Required field.
-            </mat-error>
+          <mat-error>
+            Required field.
+          </mat-error>
           }
         </mat-form-field>
       </div>
@@ -98,11 +103,14 @@
         <div class="modal-option-image modal-low-night_tide-image" aria-label="LowSeaSunset"></div>
         <mat-form-field class="form-element">
           <mat-label>LowSeaSunset</mat-label>
-          <input type="time" matInput placeholder="LowSeaSunset" formControlName="LowSeaSunset" step="1">
+          <input matInput placeholder="LowSeaSunset" formControlName="LowSeaSunset" step="1"
+            [matTimepicker]="LowSeaSunset">
+          <mat-timepicker-toggle matIconSuffix [for]="LowSeaSunset" />
+          <mat-timepicker #LowSeaSunset />
           @if (!formGroup.controls['LowSeaSunset'].valid && formGroup.controls['LowSeaSunset'].touched) {
-            <mat-error>
-              Required field.
-            </mat-error>
+          <mat-error>
+            Required field.
+          </mat-error>
           }
         </mat-form-field>
       </div>
@@ -110,11 +118,14 @@
         <div class="modal-option-image modal-high-night_tide-image" aria-label="HighSeaSunset"></div>
         <mat-form-field class="form-element">
           <mat-label>HighSeaSunset</mat-label>
-          <input type="time" matInput placeholder="HighSeaSunset" formControlName="HighSeaSunset" step="1">
+          <input matInput placeholder="HighSeaSunset" formControlName="HighSeaSunset" step="1"
+            [matTimepicker]="HighSeaSunset">
+          <mat-timepicker-toggle matIconSuffix [for]="HighSeaSunset" />
+          <mat-timepicker #HighSeaSunset />
           @if (!formGroup.controls['HighSeaSunset'].valid && formGroup.controls['HighSeaSunset'].touched) {
-            <mat-error>
-              Required field.
-            </mat-error>
+          <mat-error>
+            Required field.
+          </mat-error>
           }
         </mat-form-field>
       </div>

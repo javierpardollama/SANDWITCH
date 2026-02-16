@@ -38,7 +38,7 @@ public class BeachManager(
 
         try
         {
-            await Context.Beach.AddAsync(Beach);            
+            await Context.Beach.AddAsync(Beach);
 
             await Context.SaveChangesAsync();
         }
@@ -70,7 +70,7 @@ public class BeachManager(
         var @BeachTownes = @Townes.Select(@Town => new BeachTown()
         {
             Beach = @entity,
-            Town = @Town           
+            Town = @Town
         }).ToList();
 
         await Context.BeachTown.AddRangeAsync(@BeachTownes);
@@ -99,10 +99,10 @@ public class BeachManager(
             Beach = @entity,
             Flag = await FindFlagById((int)FlagIdentifiers.Amarilla),
             Wind = await FindWindById((int)WindIdentifiers.Norte),
-            LowSeaDawn = DateTime.Now.TimeOfDay,
-            LowSeaSunset = DateTime.Now.TimeOfDay,
-            HighSeaDawn = DateTime.Now.TimeOfDay,
-            HighSeaSunset = DateTime.Now.TimeOfDay,
+            LowSeaDawn = DateTime.Now,
+            LowSeaSunset = DateTime.Now,
+            HighSeaDawn = DateTime.Now,
+            HighSeaSunset = DateTime.Now,
             Temperature = 20,
             Speed = 0
         };
@@ -171,7 +171,7 @@ public class BeachManager(
                 .AsNoTracking()
                 .AsSplitQuery()
                 .Include(x => x.BeachTowns)
-                .ThenInclude(x => x.Town)               
+                .ThenInclude(x => x.Town)
                 .OrderByDescending(x => x.LastModified)
                 .Skip(@index * @size)
                 .Take(@size)
@@ -196,7 +196,7 @@ public class BeachManager(
             .Include(x => x.Beach)
             .Include(x => x.Flag)
             .Include(x => x.Wind)
-            .Where(x => x.BeachId == @id)            
+            .Where(x => x.BeachId == @id)
             .Select(x => x.ToDto())
             .ToListAsync();
 
@@ -349,7 +349,7 @@ public class BeachManager(
 
         try
         {
-            Context.Beach.Update(@Beach);           
+            Context.Beach.Update(@Beach);
 
             await Context.SaveChangesAsync();
         }
@@ -483,8 +483,8 @@ public class BeachManager(
             .AsQueryable()
             .AsSplitQuery()
             .AsNoTracking()
-            .Include(x=> x.BeachTowns)
-            .ThenInclude(x=> x.Town)
+            .Include(x => x.BeachTowns)
+            .ThenInclude(x => x.Town)
             .Where(x => x.Id == id)
             .Select(x => x.ToDto())
             .FirstOrDefaultAsync();

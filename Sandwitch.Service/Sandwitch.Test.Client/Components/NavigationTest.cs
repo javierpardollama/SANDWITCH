@@ -45,7 +45,7 @@ public class NavigationTest : BaseTest
     {
         Wait.Until(d => d.FindElement(By.Id("nav-toggle"))).Click();
 
-        Wait.Until(d => d.FindElement(By.Id("nav-Beaches"))).Click();
+        Wait.Until(d => d.FindElement(By.Id("nav-beaches"))).Click();
 
         Wait.Until(d => d.Url.Contains("Beaches"));
 

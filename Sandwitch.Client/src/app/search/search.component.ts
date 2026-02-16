@@ -107,7 +107,7 @@ export class SearchComponent implements OnInit {
   // Get Record from Card
   public GetRecord(row: ViewBeach): void {
     const dialogRef = this.matDialog.open(HistoricAddModalComponent, {
-      width: '600px',
+      width: '680px',
       data: row
     });
 

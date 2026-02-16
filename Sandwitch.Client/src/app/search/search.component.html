@@ -60,13 +60,13 @@
                 <div class="search-card-content-cell">
                   <div mat-card-avatar class="search-card-content search-card-low-sun-tide-image" aria-label="LowSeaDawn"></div>
                   <div class="search-card-content">
-                    <span>{{beach.LastHistoric.LowSeaDawn}} </span>
+                    <span>{{beach.LastHistoric.LowSeaDawn | date:'shortTime' }} </span>
                   </div>
                 </div>
                 <div class="search-card-content-cell">
                   <div mat-card-avatar class="search-card-content search-card-high-sun-tide-image" aria-label="HighSeaDawn"></div>
                   <div class="search-card-content">
-                    <span>{{beach.LastHistoric.HighSeaDawn}}</span>
+                    <span>{{beach.LastHistoric.HighSeaDawn  | date:'shortTime'}}</span>
                   </div>
                 </div>
               </div>
@@ -74,13 +74,13 @@
                 <div class="search-card-content-cell">
                   <div mat-card-avatar class="search-card-content search-card-low-night_tide-image" aria-label="LowSeaSunset"></div>
                   <div class="search-card-content">
-                    <span>{{beach.LastHistoric.LowSeaSunset}}</span>
+                    <span>{{beach.LastHistoric.LowSeaSunset  | date:'shortTime'}}</span>
                   </div>
                 </div>
                 <div class="search-card-content-cell">
                   <div mat-card-avatar class="search-card-content search-card-high-night_tide-image" aria-label="HighSeaSunset"></div>
                   <div class="search-card-content">
-                    <span>{{beach.LastHistoric.HighSeaSunset}}</span>
+                    <span>{{beach.LastHistoric.HighSeaSunset  | date:'shortTime'}}</span>
                   </div>
                 </div>
               </div>

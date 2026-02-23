@@ -1,6 +1,27 @@
 {
   "name": "sandwitch.client",
   "description": "Solution for managing the current state of the spanish beaches.",
+  "keywords": [
+    "open-source",
+    "csharp",
+    "rest-api",
+    "angular-material",
+    "domain-driven-design",
+    "clean-architecture",
+    "electron-app",
+    "nunit-tests",
+    "selenium-webdriver",
+    "unlicense-license",
+    "sqlite3-database",
+    "hexagonal-architecture",
+    "open-api-v3",
+    "beachwatch-data",
+    "github-actions",
+    "pwa-app",
+    "open-telemetry",
+    "net10",
+    "angular21"
+  ],
   "author": {
     "name": "Javier Pardo",
     "email": ""

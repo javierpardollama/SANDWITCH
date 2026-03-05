@@ -39,4 +39,4 @@ This framework is used to build everything related to the Presentation Tier.
 
 ## LICENSE
 
-[MIT](https://github.com/javierpardollama/SANDWITCH/blob/master/LICENSE)
+[Unlicense](https://github.com/javierpardollama/SANDWITCH/blob/main/LICENSE)

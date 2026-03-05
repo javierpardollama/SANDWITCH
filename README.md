@@ -21,7 +21,7 @@ In this layer, information is stored and redistributed to the data storage syste
 
 This layer coordinates the sending and/or receiving of data between the Domain layer and the Infrastructure layer.
 
-## BUILD
+## GETTING STARTED
 
 To compile and run this project, it is recommended to use the following tools, which were used to build and test this project:
 
@@ -36,6 +36,10 @@ This framework is used to build the necessary environment for the Presentation T
 3. [Angular Cli](https://cli.angular.io/)
 
 This framework is used to build everything related to the Presentation Tier.
+
+## CONTRIBUTING
+
+If you are interested in reporting/fixing issues and contributing directly to the code base, please see [CONTRIBUTING.md](https://github.com/javierpardollama/SANDWITCH/blob/main/CONTRIBUTING.md) for more information on what we're looking for and how to get started.
 
 ## LICENSE
 

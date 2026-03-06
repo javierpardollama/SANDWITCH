@@ -1,6 +1,7 @@
 {
   "name": "sandwitch.client",
   "description": "Solution for managing the current state of the spanish beaches.",
+  "license":"MIT",
   "keywords": [
     "open-source",
     "csharp",

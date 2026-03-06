@@ -1,6 +1,6 @@
 # SANDWITCH
 
-[![Test .NET Infrastructure](https://github.com/javierpardollama/SANDWITCH/actions/workflows/dotnet-infrastructure.yml/badge.svg)](https://github.com/javierpardollama/SANDWITCH/actions/workflows/dotnet-infrastructure.yml) [![Build .NET Service](https://github.com/javierpardollama/SANDWITCH/actions/workflows/dotnet-service.yml/badge.svg)](https://github.com/javierpardollama/SANDWITCH/actions/workflows/dotnet-service.yml) [![Build Angular App](https://github.com/javierpardollama/SANDWITCH/actions/workflows/node.js.yml/badge.svg)](https://github.com/javierpardollama/SANDWITCH/actions/workflows/node.js.yml) [![License: Unlicense](https://img.shields.io/badge/license-Unlicense-blue.svg)](http://unlicense.org/)
+[![Test .NET Infrastructure](https://github.com/javierpardollama/SANDWITCH/actions/workflows/dotnet-infrastructure.yml/badge.svg)](https://github.com/javierpardollama/SANDWITCH/actions/workflows/dotnet-infrastructure.yml) [![Build .NET Service](https://github.com/javierpardollama/SANDWITCH/actions/workflows/dotnet-service.yml/badge.svg)](https://github.com/javierpardollama/SANDWITCH/actions/workflows/dotnet-service.yml) [![Build Angular App](https://github.com/javierpardollama/SANDWITCH/actions/workflows/node.js.yml/badge.svg)](https://github.com/javierpardollama/SANDWITCH/actions/workflows/node.js.yml) ![GitHub License](https://img.shields.io/github/license/javierpardollama/SANDWITCH)
 
 
 This project arose as a solution to manage the current state of Spanish beaches, administering data such as water temperature and opening hours, tides, as well as the color of the flag set up by the lifeguards.
@@ -43,4 +43,4 @@ If you are interested in reporting/fixing issues and contributing directly to th
 
 ## LICENSE
 
-[Unlicense](https://github.com/javierpardollama/SANDWITCH/blob/main/LICENSE)
+[MIT](https://github.com/javierpardollama/SANDWITCH/blob/main/LICENSE)

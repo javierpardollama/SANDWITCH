@@ -23,7 +23,7 @@ public static class ProblemDetailsInstaller
     /// <summary>
     ///     Uses Problem Details
     /// </summary>
-    /// <param name="this">Injected <see cref="WebApplication" /></param>
+    /// <param name="this">Injected <see cref="IApplicationBuilder" /></param>
     public static void UseProblemDetails(this IApplicationBuilder @this)
     {
         @this.UseExceptionHandler();

@@ -1,7 +1,5 @@
 ﻿using Sandwitch.Domain.Entities;
 using Sandwitch.Infrastructure.Contexts;
-using System;
-using System.Linq;
 
 namespace Sandwitch.Test.Infrastructure.Extensions;
 

@@ -1,13 +1,9 @@
 ﻿using NUnit.Framework;
 using Sandwitch.Application.ViewModels.Filters;
 using Sandwitch.Application.ViewModels.Views;
-using System;
-using System.Collections.Generic;
-using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Net.Http.Json;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Sandwitch.Test.Service.Controllers;
 
@@ -32,7 +28,7 @@ public class StateControllerTest
     }
 
     private static readonly HttpClient Client = new()
-        { BaseAddress = new Uri("https://localhost:7297/api/v1/state/") };
+    { BaseAddress = new Uri("https://localhost:7297/api/v1/state/") };
 
     /// <summary>
     ///     Initializes a new Instance of <see cref="StateControllerTest" />

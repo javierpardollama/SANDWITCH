@@ -1,13 +1,11 @@
 ﻿using Asp.Versioning;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.RateLimiting;
 using Sandwitch.Application.Commands.Historic;
 using Sandwitch.Application.ViewModels.Additions;
 using Sandwitch.Application.ViewModels.Views;
-using System.Threading.Tasks;
 
 namespace Sandwitch.Service.Controllers.V2;
 

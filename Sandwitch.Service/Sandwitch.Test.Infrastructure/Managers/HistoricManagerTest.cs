@@ -4,8 +4,6 @@ using Sandwitch.Domain.Entities;
 using Sandwitch.Infrastructure.Contexts;
 using Sandwitch.Infrastructure.Managers;
 using Sandwitch.Test.Infrastructure.Extensions;
-using System;
-using System.Threading.Tasks;
 
 namespace Sandwitch.Test.Infrastructure.Managers;
 

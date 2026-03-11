@@ -1,5 +1,7 @@
 # SANDWITCH
 
+![.Net](https://img.shields.io/badge/.NET-5C2D91?style=for-the-badge&logo=.net&logoColor=white) ![Angular](https://img.shields.io/badge/angular-%23DD0031.svg?style=for-the-badge&logo=angular&logoColor=white) ![SQLite](https://img.shields.io/badge/sqlite-%2307405e.svg?style=for-the-badge&logo=sqlite&logoColor=white)
+
 [![Test .NET Infrastructure](https://github.com/javierpardollama/SANDWITCH/actions/workflows/dotnet-infrastructure.yml/badge.svg)](https://github.com/javierpardollama/SANDWITCH/actions/workflows/dotnet-infrastructure.yml) [![Build .NET Service](https://github.com/javierpardollama/SANDWITCH/actions/workflows/dotnet-service.yml/badge.svg)](https://github.com/javierpardollama/SANDWITCH/actions/workflows/dotnet-service.yml) [![Build Angular App](https://github.com/javierpardollama/SANDWITCH/actions/workflows/node.js.yml/badge.svg)](https://github.com/javierpardollama/SANDWITCH/actions/workflows/node.js.yml) ![GitHub License](https://img.shields.io/github/license/javierpardollama/SANDWITCH)
 
 

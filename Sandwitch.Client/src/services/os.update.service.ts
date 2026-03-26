@@ -16,7 +16,7 @@ export class OsUpdateService {
 
         // Allow the app to stabilize first, before starting
         // polling for updates with `interval()`.
-        const IsStable = this.appRef.isStable.pipe(first((isStable) => isStable === true));
+        const IsStable = this.appRef.isStable.pipe(first((isStable) => isStable));
 
         const DayInterval = interval(TimeAppVariants.AppUpdateSecondTicks);
 

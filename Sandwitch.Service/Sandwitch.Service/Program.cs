@@ -1,6 +1,5 @@
 using Sandwitch.Application.Installers;
 using Sandwitch.Infrastructure.Installers;
-using System.Text.Json.Serialization;
 
 var @builder = WebApplication.CreateBuilder(args);
 
@@ -11,13 +10,7 @@ var @rateSettings = @builder.InstallRateLimitSettings();
 
 @builder.Services.InstallEntityFramework(@builder.Configuration);
 
-@builder.Services.AddControllers()
-    .AddJsonOptions(options =>
-    {
-        options.JsonSerializerOptions.WriteIndented = true;
-        options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
-        options.JsonSerializerOptions.PropertyNamingPolicy = null;
-    });
+@builder.Services.InstallSerializer();
 
 @builder.Services.InstallApiVersions();
 
@@ -28,10 +21,10 @@ var @rateSettings = @builder.InstallRateLimitSettings();
 @builder.Services.InstallManagers();
 @builder.Services.InstallMediatR();
 
-// Register the Mvc services to the services container
+// Register the Mvc services to the services' container
 @builder.Services.AddResponseCaching();
 
-// Add customized Authentication to the services container.
+// Add customized Authentication to the services' container.
 @builder.Services.InstallIdentification(apiSettings);
 @builder.Services.InstallCors(apiSettings);
 

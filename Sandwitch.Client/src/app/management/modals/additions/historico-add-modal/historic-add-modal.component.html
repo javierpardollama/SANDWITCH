@@ -25,7 +25,7 @@
       <div class="modal-option-image modal-warm-image" aria-label="Temperature"></div>
       <mat-form-field class="form-element">
         <mat-label>Temperature</mat-label>
-        <input type="number" matInput placeholder="Temperature" formControlName="Temperature">
+        <input type="number" inputmode="numeric" matInput placeholder="Temperature" formControlName="Temperature">
         @if (!formGroup.controls['Temperature'].valid && formGroup.controls['Temperature'].touched) {
         <mat-error>
           Required field.
@@ -56,7 +56,7 @@
         <div class="modal-option-image modal-wind-image" aria-label="Speed"></div>
         <mat-form-field class="form-element">
           <mat-label>Speed</mat-label>
-          <input type="number" matInput placeholder="Speed" formControlName="Speed">
+          <input type="number" inputmode="numeric" matInput placeholder="Speed" formControlName="Speed">
           @if (!formGroup.controls['Speed'].valid && formGroup.controls['Speed'].touched) {
           <mat-error>
             Required field.

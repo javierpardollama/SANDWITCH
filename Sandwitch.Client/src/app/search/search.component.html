@@ -7,7 +7,7 @@
 <form class="search-form">
   <mat-form-field class="search-half-width">
     <mat-label>Search</mat-label>
-    <input type="search" matInput placeholder="Search" aria-label="Search" [matAutocomplete]="auto"
+    <input type="search" inputmode="search" matInput placeholder="Search" aria-label="Search" [matAutocomplete]="auto"
       [formControl]="buscadorCtrl">
       <mat-autocomplete #auto="matAutocomplete" (optionSelected)='FindAllBeachByFinderId($event.option)' [displayWith]="displayFn" >
         @for (finder of filteredFinders(); track finder) {

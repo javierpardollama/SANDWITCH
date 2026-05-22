@@ -43,13 +43,13 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
 
-      - name: 🔐 Validate lockfile exists
+      - name: 🔐 Exists package-lock.json 
         run: test -f package-lock.json
-        
+
       - name: 📥 Install dependencies
         run: npm ci --no-audit --no-fund
 
-      - name: 🔍 Check for lockfile drift
+      - name: 🔍 Seek package-lock.json drift
         run: git diff --exit-code package-lock.json
 
       - name: ♻️ Clean project

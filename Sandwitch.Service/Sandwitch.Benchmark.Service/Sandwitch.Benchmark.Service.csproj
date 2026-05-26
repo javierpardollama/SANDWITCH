@@ -6,6 +6,7 @@
 		<Nullable>disable</Nullable>
 		<NuGetAuditMode>direct</NuGetAuditMode>
 		<RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
+		<RestoreEnablePackagePruning>true</RestoreEnablePackagePruning>
 		<OutputType>Exe</OutputType>		
 	</PropertyGroup>
 

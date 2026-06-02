@@ -56,9 +56,9 @@ public class BasicAuthenticationHandler(
         {
             @credentials = Request.ToTuple();
         }
-        catch (Exception)
+        catch (Exception @exception)
         {
-            return Task.FromResult(AuthenticateResult.Fail("Invalid Authorization header."));
+            return Task.FromResult(AuthenticateResult.Fail(@exception));
         }
 
         return credentialManager.CanAuthenticate(@credentials.Name, @credentials.Password)

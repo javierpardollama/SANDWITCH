@@ -1,22 +1,21 @@
-# Consulte https://aka.ms/customizecontainer para aprender a personalizar su contenedor de depuración y cómo Visual Studio usa este Dockerfile para compilar sus imágenes para una depuración más rápida.
+# Consulte https://aka.ms/customizecontainer para aprender a personalizar su contenedor de depuraciï¿½n y cï¿½mo Visual Studio usa este Dockerfile para compilar sus imï¿½genes para una depuraciï¿½n mï¿½s rï¿½pida.
 
-# Esta fase se usa cuando se ejecuta desde VS en modo rápido (valor predeterminado para la configuración de depuración)
+# Esta fase se usa cuando se ejecuta desde VS en modo rï¿½pido (valor predeterminado para la configuraciï¿½n de depuraciï¿½n)
 FROM mcr.microsoft.com/dotnet/aspnet:10.0 AS base
-USER $APP_UID
 WORKDIR /app
 
-# Opcional: fija los puertos HTTP/HTTPS explícitamente (coincide con EXPOSE)
-ENV ASPNETCORE_HTTP_PORTS=http://+:8080
-ENV ASPNETCORE_HTTPS_PORTS=https://+:8081
+# Usa usuario no root
+USER $APP_UID
 
-# Expone sólo los puertos necesarios.
+# Opcional: fija los puertos HTTP/HTTPS explï¿½citamente (coincide con EXPOSE)
+ENV ASPNETCORE_URLS=http://+:8080;
+
+# Expone sï¿½lo los puertos necesarios.
 EXPOSE 8080
-EXPOSE 8081
 
 # Esta fase se usa para compilar el proyecto de servicio
 FROM mcr.microsoft.com/dotnet/sdk:10.0 AS build
 ARG BUILD_CONFIGURATION=Release
-ARG TARGET_ARCH=linux-x64
 
 WORKDIR /src
 
@@ -24,25 +23,25 @@ COPY ["Sandwitch.Service/Sandwitch.Service.csproj", "Sandwitch.Service/"]
 COPY ["Sandwitch.Application/Sandwitch.Application.csproj", "Sandwitch.Application/"]
 COPY ["Sandwitch.Domain/Sandwitch.Domain.csproj", "Sandwitch.Domain/"]
 COPY ["Sandwitch.Infrastructure/Sandwitch.Infrastructure.csproj", "Sandwitch.Infrastructure/"]
+COPY ["Sandwitch.Service/nuget.config", "./nuget.config"]
 
-RUN dotnet restore --locked-mode "./Sandwitch.Service/Sandwitch.Service.csproj"
+RUN dotnet restore "./Sandwitch.Service/Sandwitch.Service.csproj" --configfile "./nuget.config" --locked-mode
 
-# Ahora copia el resto del código (esto invalida el caché sólo si cambian fuentes)
+# Ahora copia el resto del cï¿½digo (esto invalida el cachï¿½ sï¿½lo si cambian fuentes)
 COPY . .
 
 # Compila sin restaurar (ya hicimos restore), salida a una carpeta intermedia
 WORKDIR "/src/Sandwitch.Service"
 RUN dotnet build "./Sandwitch.Service.csproj" -c $BUILD_CONFIGURATION --no-restore -o /app/build
 
-# Esta fase se usa para publicar el proyecto de servicio que se copiará en la fase final.
+# Esta fase se usa para publicar el proyecto de servicio que se copiarï¿½ en la fase final.
 FROM build AS publish
 ARG BUILD_CONFIGURATION=Release
-ARG TARGET_ARCH=linux-x64
 
-# Publica sin restaurar, reduciendo tamaño final
+# Publica sin restaurar, reduciendo tamaï¿½o final
 RUN dotnet publish "./Sandwitch.Service.csproj" -c $BUILD_CONFIGURATION --no-restore -o /app/publish
 
-# Esta fase se usa en producción o cuando se ejecuta desde VS en modo normal (valor predeterminado cuando no se usa la configuración de depuración)
+# Esta fase se usa en producciï¿½n o cuando se ejecuta desde VS en modo normal (valor predeterminado cuando no se usa la configuraciï¿½n de depuraciï¿½n)
 FROM base AS final
 WORKDIR /app
 

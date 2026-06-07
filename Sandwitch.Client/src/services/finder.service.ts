@@ -7,7 +7,7 @@ import { catchError, shareReplay } from 'rxjs/operators';
 import { BaseService } from './base.service';
 
 import { firstValueFrom } from 'rxjs';
-import { environment } from 'src/environments/environment';
+import { environment } from '../environments/environment';
 
 import { ViewFinder } from "../viewmodels/views/viewfinder";
 import { FinderBeach } from "../viewmodels/finders/finderbeach";

@@ -15,8 +15,8 @@ import {
   FlagAddModalComponent
 } from '../../modals/additions/flag-add-modal/flag-add-modal.component';
 
-import { FilterPage } from 'src/viewmodels/filters/filterpage';
-import { ViewScroll } from 'src/viewmodels/views/viewscroll';
+import { FilterPage } from '../../../../viewmodels/filters/filterpage';
+import { ViewScroll } from '../../../../viewmodels/views/viewscroll';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatChipsModule } from '@angular/material/chips';

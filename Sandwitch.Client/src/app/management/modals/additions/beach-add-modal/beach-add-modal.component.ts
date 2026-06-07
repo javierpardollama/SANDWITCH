@@ -27,8 +27,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
-import { TownService } from 'src/services/town.service';
-import { ViewCatalog } from 'src/viewmodels/views/viewcatalog';
+import { TownService } from '../../../../../services/town.service';
+import { ViewCatalog } from '../../../../../viewmodels/views/viewcatalog';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { NgOptimizedImage } from '@angular/common';
 

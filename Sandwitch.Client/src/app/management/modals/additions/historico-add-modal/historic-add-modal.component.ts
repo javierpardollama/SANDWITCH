@@ -35,7 +35,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
-import { ViewCatalog } from 'src/viewmodels/views/viewcatalog';
+import { ViewCatalog } from '../../../../../viewmodels/views/viewcatalog';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { provideNativeDateAdapter } from '@angular/material/core';
 

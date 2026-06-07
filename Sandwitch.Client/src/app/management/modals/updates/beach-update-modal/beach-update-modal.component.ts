@@ -28,8 +28,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { NgOptimizedImage } from '@angular/common';
-import { ViewCatalog } from 'src/viewmodels/views/viewcatalog';
-import { TownService } from 'src/services/town.service';
+import { ViewCatalog } from '../../../../../viewmodels/views/viewcatalog';
+import { TownService } from '../../../../../services/town.service';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
 @Component({

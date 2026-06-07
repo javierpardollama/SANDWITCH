@@ -12,12 +12,12 @@ import { catchError, shareReplay } from 'rxjs/operators';
 
 import { BaseService } from './base.service';
 
-import { FilterPage } from 'src/viewmodels/filters/filterpage';
+import { FilterPage } from '../viewmodels/filters/filterpage';
 
 import { firstValueFrom } from 'rxjs';
 
-import { environment } from 'src/environments/environment';
-import { ViewCatalog } from 'src/viewmodels/views/viewcatalog';
+import { environment } from '../environments/environment';
+import { ViewCatalog } from '../viewmodels/views/viewcatalog';
 
 @Injectable({
     providedIn: 'root',

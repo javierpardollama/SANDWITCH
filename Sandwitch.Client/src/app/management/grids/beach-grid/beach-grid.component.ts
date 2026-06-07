@@ -15,8 +15,8 @@ import {
     BeachAddModalComponent
 } from '../../modals/additions/beach-add-modal/beach-add-modal.component';
 
-import { FilterPage } from 'src/viewmodels/filters/filterpage';
-import { ViewScroll } from 'src/viewmodels/views/viewscroll';
+import { FilterPage } from '../../../../viewmodels/filters/filterpage';
+import { ViewScroll } from '../../../../viewmodels/views/viewscroll';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';

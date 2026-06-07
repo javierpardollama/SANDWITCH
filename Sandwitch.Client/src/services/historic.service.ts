@@ -12,7 +12,7 @@ import { BaseService } from './base.service';
 
 import { firstValueFrom } from 'rxjs';
 
-import { environment } from 'src/environments/environment';
+import { environment } from '../environments/environment';
 
 @Injectable({
     providedIn: 'root',

@@ -2,7 +2,7 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.0.0.
 
-# Installing packages
+## Installing packages
 To install all the required dependencies in a clean and reproducible way, use:
 ```bash
 npm ci --no-audit --no-fund
@@ -15,13 +15,12 @@ npm i --include=optional
 ```
 This will reinstall dependencies while including optional modules that may be required on your system.
 
-
 ## Development server
 
 To start a local development server, run:
 
 ```bash
-ng run web
+npm run web
 ```
 
 Once the server is running, open your browser and navigate to `https://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
@@ -51,7 +50,6 @@ Run `npm run stg` to build the project. The build artifacts will be stored in th
 ## Building Production
 
 Run `npm run prod` to build the project. The build artifacts will be stored in the `dist/` directory.
-
 
 ## Additional Resources
 

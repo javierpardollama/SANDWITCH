@@ -59,7 +59,7 @@
     "@angular/platform-browser": "^22.0.0",
     "@angular/platform-browser-dynamic": "^22.0.0",
     "@angular/router": "^22.0.0",
-    "@angular/service-worker": "^22.0.0",
+    "@angular/service-worker": "^22.0.1",
     "@opentelemetry/auto-instrumentations-web": "^0.54.0",
     "@opentelemetry/context-zone": "^2.6.0",
     "@opentelemetry/exporter-trace-otlp-http": "^0.203.0",

@@ -1,24 +1,23 @@
 # SANDWITCH
 
-[![Test .NET Infrastructure](https://github.com/javierpardollama/SANDWITCH/actions/workflows/dotnet-infrastructure.yml/badge.svg)](https://github.com/javierpardollama/SANDWITCH/actions/workflows/dotnet-infrastructure.yml) [![Build .NET Service](https://github.com/javierpardollama/SANDWITCH/actions/workflows/dotnet-service.yml/badge.svg)](https://github.com/javierpardollama/SANDWITCH/actions/workflows/dotnet-service.yml) [![Build Angular App](https://github.com/javierpardollama/SANDWITCH/actions/workflows/node.js.yml/badge.svg)](https://github.com/javierpardollama/SANDWITCH/actions/workflows/node.js.yml)
-
 This project arose as a solution to manage the current state of Spanish beaches, administering data such as water temperature and opening hours, tides, as well as the color of the flag set up by the lifeguards.
 
 ## ARCHITECTURE
 
-This project is built in n layers, following a hexagonal structure (ports - adapters), under a domain-driven design:
+This project is constructed using a micro-services oriented architecture:
 
-1. [Domain](https://github.com/javierpardollama/SANDWITCH/tree/main/Sandwitch.Service/Sandwitch.Domain)
+- SERVICE
 
-In this layer, the business rules are modeled and the entities, value objects, etc., are defined.
+[![Service - Test .NET Infrastructure](https://github.com/javierpardollama/SANDWITCH/actions/workflows/dotnet-infrastructure.yml/badge.svg)](https://github.com/javierpardollama/SANDWITCH/actions/workflows/dotnet-infrastructure.yml)
+[![Service - Build .NET Service](https://github.com/javierpardollama/SANDWITCH/actions/workflows/dotnet-service.yml/badge.svg)](https://github.com/javierpardollama/SANDWITCH/actions/workflows/dotnet-service.yml) 
 
-2. [Infrastructure](https://github.com/javierpardollama/SANDWITCH/tree/main/Sandwitch.Service/Sandwitch.Infrastructure)
+.NET MVC Api. In this service, operations related to the beaches' flag status are performed
 
-In this layer, information is stored and redistributed to the data storage system.
+- CLIENT
 
-3. [Application](https://github.com/javierpardollama/SANDWITCH/tree/main/Sandwitch.Service/Sandwitch.Application)
+[![Build Angular App](https://github.com/javierpardollama/HYPERDRIVE/actions/workflows/node.js.yml/badge.svg)](https://github.com/javierpardollama/HYPERDRIVE/actions/workflows/node.js.yml)
 
-This layer coordinates the sending and/or receiving of data between the Domain layer and the Infrastructure layer.
+Angular Web Application. Provides a unified User Interface to perform all the operations.
 
 ## GETTING STARTED
 

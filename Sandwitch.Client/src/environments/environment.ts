@@ -8,7 +8,7 @@ export const environment =
   {
     User: "Peach",
     Key: "T/R4J6eyvNG<6ne!",
-    Service:"https://localhost:7297/",
+    Service:"https://localhost:8081/",
   },
   Otel:
   {

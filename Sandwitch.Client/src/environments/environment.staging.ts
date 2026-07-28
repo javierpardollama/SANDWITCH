@@ -3,7 +3,7 @@ export const environment = {
   {
     User: "Rosalina",
     Key: "uPu}S}*8q(S{sCgc",
-    Service: "https://localhost:7297/",
+    Service: "https://localhost:8081/",
   },
   Otel:
   {

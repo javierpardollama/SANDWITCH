@@ -27,7 +27,7 @@ public class BeachControllerTest
     {
     }
 
-    private static readonly HttpClient Client = new() { BaseAddress = new Uri("https://localhost:7297/api/v1/beach/") };
+    private static readonly HttpClient Client = new() { BaseAddress = new Uri("https://localhost:8081/api/v1/beach/") };
 
     /// <summary>
     ///     Initializes a new Instance of <see cref="BeachControllerTest" />

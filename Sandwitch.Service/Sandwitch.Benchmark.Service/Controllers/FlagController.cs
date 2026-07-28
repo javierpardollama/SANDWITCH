@@ -9,7 +9,7 @@ namespace Sandwitch.Benchmark.Service.Controllers;
 
 public class FlagController
 {
-    private static readonly HttpClient Client = new() { BaseAddress = new Uri("https://localhost:7297/api/v1/flag/") };
+    private static readonly HttpClient Client = new() { BaseAddress = new Uri("https://localhost:8081/api/v1/flag/") };
 
     [Benchmark]
     public async Task<IList<ViewCatalog>> FindAllFlag()

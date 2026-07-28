@@ -9,7 +9,7 @@ namespace Sandwitch.Benchmark.Service.Controllers;
 
 public class FinderController
 {
-    private static readonly HttpClient Client = new() { BaseAddress = new Uri("https://localhost:7297/api/v2/finder/") };
+    private static readonly HttpClient Client = new() { BaseAddress = new Uri("https://localhost:8081/api/v2/finder/") };
 
     [Benchmark]
     public async Task<IList<ViewFinder>> FindAllFinder()

@@ -27,8 +27,7 @@ public class StateControllerTest
     {
     }
 
-    private static readonly HttpClient Client = new()
-    { BaseAddress = new Uri("https://localhost:7297/api/v1/state/") };
+    private static readonly HttpClient Client = new() { BaseAddress = new Uri("https://localhost:7297/8081/v1/state/") };
 
     /// <summary>
     ///     Initializes a new Instance of <see cref="StateControllerTest" />

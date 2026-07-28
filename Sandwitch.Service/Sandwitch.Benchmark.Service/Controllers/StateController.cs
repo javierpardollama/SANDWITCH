@@ -9,8 +9,7 @@ namespace Sandwitch.Benchmark.Service.Controllers;
 
 public class StateController
 {
-    private static readonly HttpClient Client = new()
-    { BaseAddress = new Uri("https://localhost:7297/api/v1/state/") };
+    private static readonly HttpClient Client = new() { BaseAddress = new Uri("https://localhost:8081/api/v1/state/") };
 
     [Benchmark]
     public async Task<IList<ViewCatalog>> FindAllState()

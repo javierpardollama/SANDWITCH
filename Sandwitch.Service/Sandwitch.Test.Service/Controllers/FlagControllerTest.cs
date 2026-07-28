@@ -27,7 +27,7 @@ public class FlagControllerTest
     {
     }
 
-    private static readonly HttpClient Client = new() { BaseAddress = new Uri("https://localhost:7297/api/v1/flag/") };
+    private static readonly HttpClient Client = new() { BaseAddress = new Uri("https://localhost:8081/api/v1/flag/") };
 
     /// <summary>
     ///     Initializes a new Instance of <see cref="FlagControllerTest" />

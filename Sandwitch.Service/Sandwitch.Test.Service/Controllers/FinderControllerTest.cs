@@ -27,7 +27,7 @@ public class FinderControllerTest
     {
     }
 
-    private static readonly HttpClient Client = new() { BaseAddress = new Uri("https://localhost:7297/api/v2/finder/") };
+    private static readonly HttpClient Client = new() { BaseAddress = new Uri("https://localhost:8081/api/v2/finder/") };
 
     /// <summary>
     ///     Initializes a new Instance of <see cref="FinderControllerTest" />

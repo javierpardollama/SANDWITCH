@@ -9,7 +9,7 @@ namespace Sandwitch.Benchmark.Service.Controllers;
 
 public class BeachController
 {
-    private static readonly HttpClient Client = new() { BaseAddress = new Uri("https://localhost:7297/api/v1/beach/") };
+    private static readonly HttpClient Client = new() { BaseAddress = new Uri("https://localhost:8081/api/v1/beach/") };
 
     [Benchmark]
     public async Task<IList<ViewCatalog>> FindAllBeach()

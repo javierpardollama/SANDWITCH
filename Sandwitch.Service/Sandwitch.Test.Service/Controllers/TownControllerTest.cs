@@ -27,8 +27,7 @@ public class TownControllerTest
     {
     }
 
-    private static readonly HttpClient Client = new()
-    { BaseAddress = new Uri("https://localhost:7297/api/v1/town/") };
+    private static readonly HttpClient Client = new() { BaseAddress = new Uri("https://localhost:8081/api/v1/town/") };
 
     /// <summary>
     ///     Initializes a new Instance of <see cref="TownControllerTest" />

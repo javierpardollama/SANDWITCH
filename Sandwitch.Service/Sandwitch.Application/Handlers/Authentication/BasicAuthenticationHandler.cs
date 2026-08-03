@@ -1,13 +1,13 @@
-﻿using Microsoft.AspNetCore.Authentication;
+﻿using System.Globalization;
+using System.Security.Claims;
+using System.Text.Encodings.Web;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Sandwitch.Application.Profiles;
 using Sandwitch.Domain.Managers;
-using System.Globalization;
-using System.Security.Claims;
-using System.Text.Encodings.Web;
 
-namespace Sandwitch.Application.Handlers;
+namespace Sandwitch.Application.Handlers.Authentication;
 
 /// <summary>
 /// Represents a <see cref="BasicAuthenticationHandler" /> class. Inherits <see cref="AuthenticationHandler{AuthenticationSchemeOptions}" />
@@ -25,7 +25,7 @@ public class BasicAuthenticationHandler(
     /// <summary>
     /// Creates Authentication Ticket
     /// </summary>
-    /// <param name="@credentials">Injected <see cref="Tuple{string, string}" /></param>
+    /// <param name="credentials">Injected <see cref="Tuple{string, string}" /></param>
     /// <returns>Instance of <see cref="AuthenticationTicket" /></returns>
     private AuthenticationTicket CreateTicket((string Name, string Password) @credentials)
     {

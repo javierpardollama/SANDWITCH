@@ -35,6 +35,8 @@ var @rateSettings = @builder.InstallRateLimitSettings();
 
 @builder.InstallSecureApi();
 
+@builder.Services.InstallMcpServer();
+
 var @app = @builder.Build();
 
 // Learn more about configuring app pipeline at https://learn.microsoft.com/en-us/aspnet/core/fundamentals/middleware/?view=aspnetcore-8.0
@@ -71,5 +73,6 @@ var @app = @builder.Build();
 
 // 10. Endpoint execution
 @app.MapControllers();
+@app.MapMcp();
 
 @app.Run();

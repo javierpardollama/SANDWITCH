@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Sandwitch.Application.Profiles;
 
-namespace Sandwitch.Application.Handlers;
+namespace Sandwitch.Application.Handlers.ProblemDetails;
 
 /// <summary>
 ///     Represents a <see cref="ProblemDetailsExceptionHandler" /> class. Implements <see cref="IExceptionHandler" />

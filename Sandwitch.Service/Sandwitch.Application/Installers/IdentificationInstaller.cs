@@ -4,6 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Sandwitch.Application.Handlers;
 using Sandwitch.Domain.Settings;
 using System.Net;
+using Sandwitch.Application.Handlers.Authentication;
 
 namespace Sandwitch.Application.Installers;
 

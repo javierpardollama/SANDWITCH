@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Sandwitch.Application.Handlers;
+using Sandwitch.Application.Handlers.ProblemDetails;
 
 namespace Sandwitch.Application.Installers;
 

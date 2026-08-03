@@ -21,7 +21,10 @@ public class StateTool(IMediator mediator)
     /// </summary>
     /// <param name="viewModel">Injected <see cref="UpdateState" /></param>
     /// <returns>A <see cref="Task{T}"/> whose result is a <see cref="ViewState"/>.</returns>
-    [McpServerTool]
+    [McpServerTool(
+        Name = "updatestate",
+        Title = ""
+    )]
     public async Task<ViewState> UpdateState(UpdateState viewModel)
     {
         return await mediator.Send(new UpdateStateCommand { ViewModel = viewModel });
@@ -31,7 +34,10 @@ public class StateTool(IMediator mediator)
     ///     Finds All State
     /// </summary>
     /// <returns>A <see cref="Task{T}"/> whose result is a <see cref="IList{T}"/> of <see cref="ViewCatalog"/>.</returns>
-    [McpServerTool]
+    [McpServerTool(
+        Name = "findallstate",
+        Title = ""
+    )]
     public async Task<IList<ViewCatalog>> FindAllState()
     {
         return await mediator.Send(new FindAllStateQuery());
@@ -42,7 +48,10 @@ public class StateTool(IMediator mediator)
     /// </summary>
     /// <param name="viewModel">Injected <see cref="FilterPage" /></param>
     /// <returns>A <see cref="Task{T}"/> whose result is a <see cref="ViewPage{T}"/> of <see cref="ViewState"/>.</returns>
-    [McpServerTool]
+    [McpServerTool(
+        Name = "findpaginatedstate",
+        Title = ""
+    )]
     public async Task<ViewPage<ViewState>> FindPaginatedState(FilterPage viewModel)
     {
         return await mediator.Send(new FindPaginatedStateQuery { ViewModel = viewModel });
@@ -53,7 +62,10 @@ public class StateTool(IMediator mediator)
     /// </summary>
     /// <param name="viewModel">Injected <see cref="AddState" /></param>
     /// <returns>A <see cref="Task{T}"/> whose result is a <see cref="ViewState"/>.</returns>
-    [McpServerTool]
+    [McpServerTool(
+        Name = "addstate",
+        Title = ""
+    )]
     public async Task<ViewState> AddState(AddState viewModel)
     {
         return await mediator.Send(new AddStateCommand { ViewModel = viewModel });
@@ -64,7 +76,10 @@ public class StateTool(IMediator mediator)
     /// </summary>
     /// <param name="id">Injected <see cref="int" /></param>
     /// <returns>A <see cref="Task{T}"/> whose result is a <see cref="IList{T}"/> of <see cref="ViewCatalog"/>.</returns>
-    [McpServerTool]
+    [McpServerTool(
+        Name = "removestatebyid",
+        Title = ""
+    )]
     public async Task RemoveStateById(int id)
     {
         await mediator.Send(new RemoveStateByIdCommand { Id = id });

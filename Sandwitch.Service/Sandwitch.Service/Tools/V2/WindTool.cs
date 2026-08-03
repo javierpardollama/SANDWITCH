@@ -21,7 +21,10 @@ public class WindTool(IMediator mediator)
     /// </summary>
     /// <param name="viewModel">Injected <see cref="AddHistoric" /></param>
     /// <returns>A <see cref="Task{T}"/> whose result is a <see cref="ViewWind"/>.</returns>
-    [McpServerTool]
+    [McpServerTool(
+        Name = "updatewind",
+        Title = ""
+    )]
     public async Task<ViewWind> UpdateWind(UpdateWind viewModel)
     {
         return await mediator.Send(new UpdateWindCommand { ViewModel = viewModel });
@@ -31,7 +34,10 @@ public class WindTool(IMediator mediator)
     ///     Finds All Wind
     /// </summary>
     /// <returns>A <see cref="Task{T}"/> whose result is a <see cref="IList{T}"/> of <see cref="ViewCatalog"/>.</returns>
-    [McpServerTool]
+    [McpServerTool(
+        Name = "findallwind",
+        Title = ""
+    )]
     public async Task<IList<ViewCatalog>> FindAllWind()
     {
         return await mediator.Send(new FindAllWindQuery());
@@ -42,7 +48,10 @@ public class WindTool(IMediator mediator)
     /// </summary>
     /// <param name="viewModel">Injected <see cref="FilterPage" /></param>
     /// <returns>A <see cref="Task{T}"/> whose result is a <see cref="ViewPage{T}"/> of <see cref="ViewWind"/>.</returns>
-    [McpServerTool]
+    [McpServerTool(
+        Name = "findpaginatedwind",
+        Title = ""
+    )]
     public async Task<ViewPage<ViewWind>> FindPaginatedWind(FilterPage viewModel)
     {
         return await mediator.Send(new FindPaginatedWindQuery { ViewModel = viewModel });
@@ -53,7 +62,10 @@ public class WindTool(IMediator mediator)
     /// </summary>
     /// <param name="id">Injected <see cref="int" /></param>
     /// <returns>A <see cref="Task{T}"/> whose result is a <see cref="IList{T}"/> of <see cref="ViewHistoric"/>.</returns>
-    [McpServerTool]
+    [McpServerTool(
+        Name = "findallhistoricbywindid",
+        Title = ""
+    )]
     public async Task<IList<ViewHistoric>> FindAllHistoricByWindId(int id)
     {
         return await mediator.Send(new FindAllHistoricByWindIdQuery { Id = id });
@@ -64,7 +76,10 @@ public class WindTool(IMediator mediator)
     /// </summary>
     /// <param name="viewModel">Injected <see cref="AddWind" /></param>
     /// <returns>A <see cref="Task{T}"/> whose result is a <see cref="ViewWind"/>.</returns>
-    [McpServerTool]
+    [McpServerTool(
+        Name = "addwind",
+        Title = ""
+    )]
     public async Task<ViewWind> AddWind(AddWind viewModel)
     {
         return await mediator.Send(new AddWindCommand { ViewModel = viewModel });
@@ -75,7 +90,10 @@ public class WindTool(IMediator mediator)
     /// </summary>
     /// <param name="id">Injected <see cref="int" /></param>
     /// <returns>Instance of <see cref="Task" /></returns>
-    [McpServerTool]
+    [McpServerTool(
+        Name = "removewindbyid",
+        Title = ""
+    )]
     public async Task RemoveWindById(int id)
     {
         await mediator.Send(new RemoveWindByIdCommand { Id = id });

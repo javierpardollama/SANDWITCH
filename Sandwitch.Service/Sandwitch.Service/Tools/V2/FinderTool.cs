@@ -18,7 +18,10 @@ public class FinderTool(IMediator mediator)
     ///     Finds All Finder
     /// </summary>
     /// <returns>A <see cref="Task{T}"/> whose result is a <see cref="IList{T}"/> of <see cref="ViewFinder"/>.</returns>
-    [McpServerTool]
+    [McpServerTool(
+        Name = "findallfinder",
+        Title = "Returns all Beaches"
+    )]
     public async Task<IList<ViewFinder>> FindAllFinder()
     {
         return await mediator.Send(new FindAllFinderQuery());
@@ -29,7 +32,10 @@ public class FinderTool(IMediator mediator)
     /// </summary>
     /// <param name="viewModel">Injected <see cref="FilterPage" /></param>
     /// <returns>A <see cref="Task{T}"/> whose result is a <see cref="IList{T}"/> of <see cref="ViewBeach"/>.</returns>
-    [McpServerTool]
+    [McpServerTool(
+        Name = "findallbeachbyfinderid",
+        Title = "Returns All Beaches For A Given Finder Id"
+    )]
     public async Task<IList<ViewBeach>> FindAllBeachByFinderId(FinderBeach viewModel)
     {
         return await mediator.Send(new FindAllBeachByFinderIdQuery { ViewModel = viewModel });

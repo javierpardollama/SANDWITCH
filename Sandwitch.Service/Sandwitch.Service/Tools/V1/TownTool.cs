@@ -21,7 +21,10 @@ public class TownTool(IMediator mediator)
     /// </summary>
     /// <param name="viewModel">Injected <see cref="UpdateTown" /></param>
     /// <returns>Instance of <see cref="Task{ViewTown}" /></returns>
-    [McpServerTool]
+    [McpServerTool(
+        Name = "updatetown",
+        Title = ""
+    )]
     public async Task<ViewTown> UpdateTown(UpdateTown viewModel)
     {
         return await mediator.Send(new UpdateTownCommand { ViewModel = viewModel });
@@ -31,7 +34,10 @@ public class TownTool(IMediator mediator)
     ///     Finds All Town
     /// </summary>
     /// <returns>A <see cref="Task{T}"/> whose result is a <see cref="IList{T}"/> of <see cref="ViewCatalog"/>.</returns>
-    [McpServerTool]
+    [McpServerTool(
+        Name = "findalltown",
+        Title = ""
+    )]
     public async Task<IList<ViewCatalog>> FindAllTown()
     {
         return await mediator.Send(new FindAllTownQuery());
@@ -42,7 +48,10 @@ public class TownTool(IMediator mediator)
     /// </summary>
     /// <param name="viewModel">Injected <see cref="FilterPage" /></param>
     /// <returns>A <see cref="Task{T}"/> whose result is a <see cref="ViewPage{T}"/> of <see cref="ViewTown"/>.</returns>
-    [McpServerTool]
+    [McpServerTool(
+        Name = "findpaginatedtown",
+        Title = ""
+    )]
     public async Task<ViewPage<ViewTown>> FindPaginatedTown(FilterPage viewModel)
     {
         return await mediator.Send(new FindPaginatedTownQuery { ViewModel = viewModel });
@@ -53,7 +62,10 @@ public class TownTool(IMediator mediator)
     /// </summary>
     /// <param name="viewModel">Injected <see cref="AddTown" /></param>
     /// <returns>Instance of <see cref="Task{ViewTown}" /></returns>
-    [McpServerTool]
+    [McpServerTool(
+        Name = "addtown",
+        Title = ""
+    )]
     public async Task<ViewTown> AddTown(AddTown viewModel)
     {
         return await mediator.Send(new AddTownCommand { ViewModel = viewModel });
@@ -64,7 +76,10 @@ public class TownTool(IMediator mediator)
     /// </summary>
     /// <param name="id">Injected <see cref="int" /></param>
     /// <returns>Instance of <see cref="Task" /></returns>
-    [McpServerTool]
+    [McpServerTool(
+        Name = "removetownbyid",
+        Title = ""
+    )]
     public async Task RemoveTownById(int id)
     {
         await mediator.Send(new RemoveTownByIdCommand { Id = id });

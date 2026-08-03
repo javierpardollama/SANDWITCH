@@ -21,7 +21,10 @@ public class BeachTool(IMediator mediator)
     /// </summary>
     /// <param name="viewModel">Injected <see cref="UpdateBeach" /></param>
     /// <returns>A <see cref="Task{T}"/> whose result is a <see cref="ViewBeach"/>.</returns>
-    [McpServerTool]
+    [McpServerTool(
+        Name = "updatebeach",
+        Title = ""
+    )]
     public async Task<ViewBeach> UpdateBeach(UpdateBeach viewModel)
     {
         return await mediator.Send(new UpdateBeachCommand { ViewModel = viewModel });
@@ -31,7 +34,10 @@ public class BeachTool(IMediator mediator)
     ///     Finds All Beach
     /// </summary>
     /// <returns>A <see cref="Task{T}"/> whose result is a <see cref="IList{T}"/> of <see cref="ViewCatalog"/>.</returns>
-    [McpServerTool]
+    [McpServerTool(
+        Name = "findallbeach",
+        Title = ""
+    )]
     public async Task<IList<ViewCatalog>> FindAllBeach()
     {
         return await mediator.Send(new FindAllBeachQuery());
@@ -42,7 +48,10 @@ public class BeachTool(IMediator mediator)
     /// </summary>
     /// <param name="viewModel">Injected <see cref="FilterPage" /></param>
     /// <returns>A <see cref="Task{T}"/> whose result is a <see cref="ViewPage{T}"/> of <see cref="ViewBeach"/>.</returns>
-    [McpServerTool]
+    [McpServerTool(
+        Name = "findpaginatedbeach",
+        Title = ""
+    )]
     public async Task<ViewPage<ViewBeach>> FindPaginatedBeach(FilterPage viewModel)
     {
         return await mediator.Send(new FindPaginatedBeachQuery { ViewModel = viewModel });
@@ -53,7 +62,10 @@ public class BeachTool(IMediator mediator)
     /// </summary>
     /// <param name="id">Injected <see cref="int" /></param>
     /// <returns>A <see cref="Task{T}"/> whose result is a <see cref="IList{T}"/> of <see cref="ViewHistoric"/>.</returns>
-    [McpServerTool]
+    [McpServerTool(
+        Name = "findallhistoricbybeachid",
+        Title = ""
+    )]
     public async Task<IList<ViewHistoric>> FindAllHistoricByBeachId(int id)
     {
         return await mediator.Send(new FindAllHistoricByBeachIdQuery { Id = id });
@@ -64,7 +76,10 @@ public class BeachTool(IMediator mediator)
     /// </summary>
     /// <param name="viewModel">Injected <see cref="AddBeach" /></param>
     /// <returns>A <see cref="Task{T}"/> whose result is a <see cref="ViewBeach"/>.</returns>
-    [McpServerTool]
+    [McpServerTool(
+        Name = "addbeach",
+        Title = ""
+    )]
     public async Task<ViewBeach> AddBeach(AddBeach viewModel)
     {
         return await mediator.Send(new AddBeachCommand { ViewModel = viewModel });
@@ -75,7 +90,10 @@ public class BeachTool(IMediator mediator)
     /// </summary>
     /// <param name="id">Injected <see cref="int" /></param>
     /// <returns>Instance of <see cref="Task" /></returns>
-    [McpServerTool]
+    [McpServerTool(
+        Name = "removebeachbyid",
+        Title = ""
+    )]
     public async Task RemoveBeachById(int id)
     {
         await mediator.Send(new RemoveBeachByIdCommand { Id = id });

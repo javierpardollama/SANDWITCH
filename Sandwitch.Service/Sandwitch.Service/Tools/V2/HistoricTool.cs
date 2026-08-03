@@ -18,7 +18,10 @@ public class HistoricTool(IMediator mediator)
     /// </summary>
     /// <param name="viewModel">Injected <see cref="AddHistoric" /></param>
     /// <returns>Instance of <see cref="Task{ViewHistoric}" /></returns>
-    [McpServerTool]
+    [McpServerTool(
+        Name = "addhistoric",
+        Title = ""
+    )]
     public async Task<ViewHistoric> AddHistoric(AddHistoric viewModel)
     {
         return await mediator.Send(new AddHistoricCommand { ViewModel = viewModel });

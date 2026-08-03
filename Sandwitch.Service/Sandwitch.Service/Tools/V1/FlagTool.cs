@@ -21,7 +21,10 @@ public class FlagTool(IMediator mediator)
     /// </summary>
     /// <param name="viewModel">Injected <see cref="AddHistoric" /></param>
     /// <returns>A <see cref="Task{T}"/> whose result is a <see cref="ViewFlag"/>.</returns>
-    [McpServerTool]
+    [McpServerTool(
+        Name = "updateflag",
+        Title = ""
+    )]
     public async Task<ViewFlag> UpdateFlag(UpdateFlag viewModel)
     {
         return await mediator.Send(new UpdateFlagCommand { ViewModel = viewModel });
@@ -31,7 +34,10 @@ public class FlagTool(IMediator mediator)
     ///     Finds All Flag
     /// </summary>
     /// <returns>A <see cref="Task{T}"/> whose result is a <see cref="IList{T}"/> of <see cref="ViewCatalog"/>.</returns>
-    [McpServerTool]
+    [McpServerTool(
+        Name = "findallflag",
+        Title = ""
+    )]
     public async Task<IList<ViewCatalog>> FindAllFlag()
     {
         return await mediator.Send(new FindAllFlagQuery());
@@ -42,7 +48,10 @@ public class FlagTool(IMediator mediator)
     /// </summary>
     /// <param name="viewModel">Injected <see cref="FilterPage" /></param>
     /// <returns>A <see cref="Task{T}"/> whose result is a <see cref="ViewPage{T}"/> of <see cref="ViewFlag"/>.</returns>
-    [McpServerTool]
+    [McpServerTool(
+        Name = "findpaginatedflag",
+        Title = ""
+    )]
     public async Task<ViewPage<ViewFlag>> FindPaginatedFlag(FilterPage viewModel)
     {
         return await mediator.Send(new FindPaginatedFlagQuery { ViewModel = viewModel });
@@ -53,7 +62,10 @@ public class FlagTool(IMediator mediator)
     /// </summary>
     /// <param name="id">Injected <see cref="int" /></param>
     /// <returns>A <see cref="Task{T}"/> whose result is a <see cref="IList{T}"/> of <see cref="ViewHistoric"/>.</returns>
-    [McpServerTool]
+    [McpServerTool(
+        Name = "findallhistoricbyflagid",
+        Title = ""
+    )]
     public async Task<IList<ViewHistoric>> FindAllHistoricByFlagId(int id)
     {
         return await mediator.Send(new FindAllHistoricByFlagIdQuery { Id = id });
@@ -64,7 +76,10 @@ public class FlagTool(IMediator mediator)
     /// </summary>
     /// <param name="viewModel">Injected <see cref="AddFlag" /></param>
     /// <returns>A <see cref="Task{T}"/> whose result is a <see cref="ViewFlag"/>.</returns>
-    [McpServerTool]
+    [McpServerTool(
+        Name = "addflag",
+        Title = ""
+    )]
     public async Task<ViewFlag> AddFlag(AddFlag viewModel)
     {
         return await mediator.Send(new AddFlagCommand { ViewModel = viewModel });
@@ -75,7 +90,10 @@ public class FlagTool(IMediator mediator)
     /// </summary>
     /// <param name="id">Injected <see cref="int" /></param>
     /// <returns>Instance of <see cref="Task" /></returns>
-    [McpServerTool]
+    [McpServerTool(
+        Name = "removeflagbyid",
+        Title = ""
+    )]
     public async Task RemoveFlagById(int id)
     {
         await mediator.Send(new RemoveFlagByIdCommand { Id = id });

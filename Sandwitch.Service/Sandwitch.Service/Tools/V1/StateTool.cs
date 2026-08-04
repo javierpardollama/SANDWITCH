@@ -23,7 +23,7 @@ public class StateTool(IMediator mediator)
     /// <returns>A <see cref="Task{T}"/> whose result is a <see cref="ViewState"/>.</returns>
     [McpServerTool(
         Name = "updatestate",
-        Title = ""
+        Title = "Updates State"
     )]
     public async Task<ViewState> UpdateState(UpdateState viewModel)
     {
@@ -36,7 +36,7 @@ public class StateTool(IMediator mediator)
     /// <returns>A <see cref="Task{T}"/> whose result is a <see cref="IList{T}"/> of <see cref="ViewCatalog"/>.</returns>
     [McpServerTool(
         Name = "findallstate",
-        Title = ""
+        Title = "Finds All States"
     )]
     public async Task<IList<ViewCatalog>> FindAllState()
     {
@@ -50,7 +50,7 @@ public class StateTool(IMediator mediator)
     /// <returns>A <see cref="Task{T}"/> whose result is a <see cref="ViewPage{T}"/> of <see cref="ViewState"/>.</returns>
     [McpServerTool(
         Name = "findpaginatedstate",
-        Title = ""
+        Title = "Finds All States Paginated"
     )]
     public async Task<ViewPage<ViewState>> FindPaginatedState(FilterPage viewModel)
     {
@@ -64,7 +64,7 @@ public class StateTool(IMediator mediator)
     /// <returns>A <see cref="Task{T}"/> whose result is a <see cref="ViewState"/>.</returns>
     [McpServerTool(
         Name = "addstate",
-        Title = ""
+        Title = "Adds State"
     )]
     public async Task<ViewState> AddState(AddState viewModel)
     {
@@ -78,7 +78,7 @@ public class StateTool(IMediator mediator)
     /// <returns>A <see cref="Task{T}"/> whose result is a <see cref="IList{T}"/> of <see cref="ViewCatalog"/>.</returns>
     [McpServerTool(
         Name = "removestatebyid",
-        Title = ""
+        Title = "Removes State By Id"
     )]
     public async Task RemoveStateById(int id)
     {

@@ -23,7 +23,7 @@ public class WindTool(IMediator mediator)
     /// <returns>A <see cref="Task{T}"/> whose result is a <see cref="ViewWind"/>.</returns>
     [McpServerTool(
         Name = "updatewind",
-        Title = ""
+        Title = "Updates Wind"
     )]
     public async Task<ViewWind> UpdateWind(UpdateWind viewModel)
     {
@@ -36,7 +36,7 @@ public class WindTool(IMediator mediator)
     /// <returns>A <see cref="Task{T}"/> whose result is a <see cref="IList{T}"/> of <see cref="ViewCatalog"/>.</returns>
     [McpServerTool(
         Name = "findallwind",
-        Title = ""
+        Title = "Finds All Winds"
     )]
     public async Task<IList<ViewCatalog>> FindAllWind()
     {
@@ -50,7 +50,7 @@ public class WindTool(IMediator mediator)
     /// <returns>A <see cref="Task{T}"/> whose result is a <see cref="ViewPage{T}"/> of <see cref="ViewWind"/>.</returns>
     [McpServerTool(
         Name = "findpaginatedwind",
-        Title = ""
+        Title = "Finds All Winds Paginated"
     )]
     public async Task<ViewPage<ViewWind>> FindPaginatedWind(FilterPage viewModel)
     {
@@ -64,7 +64,7 @@ public class WindTool(IMediator mediator)
     /// <returns>A <see cref="Task{T}"/> whose result is a <see cref="IList{T}"/> of <see cref="ViewHistoric"/>.</returns>
     [McpServerTool(
         Name = "findallhistoricbywindid",
-        Title = ""
+        Title = "Finds All Historics By Wind Id"
     )]
     public async Task<IList<ViewHistoric>> FindAllHistoricByWindId(int id)
     {
@@ -78,7 +78,7 @@ public class WindTool(IMediator mediator)
     /// <returns>A <see cref="Task{T}"/> whose result is a <see cref="ViewWind"/>.</returns>
     [McpServerTool(
         Name = "addwind",
-        Title = ""
+        Title = "Adds Wind"
     )]
     public async Task<ViewWind> AddWind(AddWind viewModel)
     {
@@ -86,13 +86,13 @@ public class WindTool(IMediator mediator)
     }
 
     /// <summary>
-    ///     Removes Wind ById
+    ///     Removes Wind By Id
     /// </summary>
     /// <param name="id">Injected <see cref="int" /></param>
     /// <returns>Instance of <see cref="Task" /></returns>
     [McpServerTool(
         Name = "removewindbyid",
-        Title = ""
+        Title = "Removes Wind By Id"
     )]
     public async Task RemoveWindById(int id)
     {

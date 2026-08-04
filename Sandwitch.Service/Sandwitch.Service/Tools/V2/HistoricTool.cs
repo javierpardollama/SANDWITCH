@@ -20,7 +20,7 @@ public class HistoricTool(IMediator mediator)
     /// <returns>Instance of <see cref="Task{ViewHistoric}" /></returns>
     [McpServerTool(
         Name = "addhistoric",
-        Title = ""
+        Title = "Adds Historic"
     )]
     public async Task<ViewHistoric> AddHistoric(AddHistoric viewModel)
     {

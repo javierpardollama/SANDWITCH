@@ -23,7 +23,7 @@ public class BeachTool(IMediator mediator)
     /// <returns>A <see cref="Task{T}"/> whose result is a <see cref="ViewBeach"/>.</returns>
     [McpServerTool(
         Name = "updatebeach",
-        Title = ""
+        Title = "Updates Beach"
     )]
     public async Task<ViewBeach> UpdateBeach(UpdateBeach viewModel)
     {
@@ -36,7 +36,7 @@ public class BeachTool(IMediator mediator)
     /// <returns>A <see cref="Task{T}"/> whose result is a <see cref="IList{T}"/> of <see cref="ViewCatalog"/>.</returns>
     [McpServerTool(
         Name = "findallbeach",
-        Title = ""
+        Title = "Finds All Beaches"
     )]
     public async Task<IList<ViewCatalog>> FindAllBeach()
     {
@@ -50,7 +50,7 @@ public class BeachTool(IMediator mediator)
     /// <returns>A <see cref="Task{T}"/> whose result is a <see cref="ViewPage{T}"/> of <see cref="ViewBeach"/>.</returns>
     [McpServerTool(
         Name = "findpaginatedbeach",
-        Title = ""
+        Title = "Finds All Beaches Paginated"
     )]
     public async Task<ViewPage<ViewBeach>> FindPaginatedBeach(FilterPage viewModel)
     {
@@ -64,7 +64,7 @@ public class BeachTool(IMediator mediator)
     /// <returns>A <see cref="Task{T}"/> whose result is a <see cref="IList{T}"/> of <see cref="ViewHistoric"/>.</returns>
     [McpServerTool(
         Name = "findallhistoricbybeachid",
-        Title = ""
+        Title = "Finds All Historics By Beach Id"
     )]
     public async Task<IList<ViewHistoric>> FindAllHistoricByBeachId(int id)
     {
@@ -78,7 +78,7 @@ public class BeachTool(IMediator mediator)
     /// <returns>A <see cref="Task{T}"/> whose result is a <see cref="ViewBeach"/>.</returns>
     [McpServerTool(
         Name = "addbeach",
-        Title = ""
+        Title = " Adds Beach"
     )]
     public async Task<ViewBeach> AddBeach(AddBeach viewModel)
     {
@@ -92,7 +92,7 @@ public class BeachTool(IMediator mediator)
     /// <returns>Instance of <see cref="Task" /></returns>
     [McpServerTool(
         Name = "removebeachbyid",
-        Title = ""
+        Title = "Removes Beach By Id"
     )]
     public async Task RemoveBeachById(int id)
     {

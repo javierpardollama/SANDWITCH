@@ -23,7 +23,7 @@ public class FlagTool(IMediator mediator)
     /// <returns>A <see cref="Task{T}"/> whose result is a <see cref="ViewFlag"/>.</returns>
     [McpServerTool(
         Name = "updateflag",
-        Title = ""
+        Title = "Updates Flag"
     )]
     public async Task<ViewFlag> UpdateFlag(UpdateFlag viewModel)
     {
@@ -36,7 +36,7 @@ public class FlagTool(IMediator mediator)
     /// <returns>A <see cref="Task{T}"/> whose result is a <see cref="IList{T}"/> of <see cref="ViewCatalog"/>.</returns>
     [McpServerTool(
         Name = "findallflag",
-        Title = ""
+        Title = "Finds All Flags"
     )]
     public async Task<IList<ViewCatalog>> FindAllFlag()
     {
@@ -50,7 +50,7 @@ public class FlagTool(IMediator mediator)
     /// <returns>A <see cref="Task{T}"/> whose result is a <see cref="ViewPage{T}"/> of <see cref="ViewFlag"/>.</returns>
     [McpServerTool(
         Name = "findpaginatedflag",
-        Title = ""
+        Title = "Finds All Flags Paginated"
     )]
     public async Task<ViewPage<ViewFlag>> FindPaginatedFlag(FilterPage viewModel)
     {
@@ -64,7 +64,7 @@ public class FlagTool(IMediator mediator)
     /// <returns>A <see cref="Task{T}"/> whose result is a <see cref="IList{T}"/> of <see cref="ViewHistoric"/>.</returns>
     [McpServerTool(
         Name = "findallhistoricbyflagid",
-        Title = ""
+        Title = "Finds All Historics By Flag Id"
     )]
     public async Task<IList<ViewHistoric>> FindAllHistoricByFlagId(int id)
     {
@@ -78,7 +78,7 @@ public class FlagTool(IMediator mediator)
     /// <returns>A <see cref="Task{T}"/> whose result is a <see cref="ViewFlag"/>.</returns>
     [McpServerTool(
         Name = "addflag",
-        Title = ""
+        Title = "Adds Flag"
     )]
     public async Task<ViewFlag> AddFlag(AddFlag viewModel)
     {
@@ -86,13 +86,13 @@ public class FlagTool(IMediator mediator)
     }
 
     /// <summary>
-    ///     Removes Flag ById
+    ///     Removes Flag By Id
     /// </summary>
     /// <param name="id">Injected <see cref="int" /></param>
     /// <returns>Instance of <see cref="Task" /></returns>
     [McpServerTool(
         Name = "removeflagbyid",
-        Title = ""
+        Title = "Removes Flag By Id"
     )]
     public async Task RemoveFlagById(int id)
     {

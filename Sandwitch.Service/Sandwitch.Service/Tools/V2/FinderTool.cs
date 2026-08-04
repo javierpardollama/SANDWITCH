@@ -20,7 +20,7 @@ public class FinderTool(IMediator mediator)
     /// <returns>A <see cref="Task{T}"/> whose result is a <see cref="IList{T}"/> of <see cref="ViewFinder"/>.</returns>
     [McpServerTool(
         Name = "findallfinder",
-        Title = "Returns all Beaches"
+        Title = "Finds All Finders (States & Towns)"
     )]
     public async Task<IList<ViewFinder>> FindAllFinder()
     {
@@ -34,7 +34,7 @@ public class FinderTool(IMediator mediator)
     /// <returns>A <see cref="Task{T}"/> whose result is a <see cref="IList{T}"/> of <see cref="ViewBeach"/>.</returns>
     [McpServerTool(
         Name = "findallbeachbyfinderid",
-        Title = "Returns All Beaches For A Given Finder Id"
+        Title = "Finds All Beaches By Finder Id (State Id | Town Id)"
     )]
     public async Task<IList<ViewBeach>> FindAllBeachByFinderId(FinderBeach viewModel)
     {

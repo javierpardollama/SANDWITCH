@@ -23,7 +23,7 @@ public class TownTool(IMediator mediator)
     /// <returns>Instance of <see cref="Task{ViewTown}" /></returns>
     [McpServerTool(
         Name = "updatetown",
-        Title = ""
+        Title = "Updates Town"
     )]
     public async Task<ViewTown> UpdateTown(UpdateTown viewModel)
     {
@@ -36,7 +36,7 @@ public class TownTool(IMediator mediator)
     /// <returns>A <see cref="Task{T}"/> whose result is a <see cref="IList{T}"/> of <see cref="ViewCatalog"/>.</returns>
     [McpServerTool(
         Name = "findalltown",
-        Title = ""
+        Title = "Finds All Towns"
     )]
     public async Task<IList<ViewCatalog>> FindAllTown()
     {
@@ -50,7 +50,7 @@ public class TownTool(IMediator mediator)
     /// <returns>A <see cref="Task{T}"/> whose result is a <see cref="ViewPage{T}"/> of <see cref="ViewTown"/>.</returns>
     [McpServerTool(
         Name = "findpaginatedtown",
-        Title = ""
+        Title = "Finds All Towns Paginated"
     )]
     public async Task<ViewPage<ViewTown>> FindPaginatedTown(FilterPage viewModel)
     {
@@ -64,7 +64,7 @@ public class TownTool(IMediator mediator)
     /// <returns>Instance of <see cref="Task{ViewTown}" /></returns>
     [McpServerTool(
         Name = "addtown",
-        Title = ""
+        Title = "Adds Town"
     )]
     public async Task<ViewTown> AddTown(AddTown viewModel)
     {
@@ -78,7 +78,7 @@ public class TownTool(IMediator mediator)
     /// <returns>Instance of <see cref="Task" /></returns>
     [McpServerTool(
         Name = "removetownbyid",
-        Title = ""
+        Title = "Removes Town By Id"
     )]
     public async Task RemoveTownById(int id)
     {

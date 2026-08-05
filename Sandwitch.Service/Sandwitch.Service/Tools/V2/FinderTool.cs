@@ -22,7 +22,7 @@ public class FinderTool(IMediator mediator)
     /// <returns>A <see cref="Task{T}"/> whose result is a <see cref="IList{T}"/> of <see cref="ViewFinder"/>.</returns>
     [McpServerTool(
         Name = "findallfinder",
-        Title = "Finds All Finders (States & Towns)"
+        Title = "Finds All Finders (States | Towns)"
     )]
     public async Task<IList<ViewFinder>> FindAllFinder()
     {

@@ -18,7 +18,7 @@ namespace Sandwitch.Service.Controllers.V2;
 [Route("api/v{v:apiVersion}/historic")]
 [Produces("application/json")]
 [ApiController]
-[Authorize]
+[Authorize(Policy = "HttpApi")]
 [EnableRateLimiting("Concurrency")]
 public class HistoricController(IMediator mediator) : ControllerBase
 {

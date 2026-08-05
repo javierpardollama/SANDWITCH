@@ -21,7 +21,7 @@ namespace Sandwitch.Service.Controllers.V1;
 [Route("api/v{v:apiVersion}/state")]
 [Produces("application/json")]
 [ApiController]
-[Authorize]
+[Authorize(Policy = "HttpApi")]
 [EnableRateLimiting("Concurrency")]
 public class StateController(IMediator mediator) : ControllerBase
 {

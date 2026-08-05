@@ -19,8 +19,8 @@ public class CredentialManager(IOptions<ApiSettings> apiSettings) : BaseManager(
     /// <returns>Instance of <see cref="bool" /></returns>
     public bool CanAuthenticate(string @name, string @password)
     {
-        bool @result = ApiSettings.Value.ApiUser == @name &&
-                 ApiSettings.Value.ApiPassword == @password;
+        bool @result = ApiSettings.Value.Http.User == @name &&
+                 ApiSettings.Value.Http.Password == @password;
 
         return @result;
     }

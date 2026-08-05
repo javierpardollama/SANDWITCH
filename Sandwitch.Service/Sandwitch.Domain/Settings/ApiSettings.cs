@@ -6,22 +6,38 @@
 public class ApiSettings
 {
     /// <summary>
-    ///     Gets or Sets <see cref="ApiLock" />
+    ///     Gets or Sets <see cref="Http" />
     /// </summary>
-    public string ApiUser { get; set; }
+    public Settings Http { get; set; }
+    
+    /// <summary>
+    ///     Gets or Sets <see cref="Mcp" />
+    /// </summary>
+    public Settings Mcp { get; set; }
+}
+
+/// <summary>
+///     Represents a <see cref="Settings" /> class
+/// </summary>
+public class Settings
+{
+    /// <summary>
+    ///     Gets or Sets <see cref="User" />
+    /// </summary>
+    public string User { get; set; }
 
     /// <summary>
-    ///     Gets or Sets <see cref="ApiPassword" />
+    ///     Gets or Sets <see cref="Password" />
     /// </summary>
-    public string ApiPassword { get; set; }
+    public string Password { get; set; }
 
     /// <summary>
-    ///     Gets or Sets <see cref="ApiAudiences" />
+    ///     Gets or Sets <see cref="Audiences" />
     /// </summary>
-    public IList<string> ApiAudiences { get; set; }
+    public IList<string> Audiences { get; set; }
 
     /// <summary>
-    ///     Gets or Sets <see cref="ApiIssuer" />
+    ///     Gets or Sets <see cref="Issuer" />
     /// </summary>
-    public string ApiIssuer { get; set; }
+    public string Issuer { get; set; }
 }

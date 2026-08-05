@@ -22,7 +22,7 @@ public static class IdentificationInstaller
     {
         @this.AddAuthentication(nameof(AuthenticationSchemes.Basic))
             .AddScheme<AuthenticationSchemeOptions, BasicAuthenticationHandler>(nameof(AuthenticationSchemes.Basic),
-                options => options.ClaimsIssuer = @settings.ApiIssuer);
+                options => options.ClaimsIssuer = @settings.Http.Issuer);
     }
 
     /// <summary>

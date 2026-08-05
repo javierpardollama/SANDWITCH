@@ -35,7 +35,7 @@ public class TownControllerTest
     public TownControllerTest()
     {
         Client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic",
-            Convert.ToBase64String(Encoding.UTF8.GetBytes("Peach" + ":" + "T/R4J6eyvNG<6ne!")));
+            Convert.ToBase64String(Encoding.UTF8.GetBytes("Ariel" + ":" + "T/R4J6eyvNG<6ne!")));
     }
 
     [Test]

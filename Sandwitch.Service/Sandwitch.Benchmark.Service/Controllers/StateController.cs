@@ -16,7 +16,7 @@ public class StateController
     {
         Client.DefaultRequestHeaders.Authorization = Client.DefaultRequestHeaders.Authorization =
             new AuthenticationHeaderValue("Basic",
-                Convert.ToBase64String(Encoding.UTF8.GetBytes("Peach" + ":" + "T/R4J6eyvNG<6ne!")));
+                Convert.ToBase64String(Encoding.UTF8.GetBytes("Ariel" + ":" + "T/R4J6eyvNG<6ne!")));
 
         var response = await Client.GetAsync("all");
         response.EnsureSuccessStatusCode();
@@ -30,7 +30,7 @@ public class StateController
     {
         Client.DefaultRequestHeaders.Authorization = Client.DefaultRequestHeaders.Authorization =
             new AuthenticationHeaderValue("Basic",
-                Convert.ToBase64String(Encoding.UTF8.GetBytes("Peach" + ":" + "T/R4J6eyvNG<6ne!")));
+                Convert.ToBase64String(Encoding.UTF8.GetBytes("Ariel" + ":" + "T/R4J6eyvNG<6ne!")));
 
         var content = JsonContent.Create(new FilterPage { Index = 0, Size = 20 });
 

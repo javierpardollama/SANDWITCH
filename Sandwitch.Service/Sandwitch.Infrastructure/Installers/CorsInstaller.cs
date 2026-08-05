@@ -17,9 +17,18 @@ public static class CorsInstaller
     {
         @this.AddCors(options =>
         {
-            options.AddDefaultPolicy(policy =>
+            options.AddPolicy("HttpApi",policy =>
             {
-                policy.WithOrigins([.. @settings.ApiAudiences])
+                policy.WithOrigins([.. @settings.Http.Audiences])
+                    .AllowCredentials()
+                    .AllowAnyMethod()
+                    .AllowAnyHeader()
+                    .Build();
+            });
+            
+            options.AddPolicy("McpApi",policy =>
+            {
+                policy.WithOrigins([.. @settings.Mcp.Audiences])
                     .AllowCredentials()
                     .AllowAnyMethod()
                     .AllowAnyHeader()

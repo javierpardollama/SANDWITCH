@@ -1,7 +1,7 @@
 export const environment = {
   Api:
   {
-    User: "Wendy",
+    User: "Mulan",
     Key: "vaECZwd6pz(CKBwg",
     Service: "https://localhost:8081/",
   },

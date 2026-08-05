@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using ModelContextProtocol.Server;
 using Sandwitch.Application.Commands.Town;
 using Sandwitch.Application.Queries.Town;
@@ -14,6 +15,7 @@ namespace Sandwitch.Service.Tools.V1;
 /// </summary>
 /// <param name="mediator">Injected <see cref="IMediator" /></param>
 [McpServerToolType]
+[Authorize(Policy = "McpApi")]
 public class TownTool(IMediator mediator)
 {
     /// <summary>

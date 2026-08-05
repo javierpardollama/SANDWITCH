@@ -16,8 +16,16 @@ public abstract class BaseManagerTest
     /// </summary>
     protected IOptions<ApiSettings> ApiOptions { get; set; } = Options.Create(new ApiSettings
     {
-        ApiUser = "Pauline",
-        ApiPassword = "T/R4J6eyvNG<6ne!"
+        Http = new Settings()
+        {
+            User = "Rapunzel",
+            Password = "e01a63bc5058" 
+        },
+        Mcp = new Settings()
+        {
+            User = "Merida",
+            Password = "441be629b292" 
+        },
     });
 
     /// <summary>

@@ -1,6 +1,7 @@
 using Asp.Versioning;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.RateLimiting;
 using Sandwitch.Application.Queries.Finder;
@@ -19,7 +20,8 @@ namespace Sandwitch.Service.Controllers.V2;
 [Route("api/v{v:apiVersion}/finder")]
 [Produces("application/json")]
 [ApiController]
-[Authorize(Policy = "HttpApi")]
+[Authorize]
+[EnableCors("HttpApi")]
 [EnableRateLimiting("Concurrency")]
 public class FinderController(IMediator mediator) : ControllerBase
 {

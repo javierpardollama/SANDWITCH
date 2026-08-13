@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cors;
 using ModelContextProtocol.Server;
 using Sandwitch.Application.Commands.Flag;
 using Sandwitch.Application.Queries.Flag;
@@ -15,7 +16,8 @@ namespace Sandwitch.Service.Tools.V1;
 /// </summary>
 /// <param name="mediator">Injected <see cref="IMediator" /></param>
 [McpServerToolType]
-[Authorize(Policy = "McpApi")]
+[Authorize]
+[EnableCors("McpApi")]
 public class FlagTool(IMediator mediator) 
 {
     /// <summary>

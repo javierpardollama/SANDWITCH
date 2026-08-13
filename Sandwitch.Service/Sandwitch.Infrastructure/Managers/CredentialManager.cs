@@ -14,14 +14,19 @@ public class CredentialManager(IOptions<ApiSettings> apiSettings) : BaseManager(
     /// <summary>
     ///     Checks wether Credentials are valid or not
     /// </summary>
-    /// <param name="name">Injected <see cref="string" /></param>
+    /// <param name="user">Injected <see cref="string" /></param>
     /// <param name="password">Injected <see cref="string" /></param>
+    /// <param name="scheme">Injected <see cref="string" /></param>
     /// <returns>Instance of <see cref="bool" /></returns>
-    public bool CanAuthenticate(string @name, string @password)
+    public bool CanAuthenticate(string @user, string @password, string @scheme)
     {
-        bool @result = ApiSettings.Value.Http.User == @name &&
-                 ApiSettings.Value.Http.Password == @password;
-
+        var @result = @scheme switch
+        {
+            "https" => ApiSettings.Value.Http is { User: var u, Password: var p } && u == @user && p == @password,
+            "mcp" => ApiSettings.Value.Mcp is { User: var u, Password: var p } && u == @user && p == @password,
+            _ => false
+        };
+       
         return @result;
     }
 }

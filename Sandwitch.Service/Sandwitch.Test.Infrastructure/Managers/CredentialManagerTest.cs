@@ -75,7 +75,7 @@ public class CredentialManagerTest : BaseManagerTest
     [Test]
     public void CanAuthenticate()
     {
-        AuthManager.CanAuthenticate("Pauline", "T/R4J6eyvNG<6ne!");
+        AuthManager.CanAuthenticate("Pauline", "T/R4J6eyvNG<6ne!", "https");
 
         Assert.Pass();
     }

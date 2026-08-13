@@ -1,6 +1,7 @@
 ﻿using Asp.Versioning;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.RateLimiting;
 using Sandwitch.Application.Commands.Town;
@@ -21,7 +22,8 @@ namespace Sandwitch.Service.Controllers.V1;
 [Route("api/v{v:apiVersion}/town")]
 [Produces("application/json")]
 [ApiController]
-[Authorize(Policy = "HttpApi")]
+[Authorize]
+[EnableCors("HttpApi")]
 [EnableRateLimiting("Concurrency")]
 public class TownController(IMediator mediator) : ControllerBase
 {

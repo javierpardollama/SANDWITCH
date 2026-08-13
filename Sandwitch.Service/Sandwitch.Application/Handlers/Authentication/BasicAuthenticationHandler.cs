@@ -61,7 +61,7 @@ public class BasicAuthenticationHandler(
             return Task.FromResult(AuthenticateResult.Fail(@exception));
         }
 
-        return credentialManager.CanAuthenticate(@credentials.Name, @credentials.Password)
+        return credentialManager.CanAuthenticate(@credentials.Name, @credentials.Password, Request.Scheme)
             ? Task.FromResult(AuthenticateResult.Success(CreateTicket(@credentials)))
             : Task.FromResult(AuthenticateResult.Fail("Invalid username or password."));
     }

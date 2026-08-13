@@ -30,16 +30,16 @@ public class FlagController(IMediator mediator) : ControllerBase
     /// <summary>
     ///     Updates Flag
     /// </summary>
-    /// <response code="200">Ok</response>
-    /// <response code="400">BadRequest</response>
-    /// <response code="401">Unauthorized</response>
-    /// <response code="408">RequestTimeout</response>
-    /// <response code="404">NotFound</response>
-    /// <response code="409">Conflict</response>
-    /// <response code="503">ServiceUnavailable</response>
-    /// <response code="500">InternalServerError</response>
+    /// <response code="200"> Ok </response>
+    /// <response code="400"> BadRequest </response>
+    /// <response code="401"> Unauthorized </response>
+    /// <response code="408"> RequestTimeout </response>
+    /// <response code="404"> NotFound </response>
+    /// <response code="409"> Conflict </response>
+    /// <response code="503"> ServiceUnavailable </response>
+    /// <response code="500"> InternalServerError </response>
     /// <param name="viewModel">Injected <see cref="AddHistoric" /></param>
-    /// <returns>Instance of <see cref="Task{OkObjectResult}" /></returns>
+    /// <returns>Instance of <see cref="Task{OkObjectResult}" /> whose result is a <see cref="ViewFlag"/>.</returns>
     [MapToApiVersion(1.0)]
     [HttpPut]
     [Route("update")]
@@ -59,15 +59,15 @@ public class FlagController(IMediator mediator) : ControllerBase
     /// <summary>
     ///     Finds All Flag
     /// </summary>
-    /// <response code="200">Ok</response>
-    /// <response code="400">BadRequest</response>
-    /// <response code="401">Unauthorized</response>
-    /// <response code="408">RequestTimeout</response>
-    /// <response code="404">NotFound</response>
-    /// <response code="409">Conflict</response>
-    /// <response code="503">ServiceUnavailable</response>
-    /// <response code="500">InternalServerError</response>
-    /// <returns>Instance of <see cref="Task{OkObjectResult}" /></returns>
+    /// <response code="200"> Ok </response>
+    /// <response code="400"> BadRequest </response>
+    /// <response code="401"> Unauthorized </response>
+    /// <response code="408"> RequestTimeout </response>
+    /// <response code="404"> NotFound </response>
+    /// <response code="409"> Conflict </response>
+    /// <response code="503"> ServiceUnavailable </response>
+    /// <response code="500"> InternalServerError </response>
+    /// <returns>Instance of <see cref="Task{OkObjectResult}" /> whose result is a <see cref="IList{ViewCatalog}"/>.</returns>
     [MapToApiVersion(1.0)]
     [HttpGet]
     [ResponseCache(Duration = 10, Location = ResponseCacheLocation.Any, NoStore = false)]
@@ -88,16 +88,16 @@ public class FlagController(IMediator mediator) : ControllerBase
     /// <summary>
     ///     Finds Paginated Flag
     /// </summary>
-    /// <response code="200">Ok</response>
-    /// <response code="400">BadRequest</response>
-    /// <response code="401">Unauthorized</response>
-    /// <response code="408">RequestTimeout</response>
-    /// <response code="404">NotFound</response>
-    /// <response code="409">Conflict</response>
-    /// <response code="503">ServiceUnavailable</response>
-    /// <response code="500">InternalServerError</response>
+    /// <response code="200"> Ok </response>
+    /// <response code="400"> BadRequest </response>
+    /// <response code="401"> Unauthorized </response>
+    /// <response code="408"> RequestTimeout </response>
+    /// <response code="404"> NotFound </response>
+    /// <response code="409"> Conflict </response>
+    /// <response code="503"> ServiceUnavailable </response>
+    /// <response code="500"> InternalServerError </response>
     /// <param name="viewModel">Injected <see cref="FilterPage" /></param>
-    /// <returns>Instance of <see cref="Task{OkObjectResult}" /></returns>
+    /// <returns>Instance of <see cref="Task{OkObjectResult}" /> whose result is a <see cref="ViewPage{ViewFlag}"/>.</returns>
     [MapToApiVersion(1.0)]
     [HttpPost]
     [Route("page")]
@@ -117,16 +117,16 @@ public class FlagController(IMediator mediator) : ControllerBase
     /// <summary>
     ///     Finds All Historic By Flag Id
     /// </summary>
-    /// <response code="200">Ok</response>
-    /// <response code="400">BadRequest</response>
-    /// <response code="401">Unauthorized</response>
-    /// <response code="408">RequestTimeout</response>
-    /// <response code="404">NotFound</response>
-    /// <response code="409">Conflict</response>
-    /// <response code="503">ServiceUnavailable</response>
-    /// <response code="500">InternalServerError</response>
+    /// <response code="200"> Ok </response>
+    /// <response code="400"> BadRequest </response>
+    /// <response code="401"> Unauthorized </response>
+    /// <response code="408"> RequestTimeout </response>
+    /// <response code="404"> NotFound </response>
+    /// <response code="409"> Conflict </response>
+    /// <response code="503"> ServiceUnavailable </response>
+    /// <response code="500"> InternalServerError </response>
     /// <param name="id">Injected <see cref="int" /></param>
-    /// <returns>Instance of <see cref="Task{OkObjectResult}" /></returns>
+    /// <returns>Instance of <see cref="Task{OkObjectResult}" /> whose result is a <see cref="IList{ViewHistoric}"/>.</returns>
     [MapToApiVersion(1.0)]
     [HttpGet]
     [Route("all/historic/{id}")]
@@ -146,16 +146,16 @@ public class FlagController(IMediator mediator) : ControllerBase
     /// <summary>
     ///     Adds Flag
     /// </summary>
-    /// <response code="200">Ok</response>
-    /// <response code="400">BadRequest</response>
-    /// <response code="401">Unauthorized</response>
-    /// <response code="408">RequestTimeout</response>
-    /// <response code="404">NotFound</response>
-    /// <response code="409">Conflict</response>
-    /// <response code="503">ServiceUnavailable</response>
-    /// <response code="500">InternalServerError</response>
+    /// <response code="200"> Ok </response>
+    /// <response code="400"> BadRequest </response>
+    /// <response code="401"> Unauthorized </response>
+    /// <response code="408"> RequestTimeout </response>
+    /// <response code="404"> NotFound </response>
+    /// <response code="409"> Conflict </response>
+    /// <response code="503"> ServiceUnavailable </response>
+    /// <response code="500"> InternalServerError </response>
     /// <param name="viewModel">Injected <see cref="AddFlag" /></param>
-    /// <returns>Instance of <see cref="Task{OkObjectResult}" /></returns>
+    /// <returns>Instance of <see cref="Task{OkObjectResult}" /> whose result is a <see cref="ViewFlag"/>.</returns>
     [MapToApiVersion(1.0)]
     [HttpPost]
     [Route("create")]
@@ -175,14 +175,14 @@ public class FlagController(IMediator mediator) : ControllerBase
     /// <summary>
     ///     Removes Flag ById
     /// </summary>
-    /// <response code="200">Ok</response>
-    /// <response code="400">BadRequest</response>
-    /// <response code="401">Unauthorized</response>
-    /// <response code="408">RequestTimeout</response>
-    /// <response code="404">NotFound</response>
-    /// <response code="409">Conflict</response>
-    /// <response code="503">ServiceUnavailable</response>
-    /// <response code="500">InternalServerError</response>
+    /// <response code="200"> Ok </response>
+    /// <response code="400"> BadRequest </response>
+    /// <response code="401"> Unauthorized </response>
+    /// <response code="408"> RequestTimeout </response>
+    /// <response code="404"> NotFound </response>
+    /// <response code="409"> Conflict </response>
+    /// <response code="503"> ServiceUnavailable </response>
+    /// <response code="500"> InternalServerError </response>
     /// <param name="id">Injected <see cref="int" /></param>
     /// <returns>Instance of <see cref="Task{OkObjectResult}" /></returns>
     [MapToApiVersion(1.0)]

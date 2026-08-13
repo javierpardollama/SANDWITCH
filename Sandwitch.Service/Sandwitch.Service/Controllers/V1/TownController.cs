@@ -30,16 +30,16 @@ public class TownController(IMediator mediator) : ControllerBase
     /// <summary>
     ///     Updates Town
     /// </summary>
-    /// <response code="200">Ok</response>
-    /// <response code="400">BadRequest</response>
-    /// <response code="401">Unauthorized</response>
-    /// <response code="408">RequestTimeout</response>
-    /// <response code="404">NotFound</response>
-    /// <response code="409">Conflict</response>
-    /// <response code="503">ServiceUnavailable</response>
-    /// <response code="500">InternalServerError</response>
+    /// <response code="200"> Ok </response>
+    /// <response code="400"> BadRequest </response>
+    /// <response code="401"> Unauthorized </response>
+    /// <response code="408"> RequestTimeout </response>
+    /// <response code="404"> NotFound </response>
+    /// <response code="409"> Conflict </response>
+    /// <response code="503"> ServiceUnavailable </response>
+    /// <response code="500"> InternalServerError </response>
     /// <param name="viewModel">Injected <see cref="UpdateTown" /></param>
-    /// <returns>Instance of <see cref="Task{OkObjectResult}" /></returns>
+    /// <returns>Instance of <see cref="Task{OkObjectResult}" /> whose result is a <see cref="ViewTown"/>.</returns>
     [MapToApiVersion(1.0)]
     [HttpPut]
     [Route("update")]
@@ -59,15 +59,15 @@ public class TownController(IMediator mediator) : ControllerBase
     /// <summary>
     ///     Finds All Town
     /// </summary>
-    /// <response code="200">Ok</response>
-    /// <response code="400">BadRequest</response>
-    /// <response code="401">Unauthorized</response>
-    /// <response code="408">RequestTimeout</response>
-    /// <response code="404">NotFound</response>
-    /// <response code="409">Conflict</response>
-    /// <response code="503">ServiceUnavailable</response>
-    /// <response code="500">InternalServerError</response>
-    /// <returns>Instance of <see cref="Task{OkObjectResult}" /></returns>
+    /// <response code="200"> Ok </response>
+    /// <response code="400"> BadRequest </response>
+    /// <response code="401"> Unauthorized </response>
+    /// <response code="408"> RequestTimeout </response>
+    /// <response code="404"> NotFound </response>
+    /// <response code="409"> Conflict </response>
+    /// <response code="503"> ServiceUnavailable </response>
+    /// <response code="500"> InternalServerError </response>
+    /// <returns>Instance of <see cref="Task{OkObjectResult}" /> whose result is a <see cref="IList{ViewCatalog}"/>.</returns>
     [MapToApiVersion(1.0)]
     [HttpGet]
     [ResponseCache(Duration = 10, Location = ResponseCacheLocation.Any, NoStore = false)]
@@ -88,16 +88,16 @@ public class TownController(IMediator mediator) : ControllerBase
     /// <summary>
     ///     Finds Paginated Town
     /// </summary>
-    /// <response code="200">Ok</response>
-    /// <response code="400">BadRequest</response>
-    /// <response code="401">Unauthorized</response>
-    /// <response code="408">RequestTimeout</response>
-    /// <response code="404">NotFound</response>
-    /// <response code="409">Conflict</response>
-    /// <response code="503">ServiceUnavailable</response>
-    /// <response code="500">InternalServerError</response>
+    /// <response code="200"> Ok </response>
+    /// <response code="400"> BadRequest </response>
+    /// <response code="401"> Unauthorized </response>
+    /// <response code="408"> RequestTimeout </response>
+    /// <response code="404"> NotFound </response>
+    /// <response code="409"> Conflict </response>
+    /// <response code="503"> ServiceUnavailable </response>
+    /// <response code="500"> InternalServerError </response>
     /// <param name="viewModel">Injected <see cref="FilterPage" /></param>
-    /// <returns>Instance of <see cref="Task{OkObjectResult}" /></returns>
+    /// <returns>Instance of <see cref="Task{OkObjectResult}" /> whose result is a <see cref="ViewPage{ViewTown}"/>.</returns>
     [MapToApiVersion(1.0)]
     [HttpPost]
     [Route("page")]
@@ -117,16 +117,16 @@ public class TownController(IMediator mediator) : ControllerBase
     /// <summary>
     ///     Adds Town
     /// </summary>
-    /// <response code="200">Ok</response>
-    /// <response code="400">BadRequest</response>
-    /// <response code="401">Unauthorized</response>
-    /// <response code="408">RequestTimeout</response>
-    /// <response code="404">NotFound</response>
-    /// <response code="409">Conflict</response>
-    /// <response code="503">ServiceUnavailable</response>
-    /// <response code="500">InternalServerError</response>
+    /// <response code="200"> Ok </response>
+    /// <response code="400"> BadRequest </response>
+    /// <response code="401"> Unauthorized </response>
+    /// <response code="408"> RequestTimeout </response>
+    /// <response code="404"> NotFound </response>
+    /// <response code="409"> Conflict </response>
+    /// <response code="503"> ServiceUnavailable </response>
+    /// <response code="500"> InternalServerError </response>
     /// <param name="viewModel">Injected <see cref="AddTown" /></param>
-    /// <returns>Instance of <see cref="Task{OkObjectResult}" /></returns>
+    /// <returns>Instance of <see cref="Task{OkObjectResult}" /> whose result is a <see cref="ViewTown"/>.</returns>
     [MapToApiVersion(1.0)]
     [HttpPost]
     [Route("create")]
@@ -146,14 +146,14 @@ public class TownController(IMediator mediator) : ControllerBase
     /// <summary>
     ///     Removes Town By Id
     /// </summary>
-    /// <response code="200">Ok</response>
-    /// <response code="400">BadRequest</response>
-    /// <response code="401">Unauthorized</response>
-    /// <response code="408">RequestTimeout</response>
-    /// <response code="404">NotFound</response>
-    /// <response code="409">Conflict</response>
-    /// <response code="503">ServiceUnavailable</response>
-    /// <response code="500">InternalServerError</response>
+    /// <response code="200"> Ok </response>
+    /// <response code="400"> BadRequest </response>
+    /// <response code="401"> Unauthorized </response>
+    /// <response code="408"> RequestTimeout </response>
+    /// <response code="404"> NotFound </response>
+    /// <response code="409"> Conflict </response>
+    /// <response code="503"> ServiceUnavailable </response>
+    /// <response code="500"> InternalServerError </response>
     /// <param name="id">Injected <see cref="int" /></param>
     /// <returns>Instance of <see cref="Task{OkObjectResult}" /></returns>
     [MapToApiVersion(1.0)]

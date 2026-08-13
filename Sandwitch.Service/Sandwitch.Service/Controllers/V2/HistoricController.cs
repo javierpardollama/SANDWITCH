@@ -27,16 +27,16 @@ public class HistoricController(IMediator mediator) : ControllerBase
     /// <summary>
     ///     Adds Historic
     /// </summary>
-    /// <response code="200">Ok</response>
-    /// <response code="400">BadRequest</response>
-    /// <response code="401">Unauthorized</response>
-    /// <response code="408">RequestTimeout</response>
-    /// <response code="404">NotFound</response>
-    /// <response code="409">Conflict</response>
-    /// <response code="503">ServiceUnavailable</response>
-    /// <response code="500">InternalServerError</response>
+    /// <response code="200"> Ok </response>
+    /// <response code="400"> BadRequest </response>
+    /// <response code="401"> Unauthorized </response>
+    /// <response code="408"> RequestTimeout </response>
+    /// <response code="404"> NotFound </response>
+    /// <response code="409"> Conflict </response>
+    /// <response code="503"> ServiceUnavailable </response>
+    /// <response code="500"> InternalServerError </response>
     /// <param name="viewModel">Injected <see cref="AddHistoric" /></param>
-    /// <returns>Instance of <see cref="Task{OkObjectResult}" /></returns>
+    /// <returns>Instance of <see cref="Task{OkObjectResult}" /> whose result is a <see cref="ViewHistoric"/>.</returns>
     [MapToApiVersion(2.0)]
     [HttpPost]
     [Route("create")]

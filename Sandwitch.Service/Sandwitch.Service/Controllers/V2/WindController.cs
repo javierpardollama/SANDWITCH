@@ -22,7 +22,7 @@ namespace Sandwitch.Service.Controllers.V2;
 [Route("api/v{v:apiVersion}/wind")]
 [Produces("application/json")]
 [ApiController]
-[Authorize]
+[Authorize("HttpApi")]
 [EnableCors("HttpApi")]
 [EnableRateLimiting("Concurrency")]
 public class WindController(IMediator mediator) : ControllerBase

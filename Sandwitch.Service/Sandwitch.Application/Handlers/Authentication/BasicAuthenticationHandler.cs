@@ -4,6 +4,8 @@ using System.Text.Encodings.Web;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Sandwitch.Application.Options;
+using Sandwitch.Application.Options.Authentication;
 using Sandwitch.Application.Profiles;
 using Sandwitch.Domain.Managers;
 
@@ -17,10 +19,10 @@ namespace Sandwitch.Application.Handlers.Authentication;
 /// <param name="encoder">Injected <see cref="UrlEncoder" /></param>
 /// <param name="credentialManager">Injected <see cref="ICredentialManager" /></param>
 public class BasicAuthenticationHandler(
-    IOptionsMonitor<AuthenticationSchemeOptions> options,
+    IOptionsMonitor<BasicAuthenticationSchemeOptions> options,
     ILoggerFactory logger,
     UrlEncoder encoder,
-    ICredentialManager credentialManager) : AuthenticationHandler<AuthenticationSchemeOptions>(options, logger, encoder)
+    ICredentialManager credentialManager) : AuthenticationHandler<BasicAuthenticationSchemeOptions>(options, logger, encoder)
 {
     /// <summary>
     /// Creates Authentication Ticket

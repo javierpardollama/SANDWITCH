@@ -1,10 +1,10 @@
-using Microsoft.AspNetCore.Authentication;
+using System.Net;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
-using Sandwitch.Application.Handlers;
 using Sandwitch.Domain.Settings;
-using System.Net;
 using Sandwitch.Application.Handlers.Authentication;
+using Sandwitch.Application.Options;
+using Sandwitch.Application.Options.Authentication;
 
 namespace Sandwitch.Application.Installers;
 
@@ -21,8 +21,35 @@ public static class IdentificationInstaller
     public static void InstallIdentification(this IServiceCollection @this, ApiSettings @settings)
     {
         @this.AddAuthentication(nameof(AuthenticationSchemes.Basic))
-            .AddScheme<AuthenticationSchemeOptions, BasicAuthenticationHandler>(nameof(AuthenticationSchemes.Basic),
-                options => options.ClaimsIssuer = @settings.Http.Issuer);
+            .AddScheme<BasicAuthenticationSchemeOptions, BasicAuthenticationHandler>("HttpApi",
+                options =>
+                {
+                    options.ClaimsIssuer = @settings.Http.Issuer;
+                    options.User = settings.Http.User;
+                    options.Password = settings.Http.Password;
+                })
+            .AddScheme<BasicAuthenticationSchemeOptions, BasicAuthenticationHandler>("McpApi",
+                options =>
+                {
+                    options.ClaimsIssuer = @settings.Mcp.Issuer;
+                    options.User = settings.Mcp.User;
+                    options.Password = settings.Mcp.Password;
+                });
+        
+        @this.AddAuthorization(options =>
+        {
+            options.AddPolicy("HttpApi", policy =>
+            {
+                policy.AddAuthenticationSchemes("HttpApi");
+                policy.RequireAuthenticatedUser();
+            });
+
+            options.AddPolicy("McpApi", policy =>
+            {
+                policy.AddAuthenticationSchemes("McpApi");
+                policy.RequireAuthenticatedUser();
+            });
+        });
     }
 
     /// <summary>

@@ -13,7 +13,7 @@ namespace Sandwitch.Service.Tools.V2;
 /// </summary>
 /// <param name="mediator">Injected <see cref="IMediator" /></param>
 [McpServerToolType]
-[Authorize]
+[Authorize("McpApi")]
 [EnableCors("McpApi")]
 public class HistoricTool(IMediator mediator)
 {

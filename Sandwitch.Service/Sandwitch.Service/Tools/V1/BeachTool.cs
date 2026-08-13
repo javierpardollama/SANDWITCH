@@ -16,7 +16,7 @@ namespace Sandwitch.Service.Tools.V1;
 /// </summary>
 /// <param name="mediator">Injected <see cref="IMediator" /></param>
 [McpServerToolType]
-[Authorize]
+[Authorize("McpApi")]
 [EnableCors("McpApi")]
 public class BeachTool(IMediator mediator)
 {

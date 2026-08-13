@@ -19,7 +19,7 @@ namespace Sandwitch.Service.Controllers.V2;
 [Route("api/v{v:apiVersion}/historic")]
 [Produces("application/json")]
 [ApiController]
-[Authorize]
+[Authorize("HttpApi")]
 [EnableCors("HttpApi")]
 [EnableRateLimiting("Concurrency")]
 public class HistoricController(IMediator mediator) : ControllerBase

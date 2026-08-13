@@ -22,7 +22,7 @@ namespace Sandwitch.Service.Controllers.V1;
 [Route("api/v{v:apiVersion}/town")]
 [Produces("application/json")]
 [ApiController]
-[Authorize]
+[Authorize("HttpApi")]
 [EnableCors("HttpApi")]
 [EnableRateLimiting("Concurrency")]
 public class TownController(IMediator mediator) : ControllerBase

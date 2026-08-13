@@ -1,10 +1,9 @@
 using System.Net;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
-using Sandwitch.Domain.Settings;
 using Sandwitch.Application.Handlers.Authentication;
-using Sandwitch.Application.Options;
 using Sandwitch.Application.Options.Authentication;
+using Sandwitch.Domain.Settings;
 
 namespace Sandwitch.Application.Installers;
 
@@ -35,7 +34,7 @@ public static class IdentificationInstaller
                     options.User = settings.Mcp.User;
                     options.Password = settings.Mcp.Password;
                 });
-        
+
         @this.AddAuthorization(options =>
         {
             options.AddPolicy("HttpApi", policy =>

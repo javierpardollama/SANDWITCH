@@ -25,15 +25,6 @@ public static class CorsInstaller
                     .AllowAnyHeader()
                     .Build();
             });
-            
-            options.AddPolicy("McpApi",policy =>
-            {
-                policy.WithOrigins([.. @settings.Mcp.Audiences])
-                    .AllowCredentials()
-                    .AllowAnyMethod()
-                    .AllowAnyHeader()
-                    .Build();
-            });
         });
     }
 }

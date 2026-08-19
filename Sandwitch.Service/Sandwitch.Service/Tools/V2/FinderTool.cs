@@ -1,6 +1,5 @@
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Cors;
 using ModelContextProtocol.Server;
 using Sandwitch.Application.Queries.Finder;
 using Sandwitch.Application.ViewModels.Filters;
@@ -15,7 +14,6 @@ namespace Sandwitch.Service.Tools.V2;
 /// <param name="mediator">Injected <see cref="IMediator" /></param>
 [McpServerToolType]
 [Authorize("McpApi")]
-[EnableCors("McpApi")]
 public class FinderTool(IMediator mediator)
 {
     /// <summary>

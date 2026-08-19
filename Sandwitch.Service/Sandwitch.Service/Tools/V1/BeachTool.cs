@@ -1,6 +1,5 @@
 ﻿using System.ComponentModel;
 using MediatR;
-using Microsoft.AspNetCore.Authorization;
 using ModelContextProtocol.Server;
 using Sandwitch.Application.Commands.Beach;
 using Sandwitch.Application.Queries.Beach;
@@ -16,7 +15,6 @@ namespace Sandwitch.Service.Tools.V1;
 /// </summary>
 /// <param name="mediator">Injected <see cref="IMediator" /></param>
 [McpServerToolType]
-[Authorize("McpApi")]
 public class BeachTool(IMediator mediator)
 {
     /// <summary>

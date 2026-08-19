@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
+using ModelContextProtocol.Server;
 
 namespace Sandwitch.Infrastructure.Installers;
 
@@ -19,6 +20,27 @@ public static class McpServerInstaller
             {
                 options.Stateless = true;
             })
-            .WithToolsFromAssembly();
+            .AddAuthorizationFilters()
+            .AddMcpTools();
+    }
+
+    /// <summary>
+    /// Adds Mcp Tools
+    /// </summary>
+    /// <param name="builder">Injected <see cref="IMcpServerBuilder" /></param>
+    /// <returns>Instance of <see cref="IMcpServerBuilder"/></returns>
+    private static void AddMcpTools(this IMcpServerBuilder @builder)
+    {
+        var @assemblies = AppDomain.CurrentDomain
+            .GetAssemblies()
+            .Where(a => a.GetTypes()
+                .Any(t => t.GetCustomAttributes(typeof(McpServerToolTypeAttribute), inherit: true)
+                    .Any()
+            ));
+        
+        foreach (var @assembly in @assemblies)
+        {
+            @builder.WithToolsFromAssembly(@assembly);
+        }
     }
 }

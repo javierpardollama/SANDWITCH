@@ -1,0 +1,21 @@
+{
+  "servers": { 
+     "sandwitch-http": {
+      "type": "http",
+      "url": "http://localhost:8080/mcp",
+      "headers": {
+        "Authorization": "Basic "
+      }
+    },
+    "sandwitch-stdio": {
+    "type": "stdio",
+      "command": "dotnet",
+      "args": [
+        "run",
+        "--project",
+        "Sandwitch.Service/Sandwitch.Service/Sandwitch.Service.csproj"
+      ],
+      "cwd": "${workspaceFolder}"
+    }    
+  }
+}

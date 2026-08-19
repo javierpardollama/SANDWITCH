@@ -73,6 +73,6 @@ var @app = @builder.Build();
 
 // 10. Endpoint execution
 @app.MapControllers();
-@app.MapMcp();
+@app.MapMcp("/mcp");
 
 @app.Run();

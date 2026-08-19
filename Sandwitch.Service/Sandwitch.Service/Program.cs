@@ -35,7 +35,7 @@ var @rateSettings = @builder.InstallRateLimitSettings();
 
 @builder.InstallSecureApi();
 
-@builder.Services.InstallMcpServer();
+@builder.InstallMcpServer();
 
 var @app = @builder.Build();
 

@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using System.ComponentModel;
+using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using ModelContextProtocol.Server;
 using Sandwitch.Application.Commands.Wind;
@@ -26,7 +27,7 @@ public class WindTool(IMediator mediator)
     [McpServerTool(
         Name = "updatewind",
         Title = "Updates Wind"
-    )]
+    ), Description("Updates Wind")]
     public async Task<ViewWind> UpdateWind(UpdateWind viewModel)
     {
         return await mediator.Send(new UpdateWindCommand { ViewModel = viewModel });
@@ -39,7 +40,7 @@ public class WindTool(IMediator mediator)
     [McpServerTool(
         Name = "findallwind",
         Title = "Finds All Winds"
-    )]
+    ), Description("Finds All Winds")]
     public async Task<IList<ViewCatalog>> FindAllWind()
     {
         return await mediator.Send(new FindAllWindQuery());
@@ -53,7 +54,7 @@ public class WindTool(IMediator mediator)
     [McpServerTool(
         Name = "findpaginatedwind",
         Title = "Finds All Winds Paginated"
-    )]
+    ), Description("Finds All Winds Paginated")]
     public async Task<ViewPage<ViewWind>> FindPaginatedWind(FilterPage viewModel)
     {
         return await mediator.Send(new FindPaginatedWindQuery { ViewModel = viewModel });
@@ -67,7 +68,7 @@ public class WindTool(IMediator mediator)
     [McpServerTool(
         Name = "findallhistoricbywindid",
         Title = "Finds All Historics By Wind Id"
-    )]
+    ), Description("Finds All Historics By Wind Id")]
     public async Task<IList<ViewHistoric>> FindAllHistoricByWindId(int id)
     {
         return await mediator.Send(new FindAllHistoricByWindIdQuery { Id = id });
@@ -81,7 +82,7 @@ public class WindTool(IMediator mediator)
     [McpServerTool(
         Name = "addwind",
         Title = "Adds Wind"
-    )]
+    ), Description("Adds Wind")]
     public async Task<ViewWind> AddWind(AddWind viewModel)
     {
         return await mediator.Send(new AddWindCommand { ViewModel = viewModel });
@@ -95,7 +96,7 @@ public class WindTool(IMediator mediator)
     [McpServerTool(
         Name = "removewindbyid",
         Title = "Removes Wind By Id"
-    )]
+    ), Description("Removes Wind By Id")]
     public async Task RemoveWindById(int id)
     {
         await mediator.Send(new RemoveWindByIdCommand { Id = id });

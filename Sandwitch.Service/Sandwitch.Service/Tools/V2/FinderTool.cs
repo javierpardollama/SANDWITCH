@@ -1,3 +1,4 @@
+using System.ComponentModel;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using ModelContextProtocol.Server;
@@ -23,7 +24,7 @@ public class FinderTool(IMediator mediator)
     [McpServerTool(
         Name = "findallfinder",
         Title = "Finds All Finders (States | Towns)"
-    )]
+    ), Description("Finds All Finders (States | Towns)")]
     public async Task<IList<ViewFinder>> FindAllFinder()
     {
         return await mediator.Send(new FindAllFinderQuery());
@@ -37,7 +38,7 @@ public class FinderTool(IMediator mediator)
     [McpServerTool(
         Name = "findallbeachbyfinderid",
         Title = "Finds All Beaches By Finder Id (State Id | Town Id)"
-    )]
+    ), Description("Finds All Beaches By Finder Id (State Id | Town Id)")]
     public async Task<IList<ViewBeach>> FindAllBeachByFinderId(FinderBeach viewModel)
     {
         return await mediator.Send(new FindAllBeachByFinderIdQuery { ViewModel = viewModel });

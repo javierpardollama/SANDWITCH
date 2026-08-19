@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Sandwitch.Infrastructure.Installers;
 
@@ -11,9 +12,9 @@ public static class McpServerInstaller
     ///     Installs Mcp Server
     /// </summary>
     /// <param name="this">Injected <see cref="IServiceCollection" /></param>
-    public static void InstallMcpServer(this IServiceCollection @this)
+    public static void InstallMcpServer(this WebApplicationBuilder @this)
     {
-        @this.AddMcpServer()
+        @this.Services.AddMcpServer()
             .WithHttpTransport(options =>
             {
                 options.Stateless = true;

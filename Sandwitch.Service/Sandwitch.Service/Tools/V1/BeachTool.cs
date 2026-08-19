@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using System.ComponentModel;
+using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using ModelContextProtocol.Server;
 using Sandwitch.Application.Commands.Beach;
@@ -24,9 +25,9 @@ public class BeachTool(IMediator mediator)
     /// <param name="viewModel">Injected <see cref="UpdateBeach" /></param>
     /// <returns>A <see cref="Task{T}"/> whose result is a <see cref="ViewBeach"/>.</returns>
     [McpServerTool(
-        Name = "updatebeach",
-        Title = "Updates Beach"
-    )]
+         Name = "updatebeach",
+         Title = "Updates Beach"
+     ), Description("Updates Beach")]
     public async Task<ViewBeach> UpdateBeach(UpdateBeach viewModel)
     {
         return await mediator.Send(new UpdateBeachCommand { ViewModel = viewModel });
@@ -39,7 +40,7 @@ public class BeachTool(IMediator mediator)
     [McpServerTool(
         Name = "findallbeach",
         Title = "Finds All Beaches"
-    )]
+    ), Description("Finds All Beaches")]
     public async Task<IList<ViewCatalog>> FindAllBeach()
     {
         return await mediator.Send(new FindAllBeachQuery());
@@ -53,7 +54,7 @@ public class BeachTool(IMediator mediator)
     [McpServerTool(
         Name = "findpaginatedbeach",
         Title = "Finds All Beaches Paginated"
-    )]
+    ), Description("Finds All Beaches Paginated")]
     public async Task<ViewPage<ViewBeach>> FindPaginatedBeach(FilterPage viewModel)
     {
         return await mediator.Send(new FindPaginatedBeachQuery { ViewModel = viewModel });
@@ -67,7 +68,7 @@ public class BeachTool(IMediator mediator)
     [McpServerTool(
         Name = "findallhistoricbybeachid",
         Title = "Finds All Historics By Beach Id"
-    )]
+    ), Description("Finds All Historics By Beach Id")]
     public async Task<IList<ViewHistoric>> FindAllHistoricByBeachId(int id)
     {
         return await mediator.Send(new FindAllHistoricByBeachIdQuery { Id = id });
@@ -80,8 +81,8 @@ public class BeachTool(IMediator mediator)
     /// <returns>A <see cref="Task{T}"/> whose result is a <see cref="ViewBeach"/>.</returns>
     [McpServerTool(
         Name = "addbeach",
-        Title = " Adds Beach"
-    )]
+        Title = "Adds Beach"
+    ), Description("Adds Beach")]
     public async Task<ViewBeach> AddBeach(AddBeach viewModel)
     {
         return await mediator.Send(new AddBeachCommand { ViewModel = viewModel });
@@ -95,7 +96,7 @@ public class BeachTool(IMediator mediator)
     [McpServerTool(
         Name = "removebeachbyid",
         Title = "Removes Beach By Id"
-    )]
+    ), Description("Removes Beach By Id")]
     public async Task RemoveBeachById(int id)
     {
         await mediator.Send(new RemoveBeachByIdCommand { Id = id });

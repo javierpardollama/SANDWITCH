@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using System.ComponentModel;
+using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using ModelContextProtocol.Server;
 using Sandwitch.Application.Commands.State;
@@ -26,7 +27,7 @@ public class StateTool(IMediator mediator)
     [McpServerTool(
         Name = "updatestate",
         Title = "Updates State"
-    )]
+    ), Description("Updates State")]
     public async Task<ViewState> UpdateState(UpdateState viewModel)
     {
         return await mediator.Send(new UpdateStateCommand { ViewModel = viewModel });
@@ -39,7 +40,7 @@ public class StateTool(IMediator mediator)
     [McpServerTool(
         Name = "findallstate",
         Title = "Finds All States"
-    )]
+    ), Description("Finds All States")]
     public async Task<IList<ViewCatalog>> FindAllState()
     {
         return await mediator.Send(new FindAllStateQuery());
@@ -53,7 +54,7 @@ public class StateTool(IMediator mediator)
     [McpServerTool(
         Name = "findpaginatedstate",
         Title = "Finds All States Paginated"
-    )]
+    ), Description("Finds All States Paginated")]
     public async Task<ViewPage<ViewState>> FindPaginatedState(FilterPage viewModel)
     {
         return await mediator.Send(new FindPaginatedStateQuery { ViewModel = viewModel });
@@ -67,7 +68,7 @@ public class StateTool(IMediator mediator)
     [McpServerTool(
         Name = "addstate",
         Title = "Adds State"
-    )]
+    ), Description("Adds State")]
     public async Task<ViewState> AddState(AddState viewModel)
     {
         return await mediator.Send(new AddStateCommand { ViewModel = viewModel });
@@ -81,7 +82,7 @@ public class StateTool(IMediator mediator)
     [McpServerTool(
         Name = "removestatebyid",
         Title = "Removes State By Id"
-    )]
+    ), Description("Removes State By Id")]
     public async Task RemoveStateById(int id)
     {
         await mediator.Send(new RemoveStateByIdCommand { Id = id });

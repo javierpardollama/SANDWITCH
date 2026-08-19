@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using System.ComponentModel;
+using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using ModelContextProtocol.Server;
 using Sandwitch.Application.Commands.Town;
@@ -26,7 +27,7 @@ public class TownTool(IMediator mediator)
     [McpServerTool(
         Name = "updatetown",
         Title = "Updates Town"
-    )]
+    ), Description("Updates Town")]
     public async Task<ViewTown> UpdateTown(UpdateTown viewModel)
     {
         return await mediator.Send(new UpdateTownCommand { ViewModel = viewModel });
@@ -39,7 +40,7 @@ public class TownTool(IMediator mediator)
     [McpServerTool(
         Name = "findalltown",
         Title = "Finds All Towns"
-    )]
+    ), Description("Finds All Towns")]
     public async Task<IList<ViewCatalog>> FindAllTown()
     {
         return await mediator.Send(new FindAllTownQuery());
@@ -53,7 +54,7 @@ public class TownTool(IMediator mediator)
     [McpServerTool(
         Name = "findpaginatedtown",
         Title = "Finds All Towns Paginated"
-    )]
+    ), Description("Finds All Towns Paginated")]
     public async Task<ViewPage<ViewTown>> FindPaginatedTown(FilterPage viewModel)
     {
         return await mediator.Send(new FindPaginatedTownQuery { ViewModel = viewModel });
@@ -67,7 +68,7 @@ public class TownTool(IMediator mediator)
     [McpServerTool(
         Name = "addtown",
         Title = "Adds Town"
-    )]
+    ), Description("Adds Town")]
     public async Task<ViewTown> AddTown(AddTown viewModel)
     {
         return await mediator.Send(new AddTownCommand { ViewModel = viewModel });
@@ -81,7 +82,7 @@ public class TownTool(IMediator mediator)
     [McpServerTool(
         Name = "removetownbyid",
         Title = "Removes Town By Id"
-    )]
+    ), Description("Removes Town By Id")]
     public async Task RemoveTownById(int id)
     {
         await mediator.Send(new RemoveTownByIdCommand { Id = id });

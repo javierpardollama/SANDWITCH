@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using System.ComponentModel;
+using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using ModelContextProtocol.Server;
 using Sandwitch.Application.Commands.Historic;
@@ -23,7 +24,7 @@ public class HistoricTool(IMediator mediator)
     [McpServerTool(
         Name = "addhistoric",
         Title = "Adds Historic"
-    )]
+    ), Description("Adds Historic")]
     public async Task<ViewHistoric> AddHistoric(AddHistoric viewModel)
     {
         return await mediator.Send(new AddHistoricCommand { ViewModel = viewModel });

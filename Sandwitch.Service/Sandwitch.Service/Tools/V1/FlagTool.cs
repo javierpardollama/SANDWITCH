@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using System.ComponentModel;
+using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using ModelContextProtocol.Server;
 using Sandwitch.Application.Commands.Flag;
@@ -26,7 +27,7 @@ public class FlagTool(IMediator mediator)
     [McpServerTool(
         Name = "updateflag",
         Title = "Updates Flag"
-    )]
+    ), Description("Updates Flag")]
     public async Task<ViewFlag> UpdateFlag(UpdateFlag viewModel)
     {
         return await mediator.Send(new UpdateFlagCommand { ViewModel = viewModel });
@@ -39,7 +40,7 @@ public class FlagTool(IMediator mediator)
     [McpServerTool(
         Name = "findallflag",
         Title = "Finds All Flags"
-    )]
+    ), Description("Finds All Flags")]
     public async Task<IList<ViewCatalog>> FindAllFlag()
     {
         return await mediator.Send(new FindAllFlagQuery());
@@ -53,7 +54,7 @@ public class FlagTool(IMediator mediator)
     [McpServerTool(
         Name = "findpaginatedflag",
         Title = "Finds All Flags Paginated"
-    )]
+    ), Description("Finds All Flags Paginated")]
     public async Task<ViewPage<ViewFlag>> FindPaginatedFlag(FilterPage viewModel)
     {
         return await mediator.Send(new FindPaginatedFlagQuery { ViewModel = viewModel });
@@ -67,7 +68,7 @@ public class FlagTool(IMediator mediator)
     [McpServerTool(
         Name = "findallhistoricbyflagid",
         Title = "Finds All Historics By Flag Id"
-    )]
+    ), Description("Finds All Historics By Flag Id")]
     public async Task<IList<ViewHistoric>> FindAllHistoricByFlagId(int id)
     {
         return await mediator.Send(new FindAllHistoricByFlagIdQuery { Id = id });
@@ -81,7 +82,7 @@ public class FlagTool(IMediator mediator)
     [McpServerTool(
         Name = "addflag",
         Title = "Adds Flag"
-    )]
+    ), Description("Adds Flag")]
     public async Task<ViewFlag> AddFlag(AddFlag viewModel)
     {
         return await mediator.Send(new AddFlagCommand { ViewModel = viewModel });
@@ -95,7 +96,7 @@ public class FlagTool(IMediator mediator)
     [McpServerTool(
         Name = "removeflagbyid",
         Title = "Removes Flag By Id"
-    )]
+    ), Description("Removes Flag By Id")]
     public async Task RemoveFlagById(int id)
     {
         await mediator.Send(new RemoveFlagByIdCommand { Id = id });

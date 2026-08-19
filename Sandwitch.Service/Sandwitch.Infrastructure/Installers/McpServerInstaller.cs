@@ -21,15 +21,15 @@ public static class McpServerInstaller
                 options.Stateless = true;
             })
             .AddAuthorizationFilters()
-            .AddMcpTools();
+            .MapMcpTools();
     }
 
     /// <summary>
-    /// Adds Mcp Tools
+    /// Maps Mcp Tools
     /// </summary>
     /// <param name="builder">Injected <see cref="IMcpServerBuilder" /></param>
     /// <returns>Instance of <see cref="IMcpServerBuilder"/></returns>
-    private static void AddMcpTools(this IMcpServerBuilder @builder)
+    private static void MapMcpTools(this IMcpServerBuilder @builder)
     {
         var @assemblies = AppDomain.CurrentDomain
             .GetAssemblies()

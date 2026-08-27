@@ -33,11 +33,10 @@ public static class McpServerInstaller
     {
         var @assemblies = AppDomain.CurrentDomain
             .GetAssemblies()
-            .Where(a => a.GetTypes()
-                .Any(t => t.GetCustomAttributes(typeof(McpServerToolTypeAttribute), inherit: true)
-                    .Any()
-            ));
-        
+            .Where(@assembly => !@assembly.IsDynamic 
+                                && @assembly.IsDefined(typeof(McpServerToolTypeAttribute), 
+                                    inherit: false));
+
         foreach (var @assembly in @assemblies)
         {
             @builder.WithToolsFromAssembly(@assembly);

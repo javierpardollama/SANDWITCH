@@ -31,11 +31,11 @@
       },
       "Selenium.Support": {
         "type": "Direct",
-        "requested": "[4.47.0, )",
-        "resolved": "4.47.0",
-        "contentHash": "flmvQGQbvBB5vaF96nFAacAa0lRPtD3FMlhMl7Plb9LBOo+Fvnyf/JG31mioectMAhYL412CAbZQqSRZKMqT3Q==",
+        "requested": "[4.48.0, )",
+        "resolved": "4.48.0",
+        "contentHash": "ByCAZWmu0OTzBQCut8GP+x63dGbRkrCEN3DtD/RNfCAMl4tYO234VGOmik9iuP7yqvSQpf0kvSUSiKPXGXES/g==",
         "dependencies": {
-          "Selenium.WebDriver": "4.47.0"
+          "Selenium.WebDriver": "4.48.0"
         }
       },
       "Microsoft.ApplicationInsights": {
@@ -109,8 +109,8 @@
       },
       "Selenium.WebDriver": {
         "type": "Transitive",
-        "resolved": "4.47.0",
-        "contentHash": "P6tWCztrMNXpA4av0EDEwpw+jPbefH7BtdSU05aAldkCUrZF537uBTkHj+A3EcgpbcGGr6uj61UDy8GO6APhoQ=="
+        "resolved": "4.48.0",
+        "contentHash": "kfKFPGlOtb2Jd6PlNqh0x7sid/LCrNIXKDhscVVaDVMnrjD3X2HdPI7TMbaIKSilhctKXU1fowhJpuzsMGX1LQ=="
       }
     }
   }

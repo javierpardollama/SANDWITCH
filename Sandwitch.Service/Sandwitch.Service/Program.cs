@@ -1,5 +1,6 @@
 using Sandwitch.Application.Installers;
 using Sandwitch.Infrastructure.Installers;
+using Sandwitch.Service.Installers;
 
 var @builder = WebApplication.CreateBuilder(args);
 

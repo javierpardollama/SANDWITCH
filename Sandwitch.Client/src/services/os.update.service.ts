@@ -1,11 +1,11 @@
-import { ApplicationRef, DestroyRef, inject, Injectable } from '@angular/core';
+import { ApplicationRef, DestroyRef, inject, Service } from '@angular/core';
 import { SwUpdate } from '@angular/service-worker';
 import { concat, interval, of } from 'rxjs';
 import { catchError, first, switchMap, tap } from 'rxjs/operators';
-import { TimeAppVariants } from 'src/variants/time.app.variants';
+import { TimeAppVariants } from '../variants/time.app.variants';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
-@Injectable({ providedIn: 'root' })
+@Service()
 export class OsUpdateService {
 
     private appRef = inject(ApplicationRef);

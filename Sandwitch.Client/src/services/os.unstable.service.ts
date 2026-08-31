@@ -1,10 +1,13 @@
-import { inject, Injectable } from '@angular/core';
+import { inject, Service } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { SwUpdate } from '@angular/service-worker';
-import { OsUpdateUnstableModalComponent } from 'src/app/os/modals/os-update-unstable-modal/os-update-unstable-modal.component';
+import {
+  OsUpdateUnstableModalComponent
+} from '../app/os/modals/os-update-unstable-modal/os-update-unstable-modal.component';
 
 
-@Injectable({ providedIn: 'root' })
+
+@Service()
 export class OsUnstableService {
 
   private swUpdate = inject(SwUpdate);

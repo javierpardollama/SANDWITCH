@@ -6,7 +6,7 @@ import { ViewPage } from '../viewmodels/views/viewpage';
 
 import { ViewWind } from '../viewmodels/views/viewwind';
 
-import { Injectable } from '@angular/core';
+import { Service } from '@angular/core';
 
 import { catchError, shareReplay } from 'rxjs/operators';
 
@@ -16,13 +16,10 @@ import { FilterPage } from '../viewmodels/filters/filterpage';
 
 import { firstValueFrom } from 'rxjs';
 
-import { environment } from '..//environments/environment';
+import { environment } from '../environments/environment';
 import { ViewCatalog } from '../viewmodels/views/viewcatalog';
 
-@Injectable({
-    providedIn: 'root',
-})
-
+@Service()
 export class WindService extends BaseService {
 
     public constructor() {

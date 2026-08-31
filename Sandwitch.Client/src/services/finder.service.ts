@@ -1,6 +1,6 @@
 import { ViewBeach } from '../viewmodels/views/viewbeach';
 
-import { Injectable } from '@angular/core';
+import { Service } from '@angular/core';
 
 import { catchError, shareReplay } from 'rxjs/operators';
 
@@ -13,10 +13,7 @@ import { ViewFinder } from "../viewmodels/views/viewfinder";
 import { FinderBeach } from "../viewmodels/finders/finderbeach";
 
 
-@Injectable({
-    providedIn: 'root',
-})
-
+@Service()
 export class FinderService extends BaseService {
 
     public constructor() {

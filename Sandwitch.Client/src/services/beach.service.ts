@@ -6,9 +6,7 @@ import { ViewPage } from '../viewmodels/views/viewpage';
 
 import { ViewBeach } from '../viewmodels/views/viewbeach';
 
-
-
-import { Injectable } from '@angular/core';
+import { Service } from '@angular/core';
 
 import { catchError } from 'rxjs/operators';
 
@@ -20,10 +18,7 @@ import { firstValueFrom } from 'rxjs';
 import { environment } from '../environments/environment';
 
 
-@Injectable({
-    providedIn: 'root',
-})
-
+@Service()
 export class BeachService extends BaseService {
 
     public constructor() {

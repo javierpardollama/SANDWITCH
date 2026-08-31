@@ -1,11 +1,13 @@
-import { inject, Injectable } from '@angular/core';
+import { inject, Service } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { SwUpdate, VersionReadyEvent } from '@angular/service-worker';
 import { filter } from 'rxjs/operators';
-import { OsUpdateAvailableModalComponent } from 'src/app/os/modals/os-update-available-modal/os-update-available-modal.component';
+import {
+  OsUpdateAvailableModalComponent
+} from '../app/os/modals/os-update-available-modal/os-update-available-modal.component';
 
 
-@Injectable({ providedIn: 'root' })
+@Service()
 export class OsPromptService {
 
     private matDialog = inject(MatDialog);

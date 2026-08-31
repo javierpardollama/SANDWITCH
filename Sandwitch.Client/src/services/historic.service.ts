@@ -2,9 +2,7 @@ import { AddHistoric } from '../viewmodels/additions/addhistoric';
 
 import { ViewHistoric } from '../viewmodels/views/viewhistoric';
 
-
-
-import { Injectable } from '@angular/core';
+import { Service } from '@angular/core';
 
 import { catchError } from 'rxjs/operators';
 
@@ -14,10 +12,7 @@ import { firstValueFrom } from 'rxjs';
 
 import { environment } from '../environments/environment';
 
-@Injectable({
-    providedIn: 'root',
-})
-
+@Service()
 export class HistoricService extends BaseService {
 
     public constructor() {

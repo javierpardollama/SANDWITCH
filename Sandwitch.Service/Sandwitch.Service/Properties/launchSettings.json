@@ -14,7 +14,7 @@
       "dotnetRunMessages": true,
       "launchBrowser": true,
       "launchUrl": "swagger",
-      "applicationUrl": "https://localhost:8081;http://localhost:8080",
+      "applicationUrl": "https://localhost:8081",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
         "OTEL_EXPORTER_OTLP_ENDPOINT": "",
@@ -26,7 +26,7 @@
       "dotnetRunMessages": true,
       "launchBrowser": true,
       "launchUrl": "swagger",
-      "applicationUrl": "https://localhost:8081;http://localhost:8080",
+      "applicationUrl": "https://localhost:8081",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Staging",
         "OTEL_EXPORTER_OTLP_ENDPOINT": "",
@@ -38,7 +38,7 @@
       "dotnetRunMessages": true,
       "launchBrowser": true,
       "launchUrl": "swagger",
-      "applicationUrl": "https://localhost:8081;http://localhost:8080",
+      "applicationUrl": "https://localhost:8081",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Production",
         "OTEL_EXPORTER_OTLP_ENDPOINT": "",

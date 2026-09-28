@@ -1,12 +1,5 @@
 {
-  "servers": { 
-     "sandwitch-http": {
-      "type": "http",
-      "url": "http://localhost:8080/mcp",
-      "headers": {
-        "Authorization": "Basic  "
-      }
-    },
+  "servers": {     
      "sandwitch-https": {
       "type": "http",
       "url": "https://localhost:8081/mcp",

@@ -39,7 +39,10 @@
               "src/styles.scss"
             ],
             "scripts": [],
-            "browser": "src/main.ts"
+            "browser": "src/main.ts",
+            "security": {
+              "autoCsp": true
+            }
           },
           "configurations": {
             "production": {

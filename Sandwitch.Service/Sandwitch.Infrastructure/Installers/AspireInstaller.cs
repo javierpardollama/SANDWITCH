@@ -62,6 +62,7 @@ public static class AspireInstaller
         });
 
         builder.Services.AddOpenTelemetry()
+            .WithLogging()
             .WithMetrics(metrics =>
             {
                 metrics.AddAspNetCoreInstrumentation()
@@ -70,9 +71,9 @@ public static class AspireInstaller
             })
              .WithTracing(tracing =>
              {
-                 tracing.AddAspNetCoreInstrumentation(tracing =>
+                 tracing.AddAspNetCoreInstrumentation(options =>
                      // Exclude health check requests from tracing
-                     tracing.Filter = context => !new[] { HealthEndpointPath, AlivenessEndpointPath }.Any(x => context.Request.Path.StartsWithSegments(x))
+                     options.Filter = context => !new[] { HealthEndpointPath, AlivenessEndpointPath }.Any(x => context.Request.Path.StartsWithSegments(x))
                  )
                  .AddHttpClientInstrumentation();
              });

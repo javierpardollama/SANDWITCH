@@ -2,7 +2,6 @@
 using Sandwitch.Application.ViewModels.Filters;
 using Sandwitch.Application.ViewModels.Views;
 using System.Net.Http.Headers;
-using System.Net.Http.Json;
 using System.Text;
 
 namespace Sandwitch.Test.Service.Controllers;
@@ -27,7 +26,7 @@ public class StateControllerTest
     {
     }
 
-    private static readonly HttpClient Client = new() { BaseAddress = new Uri("https://localhost:7297/8081/v1/state/") };
+    private static readonly HttpClient Client = new() { BaseAddress = new Uri("https://localhost:8081/api/v1/state/") };
 
     /// <summary>
     ///     Initializes a new Instance of <see cref="StateControllerTest" />
